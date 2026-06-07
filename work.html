@@ -19,21 +19,12 @@
 <style>
   /* Page-specific styles */
 
-
-  /* ── NAV ── */
-
-  /* ── PAGE HERO ── */
-  .page-hero { background:var(--navy); padding:80px 0 64px; overflow:hidden; position:relative; }
   .page-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
-  .page-hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
   .page-hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(38px,5.6vw,68px); line-height:1.04; color:#fff; margin-bottom:18px; }
   .page-hero p { font-size:18px; color:#C4BDAE; font-weight:300; max-width:54ch; line-height:1.6; }
   .anon-note { display:inline-flex; align-items:center; gap:8px; margin-top:24px; background:rgba(193,140,93,.14); border:1px solid rgba(193,140,93,.3); padding:10px 16px; border-radius:4px; font-size:14px; color:var(--twine); font-weight:500; }
-
-  /* ── CASE STUDY CARDS ── */
   .case-studies { padding:72px 0; }
   .cs-grid { display:flex; flex-direction:column; gap:72px; }
-
   .cs { scroll-margin-top:80px; }
   .cs-header { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:start; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
   @media(max-width:680px){ .cs-header { grid-template-columns:1fr; } }
@@ -43,38 +34,26 @@
   .cs-tags { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
   @media(max-width:680px){ .cs-tags { justify-content:flex-start; } }
   .cs-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); background:var(--paper-2); padding:4px 10px; border-radius:20px; border:1px solid var(--line); }
-
-  /* Problem / Approach / Outcomes layout */
   .cs-  @media(max-width:760px){ .cs- }
   .cs-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--navy); margin-bottom:14px; }
   .cs-col p { font-size:16px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:12px; }
   .cs-col p:last-child { margin-bottom:0; }
   .cs-col strong { color:var(--navy); font-weight:700; }
-
-  /* Outcomes strip */
   .outcomes { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; background:var(--rule); border-radius:6px; overflow:hidden; margin-bottom:32px; }
   @media(max-width:600px){ .outcomes { grid-template-columns:1fr; } }
   .outcome { background:var(--paper-2); padding:20px 18px; text-align:center; }
   .oc-n { font-family:"Abril Fatface",serif; font-size:36px; color:var(--navy); line-height:1; margin-bottom:8px; }
   .oc-l { font-size:13px; color:var(--muted); line-height:1.4; font-weight:400; }
-
-  /* Dashboard illustration */
   .cs-visual { background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px; box-shadow:0 12px 36px -20px rgba(15,31,56,.2); }
   .cv-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-bottom:14px; }
   .cv-label.navy { color:var(--navy); }
   .cs-visual svg { display:block; width:100%; height:auto; }
   .cs-visual figcaption { font-size:12px; color:var(--muted); margin-top:12px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; font-style:italic; }
-
-  /* Testimonial */
   .cs-quote { background:var(--navy); border-radius:6px; padding:28px 28px 24px; position:relative; margin-top:28px; }
   .cs-quote::before { content:'"'; font-family:"Abril Fatface",serif; font-size:80px; color:rgba(193,140,93,.3); line-height:.7; position:absolute; top:16px; left:20px; }
   .cs-quote blockquote { font-size:17px; color:#D6DDE8; line-height:1.6; font-weight:300; font-style:italic; padding-left:36px; position:relative; z-index:1; margin-bottom:14px; }
   .cs-quote .q-attr { font-size:13px; color:var(--twine); font-weight:600; padding-left:36px; }
-
-  /* Section divider */
   .cs-divider { border:none; border-top:2px solid var(--rule); margin:0; }
-
-  /* ── SAMPLE DELIVERABLES ── */
   .samples { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
   .samples-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
   .samples h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
@@ -86,16 +65,9 @@
   .sample h3 { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:14px; }
   .sample svg { display:block; width:100%; height:auto; }
   .sample figcaption { font-size:12px; color:var(--muted); margin-top:10px; line-height:1.46; border-top:1px solid var(--line); padding-top:8px; font-style:italic; }
-
-  /* ── CTA ── */
-  .cta-strip { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:80px 32px; }
-  .cta-strip h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.8vw,44px); color:#fff; margin-bottom:16px; }
   .cta-strip p { color:#A8B4C0; font-size:17px; font-weight:300; max-width:46ch; margin:0 auto 28px; line-height:1.6; }
-
-  /* ── FOOTER ── */
   @media(max-width:760px){ }
   @media(max-width:460px){ }
-
 </style>
 </head>
 <body>

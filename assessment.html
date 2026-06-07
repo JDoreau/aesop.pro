@@ -17,11 +17,9 @@
 <style>
   /* Page-specific styles */
 
-
-  /* NAV */
   .nav-links a.nav-accent,
-  /* HERO — conversion-focused */
-  .hero { background:var(--navy); padding:80px 0; overflow:hidden; position:relative; }
+    
+    .hero { background:var(--navy); padding:80px 0; overflow:hidden; position:relative; }
   .hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(42vw,500px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:center; }
   @media(max-width:760px){ .hero-in { grid-template-columns:1fr; gap:36px; } }
@@ -30,7 +28,6 @@
   .hero-price { display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-bottom:28px; }
   .price-badge { background:var(--twine); color:#fff; font-size:17px; font-weight:700; padding:8px 18px; border-radius:4px; }
   .price-pill { font-size:14px; color:#8A9FB8; }
-  /* Right side: value summary card */
   .hero-card { background:var(--navy-2); border-radius:8px; padding:32px 28px; border:1px solid var(--navy-3); }
   .hero-card h3 { font-size:14px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.14em; margin-bottom:18px; }
   .hc-row { display:flex; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,.07); align-items:flex-start; }
@@ -38,19 +35,14 @@
   .hc-check { color:var(--twine); font-weight:700; flex-shrink:0; font-size:14px; margin-top:1px; }
   .hc-text { font-size:14.5px; color:#C4BDAE; line-height:1.4; font-weight:300; }
   .hc-text strong { color:#fff; font-weight:600; }
-
-  /* FOR WHO */
   .for-who { padding:72px 0; background:var(--paper-2); border-bottom:1px solid var(--rule); }
   .for-who-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
   @media(max-width:720px){ .for-who-grid { grid-template-columns:1fr; gap:28px; } }
-  .sec-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
   .for-who h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:16px; line-height:1.1; }
   .for-who p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
   .symptom-list { display:flex; flex-direction:column; gap:0; margin-top:8px; border-top:2px solid var(--rule); }
   .symptom { display:flex; gap:12px; align-items:flex-start; padding:13px 0; border-bottom:1px solid var(--line); font-size:15.5px; color:var(--ink); line-height:1.5; font-weight:400; }
   .symptom::before { content:"↯"; color:var(--contessa); font-weight:700; flex-shrink:0; margin-top:1px; font-size:14px; }
-
-  /* DELIVERABLES */
   .deliverables { padding:72px 0; }
   .deliverables h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
   .deliverables .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:58ch; margin-bottom:44px; line-height:1.6; }
@@ -60,8 +52,6 @@
   .del-n { font-family:"Abril Fatface",serif; font-size:22px; color:var(--twine); min-width:36px; line-height:1; flex-shrink:0; }
   .del-body h3 { font-size:15.5px; font-weight:700; color:var(--navy); margin-bottom:5px; }
   .del-body p { font-size:14px; color:var(--muted); line-height:1.5; font-weight:300; }
-
-  /* PROCESS */
   .process { background:var(--navy); padding:72px 0; }
   .process-in { max-width:1080px; margin:0 auto; padding:0 32px; }
   .process-in  .process-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:#fff; margin-bottom:14px; }
@@ -75,11 +65,8 @@
   .ps ul { list-style:none; padding:0; margin-top:8px; }
   .ps ul li { font-size:13px; color:#6A8099; padding:4px 0; border-top:1px solid rgba(255,255,255,.06); display:flex; gap:8px; line-height:1.4; }
   .ps ul li::before { content:"·"; color:var(--twine); flex-shrink:0; }
-
-  /* IS THIS RIGHT FOR YOU */
   .fit { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
   .fit h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:36px; }
-  .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   @media(max-width:640px){ .fit-grid { grid-template-columns:1fr; } }
   .fit-box { border-radius:6px; padding:24px; }
   .fit-box.yes { background:#fff; border:1px solid var(--line); border-top:3px solid var(--navy); }
@@ -92,16 +79,10 @@
   .fit-item::before { font-weight:700; flex-shrink:0; margin-top:1px; }
   .fit-box.yes .fit-item::before { content:"✓"; color:var(--navy); }
   .fit-box.no  .fit-item::before { content:"→"; color:var(--contessa); }
-
-  /* FAQ */
-  .faq { padding:72px 0; }
   .faq h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }
   .faq-item { border-bottom:1px solid var(--line); padding:20px 0; max-width:760px; }
   .faq-item:first-child { border-top:2px solid var(--rule); }
-  .fq { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:10px; }
   .fa { font-size:16px; color:var(--slate); line-height:1.65; font-weight:300; }
-
-  /* CONVERSION CTA */
   .conversion { background:var(--navy); border-top:3px solid var(--twine); padding:80px 32px; }
   .conv-in { max-width:680px; margin:0 auto; text-align:center; }
   .conv-in  .conv-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,4vw,46px); color:#fff; margin-bottom:18px; line-height:1.06; }
@@ -112,8 +93,6 @@
   .conv-detail .cdl { font-size:12px; color:#6A8099; margin-top:4px; text-transform:uppercase; letter-spacing:.08em; font-weight:500; }
   .conv-divider { width:1px; background:rgba(255,255,255,.1); align-self:stretch; }
   @media(max-width:480px){ .conv-divider { display:none; } }
-
-  /* FOOTER */
   @media(max-width:760px){ }
   @media(max-width:460px){ }
 </style>

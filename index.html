@@ -20,10 +20,6 @@
   /* Page-specific styles */
 
   section { position:relative; }
-
-  /* ── NAV ── */
-
-  /* ── HERO ── */
   .hero { background:var(--navy); color:var(--cream); overflow:hidden; min-height:88vh; display:flex; align-items:center; }
   .hero::after { content:"æ"; position:absolute; right:-3%; top:-14%; font-family:"Abril Fatface",serif; font-size:min(48vw,580px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:100px 32px 90px; position:relative; z-index:2; }
@@ -32,14 +28,10 @@
   .hero .hero-sub { font-size:clamp(16px,1.8vw,20px); line-height:1.6; color:#C4BDAE; max-width:54ch; margin-bottom:40px; font-weight:300; }
   .hero-note { margin-top:52px; display:flex; align-items:center; gap:12px; color:#5A7090; font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
   .hero-note::before { content:''; display:block; width:28px; height:1px; background:#5A7090; }
-
-  /* ── PROMISE BAR ── */
   .promise { background:var(--paper-2); border-bottom:1px solid var(--rule); }
   .promise-in { max-width:1080px; margin:0 auto; padding:32px; text-align:center; }
   .promise p { font-family:"Abril Fatface",serif; font-size:clamp(17px,2.2vw,26px); color:var(--navy); line-height:1.35; max-width:38ch; margin:0 auto; }
   .dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--twine); margin:0 9px; vertical-align:middle; }
-
-  /* ── PAIN SECTION ── */
   .pain { padding:80px 0; background:var(--paper); }
   .pain-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
   @media(max-width:760px){ .pain-grid { grid-template-columns:1fr; gap:36px; } }
@@ -52,17 +44,14 @@
   .pain-item { display:flex; gap:14px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--line); }
   .pain-item .pi { font-size:18px; color:var(--contessa); flex-shrink:0; line-height:1.4; font-weight:700; }
   .pain-item .pt { font-size:16px; color:var(--ink); line-height:1.5; font-weight:400; }
-
-  /* ── TRUST METHOD ── */
-  .method { background:var(--navy); padding:80px 0; }
   .method-in { max-width:1080px; margin:0 auto; padding:0 32px; }
   .method-head { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
   @media(max-width:760px){ .method-head { grid-template-columns:1fr; gap:20px; } }
   .method-head h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,3.8vw,44px); color:#fff; line-height:1.08; }
   .method-head p { font-size:16.5px; color:#8A9FB8; font-weight:300; line-height:1.6; }
   .trust-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; border-radius:6px; overflow:hidden; }
- }
-  @media(max-width:500px){ .trust-steps { grid-template-columns:1fr; } }
+  }
+    @media(max-width:500px){ .trust-steps { grid-template-columns:1fr; } }
   .trust-step { background:var(--navy-2); padding:28px 22px; position:relative; }
   .trust-step:hover { background:var(--navy-3); transition:background .2s; }
   .ts-letter { font-family:"Abril Fatface",serif; font-size:56px; color:var(--twine); line-height:1; opacity:.5; margin-bottom:6px; }
@@ -70,8 +59,6 @@
   .ts-desc { font-size:13.5px; color:#8A9FB8; line-height:1.55; font-weight:300; }
   .method-cta { margin-top:40px; text-align:center; }
   .method-cta p { font-size:15px; color:#8A9FB8; margin-bottom:20px; font-weight:300; }
-
-  /* ── OFFER STRIP ── */
   .offers { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
   .offers-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
   .offers h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,40px); line-height:1.1; color:var(--navy); margin-bottom:14px; max-width:22ch; }
@@ -93,12 +80,11 @@
   .offer-card.flagship .oc-pill { background:var(--navy-2); color:#8A9FB8; border-color:var(--navy-3); }
   .oc-link { font-size:13px; font-weight:700; color:var(--twine); letter-spacing:.04em; text-transform:uppercase; margin-top:4px; }
   .oc-link:hover { color:var(--sepia); }
-  /* Retainer card — full width -->  */
   .offer-card.retainer { grid-column:1/-1; flex-direction:row; align-items:center; gap:32px; }
   @media(max-width:720px){ .offer-card.retainer { flex-direction:column; gap:16px; grid-column:auto; } }
   .offer-card.retainer .ret-
-  /* ── WHO WE SERVE ── */
-  .who { padding:80px 0; }
+    
+    .who { padding:80px 0; }
   .who h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:14px; max-width:20ch; }
   .who .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:56ch; margin-bottom:44px; line-height:1.6; }
   .personas { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -120,15 +106,10 @@
   .not-item::before { font-weight:700; flex-shrink:0; margin-top:1px; font-size:13px; }
   .not-box.is .not-item::before { content:"✓"; color:var(--navy); }
   .not-box.not .not-item::before { content:"✗"; color:var(--contessa); }
-
-  /* ── STATS ── */
-  .stats { background:var(--navy); border-top:1px solid rgba(255,255,255,.06); }
   .stats-in { max-width:1080px; margin:0 auto; padding:52px 32px; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center; }
   @media(max-width:700px){ .stats-in { grid-template-columns:repeat(2,1fr); } }
   .stat-n { font-family:"Abril Fatface",serif; font-size:clamp(34px,4.5vw,52px); color:var(--twine); line-height:1; margin-bottom:10px; }
   .stat-l { font-size:12px; font-weight:500; color:#8FA4B8; letter-spacing:.04em; line-height:1.4; text-transform:uppercase; }
-
-  /* ── FEATURED INSIGHT ── */
   .featured { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
   .featured-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
   .featured h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,38px); color:var(--navy); margin-bottom:12px; }
@@ -146,8 +127,6 @@
   .see-all { display:inline-flex; align-items:center; gap:8px; margin-top:28px; font-size:14px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
   .see-all::after { content:"→"; }
   .see-all:hover { color:var(--twine); }
-
-  /* ── ABOUT TEASER ── */
   .about-tease { padding:80px 0; }
   .about-grid { display:grid; grid-template-columns:.7fr 1.3fr; gap:56px; align-items:center; }
   @media(max-width:760px){ .about-grid { grid-template-columns:1fr; gap:28px; } }
@@ -161,17 +140,11 @@
   .about-link { display:inline-flex; align-items:center; gap:6px; margin-top:20px; font-size:13.5px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
   .about-link::after { content:"→"; }
   .about-link:hover { color:var(--twine); }
-
-  /* ── FINAL CTA ── */
   .final-cta { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:96px 32px; }
   .final-cta h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,4.4vw,52px); color:#fff; margin-bottom:20px; line-height:1.06; }
   .final-cta p { color:#A8B4C0; font-size:18px; font-weight:300; max-width:48ch; margin:0 auto 36px; line-height:1.6; }
-
-  /* ── FOOTER ── */
   @media(max-width:760px){ }
   @media(max-width:460px){ }
-
-  /* ── ANIMATIONS ── */
 </style>
 </head>
 <body>

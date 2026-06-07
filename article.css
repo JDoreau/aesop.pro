@@ -87,3 +87,26 @@ footer .fbrand .an { font-family:"DM Sans",sans-serif; font-weight:700; letter-s
 footer .fmoral { font-style:italic; font-size:14px; color:#4A6070; }
 footer .fback { font-size:13px; font-weight:600; color:var(--twine); text-decoration:none; }
 footer .fback:hover { color:#d49a68; }
+
+/* -- Old-style article header (header.site) -- */
+header.site { border-bottom:1px solid var(--rule); background:rgba(251,250,245,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); position:sticky; top:0; z-index:10; }
+.site-inner { max-width:1040px; margin:0 auto; padding:13px 28px; display:flex; align-items:center; justify-content:space-between; }
+.tagline { color:var(--muted); font-style:italic; font-size:14px; }
+
+/* -- SVG illustration containers -- */
+.illus { margin:36px 0; background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px 24px 18px; box-shadow:0 16px 40px -28px rgba(15,31,56,.22); }
+.ititle { font-weight:700; font-size:15px; margin-bottom:3px; color:var(--ink); }
+.isub   { font-size:12.5px; color:var(--muted); margin-bottom:18px; font-weight:400; }
+
+/* -- Field study / data journalism -- */
+.twocol { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:4px; overflow:hidden; }
+.stats  { display:grid; grid-template-columns:repeat(3,1fr); margin:38px 0; border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+.stat   { padding:22px 20px; background:#fff; }
+.n      { font-family:"Abril Fatface",serif; font-size:38px; color:var(--twine); line-height:1; }
+.l      { font-size:13px; color:var(--muted); margin-top:11px; line-height:1.36; font-weight:400; }
+.legend { display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px; margin-bottom:6px; font-weight:400; color:var(--slate); }
+.swatch { width:13px; height:13px; border-radius:2px; display:inline-block; }
+.sources { margin:54px 0 0; border-top:2px solid var(--navy); padding-top:22px; }
+.big    { font-family:"Abril Fatface",serif; font-size:60px; line-height:1; color:var(--twine); }
+.cap    { font-size:16px; line-height:1.5; margin-top:12px; color:#B8BDCA; }
+.method { margin:44px 0; background:var(--navy); border-radius:8px; overflow:hidden; }

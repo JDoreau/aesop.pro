@@ -17,15 +17,11 @@
 <style>
   /* Page-specific styles */
 
-
-  /* PAGE */
   .contact-wrap { max-width:1080px; margin:0 auto; padding:80px 32px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
   @media(max-width:760px){ .contact-wrap { grid-template-columns:1fr; gap:48px; padding:56px 28px; } }
-
   .contact-intro h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(34px,5vw,56px); line-height:1.06; color:var(--navy); margin-bottom:24px; }
   .contact-intro p { font-size:17.5px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:20px; }
   .contact-intro strong { color:var(--navy); font-weight:700; }
-
   .channels { margin-top:36px; display:flex; flex-direction:column; gap:14px; }
   .channel { display:flex; gap:16px; align-items:center; padding:18px 20px; background:#fff; border:1px solid var(--line); border-radius:6px; text-decoration:none; transition:border-color .18s,box-shadow .18s; }
   .channel:hover { border-color:var(--navy); box-shadow:0 6px 20px -10px rgba(15,31,56,.18); }
@@ -34,7 +30,6 @@
   .channel .ch-value { font-size:16px; font-weight:600; color:var(--navy); }
   .channel .ch-sub { font-size:13px; color:var(--muted); font-weight:300; margin-top:2px; }
   .channel .ch-arrow { color:var(--twine); font-size:18px; font-weight:700; }
-
   .expectations { background:var(--navy); border-radius:8px; padding:40px 36px; color:var(--cream); position:relative; overflow:hidden; }
   .expectations::after { content:"æ"; position:absolute; right:-16px; bottom:-44px; font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.1); line-height:1; pointer-events:none; }
   .expectations h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:22px; color:#fff; margin-bottom:24px; position:relative; z-index:1; }
@@ -43,9 +38,7 @@
   .exp-item .en { font-family:"Abril Fatface",serif; font-size:20px; color:var(--twine); min-width:28px; line-height:1.1; flex-shrink:0; }
   .exp-item .et { font-size:15.5px; color:#C4BDAE; line-height:1.55; font-weight:300; }
   .exp-item .et strong { color:#fff; font-weight:600; }
-
   .fit-section { max-width:1080px; margin:0 auto; padding:0 32px 80px; }
-  .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   @media(max-width:660px){ .fit-grid { grid-template-columns:1fr; } }
   .fit-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; margin-bottom:24px; }
   .fit-head.good { color:var(--navy); }
@@ -59,7 +52,6 @@
   .fit-item::before { font-weight:700; flex-shrink:0; margin-top:1px; }
   .fit-box.good-box .fit-item::before { content:"✓"; color:var(--navy); }
   .fit-box.less-box .fit-item::before { content:"→"; color:var(--contessa); }
-
   @media(max-width:760px){ }
   @media(max-width:460px){ }
 </style>

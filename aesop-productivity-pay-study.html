@@ -13,101 +13,49 @@
 <style>
   /* Page-specific styles */
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-
-  /* ── Sticky header ── */
-  header.site{
-    border-bottom:1px solid var(--rule);
-    background:rgba(251,250,245,.92);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
-    position:sticky;top:0;z-index:10;
-  }
-  .site-inner{max-width:1040px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between}
   .brand a{text-decoration:none;display:flex;align-items:baseline;gap:9px}
-  .tagline{color:var(--muted);font-style:italic;font-size:14px}
   @media(max-width:620px){.tagline{display:none}}
-
-  /* ── Article header ── */
-
-  /* ── Body text ── */
-  .  /* Drop cap — navy now */
-
-  /* Section heads — DM Sans, heavy, as in the index */
-  h2 .num{font-family:"Abril Fatface",serif;color:var(--twine);font-size:22px;margin-right:10px}
-
-  /* ── Stats strip ── */
-  .stats{
-    display:grid;grid-template-columns:repeat(3,1fr);
-    margin:38px 0;border:1px solid var(--rule);
-    border-radius:4px;overflow:hidden;background:var(--paper-2)
-  }
-  .stat{padding:26px 20px;text-align:center;border-right:1px solid var(--rule)}
+  .  
+  
+    
+    h2 .num{font-family:"Abril Fatface",serif;color:var(--twine);font-size:22px;margin-right:10px}
   .stat:last-child{border-right:none}
-  /* Navy for primary stat numbers */
   .stat .n{font-family:"Abril Fatface",serif;font-size:44px;line-height:1;color:var(--navy)}
   .stat.alt .n{color:var(--contessa)}
   .stat .l{font-size:13px;color:var(--muted);margin-top:11px;line-height:1.36;font-weight:400}
   @media(max-width:560px){
-    .stats{grid-template-columns:1fr}
-    .stat{border-right:none;border-bottom:1px solid var(--rule)}
-    .stat:last-child{border-bottom:none}
-  }
-
-  /* ── Figures / charts ── */
+      .stats{grid-template-columns:1fr}
+      .stat{border-right:none;border-bottom:1px solid var(--rule)}
+      .stat:last-child{border-bottom:none}
+    }
   figure{
-    margin:38px 0;background:#fff;
-    border:1px solid var(--line);border-radius:5px;
-    padding:26px 24px 18px;
-    /* navy shadow — was green */
-    box-shadow:0 18px 44px -30px rgba(15,31,56,.35)
-  }
+      margin:38px 0;background:#fff;
+      border:1px solid var(--line);border-radius:5px;
+      padding:26px 24px 18px;
+      
+      box-shadow:0 18px 44px -30px rgba(15,31,56,.35)
+    }
   figure .ftitle{font-weight:700;font-size:16px;margin-bottom:3px;color:var(--ink)}
   figure .fsub{font-size:13px;color:var(--muted);margin-bottom:16px}
   figure svg{display:block;width:100%;height:auto;overflow:visible}
   figcaption{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.46;border-top:1px solid var(--line);padding-top:10px}
-  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;margin-bottom:6px;font-weight:700}
   .legend span{display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
-  .swatch{width:13px;height:13px;border-radius:2px;display:inline-block}
-
-  /* ── Pull quote ── */
-
-  /* ── Callout block — navy background ── */
   .callout .big{font-family:"Abril Fatface",serif;font-size:60px;line-height:1;color:var(--twine);position:relative}
   .callout .cap{
-    font-size:16px;line-height:1.5;margin-top:12px;
-    /* updated: was #D9D0BE, now slightly blue-grey */
-    color:#B8BDCA;
-    max-width:46ch;margin-left:auto;margin-right:auto;position:relative;font-weight:300
-  }
-
-  /* ── Two-column box ── */
-  .twocol{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:1px;background:var(--rule);
-    border:1px solid var(--rule);border-radius:5px;
-    overflow:hidden;margin:32px 0
-  }
+      font-size:16px;line-height:1.5;margin-top:12px;
+      
+      color:#B8BDCA;
+      max-width:46ch;margin-left:auto;margin-right:auto;position:relative;font-weight:300
+    }
   .twocol > div{background:var(--paper);padding:22px}
   .twocol h4{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.13em;margin-bottom:10px}
-  /* Navy for "A" side — was green */
   .twocol .a h4{color:var(--navy)}
   .twocol .b h4{color:var(--contessa)}
   .twocol p{font-size:15.5px;line-height:1.5;color:var(--ink);margin:0;font-weight:300}
   @media(max-width:560px){.twocol{grid-template-columns:1fr}}
-
-  /* ── Sources ── */
-  /* Border navy — was green */
-  .sources{margin:54px 0 0;border-top:2px solid var(--navy);padding-top:22px}
   .sources h3{font-weight:700;text-transform:uppercase;letter-spacing:.15em;font-size:12.5px;color:var(--muted);margin-bottom:14px}
   .sources ol{margin:0;padding-left:20px;font-size:13.5px;color:var(--muted);line-height:1.5}
   .sources li{margin-bottom:8px}
-  .method{font-size:13px;color:var(--muted);font-style:italic;margin-top:18px;line-height:1.5}
-
-  /* ── Footer — navy background ── */
-
-  /* ── Animations ── */
   .bar-grow{transform:scaleY(0);transform-origin:bottom;animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards}
   @keyframes grow{to{transform:scaleY(1)}}
 </style>

@@ -17,8 +17,6 @@
 <style>
   /* Page-specific styles */
 
-
-  /* HERO */
   .hero { background:var(--navy); padding:72px 0 60px; overflow:hidden; position:relative; }
   .hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; }
@@ -26,7 +24,6 @@
   .hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(32px,5vw,56px); line-height:1.05; color:#fff; margin-bottom:18px; }
   .hero p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.6; margin-bottom:24px; max-width:48ch; }
   .hero-free { display:inline-block; background:rgba(193,140,93,.15); border:1px solid rgba(193,140,93,.4); color:var(--twine); font-size:13px; font-weight:700; padding:6px 14px; border-radius:4px; margin-bottom:20px; letter-spacing:.04em; }
-  /* Score preview card */
   .score-card { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:8px; padding:28px 24px; }
   .score-card h3 { font-size:13px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.14em; margin-bottom:18px; }
   .score-area { margin-bottom:12px; }
@@ -41,10 +38,7 @@
   .sa-fill.red { background:var(--contessa); }
   .sa-fill.yellow { background:#D4A844; }
   .sa-fill.green { background:#7EB09B; }
-
-  /* WHAT IT COVERS */
   .covers { padding:72px 0; }
-  .sec-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
   .covers h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
   .covers .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:58ch; margin-bottom:44px; line-height:1.6; }
   .area-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
@@ -54,8 +48,6 @@
   .area-body h3 { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:5px; }
   .area-body p { font-size:13.5px; color:var(--muted); line-height:1.5; font-weight:300; }
   .area-body .sample { font-size:12.5px; color:var(--muted); font-style:italic; margin-top:6px; line-height:1.45; border-left:2px solid var(--line); padding-left:8px; }
-
-  /* HOW TO USE IT */
   .how-use { background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:64px 0; }
   .how-use h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:36px; }
   .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
@@ -64,8 +56,6 @@
   .step .sn { font-family:"Abril Fatface",serif; font-size:32px; color:var(--twine); opacity:.5; line-height:1; margin-bottom:8px; }
   .step h3 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:8px; }
   .step p { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; }
-
-  /* SCORING */
   .scoring { padding:64px 0; }
   .scoring h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }
   .score-bands { display:flex; flex-direction:column; gap:12px; max-width:660px; }
@@ -85,8 +75,6 @@
   .band.stable   .band-label { color:#4E9B84; }
   .band.strong   .band-label { color:var(--navy); }
   .band-desc { font-size:14px; color:var(--muted); line-height:1.5; font-weight:300; }
-
-  /* FREE TOOLS & TEMPLATES */
   .tools { padding:72px 0; background:#fff; border-top:1px solid var(--line); }
   .tools h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:12px; }
   .tools .tl-intro { font-size:17px; color:var(--slate); font-weight:300; max-width:54ch; margin-bottom:44px; line-height:1.6; }
@@ -110,12 +98,9 @@
   .tl-soon-body h4 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:5px; }
   .tl-soon-body p { font-size:13.5px; color:var(--muted); font-weight:300; line-height:1.55; max-width:48ch; }
   .tl-soon-pill { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); border:1px solid var(--rule); padding:6px 14px; border-radius:20px; white-space:nowrap; flex-shrink:0; }
-
-  /* CTA */
   .cta { border-top:3px solid var(--twine); background:var(--paper-2); padding:72px 32px; text-align:center; border-bottom:1px solid var(--rule); }
   .cta h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.4vw,38px); color:var(--navy); margin-bottom:16px; }
   .cta p { font-size:17px; color:var(--slate); font-weight:300; max-width:46ch; margin:0 auto 28px; line-height:1.6; }
-
   @media(max-width:760px){ }
   @media(max-width:460px){ }
 </style>

@@ -17,8 +17,6 @@
 <style>
   /* Page-specific styles */
 
-
-  /* HERO */
   .about-hero { background:var(--navy); padding:80px 0 0; overflow:hidden; position:relative; }
   .about-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
@@ -35,8 +33,6 @@
   .portrait-block .portrait-name { position:relative; z-index:2; background:var(--twine); color:#fff; width:100%; padding:16px 20px; }
   .portrait-block .portrait-name .pn { font-size:15px; font-weight:700; }
   .portrait-block .portrait-name .pt { font-size:12px; font-weight:400; opacity:.8; margin-top:2px; }
-
-  /* BODY SECTIONS */
   .body-section { padding:72px 0; border-bottom:1px solid var(--rule); }
   .body-section:last-of-type { border-bottom:none; }
   .bs-grid { display:grid; grid-template-columns:280px 1fr; gap:56px; }
@@ -47,8 +43,6 @@
   .bs-body p:last-child { margin-bottom:0; }
   .bs-body strong { color:var(--navy); font-weight:700; }
   .bs-body a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
-
-  /* CAREER TIMELINE */
   .timeline { margin-top:8px; display:flex; flex-direction:column; gap:0; }
   .tl-item { display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--line); align-items:start; }
   .tl-item:last-child { border-bottom:none; }
@@ -56,15 +50,11 @@
   .tl-content .tc-role { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:4px; }
   .tl-content .tc-org { font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:400; }
   .tl-content .tc-desc { font-size:14.5px; color:var(--slate); line-height:1.5; font-weight:300; }
-
-  /* TOOLS GRID */
   .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
   @media(max-width:560px){ .tools-grid { grid-template-columns:repeat(2,1fr); } }
   .tool-card { background:var(--paper-2); border:1px solid var(--line); border-radius:5px; padding:16px 14px; }
   .tool-card .tn { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
   .tool-card .td { font-size:12.5px; color:var(--muted); line-height:1.4; font-weight:300; }
-
-  /* PHILOSOPHY */
   .philosophy { background:var(--navy); padding:72px 0; }
   .phil-in { max-width:1080px; margin:0 auto; padding:0 32px; }
   .phil-in  .phil-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:40px; }
@@ -73,12 +63,7 @@
   .phil-pt { background:var(--navy-2); border-radius:6px; padding:24px 22px; }
   .phil-pt h3 { font-size:16px; font-weight:700; color:var(--twine); margin-bottom:10px; }
   .phil-pt p { font-size:15px; color:#8A9FB8; line-height:1.6; font-weight:300; }
-
-  /* CTA */
-  .cta-strip { background:var(--paper-2); border-top:1px solid var(--rule); padding:72px 32px; text-align:center; }
-  .cta-strip h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:16px; }
   .cta-strip p { font-size:17px; color:var(--slate); font-weight:300; max-width:44ch; margin:0 auto 28px; line-height:1.6; }
-
   @media(max-width:760px){ }
   @media(max-width:460px){ }
 </style>

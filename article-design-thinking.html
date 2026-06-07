@@ -13,15 +13,10 @@
 <style>
   /* Page-specific styles */
 
-
-  header.site { border-bottom:1px solid var(--rule); background:rgba(251,250,245,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); position:sticky; top:0; z-index:10; }
-  .site-inner { max-width:1040px; margin:0 auto; padding:13px 28px; display:flex; align-items:center; justify-content:space-between; }
-  .tagline { color:var(--muted); font-style:italic; font-size:14px; }
   @media(max-width:580px){ .tagline { display:none; } }
-
   .
-  /* Phase cards — four phases as a 2x2 grid */
-  .phases { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:40px 0; background:var(--rule); border-radius:6px; overflow:hidden; border:1px solid var(--rule); }
+    
+    .phases { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:40px 0; background:var(--rule); border-radius:6px; overflow:hidden; border:1px solid var(--rule); }
   @media(max-width:560px){ .phases { grid-template-columns:1fr; } }
   .phase { background:#fff; padding:28px 24px; }
   .phase .pnum { font-family:"Abril Fatface",serif; font-size:42px; line-height:1; color:var(--navy); opacity:.12; display:block; margin-bottom:-8px; }
@@ -30,8 +25,6 @@
   .phase p { font-size:15px; color:var(--slate); line-height:1.58; font-weight:300; margin:0 0 12px; }
   .phase p:last-child { margin:0; }
   .phase .example { font-size:14px; color:var(--muted); font-style:italic; padding:10px 14px; background:var(--paper-2); border-radius:4px; border-left:3px solid var(--twine); margin-top:12px; line-height:1.5; }
-
-  /* Pro/avoid strip */
   .protip { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:36px 0; }
   @media(max-width:560px){ .protip { grid-template-columns:1fr; } }
   .protip > div { border-radius:6px; padding:20px; }
@@ -46,13 +39,10 @@
   .protip li::before { font-weight:700; flex-shrink:0; }
   .protip .do li::before { content:"→"; color:var(--navy); }
   .protip .dont li::before { content:"✗"; color:var(--contessa); }
-
-  .illus { margin:38px 0; background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px 24px 20px; box-shadow:0 16px 40px -28px rgba(15,31,56,.22); }
   .illus .ititle { font-weight:700; font-size:15px; margin-bottom:3px; color:var(--ink); }
   .illus .isub { font-size:12.5px; color:var(--muted); margin-bottom:18px; }
   .illus svg { display:block; width:100%; height:auto; }
   .illus figcaption { font-size:12px; color:var(--muted); margin-top:14px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; }
-
 </style>
 </head>
 <body>
