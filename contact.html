@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Aesop Analytics</title>
+<meta name="description" content="Start a conversation with Aesop Analytics. A short, no-pressure call to understand your data situation and see if there's a fit.">
+<meta property="og:title" content="Contact — Aesop Analytics">
+<meta property="og:description" content="A short call to understand your situation. No pitch, no commitment.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="core.css">
+<style>
+  /* Page-specific styles */
+
+
+  /* PAGE */
+  .contact-wrap { max-width:1080px; margin:0 auto; padding:80px 32px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  @media(max-width:760px){ .contact-wrap { grid-template-columns:1fr; gap:48px; padding:56px 28px; } }
+
+  .contact-intro h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(34px,5vw,56px); line-height:1.06; color:var(--navy); margin-bottom:24px; }
+  .contact-intro p { font-size:17.5px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:20px; }
+  .contact-intro strong { color:var(--navy); font-weight:700; }
+
+  .channels { margin-top:36px; display:flex; flex-direction:column; gap:14px; }
+  .channel { display:flex; gap:16px; align-items:center; padding:18px 20px; background:#fff; border:1px solid var(--line); border-radius:6px; text-decoration:none; transition:border-color .18s,box-shadow .18s; }
+  .channel:hover { border-color:var(--navy); box-shadow:0 6px 20px -10px rgba(15,31,56,.18); }
+  .channel .ch-icon { width:40px; height:40px; background:var(--navy); border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:"Abril Fatface",serif; font-size:18px; color:var(--twine); flex-shrink:0; }
+  .channel .ch-  .channel .ch-label { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:3px; }
+  .channel .ch-value { font-size:16px; font-weight:600; color:var(--navy); }
+  .channel .ch-sub { font-size:13px; color:var(--muted); font-weight:300; margin-top:2px; }
+  .channel .ch-arrow { color:var(--twine); font-size:18px; font-weight:700; }
+
+  .expectations { background:var(--navy); border-radius:8px; padding:40px 36px; color:var(--cream); position:relative; overflow:hidden; }
+  .expectations::after { content:"æ"; position:absolute; right:-16px; bottom:-44px; font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.1); line-height:1; pointer-events:none; }
+  .expectations h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:22px; color:#fff; margin-bottom:24px; position:relative; z-index:1; }
+  .exp-list { display:flex; flex-direction:column; gap:20px; position:relative; z-index:1; }
+  .exp-item { display:flex; gap:14px; align-items:flex-start; }
+  .exp-item .en { font-family:"Abril Fatface",serif; font-size:20px; color:var(--twine); min-width:28px; line-height:1.1; flex-shrink:0; }
+  .exp-item .et { font-size:15.5px; color:#C4BDAE; line-height:1.55; font-weight:300; }
+  .exp-item .et strong { color:#fff; font-weight:600; }
+
+  .fit-section { max-width:1080px; margin:0 auto; padding:0 32px 80px; }
+  .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media(max-width:660px){ .fit-grid { grid-template-columns:1fr; } }
+  .fit-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; margin-bottom:24px; }
+  .fit-head.good { color:var(--navy); }
+  .fit-head.less { color:var(--contessa); }
+  .fit-section > .fs-label { font-family:"Abril Fatface",serif; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:32px; }
+  .fit-box { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px; }
+  .fit-box.good-box { border-top:3px solid var(--navy); }
+  .fit-box.less-box { border-top:3px solid rgba(206,118,107,.4); }
+  .fit-item { display:flex; gap:12px; align-items:flex-start; font-size:15.5px; color:var(--slate); padding:10px 0; border-bottom:1px solid var(--line); line-height:1.5; font-weight:300; }
+  .fit-item:last-child { border-bottom:none; }
+  .fit-item::before { font-weight:700; flex-shrink:0; margin-top:1px; }
+  .fit-box.good-box .fit-item::before { content:"✓"; color:var(--navy); }
+  .fit-box.less-box .fit-item::before { content:"→"; color:var(--contessa); }
+
+  @media(max-width:760px){ }
+  @media(max-width:460px){ }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book a diagnostic</a>
+    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Assessment</a>
+  <a href="work.html" onclick="closeMob()">Work</a>
+  <a href="insights.html" onclick="closeMob()">Insights</a>
+  <a href="resources.html" onclick="closeMob()">Resources</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Contact</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic call</a>
+</div>
+
+<div class="contact-wrap">
+  <div class="contact-intro">
+    <div class="eyebrow">Contact</div>
+    <h1>Tell us what your data isn't telling you.</h1>
+    <p>Every engagement starts the same way: a short, honest conversation about your situation. No pitch, no slide deck. If there's a fit, we'll define what a first step looks like. If there isn't, we'll tell you that too — and point you somewhere better.</p>
+    <p><strong>Response time:</strong> typically within one business day.</p>
+    <div class="channels">
+      <a href="mailto:doreau.jonathan@gmail.com" class="channel">
+        <div class="ch-icon">@</div>
+        <div class="ch-body">
+          <div class="ch-label">Email</div>
+          <div class="ch-value">doreau.jonathan@gmail.com</div>
+          <div class="ch-sub">Best for initial outreach and detailed questions</div>
+        </div>
+        <span class="ch-arrow">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener" class="channel">
+        <div class="ch-icon" style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;">in</div>
+        <div class="ch-body">
+          <div class="ch-label">LinkedIn</div>
+          <div class="ch-value">Jonathan Doreau</div>
+          <div class="ch-sub">Connect or message directly</div>
+        </div>
+        <span class="ch-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="expectations">
+    <h2>What to expect.</h2>
+    <div class="exp-list">
+      <div class="exp-item">
+        <span class="en">01</span>
+        <span class="et"><strong>Send a short message.</strong> You don't need to have it all figured out — a paragraph about your situation and what's not working is plenty. "Our reporting is a mess and nobody trusts the numbers" is a perfectly good starting point.</span>
+      </div>
+      <div class="exp-item">
+        <span class="en">02</span>
+        <span class="et"><strong>We'll schedule a 30-minute call.</strong> No agenda, no presentation. I'll ask questions about your data environment, your team, and what you're trying to accomplish. You'll ask whatever you need to ask.</span>
+      </div>
+      <div class="exp-item">
+        <span class="en">03</span>
+        <span class="et"><strong>Honest next steps.</strong> If there's a clear fit, I'll propose a scoped discovery engagement. If not, I'll tell you why and suggest alternatives. Either way you'll leave the call with something useful.</span>
+      </div>
+      <div class="exp-item">
+        <span class="en">04</span>
+        <span class="et"><strong>No pressure, no follow-up campaign.</strong> If you reach out and decide not to move forward, that's fine. One follow-up if I haven't heard back; after that the ball is in your court.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GOOD FIT / LESS FIT -->
+<div class="fit-section">
+  <div class="fs-label">Is Aesop the right fit?</div>
+  <div class="fit-grid">
+    <div class="fit-box good-box">
+      <div class="fit-head good">Good fit</div>
+      <div class="fit-item">Small to mid-sized companies or nonprofits (10–500 people) that have outgrown spreadsheets</div>
+      <div class="fit-item">Organizations where a business owner is committed to seeing a project through</div>
+      <div class="fit-item">Teams that want to understand and own their reporting, not just receive it</div>
+      <div class="fit-item">Situations where the problem is clear but the solution isn't — yet</div>
+      <div class="fit-item">Organizations already using Power BI, Tableau, or Snowflake (or evaluating them)</div>
+    </div>
+    <div class="fit-box less-box">
+      <div class="fit-head less">Less ideal fit</div>
+      <div class="fit-item">Large enterprises needing a team of 10+ consultants — that's not what this is</div>
+      <div class="fit-item">Projects requiring significant custom software engineering (not BI/reporting work)</div>
+      <div class="fit-item">Engagements where there's no internal owner accountable for adoption</div>
+      <div class="fit-item">Organizations that have decided on a solution before understanding the problem</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <a href="assessment.html">Reporting Clarity Assessment</a>
+      <a href="services.html#sprint">Modernization Sprint</a>
+      <a href="services.html#governance">Governance Kit</a>
+      <a href="services.html#retainer">Fractional Retainer</a>
+    </div>
+    <div class="foot-col">
+      <h4>Content</h4>
+      <a href="insights.html">Insights &amp; Studies</a>
+      <a href="resources.html">Free Resources</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a>
+      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
+</footer>
+
+<script>
+  const ham = document.getElementById('ham'); const mob = document.getElementById('mobile-menu');
+  ham.addEventListener('click', () => mob.classList.toggle('open'));
+  ham.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') mob.classList.toggle('open'); });
+  function closeMob() { mob.classList.remove('open'); }
+  document.addEventListener('click', e => { if(!ham.contains(e.target)&&!mob.contains(e.target)) mob.classList.remove('open'); });
+</script>
+</body>
+</html>

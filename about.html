@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Aesop Analytics</title>
+<meta name="description" content="Jonathan Doreau — 15+ years in analytics and BI leadership across finance, healthcare, real estate, and nonprofit. The story behind Aesop Analytics, Nashville TN.">
+<meta property="og:title" content="About Jonathan Doreau — Aesop Analytics">
+<meta property="og:description" content="15+ years turning fragmented, distrusted data environments into reporting people actually rely on.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="core.css">
+<style>
+  /* Page-specific styles */
+
+
+  /* HERO */
+  .about-hero { background:var(--navy); padding:80px 0 0; overflow:hidden; position:relative; }
+  .about-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+  .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
+  .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; padding-bottom:0; }
+  @media(max-width:760px){ .hero-grid { grid-template-columns:1fr; gap:32px; } }
+  .hero-text h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(38px,5.6vw,66px); line-height:1.04; color:#fff; margin-bottom:20px; }
+  .hero-text p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:48ch; margin-bottom:28px; }
+  .hero-links { display:flex; gap:12px; flex-wrap:wrap; padding-bottom:56px; }
+  .hero-link { font-size:13px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(193,140,93,.35); padding:10px 18px; border-radius:4px; transition:all .18s; }
+  .hero-link:hover { background:rgba(193,140,93,.1); border-color:var(--twine); }
+  .hero-portrait { display:flex; align-items:flex-end; justify-content:center; }
+  .portrait-block { width:100%; max-width:340px; background:var(--navy-2); border-radius:8px 8px 0 0; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; min-height:300px; position:relative; }
+  .portrait-block .ae-mark { font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.2); line-height:1; position:absolute; bottom:-10px; }
+  .portrait-block .portrait-name { position:relative; z-index:2; background:var(--twine); color:#fff; width:100%; padding:16px 20px; }
+  .portrait-block .portrait-name .pn { font-size:15px; font-weight:700; }
+  .portrait-block .portrait-name .pt { font-size:12px; font-weight:400; opacity:.8; margin-top:2px; }
+
+  /* BODY SECTIONS */
+  .body-section { padding:72px 0; border-bottom:1px solid var(--rule); }
+  .body-section:last-of-type { border-bottom:none; }
+  .bs-grid { display:grid; grid-template-columns:280px 1fr; gap:56px; }
+  @media(max-width:760px){ .bs-grid { grid-template-columns:1fr; gap:24px; } }
+  .bs-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:12px; }
+  .bs-heading { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.12; }
+  .bs-body p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:18px; }
+  .bs-body p:last-child { margin-bottom:0; }
+  .bs-body strong { color:var(--navy); font-weight:700; }
+  .bs-body a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+
+  /* CAREER TIMELINE */
+  .timeline { margin-top:8px; display:flex; flex-direction:column; gap:0; }
+  .tl-item { display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--line); align-items:start; }
+  .tl-item:last-child { border-bottom:none; }
+  .tl-year { font-family:"Abril Fatface",serif; font-size:14px; color:var(--twine); padding-top:3px; white-space:nowrap; }
+  .tl-content .tc-role { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+  .tl-content .tc-org { font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:400; }
+  .tl-content .tc-desc { font-size:14.5px; color:var(--slate); line-height:1.5; font-weight:300; }
+
+  /* TOOLS GRID */
+  .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
+  @media(max-width:560px){ .tools-grid { grid-template-columns:repeat(2,1fr); } }
+  .tool-card { background:var(--paper-2); border:1px solid var(--line); border-radius:5px; padding:16px 14px; }
+  .tool-card .tn { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+  .tool-card .td { font-size:12.5px; color:var(--muted); line-height:1.4; font-weight:300; }
+
+  /* PHILOSOPHY */
+  .philosophy { background:var(--navy); padding:72px 0; }
+  .phil-in { max-width:1080px; margin:0 auto; padding:0 32px; }
+  .phil-in  .phil-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:40px; }
+  .phil-points { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  @media(max-width:660px){ .phil-points { grid-template-columns:1fr; } }
+  .phil-pt { background:var(--navy-2); border-radius:6px; padding:24px 22px; }
+  .phil-pt h3 { font-size:16px; font-weight:700; color:var(--twine); margin-bottom:10px; }
+  .phil-pt p { font-size:15px; color:#8A9FB8; line-height:1.6; font-weight:300; }
+
+  /* CTA */
+  .cta-strip { background:var(--paper-2); border-top:1px solid var(--rule); padding:72px 32px; text-align:center; }
+  .cta-strip h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:16px; }
+  .cta-strip p { font-size:17px; color:var(--slate); font-weight:300; max-width:44ch; margin:0 auto 28px; line-height:1.6; }
+
+  @media(max-width:760px){ }
+  @media(max-width:460px){ }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html" class="active">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book a diagnostic</a>
+    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Assessment</a>
+  <a href="work.html" onclick="closeMob()">Work</a>
+  <a href="insights.html" onclick="closeMob()">Insights</a>
+  <a href="resources.html" onclick="closeMob()">Resources</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Contact</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic call</a>
+</div>
+
+<div class="about-hero">
+  <div class="hero-in">
+    <div class="eyebrow">About</div>
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1>Fifteen years of bringing order to messy data.</h1>
+        <p>I'm Jonathan Doreau — the person behind Aesop Analytics. I've spent my career taking fragmented, distrusted data environments and turning them into reporting organizations actually rely on.</p>
+        <div class="hero-links">
+          <a href="mailto:doreau.jonathan@gmail.com" class="hero-link">Email me ↗</a>
+          <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" class="hero-link" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+      <div class="hero-portrait">
+        <div class="portrait-block">
+          <span class="ae-mark">æ</span>
+          <div class="portrait-name">
+            <div class="pn">Jonathan Doreau</div>
+            <div class="pt">Founder · Aesop Analytics · Nashville, TN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE CAREER ARC -->
+<section class="body-section">
+  <div class="wrap">
+    <div class="bs-grid">
+      <div>
+        <div class="bs-label">Background</div>
+        <div class="bs-heading">The career arc.</div>
+      </div>
+      <div class="bs-body">
+        <p>I started in finance — regulated reporting, risk dashboards, and the particular discipline that comes from working in environments where a wrong number has real consequences. That foundation taught me to care about data quality and governance before they became fashionable topics.</p>
+        <p>From there: healthcare and research, including executive reporting and analytics for an <strong>NIH-funded research program</strong> — a context where data credibility mattered as much as the research itself, and where the reporting had to serve both operational leadership and external funders simultaneously. That's where I developed a genuine appreciation for governance: the unglamorous work that makes everything downstream trustworthy.</p>
+        <p>Real estate and nonprofit work came next, and what struck me most was how similar the data problems were across industries that seemed completely different. Fragmented sources, undefined metrics, reports that couldn't be reconciled with each other, a data team spending most of its time answering one-off questions instead of building anything lasting. The patterns repeat.</p>
+        <p>Aesop Analytics is the distillation of those fifteen years — a deliberate attempt to bring the quality of thinking and execution I'd do at a large organization to companies and nonprofits that can't afford (and don't need) a large organization.</p>
+        <div class="timeline" style="margin-top:32px">
+          <div class="tl-item">
+            <div class="tl-year">Finance</div>
+            <div class="tl-content">
+              <div class="tc-role">Analytics &amp; BI Leadership</div>
+              <div class="tc-org">Banking &amp; Financial Services</div>
+              <div class="tc-desc">Regulated reporting, risk dashboards, and data governance in a high-stakes, audit-intensive environment.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">Healthcare</div>
+            <div class="tl-content">
+              <div class="tc-role">Analytics &amp; Reporting</div>
+              <div class="tc-org">Healthcare &amp; NIH Research</div>
+              <div class="tc-desc">Executive dashboards, program reporting, and analytics for an NIH-funded research initiative. Compliance-aware architecture, funder reporting, and operational KPIs.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">Real Estate</div>
+            <div class="tl-content">
+              <div class="tc-role">BI &amp; Data Strategy</div>
+              <div class="tc-org">Real Estate</div>
+              <div class="tc-desc">Portfolio performance reporting, market analytics, and building a reporting governance practice from the ground up.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">Nonprofit</div>
+            <div class="tl-content">
+              <div class="tc-role">Analytics &amp; Impact Measurement</div>
+              <div class="tc-org">Nonprofit Sector</div>
+              <div class="tc-desc">Program impact dashboards, board reporting, and outcome measurement — translating mission into metrics that funders and leadership could act on.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2020 →</div>
+            <div class="tl-content">
+              <div class="tc-role">Founder</div>
+              <div class="tc-org">Aesop Analytics · Nashville, TN</div>
+              <div class="tc-desc">Independent consulting — bringing enterprise-quality analytics thinking to growing companies and nonprofits.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS & TECHNICAL -->
+<section class="body-section" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="bs-grid">
+      <div>
+        <div class="bs-label">Tools &amp; Skills</div>
+        <div class="bs-heading">What I work in.</div>
+      </div>
+      <div>
+        <div class="bs-body" style="margin-bottom:24px">
+          <p>I'm genuinely tool-agnostic at the strategy layer. At the build layer, I work most fluently in Power BI, Tableau, SQL, and Snowflake — the tools that cover the majority of what growing companies actually need.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tn">SQL</div><div class="td">The foundation of everything. T-SQL, PostgreSQL, Snowflake SQL — querying, modeling, transformations.</div></div>
+          <div class="tool-card"><div class="tn">Power BI</div><div class="td">End-to-end: data model, DAX, report design, publishing, access control, gateway configuration.</div></div>
+          <div class="tool-card"><div class="tn">Tableau</div><div class="td">Calculated fields, LOD expressions, Server/Cloud publishing, and performance optimization.</div></div>
+          <div class="tool-card"><div class="tn">Snowflake</div><div class="td">Cloud data warehousing — schema design, role-based access, query optimization, cost governance.</div></div>
+          <div class="tool-card"><div class="tn">Data Modeling</div><div class="td">Star schema, dimensional modeling, semantic layer design for BI consumption.</div></div>
+          <div class="tool-card"><div class="tn">Governance</div><div class="td">Metric dictionaries, data ownership frameworks, documentation standards, lineage.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<div class="philosophy">
+  <div class="phil-in">
+    <div class="eyebrow">Philosophy</div>
+    <h2>How I think about this work.</h2>
+    <div class="phil-points">
+      <div class="phil-pt">
+        <h3>Strategy before tools.</h3>
+        <p>Technology decisions made before the strategic questions are answered tend to create expensive, underused infrastructure. The question "what do you need your data to do?" has to precede "what platform should we use?"</p>
+      </div>
+      <div class="phil-pt">
+        <h3>Trust is the product.</h3>
+        <p>The real deliverable of analytics work isn't a dashboard — it's a data environment that people trust enough to use when they make decisions. Everything technical is in service of that.</p>
+      </div>
+      <div class="phil-pt">
+        <h3>Selective is better.</h3>
+        <p>I take fewer engagements and do them better. The work I take is work I believe I can genuinely add value to. If that's not the case after an initial conversation, I'll say so — and point somewhere better.</p>
+      </div>
+      <div class="phil-pt">
+        <h3>Even-handed analysis.</h3>
+        <p>The same standard applies to the field studies on this site and to client work: steelman the counter-argument, be clear about what the data can and can't say, and don't let a preferred conclusion drive the analysis.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-strip">
+  <h2>Start a conversation.</h2>
+  <p>A 30-minute call to understand your situation. No pitch, no commitment required.</p>
+  <a href="contact.html" class="btn">Book a free diagnostic →</a>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <a href="assessment.html">Reporting Clarity Assessment</a>
+      <a href="services.html#sprint">Modernization Sprint</a>
+      <a href="services.html#governance">Governance Kit</a>
+      <a href="services.html#retainer">Fractional Retainer</a>
+    </div>
+    <div class="foot-col">
+      <h4>Content</h4>
+      <a href="insights.html">Insights &amp; Studies</a>
+      <a href="resources.html">Free Resources</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a>
+      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
+</footer>
+
+<script>
+  const ham = document.getElementById('ham'); const mob = document.getElementById('mobile-menu');
+  ham.addEventListener('click', () => mob.classList.toggle('open'));
+  ham.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') mob.classList.toggle('open'); });
+  function closeMob() { mob.classList.remove('open'); }
+  document.addEventListener('click', e => { if(!ham.contains(e.target)&&!mob.contains(e.target)) mob.classList.remove('open'); });
+</script>
+</body>
+</html>

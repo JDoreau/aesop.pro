@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Hidden Cost of Conflicting KPIs — Aesop Analytics</title>
+<meta name="description" content="Conflicting KPIs don't just create confusion in meetings. They slow decisions, erode trust, create rework, and quietly drain organizational energy. Here's how to count the actual cost.">
+<meta property="og:title" content="The Hidden Cost of Conflicting KPIs — Aesop Analytics">
+<meta property="og:description" content="Most organizations underestimate what metric disagreements actually cost them. The number is bigger than you think — and most of it is invisible.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="article.css">
+<style>
+  /* Page-specific styles */
+
+  .  /* Cost items */
+  .costs { display:flex; flex-direction:column; gap:0; margin:32px 0; border-top:2px solid var(--rule); }
+  .cost { display:grid; grid-template-columns:48px 1fr; gap:18px; padding:22px 0; border-bottom:1px solid var(--line); align-items:flex-start; }
+  .cost-n { font-family:"Abril Fatface",serif; font-size:30px; color:var(--contessa); line-height:1; opacity:.7; }
+  .cost h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .cost p { font-size:16px; color:var(--slate); line-height:1.6; font-weight:300; margin:0; }
+  /* Estimate box */
+  .estimate { background:var(--navy); border-radius:8px; padding:36px 32px; margin:44px 0; position:relative; overflow:hidden; }
+  .estimate::after { content:"æ"; position:absolute; right:-14px; bottom:-40px; font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.12); line-height:1; pointer-events:none; }
+  .estimate .est-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:16px; position:relative; z-index:1; }
+  .est-row { display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); position:relative; z-index:1; }
+  .est-row:last-of-type { border-bottom:none; }
+  .est-it  .est-num { font-family:"Abril Fatface",serif; font-size:20px; color:var(--twine); }
+  .est-total { margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,.2); display:flex; justify-content:space-between; align-items:baseline; position:relative; z-index:1; }
+  .est-total .et-label { font-size:14px; font-weight:700; color:#fff; }
+  .est-total .et-num { font-family:"Abril Fatface",serif; font-size:32px; color:var(--twine); }
+  .est-note { font-size:12px; color:#4A6070; margin-top:10px; position:relative; z-index:1; font-style:italic; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="site-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="site-cta">Book a diagnostic</a>
+  </div>
+</nav>
+<div class="wrap">
+  <article>
+    <div class="kicker reveal">Article · Reporting Trust</div>
+    <h1 class="reveal" style="animation-delay:.05s">The Hidden Cost of Conflicting KPIs
+      <span class="sub">Most organizations know metric disagreements are a problem. Almost none have counted what they actually cost.</span>
+    </h1>
+    <p class="dek reveal" style="animation-delay:.1s">Conflicting KPIs don't just create confusion in meetings. They slow decisions, create rework, erode organizational trust, and quietly drain the time of your most senior people. The cost is real — and it's bigger than it looks from inside it.</p>
+    <div class="byline reveal" style="animation-delay:.16s">
+      <span class="reg">By <strong>Jonathan Doreau</strong>, Aesop Analytics</span>
+      <span class="dot">&bull;</span><span class="reg">~6 min read</span>
+      <span class="dot">&bull;</span><span class="reg">Reporting Trust</span>
+    </div>
+  </article>
+  <div class="body">
+    <p class="lead">Every organization with more than a few people and more than a few data sources has experienced it: the same metric, calculated two different ways, producing two different numbers, each defended by a different department. The quarterly business review goes off track. The board meeting gets awkward. Someone says "let me look into that" and moves on. And then it happens again next quarter. And the quarter after that. The problem is treated as a recurring nuisance rather than a systemic cost — because nobody has ever sat down and added up what it actually costs.</p>
+    <p>The visible cost is the time lost in the meeting. The invisible costs are larger. They include the rework cycles afterward, the shadow reporting that smart analysts build to insulate themselves from the noise, the decisions that get delayed while someone reconciles the numbers, and the slow erosion of confidence in the data team that happens every time leadership sees two different answers to the same question.</p>
+
+    <p class="pull">The cost of conflicting KPIs isn't one meeting. It's every meeting, every quarter, compounded by every person who stops trusting the data because of it.</p>
+
+    <h2>The six places the cost actually shows up.</h2>
+    <span class="h2-sub">Most are invisible on any budget line</span>
+    <div class="costs">
+      <div class="cost">
+        <span class="cost-n">01</span>
+        <div>
+          <h3>Lost meeting time — the visible tip</h3>
+          <p>When a metric dispute surfaces in a leadership meeting, it typically consumes 15–40 minutes before it gets tabled. Multiply by the number of recurring meetings where this happens, the number of people in the room, and their fully-loaded cost per hour. For a 10-person leadership team at a 200-person company, even two such episodes per month costs $15,000–$30,000 annually in direct time cost. That's the part everyone can see.</p>
+        </div>
+      </div>
+      <div class="cost">
+        <span class="cost-n">02</span>
+        <div>
+          <h3>The reconciliation tax on analysts</h3>
+          <p>Every time a metric conflict surfaces, someone — usually a mid-level analyst — gets pulled off their actual work to investigate the discrepancy, rebuild the calculation from scratch, and produce a reconciled version. In organizations with persistent metric conflicts, this reconciliation tax can consume 20–40% of an analyst's available time. That's time that should be producing insight. Instead it's producing agreement on what "revenue" means — again.</p>
+        </div>
+      </div>
+      <div class="cost">
+        <span class="cost-n">03</span>
+        <div>
+          <h3>Shadow reporting and spreadsheet proliferation</h3>
+          <p>When people stop trusting the official reporting, they build their own. Finance has its spreadsheet. Sales ops has its tracker. Customer Success has its retention model. Each one is maintained separately, each one drifts further from the others, and each one becomes a new source of definitional conflict. Shadow reporting is both a symptom of metric distrust and a cause — it makes the problem worse by introducing more competing versions of the truth.</p>
+        </div>
+      </div>
+      <div class="cost">
+        <span class="cost-n">04</span>
+        <div>
+          <h3>Decision delays and drift</h3>
+          <p>Some decisions simply don't get made while a metric dispute is unresolved. A pricing change gets deferred because the revenue impact calculation produces different answers depending on whose definition of "active subscription" you use. A headcount decision waits because Finance and Operations disagree on the utilization number. These delays have real costs — competitive, operational, financial — but they rarely get attributed to the data problem that caused them.</p>
+        </div>
+      </div>
+      <div class="cost">
+        <span class="cost-n">05</span>
+        <div>
+          <h3>Erosion of data team credibility</h3>
+          <p>Each time leadership sees conflicting numbers from "the data," their confidence in the data team decreases slightly. This erosion is cumulative and, past a certain threshold, becomes very difficult to reverse. Organizations where data team credibility has eroded find that data-driven decision-making stalls entirely — leadership reverts to gut-based decisions not because they prefer it but because they've lost faith in the alternative. The cost of rebuilding that trust is significantly higher than the cost of preventing the erosion.</p>
+        </div>
+      </div>
+      <div class="cost">
+        <span class="cost-n">06</span>
+        <div>
+          <h3>The political cost</h3>
+          <p>Metric conflicts rarely stay purely technical. They become territorial. Finance defending its version. Sales defending its version. Each team builds implicit evidence for why their definition is "really" the right one. The conflict shifts from being about data to being about organizational status — whose view of the business matters. Once that happens, resolving the metric conflict requires not just a governance conversation but a political one. The cost is measured in relationship capital and leadership attention that could be spent elsewhere.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>A rough cost model for a mid-sized company.</h2>
+    <span class="h2-sub">Not precise — but revealing</span>
+    <p>Exact costs depend on company size, salary levels, and how many metrics are in persistent conflict. But even a conservative estimate reveals why metric alignment is worth treating as a priority rather than an annoyance.</p>
+
+    <div class="estimate reveal">
+      <div class="est-label">Annual cost estimate — 200-person company, 5 conflicted metrics</div>
+      <div class="est-row"><span class="est-item">Leadership meeting time lost (2 episodes/month × $800/hr blended cost × 10 people × 30 min)</span><span class="est-num">$19,200</span></div>
+      <div class="est-row"><span class="est-item">Analyst reconciliation time (2 analysts × 25% of time × $120K fully-loaded)</span><span class="est-num">$60,000</span></div>
+      <div class="est-row"><span class="est-item">Shadow reporting maintenance (3 people × 2 hrs/week × $80/hr)</span><span class="est-num">$24,960</span></div>
+      <div class="est-row"><span class="est-item">Decision delay cost (conservative — 2 delayed decisions × $25K opportunity cost)</span><span class="est-num">$50,000</span></div>
+      <div class="est-total"><span class="et-label">Conservative annual total</span><span class="et-num">~$154K</span></div>
+      <div class="est-note">These are illustrative estimates, not precise calculations. Real costs vary significantly by organization. The point is the order of magnitude — not the specific number.</div>
+    </div>
+
+    <p>The cost of resolving five metric conflicts through a structured Reporting Clarity Assessment is, at most, a fraction of this annual drag. That's not a sales pitch — it's arithmetic. The question isn't whether fixing metric conflicts is worth the investment. It's why it gets deprioritized year after year in favor of work that's more visible but often less impactful.</p>
+
+    <h2>The reason it persists.</h2>
+    <span class="h2-sub">It's rarely a technical problem</span>
+    <p>Metric conflicts persist not because they're technically difficult to resolve but because they require something harder than technical work: a business conversation about what things mean and who has authority to decide. That conversation requires pulling senior people into a room, acknowledging that the current state is broken, and making explicit decisions that will constrain future flexibility. It's uncomfortable in a way that "let's build a better dashboard" isn't.</p>
+    <p>The resolution is almost always faster than organizations expect. In most cases, the actual technical work of reconciling a metric and documenting the agreed definition takes a few hours. The hard part is getting the right people to the table, running the conversation productively, and recording the outcome in a form that survives the inevitable "wait, what did we decide about that?" moment six months later. That's what governance infrastructure is for — and why organizations that build it even imperfectly are significantly better off than those that don't build it at all.</p>
+
+    <div class="tip">
+      <div class="tlabel">Where to start right now</div>
+      <p>Pick your single most-argued-about metric. Write down, in plain English, what you think it means. Then ask your CFO, your VP Sales, and your Head of Operations to do the same — without seeing each other's answers. The disagreements that surface are the starting point. Getting to a single agreed definition from there is more tractable than it looks. The <a href="article-kpi-dictionary.html">KPI dictionary article</a> explains exactly how to document what you agree on.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="article-kpi-dictionary.html" class="rn-link">How to build a KPI dictionary →</a>
+        <a href="article-kpi-owner.html" class="rn-link">Why every KPI needs an owner →</a>
+        <a href="article-dashboards-not-trusted.html" class="rn-link">Why dashboards aren't trusted →</a>
+        <a href="insights.html" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="site">
+  <div class="fin">
+    <div class="fbrand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></div>
+    <div class="fmoral">Reporting modernization &amp; data trust consulting.</div>
+    <a href="insights.html" class="fback">← All Insights</a>
+  </div>
+</footer>
+<script>
+  const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.animation='rise .7s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(en.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

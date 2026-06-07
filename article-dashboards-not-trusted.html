@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Your Dashboards Are Not Trusted Even When the Data Is Correct — Aesop Analytics</title>
+<meta name="description" content="The data is right. The numbers check out. And yet nobody trusts the dashboard. Here's why trust fails — and it has almost nothing to do with the visualization.">
+<meta property="og:title" content="Why Your Dashboards Are Not Trusted Even When the Data Is Correct">
+<meta property="og:description" content="Dashboard distrust is not a data accuracy problem. It's an ownership, definition, and process problem. The fix is different than you think.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="article.css">
+<style>
+  /* Page-specific styles */
+
+  .  .reasons { display:flex; flex-direction:column; gap:0; margin:32px 0; border-top:2px solid var(--rule); }
+  .reason { padding:24px 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns:60px 1fr; gap:20px; align-items:start; }
+  .reason .rn { font-family:"Abril Fatface",serif; font-size:36px; color:var(--twine); opacity:.5; line-height:1; }
+  .reason h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .reason p { font-size:16px; color:var(--slate); line-height:1.6; font-weight:300; margin:0; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="site-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="site-cta">Book a diagnostic</a>
+  </div>
+</nav>
+<div class="wrap">
+  <article>
+    <div class="kicker reveal">Article · Reporting Trust</div>
+    <h1 class="reveal" style="animation-delay:.05s">Why Your Dashboards Are Not Trusted Even When the Data Is Correct
+      <span class="sub">The data checks out. The numbers are right. And yet nobody uses the dashboard to make decisions. Here's what's actually going on.</span>
+    </h1>
+    <p class="dek reveal" style="animation-delay:.1s">Dashboard distrust is one of the most common and most misdiagnosed problems in business intelligence. Organizations fix the wrong thing — the visualization, the tool, the data freshness — and the trust problem persists. That's because trust fails for reasons that have almost nothing to do with data accuracy.</p>
+    <div class="byline reveal" style="animation-delay:.16s">
+      <span class="reg">By <strong>Jonathan Doreau</strong>, Aesop Analytics</span>
+      <span class="dot">&bull;</span><span class="reg">~6 min read</span>
+      <span class="dot">&bull;</span><span class="reg">Reporting Trust</span>
+    </div>
+  </article>
+  <div class="body">
+    <p class="lead">I've seen this scenario play out more times than I can count. A company invests real money and real time in a Business Intelligence platform. The dashboards are built carefully. Someone double-checks the SQL, validates the numbers against the source system, and confirms the data is pulling correctly. And then, six months after launch, the dashboards sit mostly untouched while decisions continue to be made from spreadsheets and email threads. The data was right. Nobody trusted it anyway.</p>
+    <p>When I ask why, I usually get some version of: <em>"I'm not sure where those numbers come from."</em> Or: <em>"Finance has a different number for the same metric."</em> Or: <em>"I don't know whose job it is to update this."</em> None of these are data quality problems. All of them are trust problems. And they require different solutions.</p>
+    <p class="pull">"The data is right" and "the dashboard is trusted" are two separate questions. Most organizations conflate them — and fix the wrong one.</p>
+
+    <h2>The five real reasons dashboards lose trust.</h2>
+    <span class="h2-sub">None of them are about the visualization</span>
+    <div class="reasons">
+      <div class="reason">
+        <span class="rn">01</span>
+        <div>
+          <h3>Nobody owns the metric definition.</h3>
+          <p>When a number appears on a dashboard without a documented, agreed-upon definition, every person who reads it applies their own interpretation. Finance counts revenue one way. Sales counts it another. Customer Success has a third view. All three are internally consistent — and all three produce different numbers. The dashboard isn't wrong. The definitions were never aligned. Until someone owns the definition and publishes it, the debate will continue regardless of how accurate the underlying data is.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <span class="rn">02</span>
+        <div>
+          <h3>There's no designated source of truth.</h3>
+          <p>Most organizations have multiple systems that could theoretically answer the same question — CRM, ERP, data warehouse, spreadsheet exports. When it's not clear which system is authoritative for which metric, users will trust whichever system confirms what they already believe. A dashboard that pulls from the "official" source will still be questioned if nobody has ever formally declared that source to be official. This isn't a data problem; it's a governance problem. The fix is a decision and a declaration, not a query.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <span class="rn">03</span>
+        <div>
+          <h3>Nobody knows what happens when something looks wrong.</h3>
+          <p>Trust is built over time through consistent, predictable behavior. When a dashboard number looks off and users don't know who to tell, what process exists to fix it, or whether anyone is even monitoring it, they stop trusting it entirely — even when the data is actually correct. The absence of a visible owner and a visible correction process signals "nobody is responsible for this," which reads as "nobody can be trusted on this." A number that's right but unaccountable is treated the same as a number that might be wrong.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <span class="rn">04</span>
+        <div>
+          <h3>The dashboard was built around the data, not the decision.</h3>
+          <p>A significant proportion of dashboards are built by showing what's available rather than what's needed. The result is a report that displays a lot of accurate information that doesn't clearly connect to any specific decision. When users can't immediately see what the number is telling them to do differently, they disengage — not because the data is wrong, but because it doesn't feel relevant to their actual job. Trust requires usefulness. A dashboard that shows correct but irrelevant information will be abandoned just as quickly as one with bad data.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <span class="rn">05</span>
+        <div>
+          <h3>One bad incident destroyed the reputation — and it was never repaired.</h3>
+          <p>Trust in data systems is highly asymmetric: it takes a long time to build and can be destroyed in a single incident. A wrong number in a leadership meeting, a report that sent a team in the wrong direction for a week, a forecast that was off by 40% — these events stick. Once they happen, users will discount every subsequent output from the same system, even after the underlying issue has been fixed, unless the correction is made visible and explicit. The fix isn't better data. It's a deliberate trust-rebuilding process: acknowledge what happened, explain what was fixed, and demonstrate reliability over time.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>What organizations try — and why it doesn't work.</h2>
+    <span class="h2-sub">The instinct is almost always to fix the wrong thing</span>
+    <p>When leadership identifies a dashboard trust problem, the typical responses are: rebuild the dashboard in a new tool, add more data validation checks, hire more data engineers, or launch a "data quality initiative." Occasionally someone suggests switching BI platforms entirely, as if the trust problem were Tableau's fault rather than the organization's.</p>
+    <p>These responses share a common error: they treat dashboard distrust as a technical problem when it's a human and process problem. A new tool with unowned metric definitions will fail to earn trust for exactly the same reasons the old tool did. Tighter data validation doesn't help if nobody can answer "which system is authoritative?" Additional data engineering doesn't resolve a KPI definition dispute between Finance and Operations.</p>
+    <p>I'm not dismissing technical quality — data accuracy is a baseline prerequisite, not a nice-to-have. But organizations that have done the technical work correctly and still have trust problems need to look upstream. The source of distrust is almost always in ownership, definitions, process, and governance — not in the pipelines.</p>
+
+    <div class="callout reveal">
+      <h3>The five things that actually rebuild dashboard trust.</h3>
+      <ul>
+        <li><strong>Name an owner for every metric</strong> — a specific person who is responsible for the definition, accountable when the number is questioned, and empowered to resolve disputes.</li>
+        <li><strong>Publish the definitions</strong> — documented, accessible, and versioned. "Revenue" means this. "Active customer" means that. This document, not the dashboard, is the source of trust.</li>
+        <li><strong>Designate the authoritative source</strong> — one system per domain. Make the decision explicit and communicate it. "For pipeline, the CRM is the source of truth. Full stop."</li>
+        <li><strong>Create a visible correction process</strong> — when something looks wrong, users need to know exactly where to report it and expect a response. The process itself builds trust, even before a single error is corrected.</li>
+        <li><strong>Connect every number to a decision</strong> — for each metric on a dashboard, name the specific decision it informs. If you can't name it, the metric probably shouldn't be there.</li>
+      </ul>
+    </div>
+
+    <h2>The diagnostic question.</h2>
+    <span class="h2-sub">Start here before building anything else</span>
+    <p>Before your next dashboard build or rebuild, ask one question: <strong>if this dashboard showed a number that looked wrong to a user, what would they do?</strong></p>
+    <p>If the answer is "send an email to whoever they think might know," you have an ownership problem. If it's "check the other report that Finance uses," you have a source-of-truth problem. If it's "nothing — they'd just stop using it," you have a trust deficit that no amount of technical work will close.</p>
+    <p>The answer you want is: "They'd file a ticket with [owner], who would investigate within [timeframe] and notify [stakeholders] of the outcome." That specificity — that sense of accountability — is what makes a number trustworthy. Not the fact that it's correct. Lots of correct numbers are not trusted. Every trusted number has an owner.</p>
+
+    <div class="tip">
+      <div class="tlabel">Where to start if you recognize this problem</div>
+      <p>Pick your single most important dashboard — the one leadership looks at most often. Ask: does every metric on it have a named owner and a documented definition? If not, that's the work. Not a rebuild. Not a new tool. A conversation about who owns what and what things mean. The <a href="resources.html">Reporting Trust Health Check</a> can help you score where the gaps are across your whole reporting estate.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="article-reporting-not-dashboard-redesign.html" class="rn-link">Reporting modernization is not a dashboard redesign →</a>
+        <a href="article-ai-readiness-trusted-metrics.html" class="rn-link">AI readiness starts with trusted metrics →</a>
+        <a href="assessment.html" class="rn-link">See the Reporting Clarity Assessment →</a>
+        <a href="insights.html" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="site">
+  <div class="fin">
+    <div class="fbrand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></div>
+    <div class="fmoral">Reporting modernization &amp; data trust consulting.</div>
+    <a href="insights.html" class="fback">← All Insights</a>
+  </div>
+</footer>
+<script>
+  const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.animation='rise .7s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(en.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

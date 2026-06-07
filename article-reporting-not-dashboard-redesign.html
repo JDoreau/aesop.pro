@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporting Modernization Is Not a Dashboard Redesign — Aesop Analytics</title>
+<meta name="description" content="Most companies treat reporting modernization as a design project. It isn't. It's a business process redesign — and confusing the two is why most 'dashboard makeovers' fail.">
+<meta property="og:title" content="Reporting Modernization Is Not a Dashboard Redesign — Aesop Analytics">
+<meta property="og:description" content="The dashboard is the last 10% of the problem. If the 90% underneath it — ownership, definitions, governance — isn't fixed first, the redesign will fail too.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="article.css">
+<style>
+  /* Page-specific styles */
+
+  .  /* Iceberg visual */
+  .iceberg-wrap { margin:40px 0; }
+  .iceberg-wrap svg { display:block; width:100%; height:auto; }
+  /* Two-col */
+  .twocol { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:5px; overflow:hidden; margin:32px 0; }
+  .twocol > div { background:var(--paper); padding:24px; }
+  .twocol h4 { font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.13em; margin-bottom:10px; }
+  .twocol .a h4 { color:var(--contessa); }
+  .twocol .b h4 { color:var(--navy); }
+  .twocol p { font-size:15.5px; line-height:1.55; color:var(--ink); margin:0; font-weight:300; }
+  @media(max-width:520px){ .twocol { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="site-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="site-cta">Book a diagnostic</a>
+  </div>
+</nav>
+<div class="wrap">
+  <article>
+    <div class="kicker reveal">Article · Reporting Modernization</div>
+    <h1 class="reveal" style="animation-delay:.05s">Reporting Modernization Is Not a Dashboard Redesign
+      <span class="sub">The dashboard is the last 10% of the problem. Most organizations start there and wonder why the project didn't work.</span>
+    </h1>
+    <p class="dek reveal" style="animation-delay:.1s">Companies routinely conflate "reporting modernization" with "dashboard makeover." They're not the same project. One is a design exercise. The other is a business process redesign that happens to produce better dashboards as a byproduct.</p>
+    <div class="byline reveal" style="animation-delay:.16s">
+      <span class="reg">By <strong>Jonathan Doreau</strong>, Aesop Analytics</span>
+      <span class="dot">&bull;</span><span class="reg">~7 min read</span>
+      <span class="dot">&bull;</span><span class="reg">Reporting Modernization</span>
+    </div>
+  </article>
+  <div class="body">
+    <p class="lead">Ask most people what reporting modernization looks like, and they'll describe a visual: cleaner dashboards, better charts, a new color palette, perhaps a switch from Tableau to Power BI or vice versa. They're describing the output of reporting modernization, not the work itself — and confusing those two things is why the majority of "reporting makeover" projects fail to move the needle on the underlying problem.</p>
+    <p>The dashboard is visible. The problems underneath it are not. And the proportion is roughly inverse: the visible surface — charts, filters, layout, color — represents maybe 10% of what determines whether a reporting environment is actually trusted and used. The 90% underneath is ownership, definitions, process, governance, and business alignment. No redesign of the 10% fixes the 90%. It just makes the dysfunction prettier.</p>
+
+    <p class="pull">A new dashboard built on unowned metric definitions will earn distrust for exactly the same reasons the old one did. You haven't fixed anything. You've redecorated.</p>
+
+    <h2>What the iceberg actually looks like.</h2>
+    <span class="h2-sub">The visible work vs. the real work</span>
+    <div class="iceberg-wrap reveal">
+      <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" aria-label="Iceberg diagram showing visible vs invisible reporting modernization work">
+        <!-- Water line -->
+        <line x1="0" y1="148" x2="680" y2="148" stroke="#D6DDE8" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="580" y="143" font-family="DM Sans,sans-serif" font-size="11" fill="#8A9FB8" font-weight="600">VISIBLE</text>
+        <text x="580" y="161" font-family="DM Sans,sans-serif" font-size="11" fill="#8A9FB8" font-weight="600">HIDDEN</text>
+        <!-- Tip of iceberg (visible) — navy -->
+        <polygon points="340,20 260,148 420,148" fill="#0F1F38" opacity=".9"/>
+        <!-- Base of iceberg (hidden) — larger, darker -->
+        <polygon points="260,152 160,370 520,370 420,152" fill="#162A4A" opacity=".85"/>
+        <!-- Visible labels -->
+        <text x="340" y="95" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">Dashboard design</text>
+        <text x="340" y="112" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#8A9FB8">Charts · Layout · Colors</text>
+        <!-- Hidden labels -->
+        <text x="340" y="195" text-anchor="middle" font-family="Abril Fatface,serif" font-size="15" fill="#C18C5D">KPI definitions &amp; ownership</text>
+        <text x="340" y="224" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#8A9FB8">Source-of-truth decisions</text>
+        <text x="340" y="252" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#8A9FB8">Report rationalization</text>
+        <text x="340" y="280" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#8A9FB8">Governance &amp; process design</text>
+        <text x="340" y="308" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#8A9FB8">Stakeholder alignment</text>
+        <text x="340" y="336" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" fill="#8A9FB8">Decision-to-metric mapping</text>
+        <!-- Proportion labels -->
+        <text x="450" y="90" font-family="Abril Fatface,serif" font-size="28" fill="rgba(193,140,93,.5)">10%</text>
+        <text x="510" y="280" font-family="Abril Fatface,serif" font-size="44" fill="rgba(193,140,93,.35)">90%</text>
+      </svg>
+    </div>
+    <p>The tip of the iceberg — the visible part — is where designers spend their time and where executives point when they say "our dashboards are bad." The base is where the actual work lives. Most reporting modernization projects touch only the tip. The problems persist because the base is unchanged.</p>
+
+    <h2>What "modernization" means in practice.</h2>
+    <span class="h2-sub">The five things that actually have to change</span>
+    <p><strong>1. Metric definitions have to be standardized and documented.</strong> This means sitting down with Finance, Operations, Sales, and whatever other functions produce or consume the metrics in question, and coming to an explicit, written agreement about what each KPI means, how it's calculated, what counts, what doesn't, and what timeframe it covers. This is a negotiation. It requires business judgment, not just technical skill. The output is a KPI dictionary that lives somewhere everyone can access — and that has a named owner who maintains it.</p>
+    <p><strong>2. Source-of-truth decisions have to be made and declared.</strong> Most organizations have multiple systems that could theoretically answer the same question. The modernization task is to designate one as authoritative — per domain, not just globally — and communicate that designation explicitly. "For headcount, HRIS is the source of truth. For revenue, it's the ERP. For pipeline, it's the CRM." These decisions feel obvious in retrospect and are surprisingly rare in practice.</p>
+    <p><strong>3. The reporting estate has to be rationalized.</strong> Before building anything new, catalog what exists. For most mid-sized organizations, a rigorous inventory reveals three categories of reports: those that are actively used and trusted, those that exist but nobody opens, and those that are actively distrusted but used anyway because nothing better exists. Categories two and three represent waste and risk respectively. Modernization includes retiring the unused and replacing the distrusted.</p>
+    <p><strong>4. A request and governance process has to exist.</strong> One of the most reliable signs that a reporting environment is not modernized: requests for new reports or changes to existing ones arrive through email, Slack, or conversation — informal, untracked, and unprioritized. Modernization means establishing a formal intake: how requests are received, how they're triaged, what information is required to action them, who approves them, and how long they take. This process is boring to build and immediately valuable once it exists.</p>
+    <p><strong>5. Ownership has to be explicit everywhere.</strong> Every report needs an owner responsible for its accuracy. Every metric needs a business owner responsible for its definition. Every data domain needs a technical owner responsible for its health. This isn't bureaucracy — it's accountability infrastructure. Without it, problems get diffused ("someone should look at this") instead of resolved ("Alex owns this and will fix it by Friday").</p>
+
+    <div class="twocol reveal">
+      <div class="a">
+        <h4>What companies call "modernization"</h4>
+        <p>Rebuild the dashboards in a new tool. Hire a designer to improve the charts. Switch from Tableau to Power BI (or vice versa). Launch a "data quality initiative." Migrate to a cloud warehouse.</p>
+      </div>
+      <div class="b">
+        <h4>What modernization actually requires</h4>
+        <p>Agree on metric definitions. Designate authoritative sources. Rationalize the reporting estate. Establish intake and governance. Assign ownership everywhere. <em>Then</em> rebuild the dashboards.</p>
+      </div>
+    </div>
+
+    <h2>The sequencing error that kills most projects.</h2>
+    <span class="h2-sub">Building before defining</span>
+    <p>The most common sequencing failure: organizations start with the tool and discover — six months in, after significant investment — that they've rebuilt the confusion in a prettier wrapper. The new Power BI environment has the same metric disagreements as the old Tableau environment. The cloud warehouse feeds reports that nobody agrees on. The modern dashboard shows numbers that two departments dispute.</p>
+    <p>The correct sequence is: define first, then build. Agree on what "revenue" means before building the revenue dashboard. Decide which system is authoritative for headcount before connecting the HRIS to the warehouse. Map which reports actually drive decisions before designing new ones. This sequence feels slower at the outset — and it is. It also produces something that works and lasts, rather than something that looks good at launch and erodes trust over the following six months.</p>
+
+    <div class="tip">
+      <div class="tlabel">The diagnostic question</div>
+      <p>If your organization is considering a reporting modernization project, ask: "Are we starting with definitions, ownership, and process — or are we starting with the tool?" If the answer is the tool, the project is starting in the wrong place. The Reporting Clarity Assessment is specifically designed to do the definitional and process work first — so that whatever gets built afterward is built on something solid.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="article-dashboards-not-trusted.html" class="rn-link">Why dashboards aren't trusted even when data is correct →</a>
+        <a href="article-data-strategy.html" class="rn-link">Data strategy before data tools →</a>
+        <a href="assessment.html" class="rn-link">See the Reporting Clarity Assessment →</a>
+        <a href="insights.html" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="site">
+  <div class="fin">
+    <div class="fbrand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></div>
+    <div class="fmoral">Reporting modernization &amp; data trust consulting.</div>
+    <a href="insights.html" class="fback">← All Insights</a>
+  </div>
+</footer>
+<script>
+  const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.animation='rise .7s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(en.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

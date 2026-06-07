@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights — Aesop Analytics</title>
+<meta name="description" content="Field studies, articles, and analysis on reporting trust, KPI definitions, dashboard modernization, data governance, and AI readiness — from Aesop Analytics.">
+<meta property="og:title" content="Insights — Aesop Analytics">
+<meta property="og:description" content="Expert articles on reporting modernization, KPI trust, and data governance. Every dataset has a moral.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="core.css">
+<style>
+  /* Page-specific styles */
+
+
+  /* PAGE HERO */
+  .page-hero { background:var(--navy); padding:72px 0 56px; overflow:hidden; position:relative; }
+  .page-hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+  .page-hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
+  .page-hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(38px,5.6vw,68px); line-height:1.04; color:#fff; margin-bottom:18px; }
+  .page-hero p { font-size:18px; color:#C4BDAE; font-weight:300; max-width:54ch; line-height:1.6; }
+
+  /* PILLAR TABS */
+  .pillars { background:var(--paper-2); border-bottom:1px solid var(--rule); padding:16px 0; position:sticky; top:64px; z-index:10; }
+  .pillar-in { max-width:1080px; margin:0 auto; padding:0 32px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .pillar-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); margin-right:4px; white-space:nowrap; }
+  .pillar-btn { font-size:12px; font-weight:600; letter-spacing:.03em; padding:6px 13px; border-radius:20px; border:1px solid var(--rule); background:transparent; color:var(--muted); cursor:pointer; transition:all .15s; font-family:"DM Sans",sans-serif; white-space:nowrap; }
+  .pillar-btn:hover, .pillar-btn.on { background:var(--navy); color:#fff; border-color:var(--navy); }
+
+  /* MAIN LAYOUT */
+  .content { max-width:1080px; margin:0 auto; padding:52px 32px 80px; display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:start; }
+ .sidebar { display:none; } }
+
+  /* FEATURED */
+  .feat-card { background:var(--navy); border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1.1fr .9fr; margin-bottom:48px; text-decoration:none; }
+  @media(max-width:600px){ .feat-card { grid-template-columns:1fr; } }
+  .feat-card .ftxt { padding:34px 30px; }
+  .feat-card .ftag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:12px; }
+  .feat-card h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:22px; line-height:1.15; color:#fff; margin-bottom:12px; }
+  .feat-card p { font-size:14.5px; color:#B8BDCA; line-height:1.6; font-weight:300; margin-bottom:18px; }
+  .feat-card .fread { font-size:12.5px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; }
+  .feat-card .fviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:24px; min-height:180px; }
+  .feat-card .fviz svg { width:100%; max-width:220px; height:auto; }
+
+  /* PILLAR SECTIONS */
+  .pillar-section { margin-bottom:44px; }
+  .ps-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); padding:12px 0; border-bottom:2px solid var(--navy); margin-bottom:0; display:flex; align-items:center; justify-content:space-between; }
+  .ps-count { font-size:11px; font-weight:400; color:var(--muted); }
+
+  /* ARTICLE ROWS */
+  .art-row { display:grid; grid-template-columns:28px 1fr auto; gap:16px; align-items:start; padding:20px 6px; border-bottom:1px solid var(--line); text-decoration:none; transition:background .15s; border-radius:4px; }
+  .art-row:hover { background:var(--paper-2); }
+  .art-row .ar-num { font-family:"Abril Fatface",serif; font-size:17px; color:var(--twine); text-align:center; padding-top:2px; }
+  .art-row .ar-  .art-row .ar-title { font-size:16.5px; font-weight:700; color:var(--ink); margin-bottom:4px; line-height:1.3; }
+  .art-row .ar-desc { font-size:13.5px; color:var(--muted); line-height:1.5; font-weight:300; }
+  .art-row .ar-meta { text-align:right; flex-shrink:0; }
+  .ar-pill { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); background:var(--paper-2); padding:3px 8px; border-radius:20px; border:1px solid var(--line); white-space:nowrap; }
+  .ar-time { display:block; font-size:11px; color:var(--muted); margin-top:4px; }
+  @media(max-width:560px){ .art-row .ar-meta { display:none; } .art-row { grid-template-columns:28px 1fr; } }
+
+  /* SIDEBAR */
+  .sidebar { position:sticky; top:128px; }
+  .sb-block { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px; margin-bottom:16px; }
+  .sb-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:12px; }
+  .sb-block p { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; margin-bottom:12px; }
+  .sb-btn { display:inline-block; background:var(--navy); color:#fff; font-size:13px; font-weight:600; padding:10px 16px; border-radius:4px; text-decoration:none; transition:background .18s; }
+  .sb-btn:hover { background:var(--navy-3); }
+  .pillar-list { display:flex; flex-direction:column; gap:0; }
+  .pl-item { display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--slate); padding:8px 0; border-bottom:1px solid var(--line); cursor:pointer; transition:color .15s; }
+  .pl-item:last-child { border-bottom:none; }
+  .pl-item:hover { color:var(--navy); }
+  .pl-ct { font-size:11px; font-weight:700; color:var(--muted); background:var(--paper-2); padding:2px 8px; border-radius:10px; }
+
+  /* FOOTER */
+  @media(max-width:760px){ }
+  @media(max-width:460px){ }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="insights.html" class="active">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book a diagnostic</a>
+    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Assessment</a>
+  <a href="insights.html" onclick="closeMob()">Insights</a>
+  <a href="resources.html" onclick="closeMob()">Resources</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Contact</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic call</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <div class="eyebrow">Insights</div>
+    <h1>Articles &amp; field studies.</h1>
+    <p>Practical writing on reporting trust, KPI definitions, dashboard design, data governance, and AI readiness — from fifteen years of applied analytics practice.</p>
+  </div>
+</div>
+
+<div class="pillars">
+  <div class="pillar-in">
+    <span class="pillar-label">Pillar:</span>
+    <button class="pillar-btn on" data-cat="all">All</button>
+    <button class="pillar-btn" data-cat="reporting-trust">Reporting Trust</button>
+    <button class="pillar-btn" data-cat="kpi">KPI Definitions</button>
+    <button class="pillar-btn" data-cat="modernization">Modernization</button>
+    <button class="pillar-btn" data-cat="governance">Governance</button>
+    <button class="pillar-btn" data-cat="ai-readiness">AI Readiness</button>
+    <button class="pillar-btn" data-cat="field-study">Field Studies</button>
+  </div>
+</div>
+
+<div class="content">
+  <div id="article-list">
+
+    <!-- FEATURED -->
+    <a href="aesop-productivity-pay-study.html" class="feat-card" data-cat="field-study">
+      <div class="ftxt">
+        <div class="ftag">Field Study · Labor &amp; the Economy</div>
+        <h2>The Productivity–Pay Gap: where did the middle class's gains go?</h2>
+        <p>Productivity rose ~90% since 1979; typical pay rose ~33%. An honest look at what actually drives the divergence.</p>
+        <span class="fread">Read the study →</span>
+      </div>
+      <div class="fviz">
+        <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="20" y1="130" x2="210" y2="130" stroke="#1E3555" stroke-width="1"/>
+          <polyline points="20,120 60,105 100,82 140,55 180,32 210,16" fill="none" stroke="#C18C5D" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline points="20,120 60,116 100,108 140,100 180,94 210,90" fill="none" stroke="#6B8FAF" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="210" cy="16" r="3.5" fill="#C18C5D"/>
+          <circle cx="210" cy="90" r="3.5" fill="#6B8FAF"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- PILLAR 1: REPORTING TRUST -->
+    <div class="pillar-section" data-pillar="reporting-trust">
+      <div class="ps-head">Pillar 1 — Reporting Trust <span class="ps-count">2 articles</span></div>
+      <a href="article-dashboards-not-trusted.html" class="art-row" data-cat="reporting-trust">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Why your dashboards are not trusted even when the data is correct</div>
+          <div class="ar-desc">Dashboard distrust is an ownership, definition, and process problem — not a data accuracy problem. The fix is different than you think.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Reporting Trust</span><span class="ar-time">6 min</span></div>
+      </a>
+      <a href="article-reporting-not-dashboard-redesign.html" class="art-row" data-cat="modernization">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Reporting modernization is not a dashboard redesign</div>
+          <div class="ar-desc">The dashboard is the last 10% of the problem. Most organizations start there — and wonder why the project didn't work.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Modernization</span><span class="ar-time">7 min</span></div>
+      </a>
+    </div>
+
+
+    <!-- PILLAR 2: KPI DEFINITIONS -->
+    <div class="pillar-section" data-pillar="kpi">
+      <div class="ps-head">Pillar 2 — KPI Definitions <span class="ps-count">3 articles</span></div>
+      <a href="article-kpi-dictionary.html" class="art-row" data-cat="kpi">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">How to build a KPI dictionary</div>
+          <div class="ar-desc">What goes in it, how to structure it, and how to make it stick — including a complete example entry for MRR.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">KPI Definitions</span><span class="ar-time">7 min</span></div>
+      </a>
+      <a href="article-kpi-owner.html" class="art-row" data-cat="kpi">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Why every KPI needs an owner</div>
+          <div class="ar-desc">Ownership is the missing link in reporting trust. A specific person, not a team. What it means — and how to assign it.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">KPI Definitions</span><span class="ar-time">5 min</span></div>
+      </a>
+      <a href="article-hidden-cost-conflicting-kpis.html" class="art-row" data-cat="kpi">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">The hidden cost of conflicting KPIs</div>
+          <div class="ar-desc">Most organizations know metric disagreements are a problem. Almost none have counted what they actually cost — the number is bigger than it looks.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Reporting Trust</span><span class="ar-time">6 min</span></div>
+      </a>
+    </div>
+
+    <!-- PILLAR 5: AI READINESS -->
+    <div class="pillar-section" data-pillar="ai-readiness">
+      <div class="ps-head">Pillar 5 — AI Readiness <span class="ps-count">1 article</span></div>
+      <a href="article-ai-readiness-trusted-metrics.html" class="art-row" data-cat="ai-readiness">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">AI readiness starts with trusted metrics</div>
+          <div class="ar-desc">AI doesn't fix reporting chaos. It inherits it — and makes it sound authoritative. The data foundation every AI initiative actually needs.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">AI Readiness</span><span class="ar-time">6 min</span></div>
+      </a>
+      <a href="article-bad-reporting-blocks-ai.html" class="art-row" data-cat="ai-readiness">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Why bad reporting blocks AI adoption</div>
+          <div class="ar-desc">Your AI initiative isn't blocked by the AI. It's blocked by fragmented sources, undefined metrics, and unowned KPIs — and a pre-flight checklist to fix it.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">AI Readiness</span><span class="ar-time">6 min</span></div>
+      </a>
+    </div>
+
+    <!-- PILLAR 4: GOVERNANCE / STRATEGY -->
+    <div class="pillar-section" data-pillar="governance">
+      <div class="ps-head">Pillar 4 — Data Governance &amp; Strategy <span class="ps-count">2 articles</span></div>
+      <a href="article-data-strategy.html" class="art-row" data-cat="governance">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Data strategy before data tools</div>
+          <div class="ar-desc">Why the plan has to come before the platform — the seven components, the four questions, and where initiatives fail.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Governance</span><span class="ar-time">7 min</span></div>
+      </a>
+      <a href="article-design-thinking.html" class="art-row" data-cat="governance">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Design thinking in business intelligence</div>
+          <div class="ar-desc">A four-phase method for when you know there's a better answer but aren't sure exactly what it is.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Process</span><span class="ar-time">6 min</span></div>
+      </a>
+      <a href="article-governance-operators.html" class="art-row" data-cat="governance">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Data governance for operators, not committees</div>
+          <div class="ar-desc">A lightweight model that creates accountability without creating overhead — the five questions governance has to answer.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Governance</span><span class="ar-time">7 min</span></div>
+      </a>
+    </div>
+
+    <!-- PILLAR 3: DASHBOARD DESIGN -->
+    <div class="pillar-section" data-pillar="modernization">
+      <div class="ps-head">Pillar 3 — Dashboard Design <span class="ps-count">2 articles</span></div>
+      <a href="article-dashboard-design-basics.html" class="art-row" data-cat="modernization">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Dashboard design, the basics</div>
+          <div class="ar-desc">Grid, spacing, hierarchy, typography, and color — the five principles that separate dashboards people use from ones they ignore.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Design</span><span class="ar-time">6 min</span></div>
+      </a>
+      <a href="article-gestalt-perception.html" class="art-row" data-cat="modernization">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Gestalt &amp; perception in dashboard design</div>
+          <div class="ar-desc">Seven Gestalt principles, eye-scan patterns, and why the Invisible Gorilla experiment matters for layout.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Design</span><span class="ar-time">7 min</span></div>
+      </a>
+    </div>
+
+    <!-- FIELD STUDIES -->
+    <div class="pillar-section" data-pillar="field-study">
+      <div class="ps-head">Field Studies — Economics &amp; Data <span class="ps-count">2 studies</span></div>
+      <a href="article-corporate-profits-inflation.html" class="art-row" data-cat="field-study">
+        <span class="ar-num">æ</span>
+        <div class="ar-body">
+          <div class="ar-title">Did corporate profits drive post-COVID inflation?</div>
+          <div class="ar-desc">Profits accounted for 54% of price growth vs. 11% historically. What the BEA data says — and what it doesn't.</div>
+        </div>
+        <div class="ar-meta"><span class="ar-pill">Field Study</span><span class="ar-time">8 min</span></div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-block">
+      <div class="sb-label">The five content pillars</div>
+      <div class="pillar-list">
+        <div class="pl-item" onclick="filterByPillar('kpi')">KPI Definitions <span class="pl-ct">3</span></div>
+        <div class="pl-item" onclick="filterByPillar('reporting-trust')">Reporting Trust <span class="pl-ct">3</span></div>
+        <div class="pl-item" onclick="filterByPillar('modernization')">Dashboard Modernization <span class="pl-ct">3</span></div>
+        <div class="pl-item" onclick="filterByPillar('governance')">Governance &amp; Strategy <span class="pl-ct">3</span></div>
+        <div class="pl-item" onclick="filterByPillar('ai-readiness')">AI Readiness <span class="pl-ct">2</span></div>
+        <div class="pl-item" onclick="filterByPillar('field-study')">Field Studies <span class="pl-ct">2</span></div>
+      </div>
+    </div>
+    <div class="sb-block">
+      <div class="sb-label">Free resource</div>
+      <p>The Reporting Trust Health Check — 10 diagnostic areas, 5 signal questions each. Score your reporting environment in 30 minutes.</p>
+      <a href="resources.html" class="sb-btn">Take the Health Check →</a>
+    </div>
+    <div class="sb-block">
+      <div class="sb-label">Work together</div>
+      <p>If an article raised a question about your own reporting environment, that's usually worth a conversation.</p>
+      <a href="contact.html" class="sb-btn">Book a free diagnostic →</a>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+    </div>
+    <div class="foot-col"><h4>Services</h4><a href="assessment.html">Reporting Clarity Assessment</a><a href="services.html#sprint">Modernization Sprint</a><a href="services.html#governance">Governance Kit</a><a href="services.html#retainer">Fractional Retainer</a></div>
+    <div class="foot-col"><h4>Content</h4><a href="insights.html">Insights &amp; Studies</a><a href="resources.html">Free Resources</a></div>
+    <div class="foot-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a><a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a></div>
+  </div>
+  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
+</footer>
+
+<script>
+  const ham=document.getElementById('ham'),mob=document.getElementById('mobile-menu');
+  ham.addEventListener('click',()=>mob.classList.toggle('open'));
+  ham.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')mob.classList.toggle('open');});
+  function closeMob(){mob.classList.remove('open');}
+  document.addEventListener('click',e=>{if(!ham.contains(e.target)&&!mob.contains(e.target))mob.classList.remove('open');});
+
+  function filterByPillar(cat) {
+    document.querySelectorAll('.pillar-btn').forEach(b=>b.classList.remove('on'));
+    const btn = document.querySelector(`[data-cat="${cat}"]`);
+    if(btn) btn.classList.add('on');
+    applyFilter(cat);
+  }
+
+  function applyFilter(cat) {
+    const rows = document.querySelectorAll('.art-row');
+    const feat = document.querySelector('.feat-card');
+    const sections = document.querySelectorAll('.pillar-section');
+    if(cat === 'all') {
+      rows.forEach(r=>r.style.display='');
+      sections.forEach(s=>s.style.display='');
+      if(feat) feat.style.display='';
+    } else {
+      if(feat) feat.style.display = (feat.dataset.cat===cat||cat==='field-study') ? '' : 'none';
+      rows.forEach(r=>{ r.style.display = r.dataset.cat===cat ? '' : 'none'; });
+      sections.forEach(s=>{
+        const visible = s.querySelectorAll(`.art-row:not([style*="none"])`);
+        const hasVisible = Array.from(s.querySelectorAll('.art-row')).some(r=>r.dataset.cat===cat);
+        s.style.display = hasVisible ? '' : 'none';
+      });
+    }
+  }
+
+  document.querySelectorAll('.pillar-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.pillar-btn').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      applyFilter(btn.dataset.cat);
+    });
+  });
+</script>
+</body>
+</html>

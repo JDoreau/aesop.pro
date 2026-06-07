@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Reporting Trust Health Check — Aesop Analytics</title>
+<meta name="description" content="Free Reporting Trust Health Check: 10 diagnostic areas, 50 questions, a scoring system to identify exactly where reporting is breaking down in your organization.">
+<meta property="og:title" content="Free Reporting Trust Health Check — Aesop Analytics">
+<meta property="og:description" content="Score your reporting environment across 10 areas. Know where trust is breaking down before you start fixing it.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="core.css">
+<style>
+  /* Page-specific styles */
+
+
+  /* HERO */
+  .hero { background:var(--navy); padding:72px 0 60px; overflow:hidden; position:relative; }
+  .hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+  .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center; }
+  @media(max-width:720px){ .hero-in { grid-template-columns:1fr; gap:32px; } }
+  .hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(32px,5vw,56px); line-height:1.05; color:#fff; margin-bottom:18px; }
+  .hero p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.6; margin-bottom:24px; max-width:48ch; }
+  .hero-free { display:inline-block; background:rgba(193,140,93,.15); border:1px solid rgba(193,140,93,.4); color:var(--twine); font-size:13px; font-weight:700; padding:6px 14px; border-radius:4px; margin-bottom:20px; letter-spacing:.04em; }
+  /* Score preview card */
+  .score-card { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:8px; padding:28px 24px; }
+  .score-card h3 { font-size:13px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.14em; margin-bottom:18px; }
+  .score-area { margin-bottom:12px; }
+  .sa-label { display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px; }
+  .sa-name { color:#C4BDAE; font-weight:400; }
+  .sa-score { font-weight:700; }
+  .sa-score.red { color:var(--contessa); }
+  .sa-score.yellow { color:#D4A844; }
+  .sa-score.green { color:#7EB09B; }
+  .sa-bar { height:6px; background:rgba(255,255,255,.08); border-radius:3px; overflow:hidden; }
+  .sa-fill { height:100%; border-radius:3px; }
+  .sa-fill.red { background:var(--contessa); }
+  .sa-fill.yellow { background:#D4A844; }
+  .sa-fill.green { background:#7EB09B; }
+
+  /* WHAT IT COVERS */
+  .covers { padding:72px 0; }
+  .sec-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
+  .covers h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
+  .covers .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:58ch; margin-bottom:44px; line-height:1.6; }
+  .area-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  @media(max-width:640px){ .area-grid { grid-template-columns:1fr; } }
+  .area-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px 18px; display:flex; gap:14px; }
+  .area-n { font-family:"Abril Fatface",serif; font-size:20px; color:var(--twine); min-width:30px; flex-shrink:0; line-height:1; }
+  .area-body h3 { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:5px; }
+  .area-body p { font-size:13.5px; color:var(--muted); line-height:1.5; font-weight:300; }
+  .area-body .sample { font-size:12.5px; color:var(--muted); font-style:italic; margin-top:6px; line-height:1.45; border-left:2px solid var(--line); padding-left:8px; }
+
+  /* HOW TO USE IT */
+  .how-use { background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:64px 0; }
+  .how-use h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:36px; }
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media(max-width:640px){ .steps { grid-template-columns:1fr; } }
+  .step { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px 20px; }
+  .step .sn { font-family:"Abril Fatface",serif; font-size:32px; color:var(--twine); opacity:.5; line-height:1; margin-bottom:8px; }
+  .step h3 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .step p { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; }
+
+  /* SCORING */
+  .scoring { padding:64px 0; }
+  .scoring h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }
+  .score-bands { display:flex; flex-direction:column; gap:12px; max-width:660px; }
+  .band { display:grid; grid-template-columns:80px 1fr; gap:20px; align-items:start; padding:16px 18px; border-radius:6px; }
+  .band.critical { background:rgba(206,118,107,.08); border:1px solid rgba(206,118,107,.2); }
+  .band.concern  { background:rgba(212,168,68,.07);  border:1px solid rgba(212,168,68,.2); }
+  .band.stable   { background:rgba(126,176,155,.08); border:1px solid rgba(126,176,155,.25); }
+  .band.strong   { background:rgba(15,31,56,.05);    border:1px solid rgba(15,31,56,.12); }
+  .band-score { font-family:"Abril Fatface",serif; font-size:20px; font-weight:400; text-align:center; padding-top:2px; }
+  .band.critical .band-score { color:var(--contessa); }
+  .band.concern  .band-score { color:#C49A20; }
+  .band.stable   .band-score { color:#4E9B84; }
+  .band.strong   .band-score { color:var(--navy); }
+  .band-label { font-size:15px; font-weight:700; margin-bottom:4px; }
+  .band.critical .band-label { color:var(--contessa); }
+  .band.concern  .band-label { color:#C49A20; }
+  .band.stable   .band-label { color:#4E9B84; }
+  .band.strong   .band-label { color:var(--navy); }
+  .band-desc { font-size:14px; color:var(--muted); line-height:1.5; font-weight:300; }
+
+  /* FUTURE RESOURCES -->
+  .future { background:var(--navy); padding:64px 0; }
+  .future-in { max-width:1080px; margin:0 auto; padding:0 32px; }
+  .future-in  .future-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(22px,3vw,34px); color:#fff; margin-bottom:32px; }
+  .future-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media(max-width:640px){ .future-grid { grid-template-columns:1fr; } }
+  .future-card { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:6px; padding:20px 18px; }
+  .future-card .fc-tag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:8px; }
+  .future-card h3 { font-size:15px; font-weight:700; color:#D6DDE8; margin-bottom:6px; }
+  .future-card p { font-size:13px; color:#6A8099; line-height:1.5; font-weight:300; }
+  .future-card .coming { display:inline-block; margin-top:10px; font-size:11px; font-weight:600; color:#4A6070; text-transform:uppercase; letter-spacing:.1em; }
+
+  /* CTA */
+  .cta { border-top:3px solid var(--twine); background:var(--paper-2); padding:72px 32px; text-align:center; border-bottom:1px solid var(--rule); }
+  .cta h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.4vw,38px); color:var(--navy); margin-bottom:16px; }
+  .cta p { font-size:17px; color:var(--slate); font-weight:300; max-width:46ch; margin:0 auto 28px; line-height:1.6; }
+
+  @media(max-width:760px){ }
+  @media(max-width:460px){ }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html" class="active">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book a diagnostic</a>
+    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Reporting Clarity Assessment</a>
+  <a href="work.html" onclick="closeMob()">Work</a>
+  <a href="insights.html" onclick="closeMob()">Insights</a>
+  <a href="resources.html" onclick="closeMob()">Resources</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Contact</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic call</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="eyebrow">Free resource</div>
+      <span class="hero-free">100% Free · No email required</span>
+      <h1>The Reporting Trust Health Check</h1>
+      <p>Score your reporting environment across 10 diagnostic areas. Understand exactly where trust is breaking down — before you spend a dollar fixing it.</p>
+      <a href="health-check.html" class="btn">Take the Interactive Health Check →</a>
+    </div>
+    <!-- Score preview -->
+    <div class="score-card">
+      <h3>Example scoring preview</h3>
+      <div class="score-area">
+        <div class="sa-label"><span class="sa-name">KPI definitions</span><span class="sa-score red">2/10</span></div>
+        <div class="sa-bar"><div class="sa-fill red" style="width:20%"></div></div>
+      </div>
+      <div class="score-area">
+        <div class="sa-label"><span class="sa-name">Report ownership</span><span class="sa-score yellow">5/10</span></div>
+        <div class="sa-bar"><div class="sa-fill yellow" style="width:50%"></div></div>
+      </div>
+      <div class="score-area">
+        <div class="sa-label"><span class="sa-name">Data source clarity</span><span class="sa-score red">3/10</span></div>
+        <div class="sa-bar"><div class="sa-fill red" style="width:30%"></div></div>
+      </div>
+      <div class="score-area">
+        <div class="sa-label"><span class="sa-name">Executive alignment</span><span class="sa-score yellow">4/10</span></div>
+        <div class="sa-bar"><div class="sa-fill yellow" style="width:40%"></div></div>
+      </div>
+      <div class="score-area">
+        <div class="sa-label"><span class="sa-name">Dashboard usage</span><span class="sa-score green">7/10</span></div>
+        <div class="sa-bar"><div class="sa-fill green" style="width:70%"></div></div>
+      </div>
+      <div style="font-size:12px;color:#4A6070;margin-top:14px;text-align:center;font-style:italic">Illustrative — your scores will differ</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT COVERS -->
+<section class="covers" id="checklist">
+  <div class="wrap">
+    <div class="sec-label">10 diagnostic areas</div>
+    <h2>Where reporting trust breaks down — and how to measure it.</h2>
+    <p class="intro">Each area has 3–5 diagnostic questions. Answer honestly, score each area 1–10, and you'll have a clear picture of where reporting trust is strongest and where it's failing.</p>
+    <div class="area-grid">
+      <div class="area-card">
+        <div class="area-n">01</div>
+        <div class="area-body">
+          <h3>KPI Definitions</h3>
+          <p>Are your key metrics defined in writing? Do Finance and Operations use the same definition for "revenue," "active customer," and "churn"? Does every KPI have a formula and an owner?</p>
+          <div class="sample">Signal question: "If I asked three people what our 'monthly active users' means, would I get the same answer?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">02</div>
+        <div class="area-body">
+          <h3>Data Source Clarity</h3>
+          <p>Do people know which system is the authoritative source for each critical metric? Is there a documented source-of-truth for customer data, financial data, operational data?</p>
+          <div class="sample">Signal question: "When Finance and Sales disagree on pipeline, which system wins — and does everyone accept that?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">03</div>
+        <div class="area-body">
+          <h3>Report Ownership</h3>
+          <p>Does every report have a named owner responsible for its accuracy? Is there a process for updating or retiring reports? Can you identify which reports are "official"?</p>
+          <div class="sample">Signal question: "If a number in the weekly operations report is wrong, who is responsible for fixing it?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">04</div>
+        <div class="area-body">
+          <h3>Dashboard Usage</h3>
+          <p>Are your dashboards actually used to make decisions — or do they exist because someone built them? Can you name which dashboard leadership opens before each key meeting?</p>
+          <div class="sample">Signal question: "Show me the last time a leadership decision was explicitly made because of a dashboard."</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">05</div>
+        <div class="area-body">
+          <h3>Manual Reporting Effort</h3>
+          <p>How much time do analysts spend each week building reports in spreadsheets that could be automated? Is manual reporting growing, shrinking, or stable?</p>
+          <div class="sample">Signal question: "How many person-hours per week are spent assembling the Monday morning report pack?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">06</div>
+        <div class="area-body">
+          <h3>Data Quality</h3>
+          <p>Are there known data quality problems that affect reports regularly? Is there a process for identifying and resolving data quality issues before they reach leadership?</p>
+          <div class="sample">Signal question: "How often does someone catch a data error in a report after it's been distributed?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">07</div>
+        <div class="area-body">
+          <h3>Governance</h3>
+          <p>Is there a process for requesting new reports or dashboards? Is there a process for changing a KPI definition? Does anyone own the overall reporting operating model?</p>
+          <div class="sample">Signal question: "What happens when two teams want the definition of 'on-time delivery' changed in opposite directions?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">08</div>
+        <div class="area-body">
+          <h3>Executive Decision Alignment</h3>
+          <p>Do the reports your team produces match what leadership actually needs to make decisions? Are executives asking for data that doesn't exist in current reports?</p>
+          <div class="sample">Signal question: "Does the CEO ever make a decision and then ask for data you don't have readily available?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">09</div>
+        <div class="area-body">
+          <h3>Report Duplication</h3>
+          <p>How many reports serve overlapping purposes? Is anyone tracking how many dashboards exist and what each one is for? Could you retire 20% of your reports with no impact?</p>
+          <div class="sample">Signal question: "How many different reports show monthly revenue — and do they all show the same number?"</div>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-n">10</div>
+        <div class="area-body">
+          <h3>AI &amp; Data Readiness</h3>
+          <p>If you wanted to adopt AI tools for analytics or forecasting, is your data foundation reliable enough to trust the outputs? Are your definitions and sources documented well enough to feed a model?</p>
+          <div class="sample">Signal question: "If an AI tool asked 'what does a churned customer mean in your data?' — could you give a crisp, consistent answer?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section class="how-use">
+  <div class="wrap">
+    <div class="sec-label">How to use it</div>
+    <h2>Three ways to put it to work.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="sn">01</div>
+        <h3>Score it yourself</h3>
+        <p>Work through each area with the signal questions. Score 1–10. Areas below 5 are where trust is most at risk. Below 3 means the problem is likely already costing you decisions.</p>
+      </div>
+      <div class="step">
+        <div class="sn">02</div>
+        <h3>Score it as a team</h3>
+        <p>Have your analytics team, finance lead, and a department head each score the same areas independently. The gaps between scores are often as revealing as the scores themselves.</p>
+      </div>
+      <div class="step">
+        <div class="sn">03</div>
+        <h3>Use it to prep for a diagnostic call</h3>
+        <p>Bring your scores to the free Reporting Trust Diagnostic call. It makes the conversation significantly more productive — we can focus on the lowest-scoring areas and work out whether a structured assessment would be useful.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORING GUIDE -->
+<section class="scoring">
+  <div class="wrap">
+    <div class="sec-label">Scoring guide</div>
+    <h2>What your total score means.</h2>
+    <div class="score-bands">
+      <div class="band critical">
+        <div class="band-score">10–30</div>
+        <div><div class="band-label">Critical — reporting trust is severely broken</div><div class="band-desc">Multiple foundational problems. Decisions are likely being made on data nobody fully trusts. The cost of inaction is high. A structured Reporting Clarity Assessment would identify where to start.</div></div>
+      </div>
+      <div class="band concern">
+        <div class="band-score">31–55</div>
+        <div><div class="band-label">Concern — real gaps, growing risk</div><div class="band-desc">Some areas are working, but critical gaps in definitions, ownership, or governance are creating friction. The problems are manageable now but will compound as the organization grows.</div></div>
+      </div>
+      <div class="band stable">
+        <div class="band-score">56–75</div>
+        <div><div class="band-label">Stable — functional, but room to improve</div><div class="band-desc">Reporting is working at a basic level. Targeted improvements in the lowest-scoring areas could meaningfully increase trust and decision speed without a large transformation project.</div></div>
+      </div>
+      <div class="band strong">
+        <div class="band-score">76–100</div>
+        <div><div class="band-label">Strong — mature reporting operating model</div><div class="band-desc">Your reporting environment is well-governed and trusted. Focus on continuous improvement, AI readiness, and ensuring governance scales as the organization grows.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE RESOURCES -->
+<div class="future">
+  <div class="future-in">
+    <div class="eyebrow">Coming soon</div>
+    <h2>More free resources in progress.</h2>
+    <div class="future-grid">
+      <div class="future-card">
+        <div class="fc-tag">Template</div>
+        <h3>KPI Dictionary Template</h3>
+        <p>A starter template for documenting metric definitions, formulas, owners, and source systems.</p>
+        <span class="coming">In development</span>
+      </div>
+      <div class="future-card">
+        <div class="fc-tag">Template</div>
+        <h3>Reporting Inventory Spreadsheet</h3>
+        <p>A structured template to catalog every dashboard and report with trust and usage ratings.</p>
+        <span class="coming">In development</span>
+      </div>
+      <div class="future-card">
+        <div class="fc-tag">Checklist</div>
+        <h3>Dashboard Audit Checklist</h3>
+        <p>30 questions to audit any dashboard for decision alignment, metric clarity, and governance.</p>
+        <span class="coming">In development</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Want help interpreting your score?</h2>
+  <p>A free 30-minute diagnostic call — bring your Health Check scores and we'll identify the highest-impact areas together.</p>
+  <a href="health-check.html" class="btn">Take the Interactive Health Check →</a>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+    </div>
+    <div class="foot-col"><h4>Services</h4><a href="assessment.html">Reporting Clarity Assessment</a><a href="services.html#sprint">Modernization Sprint</a><a href="services.html#governance">Governance Starter Kit</a><a href="services.html#retainer">Fractional Retainer</a></div>
+    <div class="foot-col"><h4>Content</h4><a href="insights.html">Insights &amp; Studies</a><a href="resources.html">Free Resources</a></div>
+    <div class="foot-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a></div>
+  </div>
+  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
+</footer>
+
+<script>
+  const ham=document.getElementById('ham'),mob=document.getElementById('mobile-menu');
+  ham.addEventListener('click',()=>mob.classList.toggle('open'));
+  ham.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')mob.classList.toggle('open');});
+  function closeMob(){mob.classList.remove('open');}
+  document.addEventListener('click',e=>{if(!ham.contains(e.target)&&!mob.contains(e.target))mob.classList.remove('open');});
+</script>
+</body>
+</html>

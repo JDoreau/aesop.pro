@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Design, the Basics — Aesop Analytics</title>
+<meta name="description" content="Five principles that separate dashboards people actually use from ones they ignore: grid alignment, white space, visual hierarchy, typography, and intentional color. By Jonathan Doreau, Aesop Analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="article.css">
+<style>
+  /* Page-specific styles */
+
+  html { scroll-behavior: smooth; }
+  a { color: var(--sepia); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ── Sticky header ── */
+  header.site {
+    border-bottom: 1px solid var(--rule);
+    background: rgba(251,250,245,.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .site-inner {
+    max-width: 1040px; margin: 0 auto;
+    padding: 13px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .tagline { color:var(--muted); font-style:italic; font-size:14px; }
+  @media(max-width:580px){ .tagline { display:none; } }
+
+  /* ── Article header ── */
+
+  /* ── Body copy ── */
+  .
+  /* Section heads — DM Sans heavy, navy */
+  h2 .num {
+    font-family: "Abril Fatface", serif;
+    color: var(--twine); font-size: 20px; margin-right: 8px;
+  }
+
+  /* ── Illustration frames ── */
+  .illus {
+    margin: 36px 0;
+    background: #fff;
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 28px 24px 18px;
+    box-shadow: 0 16px 40px -28px rgba(15,31,56,.22);
+  }
+  .illus .ititle {
+    font-weight: 700; font-size: 15px; margin-bottom: 3px; color: var(--ink);
+  }
+  .illus .isub {
+    font-size: 12.5px; color: var(--muted); margin-bottom: 18px; font-weight: 400;
+  }
+  .illus svg { display: block; width: 100%; height: auto; }
+  .illus figcaption {
+    font-size: 12px; color: var(--muted);
+    margin-top: 14px; line-height: 1.46;
+    border-top: 1px solid var(--line); padding-top: 10px;
+  }
+
+  /* ── Pull quote ── */
+
+  /* ── Callout / tip box ── */
+
+  /* ── Five-step checklist card ── */
+  .checklist {
+    background: var(--navy); color: var(--cream);
+    border-radius: 8px; padding: 36px 32px;
+    margin: 48px 0; position: relative; overflow: hidden;
+  }
+  .checklist::after {
+    content: "æ"; position: absolute; right: -14px; bottom: -40px;
+    font-family: "Abril Fatface", serif; font-size: 160px;
+    color: rgba(193,140,93,.12); line-height: 1; pointer-events: none;
+  }
+  .checklist h3 {
+    font-family: "Abril Fatface", serif; font-weight: 400;
+    font-size: 24px; color: #fff; margin-bottom: 24px;
+  }
+  .checklist ol {
+    list-style: none; padding: 0; position: relative; z-index: 1;
+  }
+  .checklist li {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+    font-size: 16px; line-height: 1.5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist .cn {
+    font-family: "Abril Fatface", serif; font-size: 22px;
+    color: var(--twine); min-width: 32px; line-height: 1.1;
+  }
+  .checklist .ct { color: #D6DDE8; }
+  .checklist .ct
+  /* ── Before / after comparison ── */
+  .compare {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin: 36px 0;
+  }
+  @media(max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+  .compare > div {
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 20px; background: var(--paper);
+  }
+  .compare .ch {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .16em; margin-bottom: 12px; display: block;
+  }
+  .compare .bad  .ch { color: var(--contessa); }
+  .compare .good .ch { color: var(--navy); }
+  .compare svg { display: block; width: 100%; height: auto; }
+
+  /* ── Questions list (who is this for, etc.) ── */
+  .qlist { margin: 28px 0; }
+  .qlist .qi {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px 0; border-bottom: 1px solid var(--line);
+  }
+  .qlist .qi:last-child { border-bottom: none; }
+  .qlist .qn {
+    font-family: "Abril Fatface", serif; font-size: 18px;
+    color: var(--twine); min-width: 28px; line-height: 1.2;
+  }
+  .qlist .qt { font-size: 16.5px; color: var(--slate); line-height: 1.55; font-weight: 300; }
+  .qlist .qt
+  /* ── Footer ── */
+
+  /* ── Animations ── */
+
+  /* ── Read-next strip ── */
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-inner">
+    <a href="index.html" class="brand" aria-label="Aesop Analytics home">
+      <span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span>
+    </a>
+    <div class="tagline">Every dataset has a moral.</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <article>
+    <div class="kicker reveal">Article &middot; Dashboard Design</div>
+    <h1 class="reveal" style="animation-delay:.05s">
+      Dashboard Design, the Basics
+      <span class="sub">Five principles that separate the dashboards people actually use from the ones they ignore.</span>
+    </h1>
+    <p class="dek reveal" style="animation-delay:.1s">Before you reach for a chart type or a color palette, the bones of your dashboard need to be right. Alignment, space, hierarchy, type, and contrast aren't cosmetic — they're the difference between a dashboard that communicates and one that overwhelms.</p>
+    <div class="byline reveal" style="animation-delay:.16s">
+      <span class="reg">By <strong>Jonathan Doreau</strong>, Aesop Analytics</span>
+      <span class="dot">&bull;</span>
+      <span class="reg">~6 min read</span>
+      <span class="dot">&bull;</span>
+      <span class="reg">Dashboard Design</span>
+    </div>
+  </article>
+
+  <div class="body">
+
+    <p class="lead">A dashboard is an argument. It argues that certain numbers matter, that they belong together, and that they add up to something a person should act on. Before that argument can land, though, the reader has to be able to see it clearly — and that is a design problem, not a data problem. I've watched technically correct dashboards fail completely because the layout didn't respect how human eyes actually work. These five fundamentals fix that.</p>
+
+    <!-- ═══════════════ 1. GRID ═══════════════ -->
+    <h2>01 &nbsp;Alignment — keeping everything on a grid.</h2>
+    <span class="h2-sub">Structure before style</span>
+
+    <p>Keeping your dashboard organized is just as important as keeping your data in order. A grid doesn't just make things look neat — it does cognitive work for the reader. When elements snap to invisible horizontal and vertical guides, the eye groups them without effort. When they don't, every misaligned edge registers as a small visual question the brain has to answer. Multiply that across a dashboard with thirty elements, and you've already exhausted half your reader's attention before they've seen a single number.</p>
+
+    <p>The standard 12-column grid is the workhorse of dashboard layout for good reason: it divides evenly into halves, thirds, and quarters, giving you natural breakpoints for KPI cards, charts, and filters. Whether you're in Power BI, Tableau, or a web-based tool, turn on the grid and snap to it. Other systems — the golden ratio, Fibonacci spacing — are worth understanding, but the 12-column grid is where to start.</p>
+
+    <div class="illus">
+      <div class="ititle">Grid alignment in practice</div>
+      <div class="isub">Elements locked to a 12-column grid (left) vs. placed by feel (right)</div>
+      <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" aria-label="Side-by-side comparison of aligned vs misaligned dashboard layouts">
+        <!-- LEFT: Aligned -->
+        <rect x="10" y="10" width="318" height="180" rx="4" fill="#F3EFE6" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- grid lines subtle -->
+        <line x1="36" y1="10" x2="36" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="62" y1="10" x2="62" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="88" y1="10" x2="88" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="114" y1="10" x2="114" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="140" y1="10" x2="140" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="166" y1="10" x2="166" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="192" y1="10" x2="192" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="218" y1="10" x2="218" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="244" y1="10" x2="244" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="270" y1="10" x2="270" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <line x1="296" y1="10" x2="296" y2="190" stroke="#E7E0D2" stroke-width=".5"/>
+        <!-- KPI cards: aligned -->
+        <rect x="22" y="22" width="72" height="44" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="102" y="22" width="72" height="44" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="182" y="22" width="72" height="44" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="262" y="22" width="52" height="44" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- chart area aligned -->
+        <rect x="22" y="78" width="180" height="100" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="212" y="78" width="102" height="100" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- bars in chart -->
+        <rect x="36" y="148" width="14" height="22" fill="#0F1F38" rx="1"/>
+        <rect x="56" y="136" width="14" height="34" fill="#0F1F38" rx="1"/>
+        <rect x="76" y="118" width="14" height="52" fill="#C18C5D" rx="1"/>
+        <rect x="96" y="128" width="14" height="42" fill="#0F1F38" rx="1"/>
+        <rect x="116" y="108" width="14" height="62" fill="#0F1F38" rx="1"/>
+        <!-- small text -->
+        <text x="164" y="196" font-family="DM Sans,sans-serif" font-size="11" fill="#0F1F38" font-weight="700" text-anchor="middle">✓ Aligned</text>
+
+        <!-- RIGHT: Misaligned -->
+        <rect x="352" y="10" width="318" height="180" rx="4" fill="#F3EFE6" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- Misaligned KPI cards -->
+        <rect x="364" y="18" width="70" height="48" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="446" y="24" width="66" height="38" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="524" y="20" width="74" height="44" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="618" y="16" width="42" height="50" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- misaligned charts -->
+        <rect x="364" y="80" width="174" height="96" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <rect x="548" y="74" width="112" height="106" rx="3" fill="#fff" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- bars slightly off -->
+        <rect x="376" y="150" width="13" height="20" fill="#0F1F38" rx="1"/>
+        <rect x="397" y="137" width="13" height="33" fill="#0F1F38" rx="1"/>
+        <rect x="418" y="120" width="13" height="50" fill="#CE796B" rx="1"/>
+        <rect x="439" y="132" width="13" height="38" fill="#0F1F38" rx="1"/>
+        <rect x="460" y="110" width="13" height="60" fill="#0F1F38" rx="1"/>
+        <!-- misalignment indicators -->
+        <line x1="364" y1="68" x2="548" y2="68" stroke="#CE796B" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="516" y="196" font-family="DM Sans,sans-serif" font-size="11" fill="#CE796B" font-weight="700" text-anchor="middle">✗ Placed by feel</text>
+      </svg>
+      <figcaption>Left: elements locked to a 12-column grid — sections align, the eye groups them instantly. Right: placed freely — the dashed line shows how top edges drift, forcing the brain to do unnecessary work.</figcaption>
+    </div>
+
+    <div class="tip">
+      <div class="tlabel">Pro tip</div>
+      <p>Build your first layout in grayscale on the grid. If the structure reads clearly without any color, the grid is working. Color is a layer you add later — not a substitute for good bones.</p>
+    </div>
+
+    <!-- ═══════════════ 2. WHITE SPACE ═══════════════ -->
+    <h2>02 &nbsp;Spacing — why white space is doing real work.</h2>
+    <span class="h2-sub">Breathing room as communication</span>
+
+    <p>A dashboard without white space is like a newspaper without spaces between words: technically all the information is there, but the reading experience collapses into noise. White space isn't wasted real estate — it is the primary tool for grouping, separating, and emphasizing elements without adding visual weight. Counterintuitively, a dashboard with less on it often communicates more, because the eye knows exactly where to look.</p>
+
+    <p>White space does three jobs. It <strong>separates</strong> unrelated elements — a gap between your revenue chart and your headcount chart signals they're different subjects. It <strong>relates</strong> connected elements — a KPI card placed close to the chart it feeds reads as a unit. And it <strong>emphasizes</strong> priority — a number surrounded by breathing room draws the eye before anything else on the page. Use all three deliberately.</p>
+
+    <p class="pull">The empty space on a dashboard is not what you couldn't fill. It's what you chose to protect.</p>
+
+    <!-- ═══════════════ 3. HIERARCHY ═══════════════ -->
+    <h2>03 &nbsp;Hierarchy — earning the right order of attention.</h2>
+    <span class="h2-sub">Not everything is equally important</span>
+
+    <p>Every element on a dashboard is competing for the reader's attention — and they shouldn't all win equally. Visual hierarchy is the set of decisions that tell the eye: look at this first, this second, and that only if you need it. The reader should be able to glance at a well-designed dashboard and immediately know what the headline finding is, before they read a single label.</p>
+
+    <p>You have four levers: <strong>size</strong> (larger elements read as more important), <strong>color</strong> (saturated or contrasting colors jump forward), <strong>position</strong> (top-left is where Western readers start; center draws attention for isolated elements), and <strong>weight</strong> (bold text sits above regular text in the reading order). Use them in combination, but resist using all of them at once — when everything shouts, nothing does.</p>
+
+    <div class="illus">
+      <div class="ititle">Visual hierarchy in a KPI row</div>
+      <div class="isub">The primary metric commands scale and color; secondary figures recede</div>
+      <svg viewBox="0 0 680 130" xmlns="http://www.w3.org/2000/svg" aria-label="Three KPI cards showing visual hierarchy">
+        <!-- Primary KPI — large, navy -->
+        <rect x="10" y="10" width="240" height="110" rx="5" fill="#0F1F38"/>
+        <text x="30" y="38" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#C18C5D" letter-spacing="2">PRIMARY METRIC</text>
+        <text x="30" y="80" font-family="Abril Fatface,serif" font-size="46" fill="#fff">$2.4M</text>
+        <text x="30" y="105" font-family="DM Sans,sans-serif" font-size="12" fill="#8A9FB8">Total Revenue · Q2 2026</text>
+        <!-- Secondary KPI — medium, paper -->
+        <rect x="264" y="10" width="196" height="110" rx="5" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+        <text x="284" y="38" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775" letter-spacing="2">YOY CHANGE</text>
+        <text x="284" y="76" font-family="Abril Fatface,serif" font-size="36" fill="#0F1F38">+14.2%</text>
+        <text x="284" y="100" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">vs. Q2 2025</text>
+        <!-- Tertiary — small, muted -->
+        <rect x="474" y="10" width="196" height="110" rx="5" fill="#F3EFE6" stroke="#E7E0D2" stroke-width="1"/>
+        <text x="494" y="38" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#5A6775" letter-spacing="2">UNITS SOLD</text>
+        <text x="494" y="74" font-family="DM Sans,sans-serif" font-size="28" font-weight="700" fill="#495867">8,341</text>
+        <text x="494" y="100" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">Last 30 days</text>
+      </svg>
+      <figcaption>The primary metric takes the darkest background and largest type. Secondary and tertiary figures use progressively lighter backgrounds and smaller type — the hierarchy is visible before you read a word.</figcaption>
+    </div>
+
+    <div class="tip">
+      <div class="tlabel">A useful test</div>
+      <p>Squint at your dashboard until it blurs. The element your eye lands on first is your actual visual priority. If it's not the most important number, adjust size, color, or position until the squint test agrees with your intent.</p>
+    </div>
+
+    <!-- ═══════════════ 4. TYPOGRAPHY ═══════════════ -->
+    <h2>04 &nbsp;Typography — fonts that work, not fonts that impress.</h2>
+    <span class="h2-sub">Legibility is a design decision</span>
+
+    <p>Every font carries an emotional register — fine, delicate fonts read as elegant; bold, heavy fonts read as loud; slanted fonts suggest motion. That's real, and worth thinking about. But for dashboards, the primary filter is simpler: can the person who needs to read this number actually read it, at the size it will appear, at the distance they'll view it?</p>
+
+    <p>For screens, this almost always means a clean sans-serif. The small decorative strokes on serif typefaces — those little feet at the base of each letter — were designed to help eyes track across lines of printed text. At screen resolutions, especially on lower-density displays or at small sizes, they become noise. Helvetica, DM Sans, Inter, Roboto — these aren't boring choices; they're correct ones for data-heavy interfaces.</p>
+
+    <p>Beyond typeface selection, use weight variation as a hierarchy tool. A single font family with light (300), regular (400), semibold (600), and bold (700) weights gives you a full hierarchy without introducing a second typeface and its attendant inconsistency.</p>
+
+    <div class="compare">
+      <div class="bad">
+        <span class="ch">✗ Avoid</span>
+        <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="120" rx="4" fill="#fff" stroke="#E7E0D2"/>
+          <text x="150" y="38" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#CE796B">Revenue YTD</text>
+          <text x="150" y="72" text-anchor="middle" font-family="Courier New,monospace" font-size="32" fill="#1B1B1B">$2,412,880</text>
+          <text x="150" y="100" text-anchor="middle" font-family="Impact,sans-serif" font-size="11" fill="#5A6775">Compared to last year: up fourteen percent</text>
+        </svg>
+        <p style="font-size:12px;color:var(--muted);margin-top:10px;font-style:italic">Three unrelated typefaces; a monospace font for currency; a text sentence where a number should be.</p>
+      </div>
+      <div class="good">
+        <span class="ch">✓ Do this</span>
+        <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="120" rx="4" fill="#fff" stroke="#E7E0D2"/>
+          <text x="20" y="32" text-anchor="start" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#5A6775" letter-spacing="1.5">REVENUE YTD</text>
+          <text x="20" y="72" text-anchor="start" font-family="DM Sans,sans-serif" font-size="36" font-weight="700" fill="#0F1F38">$2.4M</text>
+          <rect x="20" y="84" width="42" height="18" rx="3" fill="#0F1F38"/>
+          <text x="41" y="97" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#fff">+14%</text>
+          <text x="70" y="97" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">vs. prior year</text>
+        </svg>
+        <p style="font-size:12px;color:var(--muted);margin-top:10px;font-style:italic">One typeface, three weights. The number is the headline. Change is shown as a number, not a sentence.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════ 5. CONTRAST & COLOR ═══════════════ -->
+    <h2>05 &nbsp;Contrast &amp; color — making color work harder by using it less.</h2>
+    <span class="h2-sub">Color is emphasis, not decoration</span>
+
+    <p>Color is the most powerful emphasis tool on a dashboard — and the most abused. A common failure is assigning a unique color to every category, every dimension, every series. The result is a dashboard that looks like a preschool art project: technically colorful, practically unreadable. When everything is highlighted, nothing is.</p>
+
+    <p>The discipline is to start in grayscale. Build the entire layout — every chart, every card, every label — in shades of grey. Only then ask: what does color need to do here? The answer is almost always one of three things: <strong>alert</strong> (something has gone wrong — use red or orange), <strong>affirm</strong> (a target has been hit — use green or a brand accent), or <strong>distinguish</strong> (these two series are different — use two clearly separable hues, not six). Map color to purpose, then apply it sparingly.</p>
+
+    <div class="illus">
+      <div class="ititle">Color with intent: a simple performance chart</div>
+      <div class="isub">Grey as the neutral baseline; color only where it carries meaning</div>
+      <svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" aria-label="Bar chart showing intentional color use">
+        <!-- Axes -->
+        <line x1="60" y1="20" x2="60" y2="148" stroke="#D9CFBC" stroke-width="1"/>
+        <line x1="60" y1="148" x2="640" y2="148" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- Grid -->
+        <line x1="60" y1="88" x2="640" y2="88" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,4"/>
+        <line x1="60" y1="118" x2="640" y2="118" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,4"/>
+        <!-- Target line -->
+        <line x1="60" y1="70" x2="640" y2="70" stroke="#C18C5D" stroke-width="1.5" stroke-dasharray="5,4"/>
+        <text x="644" y="74" font-family="DM Sans,sans-serif" font-size="11" fill="#C18C5D" font-weight="600">Target</text>
+        <!-- Bars: grey for regular months, navy for best, contessa for below target -->
+        <rect x="80"  y="90"  width="44" height="58" fill="#D6DDE8" rx="2"/>
+        <rect x="140" y="80"  width="44" height="68" fill="#D6DDE8" rx="2"/>
+        <rect x="200" y="95"  width="44" height="53" fill="#CE796B" rx="2"/><!-- below target -->
+        <rect x="260" y="75"  width="44" height="73" fill="#D6DDE8" rx="2"/>
+        <rect x="320" y="50"  width="44" height="98" fill="#0F1F38" rx="2"/><!-- best month -->
+        <rect x="380" y="82"  width="44" height="66" fill="#D6DDE8" rx="2"/>
+        <rect x="440" y="78"  width="44" height="70" fill="#D6DDE8" rx="2"/>
+        <rect x="500" y="60"  width="44" height="88" fill="#D6DDE8" rx="2"/>
+        <rect x="560" y="88"  width="44" height="60" fill="#D6DDE8" rx="2"/>
+        <!-- Labels -->
+        <text x="102" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Jan</text>
+        <text x="162" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Feb</text>
+        <text x="222" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B" font-weight="700">Mar</text>
+        <text x="282" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Apr</text>
+        <text x="342" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#0F1F38" font-weight="700">May</text>
+        <text x="402" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Jun</text>
+        <text x="462" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Jul</text>
+        <text x="522" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Aug</text>
+        <text x="582" y="163" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Sep</text>
+        <!-- Legend -->
+        <rect x="60" y="170" width="10" height="10" rx="2" fill="#0F1F38"/>
+        <text x="76" y="179" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B" font-weight="600">Best month</text>
+        <rect x="170" y="170" width="10" height="10" rx="2" fill="#CE796B"/>
+        <text x="186" y="179" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B" font-weight="600">Below target</text>
+        <rect x="290" y="170" width="10" height="10" rx="2" fill="#D6DDE8"/>
+        <text x="306" y="179" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B" font-weight="600">On track</text>
+      </svg>
+      <figcaption>All bars start grey. Navy highlights the peak (May). Terracotta flags the miss (March). Color is information — not palette preference.</figcaption>
+    </div>
+
+    <div class="tip">
+      <div class="tlabel">Color accessibility note</div>
+      <p>Roughly 8% of men have some form of color vision deficiency. The most common pair confused is red-green — the same pair used in most "good/bad" dashboard color schemes. Test your palette against a color-blind simulator, and always pair color with a label, icon, or pattern so meaning doesn't depend on hue alone.</p>
+    </div>
+
+    <!-- ═══════════════ BEFORE YOU BUILD: THE FOUR QUESTIONS ═══════════════ -->
+    <h2>Before any of this: know who the dashboard is for.</h2>
+    <span class="h2-sub">Design begins with the user, not the data</span>
+
+    <p>The five principles above assume you already know what the dashboard needs to communicate. But the most common dashboard failure isn't poor visual design — it's building the wrong thing with beautiful execution. A dashboard is only successful if the information it shows is justified in the eyes of the person using it. Before you touch a grid or choose a chart type, answer four questions.</p>
+
+    <div class="qlist">
+      <div class="qi">
+        <span class="qn">1</span>
+        <span class="qt"><strong>Who is this dashboard for?</strong> Not in the abstract — specifically. The sales manager who glances at it on a Monday morning has different needs than the CFO who needs to defend a number in a board meeting. A dashboard that serves two radically different audiences usually serves neither well.</span>
+      </div>
+      <div class="qi">
+        <span class="qn">2</span>
+        <span class="qt"><strong>What is the one thing this dashboard should make obvious?</strong> The answer should be a sentence, not a list. "Whether we're on pace to hit quarterly revenue and where we're at risk" is a dashboard. "All the data about the business" is a data dump dressed up with charts.</span>
+      </div>
+      <div class="qi">
+        <span class="qn">3</span>
+        <span class="qt"><strong>What action does each metric trigger?</strong> If you can't name the decision a number is meant to inform, it doesn't belong on the dashboard. Dashboards aren't archives — they're instruments for deciding and acting. Any number that doesn't connect to an action is clutter.</span>
+      </div>
+      <div class="qi">
+        <span class="qn">4</span>
+        <span class="qt"><strong>How will the reader arrive at this dashboard?</strong> Context matters. A monitor on a factory floor is read from eight feet away, glanced at for two seconds. A Power BI report opened on a laptop is read sitting down, with time. The right type size, chart density, and interaction model are completely different between those two scenarios.</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CHECKLIST ═══════════════ -->
+    <div class="checklist reveal">
+      <h3>The quick-check: five things before you ship a dashboard.</h3>
+      <ol>
+        <li>
+          <span class="cn">01</span>
+          <span class="ct"><strong>Grid.</strong> Every element is locked to a column grid. No element floats free. Open your layout tool's alignment view — if anything is off-grid, fix it before you do anything else.</span>
+        </li>
+        <li>
+          <span class="cn">02</span>
+          <span class="ct"><strong>White space.</strong> There is meaningful breathing room between unrelated elements. Related elements are close; unrelated elements have a visible gap. No element is jammed against the edge of the canvas.</span>
+        </li>
+        <li>
+          <span class="cn">03</span>
+          <span class="ct"><strong>Hierarchy.</strong> You can identify the most important number in under two seconds with your eyes blurred. Scale, weight, and color agree on what matters most. Secondary and tertiary information visually recedes.</span>
+        </li>
+        <li>
+          <span class="cn">04</span>
+          <span class="ct"><strong>Typography.</strong> One typeface family, multiple weights. No serif fonts for data labels. Number values are numbers — not sentences. The smallest text is still legible at the distance this dashboard will be read.</span>
+        </li>
+        <li>
+          <span class="cn">05</span>
+          <span class="ct"><strong>Color.</strong> You can explain why each color is there. Color alerts something, confirms something, or distinguishes two series — it does not decorate. The chart reads clearly in greyscale.</span>
+        </li>
+      </ol>
+    </div>
+
+    <p>None of this is complicated in principle. The difficulty is in doing it before you've already built everything — before the data is connected and the charts are in and the deadline is tomorrow. Design decisions made at the end of a build are almost always cosmetic. Design decisions made at the beginning are structural, and they're the ones that actually determine whether the dashboard works.</p>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="article-gestalt-perception.html" class="rn-link">Gestalt &amp; perception in dashboard design →</a>
+        <a href="aesop-productivity-pay-study.html" class="rn-link">Field Study: The Productivity–Pay Gap →</a>
+        <a href="index.html" class="rn-link">← Back to aesop.pro</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site">
+  <div class="fin">
+    <div class="fbrand">
+      <span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span>
+    </div>
+    <div class="fmoral">Every dataset has a moral.</div>
+    <a href="index.html" class="fback">← Back to aesop.pro</a>
+  </div>
+</footer>
+
+<script>
+  // Intersection observer for checklist reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if(en.isIntersecting) {
+        en.target.style.animation = 'rise .7s cubic-bezier(.2,.7,.2,1) forwards';
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

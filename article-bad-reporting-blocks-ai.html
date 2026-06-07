@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Bad Reporting Blocks AI Adoption — Aesop Analytics</title>
+<meta name="description" content="Organizations investing in AI analytics are discovering that the limiting factor isn't the AI. It's the reporting foundation underneath it — fragmented, undefined, untrustworthy data that the AI can't work with.">
+<meta property="og:title" content="Why Bad Reporting Blocks AI Adoption — Aesop Analytics">
+<meta property="og:description" content="Your AI initiative is not blocked by the AI. It's blocked by your metric definitions, your data ownership, and your source-of-truth decisions — or the absence of them.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="article.css">
+<style>
+  /* Page-specific styles */
+
+  .  /* Failure modes */
+  .failures { display:flex; flex-direction:column; gap:0; margin:32px 0; border-top:2px solid var(--rule); }
+  .fail { padding:22px 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns:56px 1fr; gap:18px; }
+  .fail-n { font-family:"Abril Fatface",serif; font-size:32px; color:var(--contessa); line-height:1; opacity:.65; }
+  .fail h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .fail p { font-size:16px; color:var(--slate); line-height:1.6; font-weight:300; margin:0; }
+  .callout .clist { list-style:none; padding:0; position:relative; z-index:1; }
+  .callout .clist li { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:16px; color:#D6DDE8; line-height:1.55; font-weight:300; }
+  .callout .clist li:last-child { border-bottom:none; }
+  .callout .clist li::before { content:"→"; color:var(--twine); font-weight:700; flex-shrink:0; }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="site-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="site-cta">Book a diagnostic</a>
+  </div>
+</nav>
+<div class="wrap">
+  <article>
+    <div class="kicker reveal">Article · AI Readiness</div>
+    <h1 class="reveal" style="animation-delay:.05s">Why Bad Reporting Blocks AI Adoption
+      <span class="sub">Your AI initiative isn't blocked by the AI. It's blocked by what lives underneath it.</span>
+    </h1>
+    <p class="dek reveal" style="animation-delay:.1s">Organizations are investing heavily in AI analytics tools and discovering that the limiting factor isn't the model, the compute, or the vendor. It's the reporting foundation — fragmented sources, undefined metrics, unowned KPIs — that the AI either can't work with or works with badly.</p>
+    <div class="byline reveal" style="animation-delay:.16s">
+      <span class="reg">By <strong>Jonathan Doreau</strong>, Aesop Analytics</span>
+      <span class="dot">&bull;</span><span class="reg">~6 min read</span>
+      <span class="dot">&bull;</span><span class="reg">AI Readiness</span>
+    </div>
+  </article>
+  <div class="body">
+    <p class="lead">There's a version of the AI analytics story that is playing out badly in a lot of organizations right now. Leadership, energized by what AI can theoretically do with data, authorizes an investment in an AI analytics platform — a natural language query tool, an AI forecasting layer, an intelligent dashboard assistant. The vendor demo was impressive. The pilot showed promise. The full deployment reveals the problem: the AI is doing its job, and the job it's doing is exposing every foundational flaw in the organization's data and reporting.</p>
+    <p>The AI queries a revenue metric and returns three different numbers depending on which source it pulls from. It generates a forecast that looks plausible but is based on a churn definition that hasn't been updated since a product line was retired. It answers a natural language question about "active customers" using a definition that Finance uses — which differs from the definition Sales uses by about 30%. Each of these outputs is technically correct given the data the AI was given. None of them is trustworthy.</p>
+
+    <p class="pull">The AI is not the problem. The AI is the diagnosis — a very expensive, very visible way to discover that your data foundation isn't ready for what you're asking it to support.</p>
+
+    <h2>The four reporting problems that block AI adoption.</h2>
+    <span class="h2-sub">Each one produces a characteristic failure mode</span>
+    <div class="failures">
+      <div class="fail">
+        <span class="fail-n">01</span>
+        <div>
+          <h3>Undefined or inconsistently defined metrics</h3>
+          <p>When a metric doesn't have a single agreed definition, an AI system has no way to know which definition to apply. It will either use the first one it finds (producing inconsistent results depending on query order), attempt to surface all versions (creating confusion rather than clarity), or make a choice silently (producing confident-sounding output based on a definition nobody agreed to). The result is an AI that appears unreliable — when the actual problem is that the definition was never established. The fix is not a better AI. It's a KPI dictionary.</p>
+        </div>
+      </div>
+      <div class="fail">
+        <span class="fail-n">02</span>
+        <div>
+          <h3>Multiple competing source systems</h3>
+          <p>Most organizations have the same data in multiple places — CRM, ERP, data warehouse, department spreadsheets. For human analysts, navigating this complexity is a learned skill; they know which system to use for which question. AI systems don't have that institutional knowledge. They query what they're connected to, and if they're connected to multiple competing sources for the same domain, their outputs will vary by which source gets prioritized. Organizations that haven't made explicit source-of-truth designations will see this surface as AI inconsistency. The fix is a source-of-truth registry, not a prompt engineering improvement.</p>
+        </div>
+      </div>
+      <div class="fail">
+        <span class="fail-n">03</span>
+        <div>
+          <h3>Stale or undocumented business context</h3>
+          <p>AI models work with what they have. If your data warehouse contains a "customer_tier" field that was meaningful in 2021 and meaningless since 2023 when the tier structure changed — but nobody updated the documentation or the data — the AI will use it as if it's current. If you had a major acquisition in Q3 that changed how revenue is recognized and the schema wasn't updated to reflect that context, AI-generated analyses will straddle the boundary without flagging the discontinuity. Bad reporting hygiene manifests as AI output that is technically derived from the data but contextually wrong.</p>
+        </div>
+      </div>
+      <div class="fail">
+        <span class="fail-n">04</span>
+        <div>
+          <h3>No accountability for when the AI is wrong</h3>
+          <p>Even well-built AI systems on clean data foundations will occasionally produce wrong answers. The question is what happens next. In organizations with clear metric ownership and defined escalation paths, an incorrect AI output gets caught, investigated, and corrected with a documented root cause. In organizations without that infrastructure, "the AI was wrong" becomes a diffuse indictment of the whole system — and trust erodes rather than the specific problem getting fixed. AI adoption requires the same accountability infrastructure that good reporting requires. They share the same foundation.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>The sequence that actually works.</h2>
+    <span class="h2-sub">What to do before and after AI deployment</span>
+    <p>The most expensive way to build an AI analytics capability is to deploy the AI first and discover the reporting problems second. The diagnostic work that would have taken two to three weeks and a modest investment becomes a multi-month remediation project while the AI tool sits underutilized and leadership questions the investment.</p>
+    <p>The right sequence: assess the reporting foundation first. Run a structured review of your core metrics — are they defined? Are the sources designated? Do they have owners? Score the gaps. Address the highest-impact ones. Then deploy the AI onto a foundation that can support it.</p>
+    <p>This isn't a two-year enterprise data warehouse project. For most mid-sized companies, the foundational work — documenting the 15–20 most critical metrics, designating sources, naming owners — can be completed in a few weeks. That investment makes every subsequent AI initiative more reliable, faster to deploy, and easier to maintain.</p>
+
+    <div class="callout reveal">
+      <h3>The AI readiness pre-flight checklist.</h3>
+      <ul class="clist">
+        <li>Your 10–20 most-used metrics have written business definitions that Finance, Operations, and Sales would all agree to.</li>
+        <li>Each of those metrics has a named owner who is accountable for its definition and can be called when the AI produces a surprising output.</li>
+        <li>Each critical data domain (customers, revenue, inventory, headcount) has a single designated authoritative source system — documented and agreed upon.</li>
+        <li>Your data contains documentation of significant business changes (acquisitions, product line changes, pricing restructures) that affect how historical data should be interpreted.</li>
+        <li>There is a process for reporting suspected AI errors, and a defined owner who will investigate and respond.</li>
+      </ul>
+    </div>
+
+    <p>If you can check all five of those boxes, your AI analytics deployment has a strong foundation. If you can't, the deployment is likely to surface the gaps — at significantly higher cost and visibility than fixing them beforehand would have required.</p>
+
+    <div class="tip">
+      <div class="tlabel">The diagnostic question for leadership</div>
+      <p>Before your organization invests in AI analytics tooling, ask: "If the AI gave us a revenue number that looked wrong, who would we call to investigate it?" If the answer is clear, fast, and specific — you have the ownership infrastructure AI needs. If the answer is "we'd have to figure that out," the AI investment will surface the gap in an expensive way. Fix the governance first. The AI will be worth significantly more on the other side of it.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="article-ai-readiness-trusted-metrics.html" class="rn-link">AI readiness starts with trusted metrics →</a>
+        <a href="article-governance-operators.html" class="rn-link">Data governance for operators →</a>
+        <a href="assessment.html" class="rn-link">See the Reporting Clarity Assessment →</a>
+        <a href="insights.html" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="site">
+  <div class="fin">
+    <div class="fbrand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></div>
+    <div class="fmoral">Reporting modernization &amp; data trust consulting.</div>
+    <a href="insights.html" class="fback">← All Insights</a>
+  </div>
+</footer>
+<script>
+  const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.animation='rise .7s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(en.target);}});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

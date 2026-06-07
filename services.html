@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Aesop Analytics</title>
+<meta name="description" content="Reporting Clarity Assessment, Executive Modernization Sprint, Data Governance Starter Kit, and Fractional Analytics Retainer. Fixed-fee consulting for growing companies.">
+<meta property="og:title" content="Services — Aesop Analytics">
+<meta property="og:description" content="Five offers, one methodology. Start with the Reporting Clarity Assessment.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="core.css">
+<style>
+  /* Page-specific styles */
+
+
+  /* NAV */
+
+  /* PAGE HERO */
+  .page-hero { background:var(--navy); padding:80px 0 64px; overflow:hidden; position:relative; }
+  .page-hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(40vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+  .page-hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
+  .page-hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(38px,5.6vw,68px); line-height:1.04; color:#fff; margin-bottom:18px; }
+  .page-hero p { font-size:18px; color:#C4BDAE; font-weight:300; max-width:54ch; line-height:1.6; }
+
+  /* OFFER LADDER OVERVIEW */
+  .ladder { padding:56px 0; background:var(--paper-2); border-bottom:1px solid var(--rule); }
+  .ladder-inner { max-width:1080px; margin:0 auto; padding:0 32px; }
+  .ladder-steps { display:flex; align-items:stretch; gap:0; overflow-x:auto; }
+  .ladder-step { flex:1; min-width:120px; background:#fff; border:1px solid var(--line); border-right:none; padding:20px 16px; text-align:center; position:relative; }
+  .ladder-step:first-child { border-radius:6px 0 0 6px; }
+  .ladder-step:last-child { border-right:1px solid var(--line); border-radius:0 6px 6px 0; }
+  .ladder-step.hl { background:var(--navy); border-color:var(--navy); }
+  .ls-num { font-family:"Abril Fatface",serif; font-size:22px; color:var(--twine); margin-bottom:6px; }
+  .ls-name { font-size:12px; font-weight:700; color:var(--navy); line-height:1.3; }
+  .ladder-step.hl .ls-name { color:#fff; }
+  .ls-price { font-size:11px; color:var(--muted); margin-top:4px; }
+  .ladder-step.hl .ls-price { color:#8A9FB8; }
+  .ladder-step.free .ls-name { color:var(--twine); }
+  @media(max-width:600px){ .ladder-steps { flex-direction:column; } .ladder-step { border-right:1px solid var(--line); border-bottom:none; border-radius:0!important; } .ladder-step:first-child { border-radius:6px 6px 0 0!important; } .ladder-step:last-child { border-bottom:1px solid var(--line); border-radius:0 0 6px 6px!important; } }
+
+  /* SERVICE SECTIONS */
+  .svc { padding:72px 0; border-bottom:1px solid var(--rule); scroll-margin-top:80px; }
+  .svc-grid { display:grid; grid-template-columns:260px 1fr; gap:52px; }
+  @media(max-width:760px){ .svc-grid { grid-template-columns:1fr; gap:24px; } }
+  .svc-meta { }
+  .svc-tag { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:10px; }
+  .svc h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.1; margin-bottom:16px; }
+  .svc-price { display:inline-block; background:var(--navy); color:var(--twine); font-size:13px; font-weight:700; padding:6px 14px; border-radius:4px; margin-bottom:6px; }
+  .svc-duration { font-size:13px; color:var(--muted); }
+  .svc-body p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:18px; }
+  .svc-body p:last-of-type { margin-bottom:0; }
+  .svc-body strong { color:var(--navy); font-weight:700; }
+  .dels { margin-top:28px; }
+  .dels-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--navy); margin-bottom:14px; }
+  .del-list { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--rule); }
+  .del-item { display:flex; gap:14px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line); font-size:15.5px; color:var(--slate); line-height:1.5; font-weight:300; }
+  .del-item::before { content:"→"; color:var(--twine); font-weight:700; flex-shrink:0; margin-top:1px; }
+  .svc-cta { margin-top:28px; }
+
+  /* ENGAGEMENT MODEL */
+  .how { background:var(--navy); padding:72px 0; }
+  .how-in { max-width:1080px; margin:0 auto; padding:0 32px; }
+  .how-in  .how-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:#fff; margin-bottom:12px; }
+  .how-in .sub { font-size:17px; color:#8A9FB8; font-weight:300; max-width:52ch; margin-bottom:44px; }
+  .phases { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; border-radius:6px; overflow:hidden; }
+  @media(max-width:640px){ .phases { grid-template-columns:1fr; } }
+  .phase { background:var(--navy-2); padding:30px 24px; }
+  .phase .pn { font-family:"Abril Fatface",serif; font-size:40px; color:var(--twine); opacity:.4; line-height:1; margin-bottom:4px; }
+  .phase h3 { font-size:17px; font-weight:700; color:#fff; margin-bottom:12px; }
+  .phase p { font-size:15px; color:#8A9FB8; line-height:1.6; font-weight:300; }
+
+  /* FAQ */
+  .faq { padding:72px 0; }
+  .faq h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,38px); color:var(--navy); margin-bottom:36px; }
+  .faq-list { max-width:760px; }
+  .faq-item { border-bottom:1px solid var(--line); padding:22px 0; }
+  .faq-item:first-child { border-top:2px solid var(--rule); }
+  .fq { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:10px; }
+  .fa { font-size:16px; color:var(--slate); line-height:1.65; font-weight:300; }
+
+  /* DONT */
+  .dont { background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:64px 0; }
+  .dont-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  @media(max-width:680px){ .dont-grid { grid-template-columns:1fr; } }
+  .dont h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3vw,34px); color:var(--navy); margin-bottom:14px; }
+  .dont > .wrap > p { font-size:17px; color:var(--slate); font-weight:300; line-height:1.65; margin-bottom:36px; }
+  .dont-col-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; margin-bottom:14px; }
+  .is-label { color:var(--navy); }
+  .not-label { color:var(--contessa); }
+  .dont-items { display:flex; flex-direction:column; gap:0; }
+  .dont-item { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line); font-size:15.5px; color:var(--slate); line-height:1.5; font-weight:300; }
+  .dont-item:last-child { border-bottom:none; }
+  .dont-item::before { font-weight:700; flex-shrink:0; margin-top:2px; font-size:13px; }
+  .is-item::before { content:"✓"; color:var(--navy); }
+  .not-item::before { content:"✗"; color:var(--contessa); }
+
+  /* CTA */
+  .cta-strip { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:72px 32px; }
+  .cta-strip h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.8vw,44px); color:#fff; margin-bottom:16px; }
+  .cta-strip p { color:#A8B4C0; font-size:17px; font-weight:300; max-width:44ch; margin:0 auto 28px; line-height:1.6; }
+
+  /* FOOTER */
+  @media(max-width:760px){ }
+  @media(max-width:460px){ }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="nav-links">
+      <a href="services.html" class="active">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="nav-cta">Book a diagnostic</a>
+    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" onclick="closeMob()">Services</a>
+  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Reporting Clarity Assessment</a>
+  <a href="insights.html" onclick="closeMob()">Insights</a>
+  <a href="resources.html" onclick="closeMob()">Resources</a>
+  <a href="about.html" onclick="closeMob()">About</a>
+  <a href="contact.html" onclick="closeMob()">Contact</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic call</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-in">
+    <div class="eyebrow">Services</div>
+    <h1>Five offers, one methodology, a clear starting point.</h1>
+    <p>Every engagement begins with a low-risk assessment — not a six-month transformation commitment. Here's the full offer ladder and how it works.</p>
+  </div>
+</div>
+
+<!-- OFFER LADDER VISUAL -->
+<div class="ladder">
+  <div class="ladder-inner">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:20px">The offer ladder — start low-risk, expand as trust grows</div>
+    <div class="ladder-steps">
+      <div class="ladder-step free"><div class="ls-num">0</div><div class="ls-name">Reporting Trust Diagnostic</div><div class="ls-price">Free · 30 min</div></div>
+      <div class="ladder-step hl"><div class="ls-num">1</div><div class="ls-name">Reporting Clarity Assessment</div><div class="ls-price">$2.5K–$7.5K</div></div>
+      <div class="ladder-step"><div class="ls-num">2</div><div class="ls-name">Modernization Sprint</div><div class="ls-price">$10K–$35K</div></div>
+      <div class="ladder-step"><div class="ls-num">3</div><div class="ls-name">Governance Starter Kit</div><div class="ls-price">$10K–$30K</div></div>
+      <div class="ladder-step"><div class="ls-num">4</div><div class="ls-name">Fractional Retainer</div><div class="ls-price">$2.5K–$10K/mo</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNOSTIC (free) -->
+<section class="svc" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="svc-grid">
+      <div class="svc-meta">
+        <div class="svc-tag">Entry point — always free</div>
+        <h2>Reporting Trust Diagnostic Call</h2>
+        <div class="svc-price">Free</div><br>
+        <div class="svc-duration">30 minutes</div>
+      </div>
+      <div class="svc-body">
+        <p>The starting point for every engagement. A 30-minute conversation to understand your reporting environment, identify where trust is breaking down, and determine whether a structured assessment would be useful. No pitch, no slide deck, no commitment.</p>
+        <p>If there's a clear fit, the logical next step is a paid Reporting Clarity Assessment. If not, we'll say so — and point you somewhere better.</p>
+        <div class="svc-cta"><a href="contact.html" class="btn twine">Book a free diagnostic →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT -->
+<section class="svc" id="assessment">
+  <div class="wrap">
+    <div class="svc-grid">
+      <div class="svc-meta">
+        <div class="svc-tag">★ Flagship first offer</div>
+        <h2>Reporting Clarity Assessment</h2>
+        <div class="svc-price">$2,500–$7,500</div><br>
+        <div class="svc-duration">2–3 weeks · Fixed fee</div>
+      </div>
+      <div class="svc-body">
+        <p>A structured review of your entire reporting estate — dashboards, spreadsheets, KPI definitions, data sources, and governance gaps. The output is an executive-ready assessment and a prioritized 30/60/90-day modernization roadmap. You'll know <em>exactly</em> where reporting trust is breaking down and what to fix first.</p>
+        <p>This is the right starting point because it doesn't require committing to a large transformation. It gives you a clear, concrete picture of the problem and a practical plan — before you spend serious money on implementation.</p>
+        <div class="dels">
+          <div class="dels-label">10 deliverables included</div>
+          <div class="del-list">
+            <div class="del-item">Reporting inventory — every dashboard, spreadsheet, and recurring report</div>
+            <div class="del-item">Stakeholder pain summary from structured interviews</div>
+            <div class="del-item">Dashboard and report usage review — trusted vs. ignored</div>
+            <div class="del-item">Metric conflict list — where definitions diverge across teams</div>
+            <div class="del-item">KPI definition gaps — metrics without owners or agreed calculations</div>
+            <div class="del-item">Data source map — systems, owners, known quality issues</div>
+            <div class="del-item">Manual reporting burden analysis — time cost of spreadsheet work</div>
+            <div class="del-item">Quick-win recommendations — what to fix in the next 30 days</div>
+            <div class="del-item">30/60/90-day modernization roadmap with priorities, owners, and effort estimates</div>
+            <div class="del-item">Executive readout deck — board or leadership-ready summary</div>
+          </div>
+        </div>
+        <div class="svc-cta"><a href="assessment.html" class="btn twine">See the full assessment page →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPRINT -->
+<section class="svc" id="sprint" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="svc-grid">
+      <div class="svc-meta">
+        <div class="svc-tag">Implementation</div>
+        <h2>Executive Reporting Modernization Sprint</h2>
+        <div class="svc-price">$10,000–$35,000</div><br>
+        <div class="svc-duration">4–8 weeks · Fixed fee</div>
+      </div>
+      <div class="svc-body">
+        <p>Build or redesign a high-value reporting package for leadership — a cleaner, more trusted system built around the decisions that actually matter. Most often follows a Reporting Clarity Assessment, using the roadmap as the build plan.</p>
+        <div class="dels">
+          <div class="dels-label">Typical deliverables</div>
+          <div class="del-list">
+            <div class="del-item">Executive KPI dashboard in Power BI or Tableau</div>
+            <div class="del-item">KPI dictionary with definitions, formulas, owners, and source systems</div>
+            <div class="del-item">Source-of-truth map — one authoritative system per domain</div>
+            <div class="del-item">Reporting standards guide — naming conventions, layout standards, refresh rules</div>
+            <div class="del-item">Dashboard rationalization plan — retirement candidates and consolidation</div>
+            <div class="del-item">Stakeholder enablement session — training and governance handoff</div>
+          </div>
+        </div>
+        <div class="svc-cta"><a href="contact.html" class="btn">Discuss a sprint →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE -->
+<section class="svc" id="governance">
+  <div class="wrap">
+    <div class="svc-grid">
+      <div class="svc-meta">
+        <div class="svc-tag">Governance</div>
+        <h2>Data Governance Starter Kit</h2>
+        <div class="svc-price">$10,000–$30,000</div><br>
+        <div class="svc-duration">4–6 weeks · Fixed fee</div>
+      </div>
+      <div class="svc-body">
+        <p>Practical governance built for operators, not committees. A system that reduces metric confusion and creates shared definitions without creating bureaucracy. Designed to be maintained by your team after handoff — not dependent on Aesop to keep it running.</p>
+        <div class="dels">
+          <div class="dels-label">Typical deliverables</div>
+          <div class="del-list">
+            <div class="del-item">KPI dictionary — business and technical definitions, owners, formulas</div>
+            <div class="del-item">Metric owner matrix — who owns each definition and approves changes</div>
+            <div class="del-item">Data owner / steward RACI — by domain and system</div>
+            <div class="del-item">Reporting intake process — how requests are received, triaged, and prioritized</div>
+            <div class="del-item">Dashboard certification rules — what makes a report "official"</div>
+            <div class="del-item">Report retirement process — how old reports are sunset without conflict</div>
+            <div class="del-item">Governance meeting cadence and operating model</div>
+          </div>
+        </div>
+        <div class="svc-cta"><a href="contact.html" class="btn">Discuss governance work →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RETAINER -->
+<section class="svc" id="retainer" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="svc-grid">
+      <div class="svc-meta">
+        <div class="svc-tag">Ongoing support</div>
+        <h2>Fractional Analytics Operations Retainer</h2>
+        <div class="svc-price">$2,500–$10,000/mo</div><br>
+        <div class="svc-duration">Defined scope · Monthly</div>
+      </div>
+      <div class="svc-body">
+        <p>Senior analytics operating support on an ongoing basis — for companies that need consistent analytics leadership but aren't ready to hire a full-time head of data. Scope is defined upfront and reviewed monthly. Not an open-ended engagement — specific deliverables, specific hours, clear expectations.</p>
+        <p>Typical retainer work includes monthly reporting roadmap management, dashboard improvements, KPI governance, stakeholder intake, data quality monitoring, and executive reporting support. Vendor and tool evaluation as needed.</p>
+        <div class="svc-cta"><a href="contact.html" class="btn">Discuss a retainer →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<div class="how">
+  <div class="how-in">
+    <div class="eyebrow">How we work</div>
+    <h2>The same three phases, every time.</h2>
+    <p class="sub">Structure protects both sides. Every engagement moves through Discover, Build, and Handoff — in that order.</p>
+    <div class="phases">
+      <div class="phase"><div class="pn">01</div><h3>Discover &amp; Define</h3><p>Understand the actual problem — not just the stated one. Stakeholder interviews, current-state audit, and a clear scope document both parties agree to before any building begins.</p></div>
+      <div class="phase"><div class="pn">02</div><h3>Build &amp; Iterate</h3><p>Short cycles with regular checkpoints. Working output early and often — not a black box followed by a big reveal. Problems surface when they're cheap to fix.</p></div>
+      <div class="phase"><div class="pn">03</div><h3>Handoff &amp; Enable</h3><p>Every engagement ends with your team able to maintain what was built without depending on Aesop. Documentation, training, and structured knowledge transfer are part of the scope.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE DON'T DO -->
+<div class="dont">
+  <div class="wrap">
+    <h2>What we don't do — and why it matters.</h2>
+    <p style="font-size:17px;color:var(--slate);font-weight:300;line-height:1.65;max-width:60ch;margin-bottom:36px">This list is as important as the services list. These are the places where other engagements go wrong — and where a deliberate line has been drawn.</p>
+    <div class="dont-grid">
+      <div>
+        <div class="dont-col-label is-label">What Aesop is</div>
+        <div class="dont-items">
+          <div class="dont-item is-item">A reporting modernization &amp; data trust specialist — this is the wedge, not a general offering</div>
+          <div class="dont-item is-item">Platform-agnostic — recommendations based on fit, not on margin</div>
+          <div class="dont-item is-item">Senior practitioner — you get the expert on the work, not handed to a junior team</div>
+          <div class="dont-item is-item">Fixed-fee — you know the cost before work begins, no hourly billing surprises</div>
+          <div class="dont-item is-item">Scope-bounded — every engagement has a defined end, not an open runway</div>
+        </div>
+      </div>
+      <div>
+        <div class="dont-col-label not-label">What Aesop is not</div>
+        <div class="dont-items">
+          <div class="dont-item not-item">A dashboard factory or generic BI contractor for hire</div>
+          <div class="dont-item not-item">A tool reseller or platform partner with conflicted incentives</div>
+          <div class="dont-item not-item">A data engineering body shop for ETL and pipeline work</div>
+          <div class="dont-item not-item">A vague AI consultant or "AI strategy" advisor</div>
+          <div class="dont-item not-item">A staff augmentation vendor to backfill headcount</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2>Common questions.</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="fq">Where does every engagement start?</div><div class="fa">With a free 30-minute Reporting Trust Diagnostic call. No commitment required. If there's a clear fit after that conversation, the logical next step is a paid Reporting Clarity Assessment. You won't be pushed into a larger engagement before you have a clear picture of the problem.</div></div>
+      <div class="faq-item"><div class="fq">How is work priced?</div><div class="fa">Fixed fee per project, scoped during discovery. No hourly billing for project work — it misaligns incentives and makes budgeting impossible. For retainer arrangements, a monthly fixed scope with a defined set of deliverables.</div></div>
+      <div class="faq-item"><div class="fq">We already have Power BI / Tableau. Can you work within what we have?</div><div class="fa">Yes — and that's the most common scenario. Most engagements start with an organization that already has a BI tool but isn't getting the value from it, either because the reports weren't built well or because the data underneath them isn't trusted. Working within an existing environment is the norm.</div></div>
+      <div class="faq-item"><div class="fq">Is Aesop a firm or a solo consultant?</div><div class="fa">Jonathan Doreau — one senior consultant. No handoff after the sales call, no junior team doing the work. Depending on the project, trusted specialists may be brought in for specific technical work, but Jonathan remains the primary contact and accountable for every deliverable.</div></div>
+      <div class="faq-item"><div class="fq">What makes the Assessment different from a free "audit"?</div><div class="fa">Depth and structure. A free audit is a conversation. The Reporting Clarity Assessment is a 2–3 week structured engagement with a defined methodology (the TRUST framework), 10 specific deliverables, stakeholder interviews, and an executive-ready output. You get a complete picture and a prioritized roadmap — not a list of generic recommendations.</div></div>
+      <div class="faq-item"><div class="fq">What if the Assessment shows we don't need a bigger project?</div><div class="fa">That's a completely valid outcome. The Assessment is designed to be useful on its own — the inventory, roadmap, and quick wins are actionable regardless of whether you continue to a Sprint. If the findings suggest your reporting environment is actually in better shape than expected, the honest answer is: take the quick wins yourself and revisit later.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2>Start with a free diagnostic call.</h2>
+  <p>30 minutes. Understand where reporting trust is breaking down before committing to anything.</p>
+  <a href="contact.html" class="btn twine">Book a Reporting Trust Diagnostic →</a>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+    </div>
+    <div class="foot-col"><h4>Services</h4><a href="assessment.html">Reporting Clarity Assessment</a><a href="#sprint">Modernization Sprint</a><a href="#governance">Governance Starter Kit</a><a href="#retainer">Fractional Retainer</a></div>
+    <div class="foot-col"><h4>Content</h4><a href="insights.html">Insights &amp; Studies</a><a href="resources.html">Free Resources</a></div>
+    <div class="foot-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a><a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a><a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a></div>
+  </div>
+  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
+</footer>
+
+<script>
+  const ham=document.getElementById('ham'),mob=document.getElementById('mobile-menu');
+  ham.addEventListener('click',()=>mob.classList.toggle('open'));
+  ham.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')mob.classList.toggle('open');});
+  function closeMob(){mob.classList.remove('open');}
+  document.addEventListener('click',e=>{if(!ham.contains(e.target)&&!mob.contains(e.target))mob.classList.remove('open');});
+</script>
+</body>
+</html>
