@@ -86,21 +86,30 @@
   .band.strong   .band-label { color:var(--navy); }
   .band-desc { font-size:14px; color:var(--muted); line-height:1.5; font-weight:300; }
 
-  /* FUTURE RESOURCES -->
-  .future { background:var(--navy); padding:64px 0; }
-  .future-in { max-width:1080px; margin:0 auto; padding:0 32px; }
-  .future-in  .future-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(22px,3vw,34px); color:#fff; margin-bottom:32px; }
-  .future-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  @media(max-width:640px){ .future-grid { grid-template-columns:1fr; } }
-  .future-card { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:6px; padding:20px 18px; }
-  .future-card .fc-tag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:8px; }
-  .future-card h3 { font-size:15px; font-weight:700; color:#D6DDE8; margin-bottom:6px; }
-  .future-card p { font-size:13px; color:#6A8099; line-height:1.5; font-weight:300; }
-  .future-card .coming { display:inline-block; margin-top:10px; font-size:11px; font-weight:600; color:#4A6070; text-transform:uppercase; letter-spacing:.1em; }
-  .future-card--live { border-color:rgba(193,140,93,.35); }
-  .fc-download { display:inline-flex; align-items:center; gap:6px; margin-top:14px; background:var(--twine); color:var(--navy); font-size:12px; font-weight:700; padding:9px 16px; border-radius:4px; text-decoration:none; letter-spacing:.04em; transition:background .15s; }
-  .fc-download:hover { background:#D4A060; }
-  .fc-live-badge { display:inline-block; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:#7EB09B; border:1px solid rgba(126,176,155,.4); padding:2px 7px; border-radius:3px; margin-bottom:8px; }
+  /* FREE TOOLS & TEMPLATES */
+  .tools { padding:72px 0; background:#fff; border-top:1px solid var(--line); }
+  .tools h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:12px; }
+  .tools .tl-intro { font-size:17px; color:var(--slate); font-weight:300; max-width:54ch; margin-bottom:44px; line-height:1.6; }
+  .tl-card { display:grid; grid-template-columns:1fr 228px; gap:48px; background:#fff; border:1px solid var(--line); border-radius:8px; padding:36px 40px; margin-bottom:20px; align-items:start; }
+  @media(max-width:740px){ .tl-card { grid-template-columns:1fr; gap:24px; padding:26px 22px; } }
+  .tl-tag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:10px; }
+  .tl-card h3 { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:10px; line-height:1.2; }
+  .tl-desc { font-size:15px; color:var(--slate); font-weight:300; line-height:1.65; margin-bottom:20px; max-width:54ch; }
+  .tl-bullets { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+  .tl-bullets li { font-size:13px; color:var(--muted); line-height:1.5; padding-left:18px; position:relative; }
+  .tl-bullets li::before { content:"✓"; position:absolute; left:0; color:var(--twine); font-weight:700; font-size:11px; top:1px; }
+  .tl-aside { display:flex; flex-direction:column; gap:14px; padding-top:2px; }
+  .tl-format { display:inline-block; background:var(--paper-2); border:1px solid var(--rule); border-radius:4px; padding:6px 12px; font-size:11px; font-weight:700; color:var(--slate); text-transform:uppercase; letter-spacing:.1em; align-self:flex-start; }
+  .tl-btn { display:flex; align-items:center; justify-content:center; gap:8px; background:var(--navy); color:#fff; font-size:14px; font-weight:700; padding:14px 20px; border-radius:5px; text-decoration:none; letter-spacing:.02em; transition:background .15s; }
+  .tl-btn:hover { background:var(--navy-2); }
+  .tl-btn svg { flex-shrink:0; }
+  .tl-link { font-size:12.5px; color:var(--muted); line-height:1.6; }
+  .tl-link a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  .tl-soon { border:1px dashed var(--rule); border-radius:8px; padding:22px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px; margin-top:4px; }
+  @media(max-width:600px){ .tl-soon { flex-direction:column; align-items:flex-start; gap:14px; } }
+  .tl-soon-body h4 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:5px; }
+  .tl-soon-body p { font-size:13.5px; color:var(--muted); font-weight:300; line-height:1.55; max-width:48ch; }
+  .tl-soon-pill { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); border:1px solid var(--rule); padding:6px 14px; border-radius:20px; white-space:nowrap; flex-shrink:0; }
 
   /* CTA */
   .cta { border-top:3px solid var(--twine); background:var(--paper-2); padding:72px 32px; text-align:center; border-bottom:1px solid var(--rule); }
@@ -320,35 +329,74 @@
   </div>
 </section>
 
-<!-- FUTURE RESOURCES -->
-<div class="future">
-  <div class="future-in">
-    <div class="eyebrow">Free tools &amp; templates</div>
-    <h2>Templates to put governance into practice.</h2>
-    <div class="future-grid">
-      <div class="future-card future-card--live">
-        <div class="fc-live-badge">Available now</div>
-        <div class="fc-tag">Template · Excel</div>
+<!-- FREE TOOLS & TEMPLATES -->
+<section class="tools">
+  <div class="wrap">
+    <div class="sec-label">Free tools &amp; templates</div>
+    <h2>Put governance into practice.</h2>
+    <p class="tl-intro">Every template is free with no email required. Built to work alongside the articles and give you something you can use in your organization this week.</p>
+
+    <!-- KPI Dictionary -->
+    <div class="tl-card">
+      <div>
+        <div class="tl-tag">Template &middot; Excel</div>
         <h3>KPI Dictionary Template</h3>
-        <p>Document metric definitions, formulas, owners, source systems, and governance details. Includes 5 pre-filled examples across common metric types, Required/Optional field markers, and dropdowns for Status and Grain.</p>
-        <a href="Aesop_Analytics_KPI_Dictionary_Template.xlsx" class="fc-download" download>&#8595; Download free (.xlsx)</a>
+        <p class="tl-desc">A structured template for documenting every metric your organization uses to make decisions — definitions, owners, source systems, grain, and governance details. Stop relitigating what a number means every time it appears in a meeting.</p>
+        <ul class="tl-bullets">
+          <li>5 pre-filled examples — MRR, Active Customers, Churn Rate, CAC, NRR</li>
+          <li>Required and Optional field markers across 15 columns</li>
+          <li>Status dropdown (Active / Draft / Deprecated)</li>
+          <li>Grain dropdown (Daily through Ad Hoc)</li>
+          <li>Instructions sheet with field guide and governance tips</li>
+          <li>45 blank entry rows &middot; auto-filter &middot; frozen panes</li>
+        </ul>
       </div>
-      <div class="future-card future-card--live">
-        <div class="fc-live-badge">Available now</div>
-        <div class="fc-tag">Template &middot; Excel</div>
-        <h3>Reporting Inventory Template</h3>
-        <p>Catalog every dashboard, spreadsheet, and recurring report with owner, format, audience, manual effort, trust and usage ratings, and a recommended action. The first deliverable in any serious reporting modernization.</p>
-        <a href="Aesop_Analytics_Reporting_Inventory_Template.xlsx" class="fc-download" download>&#8595; Download free (.xlsx)</a>
-      </div>
-      <div class="future-card">
-        <div class="fc-tag">Checklist</div>
-        <h3>Dashboard Audit Checklist</h3>
-        <p>30 questions to audit any dashboard for decision alignment, metric clarity, and governance.</p>
-        <span class="coming">In development</span>
+      <div class="tl-aside">
+        <span class="tl-format">Excel &middot; .xlsx &middot; 2 sheets</span>
+        <a href="Aesop_Analytics_KPI_Dictionary_Template.xlsx" class="tl-btn" download>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M3.5 6l3.5 3.5L10.5 6M2 11h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download free
+        </a>
+        <p class="tl-link">No email required &middot; instant download<br>Read the guide: <a href="article-kpi-dictionary.html">How to build a KPI dictionary &rarr;</a></p>
       </div>
     </div>
+
+    <!-- Reporting Inventory -->
+    <div class="tl-card">
+      <div>
+        <div class="tl-tag">Template &middot; Excel</div>
+        <h3>Reporting Inventory Template</h3>
+        <p class="tl-desc">Catalog every dashboard, spreadsheet, and recurring report in your organization — with owner, format, audience, manual effort, trust and usage ratings, and a recommended action. The first thing you build when you want to fix reporting.</p>
+        <ul class="tl-bullets">
+          <li>7 pre-filled examples across Excel, Power BI, Tableau, Salesforce, Google Sheets</li>
+          <li>Trust and Usage ratings (1&ndash;5) with color-coded cells</li>
+          <li>Manual effort tracking in hours per month per report</li>
+          <li>5 dropdowns: Format, Function, Delivery, Frequency, Action</li>
+          <li>Instructions sheet with 6-step inventory guide</li>
+          <li>43 blank entry rows &middot; auto-filter &middot; frozen panes</li>
+        </ul>
+      </div>
+      <div class="tl-aside">
+        <span class="tl-format">Excel &middot; .xlsx &middot; 2 sheets</span>
+        <a href="Aesop_Analytics_Reporting_Inventory_Template.xlsx" class="tl-btn" download>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M3.5 6l3.5 3.5L10.5 6M2 11h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download free
+        </a>
+        <p class="tl-link">No email required &middot; instant download<br>Used in the <a href="assessment.html">Reporting Clarity Assessment &rarr;</a></p>
+      </div>
+    </div>
+
+    <!-- Dashboard Audit Checklist — coming soon -->
+    <div class="tl-soon">
+      <div class="tl-soon-body">
+        <h4>Dashboard Audit Checklist</h4>
+        <p>30 scored questions to evaluate any dashboard for decision alignment, metric clarity, and governance. Coming as an interactive scoring tool.</p>
+      </div>
+      <span class="tl-soon-pill">In development</span>
+    </div>
+
   </div>
-</div>
+</section>
 
 <!-- CTA -->
 <div class="cta">
