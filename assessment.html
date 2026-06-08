@@ -11,13 +11,14 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   :root { --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B; --muted:#5A6775; --slate:#495867; --cream:#F3EFE6; --line:#E7E0D2; --rule:#D9CFBC; --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555; --navy-foot:#08111F; --navy-mist:#D6DDE8; --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; }
   *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
   html { scroll-behavior:smooth; }
   body { background:var(--paper); color:var(--ink); font-family:"DM Sans","Helvetica Neue",Arial,sans-serif; font-size:18px; line-height:1.65; -webkit-font-smoothing:antialiased; }
   a { color:inherit; text-decoration:none; }
+  .display-serif { font-family:"Abril Fatface",serif!important; font-weight:400!important; }
   .wrap { max-width:1080px; margin:0 auto; padding:0 32px; }
 
   /* NAV */
@@ -48,7 +49,7 @@
   .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1.1fr .9fr; gap:60px; align-items:center; }
   @media(max-width:760px){ .hero-in { grid-template-columns:1fr; gap:36px; } }
   .eyebrow { font-weight:600; text-transform:uppercase; letter-spacing:.28em; font-size:11.5px; color:var(--twine); margin-bottom:20px; }
-  .hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(34px,5.2vw,60px); line-height:1.04; color:#fff; margin-bottom:20px; }
+  .hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(34px,5.2vw,60px); line-height:1.04; color:#fff; margin-bottom:20px; }
   .hero p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; margin-bottom:28px; max-width:48ch; }
   .hero-price { display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-bottom:28px; }
   .price-badge { background:var(--twine); color:#fff; font-size:17px; font-weight:700; padding:8px 18px; border-radius:4px; }
@@ -72,7 +73,7 @@
   .for-who-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
   @media(max-width:720px){ .for-who-grid { grid-template-columns:1fr; gap:28px; } }
   .sec-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
-  .for-who h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:16px; line-height:1.1; }
+  .for-who h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:16px; line-height:1.1; }
   .for-who p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
   .symptom-list { display:flex; flex-direction:column; gap:0; margin-top:8px; border-top:2px solid var(--rule); }
   .symptom { display:flex; gap:12px; align-items:flex-start; padding:13px 0; border-bottom:1px solid var(--line); font-size:15.5px; color:var(--ink); line-height:1.5; font-weight:400; }
@@ -80,7 +81,7 @@
 
   /* DELIVERABLES */
   .deliverables { padding:72px 0; }
-  .deliverables h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
+  .deliverables h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
   .deliverables .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:58ch; margin-bottom:44px; line-height:1.6; }
   .del-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
   @media(max-width:660px){ .del-grid { grid-template-columns:1fr; } }
@@ -93,21 +94,21 @@
   .process { background:var(--navy); padding:72px 0; }
   .process-in { max-width:1080px; margin:0 auto; padding:0 32px; }
   .process-in .eyebrow { color:var(--twine); }
-  .process-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,40px); color:#fff; margin-bottom:14px; }
-  .process-in .sub { font-size:17px; color:#8A9FB8; font-weight:300; max-width:52ch; margin-bottom:44px; line-height:1.6; }
+  .process-in h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:#fff; margin-bottom:14px; }
+  .process-in .sub { font-size:17px; color:#C4BDAE; font-weight:400; max-width:52ch; margin-bottom:44px; line-height:1.6; }
   .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; border-radius:6px; overflow:hidden; }
   @media(max-width:680px){ .process-steps { grid-template-columns:repeat(2,1fr); } }
   .ps { background:var(--navy-2); padding:26px 22px; }
   .ps-n { font-family:"Abril Fatface",serif; font-size:36px; color:var(--twine); opacity:.45; line-height:1; margin-bottom:8px; }
   .ps h3 { font-size:15px; font-weight:700; color:#fff; margin-bottom:10px; }
-  .ps p { font-size:13.5px; color:#8A9FB8; line-height:1.55; font-weight:300; }
+  .ps p { font-size:13.5px; color:#B8C2D0; line-height:1.55; font-weight:400; }
   .ps ul { list-style:none; padding:0; margin-top:8px; }
   .ps ul li { font-size:13px; color:#6A8099; padding:4px 0; border-top:1px solid rgba(255,255,255,.06); display:flex; gap:8px; line-height:1.4; }
   .ps ul li::before { content:"·"; color:var(--twine); flex-shrink:0; }
 
   /* IS THIS RIGHT FOR YOU */
   .fit { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
-  .fit h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:36px; }
+  .fit h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:36px; }
   .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   @media(max-width:640px){ .fit-grid { grid-template-columns:1fr; } }
   .fit-box { border-radius:6px; padding:24px; }
@@ -124,7 +125,7 @@
 
   /* FAQ */
   .faq { padding:72px 0; }
-  .faq h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }
+  .faq h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }
   .faq-item { border-bottom:1px solid var(--line); padding:20px 0; max-width:760px; }
   .faq-item:first-child { border-top:2px solid var(--rule); }
   .fq { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:10px; }
@@ -134,7 +135,7 @@
   .conversion { background:var(--navy); border-top:3px solid var(--twine); padding:80px 32px; }
   .conv-in { max-width:680px; margin:0 auto; text-align:center; }
   .conv-in .eyebrow { color:var(--twine); margin-bottom:20px; display:block; }
-  .conv-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,4vw,46px); color:#fff; margin-bottom:18px; line-height:1.06; }
+  .conv-in h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,4vw,46px); color:#fff; margin-bottom:18px; line-height:1.06; }
   .conv-in p { color:#A8B4C0; font-size:17px; font-weight:300; max-width:46ch; margin:0 auto 32px; line-height:1.6; }
   .conv-details { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
   .conv-detail { text-align:center; }

@@ -8,76 +8,77 @@
 <meta property="og:title" content="Contact — Aesop Analytics">
 <meta property="og:description" content="A short call to understand your situation. No pitch, no commitment.">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="favicon.svg"><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="core.css">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-  /* Page-specific styles */
+  :root { --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B; --muted:#5A6775; --slate:#495867; --cream:#F3EFE6; --line:#E7E0D2; --rule:#D9CFBC; --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555; --navy-foot:#08111F; --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--paper); color:var(--ink); font-family:"DM Sans","Helvetica Neue",Arial,sans-serif; font-size:18px; line-height:1.66; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .display-serif { font-family:"Abril Fatface",serif!important; font-weight:400!important; }
 
+  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
+  .nav-in { max-width:1080px; margin:0 auto; padding:0 32px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .logo { display:flex; align-items:baseline; gap:7px; }
+  .logo .ae { font-family:"Abril Fatface",serif; font-size:26px; color:var(--navy); }
+  .logo .nm { font-family:"Abril Fatface",serif; font-size:22px; color:var(--navy); }
+  .logo .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.34em; font-size:10px; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .nav-links { display:flex; gap:28px; font-size:13px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+  .nav-links a { color:var(--slate); transition:color .18s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--navy); }
+  .nav-cta { background:var(--navy); color:var(--cream)!important; padding:10px 20px; border-radius:4px; font-size:13px; font-weight:600; transition:background .2s; }
+  .nav-cta:hover { background:var(--navy-3); }
+  .ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+  .ham span { display:block; width:22px; height:2px; background:var(--navy); border-radius:2px; }
+  @media(max-width:760px){ .nav-links { display:none; } .ham { display:flex; } .nav-cta { display:none; } }
+  .mobile-menu { display:none; position:fixed; inset:64px 0 0 0; z-index:19; background:var(--paper); padding:32px; flex-direction:column; gap:28px; border-top:1px solid var(--rule); }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { font-size:22px; font-weight:600; color:var(--navy); }
+  .mobile-menu .mob-cta { background:var(--navy); color:var(--cream); padding:14px 24px; border-radius:4px; font-size:15px; font-weight:600; align-self:flex-start; margin-top:8px; display:inline-block; }
+
+  /* PAGE */
   .contact-wrap { max-width:1080px; margin:0 auto; padding:80px 32px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
   @media(max-width:760px){ .contact-wrap { grid-template-columns:1fr; gap:48px; padding:56px 28px; } }
-  .contact-intro h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(34px,5vw,56px); line-height:1.06; color:var(--navy); margin-bottom:24px; }
+
+  /* LEFT: intro */
+  .eyebrow { font-weight:600; text-transform:uppercase; letter-spacing:.28em; font-size:11.5px; color:var(--twine); margin-bottom:20px; }
+  .contact-intro h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(34px,5vw,56px); line-height:1.06; color:var(--navy); margin-bottom:24px; }
   .contact-intro p { font-size:17.5px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:20px; }
   .contact-intro strong { color:var(--navy); font-weight:700; }
+
+  /* Channels */
   .channels { margin-top:36px; display:flex; flex-direction:column; gap:14px; }
   .channel { display:flex; gap:16px; align-items:center; padding:18px 20px; background:#fff; border:1px solid var(--line); border-radius:6px; text-decoration:none; transition:border-color .18s,box-shadow .18s; }
   .channel:hover { border-color:var(--navy); box-shadow:0 6px 20px -10px rgba(15,31,56,.18); }
   .channel .ch-icon { width:40px; height:40px; background:var(--navy); border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:"Abril Fatface",serif; font-size:18px; color:var(--twine); flex-shrink:0; }
-  .channel .ch-  .channel .ch-label { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:3px; }
+  .channel .ch-body { flex:1; }
+  .channel .ch-label { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:3px; }
   .channel .ch-value { font-size:16px; font-weight:600; color:var(--navy); }
   .channel .ch-sub { font-size:13px; color:var(--muted); font-weight:300; margin-top:2px; }
   .channel .ch-arrow { color:var(--twine); font-size:18px; font-weight:700; }
+
+  /* RIGHT: expectations */
   .expectations { background:var(--navy); border-radius:8px; padding:40px 36px; color:var(--cream); position:relative; overflow:hidden; }
   .expectations::after { content:"æ"; position:absolute; right:-16px; bottom:-44px; font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.1); line-height:1; pointer-events:none; }
-  .expectations h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:22px; color:#fff; margin-bottom:24px; position:relative; z-index:1; }
+  .expectations h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:22px; color:#fff; margin-bottom:24px; position:relative; z-index:1; }
   .exp-list { display:flex; flex-direction:column; gap:20px; position:relative; z-index:1; }
   .exp-item { display:flex; gap:14px; align-items:flex-start; }
   .exp-item .en { font-family:"Abril Fatface",serif; font-size:20px; color:var(--twine); min-width:28px; line-height:1.1; flex-shrink:0; }
   .exp-item .et { font-size:15.5px; color:#C4BDAE; line-height:1.55; font-weight:300; }
   .exp-item .et strong { color:#fff; font-weight:600; }
+
+  /* Good fit section */
   .fit-section { max-width:1080px; margin:0 auto; padding:0 32px 80px; }
+  .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   @media(max-width:660px){ .fit-grid { grid-template-columns:1fr; } }
   .fit-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; margin-bottom:24px; }
   .fit-head.good { color:var(--navy); }
   .fit-head.less { color:var(--contessa); }
-  .fit-section > .fs-label { font-family:"Abril Fatface",serif; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:32px; }
+  .fit-section > .fs-label { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:32px; }
   .fit-box { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px; }
-
-  /* ---- Contact form ---- */
-  .cf { margin-top:28px; }
-  .cf-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
-  @media(max-width:520px){ .cf-row { grid-template-columns:1fr; } }
-  .cf-field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
-  .cf-row .cf-field { margin-bottom:0; }
-  .cf-label { font-size:13px; font-weight:600; color:var(--slate); letter-spacing:.02em; }
-  .cf-req { color:var(--twine); }
-  .cf-input { font-family:"DM Sans",sans-serif; font-size:15px; color:var(--ink); background:#fff; border:1.5px solid var(--line); border-radius:5px; padding:11px 14px; width:100%; transition:border-color .18s, box-shadow .18s; }
-  .cf-input:focus { outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(15,31,56,.07); }
-  .cf-input::placeholder { color:var(--muted); font-weight:300; font-style:italic; }
-  .cf-select { appearance:none; -webkit-appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A6775' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
-  .cf-textarea { resize:vertical; min-height:130px; line-height:1.55; }
-  .cf-footer { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:4px; }
-  .cf-submit { background:var(--navy); color:#fff; font-family:"DM Sans",sans-serif; font-size:15px; font-weight:700; letter-spacing:.02em; padding:13px 28px; border:none; border-radius:4px; cursor:pointer; transition:background .18s, transform .18s; }
-  .cf-submit:hover { background:var(--navy-2); transform:translateY(-1px); }
-  .cf-submit:disabled { opacity:.55; cursor:not-allowed; transform:none; }
-  .cf-note { font-size:13px; color:var(--muted); font-weight:300; }
-  .cf-error { font-size:13px; color:var(--contessa); margin-top:6px; display:none; }
-  /* Success state */
-  .cf-success { display:none; flex-direction:column; align-items:flex-start; background:rgba(126,176,155,.08); border:1px solid rgba(126,176,155,.3); border-radius:8px; padding:28px 28px; margin-top:28px; }
-  .cf-success.visible { display:flex; }
-  .cf-success-check { width:44px; height:44px; background:rgba(126,176,155,.15); border:2px solid #7EB09B; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; color:#7EB09B; font-weight:700; margin-bottom:14px; flex-shrink:0; }
-  .cf-success h3 { font-size:20px; font-weight:700; color:var(--navy); margin-bottom:6px; }
-  .cf-success p { font-size:15px; color:var(--slate); font-weight:300; line-height:1.55; }
-  /* Alt channels */
-  .alt-channels { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:12px; }
-  .alt-ch-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--muted); margin-bottom:4px; }
-  .alt-ch { display:flex; align-items:center; gap:12px; color:var(--slate); text-decoration:none; font-size:14px; font-weight:400; transition:color .18s; }
-  .alt-ch:hover { color:var(--navy); }
-  .alt-ch-icon { width:32px; height:32px; background:var(--paper-2); border:1px solid var(--line); border-radius:5px; display:flex; align-items:center; justify-content:center; font-family:"Abril Fatface",serif; font-size:14px; color:var(--navy); flex-shrink:0; }
-  .alt-ch-arrow { color:var(--twine); margin-left:auto; font-size:14px; }
   .fit-box.good-box { border-top:3px solid var(--navy); }
   .fit-box.less-box { border-top:3px solid rgba(206,118,107,.4); }
   .fit-item { display:flex; gap:12px; align-items:flex-start; font-size:15.5px; color:var(--slate); padding:10px 0; border-bottom:1px solid var(--line); line-height:1.5; font-weight:300; }
@@ -85,37 +86,43 @@
   .fit-item::before { font-weight:700; flex-shrink:0; margin-top:1px; }
   .fit-box.good-box .fit-item::before { content:"✓"; color:var(--navy); }
   .fit-box.less-box .fit-item::before { content:"→"; color:var(--contessa); }
-  @media(max-width:760px){ }
-  @media(max-width:460px){ }
+
+  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; margin-top:0; }
+  .foot-in { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1fr auto 1fr; gap:32px; align-items:start; }
+  @media(max-width:680px){ .foot-in { grid-template-columns:1fr; gap:24px; } }
+  .foot-brand .ae { font-family:"Abril Fatface",serif; font-size:24px; color:var(--twine); }
+  .foot-brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
+  .foot-brand .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.32em; font-size:10px; text-transform:uppercase; color:var(--twine); }
+  .foot-tagline { font-style:italic; color:#4A6070; font-size:13px; margin-top:8px; }
+  .foot-nav { display:flex; flex-direction:column; gap:10px; }
+  .foot-nav a { font-size:13px; font-weight:500; color:#6A8099; transition:color .18s; }
+  .foot-nav a:hover { color:var(--twine); }
+  .foot-nav .fnlabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:4px; }
+  .foot-legal { text-align:right; font-size:12.5px; color:#3A5060; line-height:1.7; }
+  @media(max-width:680px){ .foot-legal { text-align:left; } }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-in">
-    <a href="index.html" class="logo"><svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
     <div class="nav-links">
       <a href="services.html">Services</a>
-      <a href="assessment.html" class="nav-accent">Assessment</a>
-      <a href="work.html">Work</a>
       <a href="insights.html">Insights</a>
-      <a href="resources.html">Resources</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="active">Contact</a>
     </div>
-    <a href="contact.html" class="nav-cta">Book a diagnostic</a>
+    <a href="contact.html" class="nav-cta">Start a conversation</a>
     <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   <a href="services.html" onclick="closeMob()">Services</a>
-  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Assessment</a>
-  <a href="work.html" onclick="closeMob()">Work</a>
   <a href="insights.html" onclick="closeMob()">Insights</a>
-  <a href="resources.html" onclick="closeMob()">Resources</a>
   <a href="about.html" onclick="closeMob()">About</a>
   <a href="contact.html" onclick="closeMob()">Contact</a>
-  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Start a conversation</a>
 </div>
 
 <div class="contact-wrap">
@@ -123,61 +130,25 @@
     <div class="eyebrow">Contact</div>
     <h1>Tell us what your data isn't telling you.</h1>
     <p>Every engagement starts the same way: a short, honest conversation about your situation. No pitch, no slide deck. If there's a fit, we'll define what a first step looks like. If there isn't, we'll tell you that too — and point you somewhere better.</p>
-    <form class="cf" id="contact-form" novalidate>
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-      <input type="hidden" name="_subject" value="New inquiry — Aesop Analytics">
-      <div class="cf-row">
-        <div class="cf-field">
-          <label class="cf-label" for="cf-name">Name <span class="cf-req">*</span></label>
-          <input class="cf-input" type="text" id="cf-name" name="name" required placeholder="Your name" autocomplete="name">
+    <p><strong>Response time:</strong> typically within one business day.</p>
+    <div class="channels">
+      <a href="mailto:doreau.jonathan@gmail.com" class="channel">
+        <div class="ch-icon">@</div>
+        <div class="ch-body">
+          <div class="ch-label">Email</div>
+          <div class="ch-value">doreau.jonathan@gmail.com</div>
+          <div class="ch-sub">Best for initial outreach and detailed questions</div>
         </div>
-        <div class="cf-field">
-          <label class="cf-label" for="cf-email">Email <span class="cf-req">*</span></label>
-          <input class="cf-input" type="email" id="cf-email" name="email" required placeholder="you@company.com" autocomplete="email">
-        </div>
-      </div>
-      <div class="cf-row">
-        <div class="cf-field">
-          <label class="cf-label" for="cf-company">Company</label>
-          <input class="cf-input" type="text" id="cf-company" name="company" placeholder="Organization name" autocomplete="organization">
-        </div>
-        <div class="cf-field">
-          <label class="cf-label" for="cf-size">Company size</label>
-          <select class="cf-input cf-select" id="cf-size" name="company_size">
-            <option value="">— select —</option>
-            <option value="10-50">10&ndash;50 people</option>
-            <option value="50-200">50&ndash;200 people</option>
-            <option value="200-500">200&ndash;500 people</option>
-            <option value="500+">500+ people</option>
-          </select>
-        </div>
-      </div>
-      <div class="cf-field">
-        <label class="cf-label" for="cf-message">What&rsquo;s going on? <span class="cf-req">*</span></label>
-        <textarea class="cf-input cf-textarea" id="cf-message" name="message" required rows="5" placeholder="Tell me what&rsquo;s not working. A paragraph is plenty &mdash; &ldquo;our reporting is a mess and nobody trusts the numbers&rdquo; is a perfectly good start."></textarea>
-      </div>
-      <div class="cf-footer">
-        <button class="cf-submit" type="submit" id="cf-btn">Send message &rarr;</button>
-        <span class="cf-note">Typically replies within one business day.</span>
-      </div>
-      <p class="cf-error" id="cf-error">Something went wrong &mdash; please try emailing directly.</p>
-    </form>
-    <div class="cf-success" id="cf-success">
-      <div class="cf-success-check">&#10003;</div>
-      <h3>Message sent</h3>
-      <p>Thanks &mdash; I&rsquo;ll be in touch within one business day.</p>
-    </div>
-    <div class="alt-channels">
-      <div class="alt-ch-label">Or reach out directly</div>
-      <a href="mailto:doreau.jonathan@gmail.com" class="alt-ch">
-        <div class="alt-ch-icon">@</div>
-        doreau.jonathan@gmail.com
-        <span class="alt-ch-arrow">&rarr;</span>
+        <span class="ch-arrow">→</span>
       </a>
-      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener" class="alt-ch">
-        <div class="alt-ch-icon" style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;">in</div>
-        LinkedIn &mdash; Jonathan Doreau
-        <span class="alt-ch-arrow">&rarr;</span>
+      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener" class="channel">
+        <div class="ch-icon" style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;">in</div>
+        <div class="ch-body">
+          <div class="ch-label">LinkedIn</div>
+          <div class="ch-value">Jonathan Doreau</div>
+          <div class="ch-sub">Connect or message directly</div>
+        </div>
+        <span class="ch-arrow">→</span>
       </a>
     </div>
   </div>
@@ -187,7 +158,7 @@
     <div class="exp-list">
       <div class="exp-item">
         <span class="en">01</span>
-        <span class="et"><strong>Send a short message.</strong> A paragraph about your situation and what's not working is plenty — you don't need to have it all figured out.</span>
+        <span class="et"><strong>Send a short message.</strong> You don't need to have it all figured out — a paragraph about your situation and what's not working is plenty. "Our reporting is a mess and nobody trusts the numbers" is a perfectly good starting point.</span>
       </div>
       <div class="exp-item">
         <span class="en">02</span>
@@ -230,73 +201,21 @@
 <footer>
   <div class="foot-in">
     <div>
-      <div class="foot-brand"><svg class="logo-mark" viewBox="0 0 192 192" height="28" width="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#FBFAF5" stroke="#FBFAF5" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an"> Analytics</span></div>
-      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Every dataset has a moral.</div>
     </div>
-    <div class="foot-col">
-      <h4>Services</h4>
-      <a href="assessment.html">Reporting Clarity Assessment</a>
-      <a href="services.html#sprint">Modernization Sprint</a>
-      <a href="services.html#governance">Governance Kit</a>
-      <a href="services.html#retainer">Fractional Retainer</a>
-    </div>
-    <div class="foot-col">
-      <h4>Content</h4>
-      <a href="insights.html">Insights &amp; Studies</a>
-      <a href="resources.html">Free Resources</a>
-    </div>
-    <div class="foot-col">
-      <h4>Company</h4>
+    <div class="foot-nav">
+      <span class="fnlabel">Navigation</span>
+      <a href="services.html">Services</a>
+      <a href="insights.html">Insights</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a>
-      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
+    <div class="foot-legal">Nashville, TN<br><a href="mailto:doreau.jonathan@gmail.com" style="color:#6A8099">doreau.jonathan@gmail.com</a><br><br>© 2026 Aesop Analytics</div>
   </div>
-  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
 </footer>
 
 <script>
-  // ── Contact form ──────────────────────────────────────────────
-  const form   = document.getElementById('contact-form');
-  const btn    = document.getElementById('cf-btn');
-  const errEl  = document.getElementById('cf-error');
-  const succEl = document.getElementById('cf-success');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errEl.style.display = 'none';
-
-    // Basic client-side validation
-    const name  = document.getElementById('cf-name').value.trim();
-    const email = document.getElementById('cf-email').value.trim();
-    const msg   = document.getElementById('cf-message').value.trim();
-    if (!name || !email || !msg) return;
-
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
-
-    try {
-      const res = await fetch('https://formspree.io/f/mojzdqlk', {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        form.style.display = 'none';
-        succEl.classList.add('visible');
-      } else {
-        throw new Error('non-ok response');
-      }
-    } catch {
-      btn.disabled = false;
-      btn.textContent = 'Send message →';
-      errEl.style.display = 'block';
-    }
-  });
-
-  // ── Mobile nav ────────────────────────────────────────────────
   const ham = document.getElementById('ham'); const mob = document.getElementById('mobile-menu');
   ham.addEventListener('click', () => mob.classList.toggle('open'));
   ham.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') mob.classList.toggle('open'); });

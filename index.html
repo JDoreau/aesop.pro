@@ -8,34 +8,79 @@
 <meta property="og:title" content="Aesop Analytics — Reporting Modernization &amp; Data Trust">
 <meta property="og:description" content="Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://aesopanalytics.com">
-<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="favicon.svg"><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
-<link rel="canonical" href="https://aesopanalytics.com/">
+<meta property="og:url" content="https://aesop.pro">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="canonical" href="https://aesop.pro/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="core.css">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-  /* Page-specific styles */
-
+  :root {
+    --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;
+    --muted:#5A6775; --slate:#495867; --cream:#F3EFE6;
+    --line:#E7E0D2; --rule:#D9CFBC;
+    --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555; --navy-foot:#08111F; --navy-mist:#D6DDE8;
+    --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; --apple:#B35546;
+  }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--paper); color:var(--ink); font-family:"DM Sans","Helvetica Neue",Arial,sans-serif; font-size:18px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
   section { position:relative; }
+  /* Newsreader = primary display/header font. Abril retained as sparing accent only. */
+  .display-serif { font-family:"Abril Fatface",serif!important; font-weight:400!important; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 32px; }
+
+  /* ── NAV ── */
+  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
+  .nav-in { max-width:1080px; margin:0 auto; padding:0 32px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .logo { display:flex; align-items:baseline; gap:7px; flex-shrink:0; }
+  .logo .ae { font-family:"Abril Fatface",serif; font-size:26px; color:var(--navy); }
+  .logo .nm { font-family:"Abril Fatface",serif; font-size:22px; color:var(--navy); }
+  .logo .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.34em; font-size:10px; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .nav-links { display:flex; gap:24px; font-size:12.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+  .nav-links a { color:var(--slate); transition:color .18s; white-space:nowrap; }
+  .nav-links a:hover, .nav-links a.active { color:var(--navy); }
+  .nav-links a.nav-accent { color:var(--twine); }
+  .nav-links a.nav-accent:hover { color:var(--sepia); }
+  .nav-cta { background:var(--navy); color:var(--cream)!important; padding:10px 18px; border-radius:4px; font-size:12.5px; font-weight:600; letter-spacing:.04em; transition:background .2s; white-space:nowrap; flex-shrink:0; }
+  .nav-cta:hover { background:var(--navy-3); }
+  .ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; flex-shrink:0; }
+  .ham span { display:block; width:22px; height:2px; background:var(--navy); border-radius:2px; }
+  @media(max-width:860px){ .nav-links { display:none; } .ham { display:flex; } .nav-cta { display:none; } }
+  .mobile-menu { display:none; position:fixed; inset:64px 0 0 0; z-index:19; background:var(--paper); padding:32px; flex-direction:column; gap:24px; border-top:1px solid var(--rule); overflow-y:auto; }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { font-size:20px; font-weight:600; color:var(--navy); }
+  .mobile-menu a.mob-accent { color:var(--twine); }
+  .mobile-menu .mob-cta { background:var(--navy); color:var(--cream); padding:14px 24px; border-radius:4px; font-size:15px; font-weight:600; align-self:flex-start; margin-top:8px; display:inline-block; }
+
+  /* ── HERO ── */
   .hero { background:var(--navy); color:var(--cream); overflow:hidden; min-height:88vh; display:flex; align-items:center; }
   .hero::after { content:"æ"; position:absolute; right:-3%; top:-14%; font-family:"Abril Fatface",serif; font-size:min(48vw,580px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:100px 32px 90px; position:relative; z-index:2; }
-  .hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(42px,6.8vw,84px); line-height:1.03; max-width:16ch; margin-bottom:28px; color:var(--cream); }
+  .eyebrow { font-weight:600; text-transform:uppercase; letter-spacing:.28em; font-size:11.5px; color:var(--twine); margin-bottom:28px; }
+  .hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(42px,6.6vw,80px); line-height:1.05; max-width:18ch; margin-bottom:28px; color:var(--cream); letter-spacing:-.01em; }
   .hero h1 .em { color:var(--twine); }
   .hero .hero-sub { font-size:clamp(16px,1.8vw,20px); line-height:1.6; color:#C4BDAE; max-width:54ch; margin-bottom:40px; font-weight:300; }
+  .btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.03em; padding:15px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
+  .btn:hover { transform:translateY(-2px); background:var(--sepia); }
+  .btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); margin-left:10px; }
+  .btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; transform:translateY(-2px); }
+  .btn-row { display:flex; flex-wrap:wrap; gap:12px; }
   .hero-note { margin-top:52px; display:flex; align-items:center; gap:12px; color:#5A7090; font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
   .hero-note::before { content:''; display:block; width:28px; height:1px; background:#5A7090; }
+
+  /* ── PROMISE BAR ── */
   .promise { background:var(--paper-2); border-bottom:1px solid var(--rule); }
   .promise-in { max-width:1080px; margin:0 auto; padding:32px; text-align:center; }
   .promise p { font-family:"Abril Fatface",serif; font-size:clamp(17px,2.2vw,26px); color:var(--navy); line-height:1.35; max-width:38ch; margin:0 auto; }
   .dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--twine); margin:0 9px; vertical-align:middle; }
+
+  /* ── PAIN SECTION ── */
   .pain { padding:80px 0; background:var(--paper); }
   .pain-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
   @media(max-width:760px){ .pain-grid { grid-template-columns:1fr; gap:36px; } }
-  .pain-left h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,3.8vw,42px); line-height:1.1; color:var(--navy); margin-bottom:20px; }
+  .pain-left h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,3.8vw,42px); line-height:1.1; color:var(--navy); margin-bottom:20px; }
   .pain-left p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
   .pain-left .pov { font-family:"Abril Fatface",serif; font-size:clamp(17px,2vw,22px); color:var(--navy); border-left:4px solid var(--twine); padding:8px 0 8px 22px; margin-top:28px; line-height:1.3; }
   .pain-right { }
@@ -44,24 +89,29 @@
   .pain-item { display:flex; gap:14px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--line); }
   .pain-item .pi { font-size:18px; color:var(--contessa); flex-shrink:0; line-height:1.4; font-weight:700; }
   .pain-item .pt { font-size:16px; color:var(--ink); line-height:1.5; font-weight:400; }
+
+  /* ── TRUST METHOD ── */
+  .method { background:var(--navy); padding:80px 0; }
   .method-in { max-width:1080px; margin:0 auto; padding:0 32px; }
   .method-head { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
   @media(max-width:760px){ .method-head { grid-template-columns:1fr; gap:20px; } }
-  .method-head h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,3.8vw,44px); color:#fff; line-height:1.08; }
-  .method-head p { font-size:16.5px; color:#8A9FB8; font-weight:300; line-height:1.6; }
+  .method-head h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(28px,3.8vw,44px); color:#fff; line-height:1.1; letter-spacing:-.01em; }
+  .method-head p { font-size:16.5px; color:#C4BDAE; font-weight:400; line-height:1.6; }
   .trust-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; border-radius:6px; overflow:hidden; }
-  }
-    @media(max-width:500px){ .trust-steps { grid-template-columns:1fr; } }
+  @media(max-width:860px){ .trust-steps { grid-template-columns:1fr 1fr; } }
+  @media(max-width:500px){ .trust-steps { grid-template-columns:1fr; } }
   .trust-step { background:var(--navy-2); padding:28px 22px; position:relative; }
   .trust-step:hover { background:var(--navy-3); transition:background .2s; }
-  .ts-letter { font-family:"Abril Fatface",serif; font-size:56px; color:var(--twine); line-height:1; opacity:.5; margin-bottom:6px; }
   .ts-name { font-size:14px; font-weight:700; color:#fff; margin-bottom:10px; letter-spacing:.02em; }
-  .ts-desc { font-size:13.5px; color:#8A9FB8; line-height:1.55; font-weight:300; }
+  .ts-desc { font-size:13.5px; color:#B8C2D0; line-height:1.55; font-weight:400; }
   .method-cta { margin-top:40px; text-align:center; }
-  .method-cta p { font-size:15px; color:#8A9FB8; margin-bottom:20px; font-weight:300; }
+  .method-cta p { font-size:15px; color:#C4BDAE; margin-bottom:20px; font-weight:400; }
+  .method-cta .btn { padding:11px 24px; font-size:14px; }
+
+  /* ── OFFER STRIP ── */
   .offers { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
   .offers-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
-  .offers h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,40px); line-height:1.1; color:var(--navy); margin-bottom:14px; max-width:22ch; }
+  .offers h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); line-height:1.1; color:var(--navy); margin-bottom:14px; max-width:22ch; }
   .offers .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:56ch; margin-bottom:48px; line-height:1.6; }
   .offer-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
   @media(max-width:720px){ .offer-cards { grid-template-columns:1fr; } }
@@ -80,12 +130,14 @@
   .offer-card.flagship .oc-pill { background:var(--navy-2); color:#8A9FB8; border-color:var(--navy-3); }
   .oc-link { font-size:13px; font-weight:700; color:var(--twine); letter-spacing:.04em; text-transform:uppercase; margin-top:4px; }
   .oc-link:hover { color:var(--sepia); }
+  /* Retainer card — full width -->  */
   .offer-card.retainer { grid-column:1/-1; flex-direction:row; align-items:center; gap:32px; }
   @media(max-width:720px){ .offer-card.retainer { flex-direction:column; gap:16px; grid-column:auto; } }
-  .offer-card.retainer .ret-
-    
-    .who { padding:80px 0; }
-  .who h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:14px; max-width:20ch; }
+  .offer-card.retainer .ret-body { flex:1; }
+
+  /* ── WHO WE SERVE ── */
+  .who { padding:80px 0; }
+  .who h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:14px; max-width:20ch; }
   .who .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:56ch; margin-bottom:44px; line-height:1.6; }
   .personas { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
   @media(max-width:760px){ .personas { grid-template-columns:repeat(2,1fr); } }
@@ -106,19 +158,24 @@
   .not-item::before { font-weight:700; flex-shrink:0; margin-top:1px; font-size:13px; }
   .not-box.is .not-item::before { content:"✓"; color:var(--navy); }
   .not-box.not .not-item::before { content:"✗"; color:var(--contessa); }
+
+  /* ── STATS ── */
+  .stats { background:var(--navy); border-top:1px solid rgba(255,255,255,.06); }
   .stats-in { max-width:1080px; margin:0 auto; padding:52px 32px; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center; }
   @media(max-width:700px){ .stats-in { grid-template-columns:repeat(2,1fr); } }
   .stat-n { font-family:"Abril Fatface",serif; font-size:clamp(34px,4.5vw,52px); color:var(--twine); line-height:1; margin-bottom:10px; }
   .stat-l { font-size:12px; font-weight:500; color:#8FA4B8; letter-spacing:.04em; line-height:1.4; text-transform:uppercase; }
+
+  /* ── FEATURED INSIGHT ── */
   .featured { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
   .featured-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
-  .featured h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.4vw,38px); color:var(--navy); margin-bottom:12px; }
+  .featured h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,38px); color:var(--navy); margin-bottom:12px; }
   .featured .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:56ch; margin-bottom:36px; }
   .study-card { background:var(--navy); color:var(--cream); border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1.2fr .8fr; }
   @media(max-width:720px){ .study-card { grid-template-columns:1fr; } }
   .study-card .stxt { padding:44px 40px; }
   .study-card .stag { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:16px; }
-  .study-card h3 { font-family:"Abril Fatface",serif; font-weight:400; font-size:26px; line-height:1.15; margin-bottom:16px; }
+  .study-card h3 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:26px; line-height:1.15; margin-bottom:16px; }
   .study-card p { color:#B8BDCA; font-size:15px; margin-bottom:24px; line-height:1.6; font-weight:300; }
   .study-btn { display:inline-block; color:var(--navy); background:var(--twine); font-weight:700; padding:11px 20px; border-radius:4px; font-size:14px; letter-spacing:.03em; transition:background .18s; }
   .study-btn:hover { background:var(--sepia); }
@@ -127,12 +184,14 @@
   .see-all { display:inline-flex; align-items:center; gap:8px; margin-top:28px; font-size:14px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
   .see-all::after { content:"→"; }
   .see-all:hover { color:var(--twine); }
+
+  /* ── ABOUT TEASER ── */
   .about-tease { padding:80px 0; }
   .about-grid { display:grid; grid-template-columns:.7fr 1.3fr; gap:56px; align-items:center; }
   @media(max-width:760px){ .about-grid { grid-template-columns:1fr; gap:28px; } }
   .about-mark { font-family:"Abril Fatface",serif; font-size:clamp(80px,14vw,180px); color:var(--navy); line-height:.85; text-align:center; opacity:.8; }
   .about-mark .sm { display:block; font-family:"DM Sans",sans-serif; font-size:11px; letter-spacing:.28em; color:var(--twine); text-transform:uppercase; margin-top:18px; font-weight:600; }
-  .about-right h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:16px; line-height:1.12; }
+  .about-right h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:16px; line-height:1.12; }
   .about-right p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
   .about-right strong { color:var(--navy); font-weight:700; }
   .creds { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
@@ -140,39 +199,36 @@
   .about-link { display:inline-flex; align-items:center; gap:6px; margin-top:20px; font-size:13.5px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
   .about-link::after { content:"→"; }
   .about-link:hover { color:var(--twine); }
+
+  /* ── FINAL CTA ── */
   .final-cta { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:96px 32px; }
-  .final-cta h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,4.4vw,52px); color:#fff; margin-bottom:20px; line-height:1.06; }
+  .final-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,4.4vw,52px); color:#fff; margin-bottom:20px; line-height:1.06; }
   .final-cta p { color:#A8B4C0; font-size:18px; font-weight:300; max-width:48ch; margin:0 auto 36px; line-height:1.6; }
 
-  /* ── Testimonials ── */
-  .testimonials { padding:80px 0; background:var(--paper); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
-  .testi-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:40px; }
-  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  @media(max-width:820px){ .testi-grid { grid-template-columns:1fr; } }
-  .testi { background:#fff; border:1px solid var(--line); border-radius:6px; padding:30px 26px; display:flex; flex-direction:column; }
-  .testi-text { font-size:16px; color:var(--slate); line-height:1.7; font-weight:300; font-style:italic; flex:1; margin-bottom:18px; }
-  .testi-text::before { content:'\201C'; font-family:"Abril Fatface",serif; font-size:44px; line-height:.8; color:var(--twine); display:block; margin-bottom:12px; opacity:.55; font-style:normal; }
-  .testi-attr { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; border-top:1px solid var(--line); padding-top:14px; }
-  @media(max-width:760px){ }
-  @media(max-width:460px){ }
+  /* ── FOOTER ── */
+  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
+  .foot-in { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:40px; }
+  @media(max-width:760px){ .foot-in { grid-template-columns:1fr 1fr; gap:28px; } }
+  @media(max-width:460px){ .foot-in { grid-template-columns:1fr; } }
+  .foot-brand .ae { font-family:"Abril Fatface",serif; font-size:24px; color:var(--twine); }
+  .foot-brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
+  .foot-brand .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.32em; font-size:10px; text-transform:uppercase; color:var(--twine); }
+  .foot-tagline { font-style:italic; color:#4A6070; font-size:13px; margin-top:8px; max-width:22ch; }
+  .foot-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:14px; }
+  .foot-col a { display:block; font-size:13px; color:#6A8099; margin-bottom:8px; transition:color .18s; }
+  .foot-col a:hover { color:var(--twine); }
+  .foot-legal { font-size:12px; color:#3A5060; margin-top:28px; padding-top:20px; border-top:1px solid rgba(255,255,255,.06); max-width:1080px; margin-left:auto; margin-right:auto; padding-left:32px; padding-right:32px; }
 
-  /* ── Pain icons ── */
-  .pain-item { align-items:center; }
-  .pi { flex-shrink:0; width:18px; height:18px; margin-top:1px; }
-
-  /* ── TRUST step icons ── */
-  .ts-icon { display:block; width:22px; height:22px; margin:6px 0 10px; }
-
-  /* ── Offer card icons ── */
-  .oc-icon { width:28px; height:28px; margin-bottom:2px; }
-  .offer-card.flagship .oc-icon { color:var(--twine); }
+  /* ── ANIMATIONS ── */
+  .reveal { opacity:0; transform:translateY(14px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes rise { to { opacity:1; transform:none; } }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-in">
-    <a href="index.html" class="logo" aria-label="Aesop Analytics"><svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <a href="index.html" class="logo" aria-label="Aesop Analytics"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
     <div class="nav-links">
       <a href="services.html">Services</a>
       <a href="assessment.html" class="nav-accent">Assessment</a>
@@ -188,13 +244,12 @@
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   <a href="services.html" onclick="closeMob()">Services</a>
-  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Assessment</a>
-  <a href="work.html" onclick="closeMob()">Work</a>
+  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Reporting Clarity Assessment</a>
   <a href="insights.html" onclick="closeMob()">Insights</a>
   <a href="resources.html" onclick="closeMob()">Resources</a>
   <a href="about.html" onclick="closeMob()">About</a>
   <a href="contact.html" onclick="closeMob()">Contact</a>
-  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic call</a>
 </div>
 
 <!-- ── HERO ── -->
@@ -202,12 +257,12 @@
   <div class="hero-in">
     <div class="eyebrow reveal">Reporting Modernization · KPI Trust · Data Governance</div>
     <h1 class="reveal" style="animation-delay:.08s">Modern reporting for leaders who need numbers they can <span class="em">trust.</span></h1>
-    <p class="hero-sub reveal" style="animation-delay:.16s">I help growing companies modernize their reporting so leaders can trust the numbers, teams can align on KPIs, and decisions can move faster.</p>
+    <p class="hero-sub reveal" style="animation-delay:.16s">I help growing companies clean up dashboard sprawl, align KPI definitions, reduce manual reporting work, and build practical data governance — so decisions move faster and leadership can trust what they see.</p>
     <div class="btn-row reveal" style="animation-delay:.24s">
       <a href="contact.html" class="btn">Book a Reporting Trust Diagnostic</a>
-      <a href="health-check.html" class="btn ghost">Take the Health Check &rarr;</a>
+      <a href="resources.html" class="btn ghost">Download the Health Check</a>
     </div>
-    <div class="hero-note reveal" style="animation-delay:.38s">Jonathan Doreau · Nashville, TN · aesopanalytics.com</div>
+    <div class="hero-note reveal" style="animation-delay:.38s">Jonathan Doreau · Nashville, TN · aesop.pro</div>
   </div>
 </section>
 
@@ -225,20 +280,20 @@
       <div class="pain-left">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:16px">The real problem</div>
         <h2>The pain isn't bad dashboards. It's that no one trusts the numbers.</h2>
-        <p>Most organizations investing in BI tools end up in the same place: dashboards exist, but nobody trusts the numbers. Different teams pull different figures. KPIs have no agreed owner. Reports get rebuilt manually every week.</p>
-        <p>That's not a visualization problem — it's an ownership, definition, process, and governance problem. No new tool fixes it until those are resolved.</p>
+        <p>Most companies investing in BI tools still end up with the same problem: leadership is making decisions on data they don't fully believe. Different teams pull different numbers. KPIs have no agreed owner. Reporting is manually rebuilt every week. The dashboards exist — they're just not trusted.</p>
+        <p>That's not a visualization problem. That's an ownership, definition, process, and governance problem. And no new tool fixes it until those are addressed first.</p>
         <div class="pov">"Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems."</div>
       </div>
       <div class="pain-right">
         <div class="pain-label">Does this sound familiar?</div>
         <div class="pain-list">
-          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Leadership sees different numbers in different reports</span></div>
-          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Teams disagree on KPI definitions — Finance says one thing, Sales says another</span></div>
-          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
-          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Dashboards exist but aren't trusted — nobody uses them to make decisions</span></div>
-          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">No one knows which report is "official" or whose number is right</span></div>
-          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Reporting requests pile up with no clear intake or prioritization process</span></div>
-          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">AI initiatives are stalled because the underlying data can't be trusted</span></div>
+          <div class="pain-item"><span class="pi">↯</span><span class="pt">Leadership sees different numbers in different reports</span></div>
+          <div class="pain-item"><span class="pi">↯</span><span class="pt">Teams disagree on KPI definitions — Finance says one thing, Sales says another</span></div>
+          <div class="pain-item"><span class="pi">↯</span><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
+          <div class="pain-item"><span class="pi">↯</span><span class="pt">Dashboards exist but aren't trusted — nobody uses them to make decisions</span></div>
+          <div class="pain-item"><span class="pi">↯</span><span class="pt">No one knows which report is "official" or whose number is right</span></div>
+          <div class="pain-item"><span class="pi">↯</span><span class="pt">Reporting requests pile up with no clear intake or prioritization process</span></div>
+          <div class="pain-item"><span class="pi">↯</span><span class="pt">AI initiatives are stalled because the underlying data can't be trusted</span></div>
         </div>
       </div>
     </div>
@@ -254,34 +309,24 @@
     </div>
     <div class="trust-steps">
       <div class="trust-step">
-        <div class="ts-letter">T</div>
-        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#C18C5D" stroke-width="1.6"/><path d="M13.5 13.5L18 18" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round"/></svg>
         <div class="ts-name">Triage the reporting estate</div>
-        <div class="ts-desc">Catalog every report. Map owners, trust levels, and decision purpose — and identify what's used, what's ignored, and what can be retired.</div>
+        <div class="ts-desc">Catalog every dashboard, spreadsheet, and recurring report. Map owners, users, trust levels, and decision purpose. Find out what's used, what's ignored, and what's duplicated.</div>
       </div>
       <div class="trust-step">
-        <div class="ts-letter">R</div>
-        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 5v12M7 17h8" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round"/><path d="M4 9l3.5-4 3.5 4" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 9l3.5-4 3.5 4" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="ts-name">Reconcile metric definitions</div>
-        <div class="ts-desc">Identify conflicting KPIs and expose where Finance, Sales, and Ops use different definitions for the same metric — and why that breaks trust.</div>
+        <div class="ts-desc">Identify conflicting KPIs. Document how metrics are currently calculated. Expose where Finance, Sales, and Ops are using different definitions for the same word — and why that breaks trust.</div>
       </div>
       <div class="trust-step">
-        <div class="ts-letter">U</div>
-        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="8" cy="11" r="5" stroke="#C18C5D" stroke-width="1.6"/><circle cx="14" cy="11" r="5" stroke="#C18C5D" stroke-width="1.6"/></svg>
         <div class="ts-name">Unify ownership &amp; source of truth</div>
-        <div class="ts-desc">Assign business and technical owners to every metric, designate the authoritative source system, and establish who approves definition changes.</div>
+        <div class="ts-desc">Assign business owners and technical owners to every metric. Designate the authoritative source system. Establish who approves definition changes and who gets notified.</div>
       </div>
       <div class="trust-step">
-        <div class="ts-letter">S</div>
-        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="2" y="6" width="18" height="10" rx="2" stroke="#C18C5D" stroke-width="1.6"/><line x1="6" y1="6" x2="6" y2="10" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="6" x2="11" y2="12" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="6" x2="16" y2="10" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round"/></svg>
         <div class="ts-name">Standardize reporting practices</div>
-        <div class="ts-desc">Establish naming conventions, request intake, certification rules, and retirement processes — so it's clear which reports are official and how changes get made.</div>
+        <div class="ts-desc">Create naming conventions, request intake, dashboard certification rules, and report retirement processes. Make it clear which reports are official and how people request changes.</div>
       </div>
       <div class="trust-step">
-        <div class="ts-letter">T</div>
-        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M4 11h14M13 6l5 5-5 5" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="ts-name">Transition to operating cadence</div>
-        <div class="ts-desc">Embed the new process with governance cadences and quality monitoring — the goal is a system that sustains itself without needing Aesop to keep it running.</div>
+        <div class="ts-desc">Embed the new process into the business. Establish governance meeting cadences, quality monitoring, and continuous improvement. The goal is a system that sustains itself.</div>
       </div>
     </div>
     <div class="method-cta">
@@ -301,12 +346,11 @@
 
       <!-- Flagship -->
       <a href="assessment.html" class="offer-card flagship" style="text-decoration:none">
-        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="5" y="3" width="18" height="22" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 9h10M9 13h10M9 17h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 7l1.5 1.5L13 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="oc-tag">★ Flagship first offer</div>
         <div class="oc-name">Reporting Clarity Assessment</div>
         <div class="oc-desc">A structured 2–3 week review of your reporting estate: inventory, metric conflicts, KPI gaps, data source map, manual burden analysis, and a prioritized 30/60/90-day modernization roadmap. You'll know exactly where trust is breaking down and what to fix first.</div>
         <div class="oc-meta">
-          <span class="oc-pill">$2,500–$7,500</span>
+          <span class="oc-pill">$5,000–$9,500</span>
           <span class="oc-pill">2–3 weeks</span>
           <span class="oc-pill">10 deliverables</span>
         </div>
@@ -315,12 +359,11 @@
 
       <!-- Sprint -->
       <a href="services.html#sprint" class="offer-card" style="text-decoration:none">
-        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M15 4L6 16h8L10 24l12-12h-8L15 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
         <div class="oc-tag">Implementation</div>
         <div class="oc-name">Executive Reporting Modernization Sprint</div>
         <div class="oc-desc">Build or redesign a high-value reporting package — executive KPI dashboard, KPI dictionary, source-of-truth map, and reporting standards guide. Leadership gets a cleaner, trusted reporting system built around actual decisions.</div>
         <div class="oc-meta">
-          <span class="oc-pill">$10,000–$35,000</span>
+          <span class="oc-pill">$15,000–$40,000</span>
           <span class="oc-pill">4–8 weeks</span>
         </div>
         <div class="oc-link" style="color:var(--twine)">Learn more →</div>
@@ -328,12 +371,11 @@
 
       <!-- Governance -->
       <a href="services.html#governance" class="offer-card" style="text-decoration:none">
-        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 4L5 8v6c0 5 4 9 9 10 5-1 9-5 9-10V8L14 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 14l3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="oc-tag">Governance</div>
         <div class="oc-name">Data Governance Starter Kit</div>
         <div class="oc-desc">A practical governance system — KPI dictionary, metric owner matrix, data owner RACI, reporting intake process, and an operating model that reduces metric confusion without creating bureaucracy.</div>
         <div class="oc-meta">
-          <span class="oc-pill">$10,000–$30,000</span>
+          <span class="oc-pill">$12,000–$35,000</span>
           <span class="oc-pill">4–6 weeks</span>
         </div>
         <div class="oc-link" style="color:var(--twine)">Learn more →</div>
@@ -341,12 +383,11 @@
 
       <!-- Retainer -->
       <a href="services.html#retainer" class="offer-card" style="text-decoration:none">
-        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M22 14a8 8 0 11-2.5-5.7L22 6v5h-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="oc-tag">Ongoing support</div>
         <div class="oc-name">Fractional Analytics Operations Retainer</div>
         <div class="oc-desc">Senior analytics operating support on an ongoing basis — roadmap management, governance, dashboard improvements, stakeholder intake, and reporting leadership — without the cost of a full-time hire.</div>
         <div class="oc-meta">
-          <span class="oc-pill">$2,500–$10,000/mo</span>
+          <span class="oc-pill">$3,500–$12,000/mo</span>
           <span class="oc-pill">Defined scope</span>
         </div>
         <div class="oc-link" style="color:var(--twine)">Learn more →</div>
@@ -365,7 +406,7 @@
   <div class="wrap">
     <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:16px">Ideal clients</div>
     <h2>Growing companies with real reporting chaos.</h2>
-    <p class="intro">Typically 50–500 employees, operations-heavy, with real reporting pain and no mature analytics operating model.</p>
+    <p class="intro">The best-fit clients are large enough to have real reporting pain but not so large that procurement and internal politics slow everything down. Typically 50–500 employees, operations-heavy, with no mature analytics operating model.</p>
     <div class="personas">
       <div class="persona"><div class="pn">COO</div><div class="pp">"I can't see what's happening across the business fast enough."</div></div>
       <div class="persona"><div class="pn">CFO</div><div class="pp">"Every department has a different number."</div></div>
@@ -403,27 +444,6 @@
   </div>
 </div>
 
-<!-- ── TESTIMONIALS ── -->
-<section class="testimonials">
-  <div class="wrap">
-    <div class="testi-label">Client feedback</div>
-    <div class="testi-grid">
-      <div class="testi">
-        <p class="testi-text">What stood out most was how practical the work was. We did not just receive charts &mdash; we received a clearer way to understand the business. The dashboard helped us identify trends, review performance, and make decisions with more confidence.</p>
-        <span class="testi-attr">Business Owner</span>
-      </div>
-      <div class="testi">
-        <p class="testi-text">The biggest improvement was clarity. We finally had one view that showed our top-selling products, slower-moving inventory, and category trends. It made our buying and promotion decisions much easier &mdash; we were no longer relying only on gut feeling.</p>
-        <span class="testi-attr">Owner, Retail</span>
-      </div>
-      <div class="testi">
-        <p class="testi-text">The biggest value was being able to see the full process from request to completion. The dashboard showed us where time was being lost and helped us focus on the changes that would make the biggest difference.</p>
-        <span class="testi-attr">Operations Director, Field Services</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── FEATURED INSIGHT ── -->
 <section class="featured">
   <div class="wrap">
@@ -460,8 +480,8 @@
       <div class="about-mark" aria-hidden="true">æ<span class="sm">Jonathan Doreau</span></div>
       <div>
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:16px">Who's behind it</div>
-        <h2 class="about-right" style="font-family:'Abril Fatface',serif;font-weight:400;font-size:clamp(24px,3.2vw,36px);color:var(--navy);margin-bottom:16px;line-height:1.12">Fifteen years turning messy data into decisions people trust.</h2>
-        <p style="font-size:17px;color:var(--slate);line-height:1.65;font-weight:300;margin-bottom:16px"><strong style="color:var(--navy);font-weight:700">Jonathan Doreau</strong> has 15+ years in analytics and BI leadership across finance, healthcare, real estate, and nonprofit — building reporting systems from scratch and fixing environments where trust in data had broken down.</p>
+        <h2 class="about-right" style="font-family:'Newsreader',Georgia,serif;font-weight:600;letter-spacing:-.01em;font-size:clamp(24px,3.2vw,36px);color:var(--navy);margin-bottom:16px;line-height:1.12">Fifteen years turning messy data into decisions people trust.</h2>
+        <p style="font-size:17px;color:var(--slate);line-height:1.65;font-weight:300;margin-bottom:16px"><strong style="color:var(--navy);font-weight:700">Jonathan Doreau</strong> has spent 15+ years as an analytics and BI leader across finance, healthcare and research (including an NIH-funded program), real estate, and nonprofit — building reporting systems from scratch, fixing environments that had lost trust, and translating messy data into governance that organizations actually use.</p>
         <p style="font-size:17px;color:var(--slate);line-height:1.65;font-weight:300;margin-bottom:16px">The common thread across all of it: taking fragmented, distrusted reporting environments and turning them into systems people rely on when they make real decisions.</p>
         <div class="creds"><span class="cred-tag">SQL</span><span class="cred-tag">Power BI</span><span class="cred-tag">Tableau</span><span class="cred-tag">Snowflake</span><span class="cred-tag">KPI Design</span><span class="cred-tag">Governance</span><span class="cred-tag">Reporting Modernization</span></div>
         <a href="about.html" class="about-link">Full background</a>
@@ -477,7 +497,7 @@
   <p>A free 30-minute diagnostic call — no pitch, no slide deck. We identify the biggest reporting trust gaps in your organization and whether a Reporting Clarity Assessment would be useful. If it's not the right fit, we'll say so.</p>
   <div class="btn-row" style="justify-content:center">
     <a href="contact.html" class="btn" style="color:var(--navy)">Book a Reporting Trust Diagnostic</a>
-    <a href="health-check.html" class="btn ghost">Take the Health Check &rarr;</a>
+    <a href="resources.html" class="btn ghost">Download the Health Check</a>
   </div>
 </section>
 
@@ -485,7 +505,7 @@
 <footer>
   <div class="foot-in">
     <div>
-      <div class="foot-brand"><svg class="logo-mark" viewBox="0 0 192 192" height="28" width="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#FBFAF5" stroke="#FBFAF5" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
       <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
     </div>
     <div class="foot-col">

@@ -8,41 +8,71 @@
 <meta property="og:title" content="About Jonathan Doreau — Aesop Analytics">
 <meta property="og:description" content="15+ years turning fragmented, distrusted data environments into reporting people actually rely on.">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="favicon.svg"><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="core.css">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-  /* Page-specific styles */
+  :root { --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B; --muted:#5A6775; --slate:#495867; --cream:#F3EFE6; --line:#E7E0D2; --rule:#D9CFBC; --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555; --navy-foot:#08111F; --navy-mist:#D6DDE8; --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--paper); color:var(--ink); font-family:"DM Sans","Helvetica Neue",Arial,sans-serif; font-size:18px; line-height:1.66; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .display-serif { font-family:"Abril Fatface",serif!important; font-weight:400!important; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 32px; }
 
+  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
+  .nav-in { max-width:1080px; margin:0 auto; padding:0 32px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .logo { display:flex; align-items:baseline; gap:7px; }
+  .logo .ae { font-family:"Abril Fatface",serif; font-size:26px; color:var(--navy); }
+  .logo .nm { font-family:"Abril Fatface",serif; font-size:22px; color:var(--navy); }
+  .logo .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.34em; font-size:10px; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .nav-links { display:flex; gap:28px; font-size:13px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+  .nav-links a { color:var(--slate); transition:color .18s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--navy); }
+  .nav-cta { background:var(--navy); color:var(--cream)!important; padding:10px 20px; border-radius:4px; font-size:13px; font-weight:600; transition:background .2s; }
+  .nav-cta:hover { background:var(--navy-3); }
+  .ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+  .ham span { display:block; width:22px; height:2px; background:var(--navy); border-radius:2px; }
+  @media(max-width:760px){ .nav-links { display:none; } .ham { display:flex; } .nav-cta { display:none; } }
+  .mobile-menu { display:none; position:fixed; inset:64px 0 0 0; z-index:19; background:var(--paper); padding:32px; flex-direction:column; gap:28px; border-top:1px solid var(--rule); }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { font-size:22px; font-weight:600; color:var(--navy); }
+  .mobile-menu .mob-cta { background:var(--navy); color:var(--cream); padding:14px 24px; border-radius:4px; font-size:15px; font-weight:600; align-self:flex-start; margin-top:8px; display:inline-block; }
+
+  /* HERO */
   .about-hero { background:var(--navy); padding:80px 0 0; overflow:hidden; position:relative; }
   .about-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
+  .eyebrow { font-weight:600; text-transform:uppercase; letter-spacing:.28em; font-size:11.5px; color:var(--twine); margin-bottom:20px; }
   .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; padding-bottom:0; }
   @media(max-width:760px){ .hero-grid { grid-template-columns:1fr; gap:32px; } }
-  .hero-text h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(38px,5.6vw,66px); line-height:1.04; color:#fff; margin-bottom:20px; }
+  .hero-text h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(38px,5.6vw,66px); line-height:1.04; color:#fff; margin-bottom:20px; }
   .hero-text p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:48ch; margin-bottom:28px; }
   .hero-links { display:flex; gap:12px; flex-wrap:wrap; padding-bottom:56px; }
   .hero-link { font-size:13px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(193,140,93,.35); padding:10px 18px; border-radius:4px; transition:all .18s; }
   .hero-link:hover { background:rgba(193,140,93,.1); border-color:var(--twine); }
+  /* Portrait placeholder */
   .hero-portrait { display:flex; align-items:flex-end; justify-content:center; }
   .portrait-block { width:100%; max-width:340px; background:var(--navy-2); border-radius:8px 8px 0 0; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; min-height:300px; position:relative; }
   .portrait-block .ae-mark { font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.2); line-height:1; position:absolute; bottom:-10px; }
   .portrait-block .portrait-name { position:relative; z-index:2; background:var(--twine); color:#fff; width:100%; padding:16px 20px; }
   .portrait-block .portrait-name .pn { font-size:15px; font-weight:700; }
   .portrait-block .portrait-name .pt { font-size:12px; font-weight:400; opacity:.8; margin-top:2px; }
+
+  /* BODY SECTIONS */
   .body-section { padding:72px 0; border-bottom:1px solid var(--rule); }
   .body-section:last-of-type { border-bottom:none; }
   .bs-grid { display:grid; grid-template-columns:280px 1fr; gap:56px; }
   @media(max-width:760px){ .bs-grid { grid-template-columns:1fr; gap:24px; } }
   .bs-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:12px; }
-  .bs-heading { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.12; }
+  .bs-heading { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.12; }
   .bs-body p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:18px; }
   .bs-body p:last-child { margin-bottom:0; }
   .bs-body strong { color:var(--navy); font-weight:700; }
   .bs-body a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+
+  /* CAREER TIMELINE */
   .timeline { margin-top:8px; display:flex; flex-direction:column; gap:0; }
   .tl-item { display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--line); align-items:start; }
   .tl-item:last-child { border-bottom:none; }
@@ -50,54 +80,68 @@
   .tl-content .tc-role { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:4px; }
   .tl-content .tc-org { font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:400; }
   .tl-content .tc-desc { font-size:14.5px; color:var(--slate); line-height:1.5; font-weight:300; }
+
+  /* TOOLS GRID */
   .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
   @media(max-width:560px){ .tools-grid { grid-template-columns:repeat(2,1fr); } }
   .tool-card { background:var(--paper-2); border:1px solid var(--line); border-radius:5px; padding:16px 14px; }
   .tool-card .tn { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
   .tool-card .td { font-size:12.5px; color:var(--muted); line-height:1.4; font-weight:300; }
+
+  /* PHILOSOPHY */
   .philosophy { background:var(--navy); padding:72px 0; }
   .phil-in { max-width:1080px; margin:0 auto; padding:0 32px; }
-  .phil-in  .phil-in h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:40px; }
+  .phil-in .eyebrow { color:var(--twine); }
+  .phil-in h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:40px; }
   .phil-points { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
   @media(max-width:660px){ .phil-points { grid-template-columns:1fr; } }
   .phil-pt { background:var(--navy-2); border-radius:6px; padding:24px 22px; }
   .phil-pt h3 { font-size:16px; font-weight:700; color:var(--twine); margin-bottom:10px; }
-  .phil-pt p { font-size:15px; color:#8A9FB8; line-height:1.6; font-weight:300; }
-  .cta-strip p { font-size:17px; color:var(--slate); font-weight:300; max-width:44ch; margin:0 auto 28px; line-height:1.6; }
-  @media(max-width:760px){ }
-  @media(max-width:460px){ }
+  .phil-pt p { font-size:15px; color:#B8C2D0; line-height:1.6; font-weight:400; }
 
-  /* ── Philosophy icons ── */
-  .phil-pt-icon { display:block; width:24px; height:24px; margin-bottom:12px; }
+  /* CTA */
+  .cta-strip { background:var(--paper-2); border-top:1px solid var(--rule); padding:72px 32px; text-align:center; }
+  .cta-strip h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:16px; }
+  .cta-strip p { font-size:17px; color:var(--slate); font-weight:300; max-width:44ch; margin:0 auto 28px; line-height:1.6; }
+  .btn { display:inline-block; background:var(--navy); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.03em; padding:15px 30px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
+  .btn:hover { transform:translateY(-2px); background:var(--navy-3); }
+
+  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
+  .foot-in { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1fr auto 1fr; gap:32px; align-items:start; }
+  @media(max-width:680px){ .foot-in { grid-template-columns:1fr; gap:24px; } }
+  .foot-brand .ae { font-family:"Abril Fatface",serif; font-size:24px; color:var(--twine); }
+  .foot-brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
+  .foot-brand .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.32em; font-size:10px; text-transform:uppercase; color:var(--twine); }
+  .foot-tagline { font-style:italic; color:#4A6070; font-size:13px; margin-top:8px; }
+  .foot-nav { display:flex; flex-direction:column; gap:10px; }
+  .foot-nav a { font-size:13px; font-weight:500; color:#6A8099; transition:color .18s; }
+  .foot-nav a:hover { color:var(--twine); }
+  .foot-nav .fnlabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:4px; }
+  .foot-legal { text-align:right; font-size:12.5px; color:#3A5060; line-height:1.7; }
+  @media(max-width:680px){ .foot-legal { text-align:left; } }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-in">
-    <a href="index.html" class="logo"><svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
     <div class="nav-links">
       <a href="services.html">Services</a>
-      <a href="assessment.html" class="nav-accent">Assessment</a>
-      <a href="work.html">Work</a>
       <a href="insights.html">Insights</a>
-      <a href="resources.html">Resources</a>
       <a href="about.html" class="active">About</a>
       <a href="contact.html">Contact</a>
     </div>
-    <a href="contact.html" class="nav-cta">Book a diagnostic</a>
+    <a href="contact.html" class="nav-cta">Start a conversation</a>
     <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   <a href="services.html" onclick="closeMob()">Services</a>
-  <a href="assessment.html" class="mob-accent" onclick="closeMob()">Assessment</a>
-  <a href="work.html" onclick="closeMob()">Work</a>
   <a href="insights.html" onclick="closeMob()">Insights</a>
-  <a href="resources.html" onclick="closeMob()">Resources</a>
   <a href="about.html" onclick="closeMob()">About</a>
   <a href="contact.html" onclick="closeMob()">Contact</a>
-  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Start a conversation</a>
 </div>
 
 <div class="about-hero">
@@ -134,10 +178,10 @@
         <div class="bs-heading">The career arc.</div>
       </div>
       <div class="bs-body">
-        <p>I started in finance — regulated reporting, risk dashboards, and the discipline that comes from environments where a wrong number has real consequences.</p>
-        <p>Healthcare and research followed — including an <strong>NIH-funded research program</strong> where data credibility mattered as much as the work itself, and reporting had to serve both leadership and external funders. That's where governance stopped being abstract: the unglamorous work that makes everything downstream trustworthy.</p>
-        <p>Real estate and nonprofit came next, and what struck me most was how similar the data problems were across industries that seemed completely different. Fragmented sources, undefined metrics, reports that couldn't be reconciled, a data team spending most of its time answering one-off questions instead of building anything lasting. The patterns repeat.</p>
-        <p>Aesop Analytics is the distillation of those fifteen years — bringing enterprise-quality thinking and execution to organizations that don't need a large team to get there.</p>
+        <p>I started in finance — regulated reporting, risk dashboards, and the particular discipline that comes from working in environments where a wrong number has real consequences. That foundation taught me to care about data quality and governance before they became fashionable topics.</p>
+        <p>From there: healthcare and research, including executive reporting and analytics for an <strong>NIH-funded research program</strong> — a context where data credibility mattered as much as the research itself, and where the reporting had to serve both operational leadership and external funders simultaneously. That's where I developed a genuine appreciation for governance: the unglamorous work that makes everything downstream trustworthy.</p>
+        <p>Real estate and nonprofit work came next, and what struck me most was how similar the data problems were across industries that seemed completely different. Fragmented sources, undefined metrics, reports that couldn't be reconciled with each other, a data team spending most of its time answering one-off questions instead of building anything lasting. The patterns repeat.</p>
+        <p>Aesop Analytics is the distillation of those fifteen years — a deliberate attempt to bring the quality of thinking and execution I'd do at a large organization to companies and nonprofits that can't afford (and don't need) a large organization.</p>
         <div class="timeline" style="margin-top:32px">
           <div class="tl-item">
             <div class="tl-year">Finance</div>
@@ -217,22 +261,18 @@
     <h2>How I think about this work.</h2>
     <div class="phil-points">
       <div class="phil-pt">
-        <svg class="phil-pt-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v4M12 18v4M4 12H2M22 12h-2M6.3 6.3 4.9 4.9M19.1 19.1l-1.4-1.4M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="#C18C5D" stroke-width="1.6"/></svg>
         <h3>Strategy before tools.</h3>
         <p>Technology decisions made before the strategic questions are answered tend to create expensive, underused infrastructure. The question "what do you need your data to do?" has to precede "what platform should we use?"</p>
       </div>
       <div class="phil-pt">
-        <svg class="phil-pt-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3L4 7v5c0 5.5 3.5 9 8 11 4.5-2 8-5.5 8-11V7L12 3Z" stroke="#C18C5D" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Trust is the product.</h3>
         <p>The real deliverable of analytics work isn't a dashboard — it's a data environment that people trust enough to use when they make decisions. Everything technical is in service of that.</p>
       </div>
       <div class="phil-pt">
-        <svg class="phil-pt-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#C18C5D" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="#C18C5D" stroke-width="1.6"/><circle cx="12" cy="12" r="1.5" fill="#C18C5D"/></svg>
         <h3>Selective is better.</h3>
         <p>I take fewer engagements and do them better. The work I take is work I believe I can genuinely add value to. If that's not the case after an initial conversation, I'll say so — and point somewhere better.</p>
       </div>
       <div class="phil-pt">
-        <svg class="phil-pt-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v16M6 20h12" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round"/><path d="M3 10l4.5-5 4.5 5" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10l4.5-5L21 10" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3>Even-handed analysis.</h3>
         <p>The same standard applies to the field studies on this site and to client work: steelman the counter-argument, be clear about what the data can and can't say, and don't let a preferred conclusion drive the analysis.</p>
       </div>
@@ -241,40 +281,26 @@
 </div>
 
 <div class="cta-strip">
-  <div style="max-width:640px;margin:0 auto 32px;font-family:'Abril Fatface',serif;font-size:clamp(20px,2.8vw,28px);color:rgba(255,255,255,.7);line-height:1.35;font-style:italic;padding:0 32px">&ldquo;We had valuable data, but it was scattered across systems and spreadsheets. The project helped us clean it up, organize it, and turn it into reporting that our team could actually use.&rdquo;</div>
-  <div style="font-size:12px;font-weight:600;color:var(--twine);text-transform:uppercase;letter-spacing:.14em;margin-bottom:32px">&mdash; Operations Director</div>
-  <h2>Book a diagnostic.</h2>
+  <h2>Start a conversation.</h2>
   <p>A 30-minute call to understand your situation. No pitch, no commitment required.</p>
-  <a href="contact.html" class="btn">Book a free diagnostic →</a>
+  <a href="contact.html" class="btn">Get in touch →</a>
 </div>
 
 <footer>
   <div class="foot-in">
     <div>
-      <div class="foot-brand"><svg class="logo-mark" viewBox="0 0 192 192" height="28" width="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#FBFAF5" stroke="#FBFAF5" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an"> Analytics</span></div>
-      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Every dataset has a moral.</div>
     </div>
-    <div class="foot-col">
-      <h4>Services</h4>
-      <a href="assessment.html">Reporting Clarity Assessment</a>
-      <a href="services.html#sprint">Modernization Sprint</a>
-      <a href="services.html#governance">Governance Kit</a>
-      <a href="services.html#retainer">Fractional Retainer</a>
-    </div>
-    <div class="foot-col">
-      <h4>Content</h4>
-      <a href="insights.html">Insights &amp; Studies</a>
-      <a href="resources.html">Free Resources</a>
-    </div>
-    <div class="foot-col">
-      <h4>Company</h4>
+    <div class="foot-nav">
+      <span class="fnlabel">Navigation</span>
+      <a href="services.html">Services</a>
+      <a href="insights.html">Insights</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a>
-      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
+    <div class="foot-legal">Nashville, TN<br><a href="mailto:doreau.jonathan@gmail.com" style="color:#6A8099">doreau.jonathan@gmail.com</a><br><br>© 2026 Aesop Analytics</div>
   </div>
-  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
 </footer>
 
 <script>

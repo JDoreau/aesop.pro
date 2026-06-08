@@ -8,49 +8,87 @@
 <meta property="og:title" content="Insights — Aesop Analytics">
 <meta property="og:description" content="Expert articles on reporting modernization, KPI trust, and data governance. Every dataset has a moral.">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="favicon.svg"><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="core.css">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-  /* Page-specific styles */
+  :root { --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B; --muted:#5A6775; --slate:#495867; --cream:#F3EFE6; --line:#E7E0D2; --rule:#D9CFBC; --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555; --navy-foot:#08111F; --navy-mist:#D6DDE8; --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--paper); color:var(--ink); font-family:"DM Sans","Helvetica Neue",Arial,sans-serif; font-size:18px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .display-serif { font-family:"Abril Fatface",serif!important; font-weight:400!important; }
 
+  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
+  .nav-in { max-width:1080px; margin:0 auto; padding:0 32px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .logo { display:flex; align-items:baseline; gap:7px; }
+  .logo .ae { font-family:"Abril Fatface",serif; font-size:26px; color:var(--navy); }
+  .logo .nm { font-family:"Abril Fatface",serif; font-size:22px; color:var(--navy); }
+  .logo .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.34em; font-size:10px; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .nav-links { display:flex; gap:24px; font-size:12.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+  .nav-links a { color:var(--slate); transition:color .18s; white-space:nowrap; }
+  .nav-links a:hover,.nav-links a.active { color:var(--navy); }
+  .nav-links a.nav-accent { color:var(--twine); }
+  .nav-cta { background:var(--navy); color:var(--cream)!important; padding:10px 18px; border-radius:4px; font-size:12.5px; font-weight:600; transition:background .2s; white-space:nowrap; flex-shrink:0; }
+  .nav-cta:hover { background:var(--navy-3); }
+  .ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; flex-shrink:0; }
+  .ham span { display:block; width:22px; height:2px; background:var(--navy); border-radius:2px; }
+  @media(max-width:860px){ .nav-links { display:none; } .ham { display:flex; } .nav-cta { display:none; } }
+  .mobile-menu { display:none; position:fixed; inset:64px 0 0 0; z-index:19; background:var(--paper); padding:32px; flex-direction:column; gap:24px; border-top:1px solid var(--rule); overflow-y:auto; }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { font-size:20px; font-weight:600; color:var(--navy); }
+  .mobile-menu a.mob-accent { color:var(--twine); }
+  .mobile-menu .mob-cta { background:var(--navy); color:var(--cream); padding:14px 24px; border-radius:4px; font-size:15px; font-weight:600; align-self:flex-start; margin-top:8px; display:inline-block; }
+
+  /* PAGE HERO */
+  .page-hero { background:var(--navy); padding:72px 0 56px; overflow:hidden; position:relative; }
   .page-hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
-  .page-hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(38px,5.6vw,68px); line-height:1.04; color:#fff; margin-bottom:18px; }
+  .page-hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
+  .eyebrow { font-weight:600; text-transform:uppercase; letter-spacing:.28em; font-size:11.5px; color:var(--twine); margin-bottom:20px; }
+  .page-hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(38px,5.6vw,68px); line-height:1.04; color:#fff; margin-bottom:18px; }
   .page-hero p { font-size:18px; color:#C4BDAE; font-weight:300; max-width:54ch; line-height:1.6; }
+
+  /* PILLAR TABS */
   .pillars { background:var(--paper-2); border-bottom:1px solid var(--rule); padding:16px 0; position:sticky; top:64px; z-index:10; }
   .pillar-in { max-width:1080px; margin:0 auto; padding:0 32px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   .pillar-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); margin-right:4px; white-space:nowrap; }
   .pillar-btn { font-size:12px; font-weight:600; letter-spacing:.03em; padding:6px 13px; border-radius:20px; border:1px solid var(--rule); background:transparent; color:var(--muted); cursor:pointer; transition:all .15s; font-family:"DM Sans",sans-serif; white-space:nowrap; }
   .pillar-btn:hover, .pillar-btn.on { background:var(--navy); color:#fff; border-color:var(--navy); }
+
+  /* MAIN LAYOUT */
   .content { max-width:1080px; margin:0 auto; padding:52px 32px 80px; display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:start; }
-  .sidebar { display:none; }
-  }
-  
-    
-    .feat-card { background:var(--navy); border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1.1fr .9fr; margin-bottom:48px; text-decoration:none; }
+  @media(max-width:860px){ .content { grid-template-columns:1fr; } .sidebar { display:none; } }
+
+  /* FEATURED */
+  .feat-card { background:var(--navy); border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1.1fr .9fr; margin-bottom:48px; text-decoration:none; }
   @media(max-width:600px){ .feat-card { grid-template-columns:1fr; } }
   .feat-card .ftxt { padding:34px 30px; }
   .feat-card .ftag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:12px; }
-  .feat-card h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:22px; line-height:1.15; color:#fff; margin-bottom:12px; }
+  .feat-card h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:22px; line-height:1.15; color:#fff; margin-bottom:12px; }
   .feat-card p { font-size:14.5px; color:#B8BDCA; line-height:1.6; font-weight:300; margin-bottom:18px; }
   .feat-card .fread { font-size:12.5px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; }
   .feat-card .fviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:24px; min-height:180px; }
   .feat-card .fviz svg { width:100%; max-width:220px; height:auto; }
+
+  /* PILLAR SECTIONS */
   .pillar-section { margin-bottom:44px; }
   .ps-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); padding:12px 0; border-bottom:2px solid var(--navy); margin-bottom:0; display:flex; align-items:center; justify-content:space-between; }
   .ps-count { font-size:11px; font-weight:400; color:var(--muted); }
+
+  /* ARTICLE ROWS */
   .art-row { display:grid; grid-template-columns:28px 1fr auto; gap:16px; align-items:start; padding:20px 6px; border-bottom:1px solid var(--line); text-decoration:none; transition:background .15s; border-radius:4px; }
   .art-row:hover { background:var(--paper-2); }
   .art-row .ar-num { font-family:"Abril Fatface",serif; font-size:17px; color:var(--twine); text-align:center; padding-top:2px; }
-  .art-row .ar-  .art-row .ar-title { font-size:16.5px; font-weight:700; color:var(--ink); margin-bottom:4px; line-height:1.3; }
+  .art-row .ar-body { }
+  .art-row .ar-title { font-size:16.5px; font-weight:700; color:var(--ink); margin-bottom:4px; line-height:1.3; }
   .art-row .ar-desc { font-size:13.5px; color:var(--muted); line-height:1.5; font-weight:300; }
   .art-row .ar-meta { text-align:right; flex-shrink:0; }
   .ar-pill { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); background:var(--paper-2); padding:3px 8px; border-radius:20px; border:1px solid var(--line); white-space:nowrap; }
   .ar-time { display:block; font-size:11px; color:var(--muted); margin-top:4px; }
   @media(max-width:560px){ .art-row .ar-meta { display:none; } .art-row { grid-template-columns:28px 1fr; } }
+
+  /* SIDEBAR */
   .sidebar { position:sticky; top:128px; }
   .sb-block { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px; margin-bottom:16px; }
   .sb-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:12px; }
@@ -62,18 +100,29 @@
   .pl-item:last-child { border-bottom:none; }
   .pl-item:hover { color:var(--navy); }
   .pl-ct { font-size:11px; font-weight:700; color:var(--muted); background:var(--paper-2); padding:2px 8px; border-radius:10px; }
-  @media(max-width:760px){ }
-  @media(max-width:460px){ }
+
+  /* FOOTER */
+  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
+  .foot-in { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:40px; }
+  @media(max-width:760px){ .foot-in { grid-template-columns:1fr 1fr; gap:28px; } }
+  @media(max-width:460px){ .foot-in { grid-template-columns:1fr; } }
+  .foot-brand .ae { font-family:"Abril Fatface",serif; font-size:24px; color:var(--twine); }
+  .foot-brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
+  .foot-brand .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.32em; font-size:10px; text-transform:uppercase; color:var(--twine); }
+  .foot-tagline { font-style:italic; color:#4A6070; font-size:13px; margin-top:8px; }
+  .foot-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:14px; }
+  .foot-col a { display:block; font-size:13px; color:#6A8099; margin-bottom:8px; transition:color .18s; }
+  .foot-col a:hover { color:var(--twine); }
+  .foot-legal { font-size:12px; color:#3A5060; margin-top:28px; padding-top:20px; border-top:1px solid rgba(255,255,255,.06); max-width:1080px; margin-left:auto; margin-right:auto; padding-left:32px; padding-right:32px; }
 </style>
 </head>
 <body>
 <nav>
   <div class="nav-in">
-    <a href="index.html" class="logo"><svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <a href="index.html" class="logo"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
     <div class="nav-links">
       <a href="services.html">Services</a>
       <a href="assessment.html" class="nav-accent">Assessment</a>
-      <a href="work.html">Work</a>
       <a href="insights.html" class="active">Insights</a>
       <a href="resources.html">Resources</a>
       <a href="about.html">About</a>
@@ -86,12 +135,11 @@
 <div class="mobile-menu" id="mobile-menu">
   <a href="services.html" onclick="closeMob()">Services</a>
   <a href="assessment.html" class="mob-accent" onclick="closeMob()">Assessment</a>
-  <a href="work.html" onclick="closeMob()">Work</a>
   <a href="insights.html" onclick="closeMob()">Insights</a>
   <a href="resources.html" onclick="closeMob()">Resources</a>
   <a href="about.html" onclick="closeMob()">About</a>
   <a href="contact.html" onclick="closeMob()">Contact</a>
-  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
+  <a href="contact.html" class="mob-cta" onclick="closeMob()">Book a diagnostic call</a>
 </div>
 
 <div class="page-hero">
@@ -261,15 +309,7 @@
 
     <!-- FIELD STUDIES -->
     <div class="pillar-section" data-pillar="field-study">
-      <div class="ps-head">Field Studies — Economics &amp; Data <span class="ps-count">3 studies</span></div>
-      <a href="article-wage-inequality.html" class="art-row" data-cat="field-study">
-        <span class="ar-num">&aelig;</span>
-        <div class="ar-body">
-          <div class="ar-title">Forty years of wage data: what the average hides</div>
-          <div class="ar-desc">The top 1% saw 206% wage growth since 1979; the bottom 90% saw 29%. An even-handed look at what SSA earnings data shows &mdash; and what it doesn&rsquo;t.</div>
-        </div>
-        <div class="ar-meta"><span class="ar-pill">Field Study</span><span class="ar-time">8 min</span></div>
-      </a>
+      <div class="ps-head">Field Studies — Economics &amp; Data <span class="ps-count">2 studies</span></div>
       <a href="article-corporate-profits-inflation.html" class="art-row" data-cat="field-study">
         <span class="ar-num">æ</span>
         <div class="ar-body">
@@ -292,7 +332,7 @@
         <div class="pl-item" onclick="filterByPillar('modernization')">Dashboard Modernization <span class="pl-ct">3</span></div>
         <div class="pl-item" onclick="filterByPillar('governance')">Governance &amp; Strategy <span class="pl-ct">3</span></div>
         <div class="pl-item" onclick="filterByPillar('ai-readiness')">AI Readiness <span class="pl-ct">2</span></div>
-        <div class="pl-item" onclick="filterByPillar('field-study')">Field Studies <span class="pl-ct">3</span></div>
+        <div class="pl-item" onclick="filterByPillar('field-study')">Field Studies <span class="pl-ct">2</span></div>
       </div>
     </div>
     <div class="sb-block">
@@ -311,7 +351,7 @@
 <footer>
   <div class="foot-in">
     <div>
-      <div class="foot-brand"><svg class="logo-mark" viewBox="0 0 192 192" height="28" width="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#FBFAF5" stroke="#FBFAF5" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
       <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
     </div>
     <div class="foot-col"><h4>Services</h4><a href="assessment.html">Reporting Clarity Assessment</a><a href="services.html#sprint">Modernization Sprint</a><a href="services.html#governance">Governance Kit</a><a href="services.html#retainer">Fractional Retainer</a></div>
