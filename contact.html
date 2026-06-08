@@ -45,6 +45,39 @@
   .fit-head.less { color:var(--contessa); }
   .fit-section > .fs-label { font-family:"Abril Fatface",serif; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:32px; }
   .fit-box { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px; }
+
+  /* ---- Contact form ---- */
+  .cf { margin-top:28px; }
+  .cf-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  @media(max-width:520px){ .cf-row { grid-template-columns:1fr; } }
+  .cf-field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+  .cf-row .cf-field { margin-bottom:0; }
+  .cf-label { font-size:13px; font-weight:600; color:var(--slate); letter-spacing:.02em; }
+  .cf-req { color:var(--twine); }
+  .cf-input { font-family:"DM Sans",sans-serif; font-size:15px; color:var(--ink); background:#fff; border:1.5px solid var(--line); border-radius:5px; padding:11px 14px; width:100%; transition:border-color .18s, box-shadow .18s; }
+  .cf-input:focus { outline:none; border-color:var(--navy); box-shadow:0 0 0 3px rgba(15,31,56,.07); }
+  .cf-input::placeholder { color:var(--muted); font-weight:300; font-style:italic; }
+  .cf-select { appearance:none; -webkit-appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A6775' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
+  .cf-textarea { resize:vertical; min-height:130px; line-height:1.55; }
+  .cf-footer { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:4px; }
+  .cf-submit { background:var(--navy); color:#fff; font-family:"DM Sans",sans-serif; font-size:15px; font-weight:700; letter-spacing:.02em; padding:13px 28px; border:none; border-radius:4px; cursor:pointer; transition:background .18s, transform .18s; }
+  .cf-submit:hover { background:var(--navy-2); transform:translateY(-1px); }
+  .cf-submit:disabled { opacity:.55; cursor:not-allowed; transform:none; }
+  .cf-note { font-size:13px; color:var(--muted); font-weight:300; }
+  .cf-error { font-size:13px; color:var(--contessa); margin-top:6px; display:none; }
+  /* Success state */
+  .cf-success { display:none; flex-direction:column; align-items:flex-start; background:rgba(126,176,155,.08); border:1px solid rgba(126,176,155,.3); border-radius:8px; padding:28px 28px; margin-top:28px; }
+  .cf-success.visible { display:flex; }
+  .cf-success-check { width:44px; height:44px; background:rgba(126,176,155,.15); border:2px solid #7EB09B; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; color:#7EB09B; font-weight:700; margin-bottom:14px; flex-shrink:0; }
+  .cf-success h3 { font-size:20px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+  .cf-success p { font-size:15px; color:var(--slate); font-weight:300; line-height:1.55; }
+  /* Alt channels */
+  .alt-channels { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:12px; }
+  .alt-ch-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--muted); margin-bottom:4px; }
+  .alt-ch { display:flex; align-items:center; gap:12px; color:var(--slate); text-decoration:none; font-size:14px; font-weight:400; transition:color .18s; }
+  .alt-ch:hover { color:var(--navy); }
+  .alt-ch-icon { width:32px; height:32px; background:var(--paper-2); border:1px solid var(--line); border-radius:5px; display:flex; align-items:center; justify-content:center; font-family:"Abril Fatface",serif; font-size:14px; color:var(--navy); flex-shrink:0; }
+  .alt-ch-arrow { color:var(--twine); margin-left:auto; font-size:14px; }
   .fit-box.good-box { border-top:3px solid var(--navy); }
   .fit-box.less-box { border-top:3px solid rgba(206,118,107,.4); }
   .fit-item { display:flex; gap:12px; align-items:flex-start; font-size:15.5px; color:var(--slate); padding:10px 0; border-bottom:1px solid var(--line); line-height:1.5; font-weight:300; }
@@ -90,25 +123,61 @@
     <div class="eyebrow">Contact</div>
     <h1>Tell us what your data isn't telling you.</h1>
     <p>Every engagement starts the same way: a short, honest conversation about your situation. No pitch, no slide deck. If there's a fit, we'll define what a first step looks like. If there isn't, we'll tell you that too — and point you somewhere better.</p>
-    <p><strong>Response time:</strong> typically within one business day.</p>
-    <div class="channels">
-      <a href="mailto:doreau.jonathan@gmail.com" class="channel">
-        <div class="ch-icon">@</div>
-        <div class="ch-body">
-          <div class="ch-label">Email</div>
-          <div class="ch-value">doreau.jonathan@gmail.com</div>
-          <div class="ch-sub">Best for initial outreach and detailed questions</div>
+    <form class="cf" id="contact-form" novalidate>
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_subject" value="New inquiry — Aesop Analytics">
+      <div class="cf-row">
+        <div class="cf-field">
+          <label class="cf-label" for="cf-name">Name <span class="cf-req">*</span></label>
+          <input class="cf-input" type="text" id="cf-name" name="name" required placeholder="Your name" autocomplete="name">
         </div>
-        <span class="ch-arrow">→</span>
+        <div class="cf-field">
+          <label class="cf-label" for="cf-email">Email <span class="cf-req">*</span></label>
+          <input class="cf-input" type="email" id="cf-email" name="email" required placeholder="you@company.com" autocomplete="email">
+        </div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label class="cf-label" for="cf-company">Company</label>
+          <input class="cf-input" type="text" id="cf-company" name="company" placeholder="Organization name" autocomplete="organization">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label" for="cf-size">Company size</label>
+          <select class="cf-input cf-select" id="cf-size" name="company_size">
+            <option value="">— select —</option>
+            <option value="10-50">10&ndash;50 people</option>
+            <option value="50-200">50&ndash;200 people</option>
+            <option value="200-500">200&ndash;500 people</option>
+            <option value="500+">500+ people</option>
+          </select>
+        </div>
+      </div>
+      <div class="cf-field">
+        <label class="cf-label" for="cf-message">What&rsquo;s going on? <span class="cf-req">*</span></label>
+        <textarea class="cf-input cf-textarea" id="cf-message" name="message" required rows="5" placeholder="Tell me what&rsquo;s not working. A paragraph is plenty &mdash; &ldquo;our reporting is a mess and nobody trusts the numbers&rdquo; is a perfectly good start."></textarea>
+      </div>
+      <div class="cf-footer">
+        <button class="cf-submit" type="submit" id="cf-btn">Send message &rarr;</button>
+        <span class="cf-note">Typically replies within one business day.</span>
+      </div>
+      <p class="cf-error" id="cf-error">Something went wrong &mdash; please try emailing directly.</p>
+    </form>
+    <div class="cf-success" id="cf-success">
+      <div class="cf-success-check">&#10003;</div>
+      <h3>Message sent</h3>
+      <p>Thanks &mdash; I&rsquo;ll be in touch within one business day.</p>
+    </div>
+    <div class="alt-channels">
+      <div class="alt-ch-label">Or reach out directly</div>
+      <a href="mailto:doreau.jonathan@gmail.com" class="alt-ch">
+        <div class="alt-ch-icon">@</div>
+        doreau.jonathan@gmail.com
+        <span class="alt-ch-arrow">&rarr;</span>
       </a>
-      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener" class="channel">
-        <div class="ch-icon" style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;">in</div>
-        <div class="ch-body">
-          <div class="ch-label">LinkedIn</div>
-          <div class="ch-value">Jonathan Doreau</div>
-          <div class="ch-sub">Connect or message directly</div>
-        </div>
-        <span class="ch-arrow">→</span>
+      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener" class="alt-ch">
+        <div class="alt-ch-icon" style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;">in</div>
+        LinkedIn &mdash; Jonathan Doreau
+        <span class="alt-ch-arrow">&rarr;</span>
       </a>
     </div>
   </div>
@@ -188,6 +257,46 @@
 </footer>
 
 <script>
+  // ── Contact form ──────────────────────────────────────────────
+  const form   = document.getElementById('contact-form');
+  const btn    = document.getElementById('cf-btn');
+  const errEl  = document.getElementById('cf-error');
+  const succEl = document.getElementById('cf-success');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errEl.style.display = 'none';
+
+    // Basic client-side validation
+    const name  = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const msg   = document.getElementById('cf-message').value.trim();
+    if (!name || !email || !msg) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        succEl.classList.add('visible');
+      } else {
+        throw new Error('non-ok response');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send message →';
+      errEl.style.display = 'block';
+    }
+  });
+
+  // ── Mobile nav ────────────────────────────────────────────────
   const ham = document.getElementById('ham'); const mob = document.getElementById('mobile-menu');
   ham.addEventListener('click', () => mob.classList.toggle('open'));
   ham.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') mob.classList.toggle('open'); });
