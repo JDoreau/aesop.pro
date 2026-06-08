@@ -6,6 +6,7 @@
   <url><loc>https://aesop.pro/work.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aesop.pro/insights.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aesop.pro/health-check.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aesop.pro/dashboard-audit.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://aesop.pro/resources.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aesop.pro/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://aesop.pro/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
