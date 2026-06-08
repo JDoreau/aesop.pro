@@ -90,6 +90,34 @@
   .da-cta p { font-size:14px; color:#8A9FB8; font-weight:300; max-width:44ch; line-height:1.5; }
   .da-cta-btn { background:var(--twine); color:#fff; font-weight:700; font-size:14px; padding:14px 24px; border-radius:4px; text-decoration:none; white-space:nowrap; transition:background .15s; }
   .da-cta-btn:hover { background:var(--sepia); }
+  /* Narrative */
+  .da-narrative { max-width:660px; margin-bottom:44px; }
+  .da-narrative p { font-size:16px; color:#C4BDAE; font-weight:300; line-height:1.65; margin-bottom:14px; }
+  .da-narrative p:last-child { margin-bottom:0; }
+  /* Email capture */
+  .da-email-section { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:8px; padding:32px 36px; margin-bottom:44px; }
+  .da-email-inner { display:grid; grid-template-columns:1fr 1.5fr; gap:40px; align-items:start; }
+  @media(max-width:640px){ .da-email-inner { grid-template-columns:1fr; gap:24px; } }
+  .da-email-desc { font-size:14px; color:#6A8099; line-height:1.6; font-weight:300; margin-top:8px; }
+  .da-ef { width:100%; }
+  .da-ef-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  @media(max-width:480px){ .da-ef-row { grid-template-columns:1fr; } }
+  .da-ef-field { display:flex; flex-direction:column; gap:5px; }
+  .da-ef-label { font-size:12px; font-weight:600; color:#6A8099; letter-spacing:.04em; }
+  .da-ef-input { font-family:"DM Sans",sans-serif; font-size:14px; color:var(--ink); background:rgba(255,255,255,.9); border:1.5px solid rgba(255,255,255,.12); border-radius:4px; padding:9px 12px; width:100%; transition:border-color .15s, background .15s; }
+  .da-ef-input:focus { outline:none; border-color:var(--twine); background:#fff; }
+  .da-ef-input::placeholder { color:#999; font-style:italic; }
+  .da-ef-footer { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .da-ef-btn { background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-size:14px; font-weight:700; padding:11px 22px; border:none; border-radius:4px; cursor:pointer; transition:background .15s; white-space:nowrap; }
+  .da-ef-btn:hover { background:var(--sepia); }
+  .da-ef-btn:disabled { opacity:.55; cursor:not-allowed; }
+  .da-ef-note { font-size:12px; color:#3A5060; font-weight:300; }
+  .da-ef-error { font-size:13px; color:var(--contessa); margin-top:8px; display:none; }
+  .da-ef-error a { color:var(--twine); }
+  .da-email-success { display:flex; align-items:flex-start; gap:18px; }
+  .da-es-icon { width:44px; height:44px; background:rgba(126,176,155,.15); border:2px solid #7EB09B; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#7EB09B; font-weight:700; font-size:18px; flex-shrink:0; }
+  .da-es-title { font-size:17px; font-weight:700; color:#fff; margin-bottom:6px; }
+  .da-es-sub { font-size:14px; color:#6A8099; font-weight:300; line-height:1.55; }
   @media print { .da-prog,nav,.mobile-menu,.da-cta,footer{display:none} .da-results{background:#fff;color:#000;padding:20px 0} }
 </style>
 </head>
@@ -527,6 +555,7 @@
 </div></div>
 <div class="da-results" id="da-results" style="display:none">
   <div class="da-results-in">
+
     <div class="da-score-hero">
       <div class="da-score-ring">
         <span class="da-score-num" id="res-score">0</span>
@@ -534,20 +563,64 @@
       </div>
       <div class="da-verdict-block">
         <h2 id="res-verdict-title"></h2>
-        <p id="res-verdict-desc"></p>
       </div>
     </div>
+
     <div class="da-section-title">Score by category</div>
     <div class="da-breakdown" id="res-breakdown"></div>
+
+    <div class="da-section-title">Analysis</div>
+    <div class="da-narrative" id="res-narrative"></div>
+
     <div class="da-section-title" id="fixes-label" style="display:none">Priority fixes</div>
     <div class="da-fixes-list" id="res-fixes"></div>
+
+    <div class="da-email-section">
+      <div class="da-email-inner" id="da-email-inner">
+        <div>
+          <div class="da-section-title" style="margin-bottom:10px">Get a copy of your results</div>
+          <p class="da-email-desc">We&rsquo;ll email you the score, category breakdown, and priority fixes &mdash; a useful record to share or revisit. One email. No pitch.</p>
+        </div>
+        <form class="da-ef" id="da-email-form" novalidate>
+          <input type="hidden" name="_subject" value="Dashboard Audit Results">
+          <input type="hidden" id="h-score" name="score">
+          <input type="hidden" id="h-band" name="band">
+          <input type="hidden" id="h-cats" name="category_scores">
+          <input type="hidden" id="h-fixes" name="priority_issues">
+          <div class="da-ef-row">
+            <div class="da-ef-field">
+              <label class="da-ef-label" for="ef-name">Name</label>
+              <input class="da-ef-input" type="text" id="ef-name" name="name" placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="da-ef-field">
+              <label class="da-ef-label" for="ef-email">Email <span style="color:var(--twine)">*</span></label>
+              <input class="da-ef-input" type="email" id="ef-email" name="email" required placeholder="you@company.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="da-ef-footer">
+            <button class="da-ef-btn" type="submit" id="ef-btn">Email me these results &rarr;</button>
+            <span class="da-ef-note">One email &middot; no follow-up campaign</span>
+          </div>
+          <p class="da-ef-error" id="ef-error">Something went wrong &mdash; try <a href="mailto:doreau.jonathan@gmail.com">emailing directly</a>.</p>
+        </form>
+      </div>
+      <div class="da-email-success" id="da-email-success" style="display:none">
+        <div class="da-es-icon">&#10003;</div>
+        <div>
+          <p class="da-es-title">Results sent</p>
+          <p class="da-es-sub">Check your inbox. If you want to talk through what you found, book a free 30-minute diagnostic below.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="da-cta">
       <div>
         <h3>Want expert eyes on the results?</h3>
-        <p>A Reporting Clarity Assessment provides a complete inventory and prioritised roadmap &mdash; not just for one dashboard, but for your entire reporting estate.</p>
+        <p>A Reporting Clarity Assessment covers your entire reporting estate &mdash; not just one dashboard. You get a prioritised roadmap of exactly what to fix first.</p>
       </div>
       <a href="contact.html" class="da-cta-btn">Book a free diagnostic &rarr;</a>
     </div>
+
   </div>
 </div>
 <footer>
@@ -563,14 +636,16 @@
   <div class="foot-legal">Nashville, TN &middot; doreau.jonathan@gmail.com &middot; &copy; 2026 Aesop Analytics. All rights reserved.</div>
 </footer>
 <script>
-const scores={}, fixes={};
-let answered=0;
+const fixes={};
+let answered=0, auditBand='';
 const TOTAL=30;
 const CAT_LABELS={"01":"Purpose & Alignment","02":"Metric Definitions","03":"Data Trust & Quality","04":"Design & Usability","05":"Governance & Ownership","06":"Operational Health"};
+
 document.querySelectorAll('.da-q').forEach(q=>{
   const fEl=q.querySelector('.da-fix-hint');
   if(fEl) fixes[q.id]={title:q.querySelector('.da-q-text').textContent.trim(),text:fEl.innerHTML};
 });
+
 function answer(n,v,btn,type){
   const q=document.getElementById('q'+n);
   if(q.dataset.val==='') answered++;
@@ -582,48 +657,127 @@ function answer(n,v,btn,type){
   updateProgress();
   if(answered===TOTAL) showResults();
 }
+
 function updateProgress(){
   const pct=(answered/TOTAL)*100;
   document.getElementById('da-prog-fill').style.width=pct+'%';
   document.getElementById('da-prog-count').textContent=answered+' / '+TOTAL;
-  if(answered===TOTAL){document.getElementById('da-prog').classList.add('complete');document.getElementById('da-prog-label').textContent='Audit complete';}
+  if(answered===TOTAL){
+    document.getElementById('da-prog').classList.add('complete');
+    document.getElementById('da-prog-label').textContent='Audit complete — results below';
+  }
 }
+
+function buildNarrative(catScores, pct){
+  const sorted=Object.entries(catScores)
+    .map(([cat,s])=>({cat,pct:s.total/s.max,name:CAT_LABELS[cat]}))
+    .sort((a,b)=>a.pct-b.pct);
+  const weakest=sorted.filter(c=>c.pct<0.6);
+  const wNames=weakest.slice(0,2).map(c=>c.name.toLowerCase());
+  let p1='',p2='';
+  if(pct>=0.83){
+    p1='This dashboard is performing well across most dimensions — scores this high are relatively uncommon. The fundamentals are sound: the data is trusted, the metrics are defined, and meaningful governance is in place.'+(weakest.length?' The one area worth continued attention is '+weakest[0].name.toLowerCase()+', which scored below what the rest of the audit would predict.':'');
+    p2='The priority at this stage is maintenance: keeping governance cadences running, reviewing the dashboard semi-annually, and ensuring it evolves alongside the decisions it supports.';
+  } else if(pct>=0.6){
+    const urgency=weakest[0]&&weakest[0].pct<0.4?(weakest[0].name+' is the most urgent gap — without clear ownership and definitions, trust will erode the next time a number looks wrong and nobody can explain why.'):'These are not cosmetic issues; addressing them now prevents the more expensive problem of rebuilding trust after it breaks.';
+    p1='The dashboard has solid foundations — it is being used and broadly trusted — but the audit surfaces structural gaps in '+wNames.join(' and ')+' that will quietly compound over time. '+urgency;
+    p2='The good news: these are almost always process problems, not technical ones. They can be addressed systematically without redesigning the dashboard itself. Work through the priority fixes below and consider a governance review within the next 60 days.';
+  } else if(pct>=0.33){
+    p1='The dashboard has significant structural issues that are likely already affecting how much people rely on it. The gaps in '+wNames.join(' and ')+' are the core reasons dashboards get worked around. Recipients are probably verifying numbers elsewhere or simply not trusting what they see.';
+    p2='Before investing more in design or data, address the governance and definition issues flagged below. A redesign on top of weak foundations produces a better-looking problem.';
+  } else {
+    p1='The audit results indicate that this dashboard needs fundamental work before further investment. The structural gaps — particularly in '+wNames.join(' and ')+' — suggest it may be creating the appearance of data governance without the substance.';
+    p2='Pause any design or feature work and address the foundational issues first. At this score level it is worth asking directly: should this dashboard be rebuilt from scratch — or retired?';
+  }
+  return '<p>'+p1+'</p><p>'+p2+'</p>';
+}
+
 function showResults(){
   const r=document.getElementById('da-results');
   r.style.display='block';
   setTimeout(()=>r.scrollIntoView({behavior:'smooth',block:'start'}),100);
+
   let total=0;
   document.querySelectorAll('.da-q').forEach(q=>{total+=parseFloat(q.dataset.val)||0;});
   const rounded=Math.round(total*2)/2;
+
   const scoreEl=document.getElementById('res-score');
   let cur=0; const step=rounded/40;
   const timer=setInterval(()=>{cur=Math.min(cur+step,rounded);scoreEl.textContent=Math.round(cur*2)/2;if(cur>=rounded)clearInterval(timer);},30);
+
   const pct=rounded/30;
-  let title,desc;
-  if(pct>=0.83){title="Strong — this dashboard is well-built";desc="Scores this high are relatively rare. The foundations are solid. Focus on the lower-scoring categories and maintain the governance cadences.";}
-  else if(pct>=0.6){title="Functional — improvements will compound value";desc="The dashboard is serving its purpose but specific gaps — often in governance or metric definitions — quietly undermine trust over time. Address the priority fixes below.";}
-  else if(pct>=0.33){title="At risk — fundamental issues are undermining usefulness";desc="The dashboard may look presentable but the foundations are shaky. Recipients are likely working around it rather than relying on it.";}
-  else{title="Critical — retire or rebuild before further investment";desc="More investment in this dashboard in its current state is likely wasted. Address structural issues in governance, definitions, and trust before redesigning.";}
+  let title, band;
+  if(pct>=0.83){title='Strong — this dashboard is well-built';band='Strong';}
+  else if(pct>=0.6){title='Functional — improvements will compound value';band='Functional';}
+  else if(pct>=0.33){title='At risk — fundamental issues are undermining usefulness';band='At risk';}
+  else{title='Critical — retire or rebuild before further investment';band='Critical';}
+  auditBand=band;
   document.getElementById('res-verdict-title').textContent=title;
-  document.getElementById('res-verdict-desc').innerHTML=desc;
+
   const catScores={};
-  document.querySelectorAll('.da-q').forEach(q=>{const c=q.dataset.cat;if(!catScores[c])catScores[c]={total:0,max:0};catScores[c].total+=parseFloat(q.dataset.val)||0;catScores[c].max+=1;});
+  document.querySelectorAll('.da-q').forEach(q=>{
+    const c=q.dataset.cat;
+    if(!catScores[c]) catScores[c]={total:0,max:0};
+    catScores[c].total+=parseFloat(q.dataset.val)||0;
+    catScores[c].max+=1;
+  });
+
   const bd=document.getElementById('res-breakdown');
   bd.innerHTML='';
+  const catLines=[];
   Object.entries(catScores).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([cat,s])=>{
     const p=s.total/s.max;
     const col=p>=0.8?'#7EB09B':p>=0.5?'#D4A844':'#CE796B';
-    const row=document.createElement('div');row.className='da-bar-row';
-    row.innerHTML=`<span class="da-bar-label">${CAT_LABELS[cat]||cat}</span><div class="da-bar-track"><div class="da-bar-fill" style="width:0%;background:${col}" data-w="${Math.round(p*100)}"></div></div><span class="da-bar-pct">${s.total%1===0?s.total:s.total.toFixed(1)}/${s.max}</span>`;
+    const row=document.createElement('div'); row.className='da-bar-row';
+    const sc=s.total%1===0?s.total:s.total.toFixed(1);
+    row.innerHTML='<span class="da-bar-label">'+CAT_LABELS[cat]+'</span><div class="da-bar-track"><div class="da-bar-fill" style="width:0%;background:'+col+'" data-w="'+Math.round(p*100)+'"></div></div><span class="da-bar-pct">'+sc+'/'+s.max+'</span>';
     bd.appendChild(row);
+    catLines.push(CAT_LABELS[cat]+': '+sc+'/'+s.max);
   });
   setTimeout(()=>{document.querySelectorAll('.da-bar-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});},100);
+
+  document.getElementById('res-narrative').innerHTML=buildNarrative(catScores, pct);
+
   const fixItems=[];
   document.querySelectorAll('.da-q.answered-no').forEach(q=>{if(fixes[q.id])fixItems.push(fixes[q.id]);});
   if(fixItems.length<3) document.querySelectorAll('.da-q.answered-partial').forEach(q=>{if(fixItems.length<5&&fixes[q.id])fixItems.push(fixes[q.id]);});
   const fl=document.getElementById('fixes-label'),fe=document.getElementById('res-fixes');
-  if(fixItems.length>0){fl.style.display='block';fe.innerHTML='';fixItems.slice(0,5).forEach(f=>{const c=document.createElement('div');c.className='da-fix-card';c.innerHTML=`<h4>${f.title}</h4><div>${f.text}</div>`;fe.appendChild(c);});}
+  if(fixItems.length>0){
+    fl.style.display='block'; fe.innerHTML='';
+    fixItems.slice(0,5).forEach(f=>{
+      const c=document.createElement('div'); c.className='da-fix-card';
+      c.innerHTML='<h4>'+f.title+'</h4><div>'+f.text+'</div>';
+      fe.appendChild(c);
+    });
+  }
+
+  document.getElementById('h-score').value=rounded+'/30';
+  document.getElementById('h-band').value=band;
+  document.getElementById('h-cats').value=catLines.join(' | ');
+  document.getElementById('h-fixes').value=fixItems.slice(0,3).map(f=>f.title).join(' | ');
 }
+
+document.getElementById('da-email-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var email=document.getElementById('ef-email').value.trim();
+  if(!email) return;
+  var btn=document.getElementById('ef-btn');
+  var errEl=document.getElementById('ef-error');
+  btn.disabled=true; btn.textContent='Sending…'; errEl.style.display='none';
+  try{
+    var res=await fetch('https://formspree.io/f/YOUR_AUDIT_FORM_ID',{
+      method:'POST', body:new FormData(e.target), headers:{'Accept':'application/json'}
+    });
+    if(res.ok){
+      document.getElementById('da-email-inner').style.display='none';
+      document.getElementById('da-email-success').style.display='flex';
+    } else { throw new Error(); }
+  } catch(err){
+    btn.disabled=false; btn.textContent='Email me these results →';
+    errEl.style.display='block';
+  }
+});
+
 const ham=document.getElementById('ham'),mob=document.getElementById('mobile-menu');
 ham.addEventListener('click',()=>mob.classList.toggle('open'));
 ham.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')mob.classList.toggle('open');});
