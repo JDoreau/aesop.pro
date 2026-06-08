@@ -1,54 +1,128 @@
-# Reporting Clarity Assessment — Delivery Kit
+# Aesop Analytics — Website
 
-The internal toolkit for running a Reporting Clarity Assessment end to end. These are
-working documents, not client marketing. Each maps to the TRUST method and feeds the
-10 standard deliverables.
+The marketing and content site for **Aesop Analytics**, a boutique reporting
+modernization and data-trust consultancy based in Nashville, TN.
 
-> **Engagement promise:** We inventory the reporting estate, identify where trust breaks
-> down, and give leadership a practical 30/60/90-day roadmap.
-
-## Kit contents
-
-### Front of engagement — *built*
-| # | File | Purpose | TRUST phase |
-|---|------|---------|-------------|
-| 01 | `01-intake-checklist.md` | What to gather between signed SOW and kickoff; access log; readiness gate. | Triage |
-| 02 | `02-interview-guides.md` | Three role-based interview guides (sponsor, builders, consumers) + same-day capture. | Triage / Reconcile |
-| 03 | `03-kickoff-agenda.md` | Kickoff session structure, scope confirmation, the 2–3 week shape. | Triage |
-
-### Analysis & deliverable templates — *to build next*
-- Reporting Inventory template (deliverable 1)
-- Trust & Usage Scorecard + rubric (deliverable 2)
-- KPI Conflict Map + KPI Dictionary template (deliverables 3)
-- Source-of-Truth Map (deliverable 4)
-- Manual Work & Fragility Register (deliverable 5)
-- Dashboard Design & Adoption Review rubric (deliverable 6)
-- Governance Gap Assessment rubric (deliverable 7)
-- Quick-Win Backlog format (deliverable 8)
-- Retirement / Consolidation Candidates format (deliverable 9)
-- 30/60/90-Day Roadmap format (deliverable 10)
-- Executive Readout deck outline
-- Sample anonymized deliverable (the proof artifact)
-
-## How the front-of-engagement pieces connect
-
-```
-Signed SOW
-   │
-   ├─ 01 Intake ........ send client request list, stage templates, set readiness gate
-   │
-   ├─ 03 Kickoff ....... confirm scope in writing, unblock access, lock interviews
-   │
-   └─ 02 Interviews .... 3–6 sessions → same-day capture → feeds all 10 deliverables
-```
-
-## Notes for future versions
-- These are in Markdown for version control. Convert to Word/PDF for client-facing use
-  when needed (the interview capture tables and scope confirmation are the most likely
-  to become fillable client documents).
-- Several pieces can be adapted into gated lead magnets on the site later (e.g. a
-  lightweight public version of the interview questions), but the full kit stays internal.
+**Live:** [aesopanalytics.com](https://aesopanalytics.com)
+**Tagline:** *Every dataset has a moral.*
 
 ---
 
-*Aesop Analytics · Every dataset has a moral.*
+## What this is
+
+A static HTML/CSS site — no build step, no framework, no JavaScript dependencies
+beyond small inline scripts for nav and form handling. It's hosted on GitHub Pages
+with a custom domain. The whole site is hand-authored HTML so it loads fast, is easy
+to version, and has no toolchain to maintain.
+
+## Tech & hosting
+
+| | |
+|---|---|
+| **Stack** | Static HTML + CSS, minimal inline JS |
+| **Hosting** | GitHub Pages |
+| **Domain** | aesopanalytics.com (DNS via Squarespace) |
+| **Email** | Google Workspace — `hello@aesopanalytics.com` |
+| **Forms** | Formspree (contact, dashboard audit, Trust Letter signup) |
+| **Fonts** | Newsreader (display/headers) · DM Sans (body) · Abril Fatface (sparing accent) |
+
+## Brand
+
+| Token | Value |
+|---|---|
+| Navy (primary) | `#0F1F38` |
+| Twine (accent/links) | `#C18C5D` |
+| Paper (background) | `#FBFAF5` |
+| Ink (body text) | `#1B1B1B` |
+| Max content width | 1080px |
+| Logo | Owl mark (see `assets/`) — *not* the æ ligature |
+
+Full brand reference lives in `brand.html`.
+
+---
+
+## Repository structure
+
+```
+/
+├── index.html                  Homepage
+├── services.html               Service offer ladder
+├── assessment.html             Flagship: Reporting Clarity Assessment
+├── work.html                   Case studies / portfolio
+├── insights.html               Content hub (articles + field studies)
+├── resources.html              Free resources (Reporting Trust Health Check)
+├── about.html                  About / founder
+├── contact.html                Contact + fit/no-fit
+├── trust-letter.html           Newsletter signup (The Reporting Trust Letter)
+├── brand.html                  Internal brand reference page
+│
+├── article-*.html              Content articles (5 pillars)
+├── aesop-productivity-pay-study.html      Field study
+├── article-corporate-profits-inflation.html   Field study
+├── article-wage-inequality-forty-years.html    Field study
+│
+├── assets/                     Shared visual assets
+│   ├── favicon.svg             Owl favicon (linked site-wide)
+│   ├── owl-mark.svg            Standalone owl, light backgrounds
+│   ├── owl-mark-reversed.svg   Standalone owl, dark backgrounds
+│   └── README.md               Asset documentation
+│
+├── assessment-kit/             INTERNAL — delivery toolkit (not site content)
+│   └── ...                     Intake, interview guides, templates, rubrics
+│
+├── sitemap.xml                 Search engine sitemap
+└── robots.txt                  Crawler directives
+```
+
+> **Note on `assessment-kit/`:** this folder holds internal engagement-delivery
+> documents (Markdown), not public web pages. It lives in the repo for version control.
+> It is not linked from the site and not intended to be served as content.
+
+---
+
+## Content pillars
+
+Articles in `insights.html` are organized into five pillars:
+
+1. **Reporting Trust** — why dashboards lose trust and how to rebuild it
+2. **KPI Definitions** — metric ownership, dictionaries, conflict resolution
+3. **Dashboard Modernization** — design, perception, what belongs on a dashboard
+4. **Governance & Strategy** — practical governance, data strategy
+5. **AI Readiness** — why trusted metrics precede AI
+
+Plus **Field Studies** — original data analysis (wage inequality, productivity–pay gap,
+corporate profits & inflation) that demonstrate the firm's analytical rigor.
+
+---
+
+## Conventions
+
+- **Every page** links the shared favicon: `<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">`
+- **Headers** use Newsreader; body uses DM Sans; Abril Fatface is reserved for article
+  display titles, standout statistics, and decorative marks only.
+- **The owl** is the logo. Do not reintroduce the æ ligature as a logo substitute.
+- **Pricing** must match the Operating Brief offer ladder. Current flagship Assessment:
+  $5,000–$9,500 standard (reduced rates for nonprofit/referral/small-scope).
+- **No fabricated** testimonials, metrics, logos, or client results — ever.
+
+---
+
+## Deploying changes
+
+1. Edit files locally.
+2. In GitHub Desktop: review the changes, write a clear commit summary, **Commit to main**.
+3. **Push origin.** GitHub Pages redeploys automatically within a minute or two.
+
+To change the favicon site-wide, edit `assets/favicon.svg` only — every page references it.
+
+---
+
+## Related
+
+- **Operating Brief** — the single source of truth for positioning, services, pricing,
+  and voice. (Maintained separately; mirrored in Notion.)
+- **Repo:** `github.com/JDoreau/aesop.pro`
+
+---
+
+*Aesop Analytics LLC · Nashville, TN · Every dataset has a moral.*
