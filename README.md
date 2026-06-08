@@ -3,7 +3,7 @@
 > **Reporting modernization and data trust consulting.**  
 > Helping growing companies turn messy, manual, and mistrusted reporting into governed decision systems.
 
-**Live site:** [aesop.pro](https://aesop.pro) &nbsp;|&nbsp; **GitHub Pages:** [jdoreau.github.io/aesop.pro](https://jdoreau.github.io/aesop.pro)
+**Live site:** [aesopanalytics.com](https://aesopanalytics.com) &nbsp;|&nbsp; **Repo:** [github.com/JDoreau/aesop.pro](https://github.com/JDoreau/aesop.pro)
 
 ---
 
@@ -45,7 +45,7 @@ article.css   ->  Compact nav, article typography, article footer, .wrap (740px)
 | Pages | Files loaded |
 |---|---|
 | index, work, services, assessment, resources, insights, about, contact, health-check | shared.css + core.css + page-specific style block |
-| All 14 article and field study pages | shared.css + article.css + page-specific style block |
+| All 15 article and field study pages | shared.css + article.css + page-specific style block |
 
 **Color tokens:**
 
@@ -64,7 +64,7 @@ article.css   ->  Compact nav, article typography, article footer, .wrap (740px)
 | File | Purpose |
 |---|---|
 | index.html | Homepage -- pain section, TRUST method, offer ladder |
-| work.html | Portfolio -- 4 anonymized case studies with SVG illustrations |
+| work.html | Portfolio -- 5 anonymized case studies, each with an SVG dashboard mockup + client testimonial |
 | services.html | Full offer ladder with deliverables and FAQ |
 | assessment.html | Flagship conversion page -- 10 deliverables, 4-phase process |
 | resources.html | Lead magnet landing page |
@@ -90,12 +90,13 @@ article.css   ->  Compact nav, article typography, article footer, .wrap (740px)
 | article-ai-readiness-trusted-metrics.html | AI Readiness | AI readiness starts with trusted metrics |
 | article-bad-reporting-blocks-ai.html | AI Readiness | Why bad reporting blocks AI adoption |
 
-### Field studies (2)
+### Field studies (3)
 
 | File | Dataset | Topic |
 |---|---|---|
 | aesop-productivity-pay-study.html | BEA NIPA | Productivity-pay gap since 1979 |
 | article-corporate-profits-inflation.html | BEA NIPA Tables 1.15 + 6.16D | Corporate profits and post-COVID inflation |
+| article-wage-inequality.html | EPI / SSA (Gould & Kandra 2022) | Forty years of wage data -- what the average hides |
 
 ---
 
@@ -151,17 +152,31 @@ Do not move shared styles back into individual page style blocks.
 | 3 | Dashboard Design and Modernization | 3 |
 | 4 | Data Governance and Strategy | 3 |
 | 5 | AI Readiness | 2 |
-| -- | Field Studies | 2 |
+| -- | Field Studies | 3 |
 
 ---
 
 ## Roadmap
 
-- [ ] Third field study -- wages and inequality (EPI + BEA data, research files ready)
-- [ ] Tableau / Power BI portfolio showcase expansion
-- [ ] KPI Dictionary downloadable template (promised on resources page)
-- [ ] Reporting Inventory spreadsheet template
-- [ ] Dashboard Audit checklist
+**Shipped**
+
+- [x] Third field study -- wages and inequality (EPI + SSA data)
+- [x] KPI Dictionary downloadable template
+- [x] Reporting Inventory spreadsheet template
+- [x] Dashboard Audit checklist (interactive, 30 questions, 6 categories)
+- [x] Working contact form + dashboard-audit results capture (Formspree)
+- [x] Custom domain DNS configured (aesopanalytics.com via Squarespace)
+- [x] Portfolio expanded to 5 case studies with SVG dashboard mockups + testimonials
+- [x] Client testimonials on homepage and about page
+- [x] Inline SVG icon system across homepage, services, assessment, about
+- [x] Site-wide editorial tightening pass + nav consistency fix
+
+**Open**
+
+- [ ] Complete SSL provisioning -- set custom domain in GitHub Pages settings (final infra step)
+- [ ] Replace SVG dashboard mockups with real (anonymized) Power BI / Tableau screenshots
+- [ ] Extend the icon/visual treatment to the insights hub and article pages
+- [ ] Payment / member-gated downloads (Gumroad or Stripe)
 
 ---
 
