@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forty Years of Wage Data: What the Average Hides — Aesop Analytics</title>
+<meta name="description" content="SSA data shows the top 1% saw seven times the wage growth of the bottom 90% between 1979 and 2021. An even-handed look at what the numbers say — and what they don't.">
+<meta property="og:title" content="Forty Years of Wage Data: What the Average Hides — Aesop Analytics">
+<meta property="og:description" content="The top 0.1% experienced 465% wage growth since 1979. The bottom 90% experienced 29%. An honest look at what the SSA earnings data shows.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="article.css">
+<style>
+  /* Page-specific styles */
+
+  /* ── Stat strip ── */
+  .stats { border:1px solid var(--line); }
+  .stat { border-right:1px solid var(--line); }
+  .stat:last-child { border-right:none; }
+  @media(max-width:560px){ .stat { border-right:none; border-bottom:1px solid var(--line); } .stat:last-child { border-bottom:none; } }
+  .stat .n.hi { color:var(--navy); }
+  .stat .n.lo { color:var(--contessa); }
+
+  /* ── Chart containers ── */
+  .chart-wrap { margin:38px 0; background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px 22px 16px; box-shadow:0 16px 40px -28px rgba(15,31,56,.2); }
+  .chart-title { font-weight:700; font-size:15.5px; margin-bottom:3px; color:var(--ink); }
+  .chart-sub { font-size:13px; color:var(--muted); margin-bottom:18px; }
+  .chart-wrap svg { display:block; width:100%; height:auto; overflow:visible; }
+  .chart-cap { font-size:12px; color:var(--muted); margin-top:12px; line-height:1.5; border-top:1px solid var(--line); padding-top:10px; }
+  .legend { display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px; margin-bottom:10px; color:var(--slate); }
+  .legend span { display:inline-flex; align-items:center; gap:7px; }
+  .swatch { width:13px; height:6px; border-radius:2px; display:inline-block; }
+
+  /* ── Pull quote ── */
+  .pull { font-family:"Abril Fatface",serif; font-size:26px; line-height:1.28; color:var(--navy); border-left:4px solid var(--twine); padding:4px 0 4px 24px; margin:44px 0; }
+
+  /* ── Callout ── */
+  .callout { background:var(--navy); border-radius:8px; padding:36px 32px; margin:44px 0; text-align:center; position:relative; overflow:hidden; }
+  .callout::after { content:"æ"; position:absolute; right:-14px; bottom:-40px; font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.1); line-height:1; pointer-events:none; }
+  .callout .big { font-family:"Abril Fatface",serif; font-size:72px; line-height:1; color:var(--twine); position:relative; z-index:1; }
+  .callout .cap { font-size:16px; line-height:1.55; margin-top:14px; color:#B8BDCA; max-width:46ch; margin-left:auto; margin-right:auto; position:relative; z-index:1; font-weight:300; }
+
+  /* ── Methodology note ── */
+  .method-note { background:var(--paper-2); border-left:4px solid var(--twine); border-radius:0 5px 5px 0; padding:20px 22px; margin:36px 0; }
+  .method-note .ml { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:8px; }
+  .method-note p { font-size:15.5px; color:var(--slate); line-height:1.55; margin:0 0 10px; }
+  .method-note p:last-child { margin:0; }
+
+  /* ── Two-column comparison ── */
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:5px; overflow:hidden; margin:32px 0; }
+  .compare > div { background:var(--paper); padding:22px; }
+  .compare h4 { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; margin-bottom:10px; }
+  .compare .ca h4 { color:var(--navy); }
+  .compare .cb h4 { color:var(--contessa); }
+  .compare p { font-size:15.5px; line-height:1.5; color:var(--slate); font-weight:300; margin:0; }
+  @media(max-width:560px){ .compare { grid-template-columns:1fr; } }
+
+  /* ── Sources ── */
+  .sources { margin:54px 0 0; border-top:2px solid var(--navy); padding-top:22px; }
+  .sources h3 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); margin-bottom:14px; }
+  .sources ol { margin:0; padding-left:20px; font-size:13.5px; color:var(--muted); line-height:1.55; }
+  .sources li { margin-bottom:10px; }
+
+  /* ── Read next ── */
+  .read-next { margin:56px 0 0; padding:28px 0; border-top:2px solid var(--rule); }
+  .rn-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:16px; }
+  .rn-links { display:flex; flex-wrap:wrap; gap:12px; }
+  .rn-link { font-size:15px; font-weight:600; color:var(--navy); border:1px solid var(--line); border-radius:4px; padding:10px 18px; text-decoration:none; transition:border-color .18s, color .18s; }
+  .rn-link:hover { border-color:var(--twine); color:var(--twine); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="site-links">
+      <a href="services.html">Services</a>
+      <a href="assessment.html" class="nav-accent">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="resources.html">Resources</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="site-cta">Book a diagnostic</a>
+  </div>
+</nav>
+
+<div class="wrap">
+<article>
+
+  <div class="kicker reveal">Field Study &middot; Labor &amp; the Economy</div>
+  <h1 class="reveal" style="animation-delay:.06s">Forty Years of Wage Data.
+    <span class="sub">What the average hides about who actually captured four decades of economic growth.</span>
+  </h1>
+  <p class="dek reveal" style="animation-delay:.12s">SSA earnings data shows the top 1% saw seven times the wage growth of the bottom 90% between 1979 and 2021. An even-handed look at what the numbers say &mdash; and what they don&rsquo;t.</p>
+  <div class="byline reveal" style="animation-delay:.18s">
+    <span>Aesop Analytics</span>
+    <span class="dot">&middot;</span>
+    <span>Field Study</span>
+    <span class="dot">&middot;</span>
+    <span class="reg">Data: EPI analysis of SSA wage statistics &amp; Kopczuk, Saez, and Song (2007)</span>
+  </div>
+
+  <div class="stats reveal" style="animation-delay:.22s">
+    <div class="stat">
+      <div class="n lo">+28.7%</div>
+      <div class="l">Bottom 90% real wage growth, 1979&ndash;2021</div>
+    </div>
+    <div class="stat">
+      <div class="n hi">+206%</div>
+      <div class="l">Top 1% real wage growth over the same period</div>
+    </div>
+    <div class="stat">
+      <div class="n hi">+465%</div>
+      <div class="l">Top 0.1% real wage growth, 1979&ndash;2021</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <p class="lead">Average real wage growth from 1979 to 2021 was 49.8% &mdash; about 1% annually over four decades. That number gets cited in two completely different arguments: as evidence that wages grew adequately, and as evidence that productivity gains went somewhere other than workers. Both sides are reaching past the same problem: the average is doing work it cannot support.</p>
+
+    <p>When a distribution is heavily skewed, the mean tells you almost nothing about the typical experience. It tells you about the aggregate &mdash; which in a wage distribution heavily influenced by exceptional growth at the top, is not the same thing at all.</p>
+
+    <h2>The data source that tells the clearest story</h2>
+
+    <p>Most wage analyses rely on the Current Population Survey or similar household surveys. These have a structural limitation: they &ldquo;top-code&rdquo; earnings at a threshold &mdash; typically around $150,000 &mdash; to protect respondent confidentiality. This effectively clips the top of the distribution and makes it impossible to see what the highest earners actually earn.</p>
+
+    <div class="method-note">
+      <div class="ml">Why SSA data?</div>
+      <p>The Social Security Administration collects earnings data directly from W-2 wage reports filed by employers. Because it is drawn from tax records rather than self-reported surveys, it is not top-coded &mdash; the actual earnings of the top 0.1% are reported, not capped. This makes it the most reliable source for measuring inequality at the top of the distribution.</p>
+      <p>The limitation: SSA data covers wages and salaries only. Capital income &mdash; dividends, interest, capital gains &mdash; is not included. Since capital income is even more concentrated than wages, these figures represent a <em>conservative lower bound</em> on total economic inequality, not an upper bound.</p>
+    </div>
+
+    <p>EPI researchers Elise Gould and Jori Kandra compiled SSA earnings data through 2021, using the methodology developed by Kopczuk, Saez, and Song (2007) to construct the distribution back to 1979 from matched Social Security records. The result is a consistent, uncapped time series of wage earnings across the full distribution for over four decades.</p>
+
+    <h2>Where the growth went</h2>
+
+    <p>The chart below shows cumulative real wage growth for four groups since 1979, in 2021 dollars.</p>
+
+    <div class="chart-wrap reveal">
+      <div class="chart-title">Cumulative real wage growth since 1979, by earnings group</div>
+      <div class="chart-sub">Percent change from 1979 baseline, business-cycle peak years (2021 dollars)</div>
+      <div class="legend">
+        <span><span class="swatch" style="background:#3B5F8A"></span>Bottom 90%</span>
+        <span><span class="swatch" style="background:#6B9ABF"></span>Top 5%</span>
+        <span><span class="swatch" style="background:#C18C5D"></span>Top 1%</span>
+        <span><span class="swatch" style="background:#0F1F38"></span>Top 0.1%</span>
+      </div>
+      <svg viewBox="0 0 700 290" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid lines -->
+        <line x1="60" y1="250" x2="685" y2="250" stroke="#E7E0D2" stroke-width="1"/>
+        <line x1="60" y1="202" x2="685" y2="202" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="60" y1="154" x2="685" y2="154" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="60" y1="106" x2="685" y2="106" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="60" y1="58" x2="685" y2="58" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="4,3"/>
+        <!-- Y-axis labels -->
+        <text x="52" y="254" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">0%</text>
+        <text x="52" y="206" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">100%</text>
+        <text x="52" y="158" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">200%</text>
+        <text x="52" y="110" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">300%</text>
+        <text x="52" y="62" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">400%</text>
+
+        <!-- X-axis labels -->
+        <text x="60" y="272" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">1979</text>
+        <text x="208" y="272" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">1989</text>
+        <text x="370" y="272" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">2000</text>
+        <text x="473" y="272" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">2007</text>
+        <text x="651" y="272" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">2019</text>
+        <text x="685" y="272" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">2021</text>
+
+        <!-- Top 0.1% — navy, solid -->
+        <polyline points="60,250 208,201.2 370,116.5 473,112.3 651,120.2 685,71.3"
+          fill="none" stroke="#0F1F38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="685" cy="71.3" r="4" fill="#0F1F38"/>
+        <text x="685" y="64" text-anchor="start" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#0F1F38" dx="6">+465%</text>
+
+        <!-- Top 1% — twine -->
+        <polyline points="60,250 208,224.6 370,193.3 473,188.2 651,187.0 685,170.8"
+          fill="none" stroke="#C18C5D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="685" cy="170.8" r="4" fill="#C18C5D"/>
+        <text x="685" y="174" text-anchor="start" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#C18C5D" dx="6">+206%</text>
+
+        <!-- Top 5% — medium blue, dashed -->
+        <polyline points="60,250 208,235.7 370,215.3 473,210.6 651,205.5 685,197.7"
+          fill="none" stroke="#6B9ABF" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6,3"/>
+        <circle cx="685" cy="197.7" r="3.5" fill="#6B9ABF"/>
+        <text x="685" y="201" text-anchor="start" font-family="DM Sans,sans-serif" font-size="11" fill="#6B9ABF" dx="6">+136%</text>
+
+        <!-- Bottom 90% — steel blue -->
+        <polyline points="60,250 208,248.8 370,244.1 473,242.7 651,238.9 685,239.0"
+          fill="none" stroke="#3B5F8A" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="685" cy="239.0" r="3.5" fill="#3B5F8A"/>
+        <text x="685" y="242" text-anchor="start" font-family="DM Sans,sans-serif" font-size="11" fill="#3B5F8A" dx="6">+29%</text>
+
+        <!-- Y-axis rule -->
+        <line x1="60" y1="250" x2="60" y2="18" stroke="#D9CFBC" stroke-width="1"/>
+      </svg>
+      <div class="chart-cap">Source: EPI analysis of Kopczuk, Saez, and Song (2007) and Social Security Administration wage statistics. All wages in 2021 dollars. Business-cycle peak years shown. Y-axis scaled to 500% to show full Top 0.1% trajectory (465%).</div>
+    </div>
+
+    <p>The top 0.1% are not visible in most wage discussions because standard survey data cannot see them clearly. The SSA data can. Their cumulative wage growth since 1979 is 465% &mdash; nearly seventeen times the growth rate of the bottom 90%.</p>
+
+    <p>In absolute dollar terms, the divergence is even starker. In 1979, the average bottom 90% worker earned $28,415 in inflation-adjusted terms. By 2021: $36,571. A gain of roughly $8,200 over 42 years. The average top 1% earner went from $267,464 to $819,324 &mdash; a gain of $552,000 over the same period.</p>
+
+    <div class="pull">The average wage grew 49.8%. But that number describes almost no one&rsquo;s actual experience.</div>
+
+    <h2>A shrinking share of the total</h2>
+
+    <p>Wage growth rates tell one story; wage shares tell another. As the top of the distribution grew faster, it claimed an increasingly large portion of total wages &mdash; a pie that was also growing, but not growing fast enough to give everyone a proportionally equal slice.</p>
+
+    <div class="chart-wrap reveal">
+      <div class="chart-title">Share of total wages, 1979 vs. 2021</div>
+      <div class="chart-sub">Percentage of all wages earned by each group</div>
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- 1979 stacked bar — 200px wide represents 100% of wages -->
+        <text x="80" y="42" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#5A6775">1979</text>
+        <rect x="80" y="50" width="139.6" height="55" fill="#3B5F8A" rx="1"/>
+        <rect x="219.6" y="50" width="45.8" height="55" fill="#6B9ABF" rx="1"/>
+        <rect x="265.4" y="50" width="14.6" height="55" fill="#C18C5D" rx="1"/>
+        <text x="149.8" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">69.8%</text>
+        <text x="242.5" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#fff">22.9%</text>
+        <text x="272.7" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#fff">7.3%</text>
+
+        <!-- 2021 stacked bar -->
+        <text x="80" y="127" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#5A6775">2021</text>
+        <rect x="80" y="135" width="117.2" height="55" fill="#3B5F8A" rx="1"/>
+        <rect x="197.2" y="135" width="53.6" height="55" fill="#6B9ABF" rx="1"/>
+        <rect x="250.8" y="135" width="29.2" height="55" fill="#C18C5D" rx="1"/>
+        <text x="138.6" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">58.6%</text>
+        <text x="224.0" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#fff">26.8%</text>
+        <text x="265.4" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#fff">14.6%</text>
+
+        <!-- Change annotations -->
+        <text x="420" y="72" font-family="DM Sans,sans-serif" font-size="12" fill="#0F1F38" font-weight="600">Bottom 90% share:</text>
+        <text x="420" y="89" font-family="DM Sans,sans-serif" font-size="12" fill="#CE796B">69.8% &rarr; 58.6% <tspan font-weight="700">(&minus;11.2 pp)</tspan></text>
+        <text x="420" y="120" font-family="DM Sans,sans-serif" font-size="12" fill="#0F1F38" font-weight="600">Top 1% share:</text>
+        <text x="420" y="137" font-family="DM Sans,sans-serif" font-size="12" fill="#C18C5D">7.3% &rarr; 14.6% <tspan font-weight="700">(doubled)</tspan></text>
+        <text x="420" y="168" font-family="DM Sans,sans-serif" font-size="12" fill="#0F1F38" font-weight="600">Top 0.1% share:</text>
+        <text x="420" y="185" font-family="DM Sans,sans-serif" font-size="12" fill="#0F1F38">1.6% &rarr; 5.9% <tspan font-weight="700">(&times;3.7)</tspan></text>
+        <!-- Legend -->
+        <rect x="80" y="200" width="12" height="7" fill="#3B5F8A" rx="1"/>
+        <text x="96" y="208" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">Bottom 90%</text>
+        <rect x="185" y="200" width="12" height="7" fill="#6B9ABF" rx="1"/>
+        <text x="201" y="208" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">90th&ndash;99th percentile</text>
+        <rect x="330" y="200" width="12" height="7" fill="#C18C5D" rx="1"/>
+        <text x="346" y="208" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">Top 1%</text>
+      </svg>
+      <div class="chart-cap">Source: EPI analysis of SSA wage data. Bars scaled to 200px = 100% of wages. Residual share held by top 0.1% within the top 1% bar.</div>
+    </div>
+
+    <p>In 1979, the bottom 90% received 69.8% of all wages. By 2021, that had fallen to 58.6% &mdash; a decline of 11.2 percentage points. The top 1%&rsquo;s share doubled from 7.3% to 14.6%. The top 0.1%&rsquo;s share nearly quadrupled, from 1.6% to 5.9%.</p>
+
+    <p>This is not primarily a story about wages falling in absolute terms. The bottom 90% did earn more in real terms in 2021 than in 1979. It is a story about differential growth rates sustained over four decades producing a substantially different distribution.</p>
+
+    <div class="callout">
+      <div class="big">7&times;</div>
+      <p class="cap">The top 1% experienced roughly seven times the wage growth rate of the bottom 90% between 1979 and 2021 (206% vs. 29%). The top 0.1% experienced sixteen times the growth rate.</p>
+    </div>
+
+    <h2>The pandemic sharpened the pattern</h2>
+
+    <p>The 2020 data is difficult to interpret. Mass layoffs in low-wage service industries temporarily inflated average wages by removing the lowest earners from the measured workforce &mdash; a composition effect, not actual wage improvement. The 2021 data is cleaner: once the labor market normalized, the underlying trend resumed &mdash; sharply.</p>
+
+    <div class="compare">
+      <div class="ca">
+        <h4>Bottom 90%, 2019&ndash;2021</h4>
+        <p><strong style="color:var(--contessa);font-size:28px;font-family:'Abril Fatface',serif;">&minus;0.2%</strong><br>Real wage change during the pandemic labor market. Only the 90th&ndash;95th percentile saw any gains among non-top earners (+0.4%).</p>
+      </div>
+      <div class="cb">
+        <h4>Top 1%, 2019&ndash;2021</h4>
+        <p><strong style="color:var(--navy);font-size:28px;font-family:'Abril Fatface',serif;">+16.1%</strong><br>Real wage growth for the top 1% in the same two-year period. The top 0.1% gained 29.2%.</p>
+      </div>
+    </div>
+
+    <p>During the pandemic, the only wage group to experience real gains was at the very top. This does not negate the modest long-term absolute gains of the bottom 90%. But it is difficult to square with claims that wage growth has been broadly shared.</p>
+
+    <h2>What this data can and cannot tell us</h2>
+
+    <p>SSA annual earnings cover wages and salaries only. Capital income &mdash; dividends, interest, capital gains, carried interest &mdash; is not included. Capital income is substantially more concentrated than wages. These figures are a conservative lower bound on total earnings inequality, not an upper bound.</p>
+
+    <p>The causal picture is genuinely contested. EPI attributes the inequality growth primarily to declining union density, policy choices around minimum wages and labor standards, and globalization structured to benefit capital over labor. Other economists emphasize technology and skill-biased technical change, which increased returns to high-skill work. Both forces are real. Their relative weight is where serious people disagree.</p>
+
+    <p>What is not contested: wages for the bottom 90% grew at roughly one-seventh the rate of wages for the top 1% over this period. The top 1%&rsquo;s share of total wages doubled. Both findings hold across virtually every methodology and data source that has examined the question seriously.</p>
+
+    <div class="method-note">
+      <div class="ml">On the limits of this analysis</div>
+      <p>This study presents and contextualizes published data. It does not attempt to adjudicate between competing explanations for wage inequality or make policy recommendations. The SSA wage data is the most reliable single lens for measuring earnings at the top of the distribution, and that is the question it addresses here.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Related reading</div>
+      <div class="rn-links">
+        <a href="aesop-productivity-pay-study.html" class="rn-link">The Productivity&ndash;Pay Gap &rarr;</a>
+        <a href="article-kpi-dictionary.html" class="rn-link">How to Build a KPI Dictionary &rarr;</a>
+        <a href="insights.html" class="rn-link">All Insights &rarr;</a>
+      </div>
+    </div>
+
+    <div class="sources">
+      <h3>Sources &amp; Methodology</h3>
+      <ol>
+        <li>Gould, E. and Kandra, J. (December 2022). <em>Inequality in annual earnings worsens in 2021: Top 1% of earners get a larger share of the earnings pie while the bottom 90% lose ground.</em> Economic Policy Institute. <a href="https://epi.org/publication/inequality-2021-ssa-data/" target="_blank" rel="noopener">epi.org</a></li>
+        <li>Kopczuk, W., Saez, E., and Song, J. (2007). <em>Uncovering the American Dream: Inequality and Mobility in Social Security Earnings Data Since 1937.</em> National Bureau of Economic Research Working Paper 13345.</li>
+        <li>Social Security Administration (2022). <em>Wage Statistics.</em> <a href="https://www.ssa.gov/cgi-bin/netcomp.cgi" target="_blank" rel="noopener">ssa.gov</a></li>
+      </ol>
+      <p style="font-size:13px;color:var(--muted);font-style:italic;margin-top:16px;line-height:1.55;">All dollar figures from Table 1 of Gould &amp; Kandra (2022), adjusted to 2021 dollars. Wage share figures from Table 2 of the same report. Growth rate calculations by Aesop Analytics from published absolute wage data.</p>
+    </div>
+
+  </div><!-- /body -->
+</article>
+</div><!-- /wrap -->
+
+<footer class="site">
+  <div class="fin">
+    <div class="fbrand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></div>
+    <div class="fmoral">Every dataset has a moral.</div>
+    <a href="insights.html" class="fback">All field studies &amp; articles &rarr;</a>
+  </div>
+</footer>
+
+</body>
+</html>
