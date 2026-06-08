@@ -31,10 +31,10 @@ nav {
   height:64px; display:flex; align-items:center;
   justify-content:space-between; gap:24px;
 }
-.logo { display:flex; align-items:baseline; gap:7px; flex-shrink:0; }
-.logo .ae { font-family:"Abril Fatface",serif; font-size:26px; color:var(--navy); }
-.logo .nm { font-family:"Abril Fatface",serif; font-size:22px; color:var(--navy); }
-.logo .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.34em; font-size:10px; text-transform:uppercase; color:var(--twine); align-self:center; }
+.logo { display:flex; align-items:center; gap:9px; flex-shrink:0; }
+.logo-mark { display:block; flex-shrink:0; }
+.logo .nm { font-family:"Abril Fatface",serif; font-size:22px; color:var(--navy); line-height:1; }
+.logo .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.34em; font-size:10px; text-transform:uppercase; color:var(--twine); }
 .nav-links { display:flex; gap:24px; font-size:12.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
 .nav-links a { color:var(--slate); transition:color .18s; white-space:nowrap; }
 .nav-links a:hover, .nav-links a.active { color:var(--navy); }
@@ -68,8 +68,8 @@ footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
 .foot-in { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:40px; }
 @media(max-width:760px){ .foot-in { grid-template-columns:1fr 1fr; gap:28px; } }
 @media(max-width:460px){ .foot-in { grid-template-columns:1fr; } }
-.foot-brand .ae { font-family:"Abril Fatface",serif; font-size:24px; color:var(--twine); }
-.foot-brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
+.foot-brand { display:flex; align-items:center; gap:9px; margin-bottom:10px; }
+.foot-brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; line-height:1; }
 .foot-brand .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.32em; font-size:10px; text-transform:uppercase; color:var(--twine); }
 .foot-tagline { font-style:italic; color:#4A6070; font-size:13px; margin-top:8px; }
 .foot-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:14px; }
