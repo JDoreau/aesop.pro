@@ -8,9 +8,9 @@
 <meta property="og:title" content="Aesop Analytics — Reporting Modernization &amp; Data Trust">
 <meta property="og:description" content="Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://aesop.pro">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><text x='50%' y='76%' text-anchor='middle' font-family='Georgia,serif' font-size='22' fill='%23C18C5D'>æ</text></svg>">
-<link rel="canonical" href="https://aesop.pro/">
+<meta property="og:url" content="https://aesopanalytics.com">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230F1F38'/><g transform='translate(5.2,4.2) scale(0.113)'><path fill='%23FBFAF5' d='M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z'/><path fill='%23C18C5D' d='M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z'/><path fill='%23C18C5D' d='M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z'/></g></svg>">
+<link rel="canonical" href="https://aesopanalytics.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -34,7 +34,8 @@
   /* ── NAV ── */
   nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
   .nav-in { max-width:1080px; margin:0 auto; padding:0 32px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-  .logo { display:flex; align-items:baseline; gap:7px; flex-shrink:0; }
+  .logo { display:flex; align-items:center; gap:7px; flex-shrink:0; }
+  .logo .owl-mark { height:30px; width:30px; flex-shrink:0; }
   .logo .ae { font-family:"Abril Fatface",serif; font-size:26px; color:var(--navy); }
   .logo .nm { font-family:"Abril Fatface",serif; font-size:22px; color:var(--navy); }
   .logo .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.34em; font-size:10px; text-transform:uppercase; color:var(--twine); align-self:center; }
@@ -73,7 +74,7 @@
   /* ── PROMISE BAR ── */
   .promise { background:var(--paper-2); border-bottom:1px solid var(--rule); }
   .promise-in { max-width:1080px; margin:0 auto; padding:32px; text-align:center; }
-  .promise p { font-family:"Abril Fatface",serif; font-size:clamp(17px,2.2vw,26px); color:var(--navy); line-height:1.35; max-width:38ch; margin:0 auto; }
+  .promise p { font-family:"DM Sans",sans-serif; font-weight:500; font-size:clamp(17px,2.2vw,25px); color:var(--navy); line-height:1.4; max-width:42ch; margin:0 auto; }
   .dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--twine); margin:0 9px; vertical-align:middle; }
 
   /* ── PAIN SECTION ── */
@@ -82,7 +83,7 @@
   @media(max-width:760px){ .pain-grid { grid-template-columns:1fr; gap:36px; } }
   .pain-left h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,3.8vw,42px); line-height:1.1; color:var(--navy); margin-bottom:20px; }
   .pain-left p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
-  .pain-left .pov { font-family:"Abril Fatface",serif; font-size:clamp(17px,2vw,22px); color:var(--navy); border-left:4px solid var(--twine); padding:8px 0 8px 22px; margin-top:28px; line-height:1.3; }
+  .pain-left .pov { font-family:"DM Sans",sans-serif; font-weight:500; font-style:italic; font-size:clamp(16px,2vw,20px); color:var(--navy); border-left:4px solid var(--twine); padding:8px 0 8px 22px; margin-top:28px; line-height:1.4; }
   .pain-right { }
   .pain-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:20px; }
   .pain-list { display:flex; flex-direction:column; gap:0; border-top:2px solid var(--rule); }
@@ -102,6 +103,7 @@
   @media(max-width:500px){ .trust-steps { grid-template-columns:1fr; } }
   .trust-step { background:var(--navy-2); padding:28px 22px; position:relative; }
   .trust-step:hover { background:var(--navy-3); transition:background .2s; }
+  .ts-letter { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:26px; color:var(--twine); line-height:1; margin-bottom:14px; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border:1.5px solid rgba(193,140,93,.35); border-radius:8px; }
   .ts-name { font-size:14px; font-weight:700; color:#fff; margin-bottom:10px; letter-spacing:.02em; }
   .ts-desc { font-size:13.5px; color:#B8C2D0; line-height:1.55; font-weight:400; }
   .method-cta { margin-top:40px; text-align:center; }
@@ -210,6 +212,8 @@
   .foot-in { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:40px; }
   @media(max-width:760px){ .foot-in { grid-template-columns:1fr 1fr; gap:28px; } }
   @media(max-width:460px){ .foot-in { grid-template-columns:1fr; } }
+  .foot-owl { height:30px; width:30px; vertical-align:middle; margin-right:6px; }
+  .foot-brand { display:flex; align-items:center; }
   .foot-brand .ae { font-family:"Abril Fatface",serif; font-size:24px; color:var(--twine); }
   .foot-brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
   .foot-brand .an { font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.32em; font-size:10px; text-transform:uppercase; color:var(--twine); }
@@ -228,7 +232,7 @@
 
 <nav>
   <div class="nav-in">
-    <a href="index.html" class="logo" aria-label="Aesop Analytics"><span class="ae">æ</span><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <a href="index.html" class="logo" aria-label="Aesop Analytics"><svg class="owl-mark" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--navy)" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="var(--twine)" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="var(--twine)" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
     <div class="nav-links">
       <a href="services.html">Services</a>
       <a href="assessment.html" class="nav-accent">Assessment</a>
@@ -262,7 +266,7 @@
       <a href="contact.html" class="btn">Book a Reporting Trust Diagnostic</a>
       <a href="resources.html" class="btn ghost">Download the Health Check</a>
     </div>
-    <div class="hero-note reveal" style="animation-delay:.38s">Jonathan Doreau · Nashville, TN · aesop.pro</div>
+    <div class="hero-note reveal" style="animation-delay:.38s">Jonathan Doreau · Nashville, TN · aesopanalytics.com</div>
   </div>
 </section>
 
@@ -309,22 +313,27 @@
     </div>
     <div class="trust-steps">
       <div class="trust-step">
+        <div class="ts-letter">T</div>
         <div class="ts-name">Triage the reporting estate</div>
         <div class="ts-desc">Catalog every dashboard, spreadsheet, and recurring report. Map owners, users, trust levels, and decision purpose. Find out what's used, what's ignored, and what's duplicated.</div>
       </div>
       <div class="trust-step">
+        <div class="ts-letter">R</div>
         <div class="ts-name">Reconcile metric definitions</div>
         <div class="ts-desc">Identify conflicting KPIs. Document how metrics are currently calculated. Expose where Finance, Sales, and Ops are using different definitions for the same word — and why that breaks trust.</div>
       </div>
       <div class="trust-step">
+        <div class="ts-letter">U</div>
         <div class="ts-name">Unify ownership &amp; source of truth</div>
         <div class="ts-desc">Assign business owners and technical owners to every metric. Designate the authoritative source system. Establish who approves definition changes and who gets notified.</div>
       </div>
       <div class="trust-step">
+        <div class="ts-letter">S</div>
         <div class="ts-name">Standardize reporting practices</div>
         <div class="ts-desc">Create naming conventions, request intake, dashboard certification rules, and report retirement processes. Make it clear which reports are official and how people request changes.</div>
       </div>
       <div class="trust-step">
+        <div class="ts-letter">T</div>
         <div class="ts-name">Transition to operating cadence</div>
         <div class="ts-desc">Embed the new process into the business. Establish governance meeting cadences, quality monitoring, and continuous improvement. The goal is a system that sustains itself.</div>
       </div>
@@ -505,7 +514,7 @@
 <footer>
   <div class="foot-in">
     <div>
-      <div class="foot-brand"><span class="ae">æ</span><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-brand"><svg class="foot-owl" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--twine)" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#FBFAF5" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#FBFAF5" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an"> Analytics</span></div>
       <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
     </div>
     <div class="foot-col">
@@ -524,11 +533,11 @@
       <h4>Company</h4>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a>
+      <a href="mailto:hello@aesopanalytics.com">Email Jonathan</a>
       <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
-  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
+  <div class="foot-legal">Nashville, TN · hello@aesopanalytics.com · © 2026 Aesop Analytics. All rights reserved.</div>
 </footer>
 
 <script>
