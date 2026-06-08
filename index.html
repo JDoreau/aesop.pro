@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -155,6 +155,17 @@
   .testi-attr { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; border-top:1px solid var(--line); padding-top:14px; }
   @media(max-width:760px){ }
   @media(max-width:460px){ }
+
+  /* ── Pain icons ── */
+  .pain-item { align-items:center; }
+  .pi { flex-shrink:0; width:18px; height:18px; margin-top:1px; }
+
+  /* ── TRUST step icons ── */
+  .ts-icon { display:block; width:22px; height:22px; margin:6px 0 10px; }
+
+  /* ── Offer card icons ── */
+  .oc-icon { width:28px; height:28px; margin-bottom:2px; }
+  .offer-card.flagship .oc-icon { color:var(--twine); }
 </style>
 </head>
 <body>
@@ -221,13 +232,13 @@
       <div class="pain-right">
         <div class="pain-label">Does this sound familiar?</div>
         <div class="pain-list">
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Leadership sees different numbers in different reports</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Teams disagree on KPI definitions — Finance says one thing, Sales says another</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Dashboards exist but aren't trusted — nobody uses them to make decisions</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">No one knows which report is "official" or whose number is right</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Reporting requests pile up with no clear intake or prioritization process</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">AI initiatives are stalled because the underlying data can't be trusted</span></div>
+          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Leadership sees different numbers in different reports</span></div>
+          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Teams disagree on KPI definitions — Finance says one thing, Sales says another</span></div>
+          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
+          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Dashboards exist but aren't trusted — nobody uses them to make decisions</span></div>
+          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">No one knows which report is "official" or whose number is right</span></div>
+          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">Reporting requests pile up with no clear intake or prioritization process</span></div>
+          <div class="pain-item"><svg class="pi" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M9.5 2L3.5 8.5H8L6.5 14L12.5 7.5H8L9.5 2Z" stroke="#CE796B" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="pt">AI initiatives are stalled because the underlying data can't be trusted</span></div>
         </div>
       </div>
     </div>
@@ -244,28 +255,33 @@
     <div class="trust-steps">
       <div class="trust-step">
         <div class="ts-letter">T</div>
+        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="#C18C5D" stroke-width="1.6"/><path d="M13.5 13.5L18 18" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round"/></svg>
         <div class="ts-name">Triage the reporting estate</div>
-        <div class="ts-desc">Catalog every dashboard, spreadsheet, and recurring report. Map owners, users, trust levels, and decision purpose. Find out what's used, what's ignored, and what's duplicated.</div>
+        <div class="ts-desc">Catalog every report. Map owners, trust levels, and decision purpose — and identify what's used, what's ignored, and what can be retired.</div>
       </div>
       <div class="trust-step">
         <div class="ts-letter">R</div>
+        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 5v12M7 17h8" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round"/><path d="M4 9l3.5-4 3.5 4" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 9l3.5-4 3.5 4" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="ts-name">Reconcile metric definitions</div>
-        <div class="ts-desc">Identify conflicting KPIs. Document how metrics are currently calculated. Expose where Finance, Sales, and Ops are using different definitions for the same word — and why that breaks trust.</div>
+        <div class="ts-desc">Identify conflicting KPIs and expose where Finance, Sales, and Ops use different definitions for the same metric — and why that breaks trust.</div>
       </div>
       <div class="trust-step">
         <div class="ts-letter">U</div>
+        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><circle cx="8" cy="11" r="5" stroke="#C18C5D" stroke-width="1.6"/><circle cx="14" cy="11" r="5" stroke="#C18C5D" stroke-width="1.6"/></svg>
         <div class="ts-name">Unify ownership &amp; source of truth</div>
-        <div class="ts-desc">Assign business owners and technical owners to every metric. Designate the authoritative source system. Establish who approves definition changes and who gets notified.</div>
+        <div class="ts-desc">Assign business and technical owners to every metric, designate the authoritative source system, and establish who approves definition changes.</div>
       </div>
       <div class="trust-step">
         <div class="ts-letter">S</div>
+        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect x="2" y="6" width="18" height="10" rx="2" stroke="#C18C5D" stroke-width="1.6"/><line x1="6" y1="6" x2="6" y2="10" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round"/><line x1="11" y1="6" x2="11" y2="12" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="6" x2="16" y2="10" stroke="#C18C5D" stroke-width="1.5" stroke-linecap="round"/></svg>
         <div class="ts-name">Standardize reporting practices</div>
-        <div class="ts-desc">Create naming conventions, request intake, dashboard certification rules, and report retirement processes. Make it clear which reports are official and how people request changes.</div>
+        <div class="ts-desc">Establish naming conventions, request intake, certification rules, and retirement processes — so it's clear which reports are official and how changes get made.</div>
       </div>
       <div class="trust-step">
         <div class="ts-letter">T</div>
+        <svg class="ts-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M4 11h14M13 6l5 5-5 5" stroke="#C18C5D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="ts-name">Transition to operating cadence</div>
-        <div class="ts-desc">Embed the new process into the business. Establish governance meeting cadences, quality monitoring, and continuous improvement. The goal is a system that sustains itself.</div>
+        <div class="ts-desc">Embed the new process with governance cadences and quality monitoring — the goal is a system that sustains itself without needing Aesop to keep it running.</div>
       </div>
     </div>
     <div class="method-cta">
@@ -285,6 +301,7 @@
 
       <!-- Flagship -->
       <a href="assessment.html" class="offer-card flagship" style="text-decoration:none">
+        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="5" y="3" width="18" height="22" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 9h10M9 13h10M9 17h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 7l1.5 1.5L13 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="oc-tag">★ Flagship first offer</div>
         <div class="oc-name">Reporting Clarity Assessment</div>
         <div class="oc-desc">A structured 2–3 week review of your reporting estate: inventory, metric conflicts, KPI gaps, data source map, manual burden analysis, and a prioritized 30/60/90-day modernization roadmap. You'll know exactly where trust is breaking down and what to fix first.</div>
@@ -298,6 +315,7 @@
 
       <!-- Sprint -->
       <a href="services.html#sprint" class="offer-card" style="text-decoration:none">
+        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M15 4L6 16h8L10 24l12-12h-8L15 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
         <div class="oc-tag">Implementation</div>
         <div class="oc-name">Executive Reporting Modernization Sprint</div>
         <div class="oc-desc">Build or redesign a high-value reporting package — executive KPI dashboard, KPI dictionary, source-of-truth map, and reporting standards guide. Leadership gets a cleaner, trusted reporting system built around actual decisions.</div>
@@ -310,6 +328,7 @@
 
       <!-- Governance -->
       <a href="services.html#governance" class="offer-card" style="text-decoration:none">
+        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M14 4L5 8v6c0 5 4 9 9 10 5-1 9-5 9-10V8L14 4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 14l3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="oc-tag">Governance</div>
         <div class="oc-name">Data Governance Starter Kit</div>
         <div class="oc-desc">A practical governance system — KPI dictionary, metric owner matrix, data owner RACI, reporting intake process, and an operating model that reduces metric confusion without creating bureaucracy.</div>
@@ -322,6 +341,7 @@
 
       <!-- Retainer -->
       <a href="services.html#retainer" class="offer-card" style="text-decoration:none">
+        <svg class="oc-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M22 14a8 8 0 11-2.5-5.7L22 6v5h-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="oc-tag">Ongoing support</div>
         <div class="oc-name">Fractional Analytics Operations Retainer</div>
         <div class="oc-desc">Senior analytics operating support on an ongoing basis — roadmap management, governance, dashboard improvements, stakeholder intake, and reporting leadership — without the cost of a full-time hire.</div>
