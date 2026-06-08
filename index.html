@@ -143,6 +143,16 @@
   .final-cta { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:96px 32px; }
   .final-cta h2 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(28px,4.4vw,52px); color:#fff; margin-bottom:20px; line-height:1.06; }
   .final-cta p { color:#A8B4C0; font-size:18px; font-weight:300; max-width:48ch; margin:0 auto 36px; line-height:1.6; }
+
+  /* ── Testimonials ── */
+  .testimonials { padding:80px 0; background:var(--paper); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .testi-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:40px; }
+  .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media(max-width:820px){ .testi-grid { grid-template-columns:1fr; } }
+  .testi { background:#fff; border:1px solid var(--line); border-radius:6px; padding:30px 26px; display:flex; flex-direction:column; }
+  .testi-text { font-size:16px; color:var(--slate); line-height:1.7; font-weight:300; font-style:italic; flex:1; margin-bottom:18px; }
+  .testi-text::before { content:'\201C'; font-family:"Abril Fatface",serif; font-size:44px; line-height:.8; color:var(--twine); display:block; margin-bottom:12px; opacity:.55; font-style:normal; }
+  .testi-attr { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; border-top:1px solid var(--line); padding-top:14px; }
   @media(max-width:760px){ }
   @media(max-width:460px){ }
 </style>
@@ -372,6 +382,27 @@
     <div><div class="stat-n">5</div><div class="stat-l">Engagements — assessment to retainer</div></div>
   </div>
 </div>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+  <div class="wrap">
+    <div class="testi-label">Client feedback</div>
+    <div class="testi-grid">
+      <div class="testi">
+        <p class="testi-text">What stood out most was how practical the work was. We did not just receive charts &mdash; we received a clearer way to understand the business. The dashboard helped us identify trends, review performance, and make decisions with more confidence.</p>
+        <span class="testi-attr">Business Owner</span>
+      </div>
+      <div class="testi">
+        <p class="testi-text">The biggest improvement was clarity. We finally had one view that showed our top-selling products, slower-moving inventory, and category trends. It made our buying and promotion decisions much easier &mdash; we were no longer relying only on gut feeling.</p>
+        <span class="testi-attr">Owner, Retail</span>
+      </div>
+      <div class="testi">
+        <p class="testi-text">The biggest value was being able to see the full process from request to completion. The dashboard showed us where time was being lost and helped us focus on the changes that would make the biggest difference.</p>
+        <span class="testi-attr">Operations Director, Field Services</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ── FEATURED INSIGHT ── -->
 <section class="featured">
