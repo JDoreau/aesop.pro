@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Assessment — Aesop Analytics</title>
+<meta name="description" content="See exactly what a Reporting Clarity Assessment delivers. A fully worked, anonymized sample engagement for a mid-size health research organization — real findings, real roadmap, real format.">
+<meta property="og:title" content="Sample Reporting Clarity Assessment — Aesop Analytics">
+<meta property="og:description" content="A fully worked, anonymized sample assessment. See the findings, scorecard, and 30/60/90-day roadmap a real engagement produces.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;
+    --muted:#5A6775; --slate:#495867; --cream:#F3EFE6;
+    --line:#E7E0D2; --rule:#D9CFBC;
+    --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555; --navy-foot:#08111F;
+    --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B;
+  }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--paper); color:var(--ink); font-family:"DM Sans","Helvetica Neue",Arial,sans-serif; font-size:18px; line-height:1.66; -webkit-font-smoothing:antialiased; }
+  a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  .wrap { max-width:820px; margin:0 auto; padding:0 28px; }
+
+  /* NAV */
+  header.site { border-bottom:1px solid var(--rule); background:rgba(251,250,245,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); position:sticky; top:0; z-index:10; }
+  .site-inner { max-width:1080px; margin:0 auto; padding:13px 28px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+  .brand .owl-mark { height:30px; width:30px; flex-shrink:0; }
+  .brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:var(--navy); }
+  .brand .an { font-family:"DM Sans",sans-serif; font-weight:700; letter-spacing:.34em; font-size:11px; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .nav-links { display:flex; gap:20px; list-style:none; align-items:center; }
+  .nav-links a { font-size:12.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--slate); text-decoration:none; transition:color .15s; white-space:nowrap; }
+  .nav-links a:hover { color:var(--navy); }
+  .nav-links .cta { background:var(--navy); color:var(--cream); padding:9px 16px; border-radius:4px; }
+  .nav-links .cta:hover { background:var(--navy-3); color:var(--cream); }
+  @media(max-width:700px){ .nav-links { display:none; } }
+
+  /* SAMPLE BANNER */
+  .sample-banner { background:var(--navy-2); color:var(--cream); text-align:center; padding:11px 20px; font-size:13.5px; font-weight:500; }
+  .sample-banner strong { color:var(--twine); }
+
+  /* ARTICLE */
+  article { padding:54px 0 38px; }
+  .kicker { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11.5px; color:var(--twine); margin-bottom:18px; }
+  h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(34px,5.4vw,54px); line-height:1.06; letter-spacing:-.01em; margin-bottom:20px; color:var(--navy); }
+  .dek { font-size:20px; line-height:1.55; color:var(--slate); font-weight:300; max-width:60ch; margin-bottom:26px; }
+  .meta-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:5px; overflow:hidden; margin:30px 0; }
+  @media(max-width:600px){ .meta-grid { grid-template-columns:1fr 1fr; } }
+  .meta-cell { background:var(--paper-2); padding:14px 16px; }
+  .meta-cell .ml { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:4px; }
+  .meta-cell .mv { font-size:14px; font-weight:600; color:var(--navy); line-height:1.3; }
+
+  .body { padding-top:20px; font-size:17.5px; }
+  .body p { margin:0 0 20px; }
+  h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:27px; line-height:1.14; letter-spacing:-.01em; margin:48px 0 14px; color:var(--navy); padding-top:20px; border-top:1px solid var(--rule); }
+  h3 { font-family:"DM Sans",sans-serif; font-weight:700; font-size:16px; margin:28px 0 10px; color:var(--navy); }
+  strong { font-weight:700; color:var(--ink); }
+  em { font-style:italic; }
+  ul, ol { margin:0 0 20px 22px; }
+  li { margin-bottom:7px; }
+
+  /* Tables */
+  table { width:100%; border-collapse:collapse; margin:24px 0; font-size:14.5px; }
+  th { text-align:left; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); padding:10px 12px; border-bottom:2px solid var(--navy); background:var(--paper-2); }
+  td { padding:11px 12px; border-bottom:1px solid var(--line); color:var(--slate); vertical-align:top; line-height:1.45; }
+  tr:last-child td { border-bottom:none; }
+  td strong { color:var(--navy); }
+
+  /* Callouts */
+  .summary-box { background:var(--navy); color:var(--cream); border-radius:8px; padding:30px 28px; margin:32px 0; }
+  .summary-box h2 { color:#fff; border-top:none; padding-top:0; margin-top:0; }
+  .summary-box p { color:#C4BDAE; }
+  .summary-box strong { color:#fff; }
+  .summary-box ol { color:#C4BDAE; }
+  .summary-box li strong { color:#fff; }
+
+  .callout { background:var(--paper-2); border:1px solid var(--rule); border-left:4px solid var(--twine); border-radius:4px; padding:20px 22px; margin:28px 0; font-size:16px; color:var(--slate); line-height:1.6; }
+  .callout strong { color:var(--navy); }
+
+  .flag-priority { color:var(--contessa); font-weight:700; }
+
+  /* CTA */
+  .cta-block { margin-top:48px; padding:32px 28px; background:var(--navy); border-radius:8px; }
+  .cta-block .ct-eyebrow { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--twine); margin-bottom:10px; }
+  .cta-block h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:24px; color:#fff; line-height:1.2; margin:0 0 12px; border-top:none; padding-top:0; }
+  .cta-block p { font-size:15.5px; color:#B8BDCA; line-height:1.55; margin-bottom:20px; }
+  .cta-block .btn { display:inline-block; background:var(--twine); color:#fff; text-decoration:none; font-size:13.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:13px 24px; border-radius:4px; transition:background .18s; }
+  .cta-block .btn:hover { background:var(--sepia); }
+  .cta-block .btn.ghost { background:transparent; border:1.5px solid rgba(255,255,255,.25); color:var(--cream); margin-left:8px; }
+
+  .disclaimer { font-size:12.5px; color:var(--muted); font-style:italic; margin-top:32px; padding-top:18px; border-top:1px solid var(--rule); line-height:1.5; }
+
+  /* FOOTER */
+  footer { background:var(--navy-foot); color:#8FA3B8; font-size:14px; padding:48px 28px 40px; margin-top:70px; }
+  .foot-in { max-width:1080px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:28px; align-items:flex-start; }
+  .foot-brand { display:flex; align-items:center; }
+  .foot-owl { height:28px; width:28px; margin-right:8px; }
+  .foot-brand .nm { font-family:"Abril Fatface",serif; font-size:22px; color:#fff; }
+  .foot-brand .tagline { font-size:13px; color:#637A90; font-style:italic; }
+  .foot-nav { display:flex; gap:18px; flex-wrap:wrap; }
+  .foot-nav a { color:#8FA3B8; text-decoration:none; font-size:13px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+  .foot-nav a:hover { color:#fff; }
+  .foot-copy { width:100%; font-size:12.5px; color:#4A6070; border-top:1px solid rgba(255,255,255,.07); padding-top:20px; margin-top:10px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-inner">
+    <a class="brand" href="index.html"><svg class="owl-mark" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--navy)" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="var(--twine)" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="var(--twine)" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <nav><ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="assessment.html" class="cta">Start Assessment</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<div class="sample-banner">This is an <strong>anonymized sample</strong> — a fictional client illustrating exactly what a Reporting Clarity Assessment delivers.</div>
+
+<main>
+<div class="wrap">
+<article>
+
+  <div class="kicker">Sample Deliverable &nbsp;·&nbsp; Healthcare / Research Ops</div>
+  <h1>What a Reporting Clarity Assessment actually delivers</h1>
+  <p class="dek">A fully worked, anonymized sample engagement for a mid-size health research organization. The client is fictional; the findings, conflicts, and recommendations reflect what we see repeatedly in real research environments.</p>
+
+  <div class="meta-grid">
+    <div class="meta-cell"><div class="ml">Client</div><div class="mv">Meridian Health Research <span style="color:var(--muted);font-weight:400;">(fictional)</span></div></div>
+    <div class="meta-cell"><div class="ml">Sector</div><div class="mv">Clinical research ops</div></div>
+    <div class="meta-cell"><div class="ml">Size</div><div class="mv">~280 staff · 40 programs</div></div>
+    <div class="meta-cell"><div class="ml">Duration</div><div class="mv">2.5 weeks · fixed fee</div></div>
+  </div>
+
+  <div class="body">
+
+  <div class="summary-box">
+    <h2>Executive summary</h2>
+    <p>Meridian asked us to review its reporting environment after the board questioned two conflicting enrollment numbers in the same quarterly meeting. What we found is common and fixable: <strong>Meridian does not have a data-quality problem — it has a definition and ownership problem.</strong> The underlying data is largely sound. The trouble is that the same metrics are defined differently across Research Ops, Finance, and program teams; almost no report has a named owner; and a large share of board reporting is assembled by hand each cycle.</p>
+    <p>Three findings drive most of the pain:</p>
+    <ol>
+      <li><strong>"Active enrollment" is defined four different ways</strong> — the direct cause of the board discrepancy that prompted this engagement.</li>
+      <li><strong>Of 34 recurring reports, 19 have no identifiable owner</strong> — when something breaks or is questioned, no one is accountable.</li>
+      <li><strong>The monthly grant-status pack takes ~22 person-hours to assemble</strong>, almost all manual spreadsheet work.</li>
+    </ol>
+    <p>None of these require new software. The 30-day plan below is fully self-executable by Meridian's team.</p>
+  </div>
+
+  <h2>What we reviewed</h2>
+  <table>
+    <tr><th>Scope</th><th>Detail</th></tr>
+    <tr><td><strong>Reports &amp; dashboards</strong></td><td>34 recurring reports across Power BI, Excel, and the grants system</td></tr>
+    <tr><td><strong>Interviews</strong></td><td>5 — VP Research Ops, 2 program analysts, Finance controller, a program director</td></tr>
+    <tr><td><strong>Systems</strong></td><td>Power BI, grants management (eRA-linked), Finance/ERP, REDCap, SharePoint report library</td></tr>
+    <tr><td><strong>Method</strong></td><td>TRUST — Triage and Reconcile phases, with Unify-phase recommendations</td></tr>
+  </table>
+
+  <h2>Finding 1 — The "active enrollment" conflict</h2>
+  <p>The trigger for this engagement. In the Q3 board meeting, Research Ops reported 1,247 active participants; a program director's slide showed 1,089. Both were "correct" — they measured different things with the same words.</p>
+  <table>
+    <tr><th>Definition in use</th><th>Held by</th><th>What it counts</th></tr>
+    <tr><td><strong>A:</strong> Consented &amp; not withdrawn</td><td>Research Ops dashboard</td><td>Anyone consented who hasn't formally withdrawn</td></tr>
+    <tr><td><strong>B:</strong> Consented &amp; visit in last 90 days</td><td>Program directors</td><td>"Active" = clinically active, recent contact</td></tr>
+    <tr><td><strong>C:</strong> Enrolled in current funding period</td><td>Finance / grants</td><td>Tied to the grant reporting window</td></tr>
+    <tr><td><strong>D:</strong> REDCap status = active</td><td>Program analysts</td><td>Whatever the source-system flag says</td></tr>
+  </table>
+  <p><strong>The divergence:</strong> Definition A (1,247) includes participants with no recent activity; Definition B (1,089) excludes them. The ~13% gap is entirely explained by 158 participants who are consented but haven't had a visit in 90+ days.</p>
+  <p><strong>Recommended resolution:</strong> Adopt a tiered definition — "consented," "clinically active (90-day)," and "grant-period active" as three explicitly named metrics, never collapsed into one ambiguous "active" number. Assign the Research Ops data lead as owner. This ends the argument because everyone gets the number they actually need, clearly labeled.</p>
+
+  <h2>Finding 2 — Ownership gaps across the estate</h2>
+  <p>Of 34 recurring reports, <strong>19 have no identifiable owner.</strong> When we asked "who owns this?", the answer was frequently "I think [name] built it, but they left."</p>
+  <table>
+    <tr><th>Report tier</th><th>Count</th><th>Named owner</th><th>No clear owner</th></tr>
+    <tr><td>Board / executive</td><td>6</td><td>4</td><td>2</td></tr>
+    <tr><td>Program / operational</td><td>18</td><td>9</td><td>9</td></tr>
+    <tr><td>Finance / grant</td><td>10</td><td>2</td><td><span class="flag-priority">8</span></td></tr>
+  </table>
+  <p>Ownership gaps are the root cause of the trust problem. A report with no owner has no one to answer "is this right?", no one accountable when it breaks, and no one authorized to approve a definition change. The Finance/grant tier is most exposed — 8 of 10 reports there are effectively orphaned.</p>
+
+  <h2>Finding 3 — Manual reporting burden</h2>
+  <p>The monthly grant-status pack — the single most important recurring deliverable to funders — is assembled almost entirely by hand.</p>
+  <table>
+    <tr><th>Step</th><th>Current state</th><th>Est. time/mo</th></tr>
+    <tr><td>Pull enrollment from REDCap</td><td>Manual export → Excel</td><td>4 hrs</td></tr>
+    <tr><td>Reconcile against grants system</td><td>Manual VLOOKUP matching</td><td>6 hrs</td></tr>
+    <tr><td>Pull spend from Finance/ERP</td><td>Manual export, reformatted</td><td>3 hrs</td></tr>
+    <tr><td>Assemble pack &amp; format</td><td>Copy-paste into template</td><td>5 hrs</td></tr>
+    <tr><td>Review &amp; fix discrepancies</td><td>Manual checking</td><td>4 hrs</td></tr>
+    <tr><td><strong>Total</strong></td><td></td><td><strong>~22 hrs/mo</strong></td></tr>
+  </table>
+  <p>~22 person-hours monthly (~264/year) on assembly rather than analysis. The manual reconciliation is exactly where the enrollment-definition conflict introduces errors that then need hand-correction.</p>
+
+  <h2>Trust &amp; Usage Scorecard (board tier)</h2>
+  <p>Each report scored 1–5 across five dimensions. The six board-tier reports — the ones that matter most:</p>
+  <table>
+    <tr><th>Report</th><th>Value</th><th>Trust</th><th>Maint.</th><th>Dup.</th><th>Relev.</th><th>/25</th><th>Flag</th></tr>
+    <tr><td>Quarterly Board Enrollment</td><td>5</td><td>2</td><td>2</td><td>3</td><td>4</td><td>16</td><td><span class="flag-priority">High value / low trust</span></td></tr>
+    <tr><td>Grant Status Pack</td><td>5</td><td>3</td><td>1</td><td>4</td><td>5</td><td>18</td><td><span class="flag-priority">Fragile — automate</span></td></tr>
+    <tr><td>Program Performance Dashboard</td><td>4</td><td>4</td><td>3</td><td>2</td><td>4</td><td>17</td><td>Duplication to resolve</td></tr>
+    <tr><td>Enrollment Funnel (PBI)</td><td>4</td><td>2</td><td>3</td><td>2</td><td>3</td><td>14</td><td><span class="flag-priority">High value / low trust</span></td></tr>
+    <tr><td>Finance Burn-Rate</td><td>5</td><td>4</td><td>3</td><td>4</td><td>5</td><td>21</td><td>Protect &amp; standardize</td></tr>
+    <tr><td>Recruitment Pipeline</td><td>3</td><td>3</td><td>2</td><td>2</td><td>3</td><td>13</td><td>Review</td></tr>
+  </table>
+  <p>The two priority reports are high-value but low-trust — the enrollment-definition problem showing up in the scores. The Finance Burn-Rate report is the model to protect and replicate.</p>
+
+  <h2>The 30/60/90-day roadmap</h2>
+  <h3>First 30 days — quick wins (self-executable)</h3>
+  <table>
+    <tr><th>Action</th><th>Impact</th><th>Effort</th><th>Owner</th></tr>
+    <tr><td>Adopt the 3-tier enrollment definition; publish it</td><td>High</td><td>S</td><td>Research Ops data lead</td></tr>
+    <tr><td>Assign owners to all 6 board-tier reports</td><td>High</td><td>S</td><td>VP Research Ops</td></tr>
+    <tr><td>Document the source-of-truth for board enrollment</td><td>High</td><td>S</td><td>Research Ops data lead</td></tr>
+    <tr><td>Retire 3 confirmed duplicate program reports</td><td>Med</td><td>S</td><td>Program analysts</td></tr>
+  </table>
+  <h3>Days 31–60 — reconcile &amp; standardize</h3>
+  <table>
+    <tr><th>Action</th><th>Impact</th><th>Effort</th><th>Owner</th></tr>
+    <tr><td>Assign owners to all operational + grant reports</td><td>High</td><td>M</td><td>VP Research Ops</td></tr>
+    <tr><td>Build KPI dictionary for top 15 metrics</td><td>High</td><td>M</td><td>Research Ops data lead</td></tr>
+    <tr><td>Stand up a simple report-request intake</td><td>Med</td><td>M</td><td>Research Ops</td></tr>
+    <tr><td>Semi-automate REDCap → grant pack pull</td><td>High</td><td>M</td><td>Analytics (or Sprint)</td></tr>
+  </table>
+  <h3>Days 61–90 — govern &amp; sustain</h3>
+  <table>
+    <tr><th>Action</th><th>Impact</th><th>Effort</th><th>Owner</th></tr>
+    <tr><td>Establish monthly governance cadence</td><td>High</td><td>L</td><td>VP Research Ops</td></tr>
+    <tr><td>Rebuild the Grant Status Pack as automated report</td><td>High</td><td>L</td><td>Sprint engagement</td></tr>
+    <tr><td>Define report certification process</td><td>Med</td><td>L</td><td>Research Ops</td></tr>
+  </table>
+
+  <h2>Our honest recommendation</h2>
+  <p>Most of this plan, Meridian can execute itself. The 30-day items require no outside help, and we'd encourage the team to own them — that's how the fixes stick. Two items are genuine candidates for help, and we name them plainly:</p>
+  <ul>
+    <li><strong>Rebuilding the Grant Status Pack</strong> as an automated report is a well-scoped <strong>Modernization Sprint</strong>. The funder-facing risk and the 22-hour monthly burden justify it.</li>
+    <li><strong>Standing up governance cadence and certification</strong> could be supported by a <strong>Governance Starter Kit</strong> if Meridian wants structure faster than it can build alone.</li>
+  </ul>
+  <p>Everything else — the definitions, the ownership assignments, the intake process — Meridian should do in-house. We'd rather see those owned internally than billed.</p>
+
+  <div class="callout">
+    <strong>The bottom line for the board:</strong> Meridian's numbers can be trusted again within 30 days for the metrics that matter most, with no new software and no large project. The enrollment argument that started this engagement is resolved by naming three metrics clearly and giving them an owner.
+  </div>
+
+  <div class="cta-block">
+    <div class="ct-eyebrow">This could be your reporting environment</div>
+    <h2>See where trust is breaking down in your own reporting.</h2>
+    <p>Every Reporting Clarity Assessment begins with a free 30-minute diagnostic — a conversation to understand your situation and confirm there's a fit before any work begins.</p>
+    <a href="contact.html" class="btn">Book a free diagnostic →</a>
+    <a href="assessment.html" class="btn ghost">How the Assessment works</a>
+  </div>
+
+  <p class="disclaimer">Sample deliverable. "Meridian Health Research Institute" is fictional and the findings are illustrative of patterns Aesop sees in mid-size health-research organizations. No real patient, participant, or organizational data is represented. The structure, depth, and format reflect an actual Reporting Clarity Assessment.</p>
+
+  </div>
+</article>
+</div>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <div class="foot-brand"><svg class="foot-owl" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--twine)" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#FBFAF5" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#FBFAF5" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span></div>
+    <nav class="foot-nav">
+      <a href="services.html">Services</a>
+      <a href="assessment.html">Assessment</a>
+      <a href="work.html">Work</a>
+      <a href="insights.html">Insights</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="foot-copy">© 2026 Aesop Analytics LLC · Nashville, TN · hello@aesopanalytics.com · <em>Every dataset has a moral.</em></div>
+  </div>
+</footer>
+
+</body>
+</html>
