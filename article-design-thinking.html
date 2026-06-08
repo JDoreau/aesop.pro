@@ -4,19 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Design Thinking in Business Intelligence — Aesop Analytics</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="description" content="Design thinking isn't about visual design — it's a four-phase problem-solving method that's particularly powerful when you know there's a better answer but aren't sure exactly what it is. A practical guide for BI consultants.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="article.css">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-  /* Page-specific styles */
+  :root {
+    --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;
+    --muted:#5A6775; --slate:#495867; --cream:#F3EFE6;
+    --line:#E7E0D2; --rule:#D9CFBC;
+    --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555; --navy-foot:#08111F;
+    --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; --apple:#B35546;
+  }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--paper); color:var(--ink);
+    font-family:"DM Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:18px; line-height:1.66; font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 8% -6%, rgba(15,31,56,.05), transparent 40%),
+      radial-gradient(circle at 100% 2%, rgba(193,140,93,.07), transparent 36%);
+  }
+  a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 28px; }
 
+  header.site { border-bottom:1px solid var(--rule); background:rgba(251,250,245,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); position:sticky; top:0; z-index:10; }
+  .site-inner { max-width:1040px; margin:0 auto; padding:13px 28px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { display:flex; align-items:baseline; gap:8px; text-decoration:none; }
+  .brand .owl-mark, .brand .brand-owl { height:30px; width:30px; flex-shrink:0; }
+  .brand { align-items:center; }
+  .brand .ae { font-family:"Abril Fatface",serif; font-size:25px; color:var(--navy); }
+  .brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:var(--navy); }
+  .brand .an { font-family:"DM Sans",sans-serif; font-weight:700; letter-spacing:.34em; font-size:11px; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .tagline { color:var(--muted); font-style:italic; font-size:14px; }
   @media(max-width:580px){ .tagline { display:none; } }
-  .
-    
-    .phases { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:40px 0; background:var(--rule); border-radius:6px; overflow:hidden; border:1px solid var(--rule); }
+
+  article { padding:60px 0 36px; }
+  .kicker { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11.5px; color:var(--twine); margin-bottom:20px; }
+  h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(34px,5.8vw,60px); line-height:1.04; letter-spacing:.002em; margin-bottom:22px; color:var(--navy); }
+  h1 .sub { display:block; font-size:.46em; line-height:1.3; color:var(--slate); margin-top:14px; font-family:"DM Sans",sans-serif; font-weight:300; }
+  .dek { font-size:20px; line-height:1.55; color:var(--slate); font-weight:300; max-width:58ch; margin-bottom:28px; }
+  .byline { display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.04em; text-transform:uppercase; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:12px 0; }
+  .byline .reg { font-weight:400; text-transform:none; letter-spacing:0; font-size:14px; }
+  .byline strong { color:var(--navy); }
+  .byline .dot { color:var(--rule); }
+
+  .body { padding-top:34px; font-size:18.5px; }
+  .body p { margin:0 0 22px; }
+  .lead:first-letter { font-family:"Abril Fatface",serif; float:left; font-size:80px; line-height:.74; padding:8px 14px 0 0; color:var(--navy); }
+  h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:30px; line-height:1.12; margin:54px 0 6px; color:var(--navy); }
+  .h2-sub { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:16px; display:block; }
+  strong { font-weight:700; color:var(--ink); }
+  em { font-style:italic; }
+
+  /* Phase cards — four phases as a 2x2 grid */
+  .phases { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:40px 0; background:var(--rule); border-radius:6px; overflow:hidden; border:1px solid var(--rule); }
   @media(max-width:560px){ .phases { grid-template-columns:1fr; } }
   .phase { background:#fff; padding:28px 24px; }
   .phase .pnum { font-family:"Abril Fatface",serif; font-size:42px; line-height:1; color:var(--navy); opacity:.12; display:block; margin-bottom:-8px; }
@@ -25,6 +70,8 @@
   .phase p { font-size:15px; color:var(--slate); line-height:1.58; font-weight:300; margin:0 0 12px; }
   .phase p:last-child { margin:0; }
   .phase .example { font-size:14px; color:var(--muted); font-style:italic; padding:10px 14px; background:var(--paper-2); border-radius:4px; border-left:3px solid var(--twine); margin-top:12px; line-height:1.5; }
+
+  /* Pro/avoid strip */
   .protip { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:36px 0; }
   @media(max-width:560px){ .protip { grid-template-columns:1fr; } }
   .protip > div { border-radius:6px; padding:20px; }
@@ -39,29 +86,50 @@
   .protip li::before { font-weight:700; flex-shrink:0; }
   .protip .do li::before { content:"→"; color:var(--navy); }
   .protip .dont li::before { content:"✗"; color:var(--contessa); }
+
+  .illus { margin:38px 0; background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px 24px 20px; box-shadow:0 16px 40px -28px rgba(15,31,56,.22); }
   .illus .ititle { font-weight:700; font-size:15px; margin-bottom:3px; color:var(--ink); }
   .illus .isub { font-size:12.5px; color:var(--muted); margin-bottom:18px; }
   .illus svg { display:block; width:100%; height:auto; }
   .illus figcaption { font-size:12px; color:var(--muted); margin-top:14px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; }
+
+  .pull { font-family:"Abril Fatface",serif; font-size:26px; line-height:1.3; color:var(--navy); border-left:4px solid var(--twine); padding:4px 0 4px 24px; margin:44px 0; }
+  .tip { background:var(--paper-2); border-left:4px solid var(--twine); border-radius:0 5px 5px 0; padding:20px 22px; margin:32px 0; }
+  .tip .tlabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:8px; }
+  .tip p { font-size:16px; color:var(--slate); line-height:1.55; margin:0; }
+
+  .read-next { margin:56px 0 0; padding:28px 0; border-top:2px solid var(--rule); }
+  .read-next .rn-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:16px; }
+  .rn-links { display:flex; flex-wrap:wrap; gap:12px; }
+  .rn-link { font-size:15px; font-weight:600; color:var(--navy); border:1px solid var(--line); border-radius:4px; padding:10px 18px; text-decoration:none; transition:border-color .18s, color .18s; }
+  .rn-link:hover { border-color:var(--twine); color:var(--twine); }
+
+  footer.site { background:var(--navy); color:#8A9FB8; margin-top:72px; padding:44px 0; }
+  footer .fin { max-width:740px; margin:0 auto; padding:0 28px; display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; }
+  footer .fbrand { display:flex; align-items:baseline; gap:8px; }
+  footer .fbrand-owl { height:28px; width:28px; margin-right:6px; }
+  footer .fbrand { align-items:center; }
+  footer .fbrand .ae { font-family:"Abril Fatface",serif; font-size:24px; color:var(--twine); }
+  footer .fbrand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
+  footer .fbrand .an { font-family:"DM Sans"; font-weight:700; letter-spacing:.32em; font-size:10.5px; text-transform:uppercase; color:var(--twine); align-self:center; }
+  footer .fmoral { font-style:italic; font-size:14px; color:#4A6070; }
+  footer .fback { font-size:13px; font-weight:600; color:var(--twine); text-decoration:none; }
+  footer .fback:hover { color:#d49a68; }
+
+  .reveal { opacity:0; transform:translateY(14px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes rise { to { opacity:1; transform:none; } }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-in">
-    <a href="index.html" class="brand"><svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
-    <div class="site-links">
-      <a href="services.html">Services</a>
-      <a href="assessment.html" class="nav-accent">Assessment</a>
-      <a href="work.html">Work</a>
-      <a href="insights.html">Insights</a>
-      <a href="resources.html">Resources</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <a href="contact.html" class="site-cta">Book a diagnostic</a>
+<header class="site">
+  <div class="site-inner">
+    <a href="index.html" class="brand" aria-label="Aesop Analytics home">
+      <svg class="brand-owl" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--navy)" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="var(--twine)" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="var(--twine)" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span>
+    </a>
+    <div class="tagline">Every dataset has a moral.</div>
   </div>
-</nav>
+</header>
 
 <div class="wrap">
   <article>
@@ -227,7 +295,7 @@
 <footer class="site">
   <div class="fin">
     <div class="fbrand">
-      <svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span>
+      <svg class="brand-owl" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="var(--navy)" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="var(--twine)" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="var(--twine)" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span>
     </div>
     <div class="fmoral">Every dataset has a moral.</div>
     <a href="index.html" class="fback">← Back to aesop.pro</a>
