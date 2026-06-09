@@ -1,0 +1,285 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "Forty Years of Wage Inequality — Aesop Analytics";
+const description = "Between 1979 and 2021, wages for the top 0.1% grew 465%. The bottom 90% grew 29%. Using SSA earnings data, this field study examines what the aggregate average hides — and why average wages are almost always the wrong number.";
+const kicker = "Field Study · Labor & the Economy";
+const headingHtml = "Forty Years of Wage Inequality <span class=\"sub\">What the average conceals — and why it almost always tells the wrong story</span>";
+const dekHtml = "Between 1979 and 2021, wages for the top 0.1% of earners grew 465%. The bottom 90% grew 29%. When you report only the average, both numbers disappear — and so does every honest conversation about what is actually happening.";
+const meta = ["June 2026", "9 min read"];
+const ogDescription = "The top 0.1% saw 465% wage growth since 1979. The bottom 90%: 29%. A field study on distribution, measurement, and why the average is the wrong number.";
+---
+
+<ArticleLayout title={title} description={description} path="/insights/wage-inequality-forty-years" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
+
+<div class="stats">
+    <div class="stat warn">
+      <div class="n">29%</div>
+      <div class="l">Wage growth for the bottom 90%, 1979–2021</div>
+    </div>
+    <div class="stat accent">
+      <div class="n">465%</div>
+      <div class="l">Wage growth for the top 0.1%, same period</div>
+    </div>
+    <div class="stat">
+      <div class="n">7×</div>
+      <div class="l">How much faster top 1% wages grew vs. bottom 90% over 40 years</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+  <p class="lead">Every year, headlines announce what the average American worker earned. Every year, that number is technically accurate and practically useless. Average wages are a ratio — total compensation divided by total earners. When earnings at the very top grow dramatically faster than earnings everywhere else, the average rises even when most workers fall behind. The average is not lying to you. It is simply answering a different question than you think you are asking.</p>
+
+  <p>This field study uses Social Security Administration (SSA) earnings data, as analyzed by Elise Gould and Jori Kandra of the Economic Policy Institute, to examine what actually happened to wages at different points in the distribution between 1979 and 2021. The SSA data has one significant advantage over most wage surveys: it is not top-coded. Most household survey data assigns a common ceiling to reported high earnings — effectively capping what can be measured at the top. The SSA data reports actual W-2 earnings, which means the distance between the top and everyone else can be measured honestly.</p>
+
+  <p>The answer is striking. And it is directly relevant to how any analyst, manager, or executive should think about distribution when they pick a summary statistic for their reports.</p>
+
+  <h2>What happened to wages between 1979 and 2021</h2>
+  <span class="h2-sub">Four decades of divergence</span>
+
+  <p>Start with the headline numbers. Between 1979 and 2021, wages for workers in the bottom 90% grew approximately 29% in real (inflation-adjusted) terms. Over that same 42-year period, wages for the top 1% grew roughly 179%. Wages for the top 0.1% grew 465%.</p>
+
+  <!-- Chart 1: Wage growth divergence bar chart -->
+  <div class="chart">
+    <div class="ctitle">Cumulative real wage growth by earnings group, 1979–2021</div>
+    <div class="csub">Inflation-adjusted. SSA earnings data, Gould &amp; Kandra (EPI, 2022).</div>
+    <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+      <!-- Grid lines -->
+      <line x1="130" y1="20" x2="130" y2="230" stroke="#E7E0D2" stroke-width="1"/>
+      <line x1="130" y1="230" x2="650" y2="230" stroke="#D9CFBC" stroke-width="1.5"/>
+      <!-- Y-axis labels -->
+      <text x="120" y="234" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">0%</text>
+      <line x1="130" y1="182" x2="650" y2="182" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="3,4"/>
+      <text x="120" y="186" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">100%</text>
+      <line x1="130" y1="134" x2="650" y2="134" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="3,4"/>
+      <text x="120" y="138" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">200%</text>
+      <line x1="130" y1="86" x2="650" y2="86" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="3,4"/>
+      <text x="120" y="90" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">300%</text>
+      <line x1="130" y1="38" x2="650" y2="38" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="3,4"/>
+      <text x="120" y="42" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">400%</text>
+
+      <!-- Bars — scale: 230 = 0%, 38 = ~465%; range = 192px for 465% -->
+      <!-- Bottom 90%: 29% → 192 * 29/465 = ~12px tall -->
+      <rect x="170" y="218" width="80" height="12" fill="#CE796B" rx="2"/>
+      <text x="210" y="212" font-family="Abril Fatface,serif" font-size="16" fill="#CE796B" text-anchor="middle">29%</text>
+      <text x="210" y="248" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="middle">Bottom 90%</text>
+
+      <!-- Top 10% (excl top 1%): ~~85% (approx) → 192 * 85/465 = ~35px -->
+      <rect x="310" y="195" width="80" height="35" fill="#C18C5D" opacity="0.65" rx="2"/>
+      <text x="350" y="189" font-family="Abril Fatface,serif" font-size="16" fill="#98673A" text-anchor="middle">~85%</text>
+      <text x="350" y="248" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="middle">90th–99th pct</text>
+
+      <!-- Top 1%: 179% → 192 * 179/465 = ~74px -->
+      <rect x="450" y="156" width="80" height="74" fill="#C18C5D" rx="2"/>
+      <text x="490" y="150" font-family="Abril Fatface,serif" font-size="16" fill="#C18C5D" text-anchor="middle">179%</text>
+      <text x="490" y="248" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="middle">Top 1%</text>
+
+      <!-- Top 0.1%: 465% → 192px tall (full scale) -->
+      <rect x="585" y="38" width="60" height="192" fill="#0F1F38" rx="2"/>
+      <text x="615" y="32" font-family="Abril Fatface,serif" font-size="16" fill="#0F1F38" text-anchor="middle">465%</text>
+      <text x="615" y="248" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="middle">Top 0.1%</text>
+    </svg>
+    <div class="cnote">Approximate values; top 0.1% bar anchors the scale. The 90th–99th percentile figure is illustrative based on the broader spread reported.</div>
+    <div class="csource">Source: EPI analysis of SSA earnings data — Gould and Kandra, "Inequality in Annual Earnings Worsens in 2021," Economic Policy Institute, December 2022.</div>
+  </div>
+
+  <p>These are not small statistical differences. The top 0.1% grew at roughly 16 times the rate of the bottom 90%. Over 40 years, a 16-to-1 divergence in compounding growth rates produces a gap that is difficult to fully grasp as a single number — which is precisely why most reporting avoids the distribution and reaches for the average instead.</p>
+
+  <div class="pullquote">
+    <p>The average wage tells you what the total compensation pool would be if it were split equally. It does not tell you how it was actually split.</p>
+  </div>
+
+  <h2>The share of the pie</h2>
+  <span class="h2-sub">How the distribution of total earnings shifted</span>
+
+  <p>Growth rates tell one story. Changes in share of total earnings tell another — and in some ways a cleaner one, because it removes the noise of overall economic expansion and asks a direct question: who captured the gains?</p>
+
+  <p>In 1979, the top 1% of earners claimed about 7.3% of all wages. By 2021, that share had doubled to 14.6% — a record high. In the same period, the bottom 90%'s share fell from 69.8% to 58.6%, a historic low.</p>
+
+  <!-- Chart 2: Earnings share stacked comparison -->
+  <div class="chart">
+    <div class="ctitle">Share of total U.S. wage earnings: 1979 vs. 2021</div>
+    <div class="csub">Percentage of total annual wages by earnings group.</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+      <!-- 1979 column -->
+      <text x="230" y="18" font-family="Abril Fatface,serif" font-size="16" fill="#0F1F38" text-anchor="middle">1979</text>
+      <!-- Bottom 90%: 69.8% of 160px = 111.7px -->
+      <rect x="150" y="30" width="160" height="111" fill="#D6DDE8" rx="0"/>
+      <text x="230" y="91" font-family="DM Sans,sans-serif" font-size="13" fill="#0F1F38" text-anchor="middle" font-weight="600">Bottom 90%</text>
+      <text x="230" y="108" font-family="Abril Fatface,serif" font-size="18" fill="#0F1F38" text-anchor="middle">69.8%</text>
+      <!-- 90th–99th: ~22.9% of 160 = 36.6px -->
+      <rect x="150" y="141" width="160" height="37" fill="#C18C5D" opacity="0.55" rx="0"/>
+      <text x="230" y="163" font-family="DM Sans,sans-serif" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">90–99th pct: ~22.9%</text>
+      <!-- Top 1%: 7.3% of 160 = 11.7px -->
+      <rect x="150" y="178" width="160" height="12" fill="#0F1F38" rx="0"/>
+      <text x="335" y="186" font-family="DM Sans,sans-serif" font-size="12" fill="#0F1F38" text-anchor="start">Top 1%: 7.3%</text>
+
+      <!-- 2021 column -->
+      <text x="510" y="18" font-family="Abril Fatface,serif" font-size="16" fill="#0F1F38" text-anchor="middle">2021</text>
+      <!-- Bottom 90%: 58.6% of 160 = 93.8px -->
+      <rect x="430" y="30" width="160" height="94" fill="#D6DDE8" rx="0"/>
+      <text x="510" y="72" font-family="DM Sans,sans-serif" font-size="13" fill="#0F1F38" text-anchor="middle" font-weight="600">Bottom 90%</text>
+      <text x="510" y="89" font-family="Abril Fatface,serif" font-size="18" fill="#CE796B" text-anchor="middle">58.6%</text>
+      <!-- 90th–99th: ~26.8% of 160 = 42.9px -->
+      <rect x="430" y="124" width="160" height="43" fill="#C18C5D" opacity="0.55" rx="0"/>
+      <text x="510" y="149" font-family="DM Sans,sans-serif" font-size="12" fill="#fff" text-anchor="middle" font-weight="600">90–99th pct: ~26.8%</text>
+      <!-- Top 1%: 14.6% of 160 = 23.4px -->
+      <rect x="430" y="167" width="160" height="23" fill="#0F1F38" rx="0"/>
+      <text x="430" y="202" font-family="DM Sans,sans-serif" font-size="12" fill="#0F1F38" text-anchor="start">Top 1%: 14.6%</text>
+
+      <!-- Change arrows / callout -->
+      <line x1="310" y1="141" x2="430" y2="124" stroke="#CE796B" stroke-width="1.5" stroke-dasharray="4,3"/>
+    </svg>
+    <div class="cnote">The bottom 90% share fell 11.2 percentage points over 42 years. The top 1% share doubled. These shifts represent real redistributions of earned income, not measurement noise.</div>
+    <div class="csource">Source: Gould and Kandra, EPI, December 2022. SSA W-2 data, not top-coded.</div>
+  </div>
+
+  <p>Within that top 1%, the concentration is even more striking at the very apex. The top 0.1% of earners held 1.6% of total wages in 1979. By 2021 that figure had reached 5.9% — roughly 3.7 times higher. Of the entire 7.3 percentage point increase in the top 1% share, about 4.3 percentage points — nearly 60% — came from the top 0.1% alone. The concentration of wage gains has not been evenly distributed even within the top.</p>
+
+  <h2>What 2021 looked like year-over-year</h2>
+  <span class="h2-sub">The pandemic data adds a sharp illustration</span>
+
+  <p>The 2021 snapshot provides a particularly clear single-year example of how divergence operates. Between 2020 and 2021, real wages for the bottom 90% fell 0.2%. Workers in the 90th to 95th percentiles — generally considered "upper-middle" earners — saw real losses of 2.0%. The only group to experience real wage gains in that period was the top 1%.</p>
+
+  <!-- Chart 3: 2020-2021 YoY change by percentile -->
+  <div class="chart">
+    <div class="ctitle">Real wage change by earnings group, 2020–2021</div>
+    <div class="csub">Inflation-adjusted. A negative bar means real purchasing power fell.</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+      <!-- Zero line -->
+      <line x1="50" y1="110" x2="650" y2="110" stroke="#D9CFBC" stroke-width="1.5"/>
+      <text x="40" y="114" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">0%</text>
+      <!-- Scale markers -->
+      <line x1="50" y1="55" x2="650" y2="55" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="3,4"/>
+      <text x="40" y="59" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">+10%</text>
+      <line x1="50" y1="27" x2="650" y2="27" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="3,4"/>
+      <text x="40" y="31" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">+18%</text>
+      <line x1="50" y1="138" x2="650" y2="138" stroke="#E7E0D2" stroke-width="1" stroke-dasharray="3,4"/>
+      <text x="40" y="142" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775" text-anchor="end">−5%</text>
+
+      <!-- Bottom 90%: −0.2% → tiny red bar below zero ~1px -->
+      <rect x="80" y="110" width="90" height="1" fill="#CE796B" rx="1"/>
+      <text x="125" y="125" font-family="DM Sans,sans-serif" font-size="12" fill="#CE796B" text-anchor="middle">−0.2%</text>
+      <text x="125" y="175" font-family="DM Sans,sans-serif" font-size="11.5" fill="#5A6775" text-anchor="middle">Bottom 90%</text>
+
+      <!-- 90th–95th: −2.0% → ~11px below zero (scale: 1% = 5.5px) -->
+      <rect x="195" y="110" width="90" height="11" fill="#CE796B" rx="1"/>
+      <text x="240" y="130" font-family="DM Sans,sans-serif" font-size="12" fill="#CE796B" text-anchor="middle">−2.0%</text>
+      <text x="240" y="175" font-family="DM Sans,sans-serif" font-size="11.5" fill="#5A6775" text-anchor="middle">90th–95th pct</text>
+
+      <!-- 95th–99th: approx −1.5% -->
+      <rect x="310" y="110" width="90" height="8" fill="#CE796B" opacity=".7" rx="1"/>
+      <text x="355" y="127" font-family="DM Sans,sans-serif" font-size="12" fill="#CE796B" text-anchor="middle">~−1.5%</text>
+      <text x="355" y="175" font-family="DM Sans,sans-serif" font-size="11.5" fill="#5A6775" text-anchor="middle">95th–99th pct</text>
+
+      <!-- Top 1%: +9.4% → 52px above zero -->
+      <rect x="425" y="58" width="90" height="52" fill="#C18C5D" rx="1"/>
+      <text x="470" y="53" font-family="Abril Fatface,serif" font-size="16" fill="#C18C5D" text-anchor="middle">+9.4%</text>
+      <text x="470" y="175" font-family="DM Sans,sans-serif" font-size="11.5" fill="#5A6775" text-anchor="middle">Top 1%</text>
+
+      <!-- Top 0.1%: +18.5% → full 83px -->
+      <rect x="550" y="27" width="80" height="83" fill="#0F1F38" rx="1"/>
+      <text x="590" y="22" font-family="Abril Fatface,serif" font-size="16" fill="#0F1F38" text-anchor="middle">+18.5%</text>
+      <text x="590" y="175" font-family="DM Sans,sans-serif" font-size="11.5" fill="#5A6775" text-anchor="middle">Top 0.1%</text>
+    </svg>
+    <div class="cnote">Note: 95th–99th percentile figure is approximate; bars below zero represent real purchasing power loss.</div>
+    <div class="csource">Source: Gould and Kandra, EPI, December 2022. Data from SSA annual wage distribution.</div>
+  </div>
+
+  <p>Wages for the top 0.1% rose 18.5% in a single year — real, inflation-adjusted earnings growth — at the same time most of the workforce absorbed real losses. In a given year, the average wage could easily show modest overall growth while concealing that the distribution was moving sharply in opposite directions simultaneously.</p>
+
+  <h2>Why this is a measurement story, not just an economics story</h2>
+  <span class="h2-sub">What the wage data reveals about how summary statistics work</span>
+
+  <p>The wage inequality data makes a point that extends well beyond economics. It is a clean illustration of what any analyst should know about averages: they compress distributions into a single value, and in doing so, they erase the most interesting and consequential information about how the underlying data actually behaves.</p>
+
+  <div class="callout">
+    <p><strong>The data quality angle most reports miss:</strong> The SSA earnings data used in this research is non-top-coded. Standard household survey data caps reported income at a common maximum to protect privacy — meaning wages above that ceiling are all assigned the same value. This makes high-end inequality structurally unmeasurable from typical survey sources. The gap between the top 0.1% and everyone else is systematically undercounted in most published wage analyses.</p>
+    <p>This is not a minor footnote. The top-coding problem means that <em>decades</em> of wage research using household survey data understated the concentration at the top. The SSA data, by using actual W-2 records, shows a distribution that is more concentrated at the peak than standard sources imply.</p>
+  </div>
+
+  <p>The same dynamic appears in business reporting constantly. A company reports average sales per rep and management concludes that performance is broadly acceptable. Meanwhile, two top performers account for 60% of revenue, and the lower half of the team is producing results that would fail any objective threshold. The average absorbed the variance and returned a number that answered none of the decision-relevant questions.</p>
+
+  <p>Or consider customer lifetime value, churn rates, or time-to-close metrics. Each of these is routinely reported as an average. Each has a distribution that typically contains information far more useful than the central tendency — outliers, clusters, floor effects, ceiling effects. When the distribution is skewed or bimodal, the mean is often the least informative summary statistic available.</p>
+
+  <div class="pullquote">
+    <p>When a distribution is skewed, the mean tells you where the weight is — not where most of the people are.</p>
+  </div>
+
+  <h2>What the data says about causes</h2>
+  <span class="h2-sub">An honest accounting of the structural factors</span>
+
+  <p>Gould and Kandra identify several structural factors behind the divergence in wages over the four-decade period. These include the long-stagnant federal minimum wage, declining unionization rates and reduced worker bargaining power, policy decisions that tolerated higher unemployment levels, and the increasing concentration of top-end compensation (including equity, bonuses, and executive pay) that SSA data captures through W-2 reporting.</p>
+
+  <p>This field study does not take a position on the policy prescriptions. Reasonable people disagree about the right mix of minimum wage levels, union law, trade policy, and tax structure. What the data does not permit reasonable disagreement about is the factual record: wages at the top and wages at the bottom moved in different directions, at dramatically different magnitudes, over a sustained and consistent multi-decade period. The divergence predates any particular administration and persisted across economic expansions and contractions alike. That is a structural pattern, not a cyclical anomaly.</p>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Earnings group</th>
+        <th>1979–2021 growth</th>
+        <th>2020–2021 change</th>
+        <th>Share of wages, 2021</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bottom 90%</td>
+        <td><span class="num lo">+29%</span></td>
+        <td><span class="num lo">−0.2%</span></td>
+        <td>58.6% (down from 69.8%)</td>
+      </tr>
+      <tr>
+        <td>90th–95th percentile</td>
+        <td>Moderate gains</td>
+        <td><span class="num lo">−2.0%</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Top 1%</td>
+        <td><span class="num">+179%</span></td>
+        <td><span class="num hi">+9.4%</span></td>
+        <td>14.6% (up from 7.3%)</td>
+      </tr>
+      <tr>
+        <td>Top 0.1%</td>
+        <td><span class="num hi">+465%</span></td>
+        <td><span class="num hi">+18.5%</span></td>
+        <td>5.9% (up from 1.6%)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>The takeaway for anyone who reports on numbers</h2>
+  <span class="h2-sub">What this means for how your organization measures things</span>
+
+  <p>The wage inequality data is a useful stress test for how any analyst thinks about summary statistics. When you see an average — any average — it is worth asking four questions.</p>
+
+  <p><strong>What does the distribution actually look like?</strong> Is it roughly normal, skewed, bimodal? If you can only publish one number but the distribution is asymmetric, at minimum acknowledge that the mean and median differ materially.</p>
+
+  <p><strong>Who does the average represent?</strong> In wage data, the average earner does not exist at the average. Most workers earn below mean wages because high earners pull the mean above the median. The same is true in customer revenue data, support ticket volume, and dozens of other business metrics.</p>
+
+  <p><strong>Is the data top-coded or otherwise truncated?</strong> If your CRM caps deal sizes above a threshold, or your survey caps responses, or your reporting tool groups everything above a value into an "other" bucket, you have introduced a top-coding problem into your analysis. High-end concentration becomes structurally invisible.</p>
+
+  <p><strong>What decisions does this number need to support?</strong> If you are making decisions about the bottom half of a distribution — compensation bands, support staffing, churn interventions — a mean that is heavily influenced by the top half of the distribution may be actively misleading. The right statistic depends on the decision, not on convention.</p>
+
+  <div class="callout">
+    <p><strong>The broader point:</strong> This is exactly why Aesop Analytics works on metric definition before metric modernization. A dashboard can be technically flawless — correct data, live refresh, clean design — and still return answers to the wrong questions if the metric definitions were built around convenient summary statistics rather than decision-relevant ones. The wage data makes this visible at national scale. It happens in smaller ways in virtually every reporting environment we review.</p>
+  </div>
+
+  <p>The story of 40 years of wage inequality is, at its core, a story about what happens when the number being reported — the average — is structurally disconnected from the experience of most of the people in the distribution. That gap is worth noticing wherever it appears.</p>
+
+  <p style="margin-top:48px; padding-top:28px; border-top:1px solid var(--rule); font-size:14.5px; color:var(--muted); line-height:1.6;">
+    <strong style="color:var(--ink);">Sources and methodology.</strong> Wage data from the U.S. Social Security Administration annual wage statistics (SSA 2022), reported as W-2 earnings from employer records. Analysis by Elise Gould and Jori Kandra, "Inequality in Annual Earnings Worsens in 2021," Economic Policy Institute, December 2022. Supporting data from EPI State of Working America wage series. All growth figures are real (CPI-adjusted). The SSA dataset is non-top-coded; standard household survey sources (CPS) cap earnings and systematically understate high-end concentration. Charts are approximate visualizations of the reported figures; minor rounding applies.
+  </p>
+
+  <div style="margin-top:44px; padding:28px 24px; background:var(--navy); border-radius:6px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--twine);margin-bottom:10px;">From the field</div>
+    <p style="font-family:'Abril Fatface',serif;font-size:20px;color:#fff;line-height:1.2;margin-bottom:14px;">If your reports rely on averages without examining the distribution beneath them, you may be making decisions with the wrong number.</p>
+    <p style="font-size:15px;color:#B8BDCA;line-height:1.55;margin-bottom:20px;">Aesop Analytics works with growing organizations to define metrics precisely, audit reporting environments for structural measurement problems, and build dashboards that answer decision-relevant questions — not convenient ones.</p>
+    <a href="/assessment" style="display:inline-block;background:var(--twine);color:#fff;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:12px 22px;border-radius:4px;">Start a Reporting Clarity Assessment →</a>
+  </div>
+
+  </div>
+
+</ArticleLayout>

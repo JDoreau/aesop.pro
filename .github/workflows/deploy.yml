@@ -1,0 +1,43 @@
+# Builds the Astro site and deploys it to GitHub Pages.
+# Replaces raw-HTML serving: Pages now runs the build instead of choking on .astro source.
+name: Deploy to GitHub Pages
+
+on:
+  # Deploy on every push to the default branch.
+  # NOTE: if this repo's default branch is "master", change "main" below.
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress prod deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v6
+      - name: Install, build, and upload your site output
+        uses: withastro/action@v6
+        # with:
+        #   path: .            # root of the Astro project in the repo
+        #   node-version: 22   # default is 22
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
