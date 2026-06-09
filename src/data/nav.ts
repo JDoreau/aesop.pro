@@ -25,7 +25,7 @@ export const site = {
   tagline: "Reporting modernization & data trust consulting.",
   promise: "We bring you value, or we tell you honestly that we can’t.",
   email: "hello@aesopanalytics.com",
-  linkedin: "https://www.linkedin.com/in/jonathan-doreau-1a00b233/",
+  linkedin: "https://www.linkedin.com/company/90403604",
   location: "Nashville, TN",
   url: "https://aesopanalytics.com",
 };
