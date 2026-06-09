@@ -107,6 +107,16 @@ corporate profits & inflation) that demonstrate the firm's analytical rigor.
 
 ---
 
+## Analytics
+
+Google Analytics (GA4, measurement ID `G-4TVCCT0XW9`) is loaded site-wide from
+`src/components/Seo.astro` -- the single shared head fragment used by both
+`BaseLayout` and `ArticleLayout`, so it covers every page. A plain-language
+privacy disclosure lives at `/privacy` (`src/pages/privacy.astro`) and is linked
+from the footer fine print.
+
+---
+
 ## Deploying changes
 
 1. Edit files locally.
