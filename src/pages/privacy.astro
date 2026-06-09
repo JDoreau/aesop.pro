@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/nav.ts";
+const title = "Privacy — Aesop Analytics";
+const description = "How Aesop Analytics handles data on this website: analytics, cookies, contact forms, and how to opt out — in plain language.";
+const updated = "June 9, 2026";
+---
+
+<BaseLayout title={title} description={description} path="/privacy">
+  <section class="legal">
+    <div class="legal-in">
+      <div class="eyebrow">Privacy</div>
+      <h1>How we handle data on this site.</h1>
+      <p class="lede">We help companies trust their data. It would be strange not to hold our own site to the same standard. Here is exactly what this website collects, why, and how to opt out.</p>
+
+      <h2>Analytics</h2>
+      <p>We use Google Analytics (GA4) to understand how visitors use the site — which pages are read, how people arrive, and roughly where they are. Google sets cookies to do this and processes the data on our behalf. We use it only to improve the site. We do not sell your personal information, and we do not use this data for advertising.</p>
+      <p>The data is aggregated and is not used to identify you personally.</p>
+
+      <h2>Cookies</h2>
+      <p>The only cookies this site sets are the Google Analytics cookies described above. You can block or delete them in your browser settings at any time, and the site will work normally. Google also offers a browser opt-out add-on at <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.</p>
+
+      <h2>Contact forms</h2>
+      <p>When you send a message through a form on this site, the submission is processed by Formspree to deliver it to us by email. We use what you send only to respond to you. We do not add you to a marketing list.</p>
+
+      <h2>Questions</h2>
+      <p>Email us at <a href={`mailto:${site.email}`}>{site.email}</a> with any question about this policy or the data we hold about you.</p>
+
+      <p class="updated">Last updated {updated}.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal { background:var(--paper); padding:72px 0 96px; }
+  .legal-in { max-width:720px; margin:0 auto; padding:0 32px; }
+  .legal .eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
+  .legal h1 { font-family:"Newsreader",serif; font-weight:500; font-size:clamp(30px,5vw,44px); line-height:1.12; color:var(--navy); margin:0 0 20px; }
+  .legal .lede { font-family:"DM Sans",sans-serif; font-size:18px; line-height:1.6; color:var(--slate); margin:0 0 40px; }
+  .legal h2 { font-family:"Newsreader",serif; font-weight:600; font-size:21px; color:var(--navy); margin:36px 0 10px; }
+  .legal p { font-family:"DM Sans",sans-serif; font-size:15.5px; line-height:1.7; color:var(--ink); margin:0 0 14px; }
+  .legal a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  .legal a:hover { color:var(--twine); }
+  .legal .updated { margin-top:40px; font-size:13px; color:var(--muted); font-style:italic; }
+</style>
