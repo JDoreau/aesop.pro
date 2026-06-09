@@ -1,0 +1,262 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "Did Corporate Profits Drive Post-COVID Inflation? — Aesop Analytics";
+const description = "Corporate profits accounted for 54% of price increases in the post-COVID inflation surge, versus 11% historically. An honest, data-driven look at what the BEA numbers actually say — and what they don't.";
+const kicker = "Field Study · Labor, Prices & the Economy";
+const headingHtml = "Did Corporate Profits Drive Post-COVID Inflation? <span class=\"sub\">What the BEA data actually says — and what it doesn't.</span>";
+const dekHtml = "During the 2021–2022 inflation surge, a striking claim spread widely: that corporate profit-taking was the primary driver of rising prices. The Bureau of Economic Analysis data is real. The interpretation is contested. An honest look at both.";
+const meta = ["Data: BEA NIPA · EPI analysis", "~8 min read"];
+---
+
+<ArticleLayout title={title} description={description} path="/insights/corporate-profits-inflation" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta}>
+
+<div class="body">
+
+    <p class="lead">In January 2022, the Economic Policy Institute published a chart that traveled fast. It showed that corporate profits accounted for more than half of price increases in the nonfinancial corporate sector since the pandemic began — a dramatic reversal of the historical pattern, in which labor costs had always been the dominant driver of price growth. The term "greedflation" entered the vocabulary of economists, op-ed writers, and politicians. The data behind the claim is real. Whether it means what its proponents say is a more complicated question.</p>
+
+    <p>This is a study in how to read a dataset carefully. The BEA numbers that EPI used are genuine, from the National Income and Product Accounts — the authoritative accounting of how GDP is produced and distributed in the United States. We'll walk through what those numbers say, how to interpret them correctly, and where the strongest counter-arguments land. The goal isn't to adjudicate the political debate. It's to give you the tools to read the claim yourself.</p>
+
+    <!-- STAT STRIP -->
+    <div class="stats reveal">
+      <div class="stat warn">
+        <div class="n">54%</div>
+        <div class="l">Share of price growth from corporate profits, 2020 Q2–2021 Q4</div>
+      </div>
+      <div class="stat">
+        <div class="n">11%</div>
+        <div class="l">Historical average share, 1979–2019</div>
+      </div>
+      <div class="stat accent">
+        <div class="n">4.7×</div>
+        <div class="l">How much higher profits' share was than its historical norm</div>
+      </div>
+    </div>
+
+    <!-- CHART 1: The main comparison -->
+    <div class="chart reveal">
+      <div class="ctitle">What drove price growth? Post-COVID vs. historical average</div>
+      <div class="csub">Contributions to unit price growth in the nonfinancial corporate sector</div>
+      <div class="legend">
+        <span><i class="swatch" style="background:#0F1F38"></i>2020 Q2 – 2021 Q4 (post-COVID surge)</span>
+        <span><i class="swatch" style="background:#D6DDE8"></i>1979–2019 historical average</span>
+      </div>
+      <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" aria-label="Grouped bar chart showing contribution to price growth by component in two periods">
+        <!-- Axes -->
+        <line x1="80" y1="20" x2="80" y2="228" stroke="#D9CFBC" stroke-width="1"/>
+        <line x1="80" y1="228" x2="640" y2="228" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- Grid lines -->
+        <line x1="80" y1="84"  x2="640" y2="84"  stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,4"/>
+        <line x1="80" y1="148" x2="640" y2="148" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,4"/>
+        <line x1="80" y1="196" x2="640" y2="196" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,4"/>
+        <!-- Y-axis labels -->
+        <text x="72" y="232" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">0%</text>
+        <text x="72" y="200" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">10%</text>
+        <text x="72" y="152" text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">30%</text>
+        <text x="72" y="88"  text-anchor="end" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">60%</text>
+
+        <!-- GROUP 1: Corporate profits -->
+        <!-- Post-COVID: 53.9% → height proportional. Max at 0% = 228, 100% = 20, scale: 208px = 100% -->
+        <!-- 53.9% = 208*0.539 = 112px tall; top = 228-112 = 116 -->
+        <g class="bar-grow" style="animation-delay:.15s">
+          <rect x="120" y="116" width="60" height="112" fill="#0F1F38" rx="2"/>
+        </g>
+        <!-- Historical: 11.4% = 208*0.114 = 24px; top = 228-24 = 204 -->
+        <g class="bar-grow" style="animation-delay:.25s">
+          <rect x="188" y="204" width="60" height="24" fill="#D6DDE8" rx="2"/>
+        </g>
+        <text x="164" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#0F1F38">53.9%</text>
+        <text x="218" y="196" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">11.4%</text>
+        <text x="164" y="260" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#1B1B1B">Corporate</text>
+        <text x="164" y="275" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#1B1B1B">profits</text>
+
+        <!-- GROUP 2: Nonlabor input costs -->
+        <!-- Post-COVID: 38.3% → 208*0.383 = 80px; top = 228-80 = 148 -->
+        <g class="bar-grow" style="animation-delay:.3s">
+          <rect x="290" y="148" width="60" height="80" fill="#0F1F38" rx="2"/>
+        </g>
+        <!-- Historical: 26.8% → 208*0.268 = 56px; top = 228-56 = 172 -->
+        <g class="bar-grow" style="animation-delay:.4s">
+          <rect x="358" y="172" width="60" height="56" fill="#D6DDE8" rx="2"/>
+        </g>
+        <text x="320" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#0F1F38">38.3%</text>
+        <text x="388" y="164" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">26.8%</text>
+        <text x="334" y="260" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#1B1B1B">Nonlabor</text>
+        <text x="334" y="275" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#1B1B1B">input costs</text>
+
+        <!-- GROUP 3: Unit labor costs -->
+        <!-- Post-COVID: 7.9% → 208*0.079 = 16px; top = 228-16 = 212 -->
+        <g class="bar-grow" style="animation-delay:.45s">
+          <rect x="460" y="212" width="60" height="16" fill="#0F1F38" rx="2"/>
+        </g>
+        <!-- Historical: 61.8% → 208*0.618 = 129px; top = 228-129 = 99 -->
+        <g class="bar-grow" style="animation-delay:.55s">
+          <rect x="528" y="99" width="60" height="129" fill="#D6DDE8" rx="2"/>
+        </g>
+        <text x="490" y="204" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#0F1F38">7.9%</text>
+        <text x="558" y="91" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">61.8%</text>
+        <text x="504" y="260" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#1B1B1B">Unit labor</text>
+        <text x="504" y="275" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#1B1B1B">costs</text>
+      </svg>
+      <figcaption>Source: EPI analysis of BEA NIPA Table 1.15. Contributions to growth in unit prices, nonfinancial corporate sector. Post-COVID period: 2020 Q2–2021 Q4. Historical: 1979–2019 average. Chart by Aesop Analytics.</figcaption>
+    </div>
+
+    <p>The numbers are stark. Historically, unit labor costs — the cost of the workers who produce goods and services — account for roughly <strong>62%</strong> of price growth in the nonfinancial corporate sector. During the post-COVID surge, that fell to <strong>8%</strong>. Corporate profits, normally contributing about 11 cents of every dollar of price increase, contributed <strong>54 cents</strong>. If this accounting is taken at face value, the story writes itself: companies raised prices far beyond what their cost increases required, and pocketed the difference.</p>
+
+    <p>But "at face value" is doing a lot of work in that sentence.</p>
+
+    <p class="pull">The data is real. The question is what the data is measuring — and what it isn't.</p>
+
+    <!-- CHART 2: Corporate profits quarterly trend -->
+    <div class="chart reveal">
+      <div class="ctitle">Corporate profits: total and domestic, quarterly (BEA, billions $)</div>
+      <div class="csub">Nonfinancial corporate profits surged through 2021–2022 while financial sector profits stayed relatively flat</div>
+      <div class="legend">
+        <span><i class="swatch" style="background:#0F1F38"></i>Total corporate profits</span>
+        <span><i class="swatch" style="background:#C18C5D"></i>Nonfinancial domestic</span>
+        <span><i class="swatch" style="background:#D6DDE8"></i>Financial domestic</span>
+      </div>
+      <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" aria-label="Line chart of corporate profits by quarter 2020 to 2022">
+        <!-- Axes -->
+        <line x1="60" y1="20" x2="60" y2="190" stroke="#D9CFBC" stroke-width="1"/>
+        <line x1="60" y1="190" x2="650" y2="190" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- Grid -->
+        <line x1="60" y1="130" x2="650" y2="130" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,4"/>
+        <line x1="60" y1="70"  x2="650" y2="70"  stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,4"/>
+        <!-- Y labels: scale 1000=190, 3200=20; range 2200, px 170 -->
+        <!-- y = 190 - (val-1000)/2200*170 -->
+        <text x="52" y="194" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">$1,000B</text>
+        <text x="52" y="134" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">$1,600B</text>
+        <text x="52" y="74"  text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">$2,200B</text>
+
+        <!-- X labels: 11 quarters, spacing = 590/10 = 59px, starting at x=60 -->
+        <!-- 2020Q1=60, Q2=119, Q3=178, Q4=237, 2021Q1=296, Q2=355, Q3=414, Q4=473, 2022Q1=532, Q2=591, Q3=650 -->
+        <text x="60"  y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q1</text>
+        <text x="119" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q2</text>
+        <text x="178" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q3</text>
+        <text x="237" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q4</text>
+        <text x="296" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q1</text>
+        <text x="355" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q2</text>
+        <text x="414" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q3</text>
+        <text x="473" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q4</text>
+        <text x="532" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q1</text>
+        <text x="591" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q2</text>
+        <text x="650" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q3</text>
+        <text x="148" y="220" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775">2020</text>
+        <text x="385" y="220" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775">2021</text>
+        <text x="591" y="220" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775">2022</text>
+
+        <!-- Total profits line: 2230,2001.5,2466.3,2342.6,2588.2,2786.8,2843.5,2865.9,2869.6,3001.3,3000 -->
+        <!-- y = 190 - (val-1000)/2200*170 -->
+        <!-- 2230→93, 2001.5→111, 2466.3→75, 2342.6→84, 2588.2→68, 2786.8→53, 2843.5→49, 2865.9→47, 2869.6→47, 3001.3→37, 3000→37 -->
+        <polyline points="60,93 119,111 178,75 237,84 296,68 355,53 414,49 473,47 532,47 591,37 650,37"
+          fill="none" stroke="#0F1F38" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- Nonfinancial: 1293.9,1153.2,1602.5,1499.6,1693.7,1890.2,1896.2,1906,1922.4,2074.6,2090.7 -->
+        <!-- 1293.9→168, 1153.2→179, 1602.5→143, 1499.6→152, 1693.7→136, 1890.2→120, 1896.2→119, 1906→118, 1922.4→117, 2074.6→105, 2090.7→104 -->
+        <polyline points="60,168 119,179 178,143 237,152 296,136 355,120 414,119 473,118 532,117 591,105 650,104"
+          fill="none" stroke="#C18C5D" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- Financial: 442.4,443.9,438.6,447.8,459.1,516.9,535.6,537.1,510.3,464.3,462.5 -->
+        <!-- y = 190 - (val-1000)/2200*170: all negative → pin to near 190 -->
+        <!-- Actually 442→189, 444→189, 439→189, 448→188, 459→188, 517→183, 536→182, 537→182, 510→184, 464→188, 463→188 -->
+        <polyline points="60,182 119,182 178,182 237,182 296,181 355,177 414,176 473,176 532,178 591,181 650,181"
+          fill="none" stroke="#D6DDE8" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5,3"/>
+
+        <!-- End dots -->
+        <circle cx="650" cy="37" r="4" fill="#0F1F38"/>
+        <circle cx="650" cy="104" r="4" fill="#C18C5D"/>
+        <circle cx="650" cy="181" r="4" fill="#D6DDE8"/>
+
+        <!-- Annotation: COVID trough -->
+        <line x1="119" y1="20" x2="119" y2="185" stroke="#CE796B" stroke-width="1" stroke-dasharray="2,3"/>
+        <text x="122" y="32" font-family="DM Sans,sans-serif" font-size="9" fill="#CE796B" font-weight="600">COVID</text>
+        <text x="122" y="43" font-family="DM Sans,sans-serif" font-size="9" fill="#CE796B" font-weight="600">trough</text>
+      </svg>
+      <figcaption>Source: BEA NIPA Table 6.16D, Corporate Profits by Industry. Quarterly data, seasonally adjusted annual rates. Financial domestic profits (dashed) remained relatively stable while nonfinancial profits rose sharply from mid-2020 through 2022. Chart by Aesop Analytics.</figcaption>
+    </div>
+
+    <h2>01 &nbsp;What the numbers actually show.</h2>
+    <span class="h2-sub">The accounting is correct. The causation is disputed.</span>
+
+    <p>The EPI analysis uses BEA NIPA Table 1.15, which decomposes unit price growth in the nonfinancial corporate sector into its components: unit labor costs, unit nonlabor costs (capital, energy, materials), and unit profits. This is a standard national-accounts decomposition. EPI's arithmetic is not in question.</p>
+
+    <p>What it shows is that during 2020 Q2 through 2021 Q4 — the initial post-COVID inflation surge — <strong>unit profits accounted for 53.9% of the increase in unit prices</strong>, compared to a 1979–2019 average of 11.4%. Unit labor costs, which historically account for nearly two-thirds of price growth, contributed only 7.9% in this period. Nonlabor input costs contributed the remaining 38.3%, roughly in line with their historical share.</p>
+
+    <p>On its face, this suggests that companies widened their margins during the inflation surge rather than simply passing through cost increases. That is, price growth outran cost growth — and profits absorbed the difference.</p>
+
+    <div class="callout reveal">
+      <div class="big">$800B+</div>
+      <div class="cap">Increase in total corporate profits (annualized) from the COVID trough in 2020 Q2 to the peak in 2022 Q2 — a 50% surge in under two years. BEA NIPA Table 6.16D.</div>
+    </div>
+
+    <h2>02 &nbsp;The honest counter-arguments.</h2>
+    <span class="h2-sub">The counter-case is serious and should be taken seriously.</span>
+
+    <p>Several economists pushed back on the "greedflation" framing with arguments that don't dismiss the data but contest its interpretation. The most important ones:</p>
+
+    <p><strong>Profits were rebounding from an unusually depressed base.</strong> The COVID trough in 2020 Q2 was severe — corporate profits fell sharply as revenues collapsed while fixed costs held. The profit surge of 2021 was in part simply a recovery from an artificially low baseline. An accounting decomposition that starts from the trough will overstate the ongoing contribution of profit expansion to price growth. The BEA quarterly data bears this out: the sharpest profit recovery happened in 2020 Q3, before inflation had materially accelerated.</p>
+
+    <p><strong>The direction of causation is contested.</strong> The EPI framework shows that profits contributed to price increases. It does not show that profit-seeking caused those price increases. An alternative reading of the same data: demand surged (fiscal stimulus plus pent-up spending), supply chains were broken, and firms operating in tight markets found themselves selling existing inventory at prices the market would bear. Profits rose as a consequence of the demand shock, not as a cause of the price increases. Distinguishing between these stories requires sector-level analysis and counterfactual modeling that the aggregate decomposition cannot provide.</p>
+
+    <p><strong>The nonfinancial corporate sector is not the whole economy.</strong> The EPI analysis covers nonfinancial corporations specifically — a meaningful slice, but one that excludes small businesses, sole proprietors, financial firms, and the government sector. Inflation in 2021–2022 was also significantly driven by housing costs, energy prices (tied to global commodity markets), and supply-chain bottlenecks in specific sectors. The profit-contribution story, even if taken at face value, doesn't straightforwardly extend to the full CPI.</p>
+
+    <div class="twocol reveal">
+      <div class="a">
+        <h4>What the data supports</h4>
+        <p>Nonfinancial corporate profit margins expanded significantly during 2020–2022. Profits' share of price growth was dramatically higher than its historical norm. Companies, in aggregate, raised prices faster than their input costs rose.</p>
+      </div>
+      <div class="b">
+        <h4>What the data cannot show</h4>
+        <p>Whether profit-seeking behavior caused price increases, or whether profits simply rose because demand-driven price increases hit companies with sticky costs. The accounting decomposition shows correlation, not mechanism.</p>
+      </div>
+    </div>
+
+    <h2>03 &nbsp;What the quarterly data adds.</h2>
+    <span class="h2-sub">The BEA's own industry breakdown offers important nuance</span>
+
+    <p>The BEA's Table 6.16D — which breaks profits by industry quarterly — complicates the simple "corporate greed" narrative in an interesting way. Look at where the profit surge was actually concentrated.</p>
+
+    <p>Manufacturing profits — especially petroleum, chemicals, and motor vehicles — surged dramatically. Retail trade profits jumped. Wholesale trade rose. These are sectors where supply disruptions were most acute: semiconductor shortages hit auto manufacturing, energy supply shocks hit petroleum, supply-chain backlogs hit retail inventory. In each case, a plausible supply-shock story competes directly with the profit-seeking story for the same numbers.</p>
+
+    <p>Financial corporate profits, by contrast, were relatively flat through most of 2021 — rising only modestly as interest rates remained near zero. If "greedflation" were primarily a story about financial power or market concentration, you'd expect to see the most concentrated sectors — big banks, tech platforms, insurance — leading the profit surge. The data shows something more complicated: the biggest gains were in sectors experiencing the most severe supply disruptions.</p>
+
+    <div class="tip">
+      <div class="tlabel">The analyst's takeaway</div>
+      <p>Both stories can be partly true. Supply shocks created pricing power; some firms exploited that power more than their cost increases required; profits rose as a result of both dynamics simultaneously. The aggregate BEA decomposition cannot separate them. Anyone telling you it definitively proves one story or the other is reading past what the data can actually say.</p>
+    </div>
+
+    <h2>The moral.</h2>
+    <span class="h2-sub">What an honest analyst concludes</span>
+
+    <p>Strip away the political freight on both sides and a defensible reading emerges. The BEA data shows, unambiguously, that corporate profit margins in the nonfinancial sector expanded substantially during the post-COVID inflation period, and that this expansion contributed to price growth in a way that is historically anomalous. That is a real finding, not a political talking point.</p>
+
+    <p>What the data cannot establish — and what neither EPI nor its critics have established with this dataset alone — is the mechanism. Did firms actively exploit reduced competition and inelastic demand to extract higher margins? Did demand shocks simply produce windfall profits as revenues rose faster than sticky costs? Both stories are consistent with the accounting. Settling the question requires industry-level supply-and-demand analysis, competition research, and counterfactual modeling that goes well beyond a national-accounts decomposition.</p>
+
+    <p>The honest conclusion is: the profit surge was real and large, and any inflation story that ignores it is incomplete. But "greedflation" as a complete explanation — the claim that corporate price-setting behavior was the primary driver of 2021–2022 CPI increases — asks more of this data than it can deliver.</p>
+
+    <p>That is the moral this dataset actually tells.</p>
+
+    <div class="sources">
+      <h3>Sources &amp; Notes</h3>
+      <ol>
+        <li>Economic Policy Institute (Jan. 2022), "Corporate profits have contributed disproportionately to inflation. How should policymakers respond?" — Josh Bivens. Analysis of BEA NIPA Table 1.15. <em>epi.org/blog/corporate-profits-have-contributed-disproportionately-to-inflation</em></li>
+        <li>Bureau of Economic Analysis, NIPA Table 1.15: "Price, Costs, and Profit Per Unit of Real Gross Value Added of Nonfinancial Domestic Corporate Business." Revised December 22, 2022.</li>
+        <li>Bureau of Economic Analysis, NIPA Table 6.16D: "Corporate Profits by Industry." Quarterly, seasonally adjusted at annual rates. Revised December 22, 2022.</li>
+        <li>Bureau of Economic Analysis, NIPA Table 2.1: "Personal Income and Its Disposition." Quarterly, seasonally adjusted at annual rates. Revised December 22, 2022.</li>
+        <li>For the counter-arguments: Shapiro, Adam Hale (2022), "How Much do Supply and Demand Drive Inflation?" FRBSF Economic Letter. Weber, Isabella &amp; Wasner, Evan (2023), "Sellers' Inflation, Profits and Conflict: Why Can Large Firms Hike Prices in an Emergency?" Review of Keynesian Economics.</li>
+      </ol>
+      <p class="method">Methodology note: The unit-price decomposition in EPI's analysis follows standard national-accounts practice: unit profits = (total profits) / (real output); unit labor costs = (compensation) / (real output); unit nonlabor costs = residual. Changes in unit prices are then decomposed into contributions from each component. The decomposition is additive and internally consistent, but is an accounting identity — it does not imply causal direction. Quarterly profit figures from Table 6.16D are seasonally adjusted at annual rates (SAAR). All data through 2022 Q3. This study summarizes published findings and does not reproduce source charts or text.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/productivity-pay-study" class="rn-link">Field Study: The Productivity–Pay Gap →</a>
+        <a href="/insights/dashboard-design-basics" class="rn-link">Dashboard Design, the Basics →</a>
+        <a href="/" class="rn-link">← Back to aesop.pro</a>
+      </div>
+    </div>
+
+  </div>
+
+</ArticleLayout>

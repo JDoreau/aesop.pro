@@ -1,0 +1,100 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "Why Every KPI Needs an Owner — Aesop Analytics";
+const description = "A KPI without an owner is a liability. When nobody is accountable for a metric, it drifts, gets questioned, and eventually stops being trusted. Here's what ownership actually means — and how to assign it.";
+const kicker = "Article · KPI Definitions";
+const headingHtml = "Why Every KPI Needs an Owner <span class=\"sub\">Ownership is the missing link in reporting trust. Not a team. Not \"analytics.\" A specific person with a specific accountability.</span>";
+const dekHtml = "Most organizations know their metrics. Almost none have clearly designated who owns them. That gap is where reporting trust dies — quietly, gradually, and at significant cost to decision speed.";
+const meta = ["~5 min read", "KPI Definitions"];
+const ogDescription = "Ownership is the missing link in reporting trust. Not a team. Not a role. A specific person with a specific accountability.";
+---
+
+<ArticleLayout title={title} description={description} path="/insights/kpi-owner" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
+
+<div class="body">
+    <p class="lead">Here is a question that most analytics leaders cannot answer cleanly: who owns your monthly revenue metric? Not who builds the report. Not whose team the data lives in. Who is the person whose job it is to ensure the definition is correct, who gets called when Finance and Sales disagree on the number, and who is empowered to make the final call when two interpretations conflict? If the honest answer is "nobody, really" — your organization has an ownership problem. And ownership problems look exactly like trust problems.</p>
+    <p>A KPI without an owner is not a neutral thing. It's a liability. It means that every dispute about the metric will be resolved informally, inconsistently, and without a record. It means no one is watching for definition drift as the business evolves. It means that when a number looks wrong in a board meeting, there's no one clearly accountable to fix it. And it means that the metric, over time, will accumulate ambiguity until someone senior enough gets frustrated enough to demand a "data cleanup" — which is expensive, disruptive, and entirely avoidable.</p>
+
+    <p class="pull">A metric owned by everyone is a metric owned by no one. Diffuse accountability produces the same outcome as no accountability.</p>
+
+    <h2>Two kinds of ownership — both required.</h2>
+    <span class="h2-sub">Business owner and technical owner are different roles with different accountabilities</span>
+    <p>The most useful distinction in KPI ownership is between the business owner and the technical owner. They have different jobs, different failure modes, and should almost never be the same person.</p>
+
+    <div class="owner-types">
+      <div class="ot-card">
+        <div class="ot-label">Role 1</div>
+        <div class="ot-title">Business Owner</div>
+        <div class="ot-desc">Owns the <em>definition</em>. Accountable for what the metric means, what it includes and excludes, and how it should be interpreted in context. When there's a dispute about whether a number is right, the business owner is the one with final authority on the definition question.</div>
+        <div class="ot-examples">Typically: CFO for financial metrics · VP RevOps for revenue pipeline · VP Operations for operational KPIs · Head of CS for customer health metrics</div>
+      </div>
+      <div class="ot-card b">
+        <div class="ot-label">Role 2</div>
+        <div class="ot-title">Technical Owner</div>
+        <div class="ot-desc">Owns the <em>implementation</em>. Accountable for the pipeline, query, or model that produces the number. When the metric looks wrong, the technical owner is the one who investigates whether it's a data problem vs. a definition question, and fixes the former.</div>
+        <div class="ot-examples">Typically: Analytics engineer · BI developer · Data engineer · Senior analyst with pipeline access</div>
+      </div>
+    </div>
+
+    <p>Both roles are necessary. A metric with only a business owner has no one to call when the data looks wrong. A metric with only a technical owner has no one to arbitrate definition disputes — which means those disputes get resolved by whoever speaks loudest, or by whoever built the last version of the dashboard. Neither outcome produces a trusted number.</p>
+
+    <h2>What ownership actually entails.</h2>
+    <span class="h2-sub">Concrete accountabilities — not vague responsibility</span>
+    <p>Ownership without clear accountabilities is performative. The value of naming an owner is only realized if that ownership comes with specific, actionable responsibilities tied to specific triggering events. Here is what business ownership of a KPI should actually mean in practice:</p>
+
+    <div class="acc-grid">
+      <div class="acc-row">
+        <div class="acc-trigger">Definition question</div>
+        <div class="acc-action">When two stakeholders disagree about what a metric means or how it should be calculated, the <strong>business owner is the arbiter</strong>. Their decision is recorded in the KPI dictionary and stands until formally changed.</div>
+      </div>
+      <div class="acc-row">
+        <div class="acc-trigger">Number looks wrong</div>
+        <div class="acc-action">When a metric in a report looks off, the <strong>business owner is the first call</strong> — they determine whether it's a definition question or a data quality issue, then escalate to the technical owner if needed.</div>
+      </div>
+      <div class="acc-row">
+        <div class="acc-trigger">Business change</div>
+        <div class="acc-action">When the business changes in ways that affect a metric's meaning — new product line, acquisition, pricing change, restructuring — the <strong>business owner is responsible for initiating a definition review</strong> and updating the KPI dictionary.</div>
+      </div>
+      <div class="acc-row">
+        <div class="acc-trigger">Annual review</div>
+        <div class="acc-action">Once per year, the <strong>business owner reviews and reaffirms</strong> each metric definition they own — or triggers a revision if the current definition no longer reflects how the business uses the number.</div>
+      </div>
+      <div class="acc-row">
+        <div class="acc-trigger">New report or dashboard</div>
+        <div class="acc-action">When a new report is built that uses a metric they own, the <strong>business owner signs off</strong> on how it's displayed and defined in that context before it goes to production.</div>
+      </div>
+    </div>
+
+    <h2>Why "the data team owns all metrics" doesn't work.</h2>
+    <span class="h2-sub">The most common default — and why it fails</span>
+    <p>The instinct in many organizations is to put all metric ownership with the analytics or data team. It feels logical — they understand the data, they build the reports, they're the closest to the definitions. But this arrangement has a structural failure: the data team owns how the metric is <em>calculated</em>, but it cannot own what it <em>means</em> — because meaning is a business question, not a technical one.</p>
+    <p>When Finance and Sales disagree about whether a subscription is "active," the data team cannot adjudicate that. It's a business rules question that requires business authority to resolve. If the data team makes the call, it gets overridden the moment a senior leader from either function decides they don't like the answer. If the data team escalates to leadership to make the call every time, they become a pass-through with no authority — which means definitions get resolved informally, inconsistently, and unrecorded.</p>
+    <p>The right model: the data team owns the <em>technical</em> implementation of the definition. Business leaders own the definition itself. The data team implements what the business decides. This separation clarifies accountability on both sides and prevents the data team from being put in an impossible position where they're accountable for trust in a metric they don't have the authority to define.</p>
+
+    <div class="callout reveal">
+      <h3>How to assign ownership without a six-month governance project.</h3>
+      <ul>
+        <li><strong>Start with your ten most-used metrics.</strong> List them, identify who in leadership cares most about each one — who would be most upset if it were wrong. That person is probably the right business owner.</li>
+        <li><strong>Ask, don't assign.</strong> Have a direct conversation: "Would you be willing to be the owner of this metric? Here's specifically what that means." Getting explicit buy-in is more valuable than formal designation without it.</li>
+        <li><strong>Pair with the technical owner immediately.</strong> Introduce the business owner and technical owner to each other. Make sure both know the other exists and how to reach them. That relationship is the actual infrastructure of accountability.</li>
+        <li><strong>Record it publicly.</strong> Put the owner's name in the KPI dictionary, in the report header if possible, and anywhere else the metric appears. Visibility is accountability — when people know who to call, they call them.</li>
+        <li><strong>Protect against "inherited" metrics.</strong> When a business owner leaves the organization, ownership doesn't disappear — it becomes undefined. Build a process to transfer ownership explicitly during offboarding, not to discover the gap six months later during the next metric dispute.</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <div class="tlabel">The test of real ownership</div>
+      <p>A genuine ownership assignment passes this test: if a number in a board presentation looked wrong, would the person named as owner be the one to get the call within the hour? If yes, ownership is real. If the answer is "probably not — they'd probably hear about it through someone else," the assignment is nominal. Real ownership requires both the formal designation and the cultural understanding that this person is the go-to for this metric.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/kpi-dictionary" class="rn-link">← How to build a KPI dictionary</a>
+        <a href="/insights/hidden-cost-conflicting-kpis" class="rn-link">The hidden cost of conflicting KPIs →</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+
+</ArticleLayout>
