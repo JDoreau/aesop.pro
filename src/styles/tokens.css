@@ -1,0 +1,18 @@
+/* tokens.css — the Aesop Analytics brand, declared once.
+   Your real palette variables (from shared.css :root), now the single
+   source every page and component reads from.
+
+   Type decision — ratified from the live site:
+     Newsreader   → headings
+     DM Sans      → body / UI
+     Abril Fatface → display accents (the "aesop" wordmark, big numerals)
+   Font families are still set per-rule in component styles (matching your
+   current site); tokenizing them is an optional later cleanup. */
+:root {
+  --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;
+  --muted:#5A6775; --slate:#495867; --cream:#F3EFE6;
+  --line:#E7E0D2; --rule:#D9CFBC;
+  --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555;
+  --navy-foot:#08111F; --navy-mist:#D6DDE8;
+  --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; --apple:#B35546;
+}

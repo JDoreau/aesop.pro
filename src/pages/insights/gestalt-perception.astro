@@ -1,0 +1,250 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "Gestalt & Perception in Dashboard Design — Aesop Analytics";
+const description = "The Gestalt principles are a map of how human perception actually works. Understanding them is the difference between a dashboard that guides the eye and one that makes the brain fight for every insight.";
+const kicker = "Article · Dashboard Design";
+const headingHtml = "Gestalt &amp; Perception in Dashboard Design <span class=\"sub\">Your users' brains are doing the design work whether you plan for it or not.</span>";
+const dekHtml = "The Gestalt principles aren't graphic design theory for its own sake — they're a map of how human perception actually works. Understanding them is the difference between a dashboard that guides the eye and one that makes the brain fight for every insight.";
+const meta = ["~7 min read", "Dashboard Design"];
+---
+
+<ArticleLayout title={title} description={description} path="/insights/gestalt-perception" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta}>
+
+<div class="body">
+
+    <p class="lead">There is a famous experiment from 1999 in which participants were asked to watch a video of two basketball teams and count the passes made by one team. While they were counting, a person in a gorilla suit walked straight through the frame. Roughly half of all participants never saw it. Selective attention — the mechanism that lets us focus — is the same mechanism that makes us blind to things we're not looking for. This is the central problem of dashboard design. You cannot assume your reader will find what matters. You have to engineer it so they cannot miss it.</p>
+
+    <p>The Gestalt principles — a framework developed by German psychologists in the 1910s and 1920s — are the closest thing we have to a theory of how the brain constructs meaning from visual information. They explain why certain groupings feel natural, why some elements jump forward and others recede, and why a well-designed dashboard can convey its main finding in under two seconds. Used deliberately, they're among the most practical tools in a dashboard designer's kit.</p>
+
+    <p class="pull">The brain is always doing design work. The only question is whether yours agrees with it.</p>
+
+    <!-- ═══════ EYE TRACKING / READING PATTERNS ═══════ -->
+    <h2>How the eye actually moves across a dashboard.</h2>
+    <span class="h2-sub">Start here before you place a single element</span>
+
+    <p>Eye-tracking research from Tableau — consistent with decades of web UX research — shows that users scan dashboards in one of two predictable patterns, depending on content density. Knowing which pattern your layout invites tells you exactly where to put your most important information.</p>
+
+    <div class="scan-wrap">
+      <div class="scan-card">
+        <div class="sctitle">The F-Pattern</div>
+        <div class="scdesc">Content-heavy dashboards. Eyes sweep the top, then scan down the left edge, darting right when something catches them.</div>
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" aria-label="F-pattern eye tracking diagram">
+          <rect width="260" height="200" rx="4" fill="#F3EFE6"/>
+          <!-- Horizontal sweeps -->
+          <line x1="16" y1="32" x2="244" y2="32" stroke="#0F1F38" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="244,28 256,32 244,36" fill="#0F1F38"/>
+          <line x1="16" y1="80" x2="180" y2="80" stroke="#0F1F38" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+          <polygon points="180,76 192,80 180,84" fill="#0F1F38" opacity=".7"/>
+          <!-- Vertical scan down left -->
+          <line x1="16" y1="32" x2="16" y2="180" stroke="#C18C5D" stroke-width="2.5" stroke-linecap="round"/>
+          <polygon points="12,180 16,192 20,180" fill="#C18C5D"/>
+          <!-- Content blocks (faint) -->
+          <rect x="30" y="44" width="90" height="24" rx="2" fill="#D9CFBC" opacity=".5"/>
+          <rect x="128" y="44" width="60" height="24" rx="2" fill="#D9CFBC" opacity=".3"/>
+          <rect x="196" y="44" width="48" height="24" rx="2" fill="#D9CFBC" opacity=".2"/>
+          <rect x="30" y="92" width="80" height="22" rx="2" fill="#D9CFBC" opacity=".4"/>
+          <rect x="118" y="92" width="55" height="22" rx="2" fill="#D9CFBC" opacity=".2"/>
+          <rect x="30" y="128" width="70" height="22" rx="2" fill="#D9CFBC" opacity=".35"/>
+          <rect x="30" y="162" width="78" height="22" rx="2" fill="#D9CFBC" opacity=".3"/>
+          <text x="130" y="194" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0F1F38" font-weight="700">F-Pattern</text>
+        </svg>
+      </div>
+      <div class="scan-card">
+        <div class="sctitle">The Z-Pattern</div>
+        <div class="scdesc">Lighter, less text-heavy dashboards. Eyes sweep top-left to top-right, diagonal to bottom-left, then across to bottom-right.</div>
+        <svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg" aria-label="Z-pattern eye tracking diagram">
+          <rect width="260" height="200" rx="4" fill="#F3EFE6"/>
+          <!-- Top sweep -->
+          <line x1="16" y1="40" x2="244" y2="40" stroke="#0F1F38" stroke-width="3" stroke-linecap="round"/>
+          <polygon points="244,36 256,40 244,44" fill="#0F1F38"/>
+          <!-- Diagonal -->
+          <line x1="244" y1="40" x2="16" y2="160" stroke="#C18C5D" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Bottom sweep -->
+          <line x1="16" y1="160" x2="244" y2="160" stroke="#0F1F38" stroke-width="2.5" stroke-linecap="round" opacity=".75"/>
+          <polygon points="244,156 256,160 244,164" fill="#0F1F38" opacity=".75"/>
+          <!-- Dot: key points -->
+          <circle cx="16" cy="40" r="5" fill="#0F1F38"/>
+          <circle cx="244" cy="40" r="5" fill="#0F1F38"/>
+          <circle cx="16" cy="160" r="5" fill="#C18C5D"/>
+          <circle cx="244" cy="160" r="5" fill="#0F1F38" opacity=".75"/>
+          <text x="130" y="194" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="#0F1F38" font-weight="700">Z-Pattern</text>
+        </svg>
+      </div>
+    </div>
+
+    <p>Both patterns have a strong implication for layout: <strong>top-left is prime real estate</strong>. Whatever the reader needs to anchor to — the headline metric, the date range, the dashboard title — belongs there. Work with the grain of natural scanning, not against it. An important number buried in the bottom-right of an F-pattern dashboard will be seen last, if at all.</p>
+
+    <div class="tip">
+      <div class="tlabel">Practical implication</div>
+      <p>Before finalizing your layout, trace both patterns over it with a finger. If the most important metric isn't on either path in the first few seconds, move it. The eye-scan pattern doesn't care about your chart ordering logic — it follows visual weight and spatial position.</p>
+    </div>
+
+    <!-- ═══════ GESTALT PRINCIPLES ═══════ -->
+    <h2>The seven Gestalt principles that matter for dashboards.</h2>
+    <span class="h2-sub">Named for a branch of German psychology — useful for everyone who makes charts</span>
+
+    <p>The Gestalt psychologists observed that humans don't perceive visual scenes as collections of isolated elements — they perceive wholes. The brain actively imposes structure, grouping, and meaning on what the eye sees. The principles below are descriptions of how that automatic grouping works. As a designer, your job is to make sure your layout's groupings match the ones you actually intend.</p>
+
+    <div class="principles">
+      <div class="pcard">
+        <div class="pn">Principle 01</div>
+        <h3>Proximity</h3>
+        <p>Elements that are close together are perceived as a group. A KPI card placed next to its chart reads as "this card explains that chart" — no label required. Use this to build structure without adding lines or boxes.</p>
+      </div>
+      <div class="pcard">
+        <div class="pn">Principle 02</div>
+        <h3>Similarity</h3>
+        <p>Elements that look alike are perceived as related. If every sales metric is in navy and every cost metric is in terracotta, the reader builds a mental model of your color coding in seconds — and then uses it automatically across the rest of the dashboard.</p>
+      </div>
+      <div class="pcard">
+        <div class="pn">Principle 03</div>
+        <h3>Enclosure</h3>
+        <p>Elements inside a shared boundary are perceived as a group. A background panel, a border, or a card container groups its contents without needing any explicit label. Use enclosure to signal sections without header text.</p>
+      </div>
+      <div class="pcard">
+        <div class="pn">Principle 04</div>
+        <h3>Continuity</h3>
+        <p>Elements arranged on a line or curve are perceived as belonging together. A row of KPI cards reads as a series. A trend line invites the eye to follow it past the last data point. Align related elements along a common axis.</p>
+      </div>
+      <div class="pcard">
+        <div class="pn">Principle 05</div>
+        <h3>Closure</h3>
+        <p>The brain completes incomplete shapes. A partially-drawn rectangle is perceived as a rectangle. This means you can hint at groupings without fully drawing them — a three-sided box closes itself in the reader's mind, with less visual weight than a full border.</p>
+      </div>
+      <div class="pcard">
+        <div class="pn">Principle 06</div>
+        <h3>Connection</h3>
+        <p>Elements visually connected — by a line, a shared color, an arrow — are perceived as more related than adjacent elements that aren't connected. Use lines sparingly; they're a strong grouping signal and will override proximity.</p>
+      </div>
+      <div class="pcard">
+        <div class="pn">Principle 07</div>
+        <h3>Symmetry</h3>
+        <p>Symmetrical arrangements feel stable and ordered. Asymmetry creates tension and draws attention. A single asymmetric element in an otherwise symmetric layout will catch the eye — use this deliberately to highlight anomalies.</p>
+      </div>
+      <div class="pcard" style="background:var(--paper-2); border-style:dashed;">
+        <div class="pn" style="color:var(--muted)">Remember</div>
+        <h3 style="color:var(--muted)">These principles conflict.</h3>
+        <p>Proximity and similarity pull in different directions when two elements are close but different colors. Connection overrides proximity. Being explicit about which principle you're relying on for each grouping prevents your layout from sending mixed signals.</p>
+      </div>
+    </div>
+
+    <!-- ═══════ PRACTICAL APPLICATION ═══════ -->
+    <h2>Putting it together: a before and after.</h2>
+    <span class="h2-sub">The same data, two very different readings</span>
+
+    <p>The principles above only matter if they change how you build. Here is a concrete example: a simple sales dashboard, laid out first without deliberate application of Gestalt principles, then redesigned with them.</p>
+
+    <div class="illus">
+      <div class="ititle">Before: proximity and similarity working against each other</div>
+      <div class="isub">Same data — grouped by chart type rather than by meaning</div>
+      <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" aria-label="Dashboard layout with poor gestalt application">
+        <rect width="680" height="260" rx="6" fill="#F3EFE6" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- Three KPI cards, all same size and color — no hierarchy -->
+        <rect x="16" y="16" width="136" height="70" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+        <rect x="160" y="16" width="136" height="70" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+        <rect x="304" y="16" width="136" height="70" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+        <!-- Numbers — all same weight, color -->
+        <text x="84" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" font-weight="700" fill="#495867">$2.4M</text>
+        <text x="84" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Revenue</text>
+        <text x="228" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" font-weight="700" fill="#495867">8,341</text>
+        <text x="228" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Units</text>
+        <text x="372" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" font-weight="700" fill="#495867">+14%</text>
+        <text x="372" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Growth</text>
+        <!-- Two charts placed without proximity logic -->
+        <rect x="16" y="100" width="290" height="144" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+        <rect x="450" y="100" width="214" height="144" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+        <!-- Random chart in middle — breaks the flow -->
+        <rect x="316" y="100" width="124" height="144" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+        <!-- All same grey color — no meaning -->
+        <rect x="32" y="160" width="22" height="76" rx="1" fill="#D6DDE8"/>
+        <rect x="60" y="140" width="22" height="96" rx="1" fill="#D6DDE8"/>
+        <rect x="88" y="152" width="22" height="84" rx="1" fill="#D6DDE8"/>
+        <rect x="116" y="130" width="22" height="106" rx="1" fill="#D6DDE8"/>
+        <rect x="144" y="145" width="22" height="91" rx="1" fill="#D6DDE8"/>
+        <rect x="172" y="125" width="22" height="111" rx="1" fill="#D6DDE8"/>
+        <!-- "Problem" annotation -->
+        <text x="340" y="252" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#CE796B">✗ No hierarchy, no grouping, no meaning in color</text>
+      </svg>
+      <figcaption>All three KPIs look identical — the reader has no idea which matters most. The chart placement follows column logic, not conceptual grouping. Color is uniform — every bar identical — carrying zero information.</figcaption>
+    </div>
+
+    <div class="illus">
+      <div class="ititle">After: proximity, similarity, hierarchy, and enclosure all working together</div>
+      <div class="isub">Same data — grouped by meaning, emphasized by importance</div>
+      <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" aria-label="Dashboard layout with deliberate gestalt application">
+        <rect width="680" height="260" rx="6" fill="#F3EFE6" stroke="#D9CFBC" stroke-width="1"/>
+        <!-- Primary KPI: large, navy, left anchor -->
+        <rect x="16" y="16" width="200" height="90" rx="4" fill="#0F1F38"/>
+        <text x="36" y="42" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#C18C5D" letter-spacing="1.5">PRIMARY · REVENUE</text>
+        <text x="36" y="82" font-family="Abril Fatface,serif" font-size="42" fill="#fff">$2.4M</text>
+        <!-- Secondary KPIs: medium, enclosed together with shared background -->
+        <rect x="228" y="16" width="440" height="90" rx="4" fill="#fff" stroke="#E7E0D2"/>
+        <rect x="244" y="28" width="120" height="66" rx="3" fill="#F3EFE6"/>
+        <text x="304" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775" letter-spacing="1">UNITS SOLD</text>
+        <text x="304" y="78" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="26" font-weight="700" fill="#0F1F38">8,341</text>
+        <rect x="376" y="28" width="120" height="66" rx="3" fill="#F3EFE6"/>
+        <text x="436" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775" letter-spacing="1">YOY GROWTH</text>
+        <text x="436" y="78" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="26" font-weight="700" fill="#0F1F38">+14%</text>
+        <rect x="508" y="28" width="144" height="66" rx="3" fill="#F3EFE6"/>
+        <text x="580" y="52" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#CE796B" letter-spacing="1">BELOW TARGET</text>
+        <text x="580" y="78" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="26" font-weight="700" fill="#CE796B">Mar</text>
+        <!-- Chart row: revenue trend large, donut small — proximity to relevant KPI -->
+        <rect x="16" y="118" width="420" height="126" rx="4" fill="#fff" stroke="#E7E0D2"/>
+        <!-- Bars with intentional color — most bars navy, one miss terracotta -->
+        <rect x="36"  y="192" width="30" height="44" rx="1" fill="#D6DDE8"/>
+        <rect x="74"  y="178" width="30" height="58" rx="1" fill="#D6DDE8"/>
+        <rect x="112" y="196" width="30" height="40" rx="1" fill="#CE796B"/><!-- March miss -->
+        <rect x="150" y="172" width="30" height="64" rx="1" fill="#D6DDE8"/>
+        <rect x="188" y="155" width="30" height="81" rx="1" fill="#0F1F38"/><!-- Peak -->
+        <rect x="226" y="180" width="30" height="56" rx="1" fill="#D6DDE8"/>
+        <rect x="264" y="176" width="30" height="60" rx="1" fill="#D6DDE8"/>
+        <rect x="302" y="162" width="30" height="74" rx="1" fill="#D6DDE8"/>
+        <rect x="340" y="188" width="30" height="48" rx="1" fill="#D6DDE8"/>
+        <!-- Target line -->
+        <line x1="32" y1="182" x2="428" y2="182" stroke="#C18C5D" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="432" y="186" font-family="DM Sans,sans-serif" font-size="9" fill="#C18C5D" font-weight="600">Target</text>
+        <!-- Small supporting chart: proximate to secondary KPIs -->
+        <rect x="448" y="118" width="220" height="126" rx="4" fill="#fff" stroke="#E7E0D2"/>
+        <!-- simple donut-style: units by region -->
+        <circle cx="558" cy="181" r="40" fill="none" stroke="#D6DDE8" stroke-width="20"/>
+        <circle cx="558" cy="181" r="40" fill="none" stroke="#0F1F38" stroke-width="20" stroke-dasharray="88 163" stroke-dashoffset="41"/>
+        <circle cx="558" cy="181" r="40" fill="none" stroke="#C18C5D" stroke-width="20" stroke-dasharray="56 163" stroke-dashoffset="-47"/>
+        <text x="558" y="186" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#0F1F38">Units</text>
+        <text x="558" y="128" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775">BY REGION</text>
+        <text x="340" y="252" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#0F1F38">✓ Hierarchy · Enclosure · Proximity · Color with intent</text>
+      </svg>
+      <figcaption>The primary metric commands the top-left with navy and large type. Secondary KPIs are enclosed together in a shared white card — proximity and enclosure signal they're the same category. The trend chart is large and proximate to the revenue KPI. Color in bars carries meaning: navy = peak, terracotta = miss, grey = on-track.</figcaption>
+    </div>
+
+    <!-- ═══════ PRACTICAL RULES ═══════ -->
+    <div class="callout reveal">
+      <h3>Four rules to apply Gestalt principles immediately.</h3>
+      <ul>
+        <li><strong>Proximity over labels.</strong> If two elements belong together conceptually, place them close. If they don't, put space between them. You'll find you need far fewer "Section:" headers when proximity does the grouping.</li>
+        <li><strong>One enclosure per logical group.</strong> A card or background panel should enclose exactly one kind of thing. Mixing unrelated metrics inside the same card because they fit creates false proximity.</li>
+        <li><strong>Make color do one job.</strong> Decide whether color in a given chart means "category" (different series) or "status" (good/bad/neutral). It cannot mean both. If it does both in the same view, the reader's brain will produce the wrong grouping automatically.</li>
+        <li><strong>Trust asymmetry to flag anomalies.</strong> If everything on your dashboard is symmetric and orderly, one deliberately asymmetric element — a larger card, an off-axis number, a break in a sequence — will draw the eye without any annotation. Let the layout point to what matters.</li>
+      </ul>
+    </div>
+
+    <h2>The moral.</h2>
+    <span class="h2-sub">Design for the brain you actually have, not the one you wish users had</span>
+
+    <p>The Invisible Gorilla experiment isn't a lesson about inattentive people — the participants were paying close attention, just to the wrong thing. That is exactly what happens when a dashboard is laid out without a theory of perception. Users pay attention, diligently, to whatever the visual hierarchy says is most important. If the hierarchy is an accident — if it emerged from where the charts happened to fit — then users will consciously track the wrong gorilla and never notice the one walking through the center of the frame.</p>
+
+    <p>The Gestalt principles give you that theory of perception. They're not about making dashboards look elegant, though the result often is elegant. They're about encoding the right answer to the question "where should I look and what does it mean?" directly into the layout — so the reader's brain arrives at your intended conclusion before they've consciously decided to look for it.</p>
+
+    <p>That's the point of all of it. Not prettier charts. Faster, more accurate decisions.</p>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/dashboard-design-basics" class="rn-link">← Dashboard Design, the Basics</a>
+        <a href="/insights/productivity-pay-study" class="rn-link">Field Study: The Productivity–Pay Gap →</a>
+        <a href="/" class="rn-link">Back to aesop.pro</a>
+      </div>
+    </div>
+
+  </div>
+
+</ArticleLayout>

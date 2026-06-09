@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporting Trust Health Check — Aesop Analytics</title>
+<meta name="description" content="Score your reporting environment across 10 diagnostic areas. Understand exactly where trust is breaking down — and get a prioritized action plan.">
+<meta property="og:title" content="Reporting Trust Health Check — Aesop Analytics">
+<meta property="og:description" content="10 areas, 30 signal questions, a personalized score. Free — no email required.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aesopanalytics.com/resources/health-check">
+<link rel="canonical" href="https://aesopanalytics.com/resources/health-check">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared.css">
+<link rel="stylesheet" href="/core.css">
+<style>
+  /* Page-specific styles */
+
+
+  /* ── NAV ── */
+
+  /* ── HERO ── */
+  .hero { background:var(--navy); padding:72px 0 60px; overflow:hidden; position:relative; }
+  .hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
+  .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1fr 320px; gap:64px; align-items:start; }
+ }
+  .hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(36px,5.2vw,62px); line-height:1.03; color:#fff; margin-bottom:18px; }
+  .hero p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.65; margin-bottom:10px; max-width:52ch; }
+  .hero-meta { display:flex; gap:20px; flex-wrap:wrap; margin-top:20px; }
+  .hm-item { font-size:12px; font-weight:600; color:#5A7090; text-transform:uppercase; letter-spacing:.12em; display:flex; align-items:center; gap:6px; }
+  .hm-item::before { content:''; display:block; width:16px; height:1px; background:var(--twine); }
+  /* Preview card */
+  .preview-card { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:8px; padding:24px 22px; }
+  .pc-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:18px; }
+  .pc-row { display:grid; grid-template-columns:1fr 100px 28px; gap:8px; align-items:center; margin-bottom:9px; }
+  .pc-name { font-size:12.5px; color:#9AAABB; }
+  .pc-bar-wrap { background:rgba(255,255,255,.07); border-radius:2px; height:5px; overflow:hidden; }
+  .pc-bar { height:100%; border-radius:2px; }
+  .pc-score { font-size:12px; font-weight:700; text-align:right; }
+  .pc-note { font-size:11px; color:#3A5060; margin-top:14px; text-align:center; font-style:italic; }
+
+  /* ── PROGRESS BAR ── */
+  .prog { position:sticky; top:64px; z-index:15; background:var(--paper-2); border-bottom:1px solid var(--rule); padding:11px 0; transition:background .3s; }
+  .prog.complete { background:var(--navy); border-color:var(--navy); }
+  .prog-in { max-width:1080px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:14px; }
+  .prog-label { font-size:12.5px; font-weight:600; color:var(--slate); white-space:nowrap; flex-shrink:0; transition:color .3s; }
+  .prog.complete .prog-label { color:#8A9FB8; }
+  .prog-track { flex:1; background:var(--rule); border-radius:4px; height:4px; overflow:hidden; }
+  .prog.complete .prog-track { background:var(--navy-3); }
+  .prog-fill { height:100%; background:var(--twine); border-radius:4px; width:0%; transition:width .5s cubic-bezier(.2,.7,.2,1); }
+  .prog-count { font-size:12.5px; font-weight:700; color:var(--muted); white-space:nowrap; min-width:90px; text-align:right; flex-shrink:0; transition:color .3s; }
+  .prog.complete .prog-count { color:var(--navy-mist); }
+  .prog-cta { display:none; background:var(--twine); color:#fff; font-size:12px; font-weight:700; padding:6px 14px; border-radius:4px; letter-spacing:.03em; white-space:nowrap; flex-shrink:0; transition:background .18s; }
+  .prog-cta:hover { background:var(--sepia); }
+  .prog-cta.visible { display:inline-block; }
+
+  /* ── INSTRUCTIONS ── */
+  .instructions { max-width:1080px; margin:0 auto; padding:48px 32px 36px; }
+  .instr-head { font-family:"Abril Fatface",serif; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:12px; }
+  .instr-  .score-legend { display:flex; gap:24px; flex-wrap:wrap; }
+  .sl-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--slate); }
+  .sl-swatch { width:32px; height:10px; border-radius:2px; flex-shrink:0; }
+
+  /* ── AREA GRID ── */
+  .area-grid { max-width:1080px; margin:0 auto; padding:0 32px 72px; display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media(max-width:700px){ .area-grid { grid-template-columns:1fr; } }
+
+  /* ── AREA CARD ── */
+  .area-card {
+    background:#fff; border:1px solid var(--line);
+    border-left:4px solid var(--line);
+    border-radius:0 6px 6px 0;
+    padding:26px 26px 22px;
+    position:relative; transition:border-left-color .3s, box-shadow .3s;
+  }
+  .area-card:hover { box-shadow:0 2px 14px rgba(15,31,56,.06); }
+  .area-card.s-low { border-left-color:var(--contessa); }
+  .area-card.s-mid { border-left-color:var(--twine); }
+  .area-card.s-high { border-left-color:var(--navy); }
+  /* Score badge top-right */
+  .ac-badge {
+    position:absolute; top:14px; right:14px;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13.5px; font-weight:700; color:#fff;
+    opacity:0; transform:scale(.7); transition:opacity .25s, transform .25s;
+    pointer-events:none;
+  }
+  .ac-badge.visible { opacity:1; transform:scale(1); }
+  .ac-badge.b-low { background:var(--contessa); }
+  .ac-badge.b-mid { background:var(--twine); }
+  .ac-badge.b-high { background:var(--navy); }
+  /* Card content */
+  .ac-num { font-family:"Abril Fatface",serif; font-size:34px; line-height:1; color:var(--rule); margin-bottom:6px; transition:color .3s; }
+  .area-card.s-low .ac-num { color:var(--contessa); }
+  .area-card.s-mid .ac-num { color:var(--twine); }
+  .area-card.s-high .ac-num { color:var(--navy); }
+  .ac-name { font-size:16.5px; font-weight:700; color:var(--navy); margin-bottom:5px; line-height:1.25; }
+  .ac-desc { font-size:13.5px; color:var(--muted); line-height:1.55; margin-bottom:16px; }
+  .ac-qs { list-style:none; margin-bottom:20px; border-left:2px solid var(--line); padding-left:12px; }
+  .ac-qs li { font-size:13px; color:var(--slate); line-height:1.55; padding:4px 0; font-style:italic; }
+  .ac-qs li + li { border-top:1px solid var(--line); }
+  /* Score buttons */
+  .score-row { display:flex; gap:4px; }
+  .sb {
+    flex:1; height:34px; border-radius:3px;
+    border:1px solid var(--rule); background:var(--paper-2);
+    color:var(--muted); font-size:12px; font-weight:700;
+    cursor:pointer; transition:all .14s;
+    font-family:"DM Sans",sans-serif; display:flex; align-items:center; justify-content:center;
+  }
+  .sb:hover { border-color:var(--slate); color:var(--ink); background:var(--paper); transform:translateY(-1px); }
+  .sb.sel-low  { background:var(--contessa); border-color:var(--contessa); color:#fff; }
+  .sb.sel-mid  { background:var(--twine);    border-color:var(--twine);    color:#fff; }
+  .sb.sel-high { background:var(--navy);     border-color:var(--navy);     color:#fff; }
+  .score-scale-labels { display:flex; justify-content:space-between; margin-top:5px; }
+  .ssl { font-size:10.5px; color:var(--muted); }
+
+  /* ── RESULTS ── */
+  #results { display:none; background:var(--navy); padding:80px 0 0; overflow:hidden; }
+  #results.show { display:block; }
+  .results-in { max-width:1080px; margin:0 auto; padding:0 32px 72px; }
+  .res-eyebrow { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.28em; color:var(--twine); margin-bottom:28px; }
+  /* Top row: score + breakdown */
+  .results-top { display:grid; grid-template-columns:300px 1fr; gap:64px; align-items:start; margin-bottom:64px; }
+  @media(max-width:760px){ .results-top { grid-template-columns:1fr; gap:40px; } }
+  /* Score panel */
+  .score-panel { text-align:center; }
+  .score-num { font-family:"Abril Fatface",serif; font-size:clamp(72px,10vw,108px); line-height:1; color:var(--twine); }
+  .score-cap { font-size:20px; color:#5A7090; font-weight:300; }
+  .band-pill {
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:14px; padding:7px 18px;
+    border-radius:20px; border:1.5px solid;
+    font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .bp-critical { background:rgba(206,121,107,.15); border-color:var(--contessa); color:var(--contessa); }
+  .bp-concern  { background:rgba(193,140,93,.15);  border-color:var(--twine);    color:var(--twine);    }
+  .bp-stable   { background:rgba(214,221,232,.1);  border-color:var(--navy-mist);color:var(--navy-mist);}
+  .bp-strong   { background:rgba(74,160,112,.12);  border-color:#4AA070;         color:#6AB899;         }
+  .band-text { font-size:15px; color:#B0BCCA; line-height:1.7; margin-top:18px; font-weight:300; text-align:left; }
+  /* Breakdown panel */
+  .breakdown-head { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:18px; }
+  .bd-row { display:grid; grid-template-columns:148px 1fr 28px; gap:10px; align-items:center; margin-bottom:11px; }
+  @media(max-width:480px){ .bd-row { grid-template-columns:110px 1fr 24px; gap:8px; } }
+  .bd-name { font-size:12.5px; color:#9AAABB; text-align:right; line-height:1.2; }
+  .bd-track { background:rgba(255,255,255,.08); border-radius:2px; height:7px; overflow:hidden; }
+  .bd-fill { height:100%; border-radius:2px; width:0%; transition:width 1.1s cubic-bezier(.2,.7,.2,1); }
+  .bd-fill.f-low  { background:var(--contessa); }
+  .bd-fill.f-mid  { background:var(--twine); }
+  .bd-fill.f-high { background:var(--navy-mist); }
+  .bd-score { font-size:12px; font-weight:700; color:#8A9FB8; }
+  /* Focus areas */
+  .focus-head { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:18px; }
+  .focus-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:64px; }
+  @media(max-width:680px){ .focus-grid { grid-template-columns:1fr; } }
+  .fc { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:6px; padding:22px 20px; }
+  .fc-rank { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--contessa); margin-bottom:8px; }
+  .fc-name { font-size:16px; font-weight:700; color:#fff; margin-bottom:6px; line-height:1.25; }
+  .fc-score { font-size:13px; color:#6A8099; margin-bottom:14px; }
+  .fc-link { font-size:13px; font-weight:600; color:var(--twine); }
+  .fc-link:hover { color:#E0A870; }
+  /* CTA block */
+  .res-cta { background:var(--navy-2); border-top:1px solid var(--navy-3); padding:60px 32px 72px; text-align:center; }
+  .res-cta h2 { font-family:"Abril Fatface",serif; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:16px; line-height:1.1; }
+  .res-cta p { font-size:17px; color:#B0BCCA; font-weight:300; max-width:52ch; margin:0 auto 32px; line-height:1.65; }
+  .print-btn { display:inline-block; margin-top:20px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; }
+  .print-btn:hover { color:var(--twine); }
+  .reset-btn { display:inline-block; margin-top:6px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; margin-left:20px; }
+  .reset-btn:hover { color:var(--contessa); }
+
+  /* ── FOOTER ── */
+  @media(max-width:760px){ }
+  @media(max-width:460px){ }
+
+  @media print {
+    nav, .prog, footer, .res-cta .btn, .print-btn, .reset-btn { display:none!important; }
+    #results { background:#fff!important; color:var(--ink)!important; }
+    .score-num, .band-text, .bd-name, .bd-score, .fc-name, .fc-rank, .fc-score, .fc-link, .breakdown-head, .focus-head, .res-eyebrow { color:var(--ink)!important; }
+    .score-num { color:var(--navy)!important; font-size:72pt; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <a href="/" class="logo"><svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
+    <div class="nav-links">
+      <a href="/services">Services</a>
+      <a href="/work">Work</a>
+      <a href="/assessment" class="nav-accent">Assessment</a>
+      <a href="/insights">Insights</a>
+      <a href="/resources">Resources</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a href="/contact" class="nav-cta">Book a diagnostic</a>
+    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/services" onclick="closeMob()">Services</a>
+  <a href="/work" onclick="closeMob()">Work</a>
+  <a href="/assessment" class="mob-accent" onclick="closeMob()">Assessment</a>
+  <a href="/insights" onclick="closeMob()">Insights</a>
+  <a href="/resources" onclick="closeMob()">Resources</a>
+  <a href="/about" onclick="closeMob()">About</a>
+  <a href="/contact" onclick="closeMob()">Contact</a>
+  <a href="/contact" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="eyebrow">Free resource · No email required</div>
+      <h1>Reporting Trust<br>Health Check</h1>
+      <p>Score your organization across 10 diagnostic areas. When all 10 are scored, your personalized results — including the three highest-priority focus areas — will appear automatically.</p>
+      <div class="hero-meta">
+        <span class="hm-item">10 areas</span>
+        <span class="hm-item">30 signal questions</span>
+        <span class="hm-item">~15 minutes</span>
+      </div>
+    </div>
+    <div class="preview-card" aria-hidden="true">
+      <div class="pc-label">Example results preview</div>
+      <div class="pc-row">
+        <span class="pc-name">KPI Definitions</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:20%;background:var(--contessa)"></div></div>
+        <span class="pc-score" style="color:var(--contessa)">2</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Data Source Clarity</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:30%;background:var(--contessa)"></div></div>
+        <span class="pc-score" style="color:var(--contessa)">3</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Report Ownership</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:50%;background:var(--twine)"></div></div>
+        <span class="pc-score" style="color:var(--twine)">5</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Dashboard Usage</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:40%;background:var(--twine)"></div></div>
+        <span class="pc-score" style="color:var(--twine)">4</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Governance</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:70%;background:var(--navy-mist)"></div></div>
+        <span class="pc-score" style="color:var(--navy-mist)">7</span>
+      </div>
+      <div class="pc-note">Illustrative — your scores will differ</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS BAR -->
+<div class="prog" id="prog">
+  <div class="prog-in">
+    <span class="prog-label">Progress</span>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+    <span class="prog-count" id="prog-count">0 of 10 scored</span>
+    <a href="#results" class="prog-cta" id="prog-cta">View your results ↓</a>
+  </div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="instructions">
+  <h2 class="instr-head">Score each area 1–10.</h2>
+  <p class="instr-body">Read the signal questions for each area and rate your organization honestly. There are no right answers — the value is in the gaps between where you are and where you need to be.</p>
+  <div class="score-legend">
+    <div class="sl-item"><div class="sl-swatch" style="background:var(--contessa)"></div>1–3 · Broken or not in place</div>
+    <div class="sl-item"><div class="sl-swatch" style="background:var(--twine)"></div>4–6 · Partial or inconsistent</div>
+    <div class="sl-item"><div class="sl-swatch" style="background:var(--navy)"></div>7–10 · Functioning well</div>
+  </div>
+</div>
+
+<!-- AREA CARDS (generated by JS) -->
+<div class="area-grid" id="area-grid" role="group" aria-label="Scoring areas"></div>
+
+<!-- RESULTS -->
+<section id="results" aria-live="polite">
+  <div class="results-in">
+    <div class="res-eyebrow">Your results</div>
+    <div class="results-top">
+      <!-- Score panel -->
+      <div class="score-panel">
+        <div><span class="score-num" id="score-num">0</span><span class="score-cap">&thinsp;/100</span></div>
+        <div><span class="band-pill" id="band-pill"></span></div>
+        <p class="band-text" id="band-text"></p>
+      </div>
+      <!-- Breakdown panel -->
+      <div>
+        <div class="breakdown-head">Score by area</div>
+        <div id="breakdown"></div>
+      </div>
+    </div>
+    <!-- Focus areas -->
+    <div class="focus-head">Your three highest-priority focus areas</div>
+    <div class="focus-grid" id="focus-grid"></div>
+  </div>
+  <!-- CTA -->
+  <div class="res-cta">
+    <h2>Want help interpreting these results?</h2>
+    <p>A free 30-minute Reporting Trust Diagnostic — bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would be useful.</p>
+    <a href="/contact" class="btn">Book a free diagnostic call →</a>
+    <a href="/resources" class="btn ghost">Back to Resources</a>
+    <br>
+    <span class="print-btn" onclick="window.print()">⊞ Save or print these results</span>
+    <span class="reset-btn" onclick="resetAssessment()">↺ Start over</span>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-brand"><svg class="logo-mark" viewBox="0 0 192 192" height="28" width="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#FBFAF5" stroke="#FBFAF5" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an"> Analytics</span></div>
+      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
+    </div>
+    <div class="foot-col">
+      <h4>Services</h4>
+      <a href="/assessment">Reporting Clarity Assessment</a>
+      <a href="/services#sprint">Modernization Sprint</a>
+      <a href="/services#governance">Governance Kit</a>
+      <a href="/services#retainer">Fractional Retainer</a>
+    </div>
+    <div class="foot-col">
+      <h4>Content</h4>
+      <a href="/insights">Insights &amp; Studies</a>
+      <a href="/resources">Free Resources</a>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a>
+      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
+</footer>
+
+<script>
+/* ─── Mobile menu ─── */
+const ham = document.getElementById('ham'), mob = document.getElementById('mobile-menu');
+ham.addEventListener('click', () => mob.classList.toggle('open'));
+ham.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') mob.classList.toggle('open'); });
+function closeMob() { mob.classList.remove('open'); }
+document.addEventListener('click', e => { if(!ham.contains(e.target)&&!mob.contains(e.target)) mob.classList.remove('open'); });
+
+/* ─── Area definitions ─── */
+const AREAS = [
+  {
+    id:'kpi', num:'01', name:'KPI Definitions',
+    desc:'Are your key metrics documented, agreed upon, and consistently understood across functions?',
+    qs:[
+      'Our most important KPIs have written definitions — not just assumed, shared understandings.',
+      'Finance, Sales, and Operations use the same definitions for the same metrics without debate.',
+      'Every major KPI has a named individual responsible for its definition and accuracy.'
+    ],
+    article:{ href:'/insights/kpi-dictionary', label:'How to build a KPI dictionary' }
+  },
+  {
+    id:'source', num:'02', name:'Data Source Clarity',
+    desc:'Does everyone know which system is the authoritative source for each critical data domain?',
+    qs:[
+      'We have a documented source of truth for each critical data domain (revenue, customers, pipeline).',
+      'When two systems disagree on a number, there is a clear, accepted rule for which one wins.',
+      'A new analyst could learn in two days where to find authoritative data for each core metric.'
+    ],
+    article:{ href:'/insights/dashboards-not-trusted', label:'Why dashboards aren\'t trusted' }
+  },
+  {
+    id:'ownership', num:'03', name:'Report Ownership',
+    desc:'Does every report and dashboard have a clearly accountable, named owner?',
+    qs:[
+      'Every active report and dashboard has a named individual responsible for its accuracy.',
+      'There is a clear, documented process for updating or retiring outdated reports.',
+      'Users can easily identify which reports are official versus informal or experimental.'
+    ],
+    article:{ href:'/insights/kpi-owner', label:'Why every KPI needs an owner' }
+  },
+  {
+    id:'usage', num:'04', name:'Dashboard Usage',
+    desc:'Are your dashboards actually driving decisions, or are they artifacts of past effort?',
+    qs:[
+      'Leadership regularly uses dashboards to make specific, traceable decisions.',
+      'We know which dashboards are actively used and which exist but are rarely opened.',
+      'Dashboards were designed around real decision needs, not around what data was available.'
+    ],
+    article:{ href:'/insights/reporting-not-dashboard-redesign', label:'Modernization is not a redesign' }
+  },
+  {
+    id:'manual', num:'05', name:'Manual Reporting Effort',
+    desc:'How much analyst time is consumed by spreadsheet work that could be automated or eliminated?',
+    qs:[
+      'Analysts spend the majority of their time on insight and analysis, not assembling reports.',
+      'We can quantify how many person-hours per week are spent on manual reporting tasks.',
+      'The volume of manual reporting is stable or decreasing — it is not growing year over year.'
+    ],
+    article:{ href:'/insights/reporting-not-dashboard-redesign', label:'Modernization is not a redesign' }
+  },
+  {
+    id:'quality', num:'06', name:'Data Quality',
+    desc:'Are data quality issues caught before they reach leadership and erode trust?',
+    qs:[
+      'Monitoring is in place to catch data errors before reports are distributed to stakeholders.',
+      'When an error is discovered in a distributed report, there is a clear, fast resolution process.',
+      'Known data quality issues are documented and actively tracked toward resolution.'
+    ],
+    article:{ href:'/insights/dashboards-not-trusted', label:'Why dashboards aren\'t trusted' }
+  },
+  {
+    id:'governance', num:'07', name:'Governance',
+    desc:'Does the organization have defined, functioning processes for managing reporting decisions?',
+    qs:[
+      'There is a formal intake process for new report requests — not just email or Slack messages.',
+      'Changes to KPI definitions go through a documented approval process with clear rationale.',
+      'One person has named, accountable ownership of the overall reporting operating model.'
+    ],
+    article:{ href:'/insights/governance-operators', label:'Governance for operators, not committees' }
+  },
+  {
+    id:'alignment', num:'08', name:'Executive Decision Alignment',
+    desc:'Do your reports match what leadership actually needs to make decisions?',
+    qs:[
+      'Leadership\'s most important recurring decisions are reliably supported by existing reports.',
+      'Executives rarely ask for data that the reporting environment can\'t quickly provide.',
+      'Reporting was designed around how leadership makes decisions, not around what was easy to build.'
+    ],
+    article:{ href:'/insights/dashboard-design-basics', label:'Dashboard design, the basics' }
+  },
+  {
+    id:'duplication', num:'09', name:'Report Duplication',
+    desc:'Is your reporting estate rationalized, or are reports accumulating without governance?',
+    qs:[
+      'We maintain a current inventory of every dashboard and report in the environment.',
+      'We could retire 20% of our reports today with no meaningful impact on decision-making.',
+      'Different reports covering the same metric consistently show the same number.'
+    ],
+    article:{ href:'/insights/reporting-not-dashboard-redesign', label:'Modernization is not a redesign' }
+  },
+  {
+    id:'ai', num:'10', name:'AI & Data Readiness',
+    desc:'Is your data foundation documented and reliable enough to support AI analytics tools?',
+    qs:[
+      'Metric definitions and data sources are documented well enough to configure an AI analytics tool.',
+      'We can give an AI system a crisp, consistent definition of our most critical business terms.',
+      'If an AI produced a surprising number, we know exactly who to call to investigate it.'
+    ],
+    article:{ href:'/insights/ai-readiness-trusted-metrics', label:'AI readiness starts with trusted metrics' }
+  }
+];
+
+const BANDS = {
+  critical:{ label:'Critical', cls:'bp-critical', text:'Multiple foundational problems are present. Decisions are likely being made on data nobody fully trusts, and the cost of that is compounding quietly. A structured Reporting Clarity Assessment would identify where to start and in what order — before the gaps become crises.' },
+  concern:{ label:'Concern', cls:'bp-concern', text:'Some areas are functioning, but critical gaps in definitions, ownership, or governance are creating friction and eroding trust. The problems are manageable now — but will compound as the organization grows. Targeted work on the lowest-scoring areas would move things significantly.' },
+  stable:{ label:'Stable', cls:'bp-stable', text:'Reporting is functioning at a reasonable level. The organization has some of the right foundations in place. Targeted improvements in the lowest-scoring areas would meaningfully increase trust and decision speed — without necessarily requiring a full transformation.' },
+  strong:{ label:'Strong', cls:'bp-strong', text:'Your reporting environment is well-governed and trusted. You are ahead of most organizations at your stage. Focus on continuous improvement, AI readiness, and ensuring governance practices scale as the organization and its data environment grow.' }
+};
+
+/* ─── State ─── */
+const scores = {};
+
+/* ─── Build cards ─── */
+const grid = document.getElementById('area-grid');
+AREAS.forEach(area => {
+  const card = document.createElement('div');
+  card.className = 'area-card';
+  card.id = `card-${area.id}`;
+  card.innerHTML = `
+    <div class="ac-badge" id="badge-${area.id}" aria-hidden="true"></div>
+    <div class="ac-num">${area.num}</div>
+    <div class="ac-name">${area.name}</div>
+    <div class="ac-desc">${area.desc}</div>
+    <ul class="ac-qs">${area.qs.map(q=>`<li>${q}</li>`).join('')}</ul>
+    <div class="score-row" id="row-${area.id}" role="radiogroup" aria-label="Score for ${area.name}">
+      ${[1,2,3,4,5,6,7,8,9,10].map(n=>`<button class="sb" data-area="${area.id}" data-val="${n}" onclick="pick('${area.id}',${n})" aria-label="${n} out of 10">${n}</button>`).join('')}
+    </div>
+    <div class="score-scale-labels"><span class="ssl">1 — Broken</span><span class="ssl">10 — Strong</span></div>
+  `;
+  grid.appendChild(card);
+});
+
+/* ─── Score class helper ─── */
+function cls(val) { return val<=3?'low':val<=6?'mid':'high'; }
+
+/* ─── Pick a score ─── */
+function pick(id, val) {
+  scores[id] = val;
+  const c = cls(val);
+  // Buttons
+  document.querySelectorAll(`#row-${id} .sb`).forEach(btn => {
+    btn.classList.remove('sel-low','sel-mid','sel-high');
+    if(+btn.dataset.val===val) btn.classList.add(`sel-${c}`);
+  });
+  // Card border
+  const card = document.getElementById(`card-${id}`);
+  card.classList.remove('s-low','s-mid','s-high');
+  card.classList.add(`s-${c}`);
+  // Badge
+  const badge = document.getElementById(`badge-${id}`);
+  badge.textContent = val;
+  badge.className = `ac-badge visible b-${c}`;
+
+  updateProgress();
+  if(Object.keys(scores).length===10) setTimeout(renderResults, 380);
+}
+
+/* ─── Progress ─── */
+function updateProgress() {
+  const n = Object.keys(scores).length;
+  document.getElementById('prog-fill').style.width = (n/10*100)+'%';
+  document.getElementById('prog-count').textContent = `${n} of 10 scored`;
+  const progEl = document.getElementById('prog');
+  const ctaEl = document.getElementById('prog-cta');
+  if(n===10){ progEl.classList.add('complete'); ctaEl.classList.add('visible'); }
+  else { progEl.classList.remove('complete'); ctaEl.classList.remove('visible'); }
+}
+
+/* ─── Band ─── */
+function getBand(t){ return t<=30?'critical':t<=55?'concern':t<=75?'stable':'strong'; }
+
+/* ─── Animate count ─── */
+function countUp(el, target, ms) {
+  const t0 = performance.now();
+  (function step(now){
+    const p = Math.min((now-t0)/ms,1);
+    el.textContent = Math.round(p*target);
+    if(p<1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ─── Render results ─── */
+function renderResults() {
+  const total = AREAS.reduce((s,a)=>s+(scores[a.id]||0),0);
+  const band = getBand(total);
+  const bd = BANDS[band];
+
+  // Score + band
+  document.getElementById('band-pill').textContent = bd.label;
+  document.getElementById('band-pill').className = `band-pill ${bd.cls}`;
+  document.getElementById('band-text').textContent = bd.text;
+
+  // Breakdown rows
+  const breakEl = document.getElementById('breakdown');
+  breakEl.innerHTML = '';
+  AREAS.forEach(a => {
+    const s = scores[a.id]||0, c = cls(s);
+    const row = document.createElement('div');
+    row.className = 'bd-row';
+    row.innerHTML = `
+      <span class="bd-name">${a.name}</span>
+      <div class="bd-track"><div class="bd-fill f-${c}" id="bar-${a.id}" style="width:0%"></div></div>
+      <span class="bd-score">${s}</span>
+    `;
+    breakEl.appendChild(row);
+  });
+
+  // Focus cards — 3 lowest
+  const sorted = [...AREAS].sort((a,b)=>(scores[a.id]||0)-(scores[b.id]||0));
+  const focusEl = document.getElementById('focus-grid');
+  focusEl.innerHTML = '';
+  sorted.slice(0,3).forEach((a,i)=>{
+    const s = scores[a.id];
+    const card = document.createElement('div');
+    card.className = 'fc';
+    card.innerHTML = `
+      <div class="fc-rank">Priority ${i+1} focus area</div>
+      <div class="fc-name">${a.name}</div>
+      <div class="fc-score">Your score: ${s}/10</div>
+      <a href="${a.article.href}" class="fc-link">→ ${a.article.label}</a>
+    `;
+    focusEl.appendChild(card);
+  });
+
+  // Show section & scroll
+  const resultsEl = document.getElementById('results');
+  resultsEl.classList.add('show');
+  setTimeout(()=>{
+    resultsEl.scrollIntoView({ behavior:'smooth', block:'start' });
+    countUp(document.getElementById('score-num'), total, 900);
+    setTimeout(()=>{
+      AREAS.forEach(a=>{
+        const b = document.getElementById(`bar-${a.id}`);
+        if(b) b.style.width = ((scores[a.id]||0)/10*100)+'%';
+      });
+    }, 550);
+  }, 80);
+}
+
+/* ─── Reset ─── */
+function resetAssessment() {
+  Object.keys(scores).forEach(k=>delete scores[k]);
+  AREAS.forEach(a=>{
+    const card = document.getElementById(`card-${a.id}`);
+    card.classList.remove('s-low','s-mid','s-high');
+    document.getElementById(`badge-${a.id}`).className = 'ac-badge';
+    document.querySelectorAll(`#row-${a.id} .sb`).forEach(b=>b.classList.remove('sel-low','sel-mid','sel-high'));
+  });
+  document.getElementById('results').classList.remove('show');
+  updateProgress();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+</script>
+</body>
+</html>

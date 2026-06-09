@@ -1,0 +1,119 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "Data Governance for Operators, Not Committees — Aesop Analytics";
+const description = "Most data governance programs fail because they're designed by architects and implemented by committees. Here's a practical, operator-friendly governance model that actually gets used.";
+const kicker = "Article · Data Governance";
+const headingHtml = "Data Governance for Operators, Not Committees <span class=\"sub\">Governance doesn't have to mean bureaucracy. A lightweight model that creates accountability without creating overhead.</span>";
+const dekHtml = "Most data governance programs fail not because governance is a bad idea but because they're designed for organizations ten times larger and implemented in ways that prioritize compliance over usefulness. Here's what practical governance actually looks like for a growing company.";
+const meta = ["~7 min read", "Data Governance"];
+const ogDescription = "Governance doesn't have to mean bureaucracy. A lightweight model that creates accountability without creating overhead.";
+---
+
+<ArticleLayout title={title} description={description} path="/insights/governance-operators" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
+
+<div class="body">
+    <p class="lead">The word "governance" does a lot of damage to the idea it's trying to describe. To most people who work in growing companies, it evokes enterprise IT: steering committees, data governance councils, elaborate RACI matrices, multi-year roadmaps, and frameworks with acronyms that take a week to decode. The instinct, when someone proposes governance, is to think "we're not big enough for that yet" or "that sounds like something that will slow us down." Both instincts are wrong — not because governance is actually lightweight, but because the version most people have seen is the wrong version for most companies.</p>
+    <p>Practical data governance for a 50–500 person company is not about building an architecture. It's about answering five questions clearly, assigning the right people to own those answers, and building just enough process to keep the answers current. That's it. The complexity that enterprise governance programs add on top of that foundation serves enterprise-scale problems. It's not required — and often not useful — until you're facing those problems.</p>
+
+    <p class="pull">Governance should make decision-making easier, not create bureaucracy. If your governance program is slowing things down, it's the wrong governance program.</p>
+
+    <h2>The five questions that governance has to answer.</h2>
+    <span class="h2-sub">Everything else is scaffolding around these five</span>
+    <div class="components">
+      <div class="comp">
+        <span class="comp-n">01</span>
+        <div>
+          <h3>What does each metric mean?</h3>
+          <p>A documented definition for every metric used to make decisions — clear enough for an executive to read, specific enough for an engineer to implement. The KPI dictionary (see the companion article) is how you capture these answers and keep them current. Without this, every number in your reporting is subject to interpretation — which means it's subject to dispute.</p>
+        </div>
+      </div>
+      <div class="comp">
+        <span class="comp-n">02</span>
+        <div>
+          <h3>Who owns each metric?</h3>
+          <p>A named person — not a team — for every metric's definition (business owner) and every metric's pipeline (technical owner). Ownership is what converts accountability from diffuse to specific. When a number is wrong, "who owns this?" should have an immediate, unambiguous answer.</p>
+        </div>
+      </div>
+      <div class="comp">
+        <span class="comp-n">03</span>
+        <div>
+          <h3>Which system is the source of truth?</h3>
+          <p>For each critical data domain — customers, revenue, inventory, headcount — one system is authoritative. This designation is made explicitly, communicated clearly, and respected even when it's inconvenient. Without it, every report that touches multiple systems is a potential source of conflict.</p>
+        </div>
+      </div>
+      <div class="comp">
+        <span class="comp-n">04</span>
+        <div>
+          <h3>How do things change?</h3>
+          <p>A defined process for requesting changes to metric definitions, adding new reports, and retiring old ones. Not an elaborate change control system — just a clear path. Who proposes changes, who reviews them, who approves them, and where the decision is recorded. Without this, definitions drift silently as the business evolves and no one notices until a dispute surfaces.</p>
+        </div>
+      </div>
+      <div class="comp">
+        <span class="comp-n">05</span>
+        <div>
+          <h3>How do we know when something is wrong?</h3>
+          <p>A basic quality monitoring approach — automated checks for obvious data anomalies, a clear path for reporting suspected errors, and an owner who investigates when something looks off. This doesn't require a sophisticated data quality platform. It requires someone who is watching, someone who responds, and a record of what happened.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Heavy governance vs. lightweight governance.</h2>
+    <span class="h2-sub">The difference isn't rigor — it's overhead</span>
+    <div class="vs">
+      <div class="vs-box heavy">
+        <div class="vs-label">Heavy governance (often wrong for growing companies)</div>
+        <div class="vs-item">Formal data governance council with regular meetings</div>
+        <div class="vs-item">Elaborate RACI matrices for every data process</div>
+        <div class="vs-item">Multi-month policy development cycles</div>
+        <div class="vs-item">Dedicated governance tooling and metadata management platforms</div>
+        <div class="vs-item">Compliance-oriented documentation requirements</div>
+        <div class="vs-item">Governance as a separate function from business operations</div>
+      </div>
+      <div class="vs-box light">
+        <div class="vs-label">Lightweight governance (usually right)</div>
+        <div class="vs-item">Named owners for metrics and data domains — recorded, accessible</div>
+        <div class="vs-item">KPI dictionary in a shared, maintained document</div>
+        <div class="vs-item">Simple intake process for new reports and definition changes</div>
+        <div class="vs-item">Quarterly definition review by business owners</div>
+        <div class="vs-item">Basic quality monitoring with clear escalation path</div>
+        <div class="vs-item">Governance embedded in how people already work</div>
+      </div>
+    </div>
+
+    <p>The distinction isn't about rigor — both approaches can be rigorous. It's about overhead. Heavy governance programs require dedicated resources to maintain the governance program itself. Lightweight governance programs produce accountability with minimal administrative overhead. For most companies under 500 people, the lightweight version delivers the functional benefits of governance — trusted metrics, clear ownership, predictable change processes — without requiring a governance team to run it.</p>
+
+    <h2>The three things that make governance stick.</h2>
+    <span class="h2-sub">Why most programs fail — and how to avoid it</span>
+    <p>The majority of data governance programs I've seen fail for one of three predictable reasons, none of which are technical. Understanding them is worth more than any framework.</p>
+    <p><strong>It's designed for compliance, not utility.</strong> When governance is built to satisfy an audit requirement or an executive mandate rather than to solve a real operational problem, it produces documentation that nobody reads and processes that nobody follows. The test of whether governance is useful: does it make it easier for a frontline analyst to answer a question correctly, or does it only make it easier to prove that the organization has a governance program? If the answer is the latter, it won't stick.</p>
+    <p><strong>It has no owner.</strong> Governance programs need a single owner — not a committee. Committees make governance decisions slow and consensus-dependent; owners make them fast and accountable. The owner doesn't need to be a data governance specialist. They need to care about the outcome, have enough authority to resolve definition disputes, and have enough time to keep the core artifacts current.</p>
+    <p><strong>It starts too big.</strong> The most common failure mode is trying to document everything before anything is validated. A 200-row KPI dictionary built in month one is a documentation exercise. A 20-row KPI dictionary that is actually used, maintained, and trusted is governance. Start with the metrics that matter most, validate that the process works, then expand.</p>
+
+    <div class="callout reveal">
+      <h3>The practical governance starter kit for a 200-person company.</h3>
+      <ul>
+        <li><strong>KPI dictionary.</strong> 10–20 entries covering your most-used metrics. Business definition, technical definition, source, owner, caveats. Review quarterly.</li>
+        <li><strong>Source-of-truth registry.</strong> A simple table mapping each critical data domain to its authoritative system. Customer data → CRM. Financial data → ERP. Headcount → HRIS. Two columns: domain, system.</li>
+        <li><strong>Report intake form.</strong> A lightweight form (Notion, Jira, or even a shared spreadsheet) for requesting new reports. Required fields: business question being answered, primary user, decision it supports, owner, urgency.</li>
+        <li><strong>Report retirement list.</strong> A running list of reports that are candidates for retirement — unused, duplicated, or superseded. Review quarterly, retire with a 30-day notice and a migration note for anyone who was using them.</li>
+        <li><strong>One governance owner.</strong> Named in the dictionary. One person. Responsibility: keep the dictionary current, resolve definition disputes, run the quarterly review.</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <div class="tlabel">The right measure of governance success</div>
+      <p>Not how many policies you've written. Not how comprehensive the documentation is. The right measure is behavioral: when a metric conflict surfaces in a meeting, does someone say "let me check the dictionary and find the owner" — and does that process resolve the dispute within 24 hours? If yes, governance is working. If the answer is still "I'll look into it" with no defined next step, it isn't — regardless of how elegant the RACI looks.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/data-strategy" class="rn-link">Data strategy before data tools →</a>
+        <a href="/insights/kpi-dictionary" class="rn-link">How to build a KPI dictionary →</a>
+        <a href="/insights/kpi-owner" class="rn-link">Why every KPI needs an owner →</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+
+</ArticleLayout>

@@ -1,20 +1,8 @@
-# OS files 
-.DS_Store 
-Thumbs.db 
-desktop.ini 
- 
-# Editor/IDE 
-.vscode/ 
-.idea/ 
-*.code-workspace 
- 
-# Dev/build artifacts 
-node_modules/ 
-dist/ 
-*.log 
-*.tmp 
-*.bak 
- 
-# Refactoring script kept local 
-aesop_refactor_css.py 
-refactored/
+# build output
+dist/
+# astro cache
+.astro/
+# deps
+node_modules/
+# os
+.DS_Store

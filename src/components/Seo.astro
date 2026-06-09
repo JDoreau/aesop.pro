@@ -1,0 +1,44 @@
+---
+// Seo.astro — the ONE place the document head is defined: meta, favicon,
+// fonts, Open Graph, and structured data. Pages pass a full title.
+import { site } from "../data/nav.ts";
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: string;
+}
+const { title, description, path = "/", ogTitle, ogDescription, ogType = "website" } = Astro.props;
+const canonical = new URL(path, site.url).href;
+---
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<!-- clean favicon link (the live pages have stray SVG markup trailing this tag) -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+
+<meta property="og:title" content={ogTitle ?? title} />
+<meta property="og:description" content={ogDescription ?? description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  description: "Reporting modernization and data trust consulting for growing companies.",
+  url: site.url,
+  email: site.email,
+  areaServed: "US",
+  address: { "@type": "PostalAddress", addressLocality: "Nashville", addressRegion: "TN" },
+})} />

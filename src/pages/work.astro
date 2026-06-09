@@ -1,0 +1,674 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Work & Portfolio — Aesop Analytics";
+const description = "Anonymized case studies showing the reporting modernization, KPI governance, and dashboard work Aesop Analytics delivers — and what the outcomes looked like.";
+const ogDescription = "Reporting modernization in practice. Anonymized case studies across healthcare, operations, finance, and nonprofit sectors.";
+---
+
+<BaseLayout title={title} description={description} path="/work" ogDescription={ogDescription}>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-in">
+    <div class="eyebrow">Work &amp; Portfolio</div>
+    <h1>What the work actually looks like.</h1>
+    <p>Anonymized case studies from reporting modernization, KPI governance, and dashboard rebuilds — across healthcare, operations, finance, and nonprofit sectors.</p>
+    <div class="anon-note">
+      All client details have been anonymized. Sector, size, and problem type are accurate; identifying details are not.
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section class="case-studies">
+  <div class="wrap">
+    <div class="cs-grid">
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- CASE STUDY 1: Healthcare / NIH             -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="cs reveal" id="cs1">
+        <div class="cs-header">
+          <div>
+            <div class="cs-sector">Healthcare &amp; Research</div>
+            <h2>From spreadsheet chaos to a trusted executive reporting system for an NIH-funded research program</h2>
+            <div class="cs-context">~280 employees · Research organization · Washington, D.C. metro</div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Reporting Modernization</span>
+            <span class="cs-tag">KPI Design</span>
+            <span class="cs-tag">Power BI</span>
+          </div>
+        </div>
+
+        <div class="cs-body">
+          <div class="cs-col">
+            <h4>The situation</h4>
+            <p>A federally-funded research organization running multiple concurrent grant programs had accumulated 40+ recurring reports — most of them manual Excel builds assembled by individual program managers each month. Leadership had no consistent view of program health across grants, and funder reporting required significant manual reconciliation every quarter.</p>
+            <p>The core pain: <strong>the same headcount number appeared differently in three different reports</strong>, and nobody could say with authority which was right. Every external funder report required a full reconciliation cycle before submission.</p>
+          </div>
+          <div class="cs-col">
+            <h4>The approach</h4>
+            <p>Started with a full reporting inventory across all 40+ reports — documenting what each one was for, who owned it, how much manual time it required, and whether it was actually used to make decisions. Ran structured interviews with seven stakeholders across programs, finance, and executive leadership.</p>
+            <p>Identified 14 reports as retirement candidates (unused or duplicated), rebuilt the 8 highest-value reports as governed Power BI dashboards, and built a KPI dictionary covering all 23 program-level metrics. Implemented a formal report request intake process.</p>
+          </div>
+        </div>
+
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="oc-n">14</div>
+            <div class="oc-l">Reports retired — zero complaints from stakeholders</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">~12 hrs</div>
+            <div class="oc-l">Manual reporting time eliminated per week across the team</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">23</div>
+            <div class="oc-l">KPIs formally defined in a governed dictionary with named owners</div>
+          </div>
+        </div>
+
+        <div class="cs-visual">
+          <div class="cv-label navy">Sample output — Executive program health dashboard (illustrative)</div>
+          <svg viewBox="0 0 860 360" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative executive dashboard layout for a research organization">
+            <!-- Dashboard chrome -->
+            <rect width="860" height="360" rx="6" fill="#F3EFE6"/>
+            <!-- Header bar -->
+            <rect width="860" height="44" rx="6" fill="#0F1F38"/>
+            <rect x="0" y="38" width="860" height="6" fill="#0F1F38"/>
+            <text x="20" y="28" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">Research Program Executive Dashboard</text>
+            <text x="700" y="28" font-family="DM Sans,sans-serif" font-size="11" fill="#8A9FB8">Updated: Daily · As of 2026-06-07</text>
+            <!-- KPI row -->
+            <rect x="14" y="58" width="190" height="76" rx="4" fill="#0F1F38"/>
+            <text x="28" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#C18C5D" letter-spacing="1.5">ACTIVE PROGRAMS</text>
+            <text x="28" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#fff">7</text>
+            <text x="68" y="114" font-family="DM Sans,sans-serif" font-size="11" fill="#8A9FB8">of 9 funded</text>
+
+            <rect x="212" y="58" width="190" height="76" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+            <text x="226" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.5">TOTAL HEADCOUNT</text>
+            <text x="226" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#0F1F38">284</text>
+            <text x="286" y="114" font-family="DM Sans,sans-serif" font-size="11" fill="#5A6775">FTE</text>
+
+            <rect x="410" y="58" width="190" height="76" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+            <text x="424" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.5">GRANT UTILIZATION</text>
+            <text x="424" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#0F1F38">78%</text>
+            <rect x="424" y="118" width="60" height="4" rx="2" fill="#E7E0D2"/>
+            <rect x="424" y="118" width="47" height="4" rx="2" fill="#0F1F38"/>
+
+            <rect x="608" y="58" width="238" height="76" rx="4" fill="#F3EFE6" stroke="#E7E0D2" stroke-width="1"/>
+            <text x="622" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#CE796B" letter-spacing="1.5">REPORTS NEEDING REVIEW</text>
+            <text x="622" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#CE796B">2</text>
+            <text x="662" y="114" font-family="DM Sans,sans-serif" font-size="11" fill="#CE796B">action required</text>
+
+            <!-- Program health table -->
+            <rect x="14" y="146" width="510" height="200" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+            <text x="28" y="167" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775" letter-spacing="1">PROGRAM STATUS</text>
+            <!-- Table header -->
+            <rect x="14" y="173" width="510" height="24" fill="#F3EFE6"/>
+            <text x="28" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#5A6775">Program</text>
+            <text x="240" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#5A6775">PI</text>
+            <text x="340" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#5A6775">Utilization</text>
+            <text x="440" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#5A6775">Status</text>
+            <!-- Rows -->
+            <line x1="14" y1="197" x2="524" y2="197" stroke="#E7E0D2" stroke-width=".5"/>
+            <text x="28" y="214" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant A — Longitudinal Study</text>
+            <text x="240" y="214" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Dr. Martinez</text>
+            <text x="340" y="214" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">82%</text>
+            <rect x="440" y="205" width="46" height="14" rx="7" fill="rgba(15,31,56,.1)"/>
+            <text x="463" y="215" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#0F1F38">On Track</text>
+            <line x1="14" y1="222" x2="524" y2="222" stroke="#E7E0D2" stroke-width=".5"/>
+            <text x="28" y="239" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant B — Outcomes Research</text>
+            <text x="240" y="239" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Dr. Chen</text>
+            <text x="340" y="239" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B">61%</text>
+            <rect x="440" y="230" width="46" height="14" rx="7" fill="rgba(206,118,107,.15)"/>
+            <text x="463" y="240" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#CE796B">Review</text>
+            <line x1="14" y1="247" x2="524" y2="247" stroke="#E7E0D2" stroke-width=".5"/>
+            <text x="28" y="264" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant C — Clinical Trial Support</text>
+            <text x="240" y="264" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Dr. Okonkwo</text>
+            <text x="340" y="264" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">91%</text>
+            <rect x="440" y="255" width="46" height="14" rx="7" fill="rgba(15,31,56,.1)"/>
+            <text x="463" y="265" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#0F1F38">On Track</text>
+            <line x1="14" y1="272" x2="524" y2="272" stroke="#E7E0D2" stroke-width=".5"/>
+            <text x="28" y="289" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant D — Workforce Study</text>
+            <text x="240" y="289" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Dr. Patel</text>
+            <text x="340" y="289" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">74%</text>
+            <rect x="440" y="280" width="46" height="14" rx="7" fill="rgba(15,31,56,.1)"/>
+            <text x="463" y="290" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#0F1F38">On Track</text>
+            <line x1="14" y1="297" x2="524" y2="297" stroke="#E7E0D2" stroke-width=".5"/>
+            <text x="28" y="314" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant E — Community Outcomes</text>
+            <text x="240" y="314" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">Dr. Williams</text>
+            <text x="340" y="314" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B">58%</text>
+            <rect x="440" y="305" width="46" height="14" rx="7" fill="rgba(206,118,107,.15)"/>
+            <text x="463" y="315" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#CE796B">Review</text>
+
+            <!-- Utilization trend chart -->
+            <rect x="536" y="146" width="310" height="200" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+            <text x="550" y="167" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775" letter-spacing="1">GRANT UTILIZATION — 12M TREND</text>
+            <line x1="550" y1="290" x2="830" y2="290" stroke="#E7E0D2" stroke-width="1"/>
+            <line x1="550" y1="250" x2="830" y2="250" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,3"/>
+            <line x1="550" y1="220" x2="830" y2="220" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,3"/>
+            <polyline points="550,280 573,274 596,270 619,265 642,260 665,268 688,255 711,250 734,245 757,242 780,238 803,235 826,233"
+              fill="none" stroke="#0F1F38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="826" cy="233" r="3.5" fill="#0F1F38"/>
+            <text x="830" y="237" font-family="DM Sans,sans-serif" font-size="9" fill="#0F1F38" font-weight="600">78%</text>
+            <text x="550" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Jul</text>
+            <text x="597" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Aug</text>
+            <text x="644" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Sep</text>
+            <text x="691" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Oct</text>
+            <text x="738" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Nov</text>
+            <text x="785" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Dec</text>
+            <text x="550" y="303" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">60%</text>
+            <text x="550" y="256" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">75%</text>
+            <text x="550" y="225" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">85%</text>
+          </svg>
+          <figcaption>Illustrative only — styled to represent the type and quality of output, not actual client data.</figcaption>
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- CASE STUDY 2: Finance / Banking            -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="cs reveal" id="cs2">
+        <div class="cs-header">
+          <div>
+            <div class="cs-sector">Finance &amp; Banking</div>
+            <h2>Rebuilding a fragmented reporting environment after a core banking system migration</h2>
+            <div class="cs-context">~180 employees · Regional financial institution · Southeast U.S.</div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Reporting Modernization</span>
+            <span class="cs-tag">Data Governance</span>
+            <span class="cs-tag">Tableau</span>
+            <span class="cs-tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="cs-body">
+          <div class="cs-col">
+            <h4>The situation</h4>
+            <p>Following a core banking system migration, the organization's reporting had fractured: some reports still pulled from the legacy system, some from the new system, and some reconciled both. Finance and Operations were routinely presenting different loan portfolio numbers to the same executive team. The CFO had stopped trusting any report that came from the data team.</p>
+            <p><strong>Fourteen months after the migration, the organization still had no single, trusted view of its loan book.</strong> The data team was spending roughly 60% of its capacity on reconciliation and ad-hoc requests instead of analytics.</p>
+          </div>
+          <div class="cs-col">
+            <h4>The approach</h4>
+            <p>Conducted a source-of-truth mapping exercise across all reporting — identifying which fields each report was pulling from which system and where the discrepancies originated. The root cause was a specific set of legacy accounts that hadn't been migrated cleanly and were being handled inconsistently by different report authors.</p>
+            <p>Rebuilt the six core portfolio reports in Tableau on a clean, documented data layer. Built a metric dictionary covering 31 risk and portfolio KPIs. Established formal data ownership for each reporting domain and created a documented data lineage diagram for the first time.</p>
+          </div>
+        </div>
+
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="oc-n">31</div>
+            <div class="oc-l">Portfolio KPIs formally defined with business &amp; technical owners</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">60%→15%</div>
+            <div class="oc-l">Reduction in data team time spent on reconciliation</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">1</div>
+            <div class="oc-l">Source of truth for loan portfolio — for the first time post-migration</div>
+          </div>
+        </div>
+
+        <div class="cs-visual">
+          <div class="cv-label navy">Sample output — KPI dictionary entry (illustrative)</div>
+          <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative KPI dictionary entry for a financial metric">
+            <rect width="860" height="280" rx="6" fill="#F3EFE6"/>
+            <!-- Dict header -->
+            <rect width="860" height="44" rx="6" fill="#0F1F38"/>
+            <rect x="0" y="38" width="860" height="6" fill="#0F1F38"/>
+            <text x="20" y="28" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">KPI Dictionary — Loan Portfolio Metrics</text>
+            <text x="740" y="28" font-family="DM Sans,sans-serif" font-size="11" fill="#8A9FB8">Reviewed: Q1 2026</text>
+            <!-- Entry card -->
+            <rect x="14" y="58" width="832" height="208" rx="4" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+            <!-- Entry header -->
+            <rect x="14" y="58" width="832" height="36" rx="4" fill="#162A4A"/>
+            <rect x="14" y="82" width="832" height="12" fill="#162A4A"/>
+            <text x="28" y="82" font-family="Abril Fatface,serif" font-size="16" fill="#fff">Net Portfolio Yield</text>
+            <rect x="700" y="65" width="120" height="18" rx="9" fill="rgba(193,140,93,.25)"/>
+            <text x="760" y="77" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#C18C5D">ACTIVE · REVIEWED</text>
+            <!-- Fields -->
+            <text x="28" y="116" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.2">BUSINESS DEFINITION</text>
+            <text x="28" y="132" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">Annualized interest income earned on the average outstanding loan balance, net of charge-offs and fee waivers, expressed as a percentage.</text>
+            <line x1="28" y1="142" x2="832" y2="142" stroke="#E7E0D2" stroke-width=".5"/>
+            <!-- Two column fields -->
+            <text x="28" y="158" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.2">SOURCE SYSTEM</text>
+            <text x="28" y="172" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">FIS Core Banking (new) — loan_transactions table</text>
+            <text x="300" y="158" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.2">GRAIN</text>
+            <text x="300" y="172" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">Monthly (annualized). Not meaningful at daily grain.</text>
+            <text x="570" y="158" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.2">REFRESH</text>
+            <text x="570" y="172" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">5th business day of following month</text>
+            <line x1="28" y1="182" x2="832" y2="182" stroke="#E7E0D2" stroke-width=".5"/>
+            <text x="28" y="198" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.2">BUSINESS OWNER</text>
+            <text x="28" y="212" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">CFO — definition authority, dispute arbitration</text>
+            <text x="300" y="198" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.2">TECHNICAL OWNER</text>
+            <text x="300" y="212" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">Senior Analytics Engineer — pipeline, quality monitoring</text>
+            <text x="570" y="198" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#CE796B" letter-spacing="1.2">KNOWN CAVEAT</text>
+            <text x="570" y="212" font-family="DM Sans,sans-serif" font-size="11" fill="#CE796B">Pre-2024 data from legacy FIS. See migration note.</text>
+            <line x1="28" y1="222" x2="832" y2="222" stroke="#E7E0D2" stroke-width=".5"/>
+            <text x="28" y="238" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.2">EXCLUDES</text>
+            <text x="28" y="252" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">SBA guaranteed portions · Fee waivers from relationship pricing exceptions · Accounts 90+ days past due (separately reported as NPL)</text>
+          </svg>
+          <figcaption>Illustrative only — represents the format and depth of a governed KPI dictionary entry for a financial institution.</figcaption>
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- CASE STUDY 3: Operations / Real Estate     -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="cs reveal" id="cs3">
+        <div class="cs-header">
+          <div>
+            <div class="cs-sector">Real Estate Operations</div>
+            <h2>Standing up an analytics operating model from scratch for a growing property management company</h2>
+            <div class="cs-context">~95 employees · 2,400+ units under management · Southeast U.S.</div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">Data Strategy</span>
+            <span class="cs-tag">KPI Design</span>
+            <span class="cs-tag">Power BI</span>
+            <span class="cs-tag">Snowflake</span>
+          </div>
+        </div>
+
+        <div class="cs-body">
+          <div class="cs-col">
+            <h4>The situation</h4>
+            <p>A fast-growing property management company had scaled from 800 to 2,400 units in three years — but its reporting hadn't scaled with it. Occupancy, maintenance, and financial metrics were tracked in four separate tools with no integration. The COO was running weekly operations meetings from a manually-assembled spreadsheet that took four hours to build every Monday morning.</p>
+            <p>There was no agreed definition of "occupancy rate" — <strong>leasing, operations, and finance each calculated it differently</strong>, producing numbers that ranged from 91% to 96% for the same month.</p>
+          </div>
+          <div class="cs-col">
+            <h4>The approach</h4>
+            <p>Started with a Reporting Clarity Assessment to triage the current state and identify the highest-value first build. Ran the source-of-truth exercise across four property management platforms and identified Yardi as the authoritative source for financial and occupancy data.</p>
+            <p>Built a Snowflake data layer consolidating all four source systems. Designed and built a suite of five Power BI dashboards covering portfolio performance, maintenance operations, leasing velocity, financial performance, and an executive summary. Resolved the occupancy definition conflict by convening a 90-minute workshop with the three functions — produced a single agreed definition within the session.</p>
+          </div>
+        </div>
+
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="oc-n">4 hrs</div>
+            <div class="oc-l">Weekly manual reporting time eliminated — the Monday spreadsheet is gone</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">1</div>
+            <div class="oc-l">Agreed occupancy definition — replacing three conflicting calculations</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">5</div>
+            <div class="oc-l">Governed dashboards built on a unified Snowflake data layer</div>
+          </div>
+        </div>
+
+        <div class="cs-visual">
+          <div class="cv-label navy">Sample output — Portfolio performance dashboard (illustrative)</div>
+          <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative property management portfolio dashboard">
+            <rect width="860" height="320" rx="6" fill="#F3EFE6"/>
+            <rect width="860" height="44" rx="6" fill="#0F1F38"/>
+            <rect x="0" y="38" width="860" height="6" fill="#0F1F38"/>
+            <text x="20" y="28" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">Portfolio Performance — May 2026</text>
+            <text x="680" y="22" font-family="DM Sans,sans-serif" font-size="10" fill="#8A9FB8">All Properties · 2,412 units</text>
+            <text x="680" y="36" font-family="DM Sans,sans-serif" font-size="10" fill="#C18C5D">Source: Yardi · Refreshed daily 6AM</text>
+
+            <!-- KPI row: Occupancy (primary), Revenue, NOI, Maintenance -->
+            <rect x="14" y="58" width="168" height="80" rx="4" fill="#0F1F38"/>
+            <text x="26" y="76" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#C18C5D" letter-spacing="1.5">OCCUPANCY RATE</text>
+            <text x="26" y="116" font-family="Abril Fatface,serif" font-size="40" fill="#fff">94.2%</text>
+            <text x="26" y="130" font-family="DM Sans,sans-serif" font-size="10" fill="#8A9FB8">▲ 1.1pp vs last month</text>
+
+            <rect x="190" y="58" width="155" height="80" rx="4" fill="#fff" stroke="#E7E0D2"/>
+            <text x="202" y="76" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.5">GROSS RENT</text>
+            <text x="202" y="112" font-family="Abril Fatface,serif" font-size="30" fill="#0F1F38">$2.84M</text>
+            <text x="202" y="130" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">MTD collected</text>
+
+            <rect x="353" y="58" width="155" height="80" rx="4" fill="#fff" stroke="#E7E0D2"/>
+            <text x="365" y="76" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.5">NET OPERATING INCOME</text>
+            <text x="365" y="112" font-family="Abril Fatface,serif" font-size="30" fill="#0F1F38">$1.96M</text>
+            <text x="365" y="130" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">69% margin</text>
+
+            <rect x="516" y="58" width="155" height="80" rx="4" fill="#F3EFE6" stroke="#E7E0D2"/>
+            <text x="528" y="76" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#CE796B" letter-spacing="1.5">OPEN MAINTENANCE</text>
+            <text x="528" y="112" font-family="Abril Fatface,serif" font-size="36" fill="#CE796B">47</text>
+            <text x="528" y="130" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B">12 past SLA</text>
+
+            <rect x="679" y="58" width="167" height="80" rx="4" fill="#fff" stroke="#E7E0D2"/>
+            <text x="691" y="76" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775" letter-spacing="1.5">LEASING VELOCITY</text>
+            <text x="691" y="112" font-family="Abril Fatface,serif" font-size="30" fill="#0F1F38">18</text>
+            <text x="731" y="112" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">avg days</text>
+            <text x="691" y="130" font-family="DM Sans,sans-serif" font-size="10" fill="#5A6775">to lease vacant unit</text>
+
+            <!-- Occupancy trend -->
+            <rect x="14" y="150" width="400" height="156" rx="4" fill="#fff" stroke="#E7E0D2"/>
+            <text x="28" y="170" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775" letter-spacing="1">OCCUPANCY TREND — 12 MONTHS</text>
+            <line x1="28" y1="286" x2="400" y2="286" stroke="#E7E0D2" stroke-width="1"/>
+            <line x1="28" y1="250" x2="400" y2="250" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,3"/>
+            <line x1="28" y1="220" x2="400" y2="220" stroke="#E7E0D2" stroke-width=".5" stroke-dasharray="3,3"/>
+            <!-- Target line -->
+            <line x1="28" y1="230" x2="400" y2="230" stroke="#C18C5D" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="403" y="233" font-family="DM Sans,sans-serif" font-size="8" fill="#C18C5D">Target 94%</text>
+            <!-- Trend line -->
+            <polyline points="28,268 58,272 88,265 118,270 148,262 178,258 208,254 238,260 268,252 298,248 328,244 358,242 390,241"
+              fill="none" stroke="#0F1F38" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="390" cy="241" r="3.5" fill="#0F1F38"/>
+            <text x="28" y="302" font-family="DM Sans,sans-serif" font-size="8.5" fill="#5A6775">Jun</text>
+            <text x="88" y="302" font-family="DM Sans,sans-serif" font-size="8.5" fill="#5A6775">Aug</text>
+            <text x="148" y="302" font-family="DM Sans,sans-serif" font-size="8.5" fill="#5A6775">Oct</text>
+            <text x="208" y="302" font-family="DM Sans,sans-serif" font-size="8.5" fill="#5A6775">Dec</text>
+            <text x="268" y="302" font-family="DM Sans,sans-serif" font-size="8.5" fill="#5A6775">Feb</text>
+            <text x="328" y="302" font-family="DM Sans,sans-serif" font-size="8.5" fill="#5A6775">Apr</text>
+            <text x="375" y="302" font-family="DM Sans,sans-serif" font-size="8.5" fill="#0F1F38" font-weight="700">May</text>
+
+            <!-- Property breakdown -->
+            <rect x="426" y="150" width="420" height="156" rx="4" fill="#fff" stroke="#E7E0D2"/>
+            <text x="440" y="170" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775" letter-spacing="1">OCCUPANCY BY PROPERTY</text>
+            <!-- Horizontal bars -->
+            <text x="440" y="192" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Riverside Commons</text>
+            <rect x="560" y="182" width="244" height="12" rx="2" fill="#E7E0D2"/>
+            <rect x="560" y="182" width="232" height="12" rx="2" fill="#0F1F38"/>
+            <text x="808" y="192" font-family="DM Sans,sans-serif" font-size="10" fill="#0F1F38" font-weight="700">97%</text>
+            <text x="440" y="215" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Oakwood Flats</text>
+            <rect x="560" y="205" width="244" height="12" rx="2" fill="#E7E0D2"/>
+            <rect x="560" y="205" width="222" height="12" rx="2" fill="#0F1F38"/>
+            <text x="808" y="215" font-family="DM Sans,sans-serif" font-size="10" fill="#0F1F38" font-weight="700">94%</text>
+            <text x="440" y="238" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">The Meridian</text>
+            <rect x="560" y="228" width="244" height="12" rx="2" fill="#E7E0D2"/>
+            <rect x="560" y="228" width="210" height="12" rx="2" fill="#0F1F38"/>
+            <text x="808" y="238" font-family="DM Sans,sans-serif" font-size="10" fill="#0F1F38" font-weight="700">89%</text>
+            <text x="440" y="261" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B">Lakeview North</text>
+            <rect x="560" y="251" width="244" height="12" rx="2" fill="#E7E0D2"/>
+            <rect x="560" y="251" width="182" height="12" rx="2" fill="#CE796B"/>
+            <text x="808" y="261" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B" font-weight="700">77%</text>
+            <text x="440" y="284" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Pinecrest Village</text>
+            <rect x="560" y="274" width="244" height="12" rx="2" fill="#E7E0D2"/>
+            <rect x="560" y="274" width="228" height="12" rx="2" fill="#0F1F38"/>
+            <text x="808" y="284" font-family="DM Sans,sans-serif" font-size="10" fill="#0F1F38" font-weight="700">95%</text>
+          </svg>
+          <figcaption>Illustrative only — styled to represent the type and quality of output, not actual client data.</figcaption>
+        </div>
+      </div>
+
+      <hr class="cs-divider">
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- CASE STUDY 4: Nonprofit                   -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="cs reveal" id="cs4">
+        <div class="cs-header">
+          <div>
+            <div class="cs-sector">Nonprofit</div>
+            <h2>Building a funder-ready impact reporting system for a workforce development nonprofit</h2>
+            <div class="cs-context">~60 employees · Workforce development · Nashville, TN metro</div>
+          </div>
+          <div class="cs-tags">
+            <span class="cs-tag">KPI Design</span>
+            <span class="cs-tag">Impact Measurement</span>
+            <span class="cs-tag">Power BI</span>
+          </div>
+        </div>
+
+        <div class="cs-body">
+          <div class="cs-col">
+            <h4>The situation</h4>
+            <p>A workforce development nonprofit working with underserved communities had a genuine impact story to tell — but couldn't tell it consistently. Program outcomes were tracked in Salesforce, participation data in Excel, and financial performance in QuickBooks. Each grant report was built from scratch, by different program managers, with no consistent methodology.</p>
+            <p><strong>The organization was losing grant renewal conversations not because of poor outcomes but because it couldn't present those outcomes credibly.</strong> Funders were asking questions the team couldn't answer quickly.</p>
+          </div>
+          <div class="cs-col">
+            <h4>The approach</h4>
+            <p>Designed an outcome measurement framework aligned to the organization's theory of change — identifying which metrics actually demonstrated impact vs. which were activity metrics. Built a Salesforce-connected Power BI solution covering program enrollment, completion, employment placement, wage outcomes, and 12-month retention.</p>
+            <p>Created a funder reporting template that could be customized per grant while drawing from the same underlying data layer — eliminating the rebuild-from-scratch cycle for each report. Trained program staff on how to interpret and use the dashboards in their own conversations with participants and funders.</p>
+          </div>
+        </div>
+
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="oc-n">3 grants</div>
+            <div class="oc-l">Renewed in the first cycle after new reporting was deployed</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">~8 hrs</div>
+            <div class="oc-l">Per-grant reporting time cut from ~12 hours to ~4 hours</div>
+          </div>
+          <div class="outcome">
+            <div class="oc-n">1</div>
+            <div class="oc-l">Unified outcome framework replacing four disconnected tracking systems</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE DELIVERABLES -->
+<section class="samples">
+  <div class="wrap">
+    <div class="samples-label">Sample deliverables</div>
+    <h2>What the outputs actually look like.</h2>
+    <p class="intro">The Assessment produces ten specific deliverables. Here's a closer look at two of them — the kind of clarity they're designed to produce.</p>
+    <div class="sample-grid">
+
+      <!-- Sample: Reporting Inventory extract -->
+      <div class="sample">
+        <div class="slabel">Assessment Deliverable 01</div>
+        <h3>Reporting Inventory — extract</h3>
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative reporting inventory spreadsheet extract">
+          <rect width="400" height="260" rx="4" fill="#F3EFE6"/>
+          <!-- Header -->
+          <rect width="400" height="28" rx="4" fill="#0F1F38"/>
+          <rect y="22" width="400" height="6" fill="#0F1F38"/>
+          <text x="10" y="18" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Reporting Inventory</text>
+          <text x="300" y="18" font-family="DM Sans,sans-serif" font-size="9" fill="#8A9FB8">47 reports audited</text>
+          <!-- Column headers -->
+          <rect y="28" width="400" height="18" fill="#162A4A"/>
+          <text x="8"   y="41" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#C18C5D" letter-spacing=".5">REPORT NAME</text>
+          <text x="148" y="41" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#C18C5D" letter-spacing=".5">OWNER</text>
+          <text x="210" y="41" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#C18C5D" letter-spacing=".5">FREQ</text>
+          <text x="248" y="41" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#C18C5D" letter-spacing=".5">MANUAL HRS</text>
+          <text x="310" y="41" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#C18C5D" letter-spacing=".5">TRUST</text>
+          <text x="350" y="41" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#C18C5D" letter-spacing=".5">ACTION</text>
+          <!-- Rows -->
+          <rect y="46" width="400" height="16" fill="#fff"/>
+          <text x="8"   y="57" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">Weekly Ops Report</text>
+          <text x="148" y="57" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">J. Torres</text>
+          <text x="210" y="57" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Weekly</text>
+          <text x="248" y="57" font-family="DM Sans,sans-serif" font-size="9" fill="#CE796B">4.0 hrs</text>
+          <rect x="310" y="49" width="30" height="10" rx="5" fill="rgba(206,118,107,.2)"/>
+          <text x="325" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#CE796B">Low</text>
+          <text x="350" y="57" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#CE796B">Rebuild</text>
+
+          <rect y="62" width="400" height="16" fill="#F3EFE6"/>
+          <text x="8"   y="73" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">Executive KPI Pack</text>
+          <text x="148" y="73" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">CFO</text>
+          <text x="210" y="73" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Monthly</text>
+          <text x="248" y="73" font-family="DM Sans,sans-serif" font-size="9" fill="#CE796B">3.5 hrs</text>
+          <rect x="310" y="65" width="30" height="10" rx="5" fill="rgba(206,118,107,.2)"/>
+          <text x="325" y="73" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#CE796B">Low</text>
+          <text x="350" y="73" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#CE796B">Rebuild</text>
+
+          <rect y="78" width="400" height="16" fill="#fff"/>
+          <text x="8"   y="89" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">Finance Variance Report</text>
+          <text x="148" y="89" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Controller</text>
+          <text x="210" y="89" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Monthly</text>
+          <text x="248" y="89" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">1.0 hr</text>
+          <rect x="310" y="81" width="30" height="10" rx="5" fill="rgba(15,31,56,.1)"/>
+          <text x="325" y="89" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#0F1F38">High</text>
+          <text x="350" y="89" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#0F1F38">Keep</text>
+
+          <rect y="94" width="400" height="16" fill="#F3EFE6"/>
+          <text x="8"   y="105" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Q3 Pipeline Dashboard</text>
+          <text x="148" y="105" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Unknown</text>
+          <text x="210" y="105" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Ad hoc</text>
+          <text x="248" y="105" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">0 hrs</text>
+          <rect x="310" y="97" width="30" height="10" rx="5" fill="rgba(90,103,117,.1)"/>
+          <text x="325" y="105" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#5A6775">None</text>
+          <text x="350" y="105" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#5A6775">Retire</text>
+
+          <rect y="110" width="400" height="16" fill="#fff"/>
+          <text x="8"   y="121" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">Sales Activity Summary</text>
+          <text x="148" y="121" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">VP Sales</text>
+          <text x="210" y="121" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">Weekly</text>
+          <text x="248" y="121" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">2.0 hrs</text>
+          <rect x="310" y="113" width="30" height="10" rx="5" fill="rgba(212,168,68,.2)"/>
+          <text x="325" y="121" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#C49A20">Med</text>
+          <text x="350" y="121" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#C49A20">Improve</text>
+
+          <!-- Summary row -->
+          <rect y="132" width="400" height="20" fill="#162A4A"/>
+          <text x="8" y="145" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">47 reports · 10 rebuild · 18 keep · 12 improve · 7 retire</text>
+          <text x="300" y="145" font-family="DM Sans,sans-serif" font-size="9" fill="#C18C5D" font-weight="700">~34 hrs/wk manual</text>
+
+          <!-- Legend -->
+          <text x="8" y="168" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#5A6775">Trust rating:</text>
+          <rect x="70" y="159" width="28" height="10" rx="5" fill="rgba(15,31,56,.1)"/>
+          <text x="84" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#0F1F38">High</text>
+          <rect x="104" y="159" width="28" height="10" rx="5" fill="rgba(212,168,68,.2)"/>
+          <text x="118" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#C49A20">Med</text>
+          <rect x="138" y="159" width="28" height="10" rx="5" fill="rgba(206,118,107,.2)"/>
+          <text x="152" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#CE796B">Low</text>
+          <rect x="172" y="159" width="28" height="10" rx="5" fill="rgba(90,103,117,.1)"/>
+          <text x="186" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#5A6775">None</text>
+        </svg>
+        <figcaption>Every report catalogued: owner, manual effort, trust level, and recommended action. Illustrative — not actual client data.</figcaption>
+      </div>
+
+      <!-- Sample: 30/60/90 roadmap -->
+      <div class="sample">
+        <div class="slabel">Assessment Deliverable 09</div>
+        <h3>30/60/90-Day Modernization Roadmap — extract</h3>
+        <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative 30-60-90 day roadmap">
+          <rect width="400" height="260" rx="4" fill="#F3EFE6"/>
+          <!-- Header -->
+          <rect width="400" height="28" rx="4" fill="#0F1F38"/>
+          <rect y="22" width="400" height="6" fill="#0F1F38"/>
+          <text x="10" y="18" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Modernization Roadmap</text>
+          <text x="290" y="18" font-family="DM Sans,sans-serif" font-size="9" fill="#8A9FB8">Priority · Owner · Effort</text>
+          <!-- 30-day band -->
+          <rect x="8" y="36" width="384" height="60" rx="3" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+          <rect x="8" y="36" width="4" height="60" rx="2" fill="#0F1F38"/>
+          <text x="20" y="50" font-family="Abril Fatface,serif" font-size="12" fill="#0F1F38">Days 1–30</text>
+          <text x="80" y="50" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775"> · Quick wins &amp; foundation</text>
+          <text x="20" y="66" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Resolve "revenue" definition (Finance + Sales workshop)</text>
+          <text x="20" y="79" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Retire 7 unused dashboards · Document remaining 40</text>
+          <text x="20" y="92" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Name business owner for top 10 KPIs</text>
+          <!-- 60-day band -->
+          <rect x="8" y="104" width="384" height="68" rx="3" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+          <rect x="8" y="104" width="4" height="68" rx="2" fill="#C18C5D"/>
+          <text x="20" y="118" font-family="Abril Fatface,serif" font-size="12" fill="#C18C5D">Days 31–60</text>
+          <text x="88" y="118" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775"> · Core rebuilds</text>
+          <text x="20" y="134" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Rebuild Executive KPI Pack in Power BI (owner: CFO)</text>
+          <text x="20" y="147" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Rebuild Weekly Ops Report — eliminate 4 hrs manual work</text>
+          <text x="20" y="160" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Publish first 20 KPI definitions to shared dictionary</text>
+          <!-- 90-day band -->
+          <rect x="8" y="180" width="384" height="68" rx="3" fill="#fff" stroke="#E7E0D2" stroke-width="1"/>
+          <rect x="8" y="180" width="4" height="68" rx="2" fill="#162A4A"/>
+          <text x="20" y="194" font-family="Abril Fatface,serif" font-size="12" fill="#162A4A">Days 61–90</text>
+          <text x="88" y="194" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775"> · Governance &amp; operating model</text>
+          <text x="20" y="210" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Implement report intake process (Notion template)</text>
+          <text x="20" y="223" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ Complete KPI dictionary — all 31 metrics defined</text>
+          <text x="20" y="236" font-family="DM Sans,sans-serif" font-size="9" fill="#1B1B1B">→ First quarterly governance review — validate &amp; adjust</text>
+          <!-- Effort key -->
+          <text x="8" y="255" font-family="DM Sans,sans-serif" font-size="8" fill="#5A6775">Each item includes: business impact · effort estimate · owner · dependencies · success criteria</text>
+        </svg>
+        <figcaption>Prioritized, actionable, built to hand to leadership. Illustrative — not actual client data.</figcaption>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <h2>Want to see what this looks like for your organization?</h2>
+  <p>The Reporting Clarity Assessment produces outputs like these in 2–3 weeks. Start with a free diagnostic call.</p>
+  <a href="/contact" class="btn">Book a Reporting Trust Diagnostic →</a>
+</div>
+
+<!-- FOOTER -->
+
+<style>
+/* ── NAV ── */
+  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
+/* ── PAGE HERO ── */
+  .page-hero { background:var(--navy); padding:80px 0 64px; overflow:hidden; position:relative; }
+.page-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+.page-hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
+.page-hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(38px,5.6vw,68px); line-height:1.04; color:#fff; margin-bottom:18px; }
+.page-hero p { font-size:18px; color:#C4BDAE; font-weight:300; max-width:54ch; line-height:1.6; }
+.anon-note { display:inline-flex; align-items:center; gap:8px; margin-top:24px; background:rgba(193,140,93,.14); border:1px solid rgba(193,140,93,.3); padding:10px 16px; border-radius:4px; font-size:14px; color:var(--twine); font-weight:500; }
+/* ── CASE STUDY CARDS ── */
+  .case-studies { padding:72px 0; }
+.cs-grid { display:flex; flex-direction:column; gap:72px; }
+.cs { scroll-margin-top:80px; }
+.cs-header { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:start; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--rule); }
+@media(max-width:680px) {
+  .cs-header { grid-template-columns:1fr; }
+}
+.cs-sector { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:10px; }
+.cs h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.12; margin-bottom:8px; }
+.cs-context { font-size:16px; color:var(--muted); font-weight:300; line-height:1.5; }
+.cs-tags { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
+@media(max-width:680px) {
+  .cs-tags { justify-content:flex-start; }
+}
+.cs-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); background:var(--paper-2); padding:4px 10px; border-radius:20px; border:1px solid var(--line); }
+/* Problem / Approach / Outcomes layout */
+  .cs-body { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:32px; }
+@media(max-width:760px) {
+  .cs-body { grid-template-columns:1fr; gap:24px; }
+}
+.cs-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--navy); margin-bottom:14px; }
+.cs-col p { font-size:16px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:12px; }
+.cs-col p:last-child { margin-bottom:0; }
+.cs-col strong { color:var(--navy); font-weight:700; }
+/* Outcomes strip */
+  .outcomes { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; background:var(--rule); border-radius:6px; overflow:hidden; margin-bottom:32px; }
+@media(max-width:600px) {
+  .outcomes { grid-template-columns:1fr; }
+}
+.outcome { background:var(--paper-2); padding:20px 18px; text-align:center; }
+.oc-n { font-family:"Abril Fatface",serif; font-size:36px; color:var(--navy); line-height:1; margin-bottom:8px; }
+.oc-l { font-size:13px; color:var(--muted); line-height:1.4; font-weight:400; }
+/* Dashboard illustration */
+  .cs-visual { background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px; box-shadow:0 12px 36px -20px rgba(15,31,56,.2); }
+.cv-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-bottom:14px; }
+.cv-label.navy { color:var(--navy); }
+.cs-visual svg { display:block; width:100%; height:auto; }
+.cs-visual figcaption { font-size:12px; color:var(--muted); margin-top:12px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; font-style:italic; }
+/* Testimonial */
+  .cs-quote { background:var(--navy); border-radius:6px; padding:28px 28px 24px; position:relative; margin-top:28px; }
+.cs-quote::before { content:'"'; font-family:"DM Sans",sans-serif; font-weight:700; font-size:64px; color:rgba(193,140,93,.3); line-height:.7; position:absolute; top:18px; left:20px; }
+.cs-quote blockquote { font-size:17px; color:#D6DDE8; line-height:1.6; font-weight:300; font-style:italic; padding-left:36px; position:relative; z-index:1; margin-bottom:14px; }
+.cs-quote .q-attr { font-size:13px; color:var(--twine); font-weight:600; padding-left:36px; }
+/* Section divider */
+  .cs-divider { border:none; border-top:2px solid var(--rule); margin:0; }
+/* ── SAMPLE DELIVERABLES ── */
+  .samples { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.samples-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
+.samples h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
+.samples .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:58ch; margin-bottom:44px; line-height:1.6; }
+.sample-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+@media(max-width:660px) {
+  .sample-grid { grid-template-columns:1fr; }
+}
+.sample { background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px; box-shadow:0 8px 24px -16px rgba(15,31,56,.14); }
+.sample .slabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:10px; }
+.sample h3 { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:14px; }
+.sample svg { display:block; width:100%; height:auto; }
+.sample figcaption { font-size:12px; color:var(--muted); margin-top:10px; line-height:1.46; border-top:1px solid var(--line); padding-top:8px; font-style:italic; }
+/* ── CTA ── */
+  .cta-strip { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:80px 32px; }
+.cta-strip h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.8vw,44px); color:#fff; margin-bottom:16px; }
+.cta-strip p { color:#A8B4C0; font-size:17px; font-weight:300; max-width:46ch; margin:0 auto 28px; line-height:1.6; }
+.btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; padding:14px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
+.btn:hover { transform:translateY(-2px); background:var(--sepia); }
+/* ── FOOTER ── */
+  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
+.reveal { opacity:0; transform:translateY(14px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
+</style>
+
+</BaseLayout>
