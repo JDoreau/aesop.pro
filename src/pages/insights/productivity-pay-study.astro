@@ -1,0 +1,131 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "The Productivity–Pay Gap — Aesop Analytics";
+const description = "Productivity rose ~90% since 1979; typical pay rose ~33%. An honest, even-handed look at what actually drives the gap — inequality, labor share, and measurement — and what the numbers actually say.";
+const kicker = "Field Study · Labor & the Economy";
+const headingHtml = "The Productivity–Pay Gap<span class=\"sub\">Where did the middle class's gains go?</span>";
+const dekHtml = "For three decades after WWII, American workers' pay rose in lockstep with what they produced. Then, around 1979, the two lines split. An honest look at how wide the gap really is — and what actually caused it.";
+const meta = ["Data through 2025", "~7 min read"];
+---
+
+<ArticleLayout title={title} description={description} path="/insights/productivity-pay-study" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta}>
+
+<div class="body">
+    <p class="lead">There is a chart that has launched a thousand arguments. It shows two lines — the productivity of the American economy and the pay of a typical worker — rising together from the late 1940s, then splitting apart around 1979 and never rejoining. To one side it is proof that workers have been cheated of their fair share. To the other it is a statistical illusion built on mismatched measures. The truth, as usual, is more interesting than either.</p>
+    <p>Let's start with the numbers that aren't really in dispute. According to the Economic Policy Institute's long-running analysis of federal data, net productivity of the U.S. economy grew about <strong>90%</strong> between 1979 and 2025, while the hourly compensation of a typical (production and non-supervisory) worker grew roughly <strong>33%</strong>. Before 1979, the two had climbed together — productivity up around 108%, pay up around 93% across 1948–1979. After 1979, they diverged and stayed that way.</p>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="n">+90%</div><div class="l">Net productivity growth, 1979–2025</div></div>
+      <div class="stat alt"><div class="n">+33%</div><div class="l">Typical worker's hourly pay, same period</div></div>
+      <div class="stat"><div class="n">~2.7&times;</div><div class="l">How much faster productivity outran typical pay</div></div>
+    </div>
+
+    <figure>
+      <div class="ftitle">From tandem to divergence</div>
+      <div class="fsub">Cumulative growth within each era — productivity vs. a typical worker's compensation</div>
+      <div class="legend">
+        <!-- Navy swatch for productivity bar — was green #092509 -->
+        <span><i class="swatch" style="background:#0F1F38"></i> Net productivity</span>
+        <span><i class="swatch" style="background:#CE796B"></i> Typical worker pay</span>
+      </div>
+      <svg viewBox="0 0 640 360" role="img" aria-label="Grouped bar chart comparing productivity and pay growth in two eras">
+        <g stroke="#E7E0D2" stroke-width="1">
+          <line x1="90" y1="320" x2="600" y2="320"/>
+          <line x1="90" y1="250" x2="600" y2="250"/>
+          <line x1="90" y1="180" x2="600" y2="180"/>
+          <line x1="90" y1="110" x2="600" y2="110"/>
+          <line x1="90" y1="40"  x2="600" y2="40"/>
+        </g>
+        <g font-family="DM Sans, sans-serif" font-size="12" fill="#5A6775">
+          <text x="80" y="324" text-anchor="end">0%</text>
+          <text x="80" y="254" text-anchor="end">30%</text>
+          <text x="80" y="184" text-anchor="end">60%</text>
+          <text x="80" y="114" text-anchor="end">90%</text>
+          <text x="80" y="44"  text-anchor="end">120%</text>
+        </g>
+        <!-- Era 1: 1948–1979 (bars) — navy + contessa -->
+        <g class="bar-grow" style="animation-delay:.2s">
+          <rect x="170" y="68"  width="55" height="252" fill="#0F1F38" rx="2"/>
+          <rect x="235" y="103" width="55" height="217" fill="#CE796B" rx="2"/>
+        </g>
+        <text x="202" y="60"  text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#0F1F38">+108%</text>
+        <text x="267" y="95"  text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#B35546">+93%</text>
+        <text x="230" y="340" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#1B1B1B">1948–1979 &middot; in tandem</text>
+        <!-- Era 2: 1979–2025 — navy + contessa -->
+        <g class="bar-grow" style="animation-delay:.45s">
+          <rect x="410" y="110" width="55" height="210" fill="#0F1F38" rx="2"/>
+          <rect x="475" y="243" width="55" height="77"  fill="#CE796B" rx="2"/>
+        </g>
+        <text x="437" y="102" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#0F1F38">+90%</text>
+        <text x="502" y="235" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#B35546">+33%</text>
+        <text x="470" y="340" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#1B1B1B">1979–2025 &middot; diverged</text>
+      </svg>
+      <figcaption>Source: Economic Policy Institute analysis of BLS and BEA data (net total-economy productivity; compensation of production/non-supervisory workers). Pre-1979 figures span 1948–1979. Chart by Aesop Analytics.</figcaption>
+    </figure>
+
+    <p>Put in human terms, EPI estimates that if the typical worker's pay had kept rising with productivity, they would earn roughly <strong>$16.40 more per hour</strong> today — about $13.50 of it in straight wages. Over a year of full-time work, that is real money missing from real households.</p>
+
+    <div class="callout reveal">
+      <div class="big">$16.40</div>
+      <div class="cap">Estimated additional hourly pay for a typical worker today, had compensation tracked productivity since 1979.</div>
+    </div>
+
+    <p class="pull">The gap is real. The fight is over what it means.</p>
+
+    <h2><span class="num">01</span>What's actually driving the gap?</h2>
+    <p>Here is where a careful analyst earns their fee. "Productivity rose and workers were robbed" is a slogan, not an explanation. When economists decompose the gap, it breaks into three distinct pieces — and they don't all point at the same villain.</p>
+    <p>First, a <strong>falling labor share</strong>: over these decades, a smaller slice of each dollar of output went to workers and a larger slice to capital. Second, <strong>rising inequality</strong>: even within the labor share, the gains concentrated near the top, so the <em>typical</em> (median) worker fell behind the <em>average</em>. Third, <strong>measurement</strong>: productivity is deflated by the prices of what the economy produces, while pay is deflated by the prices workers actually consume — and those two price baskets drifted apart, widening the headline gap for reasons that have nothing to do with bargaining power.</p>
+    <p>EPI's own decomposition is telling: for the 2000–2014 period, it attributes roughly <strong>80% of the gap</strong> to the two inequality channels — a shrinking labor share plus growing pay inequality — rather than to measurement quirks. In other words, the divergence is mostly a story about <em>who</em> captured the gains, not a mirage.</p>
+
+    <figure>
+      <div class="ftitle">Anatomy of the gap</div>
+      <div class="fsub">What explains the productivity–pay divergence (EPI decomposition, 2000–2014)</div>
+      <svg viewBox="0 0 640 150" role="img" aria-label="Bar showing roughly 80 percent inequality and labor share, 20 percent measurement">
+        <g class="bar-grow" style="animation-delay:.2s">
+          <!-- Primary bar: navy -->
+          <rect x="40"  y="40" width="408" height="46" fill="#0F1F38" rx="3"/>
+          <!-- Secondary bar: twine -->
+          <rect x="448" y="40" width="152" height="46" fill="#C18C5D" rx="3"/>
+        </g>
+        <text x="244" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="14" font-weight="700" fill="#fff">~80% &middot; inequality + falling labor share</text>
+        <text x="524" y="68" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">~20%</text>
+        <text x="524" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">deflator &amp; other</text>
+        <text x="244" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" fill="#5A6775">the gains went somewhere — mostly to the top, and to capital</text>
+      </svg>
+      <figcaption>Source: Economic Policy Institute (2017) decomposition for 2000–2014. Shares vary by period and method; treat as indicative, not exact. Chart by Aesop Analytics.</figcaption>
+    </figure>
+
+    <h2><span class="num">02</span>The honest counter-argument</h2>
+    <p>A credible study has to steelman the other side, and here it is genuinely strong. In a widely cited 2017 paper, Harvard's Anna Stansbury and Lawrence Summers asked whether the link between productivity and pay is actually <em>broken</em>. Their answer: no. Across 1973–2016, they found that each additional percentage point of productivity growth was associated with roughly <strong>0.7 to 1.0 points</strong> of higher median and average compensation growth. Productivity still lifts typical pay — the engine works.</p>
+    <p>Measurement matters too. Swap the consumer-price deflator economists often use (CPI-U-RS) for an alternative (the PCE index) and median compensation growth over the period roughly doubles — from about 12% to about 26%. The choice of yardstick alone moves the story substantially. And when productivity is measured at output prices and compared against <em>total</em> compensation rather than wages alone, the two series track far more closely than the famous chart implies.</p>
+    <p>The provocative implication of the Stansbury–Summers work is that boosting productivity is, for the typical worker, <em>at least as powerful a lever as reducing inequality</em>. They estimate that holding inequality at its 1973 level would have left the median worker about 33% better off by 2016 — but that restoring the faster productivity growth of the 1949–1973 era would have lifted pay by around 41%. Both matter. Neither is the whole story.</p>
+
+    <div class="twocol reveal">
+      <div class="a">
+        <h4>What both sides agree on</h4>
+        <p>Since ~1979 the typical worker's pay has clearly lagged economy-wide productivity. That divergence is in the data, and it is large.</p>
+      </div>
+      <div class="b">
+        <h4>Where they differ</h4>
+        <p>How much is "decoupling" versus rising inequality versus measurement — and therefore whether the fix is stronger worker power, faster growth, or both.</p>
+      </div>
+    </div>
+
+    <h2><span class="num">03</span>The moral of the story</h2>
+    <p>Strip away the slogans and a defensible reading emerges. The middle class's gains did not simply vanish — they were <em>redistributed</em>. The link between productivity and pay never fully broke, but two forces pulled typical paychecks off the productivity trend: a larger share of output flowing to capital and to top earners, and a productivity slowdown that left a smaller pie growing more slowly. A portion of the raw, eye-popping gap is also an artifact of comparing two different price yardsticks.</p>
+    <p>For a policymaker or a business leader, that reframing changes the prescription. If you believed pay had "decoupled" entirely, you might give up on growth and focus only on redistribution. The evidence says don't: productivity growth still reaches workers' wallets, so reviving it is pro-worker. But it also says growth alone won't restore the old bargain while so much of the gains concentrate at the top. The honest answer uses <strong>both</strong> levers.</p>
+    <p>That is the moral this dataset actually tells — not the one that fits neatly on a protest sign or a rebuttal blog, but the one the numbers support when you let them.</p>
+
+    <div class="sources">
+      <h3>Sources &amp; Notes</h3>
+      <ol>
+        <li>Economic Policy Institute, "The Productivity–Pay Gap" (updated 2025/2026) — analysis of BLS Labor Productivity &amp; Costs, BLS Current Employment Statistics, BLS Employment Cost Trends, BLS CPI, and BEA NIPA data.</li>
+        <li>Economic Policy Institute (2017), decomposition of the productivity–compensation wedge into labor share, inequality, and price-deflator components.</li>
+        <li>Stansbury, A. &amp; Summers, L. (2017), "Productivity and Pay: Is the Link Broken?" — NBER Working Paper No. 24165 / PIIE Working Paper 18-5.</li>
+        <li>Stansbury &amp; Summers (2019/2021), follow-on cross-country work (US &amp; Canada), NBER.</li>
+      </ol>
+      <p class="method">Methodology note: "Net productivity" is output of goods and services, less depreciation, per hour worked, for the total economy. "Typical worker pay" is hourly compensation (wages plus benefits) of production and non-supervisory workers — roughly 80% of payroll employment. Era figures are cumulative within each window and depend on base-year and deflator choices; alternate but defensible measures narrow the headline gap. This study summarizes published findings and does not reproduce source charts or text.</p>
+    </div>
+  </div>
+
+</ArticleLayout>

@@ -1,0 +1,186 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "Data Strategy Before Data Tools — Aesop Analytics";
+const description = "Most companies buy the tools first and ask the strategic questions later — if at all. Why data strategy has to come before the technology, and what a practical one actually looks like.";
+const kicker = "Article · Data Strategy";
+const headingHtml = "Data Strategy Before Data Tools <span class=\"sub\">Why the plan has to come before the platform — and what a practical one actually looks like.</span>";
+const dekHtml = "The most common way analytics initiatives fail isn't poor technology — it's poor sequencing. Companies buy tools first and ask strategic questions later, if at all. Here's what gets skipped, why it matters, and what to do instead.";
+const meta = ["~7 min read", "Data Strategy"];
+---
+
+<ArticleLayout title={title} description={description} path="/insights/data-strategy" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta}>
+
+<div class="body">
+
+    <p class="lead">The statistic gets cited often enough that it should be embarrassing: roughly 85% of large data initiatives fail to deliver on their original goals. It isn't a technology problem. The tools have never been cheaper, more capable, or more accessible. A company with a few thousand dollars and a cloud account can stand up infrastructure that would have required a dedicated data center fifteen years ago. The failure is almost always upstream of the tools — in the absence of a clear reason to have them.</p>
+
+    <p>Data strategy is not a technology plan. It is not a decision about which BI platform to buy or whether to move your warehouse to Snowflake. It is a decision about what you need your data to do — for which people, in support of which decisions, against which constraints — and then a plan for building the people, processes, and technology that make that possible. In that order. The technology is the last decision, not the first.</p>
+
+    <p>This sounds obvious stated plainly. In practice it is consistently violated, because technology decisions are concrete and satisfying — you can buy a license, spin up a dashboard, show something to leadership — while strategic decisions are ambiguous and require alignment across functions that often don't naturally talk to each other. The path of least resistance runs straight to the tool purchase. That path also runs straight to a warehouse full of data nobody trusts, dashboards nobody uses, and a data team that spends most of its time fielding one-off requests and explaining why the numbers don't match.</p>
+
+    <p class="pull">Data is not inherently strategic. People, process, and a clear purpose are what make it so.</p>
+
+    <h2>What a data strategy actually contains.</h2>
+    <span class="h2-sub">Seven components that have to be present in some form</span>
+
+    <p>A practical data strategy for a small or mid-sized company doesn't need to be a hundred-page document — the organizations that actually execute on their strategies tend to keep them shorter and more opinionated, not longer. But it does need to address seven distinct questions. Skip any of them and you'll feel the gap later.</p>
+
+    <div class="components reveal">
+      <div class="comp">
+        <div class="cn">01</div>
+        <h3>Data Governance</h3>
+        <p>Who owns which data? Who can access what? Who is responsible when a number is wrong? Governance is the policy layer — roles, responsibilities, and rules that make data trustworthy across the organization.</p>
+      </div>
+      <div class="comp">
+        <div class="cn">02</div>
+        <h3>Data Quality</h3>
+        <p>How do you know the data is accurate, complete, and current? Not a one-time audit — an ongoing process that catches and corrects problems before they reach a dashboard and undermine trust in the whole system.</p>
+      </div>
+      <div class="comp">
+        <div class="cn">03</div>
+        <h3>Data Architecture</h3>
+        <p>Where does data live, how does it move between systems, and how is it structured for the uses you need? This is where technology decisions actually belong — downstream of governance and quality, not upstream.</p>
+      </div>
+      <div class="comp">
+        <div class="cn">04</div>
+        <h3>Data Access</h3>
+        <p>Can the people who need data actually get to it — securely, reliably, without filing a ticket and waiting three days? Access is about design, not just permissions. The right data should be findable by the right people.</p>
+      </div>
+      <div class="comp">
+        <div class="cn">05</div>
+        <h3>Data Literacy</h3>
+        <p>Can your team read and interpret data, ask good questions of it, and recognize when something looks wrong? Technology doesn't compensate for a team that can't engage with the output. Literacy is infrastructure too.</p>
+      </div>
+      <div class="comp">
+        <div class="cn">06</div>
+        <h3>Extraction &amp; Reporting</h3>
+        <p>How does the data get from the source to a decision-maker's screen? Who builds the reports, who owns the definitions, and what happens when two reports show different numbers for the same metric?</p>
+      </div>
+      <div class="comp">
+        <div class="cn">07</div>
+        <h3>Analytics</h3>
+        <p>What analytical capabilities does the organization actually need — descriptive, diagnostic, predictive? This is where BI tools, data science, and modeling live. It's a later conversation than most companies treat it as.</p>
+      </div>
+      <div class="comp" style="background:var(--paper-2); border-style:dashed;">
+        <div class="cn" style="color:var(--muted)">Note</div>
+        <h3 style="color:var(--muted); font-size:16px;">Sequencing matters.</h3>
+        <p>These aren't independent workstreams. Governance enables quality. Quality enables trusted access. Trusted access enables literacy. Literacy enables useful analytics. Jumping to analytics without the foundation underneath it is where most initiatives strand themselves.</p>
+      </div>
+    </div>
+
+    <!-- SEQUENCE DIAGRAM -->
+    <div class="illus reveal">
+      <div class="ititle">The right sequence — and where most companies actually start</div>
+      <div class="isub">Strategy has to precede architecture; architecture has to precede tools</div>
+      <svg viewBox="0 0 680 140" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram showing correct vs common sequencing of data strategy">
+        <!-- CORRECT sequence: top row -->
+        <text x="10" y="22" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#0F1F38">CORRECT</text>
+        <!-- Boxes -->
+        <rect x="10"  y="30" width="100" height="36" rx="4" fill="#0F1F38"/>
+        <rect x="130" y="30" width="100" height="36" rx="4" fill="#162A4A"/>
+        <rect x="250" y="30" width="100" height="36" rx="4" fill="#1E3555"/>
+        <rect x="370" y="30" width="100" height="36" rx="4" fill="#C18C5D"/>
+        <rect x="490" y="30" width="110" height="36" rx="4" fill="#98673A"/>
+        <!-- Arrows -->
+        <line x1="110" y1="48" x2="128" y2="48" stroke="#D9CFBC" stroke-width="1.5"/>
+        <polygon points="128,44 136,48 128,52" fill="#D9CFBC"/>
+        <line x1="230" y1="48" x2="248" y2="48" stroke="#D9CFBC" stroke-width="1.5"/>
+        <polygon points="248,44 256,48 248,52" fill="#D9CFBC"/>
+        <line x1="350" y1="48" x2="368" y2="48" stroke="#D9CFBC" stroke-width="1.5"/>
+        <polygon points="368,44 376,48 368,52" fill="#D9CFBC"/>
+        <line x1="470" y1="48" x2="488" y2="48" stroke="#D9CFBC" stroke-width="1.5"/>
+        <polygon points="488,44 496,48 488,52" fill="#D9CFBC"/>
+        <!-- Labels -->
+        <text x="60"  y="51" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Vision &amp; Goals</text>
+        <text x="180" y="51" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Governance</text>
+        <text x="300" y="51" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Architecture</text>
+        <text x="420" y="51" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Access &amp; Quality</text>
+        <text x="545" y="51" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Tools &amp; Analytics</text>
+
+        <!-- COMMON (wrong) sequence: bottom row -->
+        <text x="10" y="105" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#CE796B">COMMON</text>
+        <rect x="10"  y="112" width="110" height="36" rx="4" fill="#CE796B"/>
+        <line x1="120" y1="130" x2="138" y2="130" stroke="#E7E0D2" stroke-width="1.5"/>
+        <polygon points="138,126 146,130 138,134" fill="#E7E0D2"/>
+        <rect x="145" y="112" width="120" height="36" rx="4" fill="#D6DDE8"/>
+        <line x1="265" y1="130" x2="283" y2="130" stroke="#E7E0D2" stroke-width="1.5"/>
+        <polygon points="283,126 291,130 283,134" fill="#E7E0D2"/>
+        <rect x="290" y="112" width="150" height="36" rx="4" fill="#F3EFE6" stroke="#D9CFBC" stroke-width="1"/>
+        <text x="55"  y="132" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">Buy a BI tool</text>
+        <text x="205" y="132" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5A6775">Connect data sources</text>
+        <text x="365" y="128" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B" font-weight="700">Wonder why nobody</text>
+        <text x="365" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#CE796B" font-weight="700">trusts the numbers</text>
+      </svg>
+      <figcaption>The correct sequence moves from organizational vision through governance and architecture before reaching tool selection. The common pattern inverts this — buying the tool first, then discovering the strategy questions that should have come first.</figcaption>
+    </div>
+
+    <h2>The four questions before everything else.</h2>
+    <span class="h2-sub">What you have to be able to answer before any technology conversation</span>
+
+    <p>Before a data strategy can be built, four foundational questions need honest answers. These aren't planning exercises — they're the inputs. Without them, any strategy you build is working from assumptions that may not hold.</p>
+
+    <p><strong>Is the current state good enough to survive?</strong> This is the USTRANSCOM framing, and it's the right place to start. Not "could things be better?" — things can always be better. The useful question is whether the current state of your data is actually limiting decisions, creating risk, or costing money. If the answer is yes, you have a mandate. If no, you have a nice-to-have project that will lose every resource fight it enters.</p>
+
+    <p><strong>What decisions does your data need to support?</strong> Not generically — specifically. Name the decision, name the person who makes it, and name what information they currently lack or distrust. A data strategy that isn't organized around specific decisions tends to produce a lot of data and not much insight. The USTRANSCOM team's specific list — advance decision-making, offload common tasks, provide information at the speed of operations — is a model of what useful specificity looks like.</p>
+
+    <p><strong>What are you willing to hold still long enough to build on?</strong> Data infrastructure requires stability to develop. If the business processes it mirrors are being redesigned every six months, the data layer built on top of them will constantly break. Part of a data strategy is identifying which parts of the business are stable enough to instrument reliably — and which aren't yet.</p>
+
+    <p><strong>Who has to own this?</strong> Data initiatives that live entirely inside a data team tend to produce outputs that the rest of the organization doesn't trust or use. The strategy — not the execution, but the strategy — needs an executive sponsor and business-side ownership. Without it, every data quality issue, every definition disagreement, every access request becomes a negotiation the data team will consistently lose.</p>
+
+    <div class="casebox reveal">
+      <div class="cblabel">Case Study · Government Data at Scale</div>
+      <h3>USTRANSCOM: Starting with the Why</h3>
+      <p>The United States Transportation Command coordinates over 240 air missions, 1,500 ground shipments, and 20 ships underway — every single day — across the entire world. Few organizations produce data at that scale or under those operational pressures.</p>
+      <p>When USTRANSCOM's Chief of Emerging Technology Larry McLean presented their data strategy journey at the DATAVERSITY Enterprise Data World Conference, his opening was instructive: before anything else, they found the <em>why</em>. Not the tools, not the architecture — the purpose. Their data strategy nested explicitly under the organizational vision, which drove goals, which drove objectives, which drove the data work.</p>
+      <p>McLean's specific list of what a data strategy was supposed to accomplish — advance decision-making, mature as a data-driven organization, offload common tasks, provide information at the speed of operational need, use personnel where they're needed most — is a model of outcome-first thinking. Each item connects directly to a capability the organization needed and didn't have. None of them say "buy better software."</p>
+      <p>The lesson for smaller organizations isn't scale — it's sequencing. Start with the why. The what and the how follow.</p>
+    </div>
+
+    <h2>Where data initiatives actually fail.</h2>
+    <span class="h2-sub">The patterns are consistent enough to be predictable</span>
+
+    <p>Fifteen years across finance, healthcare, real estate, and nonprofit — the failure modes look remarkably similar regardless of industry. They tend to cluster around four recurring problems.</p>
+
+    <div class="failures">
+      <div class="fail">
+        <span class="fi">01</span>
+        <span class="ft"><strong>The tool purchase as a strategy substitute.</strong> A new BI platform gets bought, licensed, and deployed — and the assumption is that the strategy question is now answered. It isn't. The tool is a means. Means without ends produce dashboards nobody opens, reports that answer questions nobody asked, and a data team that becomes a request queue instead of a strategic function. The tool conversation should happen last, not first.</span>
+      </div>
+      <div class="fail">
+        <span class="fi">02</span>
+        <span class="ft"><strong>The untrusted number problem.</strong> Two reports show different revenue figures for the same month. Finance says one thing, sales says another, and nobody agrees on which is right. This is a governance failure — specifically, a failure to define metrics clearly and assign ownership of definitions. Once trust is broken at this level, adoption collapses. People stop using the reports and go back to spreadsheets they built themselves. No technology upgrade fixes this; only governance does.</span>
+      </div>
+      <div class="fail">
+        <span class="fi">03</span>
+        <span class="ft"><strong>The "we have the data but we're not using it right" stall.</strong> The data exists. The infrastructure exists. The dashboards exist. And yet decisions are still being made on instinct or anecdote, because the analytics layer never connected to the actual decision-making process. This is a literacy and process failure — the translation between the data and the decision wasn't built. Data access is not enough. Decision-makers need to know what question to ask, and analysts need to know what decision the answer feeds.</span>
+      </div>
+      <div class="fail">
+        <span class="fi">04</span>
+        <span class="ft"><strong>The multi-year project that never ships.</strong> An enterprise data initiative gets scoped, resourced, and kicked off — and eighteen months later it still hasn't produced anything a business user can touch. This is usually a scope failure married to a sequencing failure. The right move for most companies is a deliberate, modest first phase that produces one trustworthy, well-governed, actively used output — and builds credibility for everything that follows. Perfect data strategy is the enemy of any data strategy.</span>
+      </div>
+    </div>
+
+    <div class="tip">
+      <div class="tlabel">Where to start if you're starting from scratch</div>
+      <p>Pick one decision that your leadership makes regularly, that is currently being made with incomplete or distrusted data, and that has a clear owner. Build the minimal data infrastructure to support that decision well — clean source, clear definition, single owner, one trustworthy output. Get that working and trusted before adding anything else. Credibility compounds; a small thing that works is worth more than a large thing that doesn't ship.</p>
+    </div>
+
+    <h2>What Aesop does — and doesn't do.</h2>
+    <span class="h2-sub">The honest version</span>
+
+    <p>We help companies at the strategy layer and the build layer. On the strategy side: working through the four foundational questions, auditing the current state honestly, identifying the first phase of work that will actually ship and create value, and building the governance foundations that make everything downstream trustworthy. On the build side: the dashboards, the warehouse architecture, the reporting layer — but only in service of a strategy that's already been defined.</p>
+
+    <p>What we don't do: sell a tool and call it a strategy. Recommend platforms we have financial relationships with. Scope projects that are designed to run forever. The engagements we take are the ones where we believe there's a clear problem, a defined first phase of work, and a business owner who's committed to seeing it through. That's a smaller set of engagements than we could theoretically take — and it's the right set.</p>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/design-thinking" class="rn-link">Design Thinking in BI →</a>
+        <a href="/insights/dashboard-design-basics" class="rn-link">Dashboard Design, the Basics →</a>
+        <a href="/insights/productivity-pay-study" class="rn-link">Field Study: The Productivity–Pay Gap →</a>
+        <a href="/" class="rn-link">← Back to aesop.pro</a>
+      </div>
+    </div>
+  </div>
+
+</ArticleLayout>

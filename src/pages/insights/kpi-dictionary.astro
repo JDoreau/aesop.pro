@@ -1,0 +1,161 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "How to Build a KPI Dictionary — Aesop Analytics";
+const description = "A KPI dictionary is the single most practical governance artifact a growing company can build. Here's exactly what goes in it, how to structure it, and how to make it stick.";
+const kicker = "Article · KPI Definitions";
+const headingHtml = "How to Build a KPI Dictionary <span class=\"sub\">Stop arguing about what the numbers mean. One document, built correctly, ends most metric debates for good.</span>";
+const dekHtml = "A KPI dictionary is the single most practical governance artifact a growing company can build. Most organizations don't have one. The ones that do rarely maintain it. Here's exactly what goes in it, how to structure it, and — most importantly — how to make it stick.";
+const meta = ["~7 min read", "KPI Definitions"];
+const ogDescription = "Stop arguing about what the numbers mean. A practical guide to building and maintaining the governance document that ends metric debates.";
+---
+
+<ArticleLayout title={title} description={description} path="/insights/kpi-dictionary" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
+
+<div class="body">
+
+    <p class="lead">Every company that has ever had a meeting where two people presented different numbers for the same metric needed a KPI dictionary. It is, in the most practical sense, a documented agreement about what your metrics mean — the business definition, the technical formula, the authoritative source, the owner, and the caveats. Without it, every number in your reporting is an interpretation. With it, a number is a fact.</p>
+    <p>The concept is simple enough that most organizations assume they don't need to formalize it. Their metrics are obvious. Everyone knows what "revenue" means. The definitions are in the SQL. The problem is that none of those things are actually true — and the moment you ask Finance, Sales, and Customer Success to each define their most important KPIs from scratch, the divergence becomes impossible to ignore.</p>
+
+    <p class="pull">"Everyone knows what revenue means" is the sentence that precedes the discovery that three departments are measuring it three different ways.</p>
+
+    <h2>What a KPI dictionary actually is.</h2>
+    <span class="h2-sub">And what it isn't</span>
+    <p>A KPI dictionary is not a data catalog. It's not a list of database tables. It's not a technical data dictionary mapping columns to descriptions. Those things are useful, but they serve a different purpose and a different audience.</p>
+    <p>A KPI dictionary is a <em>business document</em> that captures the agreed-upon meaning of each metric your organization uses to make decisions. It's written in plain language that a COO can read, but with enough technical specificity that a data engineer can implement it without ambiguity. It lives somewhere central and accessible — not in a BI tool's metadata, not in a data engineer's notebook, not in the head of whoever built the original dashboard.</p>
+    <p>The audience is everyone: executives who read the numbers, analysts who calculate them, engineers who build the pipelines, and business owners who are responsible for them. The document has to serve all of them simultaneously.</p>
+
+    <h2>The twelve fields every entry needs.</h2>
+    <span class="h2-sub">Required vs. optional — start with required, add optional as you mature</span>
+
+    <div class="dict-fields">
+      <div class="dict-field">
+        <div><div class="df-name">Metric name <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">The canonical name — used everywhere, always. If Finance calls it "Net Revenue" and Sales calls it "Bookings," that conflict surfaces here and has to be resolved before anything else.
+          <div class="df-ex">Example: "Monthly Recurring Revenue (MRR)"</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Business definition <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">One or two plain-English sentences a non-analyst can read and understand. No SQL. No jargon. The definition a CFO would read and say "yes, that's what I mean when I say that."
+          <div class="df-ex">Example: "The total value of active recurring subscription contracts, measured on the last day of the month."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Technical definition <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">How it's actually calculated — field names, filters, logic. Specific enough that two analysts independently implementing it would produce the same number.
+          <div class="df-ex">Example: "SUM(contract_value) WHERE subscription_status = 'active' AND billing_interval = 'monthly', measured at month-end snapshot."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Source system <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">The single authoritative source for this metric. If the answer is "it depends" or "we pull from two places," that's a governance problem that needs resolving before the entry can be complete.
+          <div class="df-ex">Example: "Salesforce CRM — Opportunities table, closed-won records."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Business owner <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">A specific person — not a team or a role — who is responsible for the definition, accountable when the number is questioned, and empowered to resolve disputes about it.
+          <div class="df-ex">Example: "Sarah Chen, VP Revenue Operations"</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Technical owner <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">The person responsible for the pipeline, query, or model that produces the number. The person you call when the metric looks wrong.
+          <div class="df-ex">Example: "Marcus Webb, Senior Analytics Engineer"</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Filters &amp; exclusions <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">Explicit list of what's included and excluded. This is where most definition conflicts live — one team includes trials, another doesn't; one team uses contract date, another uses invoice date.
+          <div class="df-ex">Example: "Excludes: trial subscriptions, paused accounts, accounts in dunning. Includes: monthly and annual contracts (annual annualized)."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Grain <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">The level of detail at which the metric is meaningful. A metric without grain is ambiguous — "revenue" by day, week, month, and year are four different numbers.
+          <div class="df-ex">Example: "Monthly. Not meaningful at daily grain due to monthly billing cycles."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Refresh cadence <span class="df-req required">Required</span></div></div>
+        <div class="df-desc">How often the number updates and when to expect it. Critical for avoiding "that dashboard is stale" confusion.
+          <div class="df-ex">Example: "Updated daily at 6:00 AM ET from nightly Salesforce sync. Month-end snapshot locked on the 3rd business day."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Known caveats <span class="df-req optional">Optional</span></div></div>
+        <div class="df-desc">Historical issues, known edge cases, or upcoming changes that affect interpretation. This field prevents the same confusion from surfacing in every quarterly business review.
+          <div class="df-ex">Example: "Pre-2023 data excludes acquired company Acme Corp. Integration complete Q1 2024."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Related metrics <span class="df-req optional">Optional</span></div></div>
+        <div class="df-desc">Metrics this one is often compared to, calculated from, or confused with. Helps readers navigate the dictionary and understand context.
+          <div class="df-ex">Example: "See also: ARR, Net Revenue Retention, Churn Rate."</div>
+        </div>
+      </div>
+      <div class="dict-field">
+        <div><div class="df-name">Last updated / approved by <span class="df-req optional">Optional</span></div></div>
+        <div class="df-desc">Date of last review and who approved the current definition. Creates accountability and signals whether the entry is current.
+          <div class="df-ex">Example: "Updated 2026-01-15. Approved by Sarah Chen and CFO."</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>A complete example entry.</h2>
+    <span class="h2-sub">Monthly Recurring Revenue — the metric most commonly defined inconsistently</span>
+
+    <div class="example-entry reveal">
+      <div class="ee-header">
+        <span class="ee-title">Monthly Recurring Revenue (MRR)</span>
+        <span class="ee-tag">KPI Dictionary · Revenue</span>
+      </div>
+      <div class="ee-body">
+        <div class="ee-row"><div class="ee-label">Business definition</div><div class="ee-val">The total normalized monthly value of all active recurring subscription contracts, measured on the last calendar day of the month.</div></div>
+        <div class="ee-row"><div class="ee-label">Technical definition</div><div class="ee-val">SUM(normalized_monthly_value) from subscriptions WHERE status = 'active' AND type IN ('monthly','annual') at month-end snapshot. Annual contracts divided by 12.</div></div>
+        <div class="ee-row"><div class="ee-label">Source system</div><div class="ee-val">Salesforce CRM → Opportunities (closed-won). Synced nightly to data warehouse (subscriptions table).</div></div>
+        <div class="ee-row"><div class="ee-label">Excludes</div><div class="ee-val">Trial subscriptions · Paused/dunning accounts · One-time professional services revenue · Pilot contracts not yet converted</div></div>
+        <div class="ee-row"><div class="ee-label">Grain</div><div class="ee-val">Monthly. Not reported at daily grain.</div></div>
+        <div class="ee-row"><div class="ee-label">Refresh</div><div class="ee-val">Daily at 6 AM ET. Month-end value locked on 3rd business day of following month.</div></div>
+        <div class="ee-row"><div class="ee-label">Business owner</div><div class="ee-val">Sarah Chen, VP Revenue Operations — responsible for definition, dispute resolution</div></div>
+        <div class="ee-row"><div class="ee-label">Technical owner</div><div class="ee-val">Marcus Webb, Analytics Engineering — responsible for pipeline, data quality</div></div>
+        <div class="ee-row"><div class="ee-label">Known caveats</div><div class="ee-val">Pre-2023 data excludes Acme Corp (acquired Q3 2022, integrated Q1 2023). Restatement available on request.</div></div>
+        <div class="ee-row"><div class="ee-label">Last updated</div><div class="ee-val">2026-01-15 · Approved: Sarah Chen, CFO</div></div>
+      </div>
+    </div>
+
+    <h2>How to build it without it dying in a committee.</h2>
+    <span class="h2-sub">The process that actually works at a growing company</span>
+    <p>Most KPI dictionary efforts stall for one of three reasons: they start too big (trying to document every metric at once), they're built in the wrong format (a database nobody accesses), or they have no owner (it gets written and immediately starts decaying). Here's the sequence that avoids all three.</p>
+    <p><strong>Step 1: Start with your ten most-argued-about metrics.</strong> Not all metrics — just the ones that cause the most confusion in meetings. "Revenue," "active customers," "churn," "pipeline," "headcount." Ask leadership: which number, when it appears in a meeting, is most likely to generate a "which version of that are you using?" response. Those are your starting ten.</p>
+    <p><strong>Step 2: Run a definition workshop — don't write it in isolation.</strong> Get the business owners in a room (or on a call) for each metric. Ask: what does this mean to you? What does it include? What does it exclude? What date field do you use? What happens to contracted-but-not-started accounts? The disagreements that surface in this conversation are the metric conflicts the dictionary is designed to resolve. Document them, negotiate a resolution, and record the agreed-upon answer.</p>
+    <p><strong>Step 3: Put it where people actually work.</strong> A KPI dictionary buried in a SharePoint folder that requires three clicks to find is a dictionary nobody reads. It should live in the same place your team does day-to-day work — a shared Notion database, a Confluence page with a prominent link, a Slack bookmark. The format matters less than the accessibility.</p>
+    <p><strong>Step 4: Name a dictionary owner and a review cadence.</strong> The dictionary needs one person responsible for it — not a committee, not "the data team." One person who fields questions about definitions, resolves disputes, and triggers a review when something changes. A quarterly review of the top 20 entries is sufficient for most organizations.</p>
+
+    <div class="callout reveal">
+      <h3>The four signs your KPI dictionary is working.</h3>
+      <ul>
+        <li>When a metric question comes up in a meeting, someone says "let me check the dictionary" instead of "let me ask the data team."</li>
+        <li>A new analyst can onboard and understand your core metrics without a two-hour walkthrough from a senior colleague.</li>
+        <li>When the same dispute comes up again, someone can close it by pointing to the documented definition rather than relitigating it.</li>
+        <li>When a metric needs to change, there's a process: proposed change, business owner approval, technical update, version history.</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <div class="tlabel">Start here, not there</div>
+      <p>The most common mistake: trying to build the dictionary in a data catalog tool before the definitions themselves are agreed upon. The tool is irrelevant until the human agreement exists. A Google Sheet with ten rows of agreed definitions is more valuable than a sophisticated data catalog with fifty undefined metrics. Start with the agreement. The tool follows.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/kpi-owner" class="rn-link">Why every KPI needs an owner →</a>
+        <a href="/insights/dashboards-not-trusted" class="rn-link">Why dashboards aren't trusted →</a>
+        <a href="/assessment" class="rn-link">See the Reporting Clarity Assessment →</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+
+</ArticleLayout>

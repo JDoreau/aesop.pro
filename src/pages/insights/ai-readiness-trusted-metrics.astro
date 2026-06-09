@@ -1,0 +1,92 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "AI Readiness Starts With Trusted Metrics — Aesop Analytics";
+const description = "Organizations are rushing toward AI-powered analytics without realizing that bad metric definitions, undocumented sources, and unowned KPIs will corrupt every AI output built on top of them.";
+const kicker = "Article · AI Readiness";
+const headingHtml = "AI Readiness Starts With Trusted Metrics <span class=\"sub\">Before you build AI on top of your data, you need to know whether your data is worth building on.</span>";
+const dekHtml = "Every organization wants to use AI to get more from their data. Most are rushing the foundation. AI doesn't fix bad metric definitions, unowned KPIs, or conflicting source systems — it amplifies them, at scale, with confidence-sounding output.";
+const meta = ["~6 min read", "AI Readiness"];
+const ogDescription = "AI doesn't fix reporting problems. It amplifies them. Here's the data foundation every AI analytics initiative actually needs.";
+---
+
+<ArticleLayout title={title} description={description} path="/insights/ai-readiness-trusted-metrics" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
+
+<div class="body">
+    <p class="lead">There is a pattern playing out in organizations everywhere right now. Leadership announces an AI analytics initiative — an AI assistant for data queries, an AI forecasting tool, an AI-powered dashboard layer. The data team gets to work connecting the model to the data warehouse. The tool launches. And then someone asks the AI a reasonable question — "What was our revenue last month by region?" — and gets an answer that doesn't match Finance's number, or Operations', or the dashboard everyone was already confused about.</p>
+    <p>The AI didn't create the problem. The problem existed before the AI arrived. The AI just gave it a confident, articulate voice — and now the confusion is harder to dismiss because it comes wrapped in the authority of a language model. This is what it means to build AI on an unready data foundation.</p>
+
+    <p class="pull">AI doesn't fix reporting chaos. It inherits it — and makes it sound authoritative.</p>
+
+    <h2>What "AI readiness" actually means for your data.</h2>
+    <span class="h2-sub">It's not about AI. It's about the foundation under it.</span>
+    <p>AI readiness in the context of analytics is not primarily a question about which AI tools to buy, which models to use, or how to write effective prompts. Those are downstream questions. The upstream question — the one that determines whether any AI investment will actually produce reliable output — is: <strong>is your underlying data reliable enough to trust what the AI produces from it?</strong></p>
+    <p>IBM's framework for data quality defines the criteria as accuracy, completeness, validity, consistency, uniqueness, timeliness, and fitness for purpose. Every one of those dimensions is determined by decisions made long before an AI system touches the data — decisions about definitions, ownership, governance, and source systems. AI models don't evaluate the quality of the data they're given. They use it. The quality of the output is bounded by the quality of the input.</p>
+
+    <div class="callout reveal">
+      <div class="big">GIGO</div>
+      <div class="cap">Garbage In, Garbage Out — the oldest principle in computing, now more consequential than ever. An AI system producing wrong answers from bad data does so with the same fluency and apparent confidence as one producing right answers from good data. The difference isn't visible in the output. It's only detectable if you already know the right answer.</div>
+    </div>
+
+    <h2>The five data foundations AI requires.</h2>
+    <span class="h2-sub">Build these first. Then build AI on top of them.</span>
+    <div class="readiness-list">
+      <div class="rl-item">
+        <div class="rl-icon yes">📐</div>
+        <div class="rl-body">
+          <h3>Documented metric definitions</h3>
+          <p>If you ask your AI assistant "what is our churn rate?" and three departments define churn differently, the model will either pick one definition without telling you, blend them inconsistently, or surface the conflict in a way that erodes trust immediately. Before AI can produce reliable answers about your metrics, those metrics need agreed, written definitions. Not approximate understandings — documented definitions with formulas, filters, and exclusions.</p>
+        </div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-icon yes">🗺️</div>
+        <div class="rl-body">
+          <h3>Authoritative source designations</h3>
+          <p>AI query tools need to know which system to pull from for each data domain. If your warehouse contains customer data from three sources — CRM, billing system, and support platform — and there's no documented policy about which is authoritative and in which context, the AI will produce different answers depending on which source it hits. Designating one authoritative source per domain, and documenting it, is a prerequisite for consistent AI output.</p>
+        </div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-icon yes">🏷️</div>
+        <div class="rl-body">
+          <h3>Consistent data labeling and naming</h3>
+          <p>Language models are good at understanding natural language questions, but they rely on the semantic consistency of the data they're querying. If your database has a field called "customer_status" in one table and "cust_stat" in another, and "active" coded as "A" in the first and "1" in the second, the AI will need either perfect schema documentation or will occasionally get it wrong. Clean, consistent naming conventions are a small investment that pays significant dividends in AI reliability.</p>
+        </div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-icon yes">📋</div>
+        <div class="rl-body">
+          <h3>Data quality monitoring</h3>
+          <p>AI systems don't flag when they're working with stale data, incomplete records, or unexpected null rates. A model querying a table where 15% of rows have a null revenue field will still produce an answer — it will just quietly exclude those rows. Unless you have baseline data quality monitoring that tells you what "normal" looks like, you won't know when the AI's answers are subtly wrong because the underlying data has degraded.</p>
+        </div>
+      </div>
+      <div class="rl-item">
+        <div class="rl-icon yes">👤</div>
+        <div class="rl-body">
+          <h3>Metric ownership</h3>
+          <p>When the AI produces a number that looks wrong, who investigates? If no one owns the metric, "it might be the AI's fault" becomes a convenient way to avoid accountability — and trust in both the AI and the underlying data erodes simultaneously. Every metric an AI system can surface needs an owner who can validate the output, investigate anomalies, and update the definition when business realities change.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>The diagnostic test for AI readiness.</h2>
+    <span class="h2-sub">One question that reveals everything</span>
+    <p>Here is the simplest diagnostic test for whether your organization is ready to build reliable AI analytics: <strong>ask three senior people in different functions what your most important KPI means, how it's calculated, and where the number comes from.</strong></p>
+    <p>If all three give the same answer, you're in reasonable shape. If they give different answers — or if any of them can't fully answer — you have foundational work to do before AI investment will deliver reliable value. The AI will surface those definitional disagreements as confusing, contradictory outputs. Better to surface them in a conversation between humans first and resolve them before the model inherits them.</p>
+    <p>The organizations that will get the most from AI analytics in the next five years are not the ones that move fastest to deploy AI tools. They're the ones that took the time to build a reporting foundation that AI can actually work with — clean definitions, designated sources, documented ownership, consistent data quality. That work is unglamorous. It's also the difference between AI that helps and AI that misleads.</p>
+
+    <div class="tip">
+      <div class="tlabel">Where to start</div>
+      <p>Before evaluating any AI analytics tool, run the Reporting Trust Health Check and score your organization on KPI definitions, data source clarity, and report ownership. If any of those areas score below 5 out of 10, address them first. The AI investment will be far more productive — and far less embarrassing — on the other side of that work. The <a href="/resources">Health Check is free</a> and takes about 30 minutes with your team.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/dashboards-not-trusted" class="rn-link">Why dashboards aren't trusted even when data is correct →</a>
+        <a href="/insights/data-strategy" class="rn-link">Data strategy before data tools →</a>
+        <a href="/resources" class="rn-link">Take the free Health Check →</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+
+</ArticleLayout>

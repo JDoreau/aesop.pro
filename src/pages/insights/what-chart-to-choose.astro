@@ -1,0 +1,215 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = "How to Choose the Right Chart — Aesop Analytics";
+const description = "Chart choice is a question about the relationship in your data, not the data itself. A practical decision framework for the six relationships that show up in business dashboards.";
+const kicker = "Dashboard Design & Modernization";
+const headingHtml = "Chart choice is a question<br>about the <em>data relationship,</em><br>not the data.";
+const dekHtml = "Most people pick charts by habit or imitation. A better approach: identify the relationship your data contains, then match the form to it. A practical framework for the six relationships that show up in business dashboards — and the common choices that quietly fail.";
+const meta = ["Dashboard Design & Modernization", "9 min read"];
+const ogDescription = "Most people pick charts by habit. Here's how to pick them by the relationship in the data — and which common choices quietly fail.";
+---
+
+<ArticleLayout title={title} description={description} path="/insights/what-chart-to-choose" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
+
+<div class="body">
+    <p>A bar chart is the default. Someone needs to show sales by region — bar chart. Revenue by quarter — bar chart. Headcount by department — bar chart. The bar chart is not wrong for any of these, but it's also not necessarily the best choice for all of them. It's just the one everyone reaches for first.</p>
+
+    <p>The problem isn't that people choose bad charts. It's that they choose without a framework. They match the chart to a vague sense of what "looks right" rather than to the specific claim the data needs to make. The result is dashboards where every panel technically displays data but some of it lands clearly and some of it doesn't — and the people building the dashboard can't always explain why.</p>
+
+    <p>There's a more reliable path. Every dataset contains a <strong>relationship</strong> — a structural fact about how the numbers relate to each other or to time. Identify that relationship first. Then the chart choice follows from it, rather than from convention or aesthetics.</p>
+
+    <h2>The six relationships — and the charts that serve them</h2>
+
+    <p>In business dashboards, data relationships fall into six categories. Most metrics you'll ever need to visualize map cleanly to one of them. A few span two, and when that happens you have a genuine design decision to make — but at least you're making it consciously.</p>
+  </div>
+
+  <div class="rel-grid">
+
+    <div class="rel-card">
+      <div class="rc-label">Relationship 1</div>
+      <h3>Comparison</h3>
+      <div class="rc-q">"How do these items rank against each other?"</div>
+      <div class="rc-use">You have discrete categories and you want to show their relative magnitude. The categories are independent — you're not showing how they add up to a whole, just how they stack up against each other.</div>
+      <div class="rc-charts">
+        <span class="rc-divider">Use</span>
+        <span class="rc-chip yes">Bar chart</span>
+        <span class="rc-chip yes">Horizontal bar</span>
+        <span class="rc-chip yes">Dot plot</span>
+        <span class="rc-divider">Avoid</span>
+        <span class="rc-chip no">Pie chart</span>
+        <span class="rc-chip no">Radar chart</span>
+      </div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rc-label">Relationship 2</div>
+      <h3>Trend over time</h3>
+      <div class="rc-q">"How is this changing, and in what direction?"</div>
+      <div class="rc-use">You have a continuous time axis and you want to show movement. The continuity matters — you're not comparing discrete points, you're showing a path between them.</div>
+      <div class="rc-charts">
+        <span class="rc-divider">Use</span>
+        <span class="rc-chip yes">Line chart</span>
+        <span class="rc-chip yes">Area chart</span>
+        <span class="rc-chip yes">Sparkline</span>
+        <span class="rc-divider">Avoid</span>
+        <span class="rc-chip no">Bar chart (many periods)</span>
+        <span class="rc-chip no">Dual-axis line</span>
+      </div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rc-label">Relationship 3</div>
+      <h3>Part-to-whole</h3>
+      <div class="rc-q">"What share of the total does each piece represent?"</div>
+      <div class="rc-use">The parts add up to a meaningful whole and you want to show proportions. The constraint: this only works clearly with a small number of categories (ideally 2–5) and when the proportional differences are large enough to be visible.</div>
+      <div class="rc-charts">
+        <span class="rc-divider">Use</span>
+        <span class="rc-chip yes">Pie chart (≤5 slices)</span>
+        <span class="rc-chip yes">Donut chart</span>
+        <span class="rc-chip yes">100% stacked bar</span>
+        <span class="rc-divider">Avoid</span>
+        <span class="rc-chip no">Pie chart (>5 slices)</span>
+        <span class="rc-chip no">3D pie</span>
+      </div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rc-label">Relationship 4</div>
+      <h3>Distribution</h3>
+      <div class="rc-q">"How is this value spread across a range?"</div>
+      <div class="rc-use">You want to show the shape of the data — where most values cluster, where the outliers are, how spread out the range is. This shows up less often in executive dashboards but is essential in operational and analytical views.</div>
+      <div class="rc-charts">
+        <span class="rc-divider">Use</span>
+        <span class="rc-chip yes">Histogram</span>
+        <span class="rc-chip yes">Box plot</span>
+        <span class="rc-chip yes">Violin plot</span>
+        <span class="rc-divider">Avoid</span>
+        <span class="rc-chip no">Line chart</span>
+        <span class="rc-chip no">Bar chart</span>
+      </div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rc-label">Relationship 5</div>
+      <h3>Correlation</h3>
+      <div class="rc-q">"Do these two variables move together?"</div>
+      <div class="rc-use">You have two continuous variables and you want to show whether they tend to rise and fall in the same direction (or opposite directions). This is a hypothesis about a relationship, not a confirmation of causation.</div>
+      <div class="rc-charts">
+        <span class="rc-divider">Use</span>
+        <span class="rc-chip yes">Scatter plot</span>
+        <span class="rc-chip yes">Bubble chart</span>
+        <span class="rc-divider">Avoid</span>
+        <span class="rc-chip no">Line chart (two series)</span>
+        <span class="rc-chip no">Dual-axis bar</span>
+      </div>
+    </div>
+
+    <div class="rel-card">
+      <div class="rc-label">Relationship 6</div>
+      <h3>Flow &amp; composition over time</h3>
+      <div class="rc-q">"How does the makeup of this total change as it grows?"</div>
+      <div class="rc-use">You want to show how the proportional breakdown of a total shifts over time — not just the overall trend, but how the mix within it is changing. The hardest relationship to visualize well and the most commonly mishandled.</div>
+      <div class="rc-charts">
+        <span class="rc-divider">Use</span>
+        <span class="rc-chip yes">Stacked area (few series)</span>
+        <span class="rc-chip yes">Small multiples</span>
+        <span class="rc-divider">Avoid</span>
+        <span class="rc-chip no">Stacked bar (many periods)</span>
+        <span class="rc-chip no">Stacked bar (many series)</span>
+      </div>
+    </div>
+
+  </div><!-- .rel-grid -->
+
+  <div class="body">
+    <h2>The charts that consistently fail — and why</h2>
+
+    <p>The framework above tells you what to use. But some charts are so commonly misused that they deserve a direct treatment. These are the choices that seem reasonable, appear in professional tools with prominent placement, and quietly undermine the dashboard that contains them.</p>
+  </div>
+
+  <table class="fail-table">
+    <thead>
+      <tr>
+        <th>Chart</th>
+        <th>Why it fails</th>
+        <th>Use instead</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pie chart with &gt;5 slices</td>
+        <td class="why">Human perception can't reliably compare arc angles. Small slices become invisible or misleading. The legend becomes the actual chart.</td>
+        <td class="instead">Horizontal bar chart — length is the easiest dimension to compare accurately.</td>
+      </tr>
+      <tr>
+        <td>Dual-axis line chart</td>
+        <td class="why">Two independent scales on one chart invite the viewer to see a relationship that may not exist. The correlation appears to change depending on how you set the axis ranges.</td>
+        <td class="instead">Two separate charts with clear labels, or a scatter plot if you're explicitly testing correlation.</td>
+      </tr>
+      <tr>
+        <td>Stacked bar with many series</td>
+        <td class="why">Only the bottom series is readable — every other segment floats on a shifting baseline, making comparison impossible. People think they're seeing composition; they're actually seeing noise.</td>
+        <td class="instead">Small multiples (one bar chart per series) or a 100% stacked bar if proportional breakdown at each point is all that matters.</td>
+      </tr>
+      <tr>
+        <td>3D charts of any kind</td>
+        <td class="why">The third dimension adds no information and distorts the proportions of the first two. A 3D pie chart makes the front slices look larger than the back slices regardless of their actual values.</td>
+        <td class="instead">The flat equivalent of whatever you're trying to show. Always.</td>
+      </tr>
+      <tr>
+        <td>Bar chart for time series (&gt;12 periods)</td>
+        <td class="why">A bar chart implies discrete comparison, not continuous movement. When you have more than ~12 periods, the bars become thin, the labels overlap, and the trend is harder to read than it would be on a line.</td>
+        <td class="instead">Line chart for the trend; reserve the bar chart for a period-level comparison view when someone wants to compare specific months.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="body">
+    <h2>When the relationship is ambiguous</h2>
+
+    <p>Sometimes a dataset contains two relationships simultaneously, and both are legitimate. Revenue by region, trended over time — is that a comparison or a trend? The answer depends on what question matters most to the person looking at it.</p>
+
+    <p>If the primary question is "which region is performing best?" — that's a comparison question. Show a ranked bar chart of total revenue per region, with a period selector if trend context is needed.</p>
+
+    <p>If the primary question is "are all regions growing?" — that's a trend question. Show a small multiples line chart: one panel per region, same scale, so trends are directly comparable without stacking them into a single cluttered chart.</p>
+
+    <p>The wrong move is to try to answer both questions simultaneously — typically with a grouped bar chart across 12 months and 6 regions, which produces 72 bars and answers nothing clearly. When in doubt, split the view. Two focused charts beat one ambitious one.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>The one-sentence test:</strong> Before finalizing any chart, write the sentence it's supposed to make obvious. "Revenue in Q3 was higher than Q2." "The West region is underperforming all others." "Customer acquisition cost has been rising steadily since March." If you can't write that sentence in under ten seconds, the chart isn't doing its job — regardless of how it looks.</p>
+  </div>
+
+  <div class="body">
+    <h2>A note on the bar chart</h2>
+
+    <p>After all of this, the bar chart is still the right choice for a surprising number of situations. It's reliable because it uses length — the dimension human perception evaluates most accurately. It handles comparisons, rankings, single-period distributions, and discrete time periods competently. Its dominance in business dashboards is partly habit, but it's also partly deserved.</p>
+
+    <p>The problem isn't that people use bar charts too often. It's that they use them <em>without asking the question</em> — and that same unreflective habit is what leads them to reach for pie charts when they want to show composition, or dual-axis lines when they want to show two trends, or stacked bars when they want to show six things at once.</p>
+
+    <p>The framework isn't about avoiding the familiar. It's about making the familiar choice consciously, having ruled out the alternatives for a reason, rather than arriving at it by default.</p>
+  </div>
+
+  <div class="cta-block">
+    <div class="ct-eyebrow">Aesop Analytics</div>
+    <h2>Are your dashboards making the right claims clearly?</h2>
+    <p>The Reporting Clarity Assessment reviews every chart and panel in your reporting environment — identifying where the form matches the data and where it doesn't — and delivers a prioritized roadmap for getting there.</p>
+    <a href="/assessment" class="btn">See the Assessment</a>
+    <a href="/contact" class="btn ghost">Start a conversation</a>
+  </div>
+
+  <div class="read-next">
+    <div class="rn-label">Continue reading</div>
+    <div class="rn-grid">
+      <a href="/insights/what-belongs-on-a-dashboard" class="rn-card">
+        <div class="rn-pillar">Dashboard Design</div>
+        <div class="rn-title">What belongs on a dashboard — before you think about chart type</div>
+      </a>
+      <a href="/insights/dashboard-design-basics" class="rn-card">
+        <div class="rn-pillar">Dashboard Design</div>
+        <div class="rn-title">Five dashboard design fundamentals that actually change how people read data</div>
+      </a>
+    </div>
+  </div>
+
+</ArticleLayout>
