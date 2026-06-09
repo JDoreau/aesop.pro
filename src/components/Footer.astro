@@ -32,7 +32,7 @@ import { site } from "../data/nav.ts";
       <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
-  <div class="foot-legal">{site.location} · {site.email} · © 2026 {site.name}. All rights reserved.</div>
+  <div class="foot-legal">{site.location} · {site.email} · © 2026 {site.name}. All rights reserved.<br /><span class="ga-note">This site uses Google Analytics to understand how it's used. <a href="/privacy">Privacy</a></span></div>
 </footer>
 
 <style>
@@ -51,4 +51,7 @@ import { site } from "../data/nav.ts";
   .foot-col a { display:block; font-size:13px; color:#6A8099; margin-bottom:8px; transition:color .18s; }
   .foot-col a:hover { color:var(--twine); }
   .foot-legal { font-size:12px; color:#3A5060; margin-top:28px; padding-top:20px; border-top:1px solid rgba(255,255,255,.06); max-width:1080px; margin-left:auto; margin-right:auto; padding-left:32px; padding-right:32px; }
+  .foot-legal a { color:#6A8099; text-decoration:underline; text-underline-offset:2px; }
+  .foot-legal a:hover { color:var(--twine); }
+  .foot-legal .ga-note { display:inline-block; margin-top:8px; }
 </style>

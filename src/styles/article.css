@@ -87,6 +87,9 @@ footer .fbrand .an { font-family:"DM Sans",sans-serif; font-weight:700; letter-s
 footer .fmoral { font-style:italic; font-size:14px; color:#4A6070; }
 footer .fback { font-size:13px; font-weight:600; color:var(--twine); text-decoration:none; }
 footer .fback:hover { color:#d49a68; }
+footer.site .flegal { max-width:740px; margin:18px auto 0; padding:0 28px; font-size:12px; color:#4A6070; }
+footer.site .flegal a { color:#8A9FB8; text-decoration:underline; text-underline-offset:2px; }
+footer.site .flegal a:hover { color:var(--twine); }
 
 /* -- Old-style article header (header.site) -- */
 header.site { border-bottom:1px solid var(--rule); background:rgba(251,250,245,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); position:sticky; top:0; z-index:10; }
