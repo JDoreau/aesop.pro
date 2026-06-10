@@ -44,6 +44,17 @@ const description = "Thanks for reaching out to Aesop Analytics. We'll be in tou
   </section>
 </BaseLayout>
 
+<script is:inline>
+  // GA4 conversion: contact form submission. This page is reached only after a
+  // successful Formspree POST redirect, so a load here is a confirmed lead.
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "generate_lead", {
+      event_category: "conversion",
+      event_label: "Contact form submitted",
+    });
+  }
+</script>
+
 <style>
   .thanks { background:var(--paper); padding:80px 0 100px; }
   .thanks-in { max-width:760px; margin:0 auto; padding:0 32px; }
