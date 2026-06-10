@@ -143,6 +143,17 @@ const ogDescription = "Reporting inventory, metric conflicts, KPI gaps, data sou
 </section>
 
 <!-- FAQ -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    { "@type": "Question", name: "Do I have to do the Assessment before anything else?", acceptedAnswer: { "@type": "Answer", text: "No - but it's strongly recommended as the first paid engagement. If you already have a very clear picture of your reporting problems and just need implementation work, a Modernization Sprint or Governance Starter Kit may be the right starting point. The Diagnostic Call helps determine which path makes sense." } },
+    { "@type": "Question", name: 'What does "fixed fee" mean in practice?', acceptedAnswer: { "@type": "Answer", text: "The price is agreed before work begins and doesn't change based on hours worked. The scope defines what's included. If the scope needs to expand, that's a conversation - but you won't receive an unexpected invoice at the end." } },
+    { "@type": "Question", name: "How much time does this require from our team?", acceptedAnswer: { "@type": "Answer", text: "Typically 3-6 hours total across the engagement - a kickoff call, 2-4 stakeholder interviews of 30-45 minutes each, access to reporting environments, and the final readout session. We do the heavy lifting; your team provides access and context." } },
+    { "@type": "Question", name: "What happens after the Assessment?", acceptedAnswer: { "@type": "Answer", text: "You receive the full deliverable package and the readout. The 30/60/90-day roadmap is actionable immediately - you can execute the quick wins yourself. If a larger engagement makes sense, we'll propose it. There's no pressure, and the Assessment stands alone as a complete deliverable regardless of what you do next." } },
+    { "@type": "Question", name: "What if the findings are better than we expected?", acceptedAnswer: { "@type": "Answer", text: "That's a good outcome. An honest assessment of a reporting environment in better shape than feared is still valuable - it confirms what's working, surfaces the smaller improvements worth making, and prevents you from spending money on a large project you don't actually need." } },
+  ],
+})} />
 <section class="faq">
   <div class="wrap">
     <h2>Assessment FAQ</h2>
