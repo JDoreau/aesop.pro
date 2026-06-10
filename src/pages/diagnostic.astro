@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Book a Reporting Trust Diagnostic | Aesop Analytics";
+const description = "Schedule a free 30-minute Reporting Trust Diagnostic. No pitch, no slide deck — just an honest conversation about your data situation.";
+---
+
+<BaseLayout title={title} description={description} path="/diagnostic">
+
+  <section class="diag-hero">
+    <div class="wrap">
+      <div class="eyebrow">Free · 30 minutes · No pitch</div>
+      <h1>Reporting Trust Diagnostic</h1>
+      <p class="dek">A short, honest conversation about your reporting situation. We'll ask a few questions about your data environment and what isn't working. You'll leave with a clear sense of whether there's a fit — and what a useful first step looks like, whether that's with us or not.</p>
+      <ul class="promises">
+        <li>No slide deck, no sales presentation</li>
+        <li>If there's no fit, we'll say so — and suggest alternatives</li>
+        <li>Typically leads to a scoped proposal or a set of quick wins you can act on yourself</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cal-section">
+    <div class="wrap">
+      <div class="cal-wrap">
+        <!-- Cal.com inline embed -->
+        <div id="cal-embed" style="min-height:600px;width:100%;"></div>
+      </div>
+      <p class="cal-note">Prefer email? Reach us at <a href="mailto:hello@aesopanalytics.com">hello@aesopanalytics.com</a> — we respond within one business day.</p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+  (function() {
+    var s = document.createElement("script");
+    s.src = "https://app.cal.com/embed/embed.js";
+    s.async = true;
+    s.onload = function() {
+      Cal("inline", {
+        elementOrSelector: "#cal-embed",
+        calLink: "jonathan-doreau-9zngtx/30min",
+        config: {
+          layout: "month_view",
+          theme: "light",
+        }
+      });
+      Cal("ui", {
+        styles: {
+          branding: { brandColor: "#C18C5D" },
+        },
+        hideEventTypeDetails: false,
+      });
+    };
+    document.head.appendChild(s);
+  })();
+</script>
+
+<style>
+  .diag-hero { background:var(--navy); padding:72px 0 56px; overflow:hidden; position:relative; }
+  .diag-hero::after { content:""; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+  .diag-hero .wrap { position:relative; z-index:2; max-width:760px; }
+  .diag-hero .eyebrow { color:var(--twine); margin-bottom:16px; }
+  .diag-hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(34px,5vw,58px); line-height:1.05; color:#fff; margin-bottom:20px; letter-spacing:-.01em; }
+  .diag-hero .dek { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.65; max-width:58ch; margin-bottom:28px; }
+  .promises { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .promises li { font-size:14px; color:#5A7090; padding-left:20px; position:relative; }
+  .promises li::before { content:"–"; position:absolute; left:0; color:var(--twine); }
+
+  .cal-section { padding:56px 0 80px; background:var(--paper); }
+  .cal-section .wrap { max-width:900px; }
+  .cal-wrap { background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .cal-note { margin-top:20px; font-size:14px; color:var(--muted); text-align:center; }
+  .cal-note a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  .cal-note a:hover { color:var(--twine); }
+</style>

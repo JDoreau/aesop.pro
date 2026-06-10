@@ -56,6 +56,38 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
       </div>
     </div>
   </div>
+
+  <div class="contact-form-wrap">
+    <div class="eyebrow">Send a message</div>
+    <h2>Tell us what's going on.</h2>
+    <p class="cf-sub">A paragraph about your situation is plenty. We respond within one business day.</p>
+
+    <form id="contact-form" action="https://formspree.io/f/mojzdqlk" method="POST" novalidate>
+      <div class="cf-row cf-row-2">
+        <div class="cf-field">
+          <label for="cf-name">Your name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="Jane Smith" />
+        </div>
+        <div class="cf-field">
+          <label for="cf-email">Work email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required placeholder="jane@company.com" />
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="cf-company">Company & role <span class="cf-opt">(optional)</span></label>
+        <input type="text" id="cf-company" name="company" placeholder="e.g. Acme Inc — VP of Operations" />
+      </div>
+      <div class="cf-field">
+        <label for="cf-msg">What's not working?</label>
+        <textarea id="cf-msg" name="message" rows="5" required placeholder="Our dashboards show different numbers depending on who pulls the report, and leadership has stopped trusting them..."></textarea>
+      </div>
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+      <input type="hidden" name="_subject" value="New message via aesopanalytics.com" />
+      <button type="submit" class="cf-btn" id="cf-submit">Send message →</button>
+      <div id="cf-ok" class="cf-msg cf-ok" role="alert" aria-live="polite"></div>
+      <div id="cf-err" class="cf-msg cf-err" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
 </div>
 
 <!-- GOOD FIT / LESS FIT -->
@@ -128,6 +160,64 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
 .fit-item::before { font-weight:700; flex-shrink:0; margin-top:1px; }
 .fit-box.good-box .fit-item::before { content:"✓"; color:var(--navy); }
 .fit-box.less-box .fit-item::before { content:"→"; color:var(--contessa); }
+
+/* CONTACT FORM */
+  .contact-form-wrap { padding:52px 0 0; }
+  .contact-form-wrap .eyebrow { margin-bottom:12px; }
+  .contact-form-wrap h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(22px,3vw,32px); color:var(--navy); margin-bottom:8px; letter-spacing:-.01em; }
+  .cf-sub { font-size:15.5px; color:var(--slate); margin-bottom:28px; }
+  .cf-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:600px){ .cf-row-2 { grid-template-columns:1fr; } }
+  .cf-field { margin-bottom:16px; }
+  .cf-field label { display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--slate); margin-bottom:7px; }
+  .cf-opt { font-weight:400; text-transform:none; letter-spacing:0; color:var(--muted); font-size:11px; }
+  .cf-field input, .cf-field textarea { width:100%; padding:13px 15px; border:1.5px solid var(--line); border-radius:5px; background:#fff; color:var(--ink); font-family:"DM Sans",sans-serif; font-size:15px; transition:border-color .18s; resize:vertical; }
+  .cf-field input::placeholder, .cf-field textarea::placeholder { color:var(--muted); }
+  .cf-field input:focus, .cf-field textarea:focus { outline:none; border-color:var(--twine); }
+  .cf-btn { display:inline-block; background:var(--navy); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; font-size:15px; padding:14px 28px; border-radius:4px; border:none; cursor:pointer; transition:background .18s, transform .15s; margin-top:4px; }
+  .cf-btn:hover { background:var(--navy-3); transform:translateY(-2px); }
+  .cf-btn:disabled { opacity:.6; cursor:default; transform:none; }
+  .cf-msg { display:none; margin-top:18px; padding:16px 18px; border-radius:5px; font-size:14.5px; line-height:1.55; }
+  .cf-msg.show { display:block; }
+  .cf-ok { background:rgba(193,140,93,.1); border:1px solid rgba(193,140,93,.35); color:var(--sepia); }
+  .cf-err { background:rgba(206,118,107,.1); border:1px solid rgba(206,118,107,.35); color:var(--apple); }
 </style>
+
+
+<script is:inline>
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('cf-submit');
+      const ok  = document.getElementById('cf-ok');
+      const err = document.getElementById('cf-err');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      ok.classList.remove('show');
+      err.classList.remove('show');
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.reset();
+          ok.textContent = 'Message sent. We typically respond within one business day.';
+          ok.classList.add('show');
+          btn.textContent = 'Sent ✓';
+        } else {
+          throw new Error('bad response');
+        }
+      } catch(_) {
+        err.textContent = 'Something went wrong — please email hello@aesopanalytics.com directly.';
+        err.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Send message →';
+      }
+    });
+  }
+</script>
 
 </BaseLayout>
