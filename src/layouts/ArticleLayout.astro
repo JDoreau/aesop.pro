@@ -25,11 +25,23 @@ const {
   title, description, path, kicker, headingHtml, dekHtml,
   meta = [], author = "Jonathan Doreau", ogTitle, ogDescription,
 } = Astro.props;
+const canonical = new URL(path, site.url).href;
+const headline = headingHtml.replace(/<[^>]+>/g, "").trim();
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <Seo title={title} description={description} path={path} ogType="article" ogTitle={ogTitle} ogDescription={ogDescription} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline,
+      description,
+      author: { "@type": "Person", name: author },
+      publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: new URL("/assets/favicon.svg", site.url).href } },
+      mainEntityOfPage: canonical,
+      url: canonical,
+    })} />
   </head>
   <body>
     <nav>
