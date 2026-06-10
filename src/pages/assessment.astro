@@ -1,11 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const title = 'Reporting Clarity Assessment | Fixed-Fee Reporting Audit'
-const description = 'A 2-3 week reporting audit that maps every report, finds metric conflicts, and delivers a prioritized 30/60/90-day fix plan. Fixed fee, $5K-$9.5K. Free diagnostic to start.'
+const description = 'A 2–3 week reporting audit: every report mapped, metric conflicts surfaced, and a prioritized 30/60/90-day fix plan. Fixed fee $5K–$9.5K. Free diagnostic.'
 const ogDescription = "Reporting inventory, metric conflicts, KPI gaps, data source map, and a prioritized 30/60/90-day roadmap. You'll know exactly what to fix and in what order.";
+
+const assessmentSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Reporting assessment",
+  name: "Reporting Clarity Assessment",
+  description:
+    "A 2–3 week fixed-fee reporting audit: reporting inventory, metric conflict analysis, KPI gaps, data source map, manual burden analysis, and a prioritized 30/60/90-day modernization roadmap.",
+  provider: { "@type": "ProfessionalService", name: "Aesop Analytics", url: "https://aesopanalytics.com" },
+  areaServed: "US",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "USD",
+    priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 5000, maxPrice: 9500 },
+  },
+};
 ---
 
-<BaseLayout title={title} description={description} path="/assessment" ogDescription={ogDescription}>
+<BaseLayout title={title} description={description} path="/assessment" ogDescription={ogDescription} schema={assessmentSchema}>
 
 <!-- HERO -->
 <section class="hero">

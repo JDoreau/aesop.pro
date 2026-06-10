@@ -1,11 +1,44 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const title = 'Reporting Modernization Services | Aesop Analytics'
-const description = 'Five fixed-fee services: reporting audit, modernization sprint, KPI governance, data governance starter kit, and fractional analytics retainer. Starts with a free 30-min diagnostic.'
+const description = 'Five fixed-fee services: reporting audit, modernization sprint, KPI governance, a governance starter kit, and fractional analytics. Free diagnostic to start.'
 const ogDescription = "Five offers, one methodology. Start with the Reporting Clarity Assessment.";
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Aesop Analytics",
+  url: "https://aesopanalytics.com",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Reporting modernization & data trust services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 5000, maxPrice: 9500 },
+        itemOffered: { "@type": "Service", name: "Reporting Clarity Assessment", description: "A 2–3 week fixed-fee reporting audit and a prioritized 30/60/90-day modernization roadmap." },
+      },
+      {
+        "@type": "Offer",
+        priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 15000, maxPrice: 40000 },
+        itemOffered: { "@type": "Service", name: "Executive Reporting Modernization Sprint", description: "Build or redesign a high-value executive reporting package — dashboard, KPI dictionary, source-of-truth map, and standards guide." },
+      },
+      {
+        "@type": "Offer",
+        priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 12000, maxPrice: 35000 },
+        itemOffered: { "@type": "Service", name: "Data Governance Starter Kit", description: "Practical governance for operators — KPI dictionary, owner matrix, intake, certification rules, and an operating cadence." },
+      },
+      {
+        "@type": "Offer",
+        priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD", minPrice: 3500, maxPrice: 12000 },
+        itemOffered: { "@type": "Service", name: "Fractional Analytics Operations Retainer", description: "Ongoing senior analytics operating support on a defined monthly scope." },
+      },
+    ],
+  },
+};
 ---
 
-<BaseLayout title={title} description={description} path="/services" ogDescription={ogDescription}>
+<BaseLayout title={title} description={description} path="/services" ogDescription={ogDescription} schema={servicesSchema}>
 
 <div class="page-hero">
   <div class="page-hero-in">
