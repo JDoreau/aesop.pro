@@ -3,9 +3,66 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const title = 'Reporting Modernization Case Studies | Aesop Analytics'
 const description = 'Anonymized reporting-modernization case studies across finance, healthcare, real estate, and nonprofits — with KPI governance and deliverable samples.'
 const ogDescription = "Reporting modernization in practice. Anonymized case studies across healthcare, operations, finance, and nonprofit sectors.";
+
+// Article schema for each anonymized case study. Content-only — no Review or
+// AggregateRating until client-approved quotes and ratings are visible on-page.
+const workSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://aesopanalytics.com/work/#healthcare-research",
+    headline: "From spreadsheet chaos to a trusted executive reporting system for an NIH-funded research program",
+    description: "How a research organization retired 14 reports, eliminated manual reporting time, and defined 23 KPIs in a governed reporting system.",
+    mainEntityOfPage: "https://aesopanalytics.com/work/",
+    author: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    publisher: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    about: ["Healthcare / Research", "Reporting modernization", "Data trust", "KPI governance"],
+    keywords: ["healthcare reporting modernization", "research reporting", "KPI dictionary", "Power BI dashboards", "funder reporting", "reporting trust"],
+    isAccessibleForFree: true,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://aesopanalytics.com/work/#finance-banking",
+    headline: "Rebuilding a fragmented reporting environment after a core banking system migration",
+    description: "A finance reporting case study on reducing reconciliation load after a core system migration and defining 31 trusted KPIs.",
+    mainEntityOfPage: "https://aesopanalytics.com/work/",
+    author: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    publisher: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    about: ["Finance / Banking", "Reporting modernization", "Data trust", "KPI governance"],
+    keywords: ["banking reporting modernization", "core banking migration reporting", "Tableau rebuild", "KPI governance", "source of truth", "finance analytics"],
+    isAccessibleForFree: true,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://aesopanalytics.com/work/#real-estate-operations",
+    headline: "Standing up an analytics operating model from scratch for a growing property management company",
+    description: "How a property management company eliminated manual weekly reporting and aligned occupancy definitions across operations, finance, and leasing.",
+    mainEntityOfPage: "https://aesopanalytics.com/work/",
+    author: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    publisher: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    about: ["Real Estate Operations", "Reporting modernization", "Data trust", "KPI governance"],
+    keywords: ["real estate operations reporting", "property management analytics", "occupancy KPI", "Power BI", "Snowflake", "reporting operating model"],
+    isAccessibleForFree: true,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://aesopanalytics.com/work/#nonprofit-impact",
+    headline: "Building a funder-ready impact reporting system for a workforce development nonprofit",
+    description: "How a nonprofit cut grant reporting time from about 12 to 4 hours per grant with a unified impact reporting model.",
+    mainEntityOfPage: "https://aesopanalytics.com/work/",
+    author: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    publisher: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
+    about: ["Nonprofit / Impact", "Reporting modernization", "Data trust", "KPI governance"],
+    keywords: ["nonprofit impact reporting", "funder reporting", "grant reporting", "Salesforce Power BI", "outcome measurement", "nonprofit analytics"],
+    isAccessibleForFree: true,
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} path="/work" ogDescription={ogDescription}>
+<BaseLayout title={title} description={description} path="/work" ogDescription={ogDescription} schema={workSchema}>
 
 <!-- HERO -->
 <div class="page-hero">
@@ -14,7 +71,7 @@ const ogDescription = "Reporting modernization in practice. Anonymized case stud
     <h1>What the work actually looks like.</h1>
     <p>Anonymized case studies from reporting modernization, KPI governance, and dashboard rebuilds — across healthcare, operations, finance, and nonprofit sectors.</p>
     <div class="anon-note">
-      All client details have been anonymized. Sector, size, and problem type are accurate; identifying details are not.
+      All client details have been anonymized. Sector, size, problem type, work performed, and result signals are accurate; identifying details are not. These are representative founder-led transformations.
     </div>
   </div>
 </div>
@@ -27,7 +84,7 @@ const ogDescription = "Reporting modernization in practice. Anonymized case stud
       <!-- ══════════════════════════════════════════ -->
       <!-- CASE STUDY 1: Healthcare / NIH             -->
       <!-- ══════════════════════════════════════════ -->
-      <div class="cs reveal" id="cs1">
+      <div class="cs reveal" id="healthcare-research">
         <div class="cs-header">
           <div>
             <div class="cs-sector">Healthcare &amp; Research</div>
@@ -171,7 +228,7 @@ const ogDescription = "Reporting modernization in practice. Anonymized case stud
       <!-- ══════════════════════════════════════════ -->
       <!-- CASE STUDY 2: Finance / Banking            -->
       <!-- ══════════════════════════════════════════ -->
-      <div class="cs reveal" id="cs2">
+      <div class="cs reveal" id="finance-banking">
         <div class="cs-header">
           <div>
             <div class="cs-sector">Finance &amp; Banking</div>
@@ -262,7 +319,7 @@ const ogDescription = "Reporting modernization in practice. Anonymized case stud
       <!-- ══════════════════════════════════════════ -->
       <!-- CASE STUDY 3: Operations / Real Estate     -->
       <!-- ══════════════════════════════════════════ -->
-      <div class="cs reveal" id="cs3">
+      <div class="cs reveal" id="real-estate-operations">
         <div class="cs-header">
           <div>
             <div class="cs-sector">Real Estate Operations</div>
@@ -397,7 +454,7 @@ const ogDescription = "Reporting modernization in practice. Anonymized case stud
       <!-- ══════════════════════════════════════════ -->
       <!-- CASE STUDY 4: Nonprofit                   -->
       <!-- ══════════════════════════════════════════ -->
-      <div class="cs reveal" id="cs4">
+      <div class="cs reveal" id="nonprofit-impact">
         <div class="cs-header">
           <div>
             <div class="cs-sector">Nonprofit</div>
