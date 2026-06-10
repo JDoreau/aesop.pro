@@ -69,6 +69,19 @@ Cal.ns.diagnostic("ui", {
   styles: { branding: { brandColor: "#C18C5D" } },
   hideEventTypeDetails: false,
 });
+
+// GA4 conversion: fire when a diagnostic is successfully booked.
+Cal.ns.diagnostic("on", {
+  action: "bookingSuccessful",
+  callback: function () {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "diagnostic_booked", {
+        event_category: "conversion",
+        event_label: "Reporting Trust Diagnostic booked",
+      });
+    }
+  },
+});
 </script>
 
 <style>

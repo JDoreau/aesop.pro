@@ -194,6 +194,39 @@ const ogDescription = "Most reporting problems are not visualization problems. T
   </div>
 </section>
 
+<!-- ── RESULTS / PROOF ── -->
+<section class="results">
+  <div class="wrap">
+    <div class="results-head">
+      <div class="results-eyebrow">Proof</div>
+      <h2>The work isn't finished when the dashboard goes live.</h2>
+      <p>It's finished when leadership trusts the number, knows who owns it, and understands what decision it supports. Here's what that looked like across recent engagements — anonymized, with the sectors and result signals intact.</p>
+    </div>
+    <div class="results-grid">
+      <a class="res-card" href="/work/#healthcare-research">
+        <div class="res-n">14</div>
+        <div class="res-l">Reports retired — zero stakeholder complaints</div>
+        <div class="res-meta"><span class="res-sector">Healthcare &amp; Research</span><span class="res-link">See the case →</span></div>
+      </a>
+      <a class="res-card" href="/work/#finance-banking">
+        <div class="res-n">31</div>
+        <div class="res-l">Portfolio KPIs governed with named owners</div>
+        <div class="res-meta"><span class="res-sector">Finance &amp; Banking</span><span class="res-link">See the case →</span></div>
+      </a>
+      <a class="res-card" href="/work/#real-estate-operations">
+        <div class="res-n">5</div>
+        <div class="res-l">Governed dashboards on one Snowflake source</div>
+        <div class="res-meta"><span class="res-sector">Real Estate Operations</span><span class="res-link">See the case →</span></div>
+      </a>
+      <a class="res-card" href="/work/#nonprofit-impact">
+        <div class="res-n">~4<span class="res-unit"> hrs</span></div>
+        <div class="res-l">Grant reporting, down from ~12 per grant</div>
+        <div class="res-meta"><span class="res-sector">Nonprofit / Impact</span><span class="res-link">See the case →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ── STATS ── -->
 <div class="stats">
   <div class="stats-in">
@@ -387,6 +420,22 @@ section { position:relative; }
 .not-box.is .not-item::before { content:"✓"; color:var(--navy); }
 .not-box.not .not-item::before { content:"✗"; color:var(--contessa); }
 /* ── STATS ── */
+  .results { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); }
+  .results-head { max-width:760px; margin:0 auto 44px; text-align:center; }
+  .results-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:14px; }
+  .results-head h2 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(26px,3.4vw,40px); line-height:1.12; color:var(--navy); margin-bottom:16px; letter-spacing:-.01em; }
+  .results-head p { font-size:16px; color:var(--slate); line-height:1.6; }
+  .results-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .res-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px 20px; text-decoration:none; transition:border-color .18s, transform .18s, box-shadow .18s; }
+  .res-card:hover { border-color:var(--twine); transform:translateY(-3px); box-shadow:0 10px 30px rgba(15,31,56,.06); }
+  .res-n { font-family:"Abril Fatface",serif; font-size:clamp(40px,5vw,54px); color:var(--twine); line-height:1; margin-bottom:14px; }
+  .res-unit { font-family:"DM Sans",sans-serif; font-size:.30em; font-weight:600; color:var(--muted); letter-spacing:.02em; }
+  .res-l { font-size:14px; color:var(--ink); line-height:1.45; font-weight:500; margin-bottom:18px; flex:1; }
+  .res-meta { display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--line); padding-top:14px; }
+  .res-sector { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); }
+  .res-link { font-size:13px; font-weight:600; color:var(--twine); }
+  @media(max-width:860px){ .results-grid { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:480px){ .results-grid { grid-template-columns:1fr; } }
   .stats { background:var(--navy); border-top:1px solid rgba(255,255,255,.06); }
 .stats-in { max-width:1080px; margin:0 auto; padding:52px 32px; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center; }
 @media(max-width:700px) {
