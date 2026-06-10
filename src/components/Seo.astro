@@ -1,7 +1,7 @@
 ---
 // Seo.astro — the ONE place the document head is defined: meta, favicon,
 // fonts, Open Graph, and structured data. Pages pass a full title.
-import { site } from "../data/nav.ts";
+import { site, nav } from "../data/nav.ts";
 
 interface Props {
   title: string;
@@ -10,12 +10,36 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogType?: string;
+  noindex?: boolean;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
-const { title, description, path = "/", ogTitle, ogDescription, ogType = "website" } = Astro.props;
+const { title, description, path = "/", ogTitle, ogDescription, ogType = "website", noindex = false, schema } = Astro.props;
 const canonical = new URL(path, site.url).href;
+
+// Breadcrumb trail, derived from the path so it can never drift from the IA.
+const leafName = title.split("|")[0].split("·")[0].trim();
+const segments = path.split("/").filter(Boolean);
+const crumbs = [{ name: "Home", item: site.url }];
+let acc = "";
+segments.forEach((seg, i) => {
+  acc += "/" + seg;
+  const navMatch = nav.find((n) => n.href === acc);
+  const isLeaf = i === segments.length - 1;
+  const name = navMatch ? navMatch.label : isLeaf ? leafName : seg.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  crumbs.push({ name, item: new URL(acc, site.url).href });
+});
+const breadcrumbSchema = segments.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })),
+    }
+  : null;
+const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 ---
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{noindex && <meta name="robots" content="noindex, follow" />}
 
 <!-- Google Analytics (GA4) - measurement ID G-4TVCCT0XW9 -->
 <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-4TVCCT0XW9"></script>
@@ -48,6 +72,15 @@ const canonical = new URL(path, site.url).href;
   description: "Reporting modernization and data trust consulting for growing companies.",
   url: site.url,
   email: site.email,
+  logo: new URL("/assets/favicon.svg", site.url).href,
+  image: new URL("/assets/favicon.svg", site.url).href,
+  slogan: "Every dataset has a moral.",
+  founder: { "@type": "Person", name: "Jonathan Doreau" },
   areaServed: "US",
-  address: { "@type": "PostalAddress", addressLocality: "Nashville", addressRegion: "TN" },
+  address: { "@type": "PostalAddress", addressLocality: "Nashville", addressRegion: "TN", addressCountry: "US" },
+  sameAs: [site.linkedin],
+  knowsAbout: ["Reporting modernization", "Data trust", "KPI governance", "Business intelligence", "Data governance", "Analytics strategy"],
+  priceRange: "$$$",
 })} />
+{breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+{extraSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}

@@ -5,84 +5,130 @@ modernization and data-trust consultancy based in Nashville, TN.
 
 **Live:** [aesopanalytics.com](https://aesopanalytics.com)
 **Tagline:** *Every dataset has a moral.*
+**Repo:** `github.com/JDoreau/aesop.pro`
 
 ---
 
 ## What this is
 
-A static HTML/CSS site — no build step, no framework, no JavaScript dependencies
-beyond small inline scripts for nav and form handling. It's hosted on GitHub Pages
-with a custom domain. The whole site is hand-authored HTML so it loads fast, is easy
-to version, and has no toolchain to maintain.
+A statically-generated site built with **Astro 4.16**. Pages are authored as
+`.astro` components and compiled to plain HTML/CSS at build time — fast to load,
+easy to version, no client-side framework. A little inline JS handles the nav
+toggle and scroll reveals. The build is produced by GitHub Actions and published
+to GitHub Pages behind Cloudflare.
+
+> Migrated from a hand-maintained 22-page static HTML site. See `CUTOVER.md`.
 
 ## Tech & hosting
 
 | | |
 |---|---|
-| **Stack** | Static HTML + CSS, minimal inline JS |
-| **Hosting** | GitHub Pages |
-| **Domain** | aesopanalytics.com (DNS via Squarespace) |
-| **Email** | Google Workspace — `hello@aesopanalytics.com` |
-| **Forms** | Formspree (contact, dashboard audit, Trust Letter signup) |
-| **Fonts** | Newsreader (display/headers) · DM Sans (body) · Abril Fatface (sparing accent) |
+| **Framework** | Astro 4.16 (static output) |
+| **Hosting** | GitHub Pages — built & deployed via GitHub Actions on push to `main` |
+| **DNS / CDN / security** | Cloudflare — DNS, CDN, and security headers (A grade) |
+| **Domain** | aesopanalytics.com (`CNAME`) |
+| **Mailbox** | `hello@aesopanalytics.com` |
+| **Transactional email** | SendGrid — SPF / DKIM / DMARC verified |
+| **Forms** | Formspree (`mojzdqlk`) → `/thanks` |
+| **Booking** | Cal.com (free diagnostic) |
+| **Analytics** | Google Analytics 4 (`G-4TVCCT0XW9`) |
+| **Fonts** | Newsreader (headings) · DM Sans (body / UI) · Abril Fatface (display & editorial accents) |
 
 ## Brand
 
 | Token | Value |
 |---|---|
 | Navy (primary) | `#0F1F38` |
-| Twine (accent/links) | `#C18C5D` |
+| Twine (accent / links) | `#C18C5D` |
 | Paper (background) | `#FBFAF5` |
 | Ink (body text) | `#1B1B1B` |
 | Max content width | 1080px |
-| Logo | Owl mark (see `assets/`) — *not* the æ ligature |
+| Logo | Owl mark — *not* the æ ligature |
 
-Full brand reference lives in `brand.html`.
+Palette and type tokens live in `src/styles/tokens.css`. The full brand reference
+page is at `/brand` (`public/brand/`).
 
 ---
 
 ## Repository structure
 
 ```
-/
-├── index.html                  Homepage
-├── services.html               Service offer ladder
-├── assessment.html             Flagship: Reporting Clarity Assessment
-├── work.html                   Case studies / portfolio
-├── insights.html               Content hub (articles + field studies)
-├── resources.html              Free resources (Reporting Trust Health Check)
-├── about.html                  About / founder
-├── contact.html                Contact + fit/no-fit
-├── trust-letter.html           Newsletter signup (The Reporting Trust Letter)
-├── brand.html                  Internal brand reference page
+src/
+├── pages/                  One file per route
+│   ├── index.astro         Homepage
+│   ├── services.astro      Offer ladder (+ OfferCatalog schema)
+│   ├── assessment.astro    Flagship: Reporting Clarity Assessment (+ Service & FAQPage schema)
+│   ├── work.astro          Case studies / portfolio
+│   ├── insights.astro      Content hub (renders from data/insights.ts)
+│   ├── insights/           17 articles + field studies (via ArticleLayout)
+│   ├── resources.astro     Free Reporting Trust Health Check
+│   ├── about.astro         About / founder
+│   ├── contact.astro       Contact + fit/no-fit
+│   ├── diagnostic.astro    Cal.com booking
+│   ├── privacy.astro       Privacy disclosure
+│   ├── thanks.astro        Form confirmation (noindex)
+│   └── 404.astro           Not-found page (noindex)
 │
-├── article-*.html              Content articles (5 pillars)
-├── aesop-productivity-pay-study.html      Field study
-├── article-corporate-profits-inflation.html   Field study
-├── article-wage-inequality-forty-years.html    Field study
+├── layouts/
+│   ├── BaseLayout.astro    Wraps every standard page; composes head + nav + footer
+│   └── ArticleLayout.astro Wraps articles; emits Article schema + byline
 │
-├── assets/                     Shared visual assets
-│   ├── favicon.svg             Owl favicon (linked site-wide)
-│   ├── owl-mark.svg            Standalone owl, light backgrounds
-│   ├── owl-mark-reversed.svg   Standalone owl, dark backgrounds
-│   └── README.md               Asset documentation
+├── components/
+│   ├── Seo.astro           THE shared <head>: meta, OG, fonts, GA4, structured data
+│   ├── Nav.astro           Header (renders from data/nav.ts)
+│   └── Footer.astro        Footer
 │
-├── assessment-kit/             INTERNAL — delivery toolkit (not site content)
-│   └── ...                     Intake, interview guides, templates, rubrics
+├── data/
+│   ├── nav.ts              Site IA, CTA, and the `site` object (name, url, socials)
+│   └── insights.ts         Insights hub content (pillars, articles, sidebar)
 │
-├── sitemap.xml                 Search engine sitemap
-└── robots.txt                  Crawler directives
+└── styles/
+    ├── tokens.css          Brand palette + type tokens (single source)
+    ├── base.css            Global base styles
+    └── article.css         Article-specific styles
+
+astro.config.mjs            Site config + custom inline sitemap generator
+public/                     Static assets served as-is (favicon, /brand, images)
+assessment-kit/             INTERNAL delivery toolkit (Markdown) — not site content
+.github/                    GitHub Actions build + deploy workflow
 ```
 
-> **Note on `assessment-kit/`:** this folder holds internal engagement-delivery
-> documents (Markdown), not public web pages. It lives in the repo for version control.
-> It is not linked from the site and not intended to be served as content.
+> **`assessment-kit/`** holds internal engagement-delivery documents, not public
+> pages. It's version-controlled here but never served.
+
+---
+
+## SEO & structured data
+
+The `<head>` is defined once in `src/components/Seo.astro`, used by both
+`BaseLayout` and `ArticleLayout`, so meta, Open Graph, fonts, GA4, and JSON-LD
+never drift across pages. Pages pass a full `title` and `description`; utility
+pages can pass `noindex`, and any page can pass page-specific `schema`.
+
+**Structured data emitted:**
+
+- **`ProfessionalService`** — sitewide, from `Seo.astro` (logo, founder, address, LinkedIn in `sameAs`, `knowsAbout`, `priceRange`, slogan).
+- **`BreadcrumbList`** — sitewide, *derived from the URL path* against `nav.ts`, so the trail can't drift from the IA.
+- **`Service`** — on the Assessment page (`$5,000–$9,500` range), via the `schema` prop.
+- **`OfferCatalog`** — on the Services page, listing the four paid offers and their ranges.
+- **`Article`** — on every article, from `ArticleLayout`.
+- **`FAQPage`** — on the Assessment page.
+
+> Not yet emitted: `Review` / `AggregateRating`. Deferred until the real,
+> anonymized client testimonials are finalized — review schema on in-flux data is
+> a quality risk, not a win.
+
+**Crawlability:** `/thanks` and `/404` carry `noindex, follow`. The custom sitemap
+generator in `astro.config.mjs` reads the built page list and writes `sitemap.xml`,
+excluding `404` and any `noindex` utility pages. (We don't use `@astrojs/sitemap` —
+its `build:done` hook in v3.7.3 crashes against Astro 4.16.)
 
 ---
 
 ## Content pillars
 
-Articles in `insights.html` are organized into five pillars:
+Articles in the Insights hub are organized into five pillars (defined in
+`src/data/insights.ts`):
 
 1. **Reporting Trust** — why dashboards lose trust and how to rebuild it
 2. **KPI Definitions** — metric ownership, dictionaries, conflict resolution
@@ -90,47 +136,64 @@ Articles in `insights.html` are organized into five pillars:
 4. **Governance & Strategy** — practical governance, data strategy
 5. **AI Readiness** — why trusted metrics precede AI
 
-Plus **Field Studies** — original data analysis (wage inequality, productivity–pay gap,
-corporate profits & inflation) that demonstrate the firm's analytical rigor.
+Plus **Field Studies** — original data analysis (wage inequality, productivity–pay
+gap, corporate profits & inflation). Field studies cite primary sources (BEA, EPI, SSA).
 
 ---
 
 ## Conventions
 
-- **Every page** links the shared favicon: `<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">`
-- **Headers** use Newsreader; body uses DM Sans; Abril Fatface is reserved for article
-  display titles, standout statistics, and decorative marks only.
-- **The owl** is the logo. Do not reintroduce the æ ligature as a logo substitute.
-- **Pricing** must match the Operating Brief offer ladder. Current flagship Assessment:
-  $5,000–$9,500 standard (reduced rates for nonprofit/referral/small-scope).
-- **No fabricated** testimonials, metrics, logos, or client results — ever.
+- **Headers** use Newsreader; body/UI uses DM Sans; Abril Fatface is reserved for article display titles, standout statistics, and decorative marks only.
+- **The owl** is the logo. Do not reintroduce the æ ligature as a logo substitute (it's fine as a faint decorative background mark).
+- **Pricing** must match the Operating Brief offer ladder. Flagship Assessment: `$5,000–$9,500` standard (reduced for nonprofit/referral/small-scope). Keep schema price ranges in sync with on-page prices.
+- **No fabricated** testimonials, metrics, logos, or client results — ever. Case studies are anonymized.
+- **Even-handed** on contested economic/political topics in field studies.
 
 ---
 
-## Analytics
+## Analytics & privacy
 
-Google Analytics (GA4, measurement ID `G-4TVCCT0XW9`) is loaded site-wide from
-`src/components/Seo.astro` -- the single shared head fragment used by both
-`BaseLayout` and `ArticleLayout`, so it covers every page. A plain-language
-privacy disclosure lives at `/privacy` (`src/pages/privacy.astro`) and is linked
-from the footer fine print.
+GA4 (`G-4TVCCT0XW9`) loads sitewide from `Seo.astro`. A plain-language privacy
+disclosure lives at `/privacy` and is linked from every footer.
 
 ---
 
-## Deploying changes
+## Building & deploying
 
-1. Edit files locally.
-2. In GitHub Desktop: review the changes, write a clear commit summary, **Commit to main**.
-3. **Push origin.** GitHub Pages redeploys automatically within a minute or two.
+```bash
+npm install        # first time
+npm run dev        # local dev server
+npm run build      # production build → dist/ (also regenerates sitemap.xml)
+```
 
-To change the favicon site-wide, edit `assets/favicon.svg` only — every page references it.
+To deploy: commit to a feature branch, merge to `main` (`--no-ff`), and push.
+GitHub Actions builds the Astro site and publishes to GitHub Pages within a minute
+or two. Verify live against the apex domain with a cache-buster (Cloudflare caches
+HTML):
+
+```bash
+curl -sL "https://aesopanalytics.com/?v=$RANDOM" | grep -i "<title>"
+```
+
+---
+
+## Project status
+
+- **Infrastructure (GTM Sprint 0) — complete.** GA4, Search Console + Bing, SPF/DKIM/DMARC via SendGrid, Cloudflare security headers (A), custom sitemap, robots.txt, custom 404, `/privacy`, `/diagnostic` (Cal.com), Formspree contact → `/thanks`.
+- **SEO Foundation (GTM Sprint 1) — complete.** Keyword map; keyword-tuned metadata across all pages; `ProfessionalService` + `BreadcrumbList` + `Service` + `OfferCatalog` structured data; `noindex` on utility pages; sitemap synced to noindex.
+- **Next:**
+  - **Testimonials & case-study refresh** — surface real (anonymized) client work, then add `Review`/`AggregateRating` schema.
+  - **Google Business Profile** — Nashville, NAP-consistent.
+  - Later GTM sprints per the roadmap.
+
+> **Sprint numbering note:** commit-message "Sprint N" labels are dev-sprint
+> numbers and do not map 1:1 to the GTM-roadmap sprint numbers above.
 
 ---
 
 ## Related
 
-- **Operating Brief** — the single source of truth for positioning, services, pricing,
-  and voice. (Maintained separately; mirrored in Notion.)
+- **Operating Brief** — single source of truth for positioning, services, pricing, and voice. Maintained in **Notion**.
 - **Repo:** `github.com/JDoreau/aesop.pro`
 
 ---
