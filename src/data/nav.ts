@@ -18,7 +18,7 @@ export const nav: NavItem[] = [
   { label: "Contact",    href: "/contact" },
 ];
 
-export const cta = { label: "Book a diagnostic", href: "/contact", mobileLabel: "Book a diagnostic call" };
+export const cta = { label: "Book a diagnostic", href: "/diagnostic", mobileLabel: "Book a diagnostic call" };
 
 export const site = {
   name: "Aesop Analytics",
