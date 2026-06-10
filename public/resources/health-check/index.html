@@ -13,7 +13,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/shared.css">
 <link rel="stylesheet" href="/core.css">
 <style>
@@ -27,7 +27,7 @@
   .hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1fr 320px; gap:64px; align-items:start; }
  }
-  .hero h1 { font-family:"Abril Fatface",serif; font-weight:400; font-size:clamp(36px,5.2vw,62px); line-height:1.03; color:#fff; margin-bottom:18px; }
+  .hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(36px,5.2vw,62px); line-height:1.03; color:#fff; margin-bottom:18px; letter-spacing:-.01em; }
   .hero p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.65; margin-bottom:10px; max-width:52ch; }
   .hero-meta { display:flex; gap:20px; flex-wrap:wrap; margin-top:20px; }
   .hm-item { font-size:12px; font-weight:600; color:#5A7090; text-transform:uppercase; letter-spacing:.12em; display:flex; align-items:center; gap:6px; }
@@ -59,7 +59,7 @@
 
   /* ── INSTRUCTIONS ── */
   .instructions { max-width:1080px; margin:0 auto; padding:48px 32px 36px; }
-  .instr-head { font-family:"Abril Fatface",serif; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:12px; }
+  .instr-head { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:12px; letter-spacing:-.01em; }
   .instr-  .score-legend { display:flex; gap:24px; flex-wrap:wrap; }
   .sl-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--slate); }
   .sl-swatch { width:32px; height:10px; border-radius:2px; flex-shrink:0; }
@@ -165,7 +165,7 @@
   .fc-link:hover { color:#E0A870; }
   /* CTA block */
   .res-cta { background:var(--navy-2); border-top:1px solid var(--navy-3); padding:60px 32px 72px; text-align:center; }
-  .res-cta h2 { font-family:"Abril Fatface",serif; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:16px; line-height:1.1; }
+  .res-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:16px; line-height:1.1; letter-spacing:-.01em; }
   .res-cta p { font-size:17px; color:#B0BCCA; font-weight:300; max-width:52ch; margin:0 auto 32px; line-height:1.65; }
   .print-btn { display:inline-block; margin-top:20px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; }
   .print-btn:hover { color:var(--twine); }
@@ -199,7 +199,7 @@
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
     </div>
-    <a href="/contact" class="nav-cta">Book a diagnostic</a>
+    <a href="/diagnostic" class="nav-cta">Book a diagnostic</a>
     <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -211,7 +211,7 @@
   <a href="/resources" onclick="closeMob()">Resources</a>
   <a href="/about" onclick="closeMob()">About</a>
   <a href="/contact" onclick="closeMob()">Contact</a>
-  <a href="/contact" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
+  <a href="/diagnostic" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
 </div>
 
 <!-- HERO -->
@@ -308,7 +308,7 @@
   <div class="res-cta">
     <h2>Want help interpreting these results?</h2>
     <p>A free 30-minute Reporting Trust Diagnostic — bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would be useful.</p>
-    <a href="/contact" class="btn">Book a free diagnostic call →</a>
+    <a href="/diagnostic" class="btn">Book a free diagnostic call →</a>
     <a href="/resources" class="btn ghost">Back to Resources</a>
     <br>
     <span class="print-btn" onclick="window.print()">⊞ Save or print these results</span>
