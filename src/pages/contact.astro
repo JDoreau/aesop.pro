@@ -62,7 +62,7 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
     <h2>Tell us what's going on.</h2>
     <p class="cf-sub">A paragraph about your situation is plenty. We respond within one business day.</p>
 
-    <form id="contact-form" action="https://formspree.io/f/mojzdqlk" method="POST" novalidate>
+    <form id="contact-form" action="https://formspree.io/f/mojzdqlk" method="POST">
       <div class="cf-row cf-row-2">
         <div class="cf-field">
           <label for="cf-name">Your name</label>
@@ -83,10 +83,8 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
       </div>
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
       <input type="hidden" name="_subject" value="New message via aesopanalytics.com" />
-      <button type="submit" class="cf-btn" id="cf-submit">Send message →</button>
-      <div id="cf-ok" class="cf-msg cf-ok" role="alert" aria-live="polite"></div>
-      <div id="cf-err" class="cf-msg cf-err" role="alert" aria-live="polite"></div>
-    </form>
+      <button type="submit" class="cf-btn" id="cf-submit">Send message</button>
+      </form>
   </div>
 </div>
 
@@ -183,41 +181,5 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
   .cf-err { background:rgba(206,118,107,.1); border:1px solid rgba(206,118,107,.35); color:var(--apple); }
 </style>
 
-
-<script is:inline>
-  const form = document.getElementById('contact-form');
-  if (form) {
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = document.getElementById('cf-submit');
-      const ok  = document.getElementById('cf-ok');
-      const err = document.getElementById('cf-err');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      ok.classList.remove('show');
-      err.classList.remove('show');
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          form.reset();
-          ok.textContent = 'Message sent. We typically respond within one business day.';
-          ok.classList.add('show');
-          btn.textContent = 'Sent ✓';
-        } else {
-          throw new Error('bad response');
-        }
-      } catch(_) {
-        err.textContent = 'Something went wrong — please email hello@aesopanalytics.com directly.';
-        err.classList.add('show');
-        btn.disabled = false;
-        btn.textContent = 'Send message →';
-      }
-    });
-  }
-</script>
 
 </BaseLayout>
