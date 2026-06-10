@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Message Received | Aesop Analytics";
+const description = "Thanks for reaching out to Aesop Analytics. We'll be in touch within one business day.";
+---
+
+<BaseLayout title={title} description={description} path="/thanks">
+  <section class="thanks">
+    <div class="thanks-in">
+      <div class="thanks-mark" aria-hidden="true">
+        <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" height="56" width="56">
+          <path fill="var(--twine)" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/>
+          <path fill="var(--navy)" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/>
+          <path fill="var(--navy)" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/>
+        </svg>
+      </div>
+      <div class="eyebrow">Got it</div>
+      <h1>Message received.</h1>
+      <p>We typically respond within one business day. In the meantime, if your situation is more urgent you can email us directly at <a href="mailto:hello@aesopanalytics.com">hello@aesopanalytics.com</a>.</p>
+      <div class="thanks-next">
+        <p class="tn-label">While you wait</p>
+        <div class="tn-grid">
+          <a href="/diagnostic" class="tn-card tn-primary">
+            <div class="tn-tag">Skip the wait</div>
+            <div class="tn-title">Book a time directly</div>
+            <div class="tn-desc">If you'd rather just pick a time now, the diagnostic calendar is open.</div>
+            <span class="tn-link">Book a diagnostic →</span>
+          </a>
+          <a href="/assessment" class="tn-card">
+            <div class="tn-tag">Learn more</div>
+            <div class="tn-title">See how an Assessment works</div>
+            <div class="tn-desc">Understand the process, deliverables, and what a first engagement looks like.</div>
+            <span class="tn-link">View the Assessment →</span>
+          </a>
+          <a href="/resources" class="tn-card">
+            <div class="tn-tag">Free tool</div>
+            <div class="tn-title">Take the Health Check</div>
+            <div class="tn-desc">Score your reporting environment across six areas in about 30 minutes.</div>
+            <span class="tn-link">Start the Health Check →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .thanks { background:var(--paper); padding:80px 0 100px; }
+  .thanks-in { max-width:760px; margin:0 auto; padding:0 32px; }
+  .thanks-mark { margin-bottom:24px; }
+  .thanks .eyebrow { margin-bottom:12px; }
+  .thanks h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(34px,5vw,52px); line-height:1.08; color:var(--navy); margin-bottom:18px; letter-spacing:-.01em; }
+  .thanks p { font-size:17px; color:var(--slate); line-height:1.65; margin-bottom:48px; }
+  .thanks a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  .tn-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--muted); margin-bottom:18px; }
+  .tn-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  @media(max-width:680px){ .tn-grid { grid-template-columns:1fr; } }
+  .tn-card { display:block; background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px 20px; text-decoration:none; transition:border-color .18s, transform .18s; }
+  .tn-card:hover { border-color:var(--twine); transform:translateY(-2px); }
+  .tn-card.tn-primary { border-color:var(--navy); background:var(--navy); }
+  .tn-tag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:8px; }
+  .tn-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:17px; color:var(--navy); line-height:1.2; margin-bottom:8px; }
+  .tn-primary .tn-title { color:#fff; }
+  .tn-desc { font-size:13.5px; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+  .tn-primary .tn-desc { color:#8A9FB8; }
+  .tn-link { font-size:13px; font-weight:600; color:var(--twine); }
+  .tn-primary .tn-link { color:var(--twine); }
+</style>
