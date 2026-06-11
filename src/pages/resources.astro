@@ -50,7 +50,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   <div class="wrap">
     <div class="sec-label">10 diagnostic areas</div>
     <h2>Where reporting trust breaks down — and how to measure it.</h2>
-    <p class="intro">Rate each area from 1 (not in place) to 10 (fully in place). Your total score and a tailored read-out update live as you go - and nothing you enter ever leaves your browser.</p>
+    <p class="intro">Rate each area from 1 (not in place) to 10 (fully in place), then run your assessment. You will get a scored read-out that interprets every area and the patterns between them - a genuine diagnostic, generated in your browser. Nothing you enter is sent anywhere.</p>
     <div class="area-grid">
       <div class="area-card" data-area="kpi">
         <div class="area-n">01</div>
@@ -62,7 +62,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-kpi">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-kpi" min="1" max="10" step="1" value="5" data-area="kpi" aria-label="KPI Definitions score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>Undefined</span><span>Defined &amp; owned</span></div>
         </div>
       </div>
       <div class="area-card" data-area="source">
@@ -75,7 +75,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-source">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-source" min="1" max="10" step="1" value="5" data-area="source" aria-label="Data Source Clarity score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>No source of truth</span><span>Single source of truth</span></div>
         </div>
       </div>
       <div class="area-card" data-area="ownership">
@@ -88,7 +88,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-ownership">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-ownership" min="1" max="10" step="1" value="5" data-area="ownership" aria-label="Report Ownership score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>Nobody owns it</span><span>Clear owners</span></div>
         </div>
       </div>
       <div class="area-card" data-area="usage">
@@ -101,7 +101,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-usage">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-usage" min="1" max="10" step="1" value="5" data-area="usage" aria-label="Dashboard Usage score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>Unused</span><span>Drives decisions</span></div>
         </div>
       </div>
       <div class="area-card" data-area="manual">
@@ -114,7 +114,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-manual">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-manual" min="1" max="10" step="1" value="5" data-area="manual" aria-label="Manual Reporting Effort score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>All manual</span><span>Automated</span></div>
         </div>
       </div>
       <div class="area-card" data-area="quality">
@@ -127,7 +127,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-quality">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-quality" min="1" max="10" step="1" value="5" data-area="quality" aria-label="Data Quality score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>Frequent errors</span><span>Trusted &amp; validated</span></div>
         </div>
       </div>
       <div class="area-card" data-area="governance">
@@ -140,7 +140,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-governance">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-governance" min="1" max="10" step="1" value="5" data-area="governance" aria-label="Governance score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>No process</span><span>Governed</span></div>
         </div>
       </div>
       <div class="area-card" data-area="exec">
@@ -153,7 +153,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-exec">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-exec" min="1" max="10" step="1" value="5" data-area="exec" aria-label="Executive Decision Alignment score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>Misaligned</span><span>Fully aligned</span></div>
         </div>
       </div>
       <div class="area-card" data-area="duplication">
@@ -166,7 +166,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-duplication">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-duplication" min="1" max="10" step="1" value="5" data-area="duplication" aria-label="Report Duplication score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>Rampant duplication</span><span>Clean &amp; consolidated</span></div>
         </div>
       </div>
       <div class="area-card" data-area="ai">
@@ -179,32 +179,17 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
         <div class="area-rate">
           <label class="ar-rate-label" for="rng-ai">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
           <input class="ar-slider" type="range" id="rng-ai" min="1" max="10" step="1" value="5" data-area="ai" aria-label="AI and Data Readiness score, 1 to 10" />
-          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+          <div class="ar-scale"><span>Not ready</span><span>AI-ready</span></div>
         </div>
       </div>
     </div>
-    <button type="button" class="hc-jump" id="hc-jump" aria-label="Jump to your results">Your score <strong id="hc-jump-score">50</strong> / 100</button>
-    <div class="hc-results" id="hc-results">
-      <div class="hcr-head">
-        <div class="hcr-label">Your reporting trust score</div>
-        <div class="hcr-score-row">
-          <div class="hcr-score"><span id="hc-total">50</span><span class="hcr-max">/ 100</span></div>
-          <div class="hcr-band">
-            <div class="hcr-band-label" id="hc-band-label">Concern - real gaps and growing risk</div>
-            <div class="hcr-band-blurb" id="hc-band-blurb">Some areas work, but gaps in definitions, ownership, or governance create friction that compounds as you grow.</div>
-          </div>
-        </div>
-        <div class="hcr-meter"><div class="hcr-meter-fill concern" id="hc-meter" style="width:44%"></div></div>
-      </div>
-      <div class="hcr-focus">
-        <div class="hcr-focus-label">Where to focus first</div>
-        <ul id="hc-focus-list" class="hcr-focus-list"></ul>
-      </div>
-      <div class="hcr-cta">
-        <a href="/diagnostic" class="btn">Talk through your score in a free diagnostic &rarr;</a>
-        <button type="button" class="hc-reset" id="hc-reset">Reset answers</button>
-      </div>
+    <div class="hc-runrow">
+      <button type="button" class="hc-run" id="hc-run">Run my assessment &rarr;</button>
+      <button type="button" class="hc-reset" id="hc-reset">Reset answers</button>
+      <span class="hc-livehint" id="hc-livehint">Rate all ten areas, then run your full diagnostic.</span>
     </div>
+    <div class="hc-report" id="hc-report" hidden></div>
+    <button type="button" class="hc-jump" id="hc-jump" hidden aria-label="Jump to your results">Your score <strong id="hc-jump-score">--</strong> / 100</button>
   </div>
 </section>
 
@@ -360,128 +345,184 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   /* ===== Interactive Health Check ===== */
   .area-rate { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
   .ar-rate-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; font-weight: 600; color: var(--slate); margin-bottom: 9px; gap: 12px; }
-  .ar-val { font-weight: 700; font-size: 14px; color: #7EB09B; }
-  .ar-val.red { color: #CE796B; }
-  .ar-val.yellow { color: #C79A3A; }
-  .ar-val.green { color: #5E9A82; }
+  .ar-val { font-weight: 700; font-size: 14px; color: #5E9A82; }
+  .ar-val.red { color: #CE796B; } .ar-val.yellow { color: #C79A3A; } .ar-val.green { color: #5E9A82; }
   .ar-out { color: var(--muted); font-weight: 600; font-size: 12px; }
   .ar-slider { width: 100%; accent-color: var(--twine); cursor: pointer; margin: 0; height: 22px; }
   .ar-slider:focus-visible { outline: 2px solid var(--twine); outline-offset: 3px; border-radius: 4px; }
-  .ar-scale { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); margin-top: 3px; letter-spacing: .02em; }
+  .ar-scale { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); margin-top: 3px; letter-spacing: .01em; }
 
-  .hc-jump { position: fixed; right: 20px; bottom: 20px; z-index: 60; background: var(--navy); color: #fff; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 11px 20px; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: .02em; box-shadow: 0 8px 24px rgba(8,17,31,.28); cursor: pointer; transition: transform .15s ease, background .15s ease; }
-  .hc-jump:hover { transform: translateY(-2px); background: var(--navy-3, #1E3555); }
-  .hc-jump strong { color: var(--twine); font-size: 15px; margin: 0 2px; }
-
-  .hc-results { margin-top: 44px; background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--twine); border-radius: 10px; padding: 34px 34px 30px; box-shadow: 0 12px 34px rgba(15,31,56,.07); scroll-margin-top: 90px; }
-  .hcr-label { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--twine); margin-bottom: 16px; }
-  .hcr-score-row { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
-  .hcr-score { font-family: 'Abril Fatface', Georgia, serif; font-size: 64px; color: var(--navy); line-height: 1; white-space: nowrap; }
-  .hcr-max { font-size: 24px; color: var(--muted); margin-left: 6px; }
-  .hcr-band { flex: 1; min-width: 250px; }
-  .hcr-band-label { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-  .hcr-band-blurb { font-size: 14px; color: var(--slate); line-height: 1.55; }
-  .hcr-meter { height: 10px; background: var(--paper-2); border-radius: 999px; overflow: hidden; margin: 24px 0 4px; }
-  .hcr-meter-fill { height: 100%; border-radius: 999px; width: 44%; background: var(--twine); transition: width .4s ease; }
-  .hcr-meter-fill.critical { background: #CE796B; }
-  .hcr-meter-fill.concern { background: #D4A844; }
-  .hcr-meter-fill.stable { background: var(--twine); }
-  .hcr-meter-fill.strong { background: #7EB09B; }
-  .hcr-focus { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 22px; }
-  .hcr-focus-label { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; }
-  .hcr-focus-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-  .hcr-focus-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; padding: 13px 16px; background: var(--paper-2); border-radius: 8px; border-left: 3px solid var(--twine); }
-  .hcf-name { font-weight: 700; color: var(--navy); font-size: 14px; }
-  .hcf-score { font-weight: 700; font-size: 12px; padding: 1px 9px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
-  .hcf-score.red { color: #CE796B; } .hcf-score.yellow { color: #C79A3A; } .hcf-score.green { color: #5E9A82; }
-  .hcf-advice { flex-basis: 100%; font-size: 13px; color: var(--slate); line-height: 1.5; }
-  .hcf-strong { font-size: 14px; color: var(--slate); line-height: 1.6; padding: 4px 0; }
-  .hcr-cta { margin-top: 26px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .hc-runrow { margin-top: 40px; display: flex; gap: 18px 22px; align-items: center; flex-wrap: wrap; }
+  .hc-run { background: var(--twine); color: #fff; border: none; border-radius: 7px; padding: 15px 30px; font-family: inherit; font-size: 15.5px; font-weight: 600; letter-spacing: .02em; cursor: pointer; box-shadow: 0 8px 22px rgba(193,140,93,.28); transition: background .15s ease, transform .15s ease; }
+  .hc-run:hover { background: var(--sepia); transform: translateY(-1px); }
   .hc-reset { background: none; border: none; color: var(--muted); font-family: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; padding: 4px; }
   .hc-reset:hover { color: var(--slate); }
+  .hc-livehint { font-size: 13px; color: var(--muted); }
+
+  .hc-jump { position: fixed; right: 20px; bottom: 20px; z-index: 60; background: var(--navy); color: #fff; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 11px 20px; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: .02em; box-shadow: 0 8px 24px rgba(8,17,31,.28); cursor: pointer; transition: transform .15s ease, background .15s ease; }
+  .hc-jump:hover { transform: translateY(-2px); background: var(--navy-3); }
+  .hc-jump strong { color: var(--twine); font-size: 15px; margin: 0 2px; }
+
+  /* report */
+  .hc-report { margin-top: 30px; }
+  .hc-report.show { animation: repIn .5s ease; }
+  @keyframes repIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .sev-critical { --acc: #CE796B; } .sev-warning { --acc: #C79A3A; } .sev-insight { --acc: #C18C5D; } .sev-positive { --acc: #5E9A82; }
+
+  .rep-scorecard { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--twine); border-radius: 12px; padding: 28px 32px; box-shadow: 0 12px 34px rgba(15,31,56,.07); }
+  .rep-gauge { position: relative; width: 134px; height: 134px; flex-shrink: 0; }
+  .rep-gauge svg { transform: rotate(-90deg); display: block; }
+  .rep-gauge-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .rep-gauge-score { font-family: 'Abril Fatface', Georgia, serif; font-size: 42px; line-height: 1; color: var(--navy); }
+  .rep-gauge-max { font-size: 11px; color: var(--muted); margin-top: 3px; letter-spacing: .04em; }
+  .rep-headline { flex: 1; min-width: 240px; }
+  .rep-band-name { font-family: 'Abril Fatface', Georgia, serif; font-size: 30px; color: var(--navy); line-height: 1.05; margin-bottom: 9px; }
+  .rep-band-blurb { font-size: 14.5px; color: var(--slate); line-height: 1.55; }
+
+  .rep-diagnosis { margin-top: 24px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--acc); border-radius: 10px; padding: 24px 26px; }
+  .rep-diag-kicker { font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--acc); margin-bottom: 10px; }
+  .rep-diag-title { font-family: 'Abril Fatface', Georgia, serif; font-size: 23px; color: var(--navy); line-height: 1.15; margin-bottom: 10px; }
+  .rep-diag-body { font-size: 15px; color: var(--slate); line-height: 1.62; }
+
+  .rep-section-label { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slate); margin: 32px 0 14px; }
+  .rep-patterns { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rep-pattern { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--acc); border-radius: 9px; padding: 18px 20px; }
+  .rep-pat-title { font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 7px; line-height: 1.3; }
+  .rep-pat-body { font-size: 13px; color: var(--slate); line-height: 1.55; }
+
+  .rep-areas { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .rep-area-row { display: grid; grid-template-columns: 190px 50px 1fr; gap: 18px; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .rep-area-row:last-child { border-bottom: none; }
+  .rep-area-meta { display: flex; flex-direction: column; gap: 6px; }
+  .rep-area-name { font-weight: 600; font-size: 13.5px; color: var(--navy); }
+  .rep-area-bar { height: 4px; background: var(--paper-2); border-radius: 2px; overflow: hidden; }
+  .rep-area-fill { height: 100%; border-radius: 2px; }
+  .rep-area-chip { font-weight: 700; font-size: 12.5px; text-align: center; padding: 3px 0; border-radius: 6px; }
+  .rep-area-chip.red { background: #FBEDEA; color: #B5503F; } .rep-area-chip.yellow { background: #FAF1DE; color: #9A7320; } .rep-area-chip.green { background: #E9F2EE; color: #3F7B66; }
+  .rep-area-text { font-size: 13px; color: var(--slate); line-height: 1.5; }
+
+  .rep-start { counter-reset: step; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .rep-start li { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: var(--paper-2); border-radius: 8px; }
+  .rep-start li::before { counter-increment: step; content: counter(step); flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .rep-start-name { font-weight: 700; color: var(--navy); font-size: 14px; display: block; margin-bottom: 2px; }
+  .rep-start-advice { font-size: 13.5px; color: var(--slate); line-height: 1.5; }
+
+  .rep-cta { margin-top: 32px; background: var(--navy); border-radius: 12px; padding: 30px 32px; }
+  .rep-cta-title { font-family: 'Abril Fatface', Georgia, serif; font-size: 23px; color: #fff; line-height: 1.15; margin-bottom: 12px; }
+  .rep-cta-body { font-size: 14px; color: #A9B8CC; line-height: 1.62; margin-bottom: 20px; max-width: 62ch; }
+  .rep-cta-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .rep-print { background: transparent; border: 1px solid rgba(255,255,255,.3); color: #D6DDE8; border-radius: 6px; padding: 12px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: border-color .15s ease, color .15s ease; }
+  .rep-print:hover { border-color: #fff; color: #fff; }
+
+  @media (max-width: 720px) {
+    .rep-patterns { grid-template-columns: 1fr; }
+    .rep-area-row { grid-template-columns: 1fr auto; gap: 8px 14px; }
+    .rep-area-text { grid-column: 1 / -1; }
+  }
   @media (max-width: 600px) {
-    .hcr-score { font-size: 50px; }
-    .hc-results { padding: 26px 20px 24px; }
+    .rep-scorecard { padding: 22px 20px; gap: 20px; }
+    .rep-gauge { width: 112px; height: 112px; }
+    .rep-diagnosis, .rep-cta { padding: 22px 20px; }
     .hc-jump { right: 14px; bottom: 14px; padding: 9px 16px; font-size: 12px; }
   }
-
+  @media print {
+    .hc-jump, .hc-runrow, .area-rate, .hc-livehint { display: none !important; }
+    .hc-report { margin-top: 0; }
+    .rep-pattern, .rep-diagnosis, .rep-cta, .rep-scorecard { break-inside: avoid; }
+    .rep-cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 </style>
 
 <script>
   (function () {
-    var KEYS = ['kpi','source','ownership','usage','manual','quality','governance','exec','duplication','ai'];
-    var NAMES = { kpi:'KPI Definitions', source:'Data Source Clarity', ownership:'Report Ownership', usage:'Dashboard Usage', manual:'Manual Reporting Effort', quality:'Data Quality', governance:'Governance', exec:'Executive Decision Alignment', duplication:'Report Duplication', ai:'AI and Data Readiness' };
-    var ADVICE = {
-      kpi:'Write formal definitions for your top 10 to 15 metrics, each with a formula and a named owner.',
-      source:'Designate one authoritative source per critical metric and document it where people can find it.',
-      ownership:'Give every official report a single named owner, and retire the ones nobody owns.',
-      usage:'Audit which dashboards actually get opened, then cut or rebuild the ones that do not drive decisions.',
-      manual:'Measure the weekly hours spent assembling reports, then automate the highest effort one first.',
-      quality:'Add validation checks at the source and a triage path before numbers reach leadership.',
-      governance:'Stand up a lightweight intake and change process, and name an owner for the reporting model.',
-      exec:'Map each leadership decision to the report that should support it, then close the gaps.',
-      duplication:'Inventory every report and consolidate or retire the ones that overlap.',
-      ai:'Document definitions and sources first. AI inherits whatever ambiguity you feed it.'
-    };
-    var BANDS = [
-      { min:10, max:30, cls:'critical', label:'Critical - reporting trust is severely broken', blurb:'Decisions are likely being made on numbers nobody fully trusts. A structured assessment would show where to start and what to fix first.' },
-      { min:31, max:55, cls:'concern', label:'Concern - real gaps and growing risk', blurb:'Some areas work, but gaps in definitions, ownership, or governance create friction that compounds as you grow.' },
-      { min:56, max:75, cls:'stable', label:'Stable - functional, with room to improve', blurb:'Reporting works at a basic level. Targeted fixes in the lowest areas would raise trust and decision speed without a large project.' },
-      { min:76, max:100, cls:'strong', label:'Strong - a mature reporting operating model', blurb:'Your environment is well governed and trusted. Focus on continuous improvement and keeping governance scaled as you grow.' }
-    ];
-    var STORE = 'aesop_healthcheck_v1';
+    var DATA = {"areas":[{"key":"kpi","name":"KPI Definitions","lowA":"Undefined","highA":"Defined & owned","low":"Core metrics live in people's heads, so 'revenue' and 'active customer' mean different things to different teams.","mid":"The important metrics are defined, but coverage is patchy and not all of it is written down.","high":"Your key metrics carry written definitions, formulas, and owners - the single biggest protector of trust."},{"key":"source","name":"Data Source Clarity","lowA":"No source of truth","highA":"Single source of truth","low":"There is no agreed source of truth, so the same metric pulled from two systems gives two answers.","mid":"Sources are mostly known but undocumented, so reconciliation still eats time when systems disagree.","high":"Each critical metric has one authoritative source people accept, so disputes resolve fast."},{"key":"ownership","name":"Report Ownership","lowA":"Nobody owns it","highA":"Clear owners","low":"Reports exist with no one accountable for accuracy, so errors persist and trust quietly leaks.","mid":"Some reports have owners, but the line between official and someone's spreadsheet is blurry.","high":"Every official report has a named owner and a clear path to fix or retire it."},{"key":"usage","name":"Dashboard Usage","lowA":"Unused","highA":"Drives decisions","low":"Dashboards exist because they were built, not because anyone opens them to decide.","mid":"A few dashboards get used; the rest are decoration you are still paying to maintain.","high":"Leadership opens specific dashboards to make decisions - reporting that actually changes behavior."},{"key":"manual","name":"Manual Reporting Effort","lowA":"All manual","highA":"Automated","low":"Analysts burn real hours each week hand-assembling reports - expensive, error-prone, and the fastest ROI.","mid":"Some reporting is automated, but a stubborn manual core keeps the Monday-morning scramble alive.","high":"Reporting runs largely on rails, so analysts spend their time on analysis, not assembly."},{"key":"quality","name":"Data Quality","lowA":"Frequent errors","highA":"Trusted & validated","low":"Errors regularly reach leadership before anyone catches them, and each one costs hard-won trust.","mid":"Quality is decent but reactive - issues get caught after distribution, not stopped at the source.","high":"Validation happens before numbers reach leadership, so errors are rare and caught early."},{"key":"governance","name":"Governance","lowA":"No process","highA":"Governed","low":"No process for requesting reports or changing a KPI, and no owner - so definitions drift and change is chaotic.","mid":"A process exists but it is informal, and it strains the moment two teams want opposite changes.","high":"A lightweight intake and change process with a clear owner keeps everything else from decaying."},{"key":"exec","name":"Executive Decision Alignment","lowA":"Misaligned","highA":"Fully aligned","low":"The reports produced do not match what leadership needs, so execs keep asking for data that does not exist.","mid":"Reporting partially serves decisions, but there are visible gaps between what is built and what is used.","high":"Reports map cleanly to the decisions leadership actually makes."},{"key":"duplication","name":"Report Duplication","lowA":"Rampant duplication","highA":"Clean & consolidated","low":"Reports overlap and contradict - several 'monthly revenue' numbers float around and nobody is sure which is right.","mid":"Some consolidation has happened, but redundant reports still multiply faster than they are retired.","high":"Your report inventory is lean and intentional, with little overlap or contradiction."},{"key":"ai","name":"AI & Data Readiness","lowA":"Not ready","highA":"AI-ready","low":"Definitions and sources are not documented enough to trust AI - a model would inherit and amplify the ambiguity.","mid":"The foundation is partway there: enough to experiment, not enough to rely on.","high":"Clean definitions and sources give you a foundation AI can actually build on."}],"patterns":{"systemic":{"priority":100,"severity":"critical","title":"This is systemic, not a single broken report","body":"Your scores are low across definitions, ownership, and process at the same time. Piecemeal fixes will not hold here - this is the situation a structured reset is built for: triage what is broken, reconcile the numbers, and stand up an operating model that keeps them trustworthy."},"foundation":{"priority":95,"severity":"critical","title":"Your foundation is the root cause","body":"Both what your metrics mean and where they come from are unsettled. When that is true, every number downstream is contestable - and most of your other low scores are probably symptoms of this one. Fix definitions and sources first and several areas improve on their own."},"conflicting":{"priority":88,"severity":"critical","title":"You almost certainly have contradicting numbers in meetings","body":"Overlapping reports plus no agreed source of truth is the exact recipe for 'Finance says one number, Sales says another.' Name one authoritative source per metric and consolidate the duplicate reports feeding the confusion."},"exec_blind":{"priority":82,"severity":"warning","title":"Leadership is deciding without the reporting","body":"If executives are not served and dashboards are not opened, decisions are running on gut or private spreadsheets no matter what has been built. The fix is aligning reports to real decisions, not building more dashboards."},"accountability":{"priority":85,"severity":"warning","title":"Nothing is holding the line","body":"With no owners and no change process, even correct reports drift out of date and errors survive because catching them is nobody's job. Assigning owners and a lightweight change process is the cheapest high-impact move on this list."},"manual_errors":{"priority":80,"severity":"warning","title":"Your manual effort is producing your errors","body":"Heavy hand-assembly and frequent quality issues usually share a root cause. Automating your highest-effort report with validation built in tends to fix both the hours and the errors at once."},"build_abandon":{"priority":75,"severity":"warning","title":"You have a dashboard factory, not a reporting system","body":"Lots of overlapping dashboards that rarely get opened means effort is going into artifacts instead of decisions. Audit what is actually used, rebuild the few that matter, and retire the rest."},"premature_ai":{"priority":65,"severity":"warning","title":"AI would amplify what is broken","body":"With definitions or sources still shaky, adopting AI now means automating ambiguity at scale. Document the foundation first and AI becomes leverage instead of a risk multiplier."},"fragile":{"priority":60,"severity":"insight","title":"Strong data, no seatbelt","body":"Your definitions and sources are solid, but with little governance to protect them they will decay as you grow or as key people move on - the classic single-analyst risk. Locking in the process now is cheap insurance."},"last_mile":{"priority":58,"severity":"insight","title":"Trustworthy data that is not reaching decisions","body":"Your data is reliable; the gap is the last mile. Do not pour more into data quality - invest in delivery and in aligning reports to the decisions leaders actually make."},"governance_ahead":{"priority":45,"severity":"insight","title":"Process running ahead of the fundamentals","body":"You have governance, but it is protecting definitions and sources that are not settled yet. Process cannot substitute for a clear metric dictionary - shore up the fundamentals so governance has something solid to hold."},"weak_link":{"priority":50,"severity":"insight","title":"One weak link is dragging a strong system down","body":"Most areas are solid, but a single area is the outlier pulling overall trust down. A targeted fix there gives an outsized return - you do not need a broad overhaul."},"healthy":{"priority":40,"severity":"positive","title":"A mature reporting operating model","body":"The fundamentals are in place. The work now is keeping governance scaled as you grow and revisiting this assessment each quarter to catch drift before it spreads."}},"fallback":{"severity":"insight","title":"Functional, but inconsistent","body":"Your scores cluster in the middle - reporting works, but unevenly, and that inconsistency is what erodes confidence over time. The fastest gains are in your two or three lowest areas below."},"bands":[{"min":10,"max":30,"key":"critical","label":"Critical","blurb":"Decisions are likely being made on numbers nobody fully trusts. The patterns below show where the breakage starts."},{"min":31,"max":55,"key":"concern","label":"Concern","blurb":"Real gaps in definitions, ownership, or governance are creating friction that compounds as you grow."},{"min":56,"max":75,"key":"stable","label":"Stable","blurb":"Reporting works at a basic level. Targeted fixes in your lowest areas would raise trust and decision speed."},{"min":76,"max":100,"key":"strong","label":"Strong","blurb":"A well-governed, trusted reporting operation. Focus shifts to keeping it scaled and catching drift early."}],"advice":{"kpi":"Write formal definitions for your top 10 to 15 metrics, each with a formula and a named owner.","source":"Designate one authoritative source per critical metric and document it where people can find it.","ownership":"Give every official report a single named owner, and retire the ones nobody owns.","usage":"Audit which dashboards actually get opened, then cut or rebuild the ones that do not drive decisions.","manual":"Measure the weekly hours spent assembling reports, then automate the highest-effort one first.","quality":"Add validation checks at the source and a triage path before numbers reach leadership.","governance":"Stand up a lightweight intake and change process, and name an owner for the reporting model.","exec":"Map each leadership decision to the report that should support it, then close the gaps.","duplication":"Inventory every report and consolidate or retire the ones that overlap.","ai":"Document definitions and sources first - AI inherits whatever ambiguity you feed it."},"cta":{"title":"This is the self-check. The Assessment is the roadmap.","body":"Everything above is read from ten sliders. A Reporting Clarity Assessment is the same diagnosis done properly - we interview your team, trace the actual numbers, and hand you a prioritized, fixed-fee plan to close these exact gaps. You can act on the pointers above yourself, or we can do it with you."}};
+    var KEYS = DATA.areas.map(function (a) { return a.key; });
     var sliders = Array.prototype.slice.call(document.querySelectorAll('.ar-slider'));
     if (!sliders.length) return;
-    var totalEl = document.getElementById('hc-total');
-    var meterEl = document.getElementById('hc-meter');
-    var bandLabel = document.getElementById('hc-band-label');
-    var bandBlurb = document.getElementById('hc-band-blurb');
-    var focusList = document.getElementById('hc-focus-list');
-    var jumpScore = document.getElementById('hc-jump-score');
-    function colorClass(v) { return v <= 4 ? 'red' : (v <= 7 ? 'yellow' : 'green'); }
-    function bandFor(t) { for (var i = 0; i < BANDS.length; i++) { if (t >= BANDS[i].min && t <= BANDS[i].max) return BANDS[i]; } return BANDS[BANDS.length - 1]; }
-    function save() { var o = {}; sliders.forEach(function (s) { o[s.dataset.area] = s.value; }); try { localStorage.setItem(STORE, JSON.stringify(o)); } catch (e) {} }
-    function load() { try { var o = JSON.parse(localStorage.getItem(STORE) || '{}'); sliders.forEach(function (s) { if (o[s.dataset.area]) s.value = o[s.dataset.area]; }); } catch (e) {} }
-    function update() {
-      var total = 0; var scores = [];
-      sliders.forEach(function (s) {
-        var v = parseInt(s.value, 10); total += v; scores.push({ key: s.dataset.area, v: v });
-        var card = s.closest('.area-card');
-        if (card) { var val = card.querySelector('.ar-val'); if (val) { val.textContent = v; val.className = 'ar-val ' + colorClass(v); } }
-      });
-      if (totalEl) totalEl.textContent = total;
-      if (jumpScore) jumpScore.textContent = total;
-      var b = bandFor(total);
-      if (bandLabel) bandLabel.textContent = b.label;
-      if (bandBlurb) bandBlurb.textContent = b.blurb;
-      if (meterEl) { var pct = Math.round((total - 10) / 90 * 100); meterEl.style.width = Math.max(2, pct) + '%'; meterEl.className = 'hcr-meter-fill ' + b.cls; }
-      if (focusList) {
-        focusList.innerHTML = '';
-        var allStrong = scores.every(function (s) { return s.v >= 8; });
-        if (allStrong) {
-          var li = document.createElement('li'); li.className = 'hcf-strong';
-          li.textContent = 'Every area scores strong. Keep governance scaled as you grow, and revisit this assessment each quarter to catch drift early.';
-          focusList.appendChild(li);
-        } else {
-          var low = scores.slice().sort(function (a, b) { return a.v - b.v; }).slice(0, 3);
-          low.forEach(function (s) {
-            var li = document.createElement('li');
-            var n = document.createElement('span'); n.className = 'hcf-name'; n.textContent = NAMES[s.key];
-            var sc = document.createElement('span'); sc.className = 'hcf-score ' + colorClass(s.v); sc.textContent = s.v + '/10';
-            var ad = document.createElement('span'); ad.className = 'hcf-advice'; ad.textContent = ADVICE[s.key];
-            li.appendChild(n); li.appendChild(sc); li.appendChild(ad);
-            focusList.appendChild(li);
-          });
-        }
-      }
-      save();
-    }
-    sliders.forEach(function (s) { s.addEventListener('input', update); });
-    var reset = document.getElementById('hc-reset');
-    if (reset) reset.addEventListener('click', function () { sliders.forEach(function (s) { s.value = 5; }); try { localStorage.removeItem(STORE); } catch (e) {} update(); });
+    var runBtn = document.getElementById('hc-run');
+    var resetBtn = document.getElementById('hc-reset');
+    var report = document.getElementById('hc-report');
     var jump = document.getElementById('hc-jump');
-    if (jump) jump.addEventListener('click', function () { var r = document.getElementById('hc-results'); if (r) r.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
-    load(); update();
+    var jumpScore = document.getElementById('hc-jump-score');
+    var hint = document.getElementById('hc-livehint');
+    var STORE = 'aesop_healthcheck_v2';
+    var ran = false;
+    var BANDCOLOR = { critical: '#CE796B', concern: '#D4A844', stable: '#C18C5D', strong: '#5E9A82' };
+    function colorClass(v) { return v <= 3 ? 'red' : (v <= 6 ? 'yellow' : 'green'); }
+    function scores() { var s = {}; sliders.forEach(function (sl) { s[sl.dataset.area] = parseInt(sl.value, 10); }); return s; }
+    function bandFor(t) { for (var i = 0; i < DATA.bands.length; i++) { if (t >= DATA.bands[i].min && t <= DATA.bands[i].max) return DATA.bands[i]; } return DATA.bands[DATA.bands.length - 1]; }
+    function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+    function fired(s) {
+      function lo(k) { return s[k] <= 3; } function hi(k) { return s[k] >= 7; }
+      var total = 0, lowCount = 0; KEYS.forEach(function (k) { total += s[k]; if (s[k] <= 3) lowCount++; }); var avg = total / KEYS.length;
+      var R = []; function add(id, cond) { if (cond) R.push(id); }
+      add('systemic', avg <= 3.6);
+      add('foundation', lo('kpi') && lo('source'));
+      add('conflicting', lo('source') && lo('duplication'));
+      add('accountability', lo('ownership') && lo('governance'));
+      add('manual_errors', lo('manual') && lo('quality'));
+      add('build_abandon', lo('usage') && lo('duplication'));
+      add('exec_blind', lo('exec') && lo('usage'));
+      add('premature_ai', lo('ai') && (lo('kpi') || lo('source')));
+      add('fragile', hi('kpi') && hi('source') && s['governance'] <= 4);
+      add('last_mile', hi('kpi') && hi('quality') && (lo('usage') || lo('exec')));
+      add('governance_ahead', hi('governance') && (lo('kpi') || lo('source')));
+      add('weak_link', lowCount === 1 && avg >= 6.5);
+      add('healthy', avg >= 7.5 && lowCount === 0);
+      R.sort(function (x, y) { return DATA.patterns[y].priority - DATA.patterns[x].priority; });
+      return R;
+    }
+    function gauge(total, band) {
+      var pct = Math.round((total - 10) / 90 * 100); pct = Math.max(0, Math.min(100, pct));
+      var col = BANDCOLOR[band.key] || '#C18C5D';
+      var r = 58, c = 2 * Math.PI * r, off = c * (1 - pct / 100);
+      var wrap = el('div', 'rep-gauge'); var ns = 'http://www.w3.org/2000/svg';
+      var svg = document.createElementNS(ns, 'svg'); svg.setAttribute('width', '134'); svg.setAttribute('height', '134'); svg.setAttribute('viewBox', '0 0 134 134');
+      var bg = document.createElementNS(ns, 'circle'); bg.setAttribute('cx', '67'); bg.setAttribute('cy', '67'); bg.setAttribute('r', '' + r); bg.setAttribute('fill', 'none'); bg.setAttribute('stroke', '#EDE7DA'); bg.setAttribute('stroke-width', '12');
+      var fg = document.createElementNS(ns, 'circle'); fg.setAttribute('cx', '67'); fg.setAttribute('cy', '67'); fg.setAttribute('r', '' + r); fg.setAttribute('fill', 'none'); fg.setAttribute('stroke', col); fg.setAttribute('stroke-width', '12'); fg.setAttribute('stroke-linecap', 'round'); fg.setAttribute('stroke-dasharray', '' + c); fg.setAttribute('stroke-dashoffset', '' + off);
+      svg.appendChild(bg); svg.appendChild(fg);
+      var num = el('div', 'rep-gauge-num'); var sc = el('div', 'rep-gauge-score', '' + total); sc.style.color = col; num.appendChild(sc); num.appendChild(el('div', 'rep-gauge-max', '/ 100'));
+      wrap.appendChild(svg); wrap.appendChild(num); return wrap;
+    }
+    function render(total, s) {
+      total = total || 0; s = s || scores(); var band = bandFor(total); report.innerHTML = '';
+      var card = el('div', 'rep-scorecard'); card.appendChild(gauge(total, band));
+      var head = el('div', 'rep-headline'); head.appendChild(el('div', 'rep-band-name', band.label)); head.appendChild(el('div', 'rep-band-blurb', band.blurb)); card.appendChild(head); report.appendChild(card);
+      var ids = fired(s); var lead = ids.length ? DATA.patterns[ids[0]] : DATA.fallback;
+      var diag = el('div', 'rep-diagnosis sev-' + lead.severity);
+      diag.appendChild(el('div', 'rep-diag-kicker', 'Lead diagnosis')); diag.appendChild(el('div', 'rep-diag-title', lead.title)); diag.appendChild(el('div', 'rep-diag-body', lead.body)); report.appendChild(diag);
+      var rest = ids.slice(1, 5);
+      if (rest.length) {
+        report.appendChild(el('div', 'rep-section-label', 'What else your scores point to'));
+        var grid = el('div', 'rep-patterns');
+        rest.forEach(function (id) { var p = DATA.patterns[id]; var cc = el('div', 'rep-pattern sev-' + p.severity); cc.appendChild(el('div', 'rep-pat-title', p.title)); cc.appendChild(el('div', 'rep-pat-body', p.body)); grid.appendChild(cc); });
+        report.appendChild(grid);
+      }
+      report.appendChild(el('div', 'rep-section-label', 'Area-by-area read'));
+      var areas = el('div', 'rep-areas');
+      DATA.areas.forEach(function (ar) { var v = s[ar.key]; var cc = colorClass(v); var row = el('div', 'rep-area-row');
+        var meta = el('div', 'rep-area-meta'); meta.appendChild(el('div', 'rep-area-name', ar.name));
+        var bar = el('div', 'rep-area-bar'); var fill = el('div', 'rep-area-fill'); fill.style.width = (v * 10) + '%'; fill.style.background = cc === 'red' ? '#CE796B' : (cc === 'yellow' ? '#D4A844' : '#5E9A82'); bar.appendChild(fill); meta.appendChild(bar); row.appendChild(meta);
+        row.appendChild(el('div', 'rep-area-chip ' + cc, v + '/10'));
+        row.appendChild(el('div', 'rep-area-text', v <= 3 ? ar.low : (v <= 6 ? ar.mid : ar.high))); areas.appendChild(row); });
+      report.appendChild(areas);
+      var lows = DATA.areas.map(function (ar) { return { key: ar.key, name: ar.name, v: s[ar.key] }; }).filter(function (o) { return o.v <= 6; }).sort(function (x, y) { return x.v - y.v; }).slice(0, 3);
+      report.appendChild(el('div', 'rep-section-label', 'Start here'));
+      if (lows.length) { var ol = el('ol', 'rep-start'); lows.forEach(function (o) { var li = el('li'); var d = el('div'); d.appendChild(el('span', 'rep-start-name', o.name)); d.appendChild(el('span', 'rep-start-advice', DATA.advice[o.key])); li.appendChild(d); ol.appendChild(li); }); report.appendChild(ol); }
+      else { report.appendChild(el('p', 'rep-diag-body', 'Every area is in solid shape. Keep governance scaled as you grow and re-run this each quarter to catch drift early.')); }
+      var cta = el('div', 'rep-cta'); cta.appendChild(el('div', 'rep-cta-title', DATA.cta.title)); cta.appendChild(el('div', 'rep-cta-body', DATA.cta.body));
+      var acts = el('div', 'rep-cta-actions'); var a1 = document.createElement('a'); a1.className = 'btn'; a1.href = '/diagnostic'; a1.textContent = 'Book a diagnostic'; acts.appendChild(a1);
+      var pb = el('button', 'rep-print', 'Print or save as PDF'); pb.type = 'button'; pb.addEventListener('click', function () { window.print(); }); acts.appendChild(pb);
+      cta.appendChild(acts); report.appendChild(cta);
+    }
+    function live() { var s = scores(); var total = 0; sliders.forEach(function (sl) { var v = parseInt(sl.value, 10); total += v; var cd = sl.closest('.area-card'); if (cd) { var val = cd.querySelector('.ar-val'); if (val) { val.textContent = v; val.className = 'ar-val ' + colorClass(v); } } }); if (jumpScore) jumpScore.textContent = total; try { localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {} if (ran) render(total, s); return total; }
+    function run() { var s = scores(); var total = 0; KEYS.forEach(function (k) { total += s[k]; }); ran = true; render(total, s); report.hidden = false; report.classList.add('show'); if (jump) jump.hidden = false; if (hint) hint.textContent = 'Your diagnostic updates live as you adjust the sliders.'; report.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    function load() { try { var o = JSON.parse(localStorage.getItem(STORE) || '{}'); sliders.forEach(function (sl) { if (o[sl.dataset.area]) sl.value = o[sl.dataset.area]; }); } catch (e) {} }
+    sliders.forEach(function (sl) { sl.addEventListener('input', live); });
+    if (runBtn) runBtn.addEventListener('click', run);
+    if (resetBtn) resetBtn.addEventListener('click', function () { sliders.forEach(function (sl) { sl.value = 5; }); try { localStorage.removeItem(STORE); } catch (e) {} ran = false; if (report) { report.hidden = true; report.classList.remove('show'); report.innerHTML = ''; } if (jump) jump.hidden = true; if (hint) hint.textContent = 'Rate all ten areas, then run your full diagnostic.'; live(); });
+    if (jump) jump.addEventListener('click', function () { if (report) report.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    load(); live();
   })();
 </script>
 </BaseLayout>
