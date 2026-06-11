@@ -7,6 +7,10 @@ modernization and data-trust consultancy based in Nashville, TN.
 **Tagline:** *Every dataset has a moral.*
 **Repo:** `github.com/JDoreau/aesop.pro`
 
+> **Working on this code?** Read [`CLAUDE.md`](CLAUDE.md) first - the
+> architecture map, danger zones, and verification recipes for both human
+> developers and AI agents. The expensive mistakes here are documented ones.
+
 ---
 
 ## What this is
