@@ -29,6 +29,32 @@ const description = "Schedule a free 30-minute Reporting Trust Diagnostic. No pi
     </div>
   </section>
 
+  <section class="after-path" id="after">
+    <div class="wrap">
+      <div class="ap-eyebrow">No mystery, no maybe-we'll-call-you</div>
+      <h2>What happens after the call</h2>
+      <p class="ap-intro">Most consultations end with a vague “we'll follow up.” Ours doesn't. Here is the exact path, so you know what you're walking into before you book.</p>
+      <div class="ap-steps">
+        <div class="ap-step">
+          <div class="ap-num">1</div>
+          <div class="ap-name">A written recap — within 24 hours</div>
+          <div class="ap-desc">You get a short email summarizing what we heard, in your words — the pain, the context, and where we'd expect the real problem to sit. Usually that's a definition-and-ownership problem, not a data-quality one. Speed is itself a signal.</div>
+        </div>
+        <div class="ap-step">
+          <div class="ap-num">2</div>
+          <div class="ap-name">An honest read — fit or not</div>
+          <div class="ap-desc">If a <a href="/assessment">Reporting Clarity Assessment</a> is the right next step, the recap comes with a one-page scope: what we'd examine, the ten deliverables, and a single fixed fee agreed before any work begins. If it isn't, we say so and point you to a better path — a free resource, a different starting point, or “revisit in a few months.” We'd rather tell you honestly than sell you the wrong thing.</div>
+        </div>
+        <div class="ap-step">
+          <div class="ap-num">3</div>
+          <div class="ap-name">You decide — on your own clock</div>
+          <div class="ap-desc">The scope stands alone. Reply to confirm and we send a short agreement — work typically starts within a few weeks. Want to adjust scope first? Just say so. No drip campaign, no pressure either way.</div>
+        </div>
+      </div>
+      <p class="ap-foot">Either way, the quick wins we identify on the call are yours to act on — whether or not you ever do anything further with us.</p>
+    </div>
+  </section>
+
 </BaseLayout>
 
 <script is:inline>
@@ -101,4 +127,18 @@ Cal.ns.diagnostic("on", {
   .cal-note { margin-top:20px; font-size:14px; color:var(--muted); text-align:center; }
   .cal-note a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
   .cal-note a:hover { color:var(--twine); }
+
+  .after-path { padding:72px 0 88px; background:var(--paper-2); border-top:1px solid var(--rule); }
+  .after-path .wrap { max-width:1080px; }
+  .ap-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:14px; }
+  .after-path h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,3.6vw,42px); line-height:1.1; color:var(--navy); margin-bottom:14px; }
+  .ap-intro { font-size:17px; color:var(--muted); font-weight:300; line-height:1.65; max-width:62ch; margin-bottom:40px; }
+  .ap-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+  .ap-step { background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px 26px; }
+  .ap-num { font-family:"Abril Fatface",serif; font-size:30px; color:var(--twine); line-height:1; margin-bottom:14px; }
+  .ap-name { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:10px; line-height:1.35; }
+  .ap-desc { font-size:14px; color:var(--ink); line-height:1.65; font-weight:300; }
+  .ap-desc a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  .ap-desc a:hover { color:var(--twine); }
+  .ap-foot { margin-top:28px; font-size:14px; color:var(--muted); font-style:italic; max-width:62ch; }
 </style>
