@@ -1,0 +1,107 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = 'Why Your Reports Don\'t Match | Aesop Analytics'
+const description = 'Two reports, same metric, different numbers. It\'s almost never a data error — here are the five real reasons reports disagree, and the fix that actually holds.'
+const kicker = "Article · Reporting Trust";
+const headingHtml = "Why Your Reports Don't Match <span class=\"sub\">Two numbers for the same metric is the most common reporting-trust failure there is — and it's almost never a data error.</span>";
+const dekHtml = "Finance says one number. Sales says another. Both teams pulled \"revenue,\" both are confident, and the meeting just stalled. The instinct is to blame the data. The data is almost always fine — the disagreement comes from somewhere else, and until you fix that somewhere else, it will keep happening.";
+const meta = ["~6 min read", "Reporting Trust"];
+const ogDescription = "When two reports disagree, both are usually right — about different questions. The five real reasons reports don't match, and the decision that fixes it.";
+---
+
+<ArticleLayout title={title} description={description} path="/insights/why-reports-dont-match" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
+
+<div class="body">
+    <p class="lead">It usually surfaces in a meeting. Someone puts monthly revenue on the screen, and someone else says "that's not the number I have." Two reports, same metric, same month, two answers. A few minutes get spent comparing screenshots, somebody promises to look into it, and the conversation moves on — slightly more skeptical of every number that follows. If this has happened in your organization more than once, you don't have a one-off glitch. You have a structural condition, and it has a predictable anatomy.</p>
+    <p>The first instinct is almost always to suspect the data itself — a broken pipeline, a corrupted table, a bug. That's also the least likely explanation. In practice, when two reports disagree, both numbers are usually <em>correct</em>. Each one faithfully answers the question it was built to answer. The problem is that they were built to answer slightly different questions, and nobody can see the difference from the outside.</p>
+
+    <p class="pull">When two reports disagree, both are usually right — about different questions. The disagreement lives in the definitions, not the data.</p>
+
+    <h2>The five honest reasons reports disagree.</h2>
+    <span class="h2-sub">It's rarely the data itself</span>
+
+    <p><strong>1. Definition drift.</strong> "Revenue" is not one thing. Booked revenue, recognized revenue, invoiced revenue, and collected cash are four different numbers that all answer to the same word. The same goes for "active customer," "churn," and nearly every metric that matters. When the definition lives in people's heads instead of on paper, each team resolves the ambiguity in the way that makes sense for their work — and each resolution is defensible. The numbers diverge because the meanings already had.</p>
+
+    <p><strong>2. Source divergence.</strong> The CRM, the billing system, and the warehouse each hold something called revenue, and they genuinely differ: deals that closed but haven't been invoiced, invoices issued but adjusted later, records that sync on different schedules. Two reports pulling the "same" metric from two systems aren't pulling the same metric at all. Without one agreed authoritative source per metric, every system is a legitimate source — which means none of them is.</p>
+
+    <p><strong>3. Timing and refresh windows.</strong> One report is a snapshot taken at month-end close. The other reads live data and was opened on the 4th, after two late invoices landed and one refund posted. Neither report is stale or wrong — they describe the same business at two different moments. Timing differences are the most innocent cause on this list and the one most often mistaken for an error.</p>
+
+    <p><strong>4. Filter and population differences.</strong> One report excludes test accounts and internal usage. The other doesn't. One counts pilot customers; the other waits until the first paid invoice. These choices are invisible in the final number — nothing on the dashboard says "excludes 14 pilot accounts" — so two careful, well-built reports can disagree by a few percent forever, with both builders certain theirs is right. Because it is.</p>
+
+    <p><strong>5. Grain and counting rules.</strong> Are you counting orders, invoices, or invoice line items? Does a customer with two subsidiaries count once or twice? When a deal is amended, does it replace the original record or sit alongside it? Aggregation rules like these are decided quietly, deep in a query, by whoever built the report — and two reasonable people will decide them differently.</p>
+
+    <div class="illus">
+      <div class="ititle">One question, two pipelines</div>
+      <div class="isub">An illustration — both numbers are faithful to their own rules. Neither is an error.</div>
+      <svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing one business question splitting into two report pipelines with different sources, filters, and timing, producing two different revenue numbers">
+        <rect x="235" y="10" width="230" height="40" rx="4" fill="#0F1F38"/>
+        <text x="350" y="35" text-anchor="middle" font-size="15" font-weight="600" fill="#FBFAF5">"What was May revenue?"</text>
+        <line x1="350" y1="50" x2="180" y2="86" stroke="#C9C3B6" stroke-width="1.5"/>
+        <line x1="350" y1="50" x2="520" y2="86" stroke="#C9C3B6" stroke-width="1.5"/>
+        <g>
+          <rect x="60" y="88" width="240" height="34" rx="3" fill="#FFFFFF" stroke="#E5E0D5"/>
+          <text x="180" y="110" text-anchor="middle" font-size="13" fill="#2A3340">Source: CRM — closed-won deals</text>
+          <line x1="180" y1="122" x2="180" y2="140" stroke="#C9C3B6" stroke-width="1.5"/>
+          <rect x="60" y="142" width="240" height="34" rx="3" fill="#FFFFFF" stroke="#E5E0D5"/>
+          <text x="180" y="164" text-anchor="middle" font-size="13" fill="#2A3340">Filter: pilot accounts included</text>
+          <line x1="180" y1="176" x2="180" y2="194" stroke="#C9C3B6" stroke-width="1.5"/>
+          <rect x="60" y="196" width="240" height="34" rx="3" fill="#FFFFFF" stroke="#E5E0D5"/>
+          <text x="180" y="218" text-anchor="middle" font-size="13" fill="#2A3340">Timing: live data, pulled June 4</text>
+          <line x1="180" y1="230" x2="180" y2="248" stroke="#C18C5D" stroke-width="2"/>
+          <rect x="100" y="250" width="160" height="44" rx="4" fill="#C18C5D"/>
+          <text x="180" y="278" text-anchor="middle" font-size="19" font-weight="700" fill="#FFFFFF">$1.31M</text>
+        </g>
+        <g>
+          <rect x="400" y="88" width="240" height="34" rx="3" fill="#FFFFFF" stroke="#E5E0D5"/>
+          <text x="520" y="110" text-anchor="middle" font-size="13" fill="#2A3340">Source: billing — invoices issued</text>
+          <line x1="520" y1="122" x2="520" y2="140" stroke="#C9C3B6" stroke-width="1.5"/>
+          <rect x="400" y="142" width="240" height="34" rx="3" fill="#FFFFFF" stroke="#E5E0D5"/>
+          <text x="520" y="164" text-anchor="middle" font-size="13" fill="#2A3340">Filter: refunds &amp; test accounts excluded</text>
+          <line x1="520" y1="176" x2="520" y2="194" stroke="#C9C3B6" stroke-width="1.5"/>
+          <rect x="400" y="196" width="240" height="34" rx="3" fill="#FFFFFF" stroke="#E5E0D5"/>
+          <text x="520" y="218" text-anchor="middle" font-size="13" fill="#2A3340">Timing: snapshot at May 31 close</text>
+          <line x1="520" y1="230" x2="520" y2="248" stroke="#0F1F38" stroke-width="2"/>
+          <rect x="440" y="250" width="160" height="44" rx="4" fill="#0F1F38"/>
+          <text x="520" y="278" text-anchor="middle" font-size="19" font-weight="700" fill="#FFFFFF">$1.24M</text>
+        </g>
+        <text x="350" y="320" text-anchor="middle" font-size="12.5" font-style="italic" fill="#6E7682">Same question, two sets of unwritten rules — a 5% gap with no error anywhere.</text>
+      </svg>
+    </div>
+
+    <h2>Why it never stays fixed.</h2>
+    <span class="h2-sub">Reconciliation treats the instance, not the cause</span>
+    <p>Most organizations handle this the same way: when a mismatch surfaces, an analyst gets assigned to reconcile it. They trace both numbers, find the definitional or timing difference, explain it in an email, and everyone nods. The instance is resolved. The cause is untouched. Nothing was written down, no source was declared authoritative, no report was retired — so the next mismatch is already in production, waiting for its meeting.</p>
+    <p>Reconciliation as a recurring activity is one of the most expensive habits in reporting. It consumes skilled analyst time, it resolves nothing permanently, and every public episode of "the numbers don't match" spends a little more of the data team's credibility — a cost that compounds quietly. (We've written about <a href="/insights/hidden-cost-conflicting-kpis">what conflicting metrics actually cost</a>; the reconciliation tax is a large share of it.)</p>
+
+    <div class="callout">
+      <h3>What "single source of truth" actually requires</h3>
+      <ul>
+        <li>One named authoritative source per critical metric — a decision, recorded, not a platform purchase.</li>
+        <li>A written definition for each metric: formula, filters, timing, and a named owner.</li>
+        <li>A short note on each known legitimate variant — what it includes, when to use it, and what to call it.</li>
+        <li>A lightweight change process, so the answer stays settled when systems or teams change.</li>
+      </ul>
+    </div>
+
+    <h2>The fix is a decision, not a project.</h2>
+    <span class="h2-sub">And it's smaller than it looks</span>
+    <p>"Single source of truth" gets talked about as if it requires a data platform migration. It doesn't. It requires somebody with authority to make four small decisions per metric, and a place to write them down. For each critical metric: <strong>name the authoritative source</strong> — the one system the official number comes from, chosen deliberately, with the trade-offs acknowledged. <strong>Write the definition</strong> — formula, filters, timing window, and owner, in plain English, somewhere people actually look. <strong>Reconcile once, properly</strong> — trace the existing variants to their queries, document <em>why</em> they differ, and decide which differences are legitimate. <strong>Retire or relabel the rest</strong> — a report that contradicts the official number either disappears or gets an honest name like "Bookings (CRM view)" so it stops impersonating the canonical figure.</p>
+    <p>The technical work in all of this is usually hours, not months. The real work is the conversation — getting the people who own the competing versions to agree on one answer and accept constraint. That's uncomfortable in a way that building another dashboard isn't, which is exactly why the dashboard keeps getting built instead. But the organizations that have this conversation once, and record the outcome, stop having the meeting where two numbers fight.</p>
+
+    <div class="tip">
+      <div class="tlabel">Where to start right now</div>
+      <p>Take the metric that most recently caused an argument. Trace both numbers back to their queries and write a one-paragraph note: which source, which filters, which timing window, for each. The gap will explain itself — it nearly always does. Then make the call: one of them is the official number from now on, and the other gets renamed or retired. If you want a read on how widespread the problem is beyond that one metric, the free <a href="/resources/#checklist">Reporting Trust Health Check</a> scores your whole environment in about three minutes — no email required.</p>
+    </div>
+
+    <div class="read-next">
+      <div class="rn-label">Continue reading</div>
+      <div class="rn-links">
+        <a href="/insights/kpi-dictionary" class="rn-link">How to build a KPI dictionary →</a>
+        <a href="/insights/hidden-cost-conflicting-kpis" class="rn-link">The hidden cost of conflicting KPIs →</a>
+        <a href="/insights/dashboards-not-trusted" class="rn-link">Why dashboards aren't trusted →</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
+      </div>
+    </div>
+  </div>
+
+</ArticleLayout>
