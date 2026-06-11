@@ -10,11 +10,13 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   ogType?: string;
+  ogImage?: string;
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
-const { title, description, path = "/", ogTitle, ogDescription, ogType = "website", noindex = false, schema } = Astro.props;
+const { title, description, path = "/", ogTitle, ogDescription, ogType = "website", noindex = false, schema, ogImage } = Astro.props;
 const canonical = new URL(path, site.url).href;
+const ogImageUrl = new URL(ogImage ?? "/assets/og-image.png", site.url).href;
 
 // Breadcrumb trail, derived from the path so it can never drift from the IA.
 const leafName = title.split("|")[0].split("·")[0].trim();
@@ -59,7 +61,12 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 <meta property="og:description" content={ogDescription ?? description} />
 <meta property="og:type" content={ogType} />
 <meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Aesop Analytics - turn mistrusted reporting into a governed decision system." />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={ogImageUrl} />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -73,7 +80,7 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
   url: site.url,
   email: site.email,
   logo: new URL("/assets/favicon.svg", site.url).href,
-  image: new URL("/assets/favicon.svg", site.url).href,
+  image: new URL("/assets/og-image.png", site.url).href,
   slogan: "Every dataset has a moral.",
   founder: { "@type": "Person", name: "Jonathan Doreau" },
   areaServed: "US",
