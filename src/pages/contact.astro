@@ -83,7 +83,9 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
       </div>
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
       <input type="hidden" name="_subject" value="New message via aesopanalytics.com" />
+      <input type="hidden" name="_next" value="https://aesopanalytics.com/thanks" />
       <button type="submit" class="cf-btn" id="cf-submit">Send message</button>
+      <div id="cf-status" class="cf-msg" role="status" aria-live="polite"></div>
       </form>
   </div>
 </div>
@@ -182,4 +184,53 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
 </style>
 
 
+
+<script>
+  const form = document.getElementById('contact-form');
+  const btn = document.getElementById('cf-submit');
+  const statusEl = document.getElementById('cf-status');
+  if (form && btn && statusEl) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      statusEl.className = 'cf-msg';
+      statusEl.textContent = '';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          form.reset();
+          statusEl.className = 'cf-msg cf-ok show';
+          statusEl.textContent = 'Thanks - your message is in. We will be in touch within one business day.';
+          btn.textContent = 'Message sent';
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'generate_lead', { event_category: 'conversion', event_label: 'Contact form submitted' });
+          }
+        } else {
+          let msg = 'Something went wrong. Please email hello@aesopanalytics.com.';
+          try {
+            const data = await res.json();
+            if (data && data.errors && data.errors.length) {
+              msg = data.errors.map((x) => x.message).join(', ');
+            }
+          } catch (err) {}
+          statusEl.className = 'cf-msg cf-err show';
+          statusEl.textContent = msg;
+          btn.disabled = false;
+          btn.textContent = original;
+        }
+      } catch (err) {
+        statusEl.className = 'cf-msg cf-err show';
+        statusEl.textContent = 'Network error. Please email hello@aesopanalytics.com.';
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+  }
+</script>
 </BaseLayout>
