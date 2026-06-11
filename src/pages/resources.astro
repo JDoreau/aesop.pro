@@ -496,9 +496,188 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
       else { report.appendChild(el('p', 'rep-diag-body', 'Every area is in solid shape. Keep governance scaled as you grow and re-run this each quarter to catch drift early.')); }
       var cta = el('div', 'rep-cta'); cta.appendChild(el('div', 'rep-cta-title', DATA.cta.title)); cta.appendChild(el('div', 'rep-cta-body', DATA.cta.body));
       var acts = el('div', 'rep-cta-actions'); var a1 = document.createElement('a'); a1.className = 'btn'; a1.href = '/diagnostic'; a1.textContent = 'Book a diagnostic'; acts.appendChild(a1);
-      var pb = el('button', 'rep-print', 'Print or save as PDF'); pb.type = 'button'; pb.addEventListener('click', function () { window.print(); }); acts.appendChild(pb);
+      var pb = el('button', 'rep-print', 'Print or save as PDF'); pb.type = 'button'; pb.addEventListener('click', printReport); acts.appendChild(pb);
       cta.appendChild(acts); report.appendChild(cta);
     }
+    /* \u2500\u2500\u2500 Branded print report \u2500\u2500\u2500
+       printDocData() serializes the diagnostic to JSON; printDocBody() renders the
+       branded two-pager from that data. Button path prints a standalone document in
+       a hidden iframe (decoupled from page CSS). Ctrl+P falls back to a structural
+       in-page swap, gated on the diagnostic being visible on screen. */
+    var OWL_SVG = '<svg viewBox="0 0 192 192" height="26" width="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0F1F38" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg>';
+    var PRT_CSS = '.prt-doc{color:#2A3340;font-family:"DM Sans",-apple-system,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
+      + '.prt-head{display:flex;justify-content:space-between;align-items:center}'
+      + '.prt-brand{display:flex;align-items:center;gap:8px}'
+      + '.prt-wm{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:15pt;color:#0F1F38;letter-spacing:-.01em}'
+      + '.prt-wm-an{color:#C18C5D}'
+      + '.prt-kicker{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:#C18C5D}'
+      + '.prt-rule{height:2px;background:#0F1F38;margin:10pt 0 13pt}'
+      + '.prt-title{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:24pt;color:#0F1F38;margin:0 0 3pt;letter-spacing:-.01em}'
+      + '.prt-meta{font-size:9pt;color:#6E7682;margin:0 0 15pt}'
+      + '.prt-scoreblock{display:flex;gap:20pt;align-items:flex-start;padding:13pt 15pt;background:#FBFAF5;border:1px solid #E5E0D5;border-radius:4pt;margin-bottom:14pt;break-inside:avoid}'
+      + '.prt-scorenum{font-family:"Abril Fatface",Georgia,serif;font-size:42pt;line-height:.85;white-space:nowrap}'
+      + '.prt-scoremax{font-family:"DM Sans",sans-serif;font-size:13pt;color:#A39E92;font-weight:400}'
+      + '.prt-bandwrap{flex:1}'
+      + '.prt-pill{display:inline-block;padding:3pt 11pt;border:1.5pt solid;border-radius:20pt;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6pt}'
+      + '.prt-bandtext{font-size:10pt;line-height:1.55;margin:0}'
+      + '.prt-label{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#C18C5D;margin:0 0 8pt;padding-bottom:4pt;border-bottom:1px solid #E5E0D5}'
+      + '.prt-lead,.prt-insight{break-inside:avoid;border:1px solid #E5E0D5;border-left:3pt solid #5A7090;border-radius:0 3pt 3pt 0}'
+      + '.prt-lead{padding:10pt 13pt;margin-bottom:13pt}'
+      + '.prt-insight{padding:8pt 12pt;margin-bottom:7pt}'
+      + '.sev-critical{border-left-color:#CE796B!important}.sev-warning{border-left-color:#D4A844!important}.sev-insight{border-left-color:#5A7090!important}.sev-positive{border-left-color:#5E9A82!important}'
+      + '.prt-lead-title{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:14pt;color:#0F1F38;margin-bottom:3pt}'
+      + '.prt-lead-body{font-size:9.5pt;line-height:1.5}'
+      + '.prt-insights{margin-bottom:4pt}'
+      + '.prt-insight-title{font-size:10.5pt;font-weight:700;color:#0F1F38;margin-bottom:2pt}'
+      + '.prt-insight-body{font-size:9pt;line-height:1.45}'
+      + '.prt-page2{page-break-before:always;break-before:page}'
+      + '.prt-areas{margin-bottom:14pt}'
+      + '.prt-area{break-inside:avoid;padding:6pt 0;border-bottom:1px solid #EFEBE1;display:flex;gap:10pt;align-items:flex-start}'
+      + '.prt-area-meta{width:30%;flex-shrink:0}'
+      + '.prt-area-name{font-size:9.5pt;font-weight:700;color:#0F1F38;line-height:1.3}'
+      + '.prt-area-bar{background:#EAE6DC;border-radius:2pt;height:6pt;overflow:hidden;margin-top:3pt}'
+      + '.prt-area-fill{height:100%;border-radius:2pt}'
+      + '.prt-area-chip{width:34pt;flex-shrink:0;text-align:right;font-size:10pt;font-weight:700}'
+      + '.prt-area-chip .mx{font-size:7.5pt;font-weight:400;color:#A39E92}'
+      + '.prt-area-text{flex:1;font-size:8.8pt;line-height:1.45;color:#2A3340}'
+      + '.prt-start{margin:0 0 14pt;padding-left:14pt}'
+      + '.prt-start li{font-size:9.5pt;line-height:1.5;margin-bottom:5pt;break-inside:avoid}'
+      + '.prt-start-name{font-weight:700;color:#0F1F38;display:block}'
+      + '.prt-start-advice{display:block;font-size:9pt;color:#2A3340}'
+      + '.prt-cta{background:#0F1F38;color:#fff;border-radius:4pt;padding:12pt 15pt;margin:4pt 0 12pt;break-inside:avoid}'
+      + '.prt-cta-h{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:13.5pt;color:#fff;margin-bottom:4pt}'
+      + '.prt-cta-p{font-size:9pt;line-height:1.5;color:#C9D2DE;margin:0}'
+      + '.prt-cta-p strong{color:#E0A870;font-weight:700}'
+      + '.prt-foot{border-top:1px solid #E5E0D5;padding-top:8pt}'
+      + '.prt-foot span{display:block;font-size:7.5pt;color:#A39E92;line-height:1.5}';
+    var CC_COLOR = { red: '#CE796B', yellow: '#D4A844', green: '#5E9A82' };
+    function esc(t) { var d = document.createElement('div'); d.textContent = t == null ? '' : String(t); return d.innerHTML; }
+    /* The smart data: everything the printed report needs, as one JSON-serializable object. */
+    function printDocData() {
+      var s = scores(), total = 0; KEYS.forEach(function (k) { total += s[k]; });
+      var band = bandFor(total), ids = fired(s);
+      var lead = ids.length ? DATA.patterns[ids[0]] : DATA.fallback;
+      return {
+        generated: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        year: new Date().getFullYear(),
+        total: total,
+        band: { key: band.key, label: band.label, blurb: band.blurb },
+        lead: { title: lead.title, body: lead.body, severity: lead.severity },
+        insights: ids.slice(1, 5).map(function (id) { var p = DATA.patterns[id]; return { title: p.title, body: p.body, severity: p.severity }; }),
+        areas: DATA.areas.map(function (ar) { var v = s[ar.key]; return { name: ar.name, score: v, cc: colorClass(v), text: v <= 3 ? ar.low : (v <= 6 ? ar.mid : ar.high) }; }),
+        start: DATA.areas.map(function (ar) { return { key: ar.key, name: ar.name, v: s[ar.key] }; })
+          .filter(function (o) { return o.v <= 6; }).sort(function (x, y) { return x.v - y.v; }).slice(0, 3)
+          .map(function (o) { return { name: o.name, advice: DATA.advice[o.key] }; }),
+        cta: { title: DATA.cta.title, body: DATA.cta.body }
+      };
+    }
+    function printDocBody(d) {
+      var bc = BANDCOLOR[d.band.key] || '#C18C5D';
+      var h = '<div class="prt-head"><div class="prt-brand">' + OWL_SVG
+        + '<span class="prt-wm">aesop<span class="prt-wm-an"> Analytics</span></span></div>'
+        + '<div class="prt-kicker">Reporting Trust Health Check</div></div>'
+        + '<div class="prt-rule"></div>'
+        + '<h1 class="prt-title">Your reporting trust diagnostic</h1>'
+        + '<div class="prt-meta">Self-assessment \u00b7 Generated ' + esc(d.generated) + '</div>'
+        + '<div class="prt-scoreblock"><div class="prt-scorenum" style="color:' + bc + '">' + d.total
+        + '<span class="prt-scoremax">/100</span></div><div class="prt-bandwrap">'
+        + '<span class="prt-pill" style="color:' + bc + ';border-color:' + bc + '">' + esc(d.band.label) + '</span>'
+        + '<p class="prt-bandtext">' + esc(d.band.blurb) + '</p></div></div>'
+        + '<div class="prt-label">Lead diagnosis</div>'
+        + '<div class="prt-lead sev-' + d.lead.severity + '"><div class="prt-lead-title">' + esc(d.lead.title)
+        + '</div><div class="prt-lead-body">' + esc(d.lead.body) + '</div></div>';
+      if (d.insights.length) {
+        h += '<div class="prt-label">What else your scores point to</div><div class="prt-insights">';
+        d.insights.forEach(function (p) {
+          h += '<div class="prt-insight sev-' + p.severity + '"><div class="prt-insight-title">' + esc(p.title)
+            + '</div><div class="prt-insight-body">' + esc(p.body) + '</div></div>';
+        });
+        h += '</div>';
+      }
+      h += '<div class="prt-page2"><div class="prt-label">Area-by-area read</div><div class="prt-areas">';
+      d.areas.forEach(function (a) {
+        var c = CC_COLOR[a.cc] || '#C18C5D';
+        h += '<div class="prt-area"><div class="prt-area-meta"><div class="prt-area-name">' + esc(a.name)
+          + '</div><div class="prt-area-bar"><div class="prt-area-fill" style="width:' + (a.score * 10) + '%;background:' + c + '"></div></div></div>'
+          + '<div class="prt-area-chip" style="color:' + c + '">' + a.score + '<span class="mx">/10</span></div>'
+          + '<div class="prt-area-text">' + esc(a.text) + '</div></div>';
+      });
+      h += '</div><div class="prt-label">Start here</div>';
+      if (d.start.length) {
+        h += '<ol class="prt-start">';
+        d.start.forEach(function (o) {
+          h += '<li><span class="prt-start-name">' + esc(o.name) + '</span><span class="prt-start-advice">' + esc(o.advice) + '</span></li>';
+        });
+        h += '</ol>';
+      } else {
+        h += '<p class="prt-area-text" style="margin:0 0 14pt">Every area is in solid shape. Keep governance scaled as you grow and re-run this each quarter to catch drift early.</p>';
+      }
+      h += '<div class="prt-cta"><div class="prt-cta-h">' + esc(d.cta.title) + '</div><p class="prt-cta-p">'
+        + esc(d.cta.body) + ' <strong>aesopanalytics.com/diagnostic</strong></p></div>'
+        + '<div class="prt-foot"><span>aesop Analytics \u2014 reporting modernization &amp; data trust consulting \u00b7 Nashville, TN</span>'
+        + '<span>\u00a9 ' + d.year + ' Aesop Analytics \u00b7 Generated from the Reporting Trust Health Check at aesopanalytics.com/resources</span></div></div>';
+      return h;
+    }
+    /* Primary path: standalone branded two-pager printed from a hidden iframe. */
+    function printReport() {
+      var d = printDocData();
+      var doc = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
+        + '<title>Reporting Trust Health Check \u2014 Results</title>'
+        + '<link rel="preconnect" href="https://fonts.googleapis.com">'
+        + '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+        + '<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:opsz,wght@6..72,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">'
+        + '<style>@page{margin:14mm 14mm 12mm}html,body{margin:0;padding:0;background:#fff}' + PRT_CSS + '</style>'
+        + '</head><body><div class="prt-doc">' + printDocBody(d) + '</div></body></html>';
+      var fr = document.getElementById('hc-print-frame');
+      if (!fr) {
+        fr = document.createElement('iframe');
+        fr.id = 'hc-print-frame';
+        fr.setAttribute('aria-hidden', 'true');
+        fr.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden';
+        document.body.appendChild(fr);
+      }
+      var printed = false;
+      fr.onload = function () {
+        var w = fr.contentWindow;
+        var go = function () {
+          if (printed) return; printed = true;
+          try { w.focus(); w.print(); } catch (e) { window.print(); }
+        };
+        if (w.document.fonts && w.document.fonts.ready) {
+          w.document.fonts.ready.then(function () { setTimeout(go, 150); });
+          setTimeout(go, 2500); /* safety net if fonts.ready stalls */
+        } else {
+          setTimeout(go, 600);
+        }
+      };
+      fr.srcdoc = doc;
+    }
+    /* Fallback path: raw Ctrl+P / Cmd+P swaps to the branded report when the
+       diagnostic is on screen; otherwise the page prints normally. */
+    function ensurePrintSwap() {
+      if (!document.getElementById('hc-prt-style')) {
+        var st = document.createElement('style');
+        st.id = 'hc-prt-style';
+        st.textContent = '@media print{body.hc-print-mode > :not(#hc-print-doc){display:none!important}'
+          + 'body.hc-print-mode #hc-print-doc{display:block!important}' + PRT_CSS + '}';
+        document.head.appendChild(st);
+      }
+      var host = document.getElementById('hc-print-doc');
+      if (!host) {
+        host = document.createElement('div');
+        host.id = 'hc-print-doc';
+        host.className = 'prt-doc';
+        host.setAttribute('aria-hidden', 'true');
+        host.style.display = 'none';
+        document.body.appendChild(host);
+      }
+      return host;
+    }
+    window.addEventListener('beforeprint', function () {
+      if (!ran) { document.body.classList.remove('hc-print-mode'); return; }
+      ensurePrintSwap().innerHTML = printDocBody(printDocData());
+      document.body.classList.add('hc-print-mode');
+    });
     function live() { var s = scores(); var total = 0; sliders.forEach(function (sl) { var v = parseInt(sl.value, 10); total += v; var cd = sl.closest('.area-card'); if (cd) { var val = cd.querySelector('.ar-val'); if (val) { val.textContent = v; val.className = 'ar-val ' + colorClass(v); } } }); if (jumpScore) jumpScore.textContent = total; try { localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {} if (ran) render(total, s); return total; }
     function run() { var s = scores(); var total = 0; KEYS.forEach(function (k) { total += s[k]; }); ran = true; render(total, s); report.hidden = false; report.classList.add('show'); if (jump) jump.hidden = false; if (hint) hint.textContent = 'Your diagnostic updates live as you adjust the sliders.'; report.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     function load() { try { var o = JSON.parse(localStorage.getItem(STORE) || '{}'); sliders.forEach(function (sl) { if (o[sl.dataset.area]) sl.value = o[sl.dataset.area]; }); } catch (e) {} }
