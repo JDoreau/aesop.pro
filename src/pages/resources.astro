@@ -50,87 +50,159 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   <div class="wrap">
     <div class="sec-label">10 diagnostic areas</div>
     <h2>Where reporting trust breaks down — and how to measure it.</h2>
-    <p class="intro">Each area has 3–5 diagnostic questions. Answer honestly, score each area 1–10, and you'll have a clear picture of where reporting trust is strongest and where it's failing.</p>
+    <p class="intro">Rate each area from 1 (not in place) to 10 (fully in place). Your total score and a tailored read-out update live as you go - and nothing you enter ever leaves your browser.</p>
     <div class="area-grid">
-      <div class="area-card">
+      <div class="area-card" data-area="kpi">
         <div class="area-n">01</div>
         <div class="area-body">
           <h3>KPI Definitions</h3>
           <p>Are your key metrics defined in writing? Do Finance and Operations use the same definition for "revenue," "active customer," and "churn"? Does every KPI have a formula and an owner?</p>
           <div class="sample">Signal question: "If I asked three people what our 'monthly active users' means, would I get the same answer?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-kpi">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-kpi" min="1" max="10" step="1" value="5" data-area="kpi" aria-label="KPI Definitions score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="source">
         <div class="area-n">02</div>
         <div class="area-body">
           <h3>Data Source Clarity</h3>
           <p>Do people know which system is the authoritative source for each critical metric? Is there a documented source-of-truth for customer data, financial data, operational data?</p>
           <div class="sample">Signal question: "When Finance and Sales disagree on pipeline, which system wins — and does everyone accept that?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-source">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-source" min="1" max="10" step="1" value="5" data-area="source" aria-label="Data Source Clarity score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="ownership">
         <div class="area-n">03</div>
         <div class="area-body">
           <h3>Report Ownership</h3>
           <p>Does every report have a named owner responsible for its accuracy? Is there a process for updating or retiring reports? Can you identify which reports are "official"?</p>
           <div class="sample">Signal question: "If a number in the weekly operations report is wrong, who is responsible for fixing it?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-ownership">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-ownership" min="1" max="10" step="1" value="5" data-area="ownership" aria-label="Report Ownership score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="usage">
         <div class="area-n">04</div>
         <div class="area-body">
           <h3>Dashboard Usage</h3>
           <p>Are your dashboards actually used to make decisions — or do they exist because someone built them? Can you name which dashboard leadership opens before each key meeting?</p>
           <div class="sample">Signal question: "Show me the last time a leadership decision was explicitly made because of a dashboard."</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-usage">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-usage" min="1" max="10" step="1" value="5" data-area="usage" aria-label="Dashboard Usage score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="manual">
         <div class="area-n">05</div>
         <div class="area-body">
           <h3>Manual Reporting Effort</h3>
           <p>How much time do analysts spend each week building reports in spreadsheets that could be automated? Is manual reporting growing, shrinking, or stable?</p>
           <div class="sample">Signal question: "How many person-hours per week are spent assembling the Monday morning report pack?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-manual">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-manual" min="1" max="10" step="1" value="5" data-area="manual" aria-label="Manual Reporting Effort score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="quality">
         <div class="area-n">06</div>
         <div class="area-body">
           <h3>Data Quality</h3>
           <p>Are there known data quality problems that affect reports regularly? Is there a process for identifying and resolving data quality issues before they reach leadership?</p>
           <div class="sample">Signal question: "How often does someone catch a data error in a report after it's been distributed?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-quality">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-quality" min="1" max="10" step="1" value="5" data-area="quality" aria-label="Data Quality score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="governance">
         <div class="area-n">07</div>
         <div class="area-body">
           <h3>Governance</h3>
           <p>Is there a process for requesting new reports or dashboards? Is there a process for changing a KPI definition? Does anyone own the overall reporting operating model?</p>
           <div class="sample">Signal question: "What happens when two teams want the definition of 'on-time delivery' changed in opposite directions?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-governance">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-governance" min="1" max="10" step="1" value="5" data-area="governance" aria-label="Governance score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="exec">
         <div class="area-n">08</div>
         <div class="area-body">
           <h3>Executive Decision Alignment</h3>
           <p>Do the reports your team produces match what leadership actually needs to make decisions? Are executives asking for data that doesn't exist in current reports?</p>
           <div class="sample">Signal question: "Does the CEO ever make a decision and then ask for data you don't have readily available?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-exec">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-exec" min="1" max="10" step="1" value="5" data-area="exec" aria-label="Executive Decision Alignment score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="duplication">
         <div class="area-n">09</div>
         <div class="area-body">
           <h3>Report Duplication</h3>
           <p>How many reports serve overlapping purposes? Is anyone tracking how many dashboards exist and what each one is for? Could you retire 20% of your reports with no impact?</p>
           <div class="sample">Signal question: "How many different reports show monthly revenue — and do they all show the same number?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-duplication">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-duplication" min="1" max="10" step="1" value="5" data-area="duplication" aria-label="Report Duplication score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
       </div>
-      <div class="area-card">
+      <div class="area-card" data-area="ai">
         <div class="area-n">10</div>
         <div class="area-body">
           <h3>AI &amp; Data Readiness</h3>
           <p>If you wanted to adopt AI tools for analytics or forecasting, is your data foundation reliable enough to trust the outputs? Are your definitions and sources documented well enough to feed a model?</p>
           <div class="sample">Signal question: "If an AI tool asked 'what does a churned customer mean in your data?' — could you give a crisp, consistent answer?"</div>
         </div>
+        <div class="area-rate">
+          <label class="ar-rate-label" for="rng-ai">How in-place is this today? <span><span class="ar-val" data-val>5</span><span class="ar-out">/10</span></span></label>
+          <input class="ar-slider" type="range" id="rng-ai" min="1" max="10" step="1" value="5" data-area="ai" aria-label="AI and Data Readiness score, 1 to 10" />
+          <div class="ar-scale"><span>Not at all</span><span>Fully in place</span></div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="hc-jump" id="hc-jump" aria-label="Jump to your results">Your score <strong id="hc-jump-score">50</strong> / 100</button>
+    <div class="hc-results" id="hc-results">
+      <div class="hcr-head">
+        <div class="hcr-label">Your reporting trust score</div>
+        <div class="hcr-score-row">
+          <div class="hcr-score"><span id="hc-total">50</span><span class="hcr-max">/ 100</span></div>
+          <div class="hcr-band">
+            <div class="hcr-band-label" id="hc-band-label">Concern - real gaps and growing risk</div>
+            <div class="hcr-band-blurb" id="hc-band-blurb">Some areas work, but gaps in definitions, ownership, or governance create friction that compounds as you grow.</div>
+          </div>
+        </div>
+        <div class="hcr-meter"><div class="hcr-meter-fill concern" id="hc-meter" style="width:44%"></div></div>
+      </div>
+      <div class="hcr-focus">
+        <div class="hcr-focus-label">Where to focus first</div>
+        <ul id="hc-focus-list" class="hcr-focus-list"></ul>
+      </div>
+      <div class="hcr-cta">
+        <a href="/diagnostic" class="btn">Talk through your score in a free diagnostic &rarr;</a>
+        <button type="button" class="hc-reset" id="hc-reset">Reset answers</button>
       </div>
     </div>
   </div>
@@ -284,6 +356,132 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   .cta { border-top:3px solid var(--twine); background:var(--paper-2); padding:72px 32px; text-align:center; border-bottom:1px solid var(--rule); }
 .cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.4vw,38px); color:var(--navy); margin-bottom:16px; }
 .cta p { font-size:17px; color:var(--slate); font-weight:300; max-width:46ch; margin:0 auto 28px; line-height:1.6; }
+
+  /* ===== Interactive Health Check ===== */
+  .area-rate { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .ar-rate-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; font-weight: 600; color: var(--slate); margin-bottom: 9px; gap: 12px; }
+  .ar-val { font-weight: 700; font-size: 14px; color: #7EB09B; }
+  .ar-val.red { color: #CE796B; }
+  .ar-val.yellow { color: #C79A3A; }
+  .ar-val.green { color: #5E9A82; }
+  .ar-out { color: var(--muted); font-weight: 600; font-size: 12px; }
+  .ar-slider { width: 100%; accent-color: var(--twine); cursor: pointer; margin: 0; height: 22px; }
+  .ar-slider:focus-visible { outline: 2px solid var(--twine); outline-offset: 3px; border-radius: 4px; }
+  .ar-scale { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); margin-top: 3px; letter-spacing: .02em; }
+
+  .hc-jump { position: fixed; right: 20px; bottom: 20px; z-index: 60; background: var(--navy); color: #fff; border: 1px solid rgba(255,255,255,.12); border-radius: 999px; padding: 11px 20px; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: .02em; box-shadow: 0 8px 24px rgba(8,17,31,.28); cursor: pointer; transition: transform .15s ease, background .15s ease; }
+  .hc-jump:hover { transform: translateY(-2px); background: var(--navy-3, #1E3555); }
+  .hc-jump strong { color: var(--twine); font-size: 15px; margin: 0 2px; }
+
+  .hc-results { margin-top: 44px; background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--twine); border-radius: 10px; padding: 34px 34px 30px; box-shadow: 0 12px 34px rgba(15,31,56,.07); scroll-margin-top: 90px; }
+  .hcr-label { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--twine); margin-bottom: 16px; }
+  .hcr-score-row { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+  .hcr-score { font-family: 'Abril Fatface', Georgia, serif; font-size: 64px; color: var(--navy); line-height: 1; white-space: nowrap; }
+  .hcr-max { font-size: 24px; color: var(--muted); margin-left: 6px; }
+  .hcr-band { flex: 1; min-width: 250px; }
+  .hcr-band-label { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+  .hcr-band-blurb { font-size: 14px; color: var(--slate); line-height: 1.55; }
+  .hcr-meter { height: 10px; background: var(--paper-2); border-radius: 999px; overflow: hidden; margin: 24px 0 4px; }
+  .hcr-meter-fill { height: 100%; border-radius: 999px; width: 44%; background: var(--twine); transition: width .4s ease; }
+  .hcr-meter-fill.critical { background: #CE796B; }
+  .hcr-meter-fill.concern { background: #D4A844; }
+  .hcr-meter-fill.stable { background: var(--twine); }
+  .hcr-meter-fill.strong { background: #7EB09B; }
+  .hcr-focus { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .hcr-focus-label { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; }
+  .hcr-focus-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .hcr-focus-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; padding: 13px 16px; background: var(--paper-2); border-radius: 8px; border-left: 3px solid var(--twine); }
+  .hcf-name { font-weight: 700; color: var(--navy); font-size: 14px; }
+  .hcf-score { font-weight: 700; font-size: 12px; padding: 1px 9px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+  .hcf-score.red { color: #CE796B; } .hcf-score.yellow { color: #C79A3A; } .hcf-score.green { color: #5E9A82; }
+  .hcf-advice { flex-basis: 100%; font-size: 13px; color: var(--slate); line-height: 1.5; }
+  .hcf-strong { font-size: 14px; color: var(--slate); line-height: 1.6; padding: 4px 0; }
+  .hcr-cta { margin-top: 26px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .hc-reset { background: none; border: none; color: var(--muted); font-family: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; padding: 4px; }
+  .hc-reset:hover { color: var(--slate); }
+  @media (max-width: 600px) {
+    .hcr-score { font-size: 50px; }
+    .hc-results { padding: 26px 20px 24px; }
+    .hc-jump { right: 14px; bottom: 14px; padding: 9px 16px; font-size: 12px; }
+  }
+
 </style>
 
+<script>
+  (function () {
+    var KEYS = ['kpi','source','ownership','usage','manual','quality','governance','exec','duplication','ai'];
+    var NAMES = { kpi:'KPI Definitions', source:'Data Source Clarity', ownership:'Report Ownership', usage:'Dashboard Usage', manual:'Manual Reporting Effort', quality:'Data Quality', governance:'Governance', exec:'Executive Decision Alignment', duplication:'Report Duplication', ai:'AI and Data Readiness' };
+    var ADVICE = {
+      kpi:'Write formal definitions for your top 10 to 15 metrics, each with a formula and a named owner.',
+      source:'Designate one authoritative source per critical metric and document it where people can find it.',
+      ownership:'Give every official report a single named owner, and retire the ones nobody owns.',
+      usage:'Audit which dashboards actually get opened, then cut or rebuild the ones that do not drive decisions.',
+      manual:'Measure the weekly hours spent assembling reports, then automate the highest effort one first.',
+      quality:'Add validation checks at the source and a triage path before numbers reach leadership.',
+      governance:'Stand up a lightweight intake and change process, and name an owner for the reporting model.',
+      exec:'Map each leadership decision to the report that should support it, then close the gaps.',
+      duplication:'Inventory every report and consolidate or retire the ones that overlap.',
+      ai:'Document definitions and sources first. AI inherits whatever ambiguity you feed it.'
+    };
+    var BANDS = [
+      { min:10, max:30, cls:'critical', label:'Critical - reporting trust is severely broken', blurb:'Decisions are likely being made on numbers nobody fully trusts. A structured assessment would show where to start and what to fix first.' },
+      { min:31, max:55, cls:'concern', label:'Concern - real gaps and growing risk', blurb:'Some areas work, but gaps in definitions, ownership, or governance create friction that compounds as you grow.' },
+      { min:56, max:75, cls:'stable', label:'Stable - functional, with room to improve', blurb:'Reporting works at a basic level. Targeted fixes in the lowest areas would raise trust and decision speed without a large project.' },
+      { min:76, max:100, cls:'strong', label:'Strong - a mature reporting operating model', blurb:'Your environment is well governed and trusted. Focus on continuous improvement and keeping governance scaled as you grow.' }
+    ];
+    var STORE = 'aesop_healthcheck_v1';
+    var sliders = Array.prototype.slice.call(document.querySelectorAll('.ar-slider'));
+    if (!sliders.length) return;
+    var totalEl = document.getElementById('hc-total');
+    var meterEl = document.getElementById('hc-meter');
+    var bandLabel = document.getElementById('hc-band-label');
+    var bandBlurb = document.getElementById('hc-band-blurb');
+    var focusList = document.getElementById('hc-focus-list');
+    var jumpScore = document.getElementById('hc-jump-score');
+    function colorClass(v) { return v <= 4 ? 'red' : (v <= 7 ? 'yellow' : 'green'); }
+    function bandFor(t) { for (var i = 0; i < BANDS.length; i++) { if (t >= BANDS[i].min && t <= BANDS[i].max) return BANDS[i]; } return BANDS[BANDS.length - 1]; }
+    function save() { var o = {}; sliders.forEach(function (s) { o[s.dataset.area] = s.value; }); try { localStorage.setItem(STORE, JSON.stringify(o)); } catch (e) {} }
+    function load() { try { var o = JSON.parse(localStorage.getItem(STORE) || '{}'); sliders.forEach(function (s) { if (o[s.dataset.area]) s.value = o[s.dataset.area]; }); } catch (e) {} }
+    function update() {
+      var total = 0; var scores = [];
+      sliders.forEach(function (s) {
+        var v = parseInt(s.value, 10); total += v; scores.push({ key: s.dataset.area, v: v });
+        var card = s.closest('.area-card');
+        if (card) { var val = card.querySelector('.ar-val'); if (val) { val.textContent = v; val.className = 'ar-val ' + colorClass(v); } }
+      });
+      if (totalEl) totalEl.textContent = total;
+      if (jumpScore) jumpScore.textContent = total;
+      var b = bandFor(total);
+      if (bandLabel) bandLabel.textContent = b.label;
+      if (bandBlurb) bandBlurb.textContent = b.blurb;
+      if (meterEl) { var pct = Math.round((total - 10) / 90 * 100); meterEl.style.width = Math.max(2, pct) + '%'; meterEl.className = 'hcr-meter-fill ' + b.cls; }
+      if (focusList) {
+        focusList.innerHTML = '';
+        var allStrong = scores.every(function (s) { return s.v >= 8; });
+        if (allStrong) {
+          var li = document.createElement('li'); li.className = 'hcf-strong';
+          li.textContent = 'Every area scores strong. Keep governance scaled as you grow, and revisit this assessment each quarter to catch drift early.';
+          focusList.appendChild(li);
+        } else {
+          var low = scores.slice().sort(function (a, b) { return a.v - b.v; }).slice(0, 3);
+          low.forEach(function (s) {
+            var li = document.createElement('li');
+            var n = document.createElement('span'); n.className = 'hcf-name'; n.textContent = NAMES[s.key];
+            var sc = document.createElement('span'); sc.className = 'hcf-score ' + colorClass(s.v); sc.textContent = s.v + '/10';
+            var ad = document.createElement('span'); ad.className = 'hcf-advice'; ad.textContent = ADVICE[s.key];
+            li.appendChild(n); li.appendChild(sc); li.appendChild(ad);
+            focusList.appendChild(li);
+          });
+        }
+      }
+      save();
+    }
+    sliders.forEach(function (s) { s.addEventListener('input', update); });
+    var reset = document.getElementById('hc-reset');
+    if (reset) reset.addEventListener('click', function () { sliders.forEach(function (s) { s.value = 5; }); try { localStorage.removeItem(STORE); } catch (e) {} update(); });
+    var jump = document.getElementById('hc-jump');
+    if (jump) jump.addEventListener('click', function () { var r = document.getElementById('hc-results'); if (r) r.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    load(); update();
+  })();
+</script>
 </BaseLayout>
