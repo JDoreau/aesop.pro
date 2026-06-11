@@ -26,7 +26,6 @@
   .hero { background:var(--navy); padding:72px 0 60px; overflow:hidden; position:relative; }
   .hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
   .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1fr 320px; gap:64px; align-items:start; }
- }
   .hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(36px,5.2vw,62px); line-height:1.03; color:#fff; margin-bottom:18px; letter-spacing:-.01em; }
   .hero p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.65; margin-bottom:10px; max-width:52ch; }
   .hero-meta { display:flex; gap:20px; flex-wrap:wrap; margin-top:20px; }
@@ -60,7 +59,7 @@
   /* ── INSTRUCTIONS ── */
   .instructions { max-width:1080px; margin:0 auto; padding:48px 32px 36px; }
   .instr-head { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:12px; letter-spacing:-.01em; }
-  .instr-  .score-legend { display:flex; gap:24px; flex-wrap:wrap; }
+  .score-legend { display:flex; gap:24px; flex-wrap:wrap; }
   .sl-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--slate); }
   .sl-swatch { width:32px; height:10px; border-radius:2px; flex-shrink:0; }
 
@@ -181,69 +180,12 @@
 
   @media print {
     /* Only swap to the report once the check is complete; otherwise normal page print. */
-    body.hc-complete nav,
-    body.hc-complete .mobile-menu,
-    body.hc-complete .prog,
-    body.hc-complete .hero,
-    body.hc-complete .instructions,
-    body.hc-complete .area-grid,
-    body.hc-complete #results,
-    body.hc-complete footer { display:none !important; }
+    body.hc-complete > :not(#report) { display:none !important; }
 
     @page { margin:14mm 14mm 12mm; }
     body.hc-complete { background:#fff !important; }
 
-    body.hc-complete .report-doc {
-      display:block !important;
-      -webkit-print-color-adjust:exact; print-color-adjust:exact;
-      color:#2A3340; font-family:"DM Sans",-apple-system,Helvetica,Arial,sans-serif;
-      font-size:10.5pt; line-height:1.5;
-    }
-
-    .report-doc .rep-head { display:flex; justify-content:space-between; align-items:center; }
-    .report-doc .rep-brand { display:flex; align-items:center; gap:8px; }
-    .report-doc .rep-wm { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:15pt; color:#0F1F38; letter-spacing:-.01em; }
-    .report-doc .rep-wm-an { color:#C18C5D; }
-    .report-doc .rep-kicker { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:#C18C5D; }
-    .report-doc .rep-rule { height:2px; background:#0F1F38; margin:10pt 0 13pt; }
-    .report-doc .rep-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:25pt; color:#0F1F38; margin:0 0 3pt; letter-spacing:-.01em; }
-    .report-doc .rep-meta { font-size:9pt; color:#6E7682; margin:0 0 17pt; }
-
-    .report-doc .rep-scoreblock { display:flex; gap:20pt; align-items:flex-start; padding:13pt 15pt; background:#FBFAF5; border:1px solid #E5E0D5; border-radius:4pt; margin-bottom:17pt; break-inside:avoid; }
-    .report-doc .rep-scorenum { font-family:"Abril Fatface",Georgia,serif; font-size:44pt; line-height:.85; color:#0F1F38; white-space:nowrap; }
-    .report-doc .rep-scoremax { font-family:"DM Sans",sans-serif; font-size:13pt; color:#A39E92; font-weight:400; }
-    .report-doc .rep-bandwrap { flex:1; }
-    .report-doc .rep-pill { display:inline-block; padding:3pt 11pt; border:1.5pt solid; border-radius:20pt; font-size:8.5pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:7pt; }
-    .report-doc .rep-bandtext { font-size:10pt; line-height:1.55; color:#2A3340; margin:0; }
-
-    .report-doc .rep-section-label { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:#C18C5D; margin:0 0 9pt; padding-bottom:4pt; border-bottom:1px solid #E5E0D5; }
-
-    .report-doc .rep-table { width:100%; border-collapse:collapse; margin-bottom:18pt; }
-    .report-doc .rep-row { break-inside:avoid; }
-    .report-doc .rep-row td { padding:5.5pt 0; border-bottom:1px solid #EFEBE1; vertical-align:middle; }
-    .report-doc .rep-area { font-size:10pt; font-weight:600; color:#0F1F38; width:48%; }
-    .report-doc .rep-anum { font-family:"Abril Fatface",Georgia,serif; font-size:10pt; color:#C9C3B6; margin-right:7pt; }
-    .report-doc .rep-barcell { width:40%; padding-left:10pt; padding-right:10pt; }
-    .report-doc .rep-track { background:#EAE6DC; border-radius:2pt; height:7pt; overflow:hidden; }
-    .report-doc .rep-bar { height:100%; border-radius:2pt; }
-    .report-doc .rep-score { text-align:right; font-size:11pt; font-weight:700; width:12%; white-space:nowrap; }
-    .report-doc .rep-score-max { font-size:8pt; font-weight:400; color:#A39E92; }
-
-    .report-doc .rep-focus-grid { margin-bottom:16pt; }
-    .report-doc .rep-focus { break-inside:avoid; border:1px solid #E5E0D5; border-left:3pt solid #CE796B; border-radius:0 3pt 3pt 0; padding:9pt 12pt; margin-bottom:7pt; }
-    .report-doc .rep-focus-rank { font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:#CE796B; margin-bottom:3pt; }
-    .report-doc .rep-focus-name { font-size:11.5pt; font-weight:700; color:#0F1F38; margin-bottom:2pt; }
-    .report-doc .rep-focus-score { font-size:9pt; color:#6E7682; margin-bottom:4pt; }
-    .report-doc .rep-focus-read { font-size:9pt; color:#2A3340; line-height:1.45; }
-    .report-doc .rep-focus-url { color:#6E7682; }
-
-    .report-doc .rep-cta { background:#0F1F38; color:#fff; border-radius:4pt; padding:13pt 15pt; margin-bottom:13pt; break-inside:avoid; }
-    .report-doc .rep-cta-h { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:14pt; color:#fff; margin-bottom:5pt; }
-    .report-doc .rep-cta-p { font-size:9.5pt; line-height:1.55; color:#C9D2DE; margin:0; }
-    .report-doc .rep-cta-p strong { color:#E0A870; font-weight:700; }
-
-    .report-doc .rep-foot { border-top:1px solid #E5E0D5; padding-top:8pt; }
-    .report-doc .rep-foot span { display:block; font-size:7.5pt; color:#A39E92; line-height:1.5; }
+    body.hc-complete .report-doc { display:block !important; }
   }
 </style>
 </head>
@@ -374,7 +316,7 @@
     <a href="/diagnostic" class="btn">Book a free diagnostic call →</a>
     <a href="/resources" class="btn ghost">Back to Resources</a>
     <br>
-    <span class="print-btn" onclick="window.print()">⊞ Save or print your report (PDF)</span>
+    <span class="print-btn" onclick="printReport()">⊞ Save or print your report (PDF)</span>
     <span class="reset-btn" onclick="resetAssessment()">↺ Start over</span>
   </div>
 </section>
@@ -556,24 +498,29 @@ AREAS.forEach(area => {
 /* ─── Score class helper ─── */
 function cls(val) { return val<=3?'low':val<=6?'mid':'high'; }
 
+/* ─── Persistence ─── */
+const HC_KEY = 'aesop-hc-v1';
+function saveScores() { try { localStorage.setItem(HC_KEY, JSON.stringify(scores)); } catch(e) {} }
+
 /* ─── Pick a score ─── */
-function pick(id, val) {
+function applyPick(id, val) {
   scores[id] = val;
   const c = cls(val);
-  // Buttons
   document.querySelectorAll(`#row-${id} .sb`).forEach(btn => {
     btn.classList.remove('sel-low','sel-mid','sel-high');
     if(+btn.dataset.val===val) btn.classList.add(`sel-${c}`);
   });
-  // Card border
   const card = document.getElementById(`card-${id}`);
   card.classList.remove('s-low','s-mid','s-high');
   card.classList.add(`s-${c}`);
-  // Badge
   const badge = document.getElementById(`badge-${id}`);
   badge.textContent = val;
   badge.className = `ac-badge visible b-${c}`;
+}
 
+function pick(id, val) {
+  applyPick(id, val);
+  saveScores();
   updateProgress();
   if(Object.keys(scores).length===10) setTimeout(renderResults, 380);
 }
@@ -603,7 +550,7 @@ function countUp(el, target, ms) {
 }
 
 /* ─── Render results ─── */
-function renderResults() {
+function renderResults(animate = true) {
   const total = AREAS.reduce((s,a)=>s+(scores[a.id]||0),0);
   const band = getBand(total);
   const bd = BANDS[band];
@@ -651,21 +598,30 @@ function renderResults() {
   // Show section & scroll
   const resultsEl = document.getElementById('results');
   resultsEl.classList.add('show');
-  setTimeout(()=>{
-    resultsEl.scrollIntoView({ behavior:'smooth', block:'start' });
-    countUp(document.getElementById('score-num'), total, 900);
+  if (animate) {
     setTimeout(()=>{
-      AREAS.forEach(a=>{
-        const b = document.getElementById(`bar-${a.id}`);
-        if(b) b.style.width = ((scores[a.id]||0)/10*100)+'%';
-      });
-    }, 550);
-  }, 80);
+      resultsEl.scrollIntoView({ behavior:'smooth', block:'start' });
+      countUp(document.getElementById('score-num'), total, 900);
+      setTimeout(()=>{
+        AREAS.forEach(a=>{
+          const b = document.getElementById(`bar-${a.id}`);
+          if(b) b.style.width = ((scores[a.id]||0)/10*100)+'%';
+        });
+      }, 550);
+    }, 80);
+  } else {
+    document.getElementById('score-num').textContent = total;
+    AREAS.forEach(a=>{
+      const b = document.getElementById(`bar-${a.id}`);
+      if(b) b.style.width = ((scores[a.id]||0)/10*100)+'%';
+    });
+  }
 }
 
 /* ─── Reset ─── */
 function resetAssessment() {
   Object.keys(scores).forEach(k=>delete scores[k]);
+  try { localStorage.removeItem(HC_KEY); } catch(e) {}
   document.body.classList.remove('hc-complete');
   AREAS.forEach(a=>{
     const card = document.getElementById(`card-${a.id}`);
@@ -678,67 +634,180 @@ function resetAssessment() {
   window.scrollTo({ top:0, behavior:'smooth' });
 }
 
-/* ─── Branded report (print / PDF) ─── */
+/* \u2500\u2500\u2500 Branded report (print / PDF) \u2500\u2500\u2500
+   Architecture: reportData() serializes the result to JSON; reportBodyHTML()
+   renders the branded two-pager from that data. Primary path (the button) prints
+   a standalone document in a hidden iframe \u2014 fully decoupled from this page's CSS.
+   Fallback path (Ctrl+P / Cmd+P) swaps the in-page #report via @media print. */
 const OWL_SVG = `<svg viewBox="0 0 192 192" height="26" width="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0F1F38" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg>`;
 
-function buildReport() {
-  if (Object.keys(scores).length < 10) return;
+const REPORT_CSS = `
+.report-doc { color:#2A3340; font-family:"DM Sans",-apple-system,Helvetica,Arial,sans-serif; font-size:10.5pt; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.report-doc .rep-head { display:flex; justify-content:space-between; align-items:center; }
+.report-doc .rep-brand { display:flex; align-items:center; gap:8px; }
+.report-doc .rep-wm { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:15pt; color:#0F1F38; letter-spacing:-.01em; }
+.report-doc .rep-wm-an { color:#C18C5D; }
+.report-doc .rep-kicker { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:#C18C5D; }
+.report-doc .rep-rule { height:2px; background:#0F1F38; margin:10pt 0 13pt; }
+.report-doc .rep-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:25pt; color:#0F1F38; margin:0 0 3pt; letter-spacing:-.01em; }
+.report-doc .rep-meta { font-size:9pt; color:#6E7682; margin:0 0 17pt; }
+.report-doc .rep-scoreblock { display:flex; gap:20pt; align-items:flex-start; padding:13pt 15pt; background:#FBFAF5; border:1px solid #E5E0D5; border-radius:4pt; margin-bottom:17pt; break-inside:avoid; }
+.report-doc .rep-scorenum { font-family:"Abril Fatface",Georgia,serif; font-size:44pt; line-height:.85; color:#0F1F38; white-space:nowrap; }
+.report-doc .rep-scoremax { font-family:"DM Sans",sans-serif; font-size:13pt; color:#A39E92; font-weight:400; }
+.report-doc .rep-bandwrap { flex:1; }
+.report-doc .rep-pill { display:inline-block; padding:3pt 11pt; border:1.5pt solid; border-radius:20pt; font-size:8.5pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:7pt; }
+.report-doc .rep-bandtext { font-size:10pt; line-height:1.55; color:#2A3340; margin:0; }
+.report-doc .rep-section-label { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:#C18C5D; margin:0 0 9pt; padding-bottom:4pt; border-bottom:1px solid #E5E0D5; }
+.report-doc .rep-table { width:100%; border-collapse:collapse; margin-bottom:18pt; }
+.report-doc .rep-row { break-inside:avoid; }
+.report-doc .rep-row td { padding:5.5pt 0; border-bottom:1px solid #EFEBE1; vertical-align:middle; }
+.report-doc .rep-area { font-size:10pt; font-weight:600; color:#0F1F38; width:48%; }
+.report-doc .rep-anum { font-family:"Abril Fatface",Georgia,serif; font-size:10pt; color:#C9C3B6; margin-right:7pt; }
+.report-doc .rep-barcell { width:40%; padding-left:10pt; padding-right:10pt; }
+.report-doc .rep-track { background:#EAE6DC; border-radius:2pt; height:7pt; overflow:hidden; }
+.report-doc .rep-bar { height:100%; border-radius:2pt; }
+.report-doc .rep-score { text-align:right; font-size:11pt; font-weight:700; width:12%; white-space:nowrap; }
+.report-doc .rep-score-max { font-size:8pt; font-weight:400; color:#A39E92; }
+.report-doc .rep-page2 { page-break-before:always; break-before:page; }
+.report-doc .rep-focus-grid { margin-bottom:16pt; }
+.report-doc .rep-focus { break-inside:avoid; border:1px solid #E5E0D5; border-left:3pt solid #CE796B; border-radius:0 3pt 3pt 0; padding:9pt 12pt; margin-bottom:7pt; }
+.report-doc .rep-focus-rank { font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:#CE796B; margin-bottom:3pt; }
+.report-doc .rep-focus-name { font-size:11.5pt; font-weight:700; color:#0F1F38; margin-bottom:2pt; }
+.report-doc .rep-focus-score { font-size:9pt; color:#6E7682; margin-bottom:4pt; }
+.report-doc .rep-focus-read { font-size:9pt; color:#2A3340; line-height:1.45; }
+.report-doc .rep-focus-url { color:#6E7682; }
+.report-doc .rep-cta { background:#0F1F38; color:#fff; border-radius:4pt; padding:13pt 15pt; margin-bottom:13pt; break-inside:avoid; }
+.report-doc .rep-cta-h { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:14pt; color:#fff; margin-bottom:5pt; }
+.report-doc .rep-cta-p { font-size:9.5pt; line-height:1.55; color:#C9D2DE; margin:0; }
+.report-doc .rep-cta-p strong { color:#E0A870; font-weight:700; }
+.report-doc .rep-foot { border-top:1px solid #E5E0D5; padding-top:8pt; }
+.report-doc .rep-foot span { display:block; font-size:7.5pt; color:#A39E92; line-height:1.5; }
+`;
+
+/* The smart data: everything the report needs, as one JSON-serializable object. */
+function reportData() {
+  if (Object.keys(scores).length < 10) return null;
   const total = AREAS.reduce((s,a)=>s+(scores[a.id]||0),0);
   const band = getBand(total);
-  const bd = BANDS[band];
-  const date = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  return {
+    generated: new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),
+    year: new Date().getFullYear(),
+    total: total,
+    band: { key: band, label: BANDS[band].label, text: BANDS[band].text },
+    areas: AREAS.map(a => ({ num:a.num, name:a.name, score:scores[a.id]||0, cls:cls(scores[a.id]||0) })),
+    focus: [...AREAS].sort((a,b)=>(scores[a.id]||0)-(scores[b.id]||0)).slice(0,3)
+      .map((a,i)=>({ rank:i+1, name:a.name, score:scores[a.id], label:a.article.label, url:'aesopanalytics.com'+a.article.href }))
+  };
+}
+
+function reportBodyHTML(d) {
   const barColor = c => c==='low' ? '#CE796B' : c==='mid' ? '#C18C5D' : '#0F1F38';
-  const pillColor = { critical:'#CE796B', concern:'#C18C5D', stable:'#5A7090', strong:'#4A9D6E' }[band];
-
-  const rows = AREAS.map(a => {
-    const s = scores[a.id]||0, c = cls(s);
-    return `<tr class="rep-row">
+  const pillColor = { critical:'#CE796B', concern:'#C18C5D', stable:'#5A7090', strong:'#4A9D6E' }[d.band.key];
+  const rows = d.areas.map(a => `<tr class="rep-row">
       <td class="rep-area"><span class="rep-anum">${a.num}</span>${a.name}</td>
-      <td class="rep-barcell"><div class="rep-track"><div class="rep-bar" style="width:${s*10}%;background:${barColor(c)}"></div></div></td>
-      <td class="rep-score" style="color:${barColor(c)}">${s}<span class="rep-score-max">/10</span></td>
-    </tr>`;
-  }).join('');
-
-  const focus = [...AREAS].sort((a,b)=>(scores[a.id]||0)-(scores[b.id]||0)).slice(0,3).map((a,i)=>{
-    const s = scores[a.id];
-    return `<div class="rep-focus">
-      <div class="rep-focus-rank">Priority ${i+1} focus area</div>
-      <div class="rep-focus-name">${a.name}</div>
-      <div class="rep-focus-score">Current score: ${s}/10</div>
-      <div class="rep-focus-read"><strong>Recommended reading:</strong> ${a.article.label}<br><span class="rep-focus-url">aesopanalytics.com${a.article.href}</span></div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('report').innerHTML = `
+      <td class="rep-barcell"><div class="rep-track"><div class="rep-bar" style="width:${a.score*10}%;background:${barColor(a.cls)}"></div></div></td>
+      <td class="rep-score" style="color:${barColor(a.cls)}">${a.score}<span class="rep-score-max">/10</span></td>
+    </tr>`).join('');
+  const focus = d.focus.map(f => `<div class="rep-focus">
+      <div class="rep-focus-rank">Priority ${f.rank} focus area</div>
+      <div class="rep-focus-name">${f.name}</div>
+      <div class="rep-focus-score">Current score: ${f.score}/10</div>
+      <div class="rep-focus-read"><strong>Recommended reading:</strong> ${f.label}<br><span class="rep-focus-url">${f.url}</span></div>
+    </div>`).join('');
+  return `
     <div class="rep-head">
       <div class="rep-brand">${OWL_SVG}<span class="rep-wm">aesop<span class="rep-wm-an"> Analytics</span></span></div>
       <div class="rep-kicker">Reporting Trust Health Check</div>
     </div>
     <div class="rep-rule"></div>
     <h1 class="rep-title">Your reporting trust results</h1>
-    <div class="rep-meta">Self-assessment \u00b7 Generated ${date}</div>
+    <div class="rep-meta">Self-assessment \u00b7 Generated ${d.generated}</div>
     <div class="rep-scoreblock">
-      <div class="rep-scorenum">${total}<span class="rep-scoremax">/100</span></div>
+      <div class="rep-scorenum">${d.total}<span class="rep-scoremax">/100</span></div>
       <div class="rep-bandwrap">
-        <span class="rep-pill" style="color:${pillColor};border-color:${pillColor}">${bd.label}</span>
-        <p class="rep-bandtext">${bd.text}</p>
+        <span class="rep-pill" style="color:${pillColor};border-color:${pillColor}">${d.band.label}</span>
+        <p class="rep-bandtext">${d.band.text}</p>
       </div>
     </div>
     <div class="rep-section-label">Score by area</div>
     <table class="rep-table">${rows}</table>
-    <div class="rep-section-label">Your three highest-priority focus areas</div>
-    <div class="rep-focus-grid">${focus}</div>
-    <div class="rep-cta">
-      <div class="rep-cta-h">Want help interpreting these results?</div>
-      <p class="rep-cta-p">Book a free 30-minute Reporting Trust Diagnostic \u2014 bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would help. <strong>aesopanalytics.com/diagnostic</strong></p>
-    </div>
-    <div class="rep-foot">
-      <span>aesop Analytics \u2014 reporting modernization &amp; data trust consulting \u00b7 Nashville, TN</span>
-      <span>\u00a9 ${new Date().getFullYear()} Aesop Analytics \u00b7 Generated from the Reporting Trust Health Check at aesopanalytics.com/resources/health-check</span>
+    <div class="rep-page2">
+      <div class="rep-section-label">Your three highest-priority focus areas</div>
+      <div class="rep-focus-grid">${focus}</div>
+      <div class="rep-cta">
+        <div class="rep-cta-h">Want help interpreting these results?</div>
+        <p class="rep-cta-p">Book a free 30-minute Reporting Trust Diagnostic \u2014 bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would help. <strong>aesopanalytics.com/diagnostic</strong></p>
+      </div>
+      <div class="rep-foot">
+        <span>aesop Analytics \u2014 reporting modernization &amp; data trust consulting \u00b7 Nashville, TN</span>
+        <span>\u00a9 ${d.year} Aesop Analytics \u00b7 Generated from the Reporting Trust Health Check at aesopanalytics.com/resources/health-check</span>
+      </div>
     </div>`;
 }
 
+/* Fallback path (Ctrl+P / Cmd+P): in-page #report swapped in by @media print. */
+function ensureRepStyle() {
+  if (document.getElementById('rep-style')) return;
+  const st = document.createElement('style');
+  st.id = 'rep-style';
+  st.textContent = '@media print{' + REPORT_CSS + '}';
+  document.head.appendChild(st);
+}
+function buildReport() {
+  const d = reportData();
+  if (!d) return;
+  ensureRepStyle();
+  document.getElementById('report').innerHTML = reportBodyHTML(d);
+}
 window.addEventListener('beforeprint', buildReport);
+
+/* Primary path (the button): print a standalone branded two-pager from a hidden iframe. */
+function printReport() {
+  const d = reportData();
+  if (!d) { window.print(); return; }
+  const doc = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
+    + '<title>Reporting Trust Health Check \u2014 Results</title>'
+    + '<link rel="preconnect" href="https://fonts.googleapis.com">'
+    + '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+    + '<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:opsz,wght@6..72,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">'
+    + '<style>@page{margin:14mm 14mm 12mm}html,body{margin:0;padding:0;background:#fff}' + REPORT_CSS + '</style>'
+    + '</head><body><div class="report-doc" style="display:block">' + reportBodyHTML(d) + '</div></body></html>';
+  let fr = document.getElementById('print-frame');
+  if (!fr) {
+    fr = document.createElement('iframe');
+    fr.id = 'print-frame';
+    fr.setAttribute('aria-hidden','true');
+    fr.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden';
+    document.body.appendChild(fr);
+  }
+  let printed = false;
+  fr.onload = function() {
+    const w = fr.contentWindow;
+    const go = function() {
+      if (printed) return; printed = true;
+      try { w.focus(); w.print(); } catch(e) { window.print(); }
+    };
+    if (w.document.fonts && w.document.fonts.ready) {
+      w.document.fonts.ready.then(function(){ setTimeout(go, 150); });
+      setTimeout(go, 2500); /* safety net if fonts.ready stalls */
+    } else {
+      setTimeout(go, 600);
+    }
+  };
+  fr.srcdoc = doc;
+}
+
+/* Restore a saved session (so a reload never destroys a completed check). */
+(function restoreScores() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(HC_KEY) || 'null'); } catch(e) {}
+  if (!saved || typeof saved !== 'object') return;
+  Object.entries(saved).forEach(([id, val]) => {
+    if (AREAS.some(a => a.id === id) && Number.isInteger(val) && val >= 1 && val <= 10) applyPick(id, val);
+  });
+  updateProgress();
+  if (Object.keys(scores).length === 10) renderResults(false);
+})();
 </script>
 </body>
 </html>
