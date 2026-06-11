@@ -218,32 +218,6 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   </div>
 </section>
 
-<!-- SCORING GUIDE -->
-<section class="scoring">
-  <div class="wrap">
-    <div class="sec-label">Scoring guide</div>
-    <h2>What your total score means.</h2>
-    <div class="score-bands">
-      <div class="band critical">
-        <div class="band-score">10–30</div>
-        <div><div class="band-label">Critical — reporting trust is severely broken</div><div class="band-desc">Multiple foundational problems. Decisions are likely being made on data nobody fully trusts. The cost of inaction is high. A structured Reporting Clarity Assessment would identify where to start.</div></div>
-      </div>
-      <div class="band concern">
-        <div class="band-score">31–55</div>
-        <div><div class="band-label">Concern — real gaps, growing risk</div><div class="band-desc">Some areas are working, but critical gaps in definitions, ownership, or governance are creating friction. The problems are manageable now but will compound as the organization grows.</div></div>
-      </div>
-      <div class="band stable">
-        <div class="band-score">56–75</div>
-        <div><div class="band-label">Stable — functional, but room to improve</div><div class="band-desc">Reporting is working at a basic level. Targeted improvements in the lowest-scoring areas could meaningfully increase trust and decision speed without a large transformation project.</div></div>
-      </div>
-      <div class="band strong">
-        <div class="band-score">76–100</div>
-        <div><div class="band-label">Strong — mature reporting operating model</div><div class="band-desc">Your reporting environment is well-governed and trusted. Focus on continuous improvement, AI readiness, and ensuring governance scales as the organization grows.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <div class="cta">
   <h2>Want help interpreting your score?</h2>
@@ -342,6 +316,9 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
 .cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.4vw,38px); color:var(--navy); margin-bottom:16px; }
 .cta p { font-size:17px; color:var(--slate); font-weight:300; max-width:46ch; margin:0 auto 28px; line-height:1.6; }
 
+</style>
+
+<style is:global>
   /* ===== Interactive Health Check ===== */
   .area-rate { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
   .ar-rate-label { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; font-weight: 600; color: var(--slate); margin-bottom: 9px; gap: 12px; }
@@ -364,7 +341,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   .hc-jump strong { color: var(--twine); font-size: 15px; margin: 0 2px; }
 
   /* report */
-  .hc-report { margin-top: 30px; }
+  .hc-report { margin-top: 30px; scroll-margin-top: 84px; }
   .hc-report.show { animation: repIn .5s ease; }
   @keyframes repIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   .sev-critical { --acc: #CE796B; } .sev-warning { --acc: #C79A3A; } .sev-insight { --acc: #C18C5D; } .sev-positive { --acc: #5E9A82; }
@@ -413,6 +390,8 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   .rep-cta-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
   .rep-print { background: transparent; border: 1px solid rgba(255,255,255,.3); color: #D6DDE8; border-radius: 6px; padding: 12px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: border-color .15s ease, color .15s ease; }
   .rep-print:hover { border-color: #fff; color: #fff; }
+  .rep-cta .btn { display: inline-block; background: var(--twine); color: #fff; font-family: inherit; font-weight: 600; padding: 14px 26px; border-radius: 4px; font-size: 15px; text-decoration: none; transition: transform .18s, background .18s; }
+  .rep-cta .btn:hover { transform: translateY(-2px); background: var(--sepia); }
 
   @media (max-width: 720px) {
     .rep-patterns { grid-template-columns: 1fr; }
@@ -431,6 +410,11 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
     .rep-pattern, .rep-diagnosis, .rep-cta, .rep-scorecard { break-inside: avoid; }
     .rep-cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  /* slider sits full-width beneath the card text */
+  .area-card { flex-wrap: wrap; }
+  .area-body { flex: 1 1 auto; min-width: 0; }
+  .area-rate { flex-basis: 100%; }
 </style>
 
 <script>
