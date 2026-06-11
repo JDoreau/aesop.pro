@@ -48,6 +48,7 @@ export const sections: Section[] = [
     heading: "Pillar 1 — Reporting Trust",
     pillar: "reporting-trust",
     rows: [
+      { slug: "who-finds-the-error", cat: "reporting-trust", title: "Who finds the error matters more than the error", desc: "The same mistake costs minutes at the builder's desk and credibility in the boardroom. Data quality isn't a purity contest — it's a question of where errors get caught, and three capabilities decide the answer.", pill: "Reporting Trust", time: "6 min" },
       { slug: "why-reports-dont-match", cat: "reporting-trust", title: "Why your reports don't match", desc: "Two reports, same metric, different numbers — and it's almost never a data error. The five real reasons reports disagree, and the decision that fixes it.", pill: "Reporting Trust", time: "6 min" },
       { slug: "dashboards-not-trusted", cat: "reporting-trust", title: "Why your dashboards are not trusted even when the data is correct", desc: "Dashboard distrust is an ownership, definition, and process problem — not a data accuracy problem. The fix is different than you think.", pill: "Reporting Trust", time: "6 min" },
     ],
