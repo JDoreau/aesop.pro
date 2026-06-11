@@ -13,15 +13,16 @@ interface Props {
   path?: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogType?: string;
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
-const { title, description, path, ogTitle, ogDescription, noindex, schema } = Astro.props;
+const { title, description, path, ogTitle, ogDescription, ogType, noindex, schema } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <Seo title={title} description={description} path={path} ogTitle={ogTitle} ogDescription={ogDescription} noindex={noindex} schema={schema} />
+    <Seo title={title} description={description} path={path} ogTitle={ogTitle} ogDescription={ogDescription} ogType={ogType} noindex={noindex} schema={schema} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

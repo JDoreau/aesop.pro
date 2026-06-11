@@ -1,22 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reporting Trust Health Check — Aesop Analytics</title>
-<meta name="description" content="Score your reporting environment across 10 diagnostic areas. Understand exactly where trust is breaking down — and get a prioritized action plan.">
-<meta property="og:title" content="Reporting Trust Health Check — Aesop Analytics">
-<meta property="og:description" content="10 areas, 30 signal questions, a personalized score. Free — no email required.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aesopanalytics.com/resources/health-check">
-<link rel="canonical" href="https://aesopanalytics.com/resources/health-check">
-<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/shared.css">
-<link rel="stylesheet" href="/core.css">
-<style>
+---
+// /resources/health-check — the Reporting Trust Health Check (interactive).
+// Migrated from public/resources/health-check/index.html (legacy static
+// HTML) into the Astro system: BaseLayout supplies head/Seo/GA4/Nav/Footer;
+// this page keeps its own content, styles, scoring engine, localStorage
+// persistence, and the branded print/PDF report (buildReport injects its
+// own report markup + styles at print time — preserve exactly).
+// is:inline script + is:global styles for the same reasons as
+// dashboard-audit.astro: global onclick handlers and runtime-created DOM.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout
+  title="Reporting Trust Health Check — Aesop Analytics"
+  description="Score your reporting environment across 10 diagnostic areas. Understand exactly where trust is breaking down — and get a prioritized action plan."
+  ogTitle="Reporting Trust Health Check — Aesop Analytics"
+  ogDescription="10 areas, 30 signal questions, a personalized score. Free — no email required."
+  path="/resources/health-check"
+>
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="eyebrow">Free resource · No email required</div>
+      <h1>Reporting Trust<br>Health Check</h1>
+      <p>Score your organization across 10 diagnostic areas. When all 10 are scored, your personalized results — including the three highest-priority focus areas — will appear automatically.</p>
+      <div class="hero-meta">
+        <span class="hm-item">10 areas</span>
+        <span class="hm-item">30 signal questions</span>
+        <span class="hm-item">~15 minutes</span>
+      </div>
+    </div>
+    <div class="preview-card" aria-hidden="true">
+      <div class="pc-label">Example results preview</div>
+      <div class="pc-row">
+        <span class="pc-name">KPI Definitions</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:20%;background:var(--contessa)"></div></div>
+        <span class="pc-score" style="color:var(--contessa)">2</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Data Source Clarity</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:30%;background:var(--contessa)"></div></div>
+        <span class="pc-score" style="color:var(--contessa)">3</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Report Ownership</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:50%;background:var(--twine)"></div></div>
+        <span class="pc-score" style="color:var(--twine)">5</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Dashboard Usage</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:40%;background:var(--twine)"></div></div>
+        <span class="pc-score" style="color:var(--twine)">4</span>
+      </div>
+      <div class="pc-row">
+        <span class="pc-name">Governance</span>
+        <div class="pc-bar-wrap"><div class="pc-bar" style="width:70%;background:var(--navy-mist)"></div></div>
+        <span class="pc-score" style="color:var(--navy-mist)">7</span>
+      </div>
+      <div class="pc-note">Illustrative — your scores will differ</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS BAR -->
+<div class="prog" id="prog">
+  <div class="prog-in">
+    <span class="prog-label">Progress</span>
+    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+    <span class="prog-count" id="prog-count">0 of 10 scored</span>
+    <a href="#results" class="prog-cta" id="prog-cta">View your results ↓</a>
+  </div>
+</div>
+
+<!-- INSTRUCTIONS -->
+<div class="instructions">
+  <h2 class="instr-head">Score each area 1–10.</h2>
+  <p class="instr-body">Read the signal questions for each area and rate your organization honestly. There are no right answers — the value is in the gaps between where you are and where you need to be.</p>
+  <div class="score-legend">
+    <div class="sl-item"><div class="sl-swatch" style="background:var(--contessa)"></div>1–3 · Broken or not in place</div>
+    <div class="sl-item"><div class="sl-swatch" style="background:var(--twine)"></div>4–6 · Partial or inconsistent</div>
+    <div class="sl-item"><div class="sl-swatch" style="background:var(--navy)"></div>7–10 · Functioning well</div>
+  </div>
+</div>
+
+<!-- AREA CARDS (generated by JS) -->
+<div class="area-grid" id="area-grid" role="group" aria-label="Scoring areas"></div>
+
+<!-- RESULTS -->
+<section id="results" aria-live="polite">
+  <div class="results-in">
+    <div class="res-eyebrow">Your results</div>
+    <div class="results-top">
+      <!-- Score panel -->
+      <div class="score-panel">
+        <div><span class="score-num" id="score-num">0</span><span class="score-cap">&thinsp;/100</span></div>
+        <div><span class="band-pill" id="band-pill"></span></div>
+        <p class="band-text" id="band-text"></p>
+      </div>
+      <!-- Breakdown panel -->
+      <div>
+        <div class="breakdown-head">Score by area</div>
+        <div id="breakdown"></div>
+      </div>
+    </div>
+    <!-- Focus areas -->
+    <div class="focus-head">Your three highest-priority focus areas</div>
+    <div class="focus-grid" id="focus-grid"></div>
+  </div>
+  <!-- CTA -->
+  <div class="res-cta">
+    <h2>Want help interpreting these results?</h2>
+    <p>A free 30-minute Reporting Trust Diagnostic — bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would be useful.</p>
+    <a href="/diagnostic" class="btn">Book a free diagnostic call →</a>
+    <a href="/resources" class="btn ghost">Back to Resources</a>
+    <br>
+    <span class="print-btn" onclick="printReport()">⊞ Save or print your report (PDF)</span>
+    <span class="reset-btn" onclick="resetAssessment()">↺ Start over</span>
+  </div>
+</section>
+
+<!-- PRINT REPORT — populated from result data, shown only when printing -->
+<div id="report" class="report-doc" aria-hidden="true"></div>
+</BaseLayout>
+
+<!-- is:global: the engine creates score rows, results, and the print
+     report at runtime; runtime DOM never gets Astro's scope attribute. -->
+<style is:global>
   /* Page-specific styles */
 
 
@@ -187,183 +294,16 @@
 
     body.hc-complete .report-doc { display:block !important; }
   }
-  /* ANALYTICS optically centered on the x-height of "aesop" (brand revisit 2026-06) */
-  .logo .an { transform:translateY(3px); }
-  .foot-brand .an { transform:translateY(2.5px); }
+  /* ── Buttons — recovered from legacy core.css (removed in a91a230 while
+     this page still linked it; the live legacy page has been rendering
+     unstyled buttons since). Only the variants this page uses. ── */
+  .btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.03em; padding:15px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
+  .btn:hover { transform:translateY(-2px); background:var(--sepia); }
+  .btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); margin-left:10px; }
+  .btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; transform:translateY(-2px); }
 </style>
-</head>
-<body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-in">
-    <a href="/" class="logo"><svg class="logo-mark" viewBox="0 0 192 192" height="34" width="34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#0F1F38" stroke="#0F1F38" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an">Analytics</span></a>
-    <div class="nav-links">
-      <a href="/services">Services</a>
-      <a href="/work">Work</a>
-      <a href="/assessment" class="nav-accent">Assessment</a>
-      <a href="/insights">Insights</a>
-      <a href="/resources">Resources</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </div>
-    <a href="/diagnostic" class="nav-cta">Book a diagnostic</a>
-    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="/services" onclick="closeMob()">Services</a>
-  <a href="/work" onclick="closeMob()">Work</a>
-  <a href="/assessment" class="mob-accent" onclick="closeMob()">Assessment</a>
-  <a href="/insights" onclick="closeMob()">Insights</a>
-  <a href="/resources" onclick="closeMob()">Resources</a>
-  <a href="/about" onclick="closeMob()">About</a>
-  <a href="/contact" onclick="closeMob()">Contact</a>
-  <a href="/diagnostic" class="mob-cta" onclick="closeMob()">Book a diagnostic</a>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-in">
-    <div>
-      <div class="eyebrow">Free resource · No email required</div>
-      <h1>Reporting Trust<br>Health Check</h1>
-      <p>Score your organization across 10 diagnostic areas. When all 10 are scored, your personalized results — including the three highest-priority focus areas — will appear automatically.</p>
-      <div class="hero-meta">
-        <span class="hm-item">10 areas</span>
-        <span class="hm-item">30 signal questions</span>
-        <span class="hm-item">~15 minutes</span>
-      </div>
-    </div>
-    <div class="preview-card" aria-hidden="true">
-      <div class="pc-label">Example results preview</div>
-      <div class="pc-row">
-        <span class="pc-name">KPI Definitions</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:20%;background:var(--contessa)"></div></div>
-        <span class="pc-score" style="color:var(--contessa)">2</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Data Source Clarity</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:30%;background:var(--contessa)"></div></div>
-        <span class="pc-score" style="color:var(--contessa)">3</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Report Ownership</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:50%;background:var(--twine)"></div></div>
-        <span class="pc-score" style="color:var(--twine)">5</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Dashboard Usage</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:40%;background:var(--twine)"></div></div>
-        <span class="pc-score" style="color:var(--twine)">4</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Governance</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:70%;background:var(--navy-mist)"></div></div>
-        <span class="pc-score" style="color:var(--navy-mist)">7</span>
-      </div>
-      <div class="pc-note">Illustrative — your scores will differ</div>
-    </div>
-  </div>
-</section>
-
-<!-- PROGRESS BAR -->
-<div class="prog" id="prog">
-  <div class="prog-in">
-    <span class="prog-label">Progress</span>
-    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
-    <span class="prog-count" id="prog-count">0 of 10 scored</span>
-    <a href="#results" class="prog-cta" id="prog-cta">View your results ↓</a>
-  </div>
-</div>
-
-<!-- INSTRUCTIONS -->
-<div class="instructions">
-  <h2 class="instr-head">Score each area 1–10.</h2>
-  <p class="instr-body">Read the signal questions for each area and rate your organization honestly. There are no right answers — the value is in the gaps between where you are and where you need to be.</p>
-  <div class="score-legend">
-    <div class="sl-item"><div class="sl-swatch" style="background:var(--contessa)"></div>1–3 · Broken or not in place</div>
-    <div class="sl-item"><div class="sl-swatch" style="background:var(--twine)"></div>4–6 · Partial or inconsistent</div>
-    <div class="sl-item"><div class="sl-swatch" style="background:var(--navy)"></div>7–10 · Functioning well</div>
-  </div>
-</div>
-
-<!-- AREA CARDS (generated by JS) -->
-<div class="area-grid" id="area-grid" role="group" aria-label="Scoring areas"></div>
-
-<!-- RESULTS -->
-<section id="results" aria-live="polite">
-  <div class="results-in">
-    <div class="res-eyebrow">Your results</div>
-    <div class="results-top">
-      <!-- Score panel -->
-      <div class="score-panel">
-        <div><span class="score-num" id="score-num">0</span><span class="score-cap">&thinsp;/100</span></div>
-        <div><span class="band-pill" id="band-pill"></span></div>
-        <p class="band-text" id="band-text"></p>
-      </div>
-      <!-- Breakdown panel -->
-      <div>
-        <div class="breakdown-head">Score by area</div>
-        <div id="breakdown"></div>
-      </div>
-    </div>
-    <!-- Focus areas -->
-    <div class="focus-head">Your three highest-priority focus areas</div>
-    <div class="focus-grid" id="focus-grid"></div>
-  </div>
-  <!-- CTA -->
-  <div class="res-cta">
-    <h2>Want help interpreting these results?</h2>
-    <p>A free 30-minute Reporting Trust Diagnostic — bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would be useful.</p>
-    <a href="/diagnostic" class="btn">Book a free diagnostic call →</a>
-    <a href="/resources" class="btn ghost">Back to Resources</a>
-    <br>
-    <span class="print-btn" onclick="printReport()">⊞ Save or print your report (PDF)</span>
-    <span class="reset-btn" onclick="resetAssessment()">↺ Start over</span>
-  </div>
-</section>
-
-<!-- PRINT REPORT — populated from result data, shown only when printing -->
-<div id="report" class="report-doc" aria-hidden="true"></div>
-
-<footer>
-  <div class="foot-in">
-    <div>
-      <div class="foot-brand"><svg class="logo-mark" viewBox="0 0 192 192" height="28" width="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path fill="#FBFAF5" stroke="#FBFAF5" stroke-width="0.3" stroke-miterlimit="10" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg><span class="nm">aesop</span><span class="an"> Analytics</span></div>
-      <div class="foot-tagline">Reporting modernization &amp; data trust consulting.</div>
-    </div>
-    <div class="foot-col">
-      <h4>Services</h4>
-      <a href="/assessment">Reporting Clarity Assessment</a>
-      <a href="/services#sprint">Modernization Sprint</a>
-      <a href="/services#governance">Governance Kit</a>
-      <a href="/services#retainer">Fractional Retainer</a>
-    </div>
-    <div class="foot-col">
-      <h4>Content</h4>
-      <a href="/insights">Insights &amp; Studies</a>
-      <a href="/resources">Free Resources</a>
-    </div>
-    <div class="foot-col">
-      <h4>Company</h4>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-      <a href="mailto:doreau.jonathan@gmail.com">Email Jonathan</a>
-      <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
-  <div class="foot-legal">Nashville, TN · doreau.jonathan@gmail.com · © 2026 Aesop Analytics. All rights reserved.</div>
-</footer>
-
-<script>
-/* ─── Mobile menu ─── */
-const ham = document.getElementById('ham'), mob = document.getElementById('mobile-menu');
-ham.addEventListener('click', () => mob.classList.toggle('open'));
-ham.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') mob.classList.toggle('open'); });
-function closeMob() { mob.classList.remove('open'); }
-document.addEventListener('click', e => { if(!ham.contains(e.target)&&!mob.contains(e.target)) mob.classList.remove('open'); });
-
+<script is:inline>
 /* ─── Area definitions ─── */
 const AREAS = [
   {
@@ -637,12 +577,6 @@ function resetAssessment() {
   window.scrollTo({ top:0, behavior:'smooth' });
 }
 
-/* \u2500\u2500\u2500 Branded report (print / PDF) \u2500\u2500\u2500
-   Architecture: reportData() serializes the result to JSON; reportBodyHTML()
-   renders the branded two-pager from that data. Primary path (the button) prints
-   a standalone document in a hidden iframe \u2014 fully decoupled from this page's CSS.
-   Fallback path (Ctrl+P / Cmd+P) swaps the in-page #report via @media print. */
-const OWL_SVG = `<svg viewBox="0 0 192 192" height="26" width="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0F1F38" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg>`;
 /* ===================== EMBEDDED-DOC REGION: START =====================
    Everything between these fences builds a COMPLETE standalone HTML print
    document inside JS strings, injected into a hidden iframe via srcdoc.
@@ -654,6 +588,12 @@ const OWL_SVG = `<svg viewBox="0 0 192 192" height="26" width="26" xmlns="http:/
       in sync with src/styles/tokens.css by hand.
    See CLAUDE.md -> Danger zones #1.
    ======================================================================= */
+/* \u2500\u2500\u2500 Branded report (print / PDF) \u2500\u2500\u2500
+   Architecture: reportData() serializes the result to JSON; reportBodyHTML()
+   renders the branded two-pager from that data. Primary path (the button) prints
+   a standalone document in a hidden iframe \u2014 fully decoupled from this page's CSS.
+   Fallback path (Ctrl+P / Cmd+P) swaps the in-page #report via @media print. */
+const OWL_SVG = `<svg viewBox="0 0 192 192" height="26" width="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0F1F38" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg>`;
 
 const REPORT_CSS = `
 .report-doc { color:#2A3340; font-family:"DM Sans",-apple-system,Helvetica,Arial,sans-serif; font-size:10.5pt; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -824,5 +764,3 @@ function printReport() {
   if (Object.keys(scores).length === 10) renderResults(false);
 })();
 </script>
-</body>
-</html>
