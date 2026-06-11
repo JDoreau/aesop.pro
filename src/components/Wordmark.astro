@@ -1,0 +1,59 @@
+---
+// Wordmark.astro — THE lockup: owl + Abril "aesop" + DM Sans "ANALYTICS".
+// One source for sizes, colors, and the measured optical nudges.
+//
+// ANALYTICS is optically centered on the x-height of "aesop" — Abril's `p`
+// descender skews naive flex centering, so each variant carries a measured
+// translateY (see CLAUDE.md → Brand facts). Re-measure if sizes change;
+// do not remove the nudges.
+//
+// Variants:
+//   nav            — site header (BaseLayout pages)
+//   footer         — site footer (dark navy background)
+//   article-nav    — compact article header (ArticleLayout)
+//   article-footer — compact article footer (dark, twine owl)
+import OwlMark from "./OwlMark.astro";
+
+type Variant = "nav" | "footer" | "article-nav" | "article-footer";
+interface Props { variant?: Variant; href?: string; }
+const { variant = "nav", href } = Astro.props;
+
+const V: Record<Variant, {
+  owl: number; body: string; eyes: string;
+  nm: number; nmColor: string;
+  an: number; anWeight: number; ls: string;
+  nudge: number; gap: number;
+}> = {
+  "nav":            { owl: 30, body: "var(--navy)",  eyes: "var(--twine)", nm: 22, nmColor: "var(--navy)", an: 10,   anWeight: 600, ls: ".34em", nudge: 3,    gap: 7 },
+  "footer":         { owl: 30, body: "#fff",         eyes: "var(--twine)", nm: 21, nmColor: "#D6DDE8",     an: 10,   anWeight: 600, ls: ".32em", nudge: 2.5,  gap: 6 },
+  "article-nav":    { owl: 30, body: "var(--navy)",  eyes: "var(--twine)", nm: 21, nmColor: "var(--navy)", an: 11,   anWeight: 700, ls: ".34em", nudge: 2.75, gap: 8 },
+  "article-footer": { owl: 28, body: "var(--twine)", eyes: "#FBFAF5",      nm: 21, nmColor: "#D6DDE8",     an: 10.5, anWeight: 700, ls: ".32em", nudge: 2.5,  gap: 8 },
+};
+const v = V[variant];
+const Tag = href ? "a" : "div";
+const vars = [
+  `--wm-gap:${v.gap}px`, `--wm-nm:${v.nm}px`, `--wm-nm-color:${v.nmColor}`,
+  `--wm-an:${v.an}px`, `--wm-an-weight:${v.anWeight}`, `--wm-an-ls:${v.ls}`,
+  `--wm-nudge:${v.nudge}px`,
+].join(";");
+---
+<Tag href={href} class="wm" style={vars}>
+  <OwlMark size={v.owl} body={v.body} eyes={v.eyes} />
+  <span class="nm">aesop</span><span class="an">Analytics</span>
+</Tag>
+
+<style>
+  .wm { display:flex; align-items:center; gap:var(--wm-gap); flex-shrink:0; text-decoration:none; }
+  .wm .nm { font-family:"Abril Fatface",serif; font-size:var(--wm-nm); color:var(--wm-nm-color); }
+  .wm .an {
+    font-family:"DM Sans",sans-serif;
+    font-weight:var(--wm-an-weight);
+    letter-spacing:var(--wm-an-ls);
+    font-size:var(--wm-an);
+    text-transform:uppercase;
+    color:var(--twine);
+    align-self:center;
+    /* Optical centering against the x-height of "aesop" — measured, do not remove. */
+    transform:translateY(var(--wm-nudge));
+  }
+</style>

@@ -27,9 +27,6 @@ nav {
   border-bottom:1px solid var(--rule);
 }
 .nav-in { max-width:1080px; margin:0 auto; padding:0 32px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-.brand { display:flex; align-items:baseline; gap:8px; text-decoration:none; }
-.brand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:var(--navy); }
-.brand .an { font-family:"DM Sans",sans-serif; font-weight:700; letter-spacing:.34em; font-size:11px; text-transform:uppercase; color:var(--twine); align-self:center; transform:translateY(2.75px); }
 .site-links { display:flex; gap:20px; font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
 .site-links a { color:var(--slate); transition:color .18s; text-decoration:none; white-space:nowrap; }
 .site-links a:hover { color:var(--navy); }
@@ -79,9 +76,6 @@ em { font-style:italic; }
 /* ── Compact article footer ── */
 footer.site { background:var(--navy); color:#8A9FB8; margin-top:72px; padding:44px 0; }
 footer .fin { max-width:740px; margin:0 auto; padding:0 28px; display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; }
-footer .fbrand { display:flex; align-items:baseline; gap:8px; }
-footer .fbrand .nm { font-family:"Abril Fatface",serif; font-size:21px; color:#D6DDE8; }
-footer .fbrand .an { font-family:"DM Sans",sans-serif; font-weight:700; letter-spacing:.32em; font-size:10.5px; text-transform:uppercase; color:var(--twine); align-self:center; transform:translateY(2.5px); }
 footer .fmoral { font-style:italic; font-size:14px; color:#4A6070; }
 footer .fback { font-size:13px; font-weight:600; color:var(--twine); text-decoration:none; }
 footer .fback:hover { color:#d49a68; }
