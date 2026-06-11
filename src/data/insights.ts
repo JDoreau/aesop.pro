@@ -13,7 +13,6 @@ export interface Row {
 }
 export interface Section {
   heading: string;
-  count: string;  // label text shown next to the heading
   pillar: string; // data-pillar
   rows: Row[];
 }
@@ -29,7 +28,7 @@ export const pillarButtons: { cat: string; label: string }[] = [
   { cat: "all", label: "All" },
   { cat: "reporting-trust", label: "Reporting Trust" },
   { cat: "kpi", label: "KPI Definitions" },
-  { cat: "modernization", label: "Modernization" },
+  { cat: "modernization", label: "Dashboard Design" },
   { cat: "governance", label: "Governance" },
   { cat: "ai-readiness", label: "AI Readiness" },
   { cat: "field-study", label: "Field Studies" },
@@ -47,16 +46,13 @@ export const featured = {
 export const sections: Section[] = [
   {
     heading: "Pillar 1 — Reporting Trust",
-    count: "2 articles",
     pillar: "reporting-trust",
     rows: [
       { slug: "dashboards-not-trusted", cat: "reporting-trust", title: "Why your dashboards are not trusted even when the data is correct", desc: "Dashboard distrust is an ownership, definition, and process problem — not a data accuracy problem. The fix is different than you think.", pill: "Reporting Trust", time: "6 min" },
-      { slug: "reporting-not-dashboard-redesign", cat: "modernization", title: "Reporting modernization is not a dashboard redesign", desc: "The dashboard is the last 10% of the problem. Most organizations start there — and wonder why the project didn't work.", pill: "Modernization", time: "7 min" },
     ],
   },
   {
     heading: "Pillar 2 — KPI Definitions",
-    count: "3 articles",
     pillar: "kpi",
     rows: [
       { slug: "kpi-dictionary", cat: "kpi", title: "How to build a KPI dictionary", desc: "What goes in it, how to structure it, and how to make it stick — including a complete example entry for MRR.", pill: "KPI Definitions", time: "7 min" },
@@ -65,17 +61,18 @@ export const sections: Section[] = [
     ],
   },
   {
-    heading: "Pillar 5 — AI Readiness",
-    count: "1 article",
-    pillar: "ai-readiness",
+    heading: "Pillar 3 — Dashboard Design",
+    pillar: "modernization",
     rows: [
-      { slug: "ai-readiness-trusted-metrics", cat: "ai-readiness", title: "AI readiness starts with trusted metrics", desc: "AI doesn't fix reporting chaos. It inherits it — and makes it sound authoritative. The data foundation every AI initiative actually needs.", pill: "AI Readiness", time: "6 min" },
-      { slug: "bad-reporting-blocks-ai", cat: "ai-readiness", title: "Why bad reporting blocks AI adoption", desc: "Your AI initiative isn't blocked by the AI. It's blocked by fragmented sources, undefined metrics, and unowned KPIs — and a pre-flight checklist to fix it.", pill: "AI Readiness", time: "6 min" },
+      { slug: "reporting-not-dashboard-redesign", cat: "modernization", title: "Reporting modernization is not a dashboard redesign", desc: "The dashboard is the last 10% of the problem. Most organizations start there — and wonder why the project didn't work.", pill: "Modernization", time: "7 min" },
+      { slug: "what-belongs-on-a-dashboard", cat: "modernization", title: "What belongs on a dashboard", desc: "A dashboard is a claim about what matters, not a warehouse of everything available. A framework for deciding what earns a place on screen.", pill: "Design", time: "8 min" },
+      { slug: "what-chart-to-choose", cat: "modernization", title: "How to choose the right chart", desc: "Chart choice is a question about the relationship in your data. A decision framework for the six relationships that show up in business dashboards — and the common choices that quietly fail.", pill: "Design", time: "9 min" },
+      { slug: "dashboard-design-basics", cat: "modernization", title: "Dashboard design, the basics", desc: "Grid, spacing, hierarchy, typography, and color — the five principles that separate dashboards people use from ones they ignore.", pill: "Design", time: "6 min" },
+      { slug: "gestalt-perception", cat: "modernization", title: "Gestalt & perception in dashboard design", desc: "Seven Gestalt principles, eye-scan patterns, and why the Invisible Gorilla experiment matters for layout.", pill: "Design", time: "7 min" },
     ],
   },
   {
     heading: "Pillar 4 — Data Governance & Strategy",
-    count: "2 articles",
     pillar: "governance",
     rows: [
       { slug: "data-strategy", cat: "governance", title: "Data strategy before data tools", desc: "Why the plan has to come before the platform — the seven components, the four questions, and where initiatives fail.", pill: "Governance", time: "7 min" },
@@ -84,19 +81,15 @@ export const sections: Section[] = [
     ],
   },
   {
-    heading: "Pillar 3 — Dashboard Design",
-    count: "4 articles",
-    pillar: "modernization",
+    heading: "Pillar 5 — AI Readiness",
+    pillar: "ai-readiness",
     rows: [
-      { slug: "what-belongs-on-a-dashboard", cat: "modernization", title: "What belongs on a dashboard", desc: "A dashboard is a claim about what matters, not a warehouse of everything available. A framework for deciding what earns a place on screen.", pill: "Design", time: "8 min" },
-      { slug: "what-chart-to-choose", cat: "modernization", title: "How to choose the right chart", desc: "Chart choice is a question about the relationship in your data. A decision framework for the six relationships that show up in business dashboards — and the common choices that quietly fail.", pill: "Design", time: "9 min" },
-      { slug: "dashboard-design-basics", cat: "modernization", title: "Dashboard design, the basics", desc: "Grid, spacing, hierarchy, typography, and color — the five principles that separate dashboards people use from ones they ignore.", pill: "Design", time: "6 min" },
-      { slug: "gestalt-perception", cat: "modernization", title: "Gestalt & perception in dashboard design", desc: "Seven Gestalt principles, eye-scan patterns, and why the Invisible Gorilla experiment matters for layout.", pill: "Design", time: "7 min" },
+      { slug: "ai-readiness-trusted-metrics", cat: "ai-readiness", title: "AI readiness starts with trusted metrics", desc: "AI doesn't fix reporting chaos. It inherits it — and makes it sound authoritative. The data foundation every AI initiative actually needs.", pill: "AI Readiness", time: "6 min" },
+      { slug: "bad-reporting-blocks-ai", cat: "ai-readiness", title: "Why bad reporting blocks AI adoption", desc: "Your AI initiative isn't blocked by the AI. It's blocked by fragmented sources, undefined metrics, and unowned KPIs — and a pre-flight checklist to fix it.", pill: "AI Readiness", time: "6 min" },
     ],
   },
   {
     heading: "Field Studies — Economics & Data",
-    count: "3 studies",
     pillar: "field-study",
     rows: [
       { slug: "corporate-profits-inflation", cat: "field-study", title: "Did corporate profits drive post-COVID inflation?", desc: "Profits accounted for 54% of price growth vs. 11% historically. What the BEA data says — and what it doesn't.", pill: "Field Study", time: "8 min" },
@@ -105,11 +98,17 @@ export const sections: Section[] = [
   },
 ];
 
-export const sidebarPillars: { label: string; cat: string; count: number }[] = [
-  { label: "KPI Definitions", cat: "kpi", count: 3 },
-  { label: "Reporting Trust", cat: "reporting-trust", count: 3 },
-  { label: "Dashboard Modernization", cat: "modernization", count: 3 },
-  { label: "Governance & Strategy", cat: "governance", count: 3 },
-  { label: "AI Readiness", cat: "ai-readiness", count: 2 },
-  { label: "Field Studies", cat: "field-study", count: 3 },
-];
+// The sidebar lists exactly the five numbered pillars (the Field Studies stream
+// stays in the filter row above). Labels come from this map; counts are derived
+// from the sections, so the numbers shown can never drift from the articles.
+const PILLAR_LABELS: Record<string, string> = {
+  "reporting-trust": "Reporting Trust",
+  "kpi": "KPI Definitions",
+  "modernization": "Dashboard Design",
+  "governance": "Governance & Strategy",
+  "ai-readiness": "AI Readiness",
+};
+export const sidebarPillars: { label: string; cat: string; count: number }[] =
+  sections
+    .filter((s) => s.pillar !== "field-study")
+    .map((s) => ({ label: PILLAR_LABELS[s.pillar], cat: s.pillar, count: s.rows.length }));
