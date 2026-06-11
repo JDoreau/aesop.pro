@@ -65,6 +65,7 @@ export const sections: Section[] = [
     heading: "Pillar 3 — Dashboard Design",
     pillar: "modernization",
     rows: [
+      { slug: "manual-reporting-trap", cat: "modernization", title: "The manual reporting trap", desc: "Analysts spend their weeks assembling reports instead of analyzing them — and the cost is five costs, not one. How to measure the burden in a week, and why the fix order is retire, consolidate, then automate.", pill: "Modernization", time: "7 min" },
       { slug: "reporting-not-dashboard-redesign", cat: "modernization", title: "Reporting modernization is not a dashboard redesign", desc: "The dashboard is the last 10% of the problem. Most organizations start there — and wonder why the project didn't work.", pill: "Modernization", time: "7 min" },
       { slug: "what-belongs-on-a-dashboard", cat: "modernization", title: "What belongs on a dashboard", desc: "A dashboard is a claim about what matters, not a warehouse of everything available. A framework for deciding what earns a place on screen.", pill: "Design", time: "8 min" },
       { slug: "what-chart-to-choose", cat: "modernization", title: "How to choose the right chart", desc: "Chart choice is a question about the relationship in your data. A decision framework for the six relationships that show up in business dashboards — and the common choices that quietly fail.", pill: "Design", time: "9 min" },
