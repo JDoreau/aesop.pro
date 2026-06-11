@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/check.mjs && astro build", "check": "node scripts/check.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
