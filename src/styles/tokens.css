@@ -7,7 +7,17 @@
      DM Sans      → body / UI
      Abril Fatface → display accents (the "aesop" wordmark, big numerals)
    Font families are still set per-rule in component styles (matching your
-   current site); tokenizing them is an optional later cleanup. */
+   current site); tokenizing them is an optional later cleanup.
+
+   Brand ratification (revisit, 2026-06):
+     - The owl is the ONE logo everywhere a logo is expected (nav, footers,
+       favicon, social). Wordmark stays Abril Fatface, with ANALYTICS
+       optically centered on the x-height via small translateY nudges.
+     - The ae ligature is an editorial flourish only (insights row markers,
+       article callout watermarks) - never a lockup, favicon, or social mark.
+     - Abril Fatface roles: wordmark, big numerals, faint hero watermarks,
+       article display headings. Nothing else.
+     - Deck palm greens stay retired; navy owns the deep authoritative role. */
 :root {
   --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;
   --muted:#5A6775; --slate:#495867; --cream:#F3EFE6;
@@ -15,4 +25,7 @@
   --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555;
   --navy-foot:#08111F; --navy-mist:#D6DDE8;
   --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; --apple:#B35546;
+  /* Semantic status colors — formalized from the health checks & branded reports
+     (brand revisit 2026-06). Use these, never raw hexes, for score/status UI. */
+  --good:#5E9A82; --warn:#D4A844; --info:#5A7090;
 }
