@@ -176,11 +176,74 @@
   @media(max-width:760px){ }
   @media(max-width:460px){ }
 
+  /* ── PRINT REPORT (purpose-built; hidden on screen, shown only when printing) ── */
+  .report-doc { display:none; }
+
   @media print {
-    nav, .prog, footer, .res-cta .btn, .print-btn, .reset-btn { display:none!important; }
-    #results { background:#fff!important; color:var(--ink)!important; }
-    .score-num, .band-text, .bd-name, .bd-score, .fc-name, .fc-rank, .fc-score, .fc-link, .breakdown-head, .focus-head, .res-eyebrow { color:var(--ink)!important; }
-    .score-num { color:var(--navy)!important; font-size:72pt; }
+    /* Only swap to the report once the check is complete; otherwise normal page print. */
+    body.hc-complete nav,
+    body.hc-complete .mobile-menu,
+    body.hc-complete .prog,
+    body.hc-complete .hero,
+    body.hc-complete .instructions,
+    body.hc-complete .area-grid,
+    body.hc-complete #results,
+    body.hc-complete footer { display:none !important; }
+
+    @page { margin:14mm 14mm 12mm; }
+    body.hc-complete { background:#fff !important; }
+
+    body.hc-complete .report-doc {
+      display:block !important;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      color:#2A3340; font-family:"DM Sans",-apple-system,Helvetica,Arial,sans-serif;
+      font-size:10.5pt; line-height:1.5;
+    }
+
+    .report-doc .rep-head { display:flex; justify-content:space-between; align-items:center; }
+    .report-doc .rep-brand { display:flex; align-items:center; gap:8px; }
+    .report-doc .rep-wm { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:15pt; color:#0F1F38; letter-spacing:-.01em; }
+    .report-doc .rep-wm-an { color:#C18C5D; }
+    .report-doc .rep-kicker { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:#C18C5D; }
+    .report-doc .rep-rule { height:2px; background:#0F1F38; margin:10pt 0 13pt; }
+    .report-doc .rep-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:25pt; color:#0F1F38; margin:0 0 3pt; letter-spacing:-.01em; }
+    .report-doc .rep-meta { font-size:9pt; color:#6E7682; margin:0 0 17pt; }
+
+    .report-doc .rep-scoreblock { display:flex; gap:20pt; align-items:flex-start; padding:13pt 15pt; background:#FBFAF5; border:1px solid #E5E0D5; border-radius:4pt; margin-bottom:17pt; break-inside:avoid; }
+    .report-doc .rep-scorenum { font-family:"Abril Fatface",Georgia,serif; font-size:44pt; line-height:.85; color:#0F1F38; white-space:nowrap; }
+    .report-doc .rep-scoremax { font-family:"DM Sans",sans-serif; font-size:13pt; color:#A39E92; font-weight:400; }
+    .report-doc .rep-bandwrap { flex:1; }
+    .report-doc .rep-pill { display:inline-block; padding:3pt 11pt; border:1.5pt solid; border-radius:20pt; font-size:8.5pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:7pt; }
+    .report-doc .rep-bandtext { font-size:10pt; line-height:1.55; color:#2A3340; margin:0; }
+
+    .report-doc .rep-section-label { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:#C18C5D; margin:0 0 9pt; padding-bottom:4pt; border-bottom:1px solid #E5E0D5; }
+
+    .report-doc .rep-table { width:100%; border-collapse:collapse; margin-bottom:18pt; }
+    .report-doc .rep-row { break-inside:avoid; }
+    .report-doc .rep-row td { padding:5.5pt 0; border-bottom:1px solid #EFEBE1; vertical-align:middle; }
+    .report-doc .rep-area { font-size:10pt; font-weight:600; color:#0F1F38; width:48%; }
+    .report-doc .rep-anum { font-family:"Abril Fatface",Georgia,serif; font-size:10pt; color:#C9C3B6; margin-right:7pt; }
+    .report-doc .rep-barcell { width:40%; padding-left:10pt; padding-right:10pt; }
+    .report-doc .rep-track { background:#EAE6DC; border-radius:2pt; height:7pt; overflow:hidden; }
+    .report-doc .rep-bar { height:100%; border-radius:2pt; }
+    .report-doc .rep-score { text-align:right; font-size:11pt; font-weight:700; width:12%; white-space:nowrap; }
+    .report-doc .rep-score-max { font-size:8pt; font-weight:400; color:#A39E92; }
+
+    .report-doc .rep-focus-grid { margin-bottom:16pt; }
+    .report-doc .rep-focus { break-inside:avoid; border:1px solid #E5E0D5; border-left:3pt solid #CE796B; border-radius:0 3pt 3pt 0; padding:9pt 12pt; margin-bottom:7pt; }
+    .report-doc .rep-focus-rank { font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:#CE796B; margin-bottom:3pt; }
+    .report-doc .rep-focus-name { font-size:11.5pt; font-weight:700; color:#0F1F38; margin-bottom:2pt; }
+    .report-doc .rep-focus-score { font-size:9pt; color:#6E7682; margin-bottom:4pt; }
+    .report-doc .rep-focus-read { font-size:9pt; color:#2A3340; line-height:1.45; }
+    .report-doc .rep-focus-url { color:#6E7682; }
+
+    .report-doc .rep-cta { background:#0F1F38; color:#fff; border-radius:4pt; padding:13pt 15pt; margin-bottom:13pt; break-inside:avoid; }
+    .report-doc .rep-cta-h { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:14pt; color:#fff; margin-bottom:5pt; }
+    .report-doc .rep-cta-p { font-size:9.5pt; line-height:1.55; color:#C9D2DE; margin:0; }
+    .report-doc .rep-cta-p strong { color:#E0A870; font-weight:700; }
+
+    .report-doc .rep-foot { border-top:1px solid #E5E0D5; padding-top:8pt; }
+    .report-doc .rep-foot span { display:block; font-size:7.5pt; color:#A39E92; line-height:1.5; }
   }
 </style>
 </head>
@@ -311,10 +374,13 @@
     <a href="/diagnostic" class="btn">Book a free diagnostic call →</a>
     <a href="/resources" class="btn ghost">Back to Resources</a>
     <br>
-    <span class="print-btn" onclick="window.print()">⊞ Save or print these results</span>
+    <span class="print-btn" onclick="window.print()">⊞ Save or print your report (PDF)</span>
     <span class="reset-btn" onclick="resetAssessment()">↺ Start over</span>
   </div>
 </section>
+
+<!-- PRINT REPORT — populated from result data, shown only when printing -->
+<div id="report" class="report-doc" aria-hidden="true"></div>
 
 <footer>
   <div class="foot-in">
@@ -542,6 +608,9 @@ function renderResults() {
   const band = getBand(total);
   const bd = BANDS[band];
 
+  document.body.classList.add('hc-complete');
+  buildReport();
+
   // Score + band
   document.getElementById('band-pill').textContent = bd.label;
   document.getElementById('band-pill').className = `band-pill ${bd.cls}`;
@@ -597,6 +666,7 @@ function renderResults() {
 /* ─── Reset ─── */
 function resetAssessment() {
   Object.keys(scores).forEach(k=>delete scores[k]);
+  document.body.classList.remove('hc-complete');
   AREAS.forEach(a=>{
     const card = document.getElementById(`card-${a.id}`);
     card.classList.remove('s-low','s-mid','s-high');
@@ -607,6 +677,68 @@ function resetAssessment() {
   updateProgress();
   window.scrollTo({ top:0, behavior:'smooth' });
 }
+
+/* ─── Branded report (print / PDF) ─── */
+const OWL_SVG = `<svg viewBox="0 0 192 192" height="26" width="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0F1F38" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg>`;
+
+function buildReport() {
+  if (Object.keys(scores).length < 10) return;
+  const total = AREAS.reduce((s,a)=>s+(scores[a.id]||0),0);
+  const band = getBand(total);
+  const bd = BANDS[band];
+  const date = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const barColor = c => c==='low' ? '#CE796B' : c==='mid' ? '#C18C5D' : '#0F1F38';
+  const pillColor = { critical:'#CE796B', concern:'#C18C5D', stable:'#5A7090', strong:'#4A9D6E' }[band];
+
+  const rows = AREAS.map(a => {
+    const s = scores[a.id]||0, c = cls(s);
+    return `<tr class="rep-row">
+      <td class="rep-area"><span class="rep-anum">${a.num}</span>${a.name}</td>
+      <td class="rep-barcell"><div class="rep-track"><div class="rep-bar" style="width:${s*10}%;background:${barColor(c)}"></div></div></td>
+      <td class="rep-score" style="color:${barColor(c)}">${s}<span class="rep-score-max">/10</span></td>
+    </tr>`;
+  }).join('');
+
+  const focus = [...AREAS].sort((a,b)=>(scores[a.id]||0)-(scores[b.id]||0)).slice(0,3).map((a,i)=>{
+    const s = scores[a.id];
+    return `<div class="rep-focus">
+      <div class="rep-focus-rank">Priority ${i+1} focus area</div>
+      <div class="rep-focus-name">${a.name}</div>
+      <div class="rep-focus-score">Current score: ${s}/10</div>
+      <div class="rep-focus-read"><strong>Recommended reading:</strong> ${a.article.label}<br><span class="rep-focus-url">aesopanalytics.com${a.article.href}</span></div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('report').innerHTML = `
+    <div class="rep-head">
+      <div class="rep-brand">${OWL_SVG}<span class="rep-wm">aesop<span class="rep-wm-an"> Analytics</span></span></div>
+      <div class="rep-kicker">Reporting Trust Health Check</div>
+    </div>
+    <div class="rep-rule"></div>
+    <h1 class="rep-title">Your reporting trust results</h1>
+    <div class="rep-meta">Self-assessment \u00b7 Generated ${date}</div>
+    <div class="rep-scoreblock">
+      <div class="rep-scorenum">${total}<span class="rep-scoremax">/100</span></div>
+      <div class="rep-bandwrap">
+        <span class="rep-pill" style="color:${pillColor};border-color:${pillColor}">${bd.label}</span>
+        <p class="rep-bandtext">${bd.text}</p>
+      </div>
+    </div>
+    <div class="rep-section-label">Score by area</div>
+    <table class="rep-table">${rows}</table>
+    <div class="rep-section-label">Your three highest-priority focus areas</div>
+    <div class="rep-focus-grid">${focus}</div>
+    <div class="rep-cta">
+      <div class="rep-cta-h">Want help interpreting these results?</div>
+      <p class="rep-cta-p">Book a free 30-minute Reporting Trust Diagnostic \u2014 bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would help. <strong>aesopanalytics.com/diagnostic</strong></p>
+    </div>
+    <div class="rep-foot">
+      <span>aesop Analytics \u2014 reporting modernization &amp; data trust consulting \u00b7 Nashville, TN</span>
+      <span>\u00a9 ${new Date().getFullYear()} Aesop Analytics \u00b7 Generated from the Reporting Trust Health Check at aesopanalytics.com/resources/health-check</span>
+    </div>`;
+}
+
+window.addEventListener('beforeprint', buildReport);
 </script>
 </body>
 </html>
