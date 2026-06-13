@@ -8,6 +8,7 @@ import "../styles/base.css";
 import "../styles/article.css";
 import Seo from "../components/Seo.astro";
 import { nav, cta, site, canonicalUrl } from "../data/nav.ts";
+import { sections, featured } from "../data/insights.ts";
 import Wordmark from "../components/Wordmark.astro";
 
 interface Props {
@@ -27,6 +28,14 @@ const {
   meta = [], author = "Jonathan Doreau", ogTitle, ogDescription,
 } = Astro.props;
 const canonical = canonicalUrl(path);
+// Publish date: looked up from insights.ts by slug (one source — articles
+// don't restate it). Dates are git-derived; see the Row.published comment.
+const slug = path.split("/").filter(Boolean).pop();
+const row = sections.flatMap((s) => s.rows).find((r) => r.slug === slug) ?? (featured.slug === slug ? featured : undefined);
+const published = row?.published;
+const publishedDisplay = published
+  ? new Date(published + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+  : undefined;
 // JSON-LD headline: the title alone — drop the visual subtitle span and
 // decode the entities Astro leaves in the raw prop string.
 const headline = headingHtml
@@ -48,6 +57,7 @@ const headline = headingHtml
       publisher: { "@type": "Organization", name: site.name, logo: { "@type": "ImageObject", url: new URL("/assets/favicon.svg", site.url).href } },
       mainEntityOfPage: canonical,
       url: canonical,
+      ...(published ? { datePublished: published } : {}),
     })} />
   </head>
   <body>
@@ -69,6 +79,7 @@ const headline = headingHtml
         <p class="dek reveal" style="animation-delay:.1s" set:html={dekHtml}></p>
         <div class="byline reveal" style="animation-delay:.16s">
           <span class="reg">By <strong>{author}</strong>, Aesop Analytics</span>
+          {publishedDisplay && (<Fragment><span class="dot">&bull;</span><span class="reg">{publishedDisplay}</span></Fragment>)}
           {meta.map((m) => (<Fragment><span class="dot">&bull;</span><span class="reg">{m}</span></Fragment>))}
         </div>
       </article>
