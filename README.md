@@ -99,12 +99,13 @@ src/
 astro.config.mjs            Site config + custom inline sitemap generator
 scripts/check.mjs           Repo invariants — run before every build (local + CI)
 public/                     Static assets served as-is (favicon, /brand, images)
-assessment-kit/             INTERNAL delivery toolkit (Markdown) — not site content
 .github/                    GitHub Actions build + deploy workflow
 ```
 
-> **`assessment-kit/`** holds internal engagement-delivery documents, not public
-> pages. It's version-controlled here but never served.
+> The internal engagement-delivery toolkit (`assessment-kit/` + the two xlsx
+> templates) moved to the private DELIVERY-OS repo on 2026-06-12 — it is paid
+> delivery IP, not site content. This repo's git history retains the pre-move
+> versions.
 
 ---
 
