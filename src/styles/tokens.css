@@ -20,11 +20,14 @@
      - Deck palm greens stay retired; navy owns the deep authoritative role. */
 :root {
   --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;
+  /* --cream and --paper-2 share #F3EFE6 deliberately: distinct semantic roles
+     (cream = light text/CTA on navy; paper-2 = alternate page surface) that
+     happen to coincide today. Change them independently only on purpose. */
   --muted:#5A6775; --slate:#495867; --cream:#F3EFE6;
   --line:#E7E0D2; --rule:#D9CFBC;
   --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555;
   --navy-foot:#08111F; --navy-mist:#D6DDE8;
-  --twine:#C18C5D; --sepia:#98673A; --contessa:#CE796B; --apple:#B35546;
+  --twine:#C18C5D; --sepia:#98673A; --twine-bright:#D49A68; --contessa:#CE796B; --apple:#B35546;
   /* Semantic status colors — formalized from the health checks & branded reports
      (brand revisit 2026-06). Use these, never raw hexes, for score/status UI. */
   --good:#5E9A82; --warn:#D4A844; --info:#5A7090;

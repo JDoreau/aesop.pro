@@ -3,6 +3,7 @@
 // Section anchors now point at /services#... so they work from any page.
 import { site } from "../data/nav.ts";
 import Wordmark from "./Wordmark.astro";
+const year = new Date().getFullYear(); // evaluated at build time; correct as long as the site rebuilds
 ---
 <footer>
   <div class="foot-in">
@@ -30,7 +31,7 @@ import Wordmark from "./Wordmark.astro";
       <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
-  <div class="foot-legal">{site.location} · {site.email} · © 2026 {site.name}. All rights reserved.<br /><span class="ga-note">This site uses Google Analytics to understand how it's used. <a href="/privacy">Privacy</a></span></div>
+  <div class="foot-legal">{site.location} · {site.email} · © {year} {site.name}. All rights reserved.<br /><span class="ga-note">This site uses Google Analytics to understand how it's used. <a href="/privacy">Privacy</a></span></div>
 </footer>
 
 <style>

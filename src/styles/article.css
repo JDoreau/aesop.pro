@@ -1,7 +1,7 @@
 /* ============================================================
    article.css — Aesop Analytics
    Shared styles for all article and field study pages.
-   Requires shared.css to be loaded first.
+   Loaded by ArticleLayout after tokens.css and base.css.
    ============================================================ */
 
 /* ── Base ── */
@@ -62,7 +62,7 @@ em { font-style:italic; }
 .callout::after { content:"æ"; position:absolute; right:-14px; bottom:-40px; font-family:"Abril Fatface",serif; font-size:160px; color:rgba(193,140,93,.12); line-height:1; pointer-events:none; }
 .callout h3 { font-family:"Abril Fatface",serif; font-weight:400; font-size:22px; color:#fff; margin-bottom:18px; position:relative; z-index:1; }
 .callout ul { list-style:none; padding:0; position:relative; z-index:1; }
-.callout li { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:16px; color:#D6DDE8; line-height:1.55; font-weight:300; }
+.callout li { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:16px; color:var(--navy-mist); line-height:1.55; font-weight:300; }
 .callout li:last-child { border-bottom:none; }
 .callout li::before { content:"→"; color:var(--twine); font-weight:700; flex-shrink:0; }
 
@@ -78,15 +78,10 @@ footer.site { background:var(--navy); color:#8A9FB8; margin-top:72px; padding:44
 footer .fin { max-width:740px; margin:0 auto; padding:0 28px; display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; }
 footer .fmoral { font-style:italic; font-size:14px; color:#4A6070; }
 footer .fback { font-size:13px; font-weight:600; color:var(--twine); text-decoration:none; }
-footer .fback:hover { color:#d49a68; }
+footer .fback:hover { color:var(--twine-bright); }
 footer.site .flegal { max-width:740px; margin:18px auto 0; padding:0 28px; font-size:12px; color:#4A6070; }
 footer.site .flegal a { color:#8A9FB8; text-decoration:underline; text-underline-offset:2px; }
 footer.site .flegal a:hover { color:var(--twine); }
-
-/* -- Old-style article header (header.site) -- */
-header.site { border-bottom:1px solid var(--rule); background:rgba(251,250,245,.92); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); position:sticky; top:0; z-index:10; }
-.site-inner { max-width:1040px; margin:0 auto; padding:13px 28px; display:flex; align-items:center; justify-content:space-between; }
-.tagline { color:var(--muted); font-style:italic; font-size:14px; }
 
 /* -- SVG illustration containers -- */
 .illus { margin:36px 0; background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px 24px 18px; box-shadow:0 16px 40px -28px rgba(15,31,56,.22); }
@@ -104,4 +99,7 @@ header.site { border-bottom:1px solid var(--rule); background:rgba(251,250,245,.
 .sources { margin:54px 0 0; border-top:2px solid var(--navy); padding-top:22px; }
 .big    { font-family:"Abril Fatface",serif; font-size:60px; line-height:1; color:var(--twine); }
 .cap    { font-size:16px; line-height:1.5; margin-top:12px; color:#B8BDCA; }
-.method { margin:44px 0; background:var(--navy); border-radius:8px; overflow:hidden; }
+/* Methodology footnote on field studies (restored from the pre-Astro
+   originals — a consolidation pass had clobbered this with the homepage's
+   unrelated section.method rule, rendering the notes unreadable). */
+.method { font-size:13px; color:var(--muted); font-style:italic; margin-top:18px; line-height:1.5; }
