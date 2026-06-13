@@ -42,13 +42,16 @@ const description = "Thanks for reaching out to Aesop Analytics. We'll be in tou
 </BaseLayout>
 
 <script is:inline>
-  // GA4 conversion: contact form submission. This page is reached only after a
-  // successful Formspree POST redirect, so a load here is a confirmed lead.
-  if (typeof window.gtag === "function") {
+  // GA4 conversion: contact form submission. /thanks is reached by the NO-JS
+  // Formspree redirect path; the JS path fires its own event from contact.astro.
+  // The sessionStorage guard exists because direct visits and refreshes also
+  // land here — fire at most once per session.
+  if (typeof window.gtag === "function" && !sessionStorage.getItem("aesop-lead-fired")) {
     window.gtag("event", "generate_lead", {
       event_category: "conversion",
       event_label: "Contact form submitted",
     });
+    sessionStorage.setItem("aesop-lead-fired", "1");
   }
 </script>
 

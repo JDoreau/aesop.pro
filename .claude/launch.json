@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "aesop-preview",
+      "runtimeExecutable": "C:\\Users\\dorea\\.local-tools\\node-v22.22.3-win-x64\\npm.cmd",
+      "runtimeArgs": ["run", "preview"],
+      "port": 4321
+    }
+  ]
+}

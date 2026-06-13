@@ -58,9 +58,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Does this dashboard directly support a named, recurring decision?</div>
         <div class="da-q-hint">If nobody can name the decision this dashboard supports, it likely does not belong in the reporting estate.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(1,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(1,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(1,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(1,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(1,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(1,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Define the primary decision this dashboard supports before spending more time on it. <a href="/insights/dashboards-not-trusted">Read more &rarr;</a></p></div>
       </div>
@@ -69,9 +69,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Can you identify which meeting or workflow this dashboard is used in?</div>
         <div class="da-q-hint">A dashboard not attached to a specific cadence is rarely used when it matters.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(2,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(2,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(2,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(2,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(2,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(2,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Map this dashboard to a specific meeting or decision cycle &mdash; or consider retiring it. <a href="/insights/reporting-not-dashboard-redesign">Read more &rarr;</a></p></div>
       </div>
@@ -80,9 +80,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is the intended audience clearly defined and limited to people who act on this data?</div>
         <div class="da-q-hint">Dashboards built for everybody are optimised for nobody.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(3,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(3,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(3,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(3,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(3,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(3,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Name the primary audience and ask if everyone with access actually uses it. <a href="/insights/dashboard-design-basics">Read more &rarr;</a></p></div>
       </div>
@@ -91,9 +91,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Do recipients use this dashboard to make decisions &mdash; not just to check in?</div>
         <div class="da-q-hint">There is a meaningful difference between a dashboard people consult before decisions and one they glance at and close.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(4,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(4,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(4,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(4,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(4,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(4,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Ask the last three people who opened this dashboard what decision they were making. <a href="/insights/dashboards-not-trusted">Read more &rarr;</a></p></div>
       </div>
@@ -102,9 +102,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Are the metrics connected to documented business goals or OKRs?</div>
         <div class="da-q-hint">Metrics that float free from business goals tend to measure activity, not impact.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(5,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(5,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(5,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(5,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(5,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(5,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Trace each metric to a business objective. Remove the ones that do not connect. <a href="/insights/data-strategy">Read more &rarr;</a></p></div>
       </div>
@@ -120,9 +120,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Are all metrics defined in writing &mdash; business definition, formula, and source?</div>
         <div class="da-q-hint">If the definition lives only in someone's head, the dashboard will produce disagreements, not decisions.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(6,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(6,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(6,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(6,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(6,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(6,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Start a KPI dictionary entry for every metric on this dashboard. <a href="/insights/kpi-dictionary">Read more &rarr;</a></p></div>
       </div>
@@ -131,9 +131,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Does every metric have a single named business owner?</div>
         <div class="da-q-hint">A metric owned by everybody is owned by nobody.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(7,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(7,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(7,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(7,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(7,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(7,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Assign a named owner to each metric. One person, not a team. <a href="/insights/kpi-owner">Read more &rarr;</a></p></div>
       </div>
@@ -142,9 +142,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is the authoritative source system documented for each metric?</div>
         <div class="da-q-hint">Without a documented source, reconciliation disputes are inevitable.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(8,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(8,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(8,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(8,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(8,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(8,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Document the source system for each metric and treat it as the single authoritative source. <a href="/insights/kpi-dictionary">Read more &rarr;</a></p></div>
       </div>
@@ -153,9 +153,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Are the filters, exclusions, and grain documented for each metric?</div>
         <div class="da-q-hint">Most metric disagreements are about what is included and excluded, not the formula.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(9,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(9,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(9,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(9,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(9,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(9,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Add explicit filter and exclusion documentation to each KPI definition. <a href="/insights/hidden-cost-conflicting-kpis">Read more &rarr;</a></p></div>
       </div>
@@ -164,9 +164,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Would Finance, Operations, and Sales agree on the key metric definitions?</div>
         <div class="da-q-hint">Cross-functional disagreement on definitions is the leading cause of untrustworthy reporting.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(10,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(10,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(10,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(10,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(10,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(10,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Run a definition alignment session. Surface the conflicts now. <a href="/insights/hidden-cost-conflicting-kpis">Read more &rarr;</a></p></div>
       </div>
@@ -182,9 +182,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Do recipients trust these numbers enough to use them without verifying elsewhere?</div>
         <div class="da-q-hint">If people run parallel spreadsheets to check the dashboard, it has a trust problem regardless of accuracy.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(11,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(11,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(11,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(11,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(11,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(11,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Run a trust survey with the primary audience. Low trust is a separate problem from low accuracy. <a href="/insights/dashboards-not-trusted">Read more &rarr;</a></p></div>
       </div>
@@ -193,9 +193,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is there a clear process for who investigates when a metric looks wrong?</div>
         <div class="da-q-hint">Without a defined escalation path, data errors fester. The same issue surfaces in every review.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(12,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(12,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(12,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(12,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(12,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(12,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Define a data error escalation process. Name the technical owner for each metric. <a href="/insights/kpi-owner">Read more &rarr;</a></p></div>
       </div>
@@ -204,9 +204,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is the data refresh time documented and visible to the audience?</div>
         <div class="da-q-hint">Stakeholders making decisions with stale data do not know what they do not know.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(13,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(13,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(13,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(13,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(13,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(13,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Add a visible last-updated timestamp and document the refresh cadence. <a href="/insights/kpi-dictionary">Read more &rarr;</a></p></div>
       </div>
@@ -215,9 +215,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Are there known data quality issues affecting any metric?</div>
         <div class="da-q-hint">Undocumented known issues are trust destroyers. Transparency builds more trust than silence.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(14,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(14,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(14,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(14,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(14,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(14,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Document known issues visibly on or near the affected metric. <a href="/insights/dashboards-not-trusted">Read more &rarr;</a></p></div>
       </div>
@@ -226,9 +226,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Has the data powering this dashboard been validated in the past 12 months?</div>
         <div class="da-q-hint">Data pipelines drift. A validation check once a year is minimum hygiene.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(15,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(15,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(15,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(15,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(15,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(15,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Schedule an annual data validation. Log and share the results. <a href="/insights/data-strategy">Read more &rarr;</a></p></div>
       </div>
@@ -244,9 +244,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Can a new team member understand this dashboard without a walkthrough?</div>
         <div class="da-q-hint">If the dashboard requires institutional knowledge to interpret, it depends on people, not systems.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(16,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(16,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(16,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(16,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(16,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(16,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Add a one-paragraph description of what the dashboard is for and how to read it. <a href="/insights/dashboard-design-basics">Read more &rarr;</a></p></div>
       </div>
@@ -255,9 +255,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Does the dashboard have a clear visual hierarchy &mdash; the most important metric is most prominent?</div>
         <div class="da-q-hint">When everything is equally prominent, nothing is.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(17,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(17,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(17,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(17,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(17,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(17,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Identify the one metric that matters most. Make it visually dominant. <a href="/insights/dashboard-design-basics">Read more &rarr;</a></p></div>
       </div>
@@ -266,9 +266,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is the dashboard free of decorative elements that do not drive decisions?</div>
         <div class="da-q-hint">Chartjunk and redundant visualisations dilute attention.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(18,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(18,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(18,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(18,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(18,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(18,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Remove any chart or metric the audience has not used in a decision in the past quarter. <a href="/insights/dashboard-design-basics">Read more &rarr;</a></p></div>
       </div>
@@ -277,9 +277,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Are chart types appropriate for the data being shown?</div>
         <div class="da-q-hint">Mismatched chart types obscure insight. Pie charts for comparisons, bar charts for rankings.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(19,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(19,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(19,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(19,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(19,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(19,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Review each visualisation against the question it answers. Replace mismatched chart types. <a href="/insights/gestalt-perception">Read more &rarr;</a></p></div>
       </div>
@@ -288,9 +288,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Does the dashboard lead the reader toward a clear conclusion or next step?</div>
         <div class="da-q-hint">A dashboard that requires the audience to figure out what it means has done half the job.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(20,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(20,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(20,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(20,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(20,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(20,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Add thresholds or conditional formatting that shows whether each metric is healthy or needs attention. <a href="/insights/dashboard-design-basics">Read more &rarr;</a></p></div>
       </div>
@@ -306,9 +306,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is there a single named owner responsible for this dashboard's accuracy?</div>
         <div class="da-q-hint">Shared ownership is no ownership. When a number is wrong, one person should be the obvious call.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(21,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(21,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(21,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(21,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(21,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(21,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Name a single dashboard owner. Document the name on or near the dashboard. <a href="/insights/governance-operators">Read more &rarr;</a></p></div>
       </div>
@@ -317,9 +317,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is there a defined process for requesting changes or reporting data issues?</div>
         <div class="da-q-hint">Without an intake process, change requests come through ad hoc channels and do not get prioritised.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(22,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(22,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(22,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(22,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(22,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(22,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Create a simple intake form or documented process for change requests. <a href="/insights/governance-operators">Read more &rarr;</a></p></div>
       </div>
@@ -328,9 +328,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Has this dashboard been reviewed and updated within the past six months?</div>
         <div class="da-q-hint">A dashboard not reviewed in six months is likely drifting from its original purpose.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(23,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(23,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(23,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(23,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(23,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(23,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Schedule a semi-annual review. Verify the metrics still reflect the decisions being made. <a href="/insights/reporting-not-dashboard-redesign">Read more &rarr;</a></p></div>
       </div>
@@ -339,9 +339,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is this dashboard listed in a reporting inventory with owner and purpose documented?</div>
         <div class="da-q-hint">If it is not in a reporting inventory, it is invisible to governance.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(24,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(24,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(24,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(24,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(24,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(24,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Add this dashboard to a reporting inventory. <a href="/insights/governance-operators">Read more &rarr;</a></p></div>
       </div>
@@ -350,9 +350,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is there a change log for significant changes made to this dashboard?</div>
         <div class="da-q-hint">Without a change log, unexplained metric shifts create confusion.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(25,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(25,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(25,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(25,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(25,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(25,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Start a simple change log: date, description, and the person who made the change. <a href="/insights/kpi-dictionary">Read more &rarr;</a></p></div>
       </div>
@@ -368,9 +368,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Is this dashboard fully automated &mdash; no manual steps to produce or refresh it?</div>
         <div class="da-q-hint">Manual reporting is brittle. Every manual step is a failure point and a recurring time cost.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(26,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(26,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(26,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(26,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(26,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(26,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Identify which manual steps exist and prioritise eliminating the highest-effort ones first. <a href="/insights/bad-reporting-blocks-ai">Read more &rarr;</a></p></div>
       </div>
@@ -379,9 +379,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Does the dashboard load and refresh within a reasonable time for its intended use?</div>
         <div class="da-q-hint">A dashboard that takes five minutes to load will not be used in a meeting.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(27,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(27,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(27,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(27,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(27,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(27,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Measure load time. If it exceeds 30 seconds, investigate query optimisation. <a href="/insights/data-strategy">Read more &rarr;</a></p></div>
       </div>
@@ -390,9 +390,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Do the right people have access &mdash; and only those people?</div>
         <div class="da-q-hint">Overly broad access creates security risk. Overly narrow access creates workarounds.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(28,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(28,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(28,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(28,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(28,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(28,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Review the access list. Remove access for people who have not used it in six months. <a href="/insights/governance-operators">Read more &rarr;</a></p></div>
       </div>
@@ -401,9 +401,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Does this dashboard have a clear owner for the underlying data pipeline?</div>
         <div class="da-q-hint">Dashboard ownership and pipeline ownership are separate. Both need a named person.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(29,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(29,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(29,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(29,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(29,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(29,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Identify and document the technical owner of the data pipeline. <a href="/insights/kpi-owner">Read more &rarr;</a></p></div>
       </div>
@@ -412,9 +412,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="da-q-text">Does this dashboard have fewer than 20 metrics or visualisations?</div>
         <div class="da-q-hint">Dashboards with more than 20 elements are almost never used as intended.</div>
         <div class="da-btns">
-          <button class="da-btn" onclick="answer(30,1,this,'yes')">Yes</button>
-          <button class="da-btn" onclick="answer(30,0.5,this,'partial')">Partially</button>
-          <button class="da-btn" onclick="answer(30,0,this,'no')">No</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(30,1,this,'yes')">Yes</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(30,0.5,this,'partial')">Partially</button>
+          <button class="da-btn" aria-pressed="false" onclick="answer(30,0,this,'no')">No</button>
         </div>
         <div class="da-fix-hint"><p>Archive anything not referenced in a decision in the past six months. <a href="/insights/dashboard-design-basics">Read more &rarr;</a></p></div>
       </div>
@@ -448,7 +448,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <div class="da-section-title" style="margin-bottom:10px">Get a copy of your results</div>
           <p class="da-email-desc">We&rsquo;ll email you the score, category breakdown, and priority fixes &mdash; a useful record to share or revisit. One email. No pitch.</p>
         </div>
-        <form class="da-ef" id="da-email-form" novalidate>
+        <form class="da-ef" id="da-email-form">
           <input type="hidden" name="_subject" value="Dashboard Audit Results">
           <input type="hidden" id="h-score" name="score">
           <input type="hidden" id="h-band" name="band">
@@ -468,7 +468,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
             <button class="da-ef-btn" type="submit" id="ef-btn">Email me these results &rarr;</button>
             <span class="da-ef-note">One email &middot; no follow-up campaign</span>
           </div>
-          <p class="da-ef-error" id="ef-error">Something went wrong &mdash; try <a href="mailto:doreau.jonathan@gmail.com">emailing directly</a>.</p>
+          <p class="da-ef-error" id="ef-error">Something went wrong &mdash; try <a href="mailto:hello@aesopanalytics.com">emailing directly</a>.</p>
         </form>
       </div>
       <div class="da-email-success" id="da-email-success" style="display:none">
@@ -621,8 +621,9 @@ function answer(n,v,btn,type){
   const q=document.getElementById('q'+n);
   if(q.dataset.val==='') answered++;
   q.dataset.val=v;
-  q.querySelectorAll('.da-btn').forEach(b=>b.classList.remove('sel-yes','sel-partial','sel-no'));
+  q.querySelectorAll('.da-btn').forEach(b=>{b.classList.remove('sel-yes','sel-partial','sel-no');b.setAttribute('aria-pressed','false');});
   btn.classList.add('sel-'+type);
+  btn.setAttribute('aria-pressed','true');
   q.classList.remove('answered-yes','answered-partial','answered-no');
   q.classList.add('answered-'+type);
   updateProgress();

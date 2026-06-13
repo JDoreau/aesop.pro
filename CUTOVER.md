@@ -1,5 +1,12 @@
 # Aesop Analytics → Astro: cutover
 
+> **HISTORICAL — this migration completed June 2026 (commit d34c034; the
+> resource pages followed in the Tier 3 migration, merge fb67d12).** Kept for
+> the record; do NOT execute these steps — several would now be destructive.
+> Counts and paths below describe the pre-migration state (the site now
+> builds 36 pages and the former public/ static pages live in
+> src/pages/resources/).
+
 This bundle is the complete, build-verified Astro site: 8 core pages, 17 articles/
 field studies, a data-driven Insights hub, and 5 static tool/reference pages. It
 builds clean to **25 pages**, and `public/` already contains everything Pages serves

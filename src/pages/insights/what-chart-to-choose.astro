@@ -213,3 +213,56 @@ const ogDescription = "Most people pick charts by habit. Here's how to pick them
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Recovered from the pre-Astro original (article-what-chart-to-choose.html,
+     commit 602cff7) for components the shared article.css does not cover. */
+
+  /* RELATIONSHIP CARDS - the main reference grid */
+  .rel-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:44px 0; }
+  @media(max-width:600px){ .rel-grid { grid-template-columns:1fr; } }
+  .rel-card { border-radius:8px; padding:26px 22px; background:#fff; border:1px solid var(--line); border-top:4px solid var(--navy); }
+  .rel-card .rc-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:8px; }
+  .rel-card h3 { font-family:"Newsreader",Georgia,serif; font-size:20px; font-weight:600; color:var(--navy); margin-bottom:10px; line-height:1.2; }
+  .rel-card .rc-q { font-size:14px; color:var(--muted); font-style:italic; margin-bottom:16px; line-height:1.45; }
+  .rel-card .rc-use { font-size:13.5px; color:var(--slate); line-height:1.55; margin-bottom:14px; }
+  .rc-charts { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+  .rc-chip { font-size:11.5px; font-weight:600; padding:4px 10px; border-radius:20px; }
+  .rc-chip.yes { background:rgba(15,31,56,.08); color:var(--navy); }
+  .rc-chip.no  { background:rgba(206,118,107,.1); color:var(--contessa); text-decoration:line-through; }
+  .rc-divider { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-top:12px; margin-bottom:4px; width:100%; }
+
+  /* FAILURE MODES TABLE */
+  .fail-table { width:100%; border-collapse:collapse; margin:36px 0; font-size:15px; }
+  .fail-table th { text-align:left; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); padding:10px 14px; border-bottom:2px solid var(--navy); background:var(--paper-2); }
+  .fail-table td { padding:13px 14px; border-bottom:1px solid var(--line); color:var(--slate); vertical-align:top; line-height:1.5; }
+  .fail-table tr:last-child td { border-bottom:none; }
+  .fail-table td:first-child { font-weight:600; color:var(--navy); white-space:nowrap; }
+  .fail-table td.why { color:var(--contessa); font-size:13.5px; }
+  .fail-table td.instead { font-size:13.5px; }
+
+  /* CTA */
+  .cta-block { background:var(--navy); border-radius:8px; padding:40px 36px; margin:56px 0 0; }
+  .cta-block .ct-eyebrow { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--twine); margin-bottom:10px; }
+  .cta-block h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:26px; color:#fff; line-height:1.2; margin:0 0 12px; border-top:none; padding-top:0; }
+  .cta-block p { font-size:15.5px; color:#B8BDCA; line-height:1.55; margin-bottom:22px; }
+  .cta-block .btn { display:inline-block; background:var(--twine); color:#fff; text-decoration:none; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:13px 24px; border-radius:4px; transition:background .18s; margin-right:10px; margin-bottom:8px; }
+  .cta-block .btn:hover { background:var(--sepia); color:#fff; }
+  .cta-block .btn.ghost { background:transparent; border:1.5px solid rgba(255,255,255,.22); color:var(--cream); }
+  .cta-block .btn.ghost:hover { background:rgba(255,255,255,.08); }
+
+  /* READ NEXT cards (article.css covers .read-next and .rn-label only) */
+  .rn-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:580px){ .rn-grid { grid-template-columns:1fr; } }
+  .rn-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px 18px; text-decoration:none; display:block; transition:border-color .18s, box-shadow .18s; }
+  .rn-card:hover { border-color:var(--navy); box-shadow:0 8px 24px -16px rgba(15,31,56,.2); }
+  .rn-card .rn-pillar { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; color:var(--twine); margin-bottom:8px; }
+  .rn-card .rn-title { font-size:15px; font-weight:600; color:var(--navy); line-height:1.35; }
+
+  /* Restored original light callout (legacy design) - overrides the shared
+     navy .callout component, whose ink-on-navy strong text was unreadable here. */
+  .callout { background:var(--paper-2); border:1px solid var(--rule); border-left:4px solid var(--twine); border-radius:4px; padding:22px 24px; margin:36px 0; font-size:16px; color:var(--slate); line-height:1.6; }
+  .callout::after { content:none; }
+  .callout strong { color:var(--navy); }
+  .callout p { margin:0 0 10px; }
+  .callout p:last-child { margin:0; }</style>

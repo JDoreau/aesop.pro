@@ -148,9 +148,45 @@ const meta = ["~6 min read", "Process & Method"];
         <a href="/insights/data-strategy" class="rn-link">← Data Strategy Before Data Tools</a>
         <a href="/insights/dashboard-design-basics" class="rn-link">Dashboard Design, the Basics →</a>
         <a href="/insights/gestalt-perception" class="rn-link">Gestalt &amp; Perception →</a>
-        <a href="/" class="rn-link">Back to aesop.pro</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
       </div>
     </div>
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Restored from the pre-Astro original (article-design-thinking.html @ e59da2f).
+     Only rules missing from the shared article.css are recreated here. */
+
+  /* Phase cards — four phases as a 2x2 grid */
+  .phases { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:40px 0; background:var(--rule); border-radius:6px; overflow:hidden; border:1px solid var(--rule); }
+  @media(max-width:560px){ .phases { grid-template-columns:1fr; } }
+  .phase { background:#fff; padding:28px 24px; }
+  .phase .pnum { font-family:"Abril Fatface",serif; font-size:42px; line-height:1; color:var(--navy); opacity:.12; display:block; margin-bottom:-8px; }
+  .phase .ptag { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:10px; display:block; }
+  .phase h3 { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:12px; letter-spacing:-.01em; }
+  .phase p { font-size:15px; color:var(--slate); line-height:1.58; font-weight:300; margin:0 0 12px; }
+  .phase p:last-child { margin:0; }
+  .phase .example { font-size:14px; color:var(--muted); font-style:italic; padding:10px 14px; background:var(--paper-2); border-radius:4px; border-left:3px solid var(--twine); margin-top:12px; line-height:1.5; }
+
+  /* Pro/avoid strip */
+  .protip { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:36px 0; }
+  @media(max-width:560px){ .protip { grid-template-columns:1fr; } }
+  .protip > div { border-radius:6px; padding:20px; }
+  .protip .do { background:rgba(15,31,56,.05); border:1px solid rgba(15,31,56,.12); }
+  .protip .dont { background:rgba(206,118,107,.07); border:1px solid rgba(206,118,107,.2); }
+  .protip .plabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; margin-bottom:10px; display:block; }
+  .protip .do .plabel { color:var(--navy); }
+  .protip .dont .plabel { color:var(--contessa); }
+  .protip ul { list-style:none; padding:0; }
+  .protip li { font-size:15px; color:var(--slate); line-height:1.55; padding:6px 0; border-bottom:1px solid rgba(0,0,0,.06); display:flex; gap:10px; font-weight:300; }
+  .protip li:last-child { border-bottom:none; }
+  .protip li::before { font-weight:700; flex-shrink:0; }
+  .protip .do li::before { content:"→"; color:var(--navy); }
+  .protip .dont li::before { content:"✗"; color:var(--contessa); }
+
+  /* Illustration internals not covered by the shared sheet */
+  .illus svg { display:block; width:100%; height:auto; }
+  .illus figcaption { font-size:12px; color:var(--muted); margin-top:14px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; }
+</style>

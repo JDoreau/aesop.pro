@@ -100,12 +100,12 @@ const workSchema = [
 
         <div class="cs-body">
           <div class="cs-col">
-            <h4>The situation</h4>
+            <h3>The situation</h3>
             <p>A federally-funded research organization running multiple concurrent grant programs had accumulated 40+ recurring reports — most of them manual Excel builds assembled by individual program managers each month. Leadership had no consistent view of program health across grants, and funder reporting required significant manual reconciliation every quarter.</p>
             <p>The core pain: <strong>the same headcount number appeared differently in three different reports</strong>, and nobody could say with authority which was right. Every external funder report required a full reconciliation cycle before submission.</p>
           </div>
           <div class="cs-col">
-            <h4>The approach</h4>
+            <h3>The approach</h3>
             <p>Started with a full reporting inventory across all 40+ reports — documenting what each one was for, who owned it, how much manual time it required, and whether it was actually used to make decisions. Ran structured interviews with seven stakeholders across programs, finance, and executive leadership.</p>
             <p>Identified 14 reports as retirement candidates (unused or duplicated), rebuilt the 8 highest-value reports as governed Power BI dashboards, and built a KPI dictionary covering all 23 program-level metrics. Implemented a formal report request intake process.</p>
           </div>
@@ -126,7 +126,7 @@ const workSchema = [
           </div>
         </div>
 
-        <div class="cs-visual">
+        <figure class="cs-visual">
           <div class="cv-label navy">Sample output — Executive program health dashboard (illustrative)</div>
           <svg viewBox="0 0 860 360" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative executive dashboard layout for a research organization">
             <!-- Dashboard chrome -->
@@ -220,7 +220,7 @@ const workSchema = [
             <text x="550" y="225" font-family="DM Sans,sans-serif" font-size="9" fill="#5A6775">85%</text>
           </svg>
           <figcaption>Illustrative only — styled to represent the type and quality of output, not actual client data.</figcaption>
-        </div>
+        </figure>
       </div>
 
       <hr class="cs-divider">
@@ -245,12 +245,12 @@ const workSchema = [
 
         <div class="cs-body">
           <div class="cs-col">
-            <h4>The situation</h4>
+            <h3>The situation</h3>
             <p>Following a core banking system migration, the organization's reporting had fractured: some reports still pulled from the legacy system, some from the new system, and some reconciled both. Finance and Operations were routinely presenting different loan portfolio numbers to the same executive team. The CFO had stopped trusting any report that came from the data team.</p>
             <p><strong>Fourteen months after the migration, the organization still had no single, trusted view of its loan book.</strong> The data team was spending roughly 60% of its capacity on reconciliation and ad-hoc requests instead of analytics.</p>
           </div>
           <div class="cs-col">
-            <h4>The approach</h4>
+            <h3>The approach</h3>
             <p>Conducted a source-of-truth mapping exercise across all reporting — identifying which fields each report was pulling from which system and where the discrepancies originated. The root cause was a specific set of legacy accounts that hadn't been migrated cleanly and were being handled inconsistently by different report authors.</p>
             <p>Rebuilt the six core portfolio reports in Tableau on a clean, documented data layer. Built a metric dictionary covering 31 risk and portfolio KPIs. Established formal data ownership for each reporting domain and created a documented data lineage diagram for the first time.</p>
           </div>
@@ -271,7 +271,7 @@ const workSchema = [
           </div>
         </div>
 
-        <div class="cs-visual">
+        <figure class="cs-visual">
           <div class="cv-label navy">Sample output — KPI dictionary entry (illustrative)</div>
           <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative KPI dictionary entry for a financial metric">
             <rect width="860" height="280" rx="6" fill="#F3EFE6"/>
@@ -311,7 +311,7 @@ const workSchema = [
             <text x="28" y="252" font-family="DM Sans,sans-serif" font-size="11" fill="#1B1B1B">SBA guaranteed portions · Fee waivers from relationship pricing exceptions · Accounts 90+ days past due (separately reported as NPL)</text>
           </svg>
           <figcaption>Illustrative only — represents the format and depth of a governed KPI dictionary entry for a financial institution.</figcaption>
-        </div>
+        </figure>
       </div>
 
       <hr class="cs-divider">
@@ -336,12 +336,12 @@ const workSchema = [
 
         <div class="cs-body">
           <div class="cs-col">
-            <h4>The situation</h4>
+            <h3>The situation</h3>
             <p>A fast-growing property management company had scaled from 800 to 2,400 units in three years — but its reporting hadn't scaled with it. Occupancy, maintenance, and financial metrics were tracked in four separate tools with no integration. The COO was running weekly operations meetings from a manually-assembled spreadsheet that took four hours to build every Monday morning.</p>
             <p>There was no agreed definition of "occupancy rate" — <strong>leasing, operations, and finance each calculated it differently</strong>, producing numbers that ranged from 91% to 96% for the same month.</p>
           </div>
           <div class="cs-col">
-            <h4>The approach</h4>
+            <h3>The approach</h3>
             <p>Started with a Reporting Clarity Assessment to triage the current state and identify the highest-value first build. Ran the source-of-truth exercise across four property management platforms and identified Yardi as the authoritative source for financial and occupancy data.</p>
             <p>Built a Snowflake data layer consolidating all four source systems. Designed and built a suite of five Power BI dashboards covering portfolio performance, maintenance operations, leasing velocity, financial performance, and an executive summary. Resolved the occupancy definition conflict by convening a 90-minute workshop with the three functions — produced a single agreed definition within the session.</p>
           </div>
@@ -362,7 +362,7 @@ const workSchema = [
           </div>
         </div>
 
-        <div class="cs-visual">
+        <figure class="cs-visual">
           <div class="cv-label navy">Sample output — Portfolio performance dashboard (illustrative)</div>
           <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative property management portfolio dashboard">
             <rect width="860" height="320" rx="6" fill="#F3EFE6"/>
@@ -446,7 +446,7 @@ const workSchema = [
             <text x="808" y="284" font-family="DM Sans,sans-serif" font-size="10" fill="#0F1F38" font-weight="700">95%</text>
           </svg>
           <figcaption>Illustrative only — styled to represent the type and quality of output, not actual client data.</figcaption>
-        </div>
+        </figure>
       </div>
 
       <hr class="cs-divider">
@@ -470,12 +470,12 @@ const workSchema = [
 
         <div class="cs-body">
           <div class="cs-col">
-            <h4>The situation</h4>
+            <h3>The situation</h3>
             <p>A workforce development nonprofit working with underserved communities had a genuine impact story to tell — but couldn't tell it consistently. Program outcomes were tracked in Salesforce, participation data in Excel, and financial performance in QuickBooks. Each grant report was built from scratch, by different program managers, with no consistent methodology.</p>
             <p><strong>The organization was losing grant renewal conversations not because of poor outcomes but because it couldn't present those outcomes credibly.</strong> Funders were asking questions the team couldn't answer quickly.</p>
           </div>
           <div class="cs-col">
-            <h4>The approach</h4>
+            <h3>The approach</h3>
             <p>Designed an outcome measurement framework aligned to the organization's theory of change — identifying which metrics actually demonstrated impact vs. which were activity metrics. Built a Salesforce-connected Power BI solution covering program enrollment, completion, employment placement, wage outcomes, and 12-month retention.</p>
             <p>Created a funder reporting template that could be customized per grant while drawing from the same underlying data layer — eliminating the rebuild-from-scratch cycle for each report. Trained program staff on how to interpret and use the dashboards in their own conversations with participants and funders.</p>
           </div>
@@ -510,7 +510,7 @@ const workSchema = [
     <div class="sample-grid">
 
       <!-- Sample: Reporting Inventory extract -->
-      <div class="sample">
+      <figure class="sample">
         <div class="slabel">Assessment Deliverable 01</div>
         <h3>Reporting Inventory — extract</h3>
         <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative reporting inventory spreadsheet extract">
@@ -591,10 +591,10 @@ const workSchema = [
           <text x="186" y="167" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#5A6775">None</text>
         </svg>
         <figcaption>Every report catalogued: owner, manual effort, trust level, and recommended action. Illustrative — not actual client data.</figcaption>
-      </div>
+      </figure>
 
       <!-- Sample: 30/60/90 roadmap -->
-      <div class="sample">
+      <figure class="sample">
         <div class="slabel">Assessment Deliverable 09</div>
         <h3>30/60/90-Day Modernization Roadmap — extract</h3>
         <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative 30-60-90 day roadmap">
@@ -632,7 +632,7 @@ const workSchema = [
           <text x="8" y="255" font-family="DM Sans,sans-serif" font-size="8" fill="#5A6775">Each item includes: business impact · effort estimate · owner · dependencies · success criteria</text>
         </svg>
         <figcaption>Prioritized, actionable, built to hand to leadership. Illustrative — not actual client data.</figcaption>
-      </div>
+      </figure>
 
     </div>
   </div>
@@ -648,8 +648,6 @@ const workSchema = [
 <!-- FOOTER -->
 
 <style>
-/* ── NAV ── */
-  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
 /* ── PAGE HERO ── */
   .page-hero { background:var(--navy); padding:80px 0 64px; overflow:hidden; position:relative; }
 .page-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
@@ -678,7 +676,7 @@ const workSchema = [
 @media(max-width:760px) {
   .cs-body { grid-template-columns:1fr; gap:24px; }
 }
-.cs-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--navy); margin-bottom:14px; }
+.cs-col h3 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--navy); margin-bottom:14px; }
 .cs-col p { font-size:16px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:12px; }
 .cs-col p:last-child { margin-bottom:0; }
 .cs-col strong { color:var(--navy); font-weight:700; }
@@ -696,11 +694,6 @@ const workSchema = [
 .cv-label.navy { color:var(--navy); }
 .cs-visual svg { display:block; width:100%; height:auto; }
 .cs-visual figcaption { font-size:12px; color:var(--muted); margin-top:12px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; font-style:italic; }
-/* Testimonial */
-  .cs-quote { background:var(--navy); border-radius:6px; padding:28px 28px 24px; position:relative; margin-top:28px; }
-.cs-quote::before { content:'"'; font-family:"DM Sans",sans-serif; font-weight:700; font-size:64px; color:rgba(193,140,93,.3); line-height:.7; position:absolute; top:18px; left:20px; }
-.cs-quote blockquote { font-size:17px; color:#D6DDE8; line-height:1.6; font-weight:300; font-style:italic; padding-left:36px; position:relative; z-index:1; margin-bottom:14px; }
-.cs-quote .q-attr { font-size:13px; color:var(--twine); font-weight:600; padding-left:36px; }
 /* Section divider */
   .cs-divider { border:none; border-top:2px solid var(--rule); margin:0; }
 /* ── SAMPLE DELIVERABLES ── */
@@ -723,9 +716,6 @@ const workSchema = [
 .cta-strip p { color:#A8B4C0; font-size:17px; font-weight:300; max-width:46ch; margin:0 auto 28px; line-height:1.6; }
 .btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; padding:14px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
 .btn:hover { transform:translateY(-2px); background:var(--sepia); }
-/* ── FOOTER ── */
-  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
-.reveal { opacity:0; transform:translateY(14px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
 </style>
 
 </BaseLayout>

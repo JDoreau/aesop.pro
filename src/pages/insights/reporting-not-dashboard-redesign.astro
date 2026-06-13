@@ -87,3 +87,16 @@ const ogDescription = "The dashboard is the last 10% of the problem. If the 90% 
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Iceberg visual */
+  .iceberg-wrap { margin:40px 0; }
+  .iceberg-wrap svg { display:block; width:100%; height:auto; }
+  /* Two-col */
+  .twocol > div { background:var(--paper); padding:24px; }
+  .twocol h4 { font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.13em; margin-bottom:10px; }
+  .twocol .a h4 { color:var(--contessa); }
+  .twocol .b h4 { color:var(--navy); }
+  .twocol p { font-size:15.5px; line-height:1.55; color:var(--ink); margin:0; font-weight:300; }
+  @media(max-width:520px){ .twocol { grid-template-columns:1fr; } }
+</style>
