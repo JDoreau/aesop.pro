@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const title = 'Free Reporting Trust Health Check | Aesop Analytics'
-const description = 'A free reporting trust self-check. Rate 10 areas - KPI definitions, ownership, governance, data quality - and get an instant scored report. No email required.'
-const ogDescription = "Score your reporting environment across 10 diagnostic areas. Know where trust is breaking down before you start fixing it.";
+const title = 'Free Resources: Reporting Trust Tools | Aesop Analytics'
+const description = 'Free reporting trust tools - a 2-minute self-check, the full 30-question Health Check, a dashboard audit, a sample assessment, and a letter for your team. No email walls.'
+const ogDescription = "Free tools for reporting trust: self-checks, a dashboard audit, a sample assessment deliverable, and more. No email required.";
 ---
 
 <BaseLayout title={title} description={description} path="/resources" ogDescription={ogDescription}>
@@ -11,11 +11,11 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
 <section class="hero">
   <div class="hero-in">
     <div>
-      <div class="eyebrow">Free resource</div>
+      <div class="eyebrow">Free resources</div>
       <span class="hero-free">100% Free · No email required</span>
-      <h1>The Reporting Trust Health Check</h1>
-      <p>Score your reporting environment across 10 diagnostic areas. Understand exactly where trust is breaking down — before you spend a dollar fixing it.</p>
-      <a href="#checklist" class="btn">Take the Health Check →</a>
+      <h1>Free tools for reporting trust.</h1>
+      <p>Self-checks, audits, and working examples — built from the same method we use in paid engagements. Start with the 2-minute self-check below, or go straight to the full toolkit.</p>
+      <a href="#checklist" class="btn">Take the quick self-check →</a>
     </div>
     <!-- Score preview -->
     <div class="score-card">
@@ -45,10 +45,44 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
   </div>
 </section>
 
-<!-- WHAT IT COVERS -->
+<!-- THE TOOLKIT (resource directory) -->
+<section class="toolkit">
+  <div class="wrap">
+    <div class="sec-label">The toolkit</div>
+    <h2>Four free tools, one method.</h2>
+    <div class="tool-grid">
+      <a href="/resources/health-check/" class="tool-card">
+        <div class="tc-tag">Self-assessment · ~30 min</div>
+        <h3>Reporting Trust Health Check</h3>
+        <p>The full version: 10 areas, 3 signal questions each, with a scored, printable report. The deeper read on where trust is breaking down.</p>
+        <span class="tc-go">Take the Health Check →</span>
+      </a>
+      <a href="/resources/dashboard-audit/" class="tool-card">
+        <div class="tc-tag">Audit · 30 questions</div>
+        <h3>Dashboard Audit</h3>
+        <p>Score one dashboard for clarity, trust, and decision-usefulness — and get fix hints for every weak answer.</p>
+        <span class="tc-go">Run the audit →</span>
+      </a>
+      <a href="/resources/sample-assessment/" class="tool-card">
+        <div class="tc-tag">Worked example</div>
+        <h3>Sample Assessment</h3>
+        <p>What a Reporting Clarity Assessment actually delivers — a complete anonymized example, findings to roadmap.</p>
+        <span class="tc-go">Read the sample →</span>
+      </a>
+      <a href="/resources/trust-letter/" class="tool-card">
+        <div class="tc-tag">For your team</div>
+        <h3>The Reporting Trust Letter</h3>
+        <p>A plain-language letter you can adapt and send internally to start the reporting-trust conversation.</p>
+        <span class="tc-go">Get the letter →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK SELF-CHECK -->
 <section class="covers" id="checklist">
   <div class="wrap">
-    <div class="sec-label">10 diagnostic areas</div>
+    <div class="sec-label">Quick self-check · 10 areas · ~2 minutes</div>
     <h2>Where reporting trust breaks down — and how to measure it.</h2>
     <p class="intro">Rate each area from 1 (not in place) to 10 (fully in place), then run your assessment. You will get a scored read-out that interprets every area and the patterns between them - a genuine diagnostic, generated in your browser. Nothing you enter is sent anywhere.</p>
     <div class="area-grid">
@@ -253,7 +287,18 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
 .sa-fill.red { background:var(--contessa); }
 .sa-fill.yellow { background:var(--warn); }
 .sa-fill.green { background:#7EB09B; }
-/* WHAT IT COVERS */
+/* THE TOOLKIT (resource directory) */
+  .toolkit { padding:72px 0 8px; }
+.toolkit h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:28px; }
+.tool-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+@media(max-width:640px) { .tool-grid { grid-template-columns:1fr; } }
+.tool-card { display:block; background:#fff; border:1px solid var(--line); border-top:3px solid var(--twine); border-radius:6px; padding:24px 22px; transition:transform .15s, box-shadow .15s; }
+.tool-card:hover { transform:translateY(-2px); box-shadow:0 14px 34px -24px rgba(15,31,56,.35); }
+.tc-tag { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:10px; }
+.tool-card h3 { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.tool-card p { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; margin-bottom:14px; }
+.tc-go { font-size:13px; font-weight:700; color:var(--sepia); }
+/* QUICK SELF-CHECK */
   .covers { padding:72px 0; }
 .covers h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
 .covers .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:58ch; margin-bottom:44px; line-height:1.6; }
