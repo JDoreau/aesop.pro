@@ -1,37 +1,26 @@
 ---
 // BaseLayout.astro — every page renders through this. The head, the global
 // stylesheets, the nav, and the footer are composed here exactly once.
+// Props mirror Seo's (extended, not re-declared) and forward via spread, so
+// a prop added to Seo can never silently drop here again.
 import "../styles/tokens.css";
 import "../styles/base.css";
 import Seo from "../components/Seo.astro";
+import type { Props as SeoProps } from "../components/Seo.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
-interface Props {
-  title: string;
-  description: string;
-  path?: string;
-  ogTitle?: string;
-  ogDescription?: string;
-  ogType?: string;
-  noindex?: boolean;
-  schema?: Record<string, unknown> | Record<string, unknown>[];
-}
-const { title, description, path, ogTitle, ogDescription, ogType, noindex, schema } = Astro.props;
+interface Props extends SeoProps {}
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <Seo title={title} description={description} path={path} ogTitle={ogTitle} ogDescription={ogDescription} ogType={ogType} noindex={noindex} schema={schema} />
+    <Seo {...Astro.props} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <Nav />
     <main id="main"><slot /></main>
     <Footer />
-    <style>
-      .skip-link { position:absolute; left:-9999px; top:0; z-index:100; background:var(--navy); color:var(--cream); padding:12px 18px; border-radius:4px; }
-      .skip-link:focus { left:16px; top:8px; }
-    </style>
   </body>
 </html>

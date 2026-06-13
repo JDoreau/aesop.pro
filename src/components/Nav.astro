@@ -15,7 +15,7 @@ const isCurrent = (href: string) => href === path || (href !== "/" && path.start
       ))}
     </div>
     <a href={cta.href} class="nav-cta">{cta.label}</a>
-    <div class="ham" id="ham" role="button" aria-label="Menu" tabindex="0"><span></span><span></span><span></span></div>
+    <button class="ham" id="ham" type="button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
@@ -35,7 +35,7 @@ const isCurrent = (href: string) => href === path || (href !== "/" && path.start
   .nav-links a.nav-accent:hover { color:var(--sepia); }
   .nav-cta { background:var(--navy); color:var(--cream)!important; padding:10px 18px; border-radius:4px; font-size:12.5px; font-weight:600; letter-spacing:.04em; transition:background .2s; white-space:nowrap; flex-shrink:0; }
   .nav-cta:hover { background:var(--navy-3); }
-  .ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; flex-shrink:0; }
+  .ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; flex-shrink:0; background:none; border:none; }
   .ham span { display:block; width:22px; height:2px; background:var(--navy); border-radius:2px; }
   @media(max-width:860px){ .nav-links { display:none; } .ham { display:flex; } .nav-cta { display:none; } }
 
@@ -51,13 +51,17 @@ const isCurrent = (href: string) => href === path || (href !== "/" && path.start
   const ham = document.getElementById('ham');
   const mob = document.getElementById('mobile-menu');
   if (ham && mob) {
-    ham.addEventListener('click', () => mob.classList.toggle('open'));
-    ham.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); mob.classList.toggle('open'); }
-    });
-    mob.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => mob.classList.remove('open')));
+    const setOpen = (open: boolean) => {
+      mob.classList.toggle('open', open);
+      ham.setAttribute('aria-expanded', String(open));
+    };
+    ham.addEventListener('click', () => setOpen(!mob.classList.contains('open')));
+    mob.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
     document.addEventListener('click', (e) => {
-      if (!ham.contains(e.target) && !mob.contains(e.target)) mob.classList.remove('open');
+      if (e.target instanceof Node && !ham.contains(e.target) && !mob.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mob.classList.contains('open')) { setOpen(false); (ham as HTMLElement).focus(); }
     });
   }
 </script>
