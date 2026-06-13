@@ -16,13 +16,15 @@ function sitemap() {
       "astro:build:done": ({ pages, dir }) => {
         const lastmod = new Date().toISOString().slice(0, 10);
         // Keep the sitemap in sync with noindex pages — never list a URL we
-        // tell crawlers not to index.
+        // tell crawlers not to index. Exact first-segment match (startsWith
+        // would also swallow e.g. a future /thanksgiving-... page); the
+        // route set is cross-checked against noindex={true} by check.mjs.
         const NOINDEX = ["404", "thanks"];
         const urls = [
           ...new Set(
             pages
               .map((p) => p.pathname)
-              .filter((path) => !NOINDEX.some((n) => path.startsWith(n)))
+              .filter((path) => !NOINDEX.includes(path.split("/").filter(Boolean)[0] ?? ""))
               .map((path) => new URL(path, SITE + "/").href)
           ),
         ].sort();

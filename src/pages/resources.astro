@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const title = 'Free Reporting Trust Health Check | Aesop Analytics'
-const description = 'A free 30-question reporting audit. Score your environment across 10 diagnostic areas - KPI definitions, ownership, governance, data quality, AI readiness, and more.'
+const description = 'A free reporting trust self-check. Rate 10 areas - KPI definitions, ownership, governance, data quality - and get an instant scored report. No email required.'
 const ogDescription = "Score your reporting environment across 10 diagnostic areas. Know where trust is breaking down before you start fixing it.";
 ---
 
@@ -188,7 +188,7 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
       <button type="button" class="hc-reset" id="hc-reset">Reset answers</button>
       <span class="hc-livehint" id="hc-livehint">Rate all ten areas, then run your full diagnostic.</span>
     </div>
-    <div class="hc-report" id="hc-report" hidden></div>
+    <div class="hc-report" id="hc-report" aria-live="polite" hidden></div>
     <button type="button" class="hc-jump" id="hc-jump" hidden aria-label="Jump to your results">Your score <strong id="hc-jump-score">--</strong> / 100</button>
   </div>
 </section>
@@ -277,40 +277,6 @@ const ogDescription = "Score your reporting environment across 10 diagnostic are
 .step .sn { font-family:"Abril Fatface",serif; font-size:32px; color:var(--twine); opacity:.5; line-height:1; margin-bottom:8px; }
 .step h3 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:8px; }
 .step p { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; }
-/* SCORING */
-  .scoring { padding:64px 0; }
-.scoring h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }
-.score-bands { display:flex; flex-direction:column; gap:12px; max-width:660px; }
-.band { display:grid; grid-template-columns:80px 1fr; gap:20px; align-items:start; padding:16px 18px; border-radius:6px; }
-.band.critical { background:rgba(206,118,107,.08); border:1px solid rgba(206,118,107,.2); }
-.band.concern { background:rgba(212,168,68,.07);  border:1px solid rgba(212,168,68,.2); }
-.band.stable { background:rgba(126,176,155,.08); border:1px solid rgba(126,176,155,.25); }
-.band.strong { background:rgba(15,31,56,.05);    border:1px solid rgba(15,31,56,.12); }
-.band-score { font-family:"Abril Fatface",serif; font-size:20px; font-weight:400; text-align:center; padding-top:2px; }
-.band.critical .band-score { color:var(--contessa); }
-.band.concern  .band-score { color:#C49A20; }
-.band.stable   .band-score { color:#4E9B84; }
-.band.strong   .band-score { color:var(--navy); }
-.band-label { font-size:15px; font-weight:700; margin-bottom:4px; }
-.band.critical .band-label { color:var(--contessa); }
-.band.concern  .band-label { color:#C49A20; }
-.band.stable   .band-label { color:#4E9B84; }
-.band.strong   .band-label { color:var(--navy); }
-.band-desc { font-size:14px; color:var(--muted); line-height:1.5; font-weight:300; }
-/* FUTURE RESOURCES -->
-  .future { background:var(--navy); padding:64px 0; }
-.future-in { max-width:1080px; margin:0 auto; padding:0 32px; }
-.future-in .eyebrow { color:var(--twine); }
-.future-in h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(22px,3vw,34px); color:#fff; margin-bottom:32px; }
-.future-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-@media(max-width:640px) {
-  .future-grid { grid-template-columns:1fr; }
-}
-.future-card { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:6px; padding:20px 18px; }
-.future-card .fc-tag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:8px; }
-.future-card h3 { font-size:15px; font-weight:700; color:#D6DDE8; margin-bottom:6px; }
-.future-card p { font-size:13px; color:#6A8099; line-height:1.5; font-weight:300; }
-.future-card .coming { display:inline-block; margin-top:10px; font-size:11px; font-weight:600; color:#4A6070; text-transform:uppercase; letter-spacing:.1em; }
 /* CTA */
   .cta { border-top:3px solid var(--twine); background:var(--paper-2); padding:72px 32px; text-align:center; border-bottom:1px solid var(--rule); }
 .cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.4vw,38px); color:var(--navy); margin-bottom:16px; }

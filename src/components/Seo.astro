@@ -1,9 +1,11 @@
 ---
 // Seo.astro — the ONE place the document head is defined: meta, favicon,
 // fonts, Open Graph, and structured data. Pages pass a full title.
-import { site, nav } from "../data/nav.ts";
+// Canonical/OG/breadcrumb URLs all flow through canonicalUrl() (nav.ts) so
+// they always match the sitemap's trailing-slash form.
+import { site, nav, canonicalUrl } from "../data/nav.ts";
 
-interface Props {
+export interface Props {
   title: string;
   description: string;
   path?: string;
@@ -14,8 +16,10 @@ interface Props {
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
-const { title, description, path = "/", ogTitle, ogDescription, ogType = "website", noindex = false, schema, ogImage } = Astro.props;
-const canonical = new URL(path, site.url).href;
+// path defaults to the page's own route — a page that forgets to pass it can
+// no longer silently claim the homepage as its canonical.
+const { title, description, path = Astro.url.pathname, ogTitle, ogDescription, ogType = "website", noindex = false, schema, ogImage } = Astro.props;
+const canonical = canonicalUrl(path);
 const ogImageUrl = new URL(ogImage ?? "/assets/og-image.png", site.url).href;
 
 // Breadcrumb trail, derived from the path so it can never drift from the IA.
@@ -28,7 +32,7 @@ segments.forEach((seg, i) => {
   const navMatch = nav.find((n) => n.href === acc);
   const isLeaf = i === segments.length - 1;
   const name = navMatch ? navMatch.label : isLeaf ? leafName : seg.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  crumbs.push({ name, item: new URL(acc, site.url).href });
+  crumbs.push({ name, item: canonicalUrl(acc) });
 });
 const breadcrumbSchema = segments.length
   ? {
@@ -43,14 +47,15 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 {noindex && <meta name="robots" content="noindex, follow" />}
 
-<!-- Google Analytics (GA4) - measurement ID G-4TVCCT0XW9 -->
-<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-4TVCCT0XW9"></script>
-<script is:inline>
+<!-- Google Analytics (GA4) - measurement ID G-4TVCCT0XW9. PROD-gated so dev
+     and preview sessions never pollute the production property. -->
+{import.meta.env.PROD && <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-4TVCCT0XW9"></script>}
+{import.meta.env.PROD && <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-4TVCCT0XW9');
-</script>
+</script>}
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />

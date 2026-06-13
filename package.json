@@ -3,13 +3,17 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/check.mjs && astro build", "check": "node scripts/check.mjs",
+    "build": "node scripts/check.mjs && astro build",
+    "check": "node scripts/check.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
     "astro": "^4.16.0"
   },
-  "//": "React + an adapter (e.g. @astrojs/react, @astrojs/cloudflare) get added in Phase 3–4 when the interactive islands and the /api/lead endpoint go in. Phase 0 is fully static."
+  "//": "React + an adapter (e.g. @astrojs/react, @astrojs/cloudflare) get added when interactive islands or a server-side /api/lead endpoint are taken up (see _OPS/PORTFOLIO.md for what's actually planned). Currently fully static."
 }

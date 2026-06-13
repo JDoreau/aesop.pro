@@ -7,7 +7,7 @@ import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/article.css";
 import Seo from "../components/Seo.astro";
-import { nav, cta, site } from "../data/nav.ts";
+import { nav, cta, site, canonicalUrl } from "../data/nav.ts";
 import Wordmark from "../components/Wordmark.astro";
 
 interface Props {
@@ -26,8 +26,14 @@ const {
   title, description, path, kicker, headingHtml, dekHtml,
   meta = [], author = "Jonathan Doreau", ogTitle, ogDescription,
 } = Astro.props;
-const canonical = new URL(path, site.url).href;
-const headline = headingHtml.replace(/<[^>]+>/g, "").trim();
+const canonical = canonicalUrl(path);
+// JSON-LD headline: the title alone — drop the visual subtitle span and
+// decode the entities Astro leaves in the raw prop string.
+const headline = headingHtml
+  .replace(/<span class="sub">[\s\S]*?<\/span>/g, "")
+  .replace(/<[^>]+>/g, "")
+  .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+  .trim();
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +51,7 @@ const headline = headingHtml.replace(/<[^>]+>/g, "").trim();
     })} />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <nav>
       <div class="nav-in">
         <Wordmark variant="article-nav" href="/" />
@@ -55,7 +62,7 @@ const headline = headingHtml.replace(/<[^>]+>/g, "").trim();
       </div>
     </nav>
 
-    <div class="wrap">
+    <main id="main" class="wrap">
       <article>
         <div class="kicker reveal">{kicker}</div>
         <h1 class="reveal" style="animation-delay:.05s" set:html={headingHtml}></h1>
@@ -66,7 +73,7 @@ const headline = headingHtml.replace(/<[^>]+>/g, "").trim();
         </div>
       </article>
       <slot />
-    </div>
+    </main>
 
     <section class="article-cta">
       <div class="acta-in">
@@ -93,19 +100,12 @@ const headline = headingHtml.replace(/<[^>]+>/g, "").trim();
       .article-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); line-height:1.12; color:#fff; margin-bottom:14px; letter-spacing:-.01em; }
       .article-cta p { font-size:16px; color:#A8B4C0; line-height:1.62; font-weight:300; margin-bottom:28px; }
       .acta-btn { display:inline-block; background:var(--twine); color:var(--navy); padding:13px 26px; border-radius:4px; font-size:14px; font-weight:700; letter-spacing:.02em; transition:background .2s, transform .2s; }
-      .acta-btn:hover { background:#d49b6a; transform:translateY(-2px); }
+      .acta-btn:hover { background:var(--twine-bright); transform:translateY(-2px); }
     </style>
-
-    <script>
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((en) => {
-          if (en.isIntersecting) {
-            en.target.style.animation = "rise .7s cubic-bezier(.2,.7,.2,1) forwards";
-            io.unobserve(en.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-    </script>
+    <!-- The .reveal entrance animation runs from base.css at load (with its
+         prefers-reduced-motion fallback). The old IntersectionObserver here
+         re-applied the animation inline, which overrode that fallback for
+         reduced-motion users — removed deliberately; do not re-add without a
+         matchMedia gate. -->
   </body>
 </html>

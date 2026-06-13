@@ -28,7 +28,7 @@ const countLabel = (s: Section) => {
   <div class="pillar-in">
     <span class="pillar-label">Pillar:</span>
     {pillarButtons.map((p) => (
-      <button class="pillar-btn" class:list={[{ on: p.cat === "all" }]} data-cat={p.cat}>{p.label}</button>
+      <button class="pillar-btn" class:list={[{ on: p.cat === "all" }]} data-cat={p.cat} aria-pressed={p.cat === "all" ? "true" : "false"}>{p.label}</button>
     ))}
   </div>
 </div>
@@ -58,7 +58,7 @@ const countLabel = (s: Section) => {
       <div class="pillar-section" data-pillar={s.pillar}>
         <div class="ps-head">{s.heading} <span class="ps-count">{countLabel(s)}</span></div>
         {s.rows.map((r) => (
-          <a href={`/insights/${r.slug}`} class="art-row" data-cat={r.cat}>
+          <a href={`/insights/${r.slug}`} class="art-row" data-cat={s.pillar}>
             <span class="ar-num">æ</span>
             <div class="ar-body">
               <div class="ar-title">{r.title}</div>
@@ -155,8 +155,6 @@ const countLabel = (s: Section) => {
 .pl-item:last-child { border-bottom:none; }
 .pl-item:hover { color:var(--navy); }
 .pl-ct { font-size:11px; font-weight:700; color:var(--muted); background:var(--paper-2); padding:2px 8px; border-radius:10px; }
-/* FOOTER */
-  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
 </style>
 
 <script>
@@ -179,7 +177,11 @@ const countLabel = (s: Section) => {
   }
   function selectPillar(cat) {
     if (!cat) return;
-    document.querySelectorAll('.pillar-btn').forEach((b) => b.classList.toggle('on', b.dataset.cat === cat));
+    document.querySelectorAll('.pillar-btn').forEach((b) => {
+      const on = b.dataset.cat === cat;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
     applyFilter(cat);
   }
   document.querySelectorAll('.pillar-btn').forEach((btn) => {

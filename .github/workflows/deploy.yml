@@ -4,7 +4,6 @@ name: Deploy to GitHub Pages
 
 on:
   # Deploy on every push to the default branch.
-  # NOTE: if this repo's default branch is "master", change "main" below.
   push:
     branches: [main]
   workflow_dispatch:
@@ -27,9 +26,11 @@ jobs:
         uses: actions/checkout@v6
       - name: Install, build, and upload your site output
         uses: withastro/action@v6
-        # with:
-        #   path: .            # root of the Astro project in the repo
-        #   node-version: 22   # default is 22
+        with:
+          # Pinned to match local dev (package.json engines) — the action's
+          # default Node version moves between releases; we don't want CI and
+          # local builds drifting apart silently.
+          node-version: 22
 
   deploy:
     needs: build

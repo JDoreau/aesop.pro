@@ -21,7 +21,8 @@ easy to version, no client-side framework. A little inline JS handles the nav
 toggle and scroll reveals. The build is produced by GitHub Actions and published
 to GitHub Pages behind Cloudflare.
 
-> Migrated from a hand-maintained 22-page static HTML site. See `CUTOVER.md`.
+> Migrated from a hand-maintained static HTML site in June 2026. See
+> `CUTOVER.md` (historical record — do not execute).
 
 ## Tech & hosting
 
@@ -64,8 +65,10 @@ src/
 │   ├── assessment.astro    Flagship: Reporting Clarity Assessment (+ Service & FAQPage schema)
 │   ├── work.astro          Case studies / portfolio
 │   ├── insights.astro      Content hub (renders from data/insights.ts)
-│   ├── insights/           17 articles + field studies (via ArticleLayout)
-│   ├── resources.astro     Free Reporting Trust Health Check
+│   ├── insights/           20 articles + field studies (via ArticleLayout)
+│   ├── resources.astro     Free resources hub + embedded reporting self-check
+│   ├── resources/          4 interactive tools (health-check, dashboard-audit,
+│   │                       sample-assessment, trust-letter)
 │   ├── about.astro         About / founder
 │   ├── contact.astro       Contact + fit/no-fit
 │   ├── diagnostic.astro    Cal.com booking
@@ -80,10 +83,12 @@ src/
 ├── components/
 │   ├── Seo.astro           THE shared <head>: meta, OG, fonts, GA4, structured data
 │   ├── Nav.astro           Header (renders from data/nav.ts)
-│   └── Footer.astro        Footer
+│   ├── Footer.astro        Footer
+│   ├── Wordmark.astro      The lockup (owl + aesop + ANALYTICS), all four variants
+│   └── OwlMark.astro       The owl SVG, single-sourced (build-enforced)
 │
 ├── data/
-│   ├── nav.ts              Site IA, CTA, and the `site` object (name, url, socials)
+│   ├── nav.ts              Site IA, CTA, the `site` object, and canonicalUrl()
 │   └── insights.ts         Insights hub content (pillars, articles, sidebar)
 │
 └── styles/
@@ -92,6 +97,7 @@ src/
     └── article.css         Article-specific styles
 
 astro.config.mjs            Site config + custom inline sitemap generator
+scripts/check.mjs           Repo invariants — run before every build (local + CI)
 public/                     Static assets served as-is (favicon, /brand, images)
 assessment-kit/             INTERNAL delivery toolkit (Markdown) — not site content
 .github/                    GitHub Actions build + deploy workflow
@@ -167,8 +173,12 @@ disclosure lives at `/privacy` and is linked from every footer.
 ```bash
 npm install        # first time
 npm run dev        # local dev server
-npm run build      # production build → dist/ (also regenerates sitemap.xml)
+npm run check      # repo invariant checks only (scripts/check.mjs)
+npm run build      # invariant checks + production build → dist/ (+ sitemap.xml)
 ```
+
+A build that fails with `INVARIANT FAILURE` was stopped by `scripts/check.mjs`
+— the rules it enforces are documented in `CLAUDE.md`.
 
 To deploy: commit to a feature branch, merge to `main` (`--no-ff`), and push.
 GitHub Actions builds the Astro site and publishes to GitHub Pages within a minute
@@ -197,7 +207,9 @@ curl -sL "https://aesopanalytics.com/?v=$RANDOM" | grep -i "<title>"
 
 ## Related
 
-- **Operating Brief** — single source of truth for positioning, services, pricing, and voice. Maintained in **Notion**.
+- **Canon** — positioning, services, pricing, voice, and the live plan are
+  maintained in `../_OPS/` (TRUE_NORTH.md + PORTFOLIO.md + INITIATIVES/),
+  version-controlled as the private `aesop-ops` repo. Notion is a mirror.
 - **Repo:** `github.com/JDoreau/aesop.pro`
 
 ---

@@ -129,3 +129,47 @@ const meta = ["Data through 2025", "~7 min read"];
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Restored from the pre-Astro original (aesop-productivity-pay-study.html
+     at e59da2f). Only the rules missing from article.css/base.css; shared
+     component bases (.stats, .stat, .n, .l, .legend, .pull, .callout, .big,
+     .cap, .twocol, .sources, .method) stay in article.css. */
+
+  .stat.alt .n{color:var(--contessa)}
+
+  /* -- Figures / charts -- */
+  figure{
+    margin:38px 0;background:#fff;
+    border:1px solid var(--line);border-radius:5px;
+    padding:26px 24px 18px;
+    /* navy shadow - was green */
+    box-shadow:0 18px 44px -30px rgba(15,31,56,.35)
+  }
+  figure .ftitle{font-weight:700;font-size:16px;margin-bottom:3px;color:var(--ink)}
+  figure .fsub{font-size:13px;color:var(--muted);margin-bottom:16px}
+  figure svg{display:block;width:100%;height:auto;overflow:visible}
+  figcaption{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.46;border-top:1px solid var(--line);padding-top:10px}
+  .legend span{display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
+
+  /* -- Section heads: numbered ornament -- */
+  h2 .num{font-family:"Abril Fatface",serif;color:var(--twine);font-size:22px;margin-right:10px}
+
+  /* -- Two-column box (inner pieces; base grid lives in article.css) -- */
+  .twocol > div{background:var(--paper);padding:22px}
+  .twocol h4{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.13em;margin-bottom:10px}
+  /* Navy for "A" side - was green */
+  .twocol .a h4{color:var(--navy)}
+  .twocol .b h4{color:var(--contessa)}
+  .twocol p{font-size:15.5px;line-height:1.5;color:var(--ink);margin:0;font-weight:300}
+  @media(max-width:560px){.twocol{grid-template-columns:1fr}}
+
+  /* -- Sources -- */
+  .sources h3{font-weight:700;text-transform:uppercase;letter-spacing:.15em;font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .sources ol{margin:0;padding-left:20px;font-size:13.5px;color:var(--muted);line-height:1.5}
+  .sources li{margin-bottom:8px}
+
+  /* -- Animations -- */
+  .bar-grow{transform:scaleY(0);transform-origin:bottom;animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes grow{to{transform:scaleY(1)}}
+</style>

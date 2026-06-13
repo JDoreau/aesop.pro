@@ -25,9 +25,9 @@ const V: Record<Variant, {
   nudge: number; gap: number;
 }> = {
   "nav":            { owl: 30, body: "var(--navy)",  eyes: "var(--twine)", nm: 22, nmColor: "var(--navy)", an: 10,   anWeight: 600, ls: ".34em", nudge: 3,    gap: 7 },
-  "footer":         { owl: 30, body: "#fff",         eyes: "var(--twine)", nm: 21, nmColor: "#D6DDE8",     an: 10,   anWeight: 600, ls: ".32em", nudge: 2.5,  gap: 6 },
-  "article-nav":    { owl: 30, body: "var(--navy)",  eyes: "var(--twine)", nm: 21, nmColor: "var(--navy)", an: 11,   anWeight: 700, ls: ".34em", nudge: 2.75, gap: 8 },
-  "article-footer": { owl: 28, body: "var(--twine)", eyes: "#FBFAF5",      nm: 21, nmColor: "#D6DDE8",     an: 10.5, anWeight: 700, ls: ".32em", nudge: 2.5,  gap: 8 },
+  "footer":         { owl: 30, body: "#fff",         eyes: "var(--twine)", nm: 21, nmColor: "var(--navy-mist)", an: 10,   anWeight: 600, ls: ".32em", nudge: 2.5,  gap: 6 },
+  "article-nav":    { owl: 30, body: "var(--navy)",  eyes: "var(--twine)", nm: 21, nmColor: "var(--navy)",      an: 11,   anWeight: 700, ls: ".34em", nudge: 2.75, gap: 8 },
+  "article-footer": { owl: 28, body: "var(--twine)", eyes: "var(--paper)", nm: 21, nmColor: "var(--navy-mist)", an: 10.5, anWeight: 700, ls: ".32em", nudge: 2.5,  gap: 8 },
 };
 const v = V[variant];
 const Tag = href ? "a" : "div";

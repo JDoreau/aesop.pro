@@ -159,3 +159,64 @@ const ogDescription = "Most dashboards are bloated because nobody made the hard 
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Restored from pre-migration article-what-belongs-on-a-dashboard.html
+     (commit 583a07c) -- rules for classes the shared article.css does not
+     cover. Astro scopes this block to the page. */
+
+  /* PULL QUOTE */
+  .pullquote { border-left:3px solid var(--twine); margin:40px 0; padding:6px 0 6px 28px; }
+  .pullquote p { font-family:"Newsreader",Georgia,serif; font-size:22px; font-weight:400; font-style:italic; color:var(--navy); line-height:1.45; margin:0; }
+
+  /* FRAMEWORK BOX */
+  .framework { background:var(--navy); border-radius:8px; padding:36px 32px; margin:44px 0; }
+  .framework .fw-head { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:20px; }
+  .fw-item { display:flex; gap:16px; align-items:flex-start; margin-bottom:20px; }
+  .fw-item:last-child { margin-bottom:0; }
+  .fw-num { font-family:"Abril Fatface",serif; font-size:28px; color:var(--twine); line-height:1; flex-shrink:0; width:28px; }
+  .fw-label { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#C4BDAE; margin-bottom:5px; }
+  .fw-q { font-family:"Newsreader",Georgia,serif; font-style:italic; font-size:18px; color:#fff; line-height:1.35; margin-bottom:6px; }
+  .fw-eg { font-size:13.5px; color:#8A9FB8; line-height:1.5; }
+
+  /* BELONGS GRID */
+  .belongs-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:36px 0; }
+  @media(max-width:580px){ .belongs-grid { grid-template-columns:1fr; } }
+  .belongs-col { border-radius:6px; padding:22px 20px; background:#fff; border:1px solid var(--line); }
+  .belongs-col.yes { border-top:3px solid var(--navy); }
+  .belongs-col.no  { border-top:3px solid var(--contessa); }
+  .belongs-col .bc-head { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; margin-bottom:14px; }
+  .belongs-col.yes .bc-head { color:var(--navy); }
+  .belongs-col.no  .bc-head { color:var(--contessa); }
+  .belongs-col ul { list-style:none; padding:0; margin:0; }
+  .belongs-col ul li { font-size:14.5px; color:var(--slate); line-height:1.5; padding:7px 0; border-bottom:1px solid var(--line); }
+  .belongs-col ul li:last-child { border-bottom:none; padding-bottom:0; }
+  .belongs-col ul li::before { margin-right:8px; font-size:12px; font-weight:700; }
+  .belongs-col.yes ul li::before { content:"✓"; color:var(--navy); }
+  .belongs-col.no  ul li::before { content:"✕"; color:var(--contessa); }
+
+  /* CTA BLOCK */
+  .cta-block { background:var(--navy); border-radius:8px; padding:40px 36px; margin:56px 0 0; }
+  .cta-block .ct-eyebrow { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--twine); margin-bottom:10px; }
+  .cta-block h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:26px; color:#fff; line-height:1.2; margin:0 0 12px; border-top:none; padding-top:0; }
+  .cta-block p { font-size:15.5px; color:#B8BDCA; line-height:1.55; margin-bottom:22px; }
+  .cta-block .btn { display:inline-block; background:var(--twine); color:#fff; text-decoration:none; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:13px 24px; border-radius:4px; transition:background .18s; margin-right:10px; margin-bottom:8px; }
+  .cta-block .btn:hover { background:var(--sepia); color:#fff; }
+  .cta-block .btn.ghost { background:transparent; border:1.5px solid rgba(255,255,255,.22); color:var(--cream); }
+  .cta-block .btn.ghost:hover { background:rgba(255,255,255,.08); }
+
+  /* READ NEXT */
+  .rn-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:580px){ .rn-grid { grid-template-columns:1fr; } }
+  .rn-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px 18px; text-decoration:none; display:block; transition:border-color .18s, box-shadow .18s; }
+  .rn-card:hover { border-color:var(--navy); box-shadow:0 8px 24px -16px rgba(15,31,56,.2); }
+  .rn-card .rn-pillar { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; color:var(--twine); margin-bottom:8px; }
+  .rn-card .rn-title { font-size:15px; font-weight:600; color:var(--navy); line-height:1.35; }
+
+  /* Restored original light callout (legacy design) - overrides the shared
+     navy .callout component, whose ink-on-navy strong text was unreadable here. */
+  .callout { background:var(--paper-2); border:1px solid var(--rule); border-left:4px solid var(--twine); border-radius:4px; padding:22px 24px; margin:36px 0; font-size:16px; color:var(--slate); line-height:1.6; }
+  .callout::after { content:none; }
+  .callout strong { color:var(--navy); }
+  .callout p { margin:0 0 10px; }
+  .callout p:last-child { margin:0; }</style>

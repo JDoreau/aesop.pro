@@ -68,7 +68,11 @@ for (const f of files) {
 // ── 4. Token discipline ──────────────────────────────────────────────────────
 // styles/*.css must use tokens (tokens.css itself defines them). Page <style>
 // blocks get a warning count so drift is visible without blocking ships.
-const BRAND_HEX = /#(?:0F1F38|C18C5D|FBFAF5|98673A|CE796B|5E9A82|D4A844|5A7090)\b/gi;
+// The hex list is PARSED from tokens.css so it can never drift from the
+// palette again (it used to be a hand-copied subset and missed real hits).
+const tokenCss = read(join(SRC, "styles", "tokens.css"));
+const tokenHexes = [...new Set([...tokenCss.matchAll(/--[\w-]+:\s*(#[0-9A-Fa-f]{6})\b/g)].map((m) => m[1].slice(1)))];
+const BRAND_HEX = new RegExp(`#(?:${tokenHexes.join("|")})\\b`, "gi");
 for (const f of files.filter((x) => x.includes("styles") && x.endsWith(".css"))) {
   if (f.endsWith("tokens.css")) continue;
   const hits = (read(f).match(BRAND_HEX) || []).length;
@@ -86,6 +90,39 @@ for (const f of files.filter((x) => x.endsWith(".astro"))) {
 const wm = read(join(SRC, "components", "Wordmark.astro"));
 for (const n of ["nudge: 3,", "nudge: 2.5,", "nudge: 2.75,"]) {
   if (!wm.includes(n)) failures.push(`Wordmark.astro missing measured nudge value "${n.trim()}"`);
+}
+
+// ── 6. Insights data/page contract ───────────────────────────────────────────
+// The hub renders entirely from insights.ts: every slug must have a page and
+// every article page must have a data row, or the hub ships 404 links /
+// invisible articles. Also: every row/section pillar must be a declared key.
+const insightsTs = read(join(SRC, "data", "insights.ts"));
+const dataSlugs = new Set([...insightsTs.matchAll(/slug:\s*["']([\w-]+)["']/g)].map((m) => m[1]));
+const pageSlugs = new Set(
+  readdirSync(join(SRC, "pages", "insights")).filter((f) => f.endsWith(".astro")).map((f) => f.replace(/\.astro$/, ""))
+);
+for (const s of dataSlugs) if (!pageSlugs.has(s)) failures.push(`insights.ts slug "${s}" has no src/pages/insights/${s}.astro — hub would link a 404`);
+for (const s of pageSlugs) if (!dataSlugs.has(s)) failures.push(`src/pages/insights/${s}.astro has no row in insights.ts — article invisible from the hub`);
+const pillarBlock = (insightsTs.match(/PILLAR_LABELS[\s\S]*?\{([\s\S]*?)\}/) || [, ""])[1];
+const pillarKeys = new Set([...pillarBlock.matchAll(/["']([\w-]+)["']\s*:/g)].map((x) => x[1]));
+if (pillarKeys.size) {
+  for (const m of insightsTs.matchAll(/pillar:\s*["']([\w-]+)["']/g)) {
+    if (!pillarKeys.has(m[1]) && m[1] !== "field-study") failures.push(`insights.ts pillar "${m[1]}" missing from PILLAR_LABELS — sidebar would render undefined`);
+  }
+}
+
+// ── 7. Sitemap noindex sync ──────────────────────────────────────────────────
+// astro.config.mjs's NOINDEX list must match the pages passing noindex={true},
+// or a noindexed page lands in the sitemap (or an indexable one vanishes).
+const configSrc = read(join(ROOT, "astro.config.mjs"));
+const noindexList = (configSrc.match(/const NOINDEX = \[([^\]]*)\]/) || [, ""])[1]
+  .split(",").map((s) => s.trim().replace(/["']/g, "")).filter(Boolean).sort();
+const noindexPages = files
+  .filter((f) => f.endsWith(".astro") && /noindex=\{true\}/.test(read(f)))
+  .map((f) => rel(f).replace(/^src\/pages\//, "").replace(/\.astro$/, "").replace(/\/index$/, ""))
+  .sort();
+if (JSON.stringify(noindexList) !== JSON.stringify(noindexPages)) {
+  failures.push(`noindex drift: astro.config.mjs NOINDEX [${noindexList}] != pages with noindex={true} [${noindexPages}]`);
 }
 
 // ── Report ───────────────────────────────────────────────────────────────────
