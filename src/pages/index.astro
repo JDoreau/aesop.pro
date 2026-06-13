@@ -119,7 +119,7 @@ const ogDescription = "Most reporting problems are not visualization problems. T
       </a>
 
       <!-- Sprint -->
-      <a href="/services#sprint" class="offer-card" style="text-decoration:none">
+      <a href="/services/#sprint" class="offer-card" style="text-decoration:none">
         <div class="oc-tag">Implementation</div>
         <div class="oc-name">Executive Reporting Modernization Sprint</div>
         <div class="oc-desc">Build or redesign a high-value reporting package — executive KPI dashboard, KPI dictionary, source-of-truth map, and reporting standards guide. Leadership gets a cleaner, trusted reporting system built around actual decisions.</div>
@@ -131,7 +131,7 @@ const ogDescription = "Most reporting problems are not visualization problems. T
       </a>
 
       <!-- Governance -->
-      <a href="/services#governance" class="offer-card" style="text-decoration:none">
+      <a href="/services/#governance" class="offer-card" style="text-decoration:none">
         <div class="oc-tag">Governance</div>
         <div class="oc-name">Data Governance Starter Kit</div>
         <div class="oc-desc">A practical governance system — KPI dictionary, metric owner matrix, data owner RACI, reporting intake process, and an operating model that reduces metric confusion without creating bureaucracy.</div>
@@ -143,7 +143,7 @@ const ogDescription = "Most reporting problems are not visualization problems. T
       </a>
 
       <!-- Retainer -->
-      <a href="/services#retainer" class="offer-card" style="text-decoration:none">
+      <a href="/services/#retainer" class="offer-card" style="text-decoration:none">
         <div class="oc-tag">Ongoing support</div>
         <div class="oc-name">Fractional Analytics Operations Retainer</div>
         <div class="oc-desc">Senior analytics operating support on an ongoing basis — roadmap management, governance, dashboard improvements, stakeholder intake, and reporting leadership — without the cost of a full-time hire.</div>
@@ -272,11 +272,11 @@ const ogDescription = "Most reporting problems are not visualization problems. T
   <div class="wrap">
     <div class="about-grid">
       <div class="about-mark" aria-hidden="true"><OwlMark body="var(--navy)" eyes="var(--twine)" style="width:clamp(110px,16vw,180px);height:auto;display:block;margin:0 auto;" /><span class="sm">Jonathan Doreau</span></div>
-      <div>
+      <div class="about-right">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:16px">Who's behind it</div>
-        <h2 class="about-right" style="font-family:'Newsreader',Georgia,serif;font-weight:600;letter-spacing:-.01em;font-size:clamp(24px,3.2vw,36px);color:var(--navy);margin-bottom:16px;line-height:1.12">Fifteen years turning messy data into decisions people trust.</h2>
-        <p style="font-size:17px;color:var(--slate);line-height:1.65;font-weight:300;margin-bottom:16px"><strong style="color:var(--navy);font-weight:700">Jonathan Doreau</strong> has spent 15+ years as an analytics and BI leader across finance, healthcare and research (including an NIH-funded program), real estate, and nonprofit — building reporting systems from scratch, fixing environments that had lost trust, and translating messy data into governance that organizations actually use.</p>
-        <p style="font-size:17px;color:var(--slate);line-height:1.65;font-weight:300;margin-bottom:16px">Today, Jonathan leads a small, senior Aesop team — BI development, delivery, and analytics — so clients get principal-level thinking with the capacity to deliver. The common thread across every engagement: turning fragmented, distrusted reporting into systems people rely on when they make real decisions.</p>
+        <h2>Fifteen years turning messy data into decisions people trust.</h2>
+        <p><strong>Jonathan Doreau</strong> has spent 15+ years as an analytics and BI leader across finance, healthcare and research (including an NIH-funded program), real estate, and nonprofit — building reporting systems from scratch, fixing environments that had lost trust, and translating messy data into governance that organizations actually use.</p>
+        <p>Today, Jonathan leads a small, senior Aesop team — BI development, delivery, and analytics — so clients get principal-level thinking with the capacity to deliver. The common thread across every engagement: turning fragmented, distrusted reporting into systems people rely on when they make real decisions.</p>
         <div class="creds"><span class="cred-tag">SQL</span><span class="cred-tag">Power BI</span><span class="cred-tag">Tableau</span><span class="cred-tag">Snowflake</span><span class="cred-tag">KPI Design</span><span class="cred-tag">Governance</span><span class="cred-tag">Reporting Modernization</span></div>
         <a href="/about" class="about-link">Full background</a>
       </div>
@@ -300,9 +300,6 @@ const ogDescription = "Most reporting problems are not visualization problems. T
 <style>
 section { position:relative; }
 /* Newsreader = primary display/header font. Abril retained as sparing accent only. */
-  .display-serif { font-family:"Abril Fatface",serif!important; font-weight:400!important; }
-/* ── NAV ── */
-  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
 /* ── HERO ── */
   .hero { background:var(--navy); color:var(--cream); overflow:hidden; min-height:88vh; display:flex; align-items:center; }
 .hero::after { content:"æ"; position:absolute; right:-3%; top:-14%; font-family:"Abril Fatface",serif; font-size:min(48vw,580px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
@@ -315,7 +312,7 @@ section { position:relative; }
 .btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); margin-left:10px; }
 .btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; transform:translateY(-2px); }
 .btn-row { display:flex; flex-wrap:wrap; gap:12px; }
-.hero-note { margin-top:52px; display:flex; align-items:center; gap:12px; color:var(--info); font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+.hero-note { margin-top:52px; display:flex; align-items:center; gap:12px; color:#8FA4B8; font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
 .hero-note::before { content:''; display:block; width:28px; height:1px; background:var(--info); }
 /* ── PROMISE BAR ── */
   .promise { background:var(--paper-2); border-bottom:1px solid var(--rule); }
@@ -385,12 +382,6 @@ section { position:relative; }
 .offer-card.flagship .oc-pill { background:var(--navy-2); color:#fff; border-color:var(--navy-3); }
 .oc-link { font-size:13px; font-weight:700; color:var(--twine); letter-spacing:.04em; text-transform:uppercase; margin-top:4px; }
 .oc-link:hover { color:var(--sepia); }
-/* Retainer card — full width -->  */
-  .offer-card.retainer { grid-column:1/-1; flex-direction:row; align-items:center; gap:32px; }
-@media(max-width:720px) {
-  .offer-card.retainer { flex-direction:column; gap:16px; grid-column:auto; }
-}
-.offer-card.retainer .ret-body { flex:1; }
 /* ── WHO WE SERVE ── */
   .who { padding:80px 0; }
 .who h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:14px; max-width:20ch; }
@@ -484,15 +475,13 @@ section { position:relative; }
   .final-cta { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:96px 32px; }
 .final-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,4.4vw,52px); color:#fff; margin-bottom:20px; line-height:1.06; }
 .final-cta p { color:#A8B4C0; font-size:18px; font-weight:300; max-width:48ch; margin:0 auto 36px; line-height:1.6; }
-/* ── FOOTER ── */
-  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
-/* ── ANIMATIONS ── */
-  .reveal { opacity:0; transform:translateY(14px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
 </style>
 
 <script is:inline>
+if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){ /* reduced motion: leave elements visible, skip hiding & observing */
 const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.animation='rise .7s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(en.target);}});},{threshold:.1});
 document.querySelectorAll('.offer-card,.persona,.pain-item,.trust-step').forEach((el,i)=>{el.style.opacity='0';el.style.animationDelay=(i*.05)+'s';io.observe(el);});
+}
 </script>
 
 </BaseLayout>

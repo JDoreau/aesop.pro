@@ -112,8 +112,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <a href="/diagnostic" class="btn">Book a free diagnostic call →</a>
     <a href="/resources" class="btn ghost">Back to Resources</a>
     <br>
-    <span class="print-btn" onclick="printReport()">⊞ Save or print your report (PDF)</span>
-    <span class="reset-btn" onclick="resetAssessment()">↺ Start over</span>
+    <button type="button" class="print-btn" onclick="printReport()">⊞ Save or print your report (PDF)</button>
+    <button type="button" class="reset-btn" onclick="resetAssessment()">↺ Start over</button>
   </div>
 </section>
 
@@ -273,9 +273,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   .res-cta { background:var(--navy-2); border-top:1px solid var(--navy-3); padding:60px 32px 72px; text-align:center; }
   .res-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:16px; line-height:1.1; letter-spacing:-.01em; }
   .res-cta p { font-size:17px; color:#B0BCCA; font-weight:300; max-width:52ch; margin:0 auto 32px; line-height:1.65; }
-  .print-btn { display:inline-block; margin-top:20px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; }
+  .print-btn { display:inline-block; background:none; border:none; font:inherit; margin-top:20px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; }
   .print-btn:hover { color:var(--twine); }
-  .reset-btn { display:inline-block; margin-top:6px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; margin-left:20px; }
+  .reset-btn { display:inline-block; background:none; border:none; font:inherit; margin-top:6px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; margin-left:20px; }
   .reset-btn:hover { color:var(--contessa); }
 
   /* ── FOOTER ── */
@@ -430,8 +430,8 @@ AREAS.forEach(area => {
     <div class="ac-name">${area.name}</div>
     <div class="ac-desc">${area.desc}</div>
     <ul class="ac-qs">${area.qs.map(q=>`<li>${q}</li>`).join('')}</ul>
-    <div class="score-row" id="row-${area.id}" role="radiogroup" aria-label="Score for ${area.name}">
-      ${[1,2,3,4,5,6,7,8,9,10].map(n=>`<button class="sb" data-area="${area.id}" data-val="${n}" onclick="pick('${area.id}',${n})" aria-label="${n} out of 10">${n}</button>`).join('')}
+    <div class="score-row" id="row-${area.id}" role="group" aria-label="Score for ${area.name}">
+      ${[1,2,3,4,5,6,7,8,9,10].map(n=>`<button class="sb" data-area="${area.id}" data-val="${n}" onclick="pick('${area.id}',${n})" aria-pressed="false" aria-label="${n} out of 10">${n}</button>`).join('')}
     </div>
     <div class="score-scale-labels"><span class="ssl">1 — Broken</span><span class="ssl">10 — Strong</span></div>
   `;
@@ -451,7 +451,9 @@ function applyPick(id, val) {
   const c = cls(val);
   document.querySelectorAll(`#row-${id} .sb`).forEach(btn => {
     btn.classList.remove('sel-low','sel-mid','sel-high');
-    if(+btn.dataset.val===val) btn.classList.add(`sel-${c}`);
+    const selected = +btn.dataset.val===val;
+    if(selected) btn.classList.add(`sel-${c}`);
+    btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
   });
   const card = document.getElementById(`card-${id}`);
   card.classList.remove('s-low','s-mid','s-high');

@@ -241,10 +241,33 @@ const meta = ["~7 min read", "Dashboard Design"];
       <div class="rn-links">
         <a href="/insights/dashboard-design-basics" class="rn-link">← Dashboard Design, the Basics</a>
         <a href="/insights/productivity-pay-study" class="rn-link">Field Study: The Productivity–Pay Gap →</a>
-        <a href="/" class="rn-link">Back to aesop.pro</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
       </div>
     </div>
 
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Eye-scan pattern diagram labels */
+  .scan-wrap { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:36px 0; }
+  @media(max-width:560px) { .scan-wrap { grid-template-columns:1fr; } }
+  .scan-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px; }
+  .scan-card .sctitle { font-weight:700; font-size:14px; color:var(--navy); margin-bottom:4px; }
+  .scan-card .scdesc { font-size:13px; color:var(--muted); margin-bottom:14px; font-weight:300; }
+  .scan-card svg { display:block; width:100%; height:auto; }
+
+  /* Principle cards grid */
+  .principles { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:36px 0; }
+  @media(max-width:560px){ .principles { grid-template-columns:1fr; } }
+  .pcard { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px 20px; }
+  .pcard:hover { border-color:#B8BDCA; box-shadow:0 8px 24px -16px rgba(15,31,56,.2); transition:all .2s; }
+  .pcard .pn { font-family:"Abril Fatface",serif; font-size:13px; color:var(--twine); margin-bottom:6px; text-transform:uppercase; letter-spacing:.12em; }
+  .pcard h3 { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .pcard p { font-size:14.5px; color:var(--slate); line-height:1.55; font-weight:300; margin:0; }
+
+  /* Illustration frames (page-specific extras over article.css .illus) */
+  .illus svg { display:block; width:100%; height:auto; }
+  .illus figcaption { font-size:12px; color:var(--muted); margin-top:14px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; }
+</style>

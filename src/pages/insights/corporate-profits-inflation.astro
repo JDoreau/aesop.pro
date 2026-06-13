@@ -253,10 +253,41 @@ const meta = ["Data: BEA NIPA · EPI analysis", "~8 min read"];
       <div class="rn-links">
         <a href="/insights/productivity-pay-study" class="rn-link">Field Study: The Productivity–Pay Gap →</a>
         <a href="/insights/dashboard-design-basics" class="rn-link">Dashboard Design, the Basics →</a>
-        <a href="/" class="rn-link">← Back to aesop.pro</a>
+        <a href="/insights" class="rn-link">← All Insights</a>
       </div>
     </div>
 
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Stat strip accents (page-specific over article.css .stat base) */
+  .stat.accent .n { color:var(--twine); }
+  .stat.warn .n { color:var(--contessa); }
+  @media(max-width:560px){ .stats { grid-template-columns:1fr; } .stat { border-right:none; border-bottom:1px solid var(--rule); } .stat:last-child { border-bottom:none; } }
+
+  /* Chart frames */
+  .chart { margin:38px 0; background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px 24px 20px; box-shadow:0 16px 40px -28px rgba(15,31,56,.22); }
+  .chart .ctitle { font-weight:700; font-size:15px; margin-bottom:3px; color:var(--ink); }
+  .chart .csub { font-size:12.5px; color:var(--muted); margin-bottom:18px; }
+  .chart svg { display:block; width:100%; height:auto; overflow:visible; }
+  .chart figcaption { font-size:12px; color:var(--muted); margin-top:14px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; }
+  .legend span { display:inline-flex; align-items:center; gap:7px; color:var(--ink); }
+
+  /* Two-col box */
+  .twocol > div { background:var(--paper); padding:24px; }
+  .twocol h4 { font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.13em; margin-bottom:10px; }
+  .twocol .a h4 { color:var(--navy); } .twocol .b h4 { color:var(--contessa); }
+  .twocol p { font-size:15.5px; line-height:1.55; color:var(--ink); margin:0; font-weight:300; }
+  @media(max-width:560px){ .twocol { grid-template-columns:1fr; } }
+
+  /* Sources */
+  .sources h3 { font-weight:700; text-transform:uppercase; letter-spacing:.15em; font-size:12.5px; color:var(--muted); margin-bottom:14px; }
+  .sources ol { margin:0; padding-left:20px; font-size:13.5px; color:var(--muted); line-height:1.55; }
+  .sources li { margin-bottom:8px; }
+
+  /* Bar animation */
+  .bar-grow { transform:scaleY(0); transform-origin:bottom; animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes grow { to { transform:scaleY(1); } }
+</style>

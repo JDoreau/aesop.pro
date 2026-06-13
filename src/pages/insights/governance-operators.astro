@@ -117,3 +117,23 @@ const ogDescription = "Governance doesn't have to mean bureaucracy. A lightweigh
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Five components */
+  .components { display:flex; flex-direction:column; gap:0; margin:32px 0; border-top:2px solid var(--rule); }
+  .comp { padding:24px 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns:60px 1fr; gap:18px; align-items:flex-start; }
+  .comp-n { font-family:"Abril Fatface",serif; font-size:34px; color:var(--twine); line-height:1; opacity:.6; }
+  .comp h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .comp p { font-size:16px; color:var(--slate); line-height:1.6; font-weight:300; margin:0; }
+  /* Vs comparison */
+  .vs { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:36px 0; }
+  @media(max-width:540px){ .vs { grid-template-columns:1fr; } }
+  .vs-box { border-radius:6px; padding:20px 18px; }
+  .vs-box.heavy { background:rgba(206,118,107,.06); border:1px solid rgba(206,118,107,.2); }
+  .vs-box.light { background:rgba(15,31,56,.05); border:1px solid rgba(15,31,56,.12); }
+  .vs-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; margin-bottom:12px; }
+  .vs-box.heavy .vs-label { color:var(--contessa); }
+  .vs-box.light .vs-label { color:var(--navy); }
+  .vs-item { font-size:14.5px; color:var(--slate); padding:7px 0; border-bottom:1px solid rgba(0,0,0,.06); line-height:1.45; font-weight:300; }
+  .vs-item:last-child { border-bottom:none; }
+</style>
