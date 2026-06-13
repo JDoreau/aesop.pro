@@ -98,3 +98,25 @@ const ogDescription = "Ownership is the missing link in reporting trust. Not a t
   </div>
 
 </ArticleLayout>
+
+<style>
+  /* Restored from pre-migration article-kpi-owner.html (commit e59da2f).
+     Only the rules missing from the shared sheets are recreated here. */
+  /* Owner types */
+  .owner-types { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:32px 0; }
+  @media(max-width:560px){ .owner-types { grid-template-columns:1fr; } }
+  .ot-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px 20px; border-top:3px solid var(--navy); }
+  .ot-card.b { border-top-color:var(--twine); }
+  .ot-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--muted); margin-bottom:8px; }
+  .ot-title { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:10px; }
+  .ot-card.b .ot-title { color:var(--sepia); }
+  .ot-desc { font-size:14.5px; color:var(--slate); line-height:1.55; font-weight:300; margin-bottom:10px; }
+  .ot-examples { font-size:13px; color:var(--muted); font-style:italic; line-height:1.5; }
+  /* Accountability grid */
+  .acc-grid { display:flex; flex-direction:column; gap:0; margin:32px 0; border-top:2px solid var(--rule); }
+  .acc-row { display:grid; grid-template-columns:200px 1fr; gap:20px; padding:16px 0; border-bottom:1px solid var(--line); align-items:start; }
+  @media(max-width:540px){ .acc-row { grid-template-columns:1fr; gap:4px; } }
+  .acc-trigger { font-size:14px; font-weight:700; color:var(--navy); }
+  .acc-action { font-size:15.5px; color:var(--slate); line-height:1.55; font-weight:300; }
+  .acc-action strong { color:var(--ink); font-weight:700; }
+</style>

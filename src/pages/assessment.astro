@@ -4,6 +4,29 @@ const title = 'Reporting Clarity Assessment | Fixed-Fee Reporting Audit'
 const description = 'A 2–3 week reporting audit: every report mapped, metric conflicts surfaced, and a prioritized 30/60/90-day fix plan. Fixed fee $5K–$9.5K. Free diagnostic.'
 const ogDescription = "Reporting inventory, metric conflicts, KPI gaps, data source map, and a prioritized 30/60/90-day roadmap. You'll know exactly what to fix and in what order.";
 
+const faqs = [
+  {
+    q: "Do I have to do the Assessment before anything else?",
+    a: "No — but it's strongly recommended as the first paid engagement. If you already have a very clear picture of your reporting problems and just need implementation work, a Modernization Sprint or Governance Starter Kit may be the right starting point. The Diagnostic Call helps determine which path makes sense.",
+  },
+  {
+    q: 'What does "fixed fee" mean in practice?',
+    a: "The price is agreed before work begins and doesn't change based on hours worked. The scope defines what's included. If the scope needs to expand, that's a conversation — but you won't receive an unexpected invoice at the end.",
+  },
+  {
+    q: "How much time does this require from our team?",
+    a: "Typically 3–6 hours total across the engagement — a kickoff call, 2–4 stakeholder interviews of 30–45 minutes each, access to reporting environments, and the final readout session. We do the heavy lifting; your team provides access and context.",
+  },
+  {
+    q: "What happens after the Assessment?",
+    a: "You receive the full deliverable package and the readout. The 30/60/90-day roadmap is actionable immediately — you can execute the quick wins yourself. If a larger engagement makes sense, we'll propose it. There's no pressure, and the Assessment stands alone as a complete deliverable regardless of what you do next.",
+  },
+  {
+    q: "What if the findings are better than we expected?",
+    a: "That's a good outcome. An honest assessment of a reporting environment in better shape than feared is still valuable — it confirms what's working, surfaces the smaller improvements worth making, and prevents you from spending money on a large project you don't actually need.",
+  },
+];
+
 const assessmentSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -39,7 +62,7 @@ const assessmentSchema = {
       <a href="/resources/sample-assessment" class="btn secondary">See a sample assessment</a>
     </div>
     <div class="hero-card">
-      <h3>What you walk away with</h3>
+      <div class="hc-title">What you walk away with</div>
       <div class="hc-row"><span class="hc-check">✓</span><span class="hc-text"><strong>A complete reporting inventory</strong> — every dashboard, spreadsheet, and recurring report, mapped and rated</span></div>
       <div class="hc-row"><span class="hc-check">✓</span><span class="hc-text"><strong>Metric conflict list</strong> — exactly where KPI definitions diverge and who owns the dispute</span></div>
       <div class="hc-row"><span class="hc-check">✓</span><span class="hc-text"><strong>Data source map</strong> — authoritative systems, known quality issues, and ownership gaps</span></div>
@@ -162,22 +185,12 @@ const assessmentSchema = {
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "Do I have to do the Assessment before anything else?", acceptedAnswer: { "@type": "Answer", text: "No - but it's strongly recommended as the first paid engagement. If you already have a very clear picture of your reporting problems and just need implementation work, a Modernization Sprint or Governance Starter Kit may be the right starting point. The Diagnostic Call helps determine which path makes sense." } },
-    { "@type": "Question", name: 'What does "fixed fee" mean in practice?', acceptedAnswer: { "@type": "Answer", text: "The price is agreed before work begins and doesn't change based on hours worked. The scope defines what's included. If the scope needs to expand, that's a conversation - but you won't receive an unexpected invoice at the end." } },
-    { "@type": "Question", name: "How much time does this require from our team?", acceptedAnswer: { "@type": "Answer", text: "Typically 3-6 hours total across the engagement - a kickoff call, 2-4 stakeholder interviews of 30-45 minutes each, access to reporting environments, and the final readout session. We do the heavy lifting; your team provides access and context." } },
-    { "@type": "Question", name: "What happens after the Assessment?", acceptedAnswer: { "@type": "Answer", text: "You receive the full deliverable package and the readout. The 30/60/90-day roadmap is actionable immediately - you can execute the quick wins yourself. If a larger engagement makes sense, we'll propose it. There's no pressure, and the Assessment stands alone as a complete deliverable regardless of what you do next." } },
-    { "@type": "Question", name: "What if the findings are better than we expected?", acceptedAnswer: { "@type": "Answer", text: "That's a good outcome. An honest assessment of a reporting environment in better shape than feared is still valuable - it confirms what's working, surfaces the smaller improvements worth making, and prevents you from spending money on a large project you don't actually need." } },
-  ],
+  mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
 })} />
 <section class="faq">
   <div class="wrap">
     <h2>Assessment FAQ</h2>
-    <div class="faq-item"><div class="fq">Do I have to do the Assessment before anything else?</div><div class="fa">No — but it's strongly recommended as the first paid engagement. If you already have a very clear picture of your reporting problems and just need implementation work, a Modernization Sprint or Governance Starter Kit may be the right starting point. The Diagnostic Call helps determine which path makes sense.</div></div>
-    <div class="faq-item"><div class="fq">What does "fixed fee" mean in practice?</div><div class="fa">The price is agreed before work begins and doesn't change based on hours worked. The scope defines what's included. If the scope needs to expand, that's a conversation — but you won't receive an unexpected invoice at the end.</div></div>
-    <div class="faq-item"><div class="fq">How much time does this require from our team?</div><div class="fa">Typically 3–6 hours total across the engagement — a kickoff call, 2–4 stakeholder interviews of 30–45 minutes each, access to reporting environments, and the final readout session. We do the heavy lifting; your team provides access and context.</div></div>
-    <div class="faq-item"><div class="fq">What happens after the Assessment?</div><div class="fa">You receive the full deliverable package and the readout. The 30/60/90-day roadmap is actionable immediately — you can execute the quick wins yourself. If a larger engagement makes sense, we'll propose it. There's no pressure, and the Assessment stands alone as a complete deliverable regardless of what you do next.</div></div>
-    <div class="faq-item"><div class="fq">What if the findings are better than we expected?</div><div class="fa">That's a good outcome. An honest assessment of a reporting environment in better shape than feared is still valuable — it confirms what's working, surfaces the smaller improvements worth making, and prevents you from spending money on a large project you don't actually need.</div></div>
+    {faqs.map((f) => <div class="faq-item"><div class="fq">{f.q}</div><div class="fa">{f.a}</div></div>)}
   </div>
 </section>
 
@@ -201,8 +214,6 @@ const assessmentSchema = {
 </section>
 
 <style>
-/* NAV */
-  nav { position:sticky; top:0; z-index:20; background:rgba(251,250,245,.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
 /* HERO — conversion-focused */
   .hero { background:var(--navy); padding:80px 0; overflow:hidden; position:relative; }
 .hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(42vw,500px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
@@ -222,7 +233,7 @@ const assessmentSchema = {
 .btn.secondary:hover { border-color:var(--twine); color:var(--twine); background:transparent; }
 /* Right side: value summary card */
   .hero-card { background:var(--navy-2); border-radius:8px; padding:32px 28px; border:1px solid var(--navy-3); }
-.hero-card h3 { font-size:14px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.14em; margin-bottom:18px; }
+.hero-card .hc-title { font-size:14px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.14em; margin-bottom:18px; }
 .hc-row { display:flex; gap:12px; padding:11px 0; border-bottom:1px solid rgba(255,255,255,.07); align-items:flex-start; }
 .hc-row:last-child { border-bottom:none; }
 .hc-check { color:var(--twine); font-weight:700; flex-shrink:0; font-size:14px; margin-top:1px; }
@@ -266,7 +277,7 @@ const assessmentSchema = {
 .ps h3 { font-size:15px; font-weight:700; color:#fff; margin-bottom:10px; }
 .ps p { font-size:13.5px; color:#B8C2D0; line-height:1.55; font-weight:400; }
 .ps ul { list-style:none; padding:0; margin-top:8px; }
-.ps ul li { font-size:13px; color:#6A8099; padding:4px 0; border-top:1px solid rgba(255,255,255,.06); display:flex; gap:8px; line-height:1.4; }
+.ps ul li { font-size:13px; color:#8FA4B8; padding:4px 0; border-top:1px solid rgba(255,255,255,.06); display:flex; gap:8px; line-height:1.4; }
 .ps ul li::before { content:"·"; color:var(--twine); flex-shrink:0; }
 /* IS THIS RIGHT FOR YOU */
   .fit { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
@@ -302,13 +313,11 @@ const assessmentSchema = {
 .conv-details { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
 .conv-detail { text-align:center; }
 .conv-detail .cdn { font-family:"Abril Fatface",serif; font-size:36px; color:var(--twine); line-height:1; }
-.conv-detail .cdl { font-size:12px; color:#6A8099; margin-top:4px; text-transform:uppercase; letter-spacing:.08em; font-weight:500; }
+.conv-detail .cdl { font-size:12px; color:#8FA4B8; margin-top:4px; text-transform:uppercase; letter-spacing:.08em; font-weight:500; }
 .conv-divider { width:1px; background:rgba(255,255,255,.1); align-self:stretch; }
 @media(max-width:480px) {
   .conv-divider { display:none; }
 }
-/* FOOTER */
-  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
 </style>
 
 </BaseLayout>
