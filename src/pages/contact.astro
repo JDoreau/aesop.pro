@@ -73,9 +73,15 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
           <input type="email" id="cf-email" name="email" autocomplete="email" required placeholder="jane@company.com" />
         </div>
       </div>
-      <div class="cf-field">
-        <label for="cf-company">Company & role <span class="cf-opt">(optional)</span></label>
-        <input type="text" id="cf-company" name="company" placeholder="e.g. Acme Inc — VP of Operations" />
+      <div class="cf-row cf-row-2">
+        <div class="cf-field">
+          <label for="cf-company">Company & role <span class="cf-opt">(optional)</span></label>
+          <input type="text" id="cf-company" name="company" placeholder="e.g. Acme Inc — VP of Operations" />
+        </div>
+        <div class="cf-field">
+          <label for="cf-website">Company website <span class="cf-opt">(optional)</span></label>
+          <input type="text" id="cf-website" name="website" inputmode="url" autocomplete="url" placeholder="acme.com" />
+        </div>
       </div>
       <div class="cf-field">
         <label for="cf-msg">What's not working?</label>
