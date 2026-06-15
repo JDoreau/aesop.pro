@@ -1,7 +1,7 @@
 ---
 // Nav.astro — the ONE navigation header (desktop + mobile), built from
 // your real markup and rendered from nav.ts. Ends the per-page nav drift.
-import { nav, cta } from "../data/nav.ts";
+import { nav, cta, linkHref } from "../data/nav.ts";
 import Wordmark from "./Wordmark.astro";
 const path = (Astro.url.pathname.replace(/\/+$/, "") || "/");
 const isCurrent = (href: string) => href === path || (href !== "/" && path.startsWith(href + "/"));
@@ -11,18 +11,18 @@ const isCurrent = (href: string) => href === path || (href !== "/" && path.start
     <Wordmark variant="nav" href="/" />
     <div class="nav-links">
       {nav.map((i) => (
-        <a href={i.href} class:list={[{ active: isCurrent(i.href) }, { "nav-accent": i.accent }]}>{i.label}</a>
+        <a href={linkHref(i.href)} class:list={[{ active: isCurrent(i.href) }, { "nav-accent": i.accent }]}>{i.label}</a>
       ))}
     </div>
-    <a href={cta.href} class="nav-cta">{cta.label}</a>
+    <a href={linkHref(cta.href)} class="nav-cta">{cta.label}</a>
     <button class="ham" id="ham" type="button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
   {nav.map((i) => (
-    <a href={i.href} class:list={[{ active: isCurrent(i.href) }, { "mob-accent": i.accent }]}>{i.mobileLabel ?? i.label}</a>
+    <a href={linkHref(i.href)} class:list={[{ active: isCurrent(i.href) }, { "mob-accent": i.accent }]}>{i.mobileLabel ?? i.label}</a>
   ))}
-  <a href={cta.href} class="mob-cta">{cta.mobileLabel ?? cta.label}</a>
+  <a href={linkHref(cta.href)} class="mob-cta">{cta.mobileLabel ?? cta.label}</a>
 </div>
 
 <style>

@@ -79,9 +79,23 @@ by check.mjs — keep both in sync or the build fails.
 ## URL rule
 
 GitHub Pages serves directory-style routes; the slash-less form 301s.
-**Every internal absolute URL uses the trailing-slash form**, produced by
-`canonicalUrl()` in `src/data/nav.ts` — canonicals, og:url, breadcrumbs, and
-Article JSON-LD all flow through it. Don't hand-build absolute URLs.
+**Every internal URL uses the trailing-slash form** so we never link to a
+redirect from our own pages (a slash-less link makes Googlebot crawl a 301 →
+GSC "Page with redirect"). Two helpers in `src/data/nav.ts`, never hand-built:
+
+- **Absolute URLs** (canonical, og:url, breadcrumbs, Article JSON-LD) →
+  `canonicalUrl()`.
+- **`<a href>` link targets** → `linkHref()`, applied at the render site
+  (Nav, Footer, ArticleLayout, the insights hub). It appends the slash to the
+  path part only, preserving `#fragment`/`?query`, and leaves `/`, files, and
+  external/mailto links alone. **Keep `nav[].href` DATA slash-less** — Seo's
+  breadcrumb matcher and Nav's `isCurrent()` compare against it; only the
+  *rendered* href gets the slash. Static literal links may also just be
+  written in `/slash/` form directly.
+
+`check.mjs` §8 fails the build on any literal slash-less internal `href="/…"`
+in `src/` (files, `/`, and fenced print docs exempt). Dynamic `href={…}` links
+are not caught by the check — route them through `linkHref()`.
 
 ## Brand facts (so you don't re-derive them)
 

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { hero, pillarButtons, featured, sections, sidebarPillars } from "../data/insights.ts";
+import { linkHref } from "../data/nav.ts";
 import type { Section } from "../data/insights.ts";
 const title = 'Insights: Reporting Trust, KPIs & Dashboards | Aesop'
 const description = 'Articles and field studies on reporting trust, KPI governance, dashboard design, and data strategy — for COOs, CFOs, and analytics leaders.'
@@ -36,7 +37,7 @@ const countLabel = (s: Section) => {
 <div class="content">
   <div id="article-list">
 
-    <a href={`/insights/${featured.slug}`} class="feat-card" data-cat={featured.cat}>
+    <a href={linkHref(`/insights/${featured.slug}`)} class="feat-card" data-cat={featured.cat}>
       <div class="ftxt">
         <div class="ftag">{featured.tag}</div>
         <h2>{featured.title}</h2>
@@ -58,7 +59,7 @@ const countLabel = (s: Section) => {
       <div class="pillar-section" data-pillar={s.pillar}>
         <div class="ps-head">{s.heading} <span class="ps-count">{countLabel(s)}</span></div>
         {s.rows.map((r) => (
-          <a href={`/insights/${r.slug}`} class="art-row" data-cat={s.pillar}>
+          <a href={linkHref(`/insights/${r.slug}`)} class="art-row" data-cat={s.pillar}>
             <span class="ar-num">æ</span>
             <div class="ar-body">
               <div class="ar-title">{r.title}</div>
@@ -84,12 +85,12 @@ const countLabel = (s: Section) => {
     <div class="sb-block">
       <div class="sb-label">Free resource</div>
       <p>The Reporting Trust Health Check — 10 diagnostic areas, 5 signal questions each. Score your reporting environment in 30 minutes.</p>
-      <a href="/resources" class="sb-btn">Take the Health Check →</a>
+      <a href="/resources/" class="sb-btn">Take the Health Check →</a>
     </div>
     <div class="sb-block">
       <div class="sb-label">Work together</div>
       <p>If an article raised a question about your own reporting environment, that's usually worth a conversation.</p>
-      <a href="/diagnostic" class="sb-btn">Book a free diagnostic →</a>
+      <a href="/diagnostic/" class="sb-btn">Book a free diagnostic →</a>
     </div>
   </aside>
 </div>

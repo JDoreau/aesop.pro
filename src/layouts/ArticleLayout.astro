@@ -7,7 +7,7 @@ import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/article.css";
 import Seo from "../components/Seo.astro";
-import { nav, cta, site, canonicalUrl } from "../data/nav.ts";
+import { nav, cta, site, canonicalUrl, linkHref } from "../data/nav.ts";
 import { sections, featured } from "../data/insights.ts";
 import Wordmark from "../components/Wordmark.astro";
 
@@ -66,9 +66,9 @@ const headline = headingHtml
       <div class="nav-in">
         <Wordmark variant="article-nav" href="/" />
         <div class="site-links">
-          {nav.map((i) => (<a href={i.href} class:list={[{ "nav-accent": i.accent }]}>{i.label}</a>))}
+          {nav.map((i) => (<a href={linkHref(i.href)} class:list={[{ "nav-accent": i.accent }]}>{i.label}</a>))}
         </div>
-        <a href={cta.href} class="site-cta">{cta.label}</a>
+        <a href={linkHref(cta.href)} class="site-cta">{cta.label}</a>
       </div>
     </nav>
 
@@ -91,7 +91,7 @@ const headline = headingHtml
         <div class="acta-eyebrow">Who's behind this</div>
         <h2>Analysis like this is what we do for clients.</h2>
         <p>Aesop Analytics is a reporting-modernization practice — we turn messy, mistrusted reporting into numbers leadership relies on. If that's a problem you're facing, a free 30-minute diagnostic is the fastest first step. No pitch, no commitment.</p>
-        <a href="/diagnostic" class="acta-btn">Book a diagnostic →</a>
+        <a href="/diagnostic/" class="acta-btn">Book a diagnostic →</a>
       </div>
     </section>
 
@@ -99,9 +99,9 @@ const headline = headingHtml
       <div class="fin">
         <Wordmark variant="article-footer" />
         <div class="fmoral">{site.tagline}</div>
-        <a href="/insights" class="fback">&larr; All Insights</a>
+        <a href="/insights/" class="fback">&larr; All Insights</a>
       </div>
-      <div class="flegal">This site uses Google Analytics. <a href="/privacy">Privacy</a></div>
+      <div class="flegal">This site uses Google Analytics. <a href="/privacy/">Privacy</a></div>
     </footer>
 
     <style>
