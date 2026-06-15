@@ -125,6 +125,28 @@ if (JSON.stringify(noindexList) !== JSON.stringify(noindexPages)) {
   failures.push(`noindex drift: astro.config.mjs NOINDEX [${noindexList}] != pages with noindex={true} [${noindexPages}]`);
 }
 
+// ── 8. Internal links use the trailing-slash form ────────────────────────────
+// GitHub Pages 301s the slash-less route (/about → /about/), which is also the
+// canonical + sitemap form. A literal href="/about" makes Google crawl a
+// redirect from our own pages (GSC "Page with redirect"). Render link targets
+// through linkHref() (nav.ts) or write the /slash/ form directly. Exempt: "/",
+// files (a dot in the last path segment), #fragments/?queries on a slashed path,
+// external/protocol-relative links, and fenced print docs. The nav.ts DATA stays
+// slash-less by design (breadcrumb-matcher contract) — it uses `href:` not
+// `href="`, so it is not matched here.
+for (const f of files.filter((x) => x.endsWith(".astro"))) {
+  const s = stripFenced(read(f));
+  for (const m of s.matchAll(/href="(\/[^"]*)"/g)) {
+    const href = m[1];
+    if (href.startsWith("//") || href.includes("${")) continue;
+    const path = href.split(/[?#]/)[0];
+    if (path === "/" || path.endsWith("/")) continue;
+    const last = path.slice(path.lastIndexOf("/") + 1);
+    if (last.includes(".")) continue; // a file, not a route
+    failures.push(`slash-less internal link href="${href}" in ${rel(f)} — use the trailing-slash form (linkHref() or /slash/)`);
+  }
+}
+
 // ── Report ───────────────────────────────────────────────────────────────────
 if (warnings.length) {
   console.log(`check: ${warnings.length} warning(s) (non-blocking):`);

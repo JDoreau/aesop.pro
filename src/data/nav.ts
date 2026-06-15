@@ -41,3 +41,22 @@ export function canonicalUrl(path: string): string {
   if (!p.endsWith("/")) p += "/";
   return new URL(p, site.url).href;
 }
+
+// linkHref — the trailing-slash form for an INTERNAL <a href> target, applied at
+// render time (Nav, Footer, ArticleLayout). GitHub Pages 301s the slash-less
+// route (/about → /about/), which is also the canonical + sitemap form, so a
+// literal href="/about" makes Google crawl a redirect from our own pages. This
+// returns the final /slash/ form instead. The nav[].href DATA stays slash-less
+// by design — Seo.astro's breadcrumb matcher and Nav's isCurrent() compare
+// against it — so the transform lives only at the link sites, never in the data.
+// Preserves #fragment / ?query; leaves "/", external/mailto, and file paths alone.
+export function linkHref(href: string): string {
+  if (!href.startsWith("/") || href.startsWith("//")) return href;
+  const cut = href.search(/[?#]/);
+  const path = cut === -1 ? href : href.slice(0, cut);
+  const suffix = cut === -1 ? "" : href.slice(cut);
+  if (path === "/" || path.endsWith("/")) return href;
+  const last = path.slice(path.lastIndexOf("/") + 1);
+  if (last.includes(".")) return href; // a file, not a route
+  return path + "/" + suffix;
+}
