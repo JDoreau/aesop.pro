@@ -1,768 +1,287 @@
 ---
-// /resources/health-check — the Reporting Trust Health Check (interactive).
-// Migrated from public/resources/health-check/index.html (legacy static
-// HTML) into the Astro system: BaseLayout supplies head/Seo/GA4/Nav/Footer;
-// this page keeps its own content, styles, scoring engine, localStorage
-// persistence, and the branded print/PDF report (buildReport injects its
-// own report markup + styles at print time — preserve exactly).
-// is:inline script + is:global styles for the same reasons as
-// dashboard-audit.astro: global onclick handlers and runtime-created DOM.
+// /resources/health-check - the Reporting Trust Health Check.
+// Rebuilt 2026-06-15 as a focused, full-screen app powered by the TRUST Index.
+// The page itself is a short, indexable intro (SEO + funnel); "Launch" opens the
+// full-screen experience. All scoring/selection is the proven engine in
+// src/lib/trust-index*.js; the UI controller is src/lib/health-check-app.js.
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import OwlMark from "../../components/OwlMark.astro";
+
+// Cloudflare Turnstile site key (PUBLIC - safe to ship). The email opt-in only
+// renders when this is set; until then the Health Check works fully without it.
+// The matching SECRET lives on the mailer Worker (TURNSTILE_SECRET), never here.
+const TURNSTILE_SITE_KEY = "0x4AAAAAADljyboyLF_0VWPj";
 ---
 <BaseLayout
-  title="Reporting Trust Health Check — Aesop Analytics"
-  description="Score your reporting environment across 10 diagnostic areas. Understand exactly where trust is breaking down — and get a prioritized action plan."
-  ogTitle="Reporting Trust Health Check — Aesop Analytics"
-  ogDescription="10 areas, 30 signal questions, a personalized score. Free — no email required."
+  title="Reporting Trust Health Check - Aesop Analytics"
+  description="Score your reporting environment across the five TRUST pillars and get a personalized Reporting Trust Index (0-100) with a prioritized, plain-English report. Free - no email required."
+  ogTitle="Reporting Trust Health Check - Aesop Analytics"
+  ogDescription="Get your Reporting Trust Index (0-100) and a personalized report across 11 diagnostic areas. Free, deterministic, no email required."
   path="/resources/health-check"
 >
-<section class="hero">
-  <div class="hero-in">
-    <div>
+<section class="intro">
+  <div class="intro-in">
+    <div class="intro-copy">
       <div class="eyebrow">Free resource · No email required</div>
-      <h1>Reporting Trust<br>Health Check</h1>
-      <p>Score your organization across 10 diagnostic areas. When all 10 are scored, your personalized results — including the three highest-priority focus areas — will appear automatically.</p>
-      <div class="hero-meta">
-        <span class="hm-item">10 areas</span>
-        <span class="hm-item">30 signal questions</span>
-        <span class="hm-item">~15 minutes</span>
+      <h1>The Reporting Trust<br>Health Check</h1>
+      <p class="lede">Score your organization across the five <strong>TRUST</strong> pillars and get a personalized <strong>Reporting Trust Index</strong> (0-100) - with a plain-English report on exactly where trust is breaking down and what to fix first.</p>
+      <button type="button" class="launch" id="hc-launch">Launch the Health Check →</button>
+      <div class="intro-meta">
+        <span class="im">11 areas</span>
+        <span class="im">5 TRUST pillars</span>
+        <span class="im">~10 minutes</span>
+        <span class="im">Runs in your browser</span>
       </div>
+      <p class="fineprint">Your answers are scored locally in your browser and aren't sent anywhere unless you choose to email yourself the report. The Reporting Trust Index is computed deterministically - the same inputs always give the same score.</p>
     </div>
-    <div class="preview-card" aria-hidden="true">
-      <div class="pc-label">Example results preview</div>
-      <div class="pc-row">
-        <span class="pc-name">KPI Definitions</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:20%;background:var(--contessa)"></div></div>
-        <span class="pc-score" style="color:var(--contessa)">2</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Data Source Clarity</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:30%;background:var(--contessa)"></div></div>
-        <span class="pc-score" style="color:var(--contessa)">3</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Report Ownership</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:50%;background:var(--twine)"></div></div>
-        <span class="pc-score" style="color:var(--twine)">5</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Dashboard Usage</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:40%;background:var(--twine)"></div></div>
-        <span class="pc-score" style="color:var(--twine)">4</span>
-      </div>
-      <div class="pc-row">
-        <span class="pc-name">Governance</span>
-        <div class="pc-bar-wrap"><div class="pc-bar" style="width:70%;background:var(--navy-mist)"></div></div>
-        <span class="pc-score" style="color:var(--navy-mist)">7</span>
-      </div>
-      <div class="pc-note">Illustrative — your scores will differ</div>
+    <div class="intro-side" aria-hidden="true">
+      <div class="side-label">What you get</div>
+      <ul class="side-list">
+        <li><strong>Your TRUST Index</strong> - one honest 0-100 number, gated so a strong area can't mask a weak one.</li>
+        <li><strong>Five pillar scores</strong> - Triage, Reconcile, Unify, Standardize, Transition.</li>
+        <li><strong>Your binding constraint</strong> - the one fix that moves the needle most.</li>
+        <li><strong>A tailored report</strong> - findings, patterns, and where to start, specific to your profile.</li>
+      </ul>
+      <div class="side-note">This is the self-check. A Reporting Clarity Assessment is the same diagnosis done properly.</div>
     </div>
   </div>
 </section>
 
-<!-- PROGRESS BAR -->
-<div class="prog" id="prog">
-  <div class="prog-in">
-    <span class="prog-label">Progress</span>
-    <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
-    <span class="prog-count" id="prog-count">0 of 10 scored</span>
-    <a href="#results" class="prog-cta" id="prog-cta">View your results ↓</a>
-  </div>
-</div>
-
-<!-- INSTRUCTIONS -->
-<div class="instructions">
-  <h2 class="instr-head">Score each area 1–10.</h2>
-  <p class="instr-body">Read the signal questions for each area and rate your organization honestly. There are no right answers — the value is in the gaps between where you are and where you need to be.</p>
-  <div class="score-legend">
-    <div class="sl-item"><div class="sl-swatch" style="background:var(--contessa)"></div>1–3 · Broken or not in place</div>
-    <div class="sl-item"><div class="sl-swatch" style="background:var(--twine)"></div>4–6 · Partial or inconsistent</div>
-    <div class="sl-item"><div class="sl-swatch" style="background:var(--navy)"></div>7–10 · Functioning well</div>
-  </div>
-</div>
-
-<!-- AREA CARDS (generated by JS) -->
-<div class="area-grid" id="area-grid" role="group" aria-label="Scoring areas"></div>
-
-<!-- RESULTS -->
-<section id="results" aria-live="polite">
-  <div class="results-in">
-    <div class="res-eyebrow">Your results</div>
-    <div class="results-top">
-      <!-- Score panel -->
-      <div class="score-panel">
-        <div><span class="score-num" id="score-num">0</span><span class="score-cap">&thinsp;/100</span></div>
-        <div><span class="band-pill" id="band-pill"></span></div>
-        <p class="band-text" id="band-text"></p>
-      </div>
-      <!-- Breakdown panel -->
-      <div>
-        <div class="breakdown-head">Score by area</div>
-        <div id="breakdown"></div>
-      </div>
+<section class="below">
+  <div class="below-in">
+    <div class="below-label">How it works</div>
+    <h2>The TRUST method, as a quick self-diagnosis.</h2>
+    <div class="trust-grid">
+      <div class="tg"><span class="tg-l">T</span><div><strong>Triage</strong><p>What reporting you have, and whether it earns its keep.</p></div></div>
+      <div class="tg"><span class="tg-l">R</span><div><strong>Reconcile</strong><p>Whether the numbers agree and are believed.</p></div></div>
+      <div class="tg"><span class="tg-l">U</span><div><strong>Unify</strong><p>Who owns each number and which system is authoritative.</p></div></div>
+      <div class="tg"><span class="tg-l">S</span><div><strong>Standardize</strong><p>Whether a process keeps reporting trustworthy as it changes.</p></div></div>
+      <div class="tg"><span class="tg-l">T</span><div><strong>Transition</strong><p>Whether reporting runs as a sustainable operating rhythm.</p></div></div>
     </div>
-    <!-- Focus areas -->
-    <div class="focus-head">Your three highest-priority focus areas</div>
-    <div class="focus-grid" id="focus-grid"></div>
-  </div>
-  <!-- CTA -->
-  <div class="res-cta">
-    <h2>Want help interpreting these results?</h2>
-    <p>A free 30-minute Reporting Trust Diagnostic — bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would be useful.</p>
-    <a href="/diagnostic/" class="btn">Book a free diagnostic call →</a>
-    <a href="/resources/" class="btn ghost">Back to Resources</a>
-    <br>
-    <button type="button" class="print-btn" onclick="printReport()">⊞ Save or print your report (PDF)</button>
-    <button type="button" class="reset-btn" onclick="resetAssessment()">↺ Start over</button>
+    <button type="button" class="launch sm" onclick="document.getElementById('hc-launch').click()">Launch the Health Check →</button>
   </div>
 </section>
 
-<!-- PRINT REPORT — populated from result data, shown only when printing -->
-<div id="report" class="report-doc" aria-hidden="true"></div>
+<!-- Print-only branded header/footer (hidden on screen; shown only when printing the report) -->
+<div class="hc-prt-head" aria-hidden="true">
+  <div class="hc-prt-brand"><OwlMark size={26} /><span class="hc-prt-wm">aesop</span><span class="hc-prt-an">Analytics</span></div>
+  <div class="hc-prt-kicker">Reporting Trust Health Check</div>
+</div>
+<div class="hc-prt-rule" aria-hidden="true"></div>
+<div class="hc-prt-meta" aria-hidden="true">Self-assessment &middot; Generated <span id="hc-prt-date"></span></div>
+
+<!-- Full-screen app (filled + driven by health-check-app.js) -->
+<div id="hc-app" class="hc-app" hidden></div>
+
+<div class="hc-prt-foot" aria-hidden="true">
+  <span>Aesop Analytics &mdash; reporting modernization &amp; data trust consulting &middot; Nashville, TN</span>
+  <span>&copy; <span id="hc-prt-year"></span> &middot; Generated from the Reporting Trust Health Check at aesopanalytics.com/resources/health-check</span>
+</div>
 </BaseLayout>
 
-<!-- is:global: the engine creates score rows, results, and the print
-     report at runtime; runtime DOM never gets Astro's scope attribute. -->
-<style is:global>
-  /* Page-specific styles */
+<style>
+  /* ── Intro ── */
+  .intro { background:var(--navy); padding:76px 0 64px; position:relative; overflow:hidden; }
+  .intro::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+  .intro-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1fr 340px; gap:56px; align-items:start; }
+  @media(max-width:820px){ .intro-in { grid-template-columns:1fr; gap:36px; } }
+  .eyebrow { font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--twine); margin-bottom:16px; }
+  .intro h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(38px,5.4vw,64px); line-height:1.02; color:#fff; letter-spacing:-.01em; margin-bottom:18px; }
+  .lede { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:54ch; margin-bottom:26px; }
+  .lede strong { color:#fff; font-weight:600; }
+  .launch { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:700; font-size:16px; padding:16px 30px; border:none; border-radius:6px; cursor:pointer; box-shadow:0 10px 26px rgba(193,140,93,.3); transition:transform .15s, background .15s; }
+  .launch:hover { transform:translateY(-2px); background:var(--sepia); }
+  .launch.sm { margin-top:28px; font-size:15px; padding:14px 26px; box-shadow:none; }
+  .intro-meta { display:flex; gap:18px; flex-wrap:wrap; margin-top:24px; }
+  .im { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.1em; color:#5A7090; display:flex; align-items:center; gap:7px; }
+  .im::before { content:''; width:14px; height:1px; background:var(--twine); }
+  .fineprint { font-size:12.5px; color:#5A7090; margin-top:22px; max-width:50ch; line-height:1.55; }
+  .intro-side { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:10px; padding:24px 22px; }
+  .side-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:16px; }
+  .side-list { list-style:none; display:flex; flex-direction:column; gap:13px; margin:0 0 18px; }
+  .side-list li { font-size:13.5px; color:#9AAABB; line-height:1.5; padding-left:16px; position:relative; }
+  .side-list li::before { content:''; position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%; background:var(--twine); }
+  .side-list strong { color:#E8E2D6; font-weight:600; }
+  .side-note { font-size:12.5px; color:#5A7090; font-style:italic; border-top:1px solid var(--navy-3); padding-top:14px; line-height:1.5; }
 
-
-  /* ── NAV ── */
-
-  /* ── HERO ── */
-  .hero { background:var(--navy); padding:72px 0 60px; overflow:hidden; position:relative; }
-  .hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
-  .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; display:grid; grid-template-columns:1fr 320px; gap:64px; align-items:start; }
-  .hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(36px,5.2vw,62px); line-height:1.03; color:#fff; margin-bottom:18px; letter-spacing:-.01em; }
-  .hero p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.65; margin-bottom:10px; max-width:52ch; }
-  .hero-meta { display:flex; gap:20px; flex-wrap:wrap; margin-top:20px; }
-  .hm-item { font-size:12px; font-weight:600; color:#5A7090; text-transform:uppercase; letter-spacing:.12em; display:flex; align-items:center; gap:6px; }
-  .hm-item::before { content:''; display:block; width:16px; height:1px; background:var(--twine); }
-  /* Preview card */
-  .preview-card { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:8px; padding:24px 22px; }
-  .pc-label { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:18px; }
-  .pc-row { display:grid; grid-template-columns:1fr 100px 28px; gap:8px; align-items:center; margin-bottom:9px; }
-  .pc-name { font-size:12.5px; color:#9AAABB; }
-  .pc-bar-wrap { background:rgba(255,255,255,.07); border-radius:2px; height:5px; overflow:hidden; }
-  .pc-bar { height:100%; border-radius:2px; }
-  .pc-score { font-size:12px; font-weight:700; text-align:right; }
-  .pc-note { font-size:11px; color:#3A5060; margin-top:14px; text-align:center; font-style:italic; }
-
-  /* ── PROGRESS BAR ── */
-  .prog { position:sticky; top:64px; z-index:15; background:var(--paper-2); border-bottom:1px solid var(--rule); padding:11px 0; transition:background .3s; }
-  .prog.complete { background:var(--navy); border-color:var(--navy); }
-  .prog-in { max-width:1080px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:14px; }
-  .prog-label { font-size:12.5px; font-weight:600; color:var(--slate); white-space:nowrap; flex-shrink:0; transition:color .3s; }
-  .prog.complete .prog-label { color:#8A9FB8; }
-  .prog-track { flex:1; background:var(--rule); border-radius:4px; height:4px; overflow:hidden; }
-  .prog.complete .prog-track { background:var(--navy-3); }
-  .prog-fill { height:100%; background:var(--twine); border-radius:4px; width:0%; transition:width .5s cubic-bezier(.2,.7,.2,1); }
-  .prog-count { font-size:12.5px; font-weight:700; color:var(--muted); white-space:nowrap; min-width:90px; text-align:right; flex-shrink:0; transition:color .3s; }
-  .prog.complete .prog-count { color:var(--navy-mist); }
-  .prog-cta { display:none; background:var(--twine); color:#fff; font-size:12px; font-weight:700; padding:6px 14px; border-radius:4px; letter-spacing:.03em; white-space:nowrap; flex-shrink:0; transition:background .18s; }
-  .prog-cta:hover { background:var(--sepia); }
-  .prog-cta.visible { display:inline-block; }
-
-  /* ── INSTRUCTIONS ── */
-  .instructions { max-width:1080px; margin:0 auto; padding:48px 32px 36px; }
-  .instr-head { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); color:var(--navy); margin-bottom:12px; letter-spacing:-.01em; }
-  .score-legend { display:flex; gap:24px; flex-wrap:wrap; }
-  .sl-item { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--slate); }
-  .sl-swatch { width:32px; height:10px; border-radius:2px; flex-shrink:0; }
-
-  /* ── AREA GRID ── */
-  .area-grid { max-width:1080px; margin:0 auto; padding:0 32px 72px; display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-  @media(max-width:700px){ .area-grid { grid-template-columns:1fr; } }
-
-  /* ── AREA CARD ── */
-  .area-card {
-    background:#fff; border:1px solid var(--line);
-    border-left:4px solid var(--line);
-    border-radius:0 6px 6px 0;
-    padding:26px 26px 22px;
-    position:relative; transition:border-left-color .3s, box-shadow .3s;
-  }
-  .area-card:hover { box-shadow:0 2px 14px rgba(15,31,56,.06); }
-  .area-card.s-low { border-left-color:var(--contessa); }
-  .area-card.s-mid { border-left-color:var(--twine); }
-  .area-card.s-high { border-left-color:var(--navy); }
-  /* Score badge top-right */
-  .ac-badge {
-    position:absolute; top:14px; right:14px;
-    width:34px; height:34px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-size:13.5px; font-weight:700; color:#fff;
-    opacity:0; transform:scale(.7); transition:opacity .25s, transform .25s;
-    pointer-events:none;
-  }
-  .ac-badge.visible { opacity:1; transform:scale(1); }
-  .ac-badge.b-low { background:var(--contessa); }
-  .ac-badge.b-mid { background:var(--twine); }
-  .ac-badge.b-high { background:var(--navy); }
-  /* Card content */
-  .ac-num { font-family:"Abril Fatface",serif; font-size:34px; line-height:1; color:var(--rule); margin-bottom:6px; transition:color .3s; }
-  .area-card.s-low .ac-num { color:var(--contessa); }
-  .area-card.s-mid .ac-num { color:var(--twine); }
-  .area-card.s-high .ac-num { color:var(--navy); }
-  .ac-name { font-size:16.5px; font-weight:700; color:var(--navy); margin-bottom:5px; line-height:1.25; }
-  .ac-desc { font-size:13.5px; color:var(--muted); line-height:1.55; margin-bottom:16px; }
-  .ac-qs { list-style:none; margin-bottom:20px; border-left:2px solid var(--line); padding-left:12px; }
-  .ac-qs li { font-size:13px; color:var(--slate); line-height:1.55; padding:4px 0; font-style:italic; }
-  .ac-qs li + li { border-top:1px solid var(--line); }
-  /* Score buttons */
-  .score-row { display:flex; gap:4px; }
-  .sb {
-    flex:1; height:34px; border-radius:3px;
-    border:1px solid var(--rule); background:var(--paper-2);
-    color:var(--muted); font-size:12px; font-weight:700;
-    cursor:pointer; transition:all .14s;
-    font-family:"DM Sans",sans-serif; display:flex; align-items:center; justify-content:center;
-  }
-  .sb:hover { border-color:var(--slate); color:var(--ink); background:var(--paper); transform:translateY(-1px); }
-  .sb.sel-low  { background:var(--contessa); border-color:var(--contessa); color:#fff; }
-  .sb.sel-mid  { background:var(--twine);    border-color:var(--twine);    color:#fff; }
-  .sb.sel-high { background:var(--navy);     border-color:var(--navy);     color:#fff; }
-  .score-scale-labels { display:flex; justify-content:space-between; margin-top:5px; }
-  .ssl { font-size:10.5px; color:var(--muted); }
-
-  /* ── RESULTS ── */
-  #results { display:none; background:var(--navy); padding:80px 0 0; overflow:hidden; }
-  #results.show { display:block; }
-  .results-in { max-width:1080px; margin:0 auto; padding:0 32px 72px; }
-  .res-eyebrow { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.28em; color:var(--twine); margin-bottom:28px; }
-  /* Top row: score + breakdown */
-  .results-top { display:grid; grid-template-columns:300px 1fr; gap:64px; align-items:start; margin-bottom:64px; }
-  @media(max-width:760px){ .results-top { grid-template-columns:1fr; gap:40px; } }
-  /* Score panel */
-  .score-panel { text-align:center; }
-  .score-num { font-family:"Abril Fatface",serif; font-size:clamp(72px,10vw,108px); line-height:1; color:var(--twine); }
-  .score-cap { font-size:20px; color:#5A7090; font-weight:300; }
-  .band-pill {
-    display:inline-flex; align-items:center; gap:6px;
-    margin-top:14px; padding:7px 18px;
-    border-radius:20px; border:1.5px solid;
-    font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-  }
-  .bp-critical { background:rgba(206,121,107,.15); border-color:var(--contessa); color:var(--contessa); }
-  .bp-concern  { background:rgba(193,140,93,.15);  border-color:var(--twine);    color:var(--twine);    }
-  .bp-stable   { background:rgba(214,221,232,.1);  border-color:var(--navy-mist);color:var(--navy-mist);}
-  .bp-strong   { background:rgba(74,160,112,.12);  border-color:#4AA070;         color:#6AB899;         }
-  .band-text { font-size:15px; color:#B0BCCA; line-height:1.7; margin-top:18px; font-weight:300; text-align:left; }
-  /* Breakdown panel */
-  .breakdown-head { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:18px; }
-  .bd-row { display:grid; grid-template-columns:148px 1fr 28px; gap:10px; align-items:center; margin-bottom:11px; }
-  @media(max-width:480px){ .bd-row { grid-template-columns:110px 1fr 24px; gap:8px; } }
-  .bd-name { font-size:12.5px; color:#9AAABB; text-align:right; line-height:1.2; }
-  .bd-track { background:rgba(255,255,255,.08); border-radius:2px; height:7px; overflow:hidden; }
-  .bd-fill { height:100%; border-radius:2px; width:0%; transition:width 1.1s cubic-bezier(.2,.7,.2,1); }
-  .bd-fill.f-low  { background:var(--contessa); }
-  .bd-fill.f-mid  { background:var(--twine); }
-  .bd-fill.f-high { background:var(--navy-mist); }
-  .bd-score { font-size:12px; font-weight:700; color:#8A9FB8; }
-  /* Focus areas */
-  .focus-head { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:18px; }
-  .focus-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:64px; }
-  @media(max-width:680px){ .focus-grid { grid-template-columns:1fr; } }
-  .fc { background:var(--navy-2); border:1px solid var(--navy-3); border-radius:6px; padding:22px 20px; }
-  .fc-rank { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--contessa); margin-bottom:8px; }
-  .fc-name { font-size:16px; font-weight:700; color:#fff; margin-bottom:6px; line-height:1.25; }
-  .fc-score { font-size:13px; color:#6A8099; margin-bottom:14px; }
-  .fc-link { font-size:13px; font-weight:600; color:var(--twine); }
-  .fc-link:hover { color:#E0A870; }
-  /* CTA block */
-  .res-cta { background:var(--navy-2); border-top:1px solid var(--navy-3); padding:60px 32px 72px; text-align:center; }
-  .res-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:16px; line-height:1.1; letter-spacing:-.01em; }
-  .res-cta p { font-size:17px; color:#B0BCCA; font-weight:300; max-width:52ch; margin:0 auto 32px; line-height:1.65; }
-  .print-btn { display:inline-block; background:none; border:none; font:inherit; margin-top:20px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; }
-  .print-btn:hover { color:var(--twine); }
-  .reset-btn { display:inline-block; background:none; border:none; font:inherit; margin-top:6px; font-size:13px; color:#4A6070; cursor:pointer; transition:color .18s; margin-left:20px; }
-  .reset-btn:hover { color:var(--contessa); }
-
-  /* ── FOOTER ── */
-  @media(max-width:760px){ }
-  @media(max-width:460px){ }
-
-  /* ── PRINT REPORT (purpose-built; hidden on screen, shown only when printing) ── */
-  .report-doc { display:none; }
-
-  @media print {
-    /* Only swap to the report once the check is complete; otherwise normal page print. */
-    body.hc-complete > :not(#report) { display:none !important; }
-
-    @page { margin:14mm 14mm 12mm; }
-    body.hc-complete { background:#fff !important; }
-
-    body.hc-complete .report-doc { display:block !important; }
-  }
-  /* ── Buttons — recovered from legacy core.css (removed in a91a230 while
-     this page still linked it; the live legacy page has been rendering
-     unstyled buttons since). Only the variants this page uses. ── */
-  .btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.03em; padding:15px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
-  .btn:hover { transform:translateY(-2px); background:var(--sepia); }
-  .btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); margin-left:10px; }
-  .btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; transform:translateY(-2px); }
+  /* ── Below (TRUST method) ── */
+  .below { padding:64px 0 80px; }
+  .below-in { max-width:1080px; margin:0 auto; padding:0 32px; }
+  .below-label { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--twine); margin-bottom:12px; }
+  .below h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); color:var(--navy); letter-spacing:-.01em; margin-bottom:28px; }
+  .trust-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+  @media(max-width:820px){ .trust-grid { grid-template-columns:1fr 1fr; } }
+  @media(max-width:520px){ .trust-grid { grid-template-columns:1fr; } }
+  .tg { display:flex; gap:12px; align-items:flex-start; background:#fff; border:1px solid var(--line); border-radius:8px; padding:18px 16px; }
+  .tg-l { font-family:"Abril Fatface",serif; font-size:26px; color:var(--twine); line-height:1; flex-shrink:0; }
+  .tg strong { display:block; font-size:14px; color:var(--navy); margin-bottom:4px; }
+  .tg p { font-size:12.5px; color:var(--muted); line-height:1.5; }
 </style>
 
-<script is:inline>
-/* ─── Area definitions ─── */
-const AREAS = [
-  {
-    id:'kpi', num:'01', name:'KPI Definitions',
-    desc:'Are your key metrics documented, agreed upon, and consistently understood across functions?',
-    qs:[
-      'Our most important KPIs have written definitions — not just assumed, shared understandings.',
-      'Finance, Sales, and Operations use the same definitions for the same metrics without debate.',
-      'Every major KPI has a named individual responsible for its definition and accuracy.'
-    ],
-    article:{ href:'/insights/kpi-dictionary', label:'How to build a KPI dictionary' }
-  },
-  {
-    id:'source', num:'02', name:'Data Source Clarity',
-    desc:'Does everyone know which system is the authoritative source for each critical data domain?',
-    qs:[
-      'We have a documented source of truth for each critical data domain (revenue, customers, pipeline).',
-      'When two systems disagree on a number, there is a clear, accepted rule for which one wins.',
-      'A new analyst could learn in two days where to find authoritative data for each core metric.'
-    ],
-    article:{ href:'/insights/why-reports-dont-match', label:'Why your reports don\'t match' }
-  },
-  {
-    id:'ownership', num:'03', name:'Report Ownership',
-    desc:'Does every report and dashboard have a clearly accountable, named owner?',
-    qs:[
-      'Every active report and dashboard has a named individual responsible for its accuracy.',
-      'There is a clear, documented process for updating or retiring outdated reports.',
-      'Users can easily identify which reports are official versus informal or experimental.'
-    ],
-    article:{ href:'/insights/kpi-owner', label:'Why every KPI needs an owner' }
-  },
-  {
-    id:'usage', num:'04', name:'Dashboard Usage',
-    desc:'Are your dashboards actually driving decisions, or are they artifacts of past effort?',
-    qs:[
-      'Leadership regularly uses dashboards to make specific, traceable decisions.',
-      'We know which dashboards are actively used and which exist but are rarely opened.',
-      'Dashboards were designed around real decision needs, not around what data was available.'
-    ],
-    article:{ href:'/insights/reporting-not-dashboard-redesign', label:'Modernization is not a redesign' }
-  },
-  {
-    id:'manual', num:'05', name:'Manual Reporting Effort',
-    desc:'How much analyst time is consumed by spreadsheet work that could be automated or eliminated?',
-    qs:[
-      'Analysts spend the majority of their time on insight and analysis, not assembling reports.',
-      'We can quantify how many person-hours per week are spent on manual reporting tasks.',
-      'The volume of manual reporting is stable or decreasing — it is not growing year over year.'
-    ],
-    article:{ href:'/insights/manual-reporting-trap', label:'The manual reporting trap' }
-  },
-  {
-    id:'quality', num:'06', name:'Data Quality',
-    desc:'Are data quality issues caught before they reach leadership and erode trust?',
-    qs:[
-      'Monitoring is in place to catch data errors before reports are distributed to stakeholders.',
-      'When an error is discovered in a distributed report, there is a clear, fast resolution process.',
-      'Known data quality issues are documented and actively tracked toward resolution.'
-    ],
-    article:{ href:'/insights/who-finds-the-error', label:'Who finds the error matters more than the error' }
-  },
-  {
-    id:'governance', num:'07', name:'Governance',
-    desc:'Does the organization have defined, functioning processes for managing reporting decisions?',
-    qs:[
-      'There is a formal intake process for new report requests — not just email or Slack messages.',
-      'Changes to KPI definitions go through a documented approval process with clear rationale.',
-      'One person has named, accountable ownership of the overall reporting operating model.'
-    ],
-    article:{ href:'/insights/governance-operators', label:'Governance for operators, not committees' }
-  },
-  {
-    id:'alignment', num:'08', name:'Executive Decision Alignment',
-    desc:'Do your reports match what leadership actually needs to make decisions?',
-    qs:[
-      'Leadership\'s most important recurring decisions are reliably supported by existing reports.',
-      'Executives rarely ask for data that the reporting environment can\'t quickly provide.',
-      'Reporting was designed around how leadership makes decisions, not around what was easy to build.'
-    ],
-    article:{ href:'/insights/dashboard-design-basics', label:'Dashboard design, the basics' }
-  },
-  {
-    id:'duplication', num:'09', name:'Report Duplication',
-    desc:'Is your reporting estate rationalized, or are reports accumulating without governance?',
-    qs:[
-      'We maintain a current inventory of every dashboard and report in the environment.',
-      'We could retire 20% of our reports today with no meaningful impact on decision-making.',
-      'Different reports covering the same metric consistently show the same number.'
-    ],
-    article:{ href:'/insights/why-reports-dont-match', label:'Why your reports don\'t match' }
-  },
-  {
-    id:'ai', num:'10', name:'AI & Data Readiness',
-    desc:'Is your data foundation documented and reliable enough to support AI analytics tools?',
-    qs:[
-      'Metric definitions and data sources are documented well enough to configure an AI analytics tool.',
-      'We can give an AI system a crisp, consistent definition of our most critical business terms.',
-      'If an AI produced a surprising number, we know exactly who to call to investigate it.'
-    ],
-    article:{ href:'/insights/ai-readiness-trusted-metrics', label:'AI readiness starts with trusted metrics' }
+<style is:global>
+  /* ── Full-screen app ── */
+  body.hc-open { overflow:hidden; }
+  .hc-app { position:fixed; inset:0; z-index:300; background:var(--paper); overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  .hc-app[hidden] { display:none; }
+
+  .hc-top { position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:16px; background:var(--navy); padding:14px 24px; }
+  .hc-brand { display:flex; align-items:baseline; gap:10px; margin-right:auto; }
+  .hc-wm { font-family:"Abril Fatface",serif; font-size:20px; color:#fff; }
+  .hc-wm-an { font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--twine); }
+  .hc-steps { display:flex; gap:7px; flex-wrap:wrap; }
+  .hc-dot { font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#5A7090; padding:5px 10px; border-radius:20px; border:1px solid var(--navy-3); }
+  .hc-dot.on { color:#fff; background:var(--twine); border-color:var(--twine); }
+  .hc-dot.done { color:var(--twine); border-color:var(--twine); }
+  .hc-x { background:none; border:1px solid var(--navy-3); color:#9AAABB; font:inherit; font-size:13px; font-weight:600; padding:7px 14px; border-radius:6px; cursor:pointer; }
+  .hc-x:hover { color:#fff; border-color:#5A7090; }
+
+  .hc-stage, .hc-report { max-width:780px; margin:0 auto; padding:40px 24px 80px; }
+  .hc-report { max-width:880px; }
+  .hc-stephead { margin-bottom:28px; }
+  .hc-step-kicker { font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--twine); margin-bottom:10px; }
+  .hc-step-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(26px,4vw,38px); color:var(--navy); letter-spacing:-.01em; margin-bottom:8px; }
+  .hc-step-blurb { font-size:16px; color:var(--slate); font-weight:300; line-height:1.55; }
+
+  .hc-area { background:#fff; border:1px solid var(--line); border-radius:10px; padding:24px 24px 20px; margin-bottom:18px; }
+  .hc-area-name { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+  .hc-area-desc { font-size:14px; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+  .hc-qs { list-style:none; border-left:2px solid var(--line); padding-left:13px; margin-bottom:20px; display:flex; flex-direction:column; gap:7px; }
+  .hc-qs li { font-size:13px; color:var(--slate); font-style:italic; line-height:1.5; }
+  .hc-rate { border-top:1px solid var(--line); padding-top:16px; }
+  .hc-rate-top { display:flex; justify-content:space-between; align-items:baseline; font-size:13px; font-weight:600; color:var(--slate); margin-bottom:10px; }
+  .hc-val { font-size:15px; font-weight:700; }
+  .hc-val.low { color:var(--contessa); } .hc-val.mid { color:var(--twine); } .hc-val.high { color:var(--good); }
+  .hc-slider { width:100%; accent-color:var(--twine); height:24px; cursor:pointer; }
+  .hc-scale { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:4px; }
+
+  .hc-nav { display:flex; justify-content:space-between; gap:14px; margin-top:28px; }
+  .hc-btn { background:var(--twine); color:#fff; border:none; border-radius:7px; padding:14px 28px; font-family:inherit; font-size:15px; font-weight:700; cursor:pointer; transition:background .15s, transform .15s; text-decoration:none; display:inline-block; }
+  .hc-btn:hover { background:var(--sepia); transform:translateY(-1px); }
+  .hc-btn.ghost { background:transparent; color:var(--slate); border:1px solid var(--line); }
+  .hc-btn.ghost:hover { background:var(--paper-2); color:var(--navy); transform:none; }
+  .hc-btn:disabled { opacity:.4; cursor:not-allowed; }
+  .hc-linkbtn { background:none; border:none; color:var(--muted); font:inherit; font-size:13px; text-decoration:underline; cursor:pointer; padding:4px; }
+  .hc-linkbtn:hover { color:var(--slate); }
+
+  /* ── Report ── */
+  .hc-head { display:grid; grid-template-columns:200px 1fr; gap:36px; align-items:center; margin-bottom:36px; }
+  @media(max-width:640px){ .hc-head { grid-template-columns:1fr; gap:20px; } }
+  .hc-scorebox { text-align:center; }
+  .hc-index { font-family:"Abril Fatface",serif; font-size:96px; line-height:.9; }
+  .hc-index.b-critical { color:var(--contessa); } .hc-index.b-concern { color:var(--twine); } .hc-index.b-stable { color:var(--navy-mist); } .hc-index.b-strong { color:var(--good); }
+  .hc-index-max { font-size:14px; color:var(--muted); margin-top:2px; }
+  .hc-band-pill { display:inline-block; margin-top:12px; padding:7px 16px; border-radius:20px; border:1.5px solid; font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .bp-critical { color:var(--contessa); border-color:var(--contessa); background:rgba(206,121,107,.1); }
+  .bp-concern { color:var(--sepia); border-color:var(--twine); background:rgba(193,140,93,.1); }
+  .bp-stable { color:var(--slate); border-color:var(--navy-mist); background:rgba(214,221,232,.25); }
+  .bp-strong { color:var(--good); border-color:var(--good); background:rgba(74,157,110,.1); }
+  .hc-head-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(22px,3.2vw,30px); color:var(--navy); line-height:1.15; margin-bottom:10px; }
+  .hc-head-body { font-size:15.5px; color:var(--slate); line-height:1.6; }
+  .hc-gate-note { margin-top:12px; font-size:13px; color:var(--sepia); background:var(--paper-2); border-left:3px solid var(--twine); padding:10px 13px; border-radius:0 6px 6px 0; line-height:1.5; }
+
+  .hc-bars { background:#fff; border:1px solid var(--line); border-radius:10px; padding:24px 26px; margin-bottom:34px; }
+  .hc-half-label { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--slate); margin-bottom:14px; }
+  .hc-half-label.op { margin-top:22px; padding-top:18px; border-top:1px dashed var(--line); }
+  .hc-bar-row { display:grid; grid-template-columns:130px 1fr 32px; gap:12px; align-items:center; margin-bottom:11px; }
+  @media(max-width:520px){ .hc-bar-row { grid-template-columns:96px 1fr 28px; gap:8px; } }
+  .hc-bar-label { font-size:13.5px; font-weight:600; color:var(--navy); }
+  .hc-bar-track { background:var(--paper-2); border-radius:3px; height:9px; overflow:hidden; }
+  .hc-bar-fill { height:100%; border-radius:3px; transition:width .9s cubic-bezier(.2,.7,.2,1); }
+  .hc-bar-fill.b-low { background:var(--contessa); } .hc-bar-fill.b-mid { background:var(--twine); } .hc-bar-fill.b-high { background:var(--good); }
+  .hc-bar-score { font-size:13px; font-weight:700; color:var(--slate); text-align:right; }
+
+  .hc-sec-label { font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--twine); margin:30px 0 14px; }
+  .hc-card { background:#fff; border:1px solid var(--line); border-left:4px solid var(--navy-mist); border-radius:0 9px 9px 0; padding:18px 20px; margin-bottom:12px; }
+  .hc-card.sev-critical { border-left-color:var(--contessa); } .hc-card.sev-warning { border-left-color:var(--warn); } .hc-card.sev-insight { border-left-color:var(--twine); } .hc-card.sev-positive { border-left-color:var(--good); }
+  .hc-card-title { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:7px; line-height:1.3; }
+  .hc-card-body { font-size:14px; color:var(--slate); line-height:1.6; }
+  .hc-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:640px){ .hc-grid { grid-template-columns:1fr; } }
+  .hc-grid .hc-card { margin-bottom:0; }
+
+  .hc-areas { border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .hc-area-row { display:grid; grid-template-columns:170px 54px 1fr; gap:14px; align-items:center; padding:13px 18px; border-bottom:1px solid var(--line); }
+  .hc-area-row:last-child { border-bottom:none; }
+  @media(max-width:640px){ .hc-area-row { grid-template-columns:1fr auto; gap:6px 12px; } .hc-area-rowtext { grid-column:1/-1; } }
+  .hc-area-rowname { font-size:13px; font-weight:600; color:var(--navy); }
+  .hc-area-chip { font-size:12px; font-weight:700; text-align:center; padding:3px 0; border-radius:6px; }
+  .hc-area-chip.c-low { background:rgba(206,121,107,.14); color:var(--contessa); } .hc-area-chip.c-mid { background:rgba(193,140,93,.14); color:var(--sepia); } .hc-area-chip.c-high { background:rgba(74,157,110,.14); color:var(--good); }
+  .hc-area-rowtext { font-size:13px; color:var(--slate); line-height:1.5; }
+
+  .hc-cta { background:var(--navy); border-radius:12px; padding:30px 30px; margin:34px 0 24px; }
+  .hc-cta-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:22px; color:#fff; line-height:1.2; margin-bottom:10px; }
+  .hc-cta-body { font-size:14.5px; color:#B0BCCA; line-height:1.6; margin-bottom:22px; max-width:60ch; }
+  .hc-cta-acts { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .hc-cta-acts .hc-linkbtn { color:#8A9FB8; }
+  .hc-cta-acts .hc-linkbtn:hover { color:#fff; }
+  .hc-emailform { margin-top:16px; }
+  .hc-emailrow { display:flex; gap:10px; flex-wrap:wrap; }
+  .hc-turnstile { margin-top:12px; min-height:65px; }
+  .hc-email-input { flex:1; min-width:200px; padding:13px 14px; border:1px solid var(--navy-3); border-radius:7px; background:var(--navy-2); color:#fff; font:inherit; font-size:14px; }
+  .hc-email-input::placeholder { color:#5A7090; }
+  .hc-email-msg { font-size:12.5px; color:#8A9FB8; margin-top:9px; line-height:1.5; max-width:60ch; }
+  .hc-foot { display:flex; gap:24px; justify-content:center; margin-top:20px; }
+
+  /* Print-only header/footer (hidden on screen; shown only when printing the report) */
+  .hc-prt-head, .hc-prt-rule, .hc-prt-meta, .hc-prt-foot, .hc-cta-printlink { display:none; }
+  .hc-prt-head { align-items:center; justify-content:space-between; }
+  .hc-prt-brand { display:flex; align-items:center; gap:9px; }
+  .hc-prt-wm { font-family:"Abril Fatface",serif; font-size:18pt; color:var(--navy); }
+  .hc-prt-an { font-family:"DM Sans",sans-serif; font-weight:600; font-size:8pt; letter-spacing:.26em; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .hc-prt-kicker { font-size:8.5pt; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--twine); }
+  .hc-prt-rule { height:2px; background:var(--navy); margin:10pt 0; }
+  .hc-prt-meta { font-size:9pt; color:var(--muted); margin-bottom:14pt; }
+  .hc-prt-foot { margin-top:16pt; border-top:1px solid var(--line); padding-top:8pt; }
+  .hc-prt-foot span { display:block; font-size:7.5pt; color:var(--muted); line-height:1.5; }
+
+  @media print {
+    @page { margin:14mm 14mm 12mm; }
+
+    /* Printing the REPORT: suppress site chrome + marketing siblings + in-app chrome */
+    body.hc-report-view :is(nav, footer), body.hc-report-view .intro, body.hc-report-view .below,
+    body.hc-report-view .hc-top, body.hc-report-view .hc-nav, body.hc-report-view .hc-foot, body.hc-report-view .hc-cta-acts, body.hc-report-view .hc-emailform { display:none !important; }
+    /* Not in the report (intro / mid-questionnaire Ctrl+P): hide the app shell, print the normal page */
+    body:not(.hc-report-view) .hc-app { display:none; }
+
+    /* Show the print-only header/footer only when printing the report */
+    body.hc-report-view .hc-prt-head { display:flex; }
+    body.hc-report-view .hc-prt-rule, body.hc-report-view .hc-prt-meta, body.hc-report-view .hc-prt-foot { display:block; }
+
+    /* Release the overlay scroll context so the PDF paginates full-height (the clip fix) */
+    html, body.hc-report-view { overflow:visible !important; height:auto !important; }
+    body.hc-report-view .hc-app { position:static; overflow:visible; }
+
+    /* Colour fidelity (root + each background-bearing element) */
+    .hc-report, .hc-index, .hc-bar-track, .hc-bar-fill, .hc-area-chip, .hc-band-pill, .hc-cta, .hc-card[class*="sev-"] { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .hc-index.b-stable { color:var(--navy); } /* pale mist -> ink on white */
+
+    /* Page-break control */
+    .hc-head, .hc-bars, .hc-card, .hc-area-row, .hc-cta, .hc-prt-head, .hc-prt-foot { break-inside:avoid; page-break-inside:avoid; }
+    .hc-areas { overflow:visible; }
+    .hc-areas-label { page-break-before:always; break-before:page; }
+
+    /* Trim to a clean 2-3 page executive PDF */
+    [data-print="drop"] { display:none !important; }
+    .hc-grid .hc-card:nth-of-type(n+3) { display:none; }
+
+    /* Keep the navy CTA legible even if the print dialog has backgrounds off */
+    .hc-cta { border:1.5pt solid var(--navy); }
+    .hc-cta-printlink { display:block; color:var(--twine); font-weight:700; font-size:10pt; margin-top:8pt; }
+
+    /* Paper type sizing */
+    .hc-report { max-width:none; margin:0; padding:0 0 8pt; font-size:10pt; }
+    .hc-index { font-size:46pt; line-height:.85; }
+    .hc-card, .hc-area-row { padding:9pt 13pt; }
   }
-];
+</style>
 
-const BANDS = {
-  critical:{ label:'Critical', cls:'bp-critical', text:'Multiple foundational problems are present. Decisions are likely being made on data nobody fully trusts, and the cost of that is compounding quietly. A structured Reporting Clarity Assessment would identify where to start and in what order — before the gaps become crises.' },
-  concern:{ label:'Concern', cls:'bp-concern', text:'Some areas are functioning, but critical gaps in definitions, ownership, or governance are creating friction and eroding trust. The problems are manageable now — but will compound as the organization grows. Targeted work on the lowest-scoring areas would move things significantly.' },
-  stable:{ label:'Stable', cls:'bp-stable', text:'Reporting is functioning at a reasonable level. The organization has some of the right foundations in place. Targeted improvements in the lowest-scoring areas would meaningfully increase trust and decision speed — without necessarily requiring a full transformation.' },
-  strong:{ label:'Strong', cls:'bp-strong', text:'Your reporting environment is well-governed and trusted. You are ahead of most organizations at your stage. Focus on continuous improvement, AI readiness, and ensuring governance practices scale as the organization and its data environment grow.' }
-};
-
-/* ─── State ─── */
-const scores = {};
-
-/* ─── Build cards ─── */
-const grid = document.getElementById('area-grid');
-AREAS.forEach(area => {
-  const card = document.createElement('div');
-  card.className = 'area-card';
-  card.id = `card-${area.id}`;
-  card.innerHTML = `
-    <div class="ac-badge" id="badge-${area.id}" aria-hidden="true"></div>
-    <div class="ac-num">${area.num}</div>
-    <div class="ac-name">${area.name}</div>
-    <div class="ac-desc">${area.desc}</div>
-    <ul class="ac-qs">${area.qs.map(q=>`<li>${q}</li>`).join('')}</ul>
-    <div class="score-row" id="row-${area.id}" role="group" aria-label="Score for ${area.name}">
-      ${[1,2,3,4,5,6,7,8,9,10].map(n=>`<button class="sb" data-area="${area.id}" data-val="${n}" onclick="pick('${area.id}',${n})" aria-pressed="false" aria-label="${n} out of 10">${n}</button>`).join('')}
-    </div>
-    <div class="score-scale-labels"><span class="ssl">1 — Broken</span><span class="ssl">10 — Strong</span></div>
-  `;
-  grid.appendChild(card);
-});
-
-/* ─── Score class helper ─── */
-function cls(val) { return val<=3?'low':val<=6?'mid':'high'; }
-
-/* ─── Persistence ─── */
-const HC_KEY = 'aesop-hc-v1';
-function saveScores() { try { localStorage.setItem(HC_KEY, JSON.stringify(scores)); } catch(e) {} }
-
-/* ─── Pick a score ─── */
-function applyPick(id, val) {
-  scores[id] = val;
-  const c = cls(val);
-  document.querySelectorAll(`#row-${id} .sb`).forEach(btn => {
-    btn.classList.remove('sel-low','sel-mid','sel-high');
-    const selected = +btn.dataset.val===val;
-    if(selected) btn.classList.add(`sel-${c}`);
-    btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
-  });
-  const card = document.getElementById(`card-${id}`);
-  card.classList.remove('s-low','s-mid','s-high');
-  card.classList.add(`s-${c}`);
-  const badge = document.getElementById(`badge-${id}`);
-  badge.textContent = val;
-  badge.className = `ac-badge visible b-${c}`;
-}
-
-function pick(id, val) {
-  applyPick(id, val);
-  saveScores();
-  updateProgress();
-  if(Object.keys(scores).length===10) setTimeout(renderResults, 380);
-}
-
-/* ─── Progress ─── */
-function updateProgress() {
-  const n = Object.keys(scores).length;
-  document.getElementById('prog-fill').style.width = (n/10*100)+'%';
-  document.getElementById('prog-count').textContent = `${n} of 10 scored`;
-  const progEl = document.getElementById('prog');
-  const ctaEl = document.getElementById('prog-cta');
-  if(n===10){ progEl.classList.add('complete'); ctaEl.classList.add('visible'); }
-  else { progEl.classList.remove('complete'); ctaEl.classList.remove('visible'); }
-}
-
-/* ─── Band ─── */
-function getBand(t){ return t<=30?'critical':t<=55?'concern':t<=75?'stable':'strong'; }
-
-/* ─── Animate count ─── */
-function countUp(el, target, ms) {
-  const t0 = performance.now();
-  (function step(now){
-    const p = Math.min((now-t0)/ms,1);
-    el.textContent = Math.round(p*target);
-    if(p<1) requestAnimationFrame(step);
-  })(t0);
-}
-
-/* ─── Render results ─── */
-function renderResults(animate = true) {
-  const total = AREAS.reduce((s,a)=>s+(scores[a.id]||0),0);
-  const band = getBand(total);
-  const bd = BANDS[band];
-
-  document.body.classList.add('hc-complete');
-  buildReport();
-
-  // Score + band
-  document.getElementById('band-pill').textContent = bd.label;
-  document.getElementById('band-pill').className = `band-pill ${bd.cls}`;
-  document.getElementById('band-text').textContent = bd.text;
-
-  // Breakdown rows
-  const breakEl = document.getElementById('breakdown');
-  breakEl.innerHTML = '';
-  AREAS.forEach(a => {
-    const s = scores[a.id]||0, c = cls(s);
-    const row = document.createElement('div');
-    row.className = 'bd-row';
-    row.innerHTML = `
-      <span class="bd-name">${a.name}</span>
-      <div class="bd-track"><div class="bd-fill f-${c}" id="bar-${a.id}" style="width:0%"></div></div>
-      <span class="bd-score">${s}</span>
-    `;
-    breakEl.appendChild(row);
-  });
-
-  // Focus cards — 3 lowest
-  const sorted = [...AREAS].sort((a,b)=>(scores[a.id]||0)-(scores[b.id]||0));
-  const focusEl = document.getElementById('focus-grid');
-  focusEl.innerHTML = '';
-  sorted.slice(0,3).forEach((a,i)=>{
-    const s = scores[a.id];
-    const card = document.createElement('div');
-    card.className = 'fc';
-    card.innerHTML = `
-      <div class="fc-rank">Priority ${i+1} focus area</div>
-      <div class="fc-name">${a.name}</div>
-      <div class="fc-score">Your score: ${s}/10</div>
-      <a href="${a.article.href}" class="fc-link">→ ${a.article.label}</a>
-    `;
-    focusEl.appendChild(card);
-  });
-
-  // Show section & scroll
-  const resultsEl = document.getElementById('results');
-  resultsEl.classList.add('show');
-  if (animate) {
-    setTimeout(()=>{
-      resultsEl.scrollIntoView({ behavior:'smooth', block:'start' });
-      countUp(document.getElementById('score-num'), total, 900);
-      setTimeout(()=>{
-        AREAS.forEach(a=>{
-          const b = document.getElementById(`bar-${a.id}`);
-          if(b) b.style.width = ((scores[a.id]||0)/10*100)+'%';
-        });
-      }, 550);
-    }, 80);
-  } else {
-    document.getElementById('score-num').textContent = total;
-    AREAS.forEach(a=>{
-      const b = document.getElementById(`bar-${a.id}`);
-      if(b) b.style.width = ((scores[a.id]||0)/10*100)+'%';
-    });
-  }
-}
-
-/* ─── Reset ─── */
-function resetAssessment() {
-  Object.keys(scores).forEach(k=>delete scores[k]);
-  try { localStorage.removeItem(HC_KEY); } catch(e) {}
-  document.body.classList.remove('hc-complete');
-  AREAS.forEach(a=>{
-    const card = document.getElementById(`card-${a.id}`);
-    card.classList.remove('s-low','s-mid','s-high');
-    document.getElementById(`badge-${a.id}`).className = 'ac-badge';
-    document.querySelectorAll(`#row-${a.id} .sb`).forEach(b=>b.classList.remove('sel-low','sel-mid','sel-high'));
-  });
-  document.getElementById('results').classList.remove('show');
-  updateProgress();
-  window.scrollTo({ top:0, behavior:'smooth' });
-}
-
-/* ===================== EMBEDDED-DOC REGION: START =====================
-   Everything between these fences builds a COMPLETE standalone HTML print
-   document inside JS strings, injected into a hidden iframe via srcdoc.
-   1) Any '</style>' inside these strings is NOT this page's stylesheet.
-      Tooling that targets </style> must COUNT OCCURRENCES and scope to the
-      intended one -- a blind insert-before-</style> corrupts this engine.
-   2) var(--token) does NOT work in here: the iframe cannot read the parent
-      page's CSS custom properties. Hex literals are intentional; keep them
-      in sync with src/styles/tokens.css by hand.
-   See CLAUDE.md -> Danger zones #1.
-   ======================================================================= */
-/* \u2500\u2500\u2500 Branded report (print / PDF) \u2500\u2500\u2500
-   Architecture: reportData() serializes the result to JSON; reportBodyHTML()
-   renders the branded two-pager from that data. Primary path (the button) prints
-   a standalone document in a hidden iframe \u2014 fully decoupled from this page's CSS.
-   Fallback path (Ctrl+P / Cmd+P) swaps the in-page #report via @media print. */
-const OWL_SVG = `<svg viewBox="0 0 192 192" height="26" width="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0F1F38" d="M38.27,123.78V68.53v-4.76h0.18C40.75,30.31,67,3.83,98.97,3.83c31.97,0,58.23,26.48,60.52,59.95h0.18v4.76v120.39h-4.56v0c-0.06,0-0.11,0-0.17,0H99.38c-3.73,0-7.38-0.38-10.93-1.06H32.93v-9.51h33.13C49.35,166.71,38.27,146.6,38.27,123.78z M98.97,13.34c-18.05,0-33.97,9.9-43.24,24.88c4.53-2.59,9.71-4.07,15.2-4.07c12.01,0,22.48,7.04,28.04,17.44c5.56-10.4,16.03-17.44,28.04-17.44c5.49,0,10.67,1.48,15.2,4.07C132.94,23.25,117.02,13.34,98.97,13.34z M127.01,43.66c-12.87,0-23.57,11.16-23.57,24.88v25.13h-8.92V68.54c0-13.72-10.7-24.88-23.57-24.88c-12.87,0-23.74,11.16-23.74,24.88c0,30.43,23.23,55.19,51.78,55.19c28.55,0,51.78-24.76,51.78-55.19C150.75,54.82,139.88,43.66,127.01,43.66z M150.75,178.35v-76.08c-9.91,17.22-27.17,29.13-47.09,30.76c3.58,22.75,20.15,40.86,41.28,45.32H150.75z M89.24,178.35h32.55c-14.41-10.03-24.61-26.36-27.16-45.3c-20.07-1.52-37.47-13.46-47.44-30.79v21.51C47.2,150.76,65.3,173.3,89.24,178.35z"/><path fill="#C18C5D" d="M127.21,77.77c7.72,0,7.73-12,0-12C119.49,65.77,119.47,77.77,127.21,77.77z"/><path fill="#C18C5D" d="M71.91,77.77c7.72,0,7.73-12,0-12C64.19,65.77,64.18,77.77,71.91,77.77z"/></svg>`;
-
-const REPORT_CSS = `
-.report-doc { color:#2A3340; font-family:"DM Sans",-apple-system,Helvetica,Arial,sans-serif; font-size:10.5pt; line-height:1.5; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-.report-doc .rep-head { display:flex; justify-content:space-between; align-items:center; }
-.report-doc .rep-brand { display:flex; align-items:center; gap:8px; }
-.report-doc .rep-wm { font-family:"Abril Fatface",Georgia,serif; font-weight:400; font-size:15pt; color:#0F1F38; letter-spacing:-.01em; }
-.report-doc .rep-wm-an{font-family:"DM Sans",Arial,sans-serif;font-weight:600;font-size:8pt;letter-spacing:.26em;text-transform:uppercase;color:#C18C5D}
-.report-doc .rep-kicker { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:#C18C5D; }
-.report-doc .rep-rule { height:2px; background:#0F1F38; margin:10pt 0 13pt; }
-.report-doc .rep-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:25pt; color:#0F1F38; margin:0 0 3pt; letter-spacing:-.01em; }
-.report-doc .rep-meta { font-size:9pt; color:#6E7682; margin:0 0 17pt; }
-.report-doc .rep-scoreblock { display:flex; gap:20pt; align-items:flex-start; padding:13pt 15pt; background:#FBFAF5; border:1px solid #E5E0D5; border-radius:4pt; margin-bottom:17pt; break-inside:avoid; }
-.report-doc .rep-scorenum { font-family:"Abril Fatface",Georgia,serif; font-size:44pt; line-height:.85; color:#0F1F38; white-space:nowrap; }
-.report-doc .rep-scoremax { font-family:"DM Sans",sans-serif; font-size:13pt; color:#A39E92; font-weight:400; }
-.report-doc .rep-bandwrap { flex:1; }
-.report-doc .rep-pill { display:inline-block; padding:3pt 11pt; border:1.5pt solid; border-radius:20pt; font-size:8.5pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:7pt; }
-.report-doc .rep-bandtext { font-size:10pt; line-height:1.55; color:#2A3340; margin:0; }
-.report-doc .rep-section-label { font-size:8.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:#C18C5D; margin:0 0 9pt; padding-bottom:4pt; border-bottom:1px solid #E5E0D5; }
-.report-doc .rep-table { width:100%; border-collapse:collapse; margin-bottom:18pt; }
-.report-doc .rep-row { break-inside:avoid; }
-.report-doc .rep-row td { padding:5.5pt 0; border-bottom:1px solid #EFEBE1; vertical-align:middle; }
-.report-doc .rep-area { font-size:10pt; font-weight:600; color:#0F1F38; width:48%; }
-.report-doc .rep-anum { font-family:"Abril Fatface",Georgia,serif; font-size:10pt; color:#C9C3B6; margin-right:7pt; }
-.report-doc .rep-barcell { width:40%; padding-left:10pt; padding-right:10pt; }
-.report-doc .rep-track { background:#EAE6DC; border-radius:2pt; height:7pt; overflow:hidden; }
-.report-doc .rep-bar { height:100%; border-radius:2pt; }
-.report-doc .rep-score { text-align:right; font-size:11pt; font-weight:700; width:12%; white-space:nowrap; }
-.report-doc .rep-score-max { font-size:8pt; font-weight:400; color:#A39E92; }
-.report-doc .rep-page2 { page-break-before:always; break-before:page; }
-.report-doc .rep-focus-grid { margin-bottom:16pt; }
-.report-doc .rep-focus { break-inside:avoid; border:1px solid #E5E0D5; border-left:3pt solid #CE796B; border-radius:0 3pt 3pt 0; padding:9pt 12pt; margin-bottom:7pt; }
-.report-doc .rep-focus-rank { font-size:7.5pt; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:#CE796B; margin-bottom:3pt; }
-.report-doc .rep-focus-name { font-size:11.5pt; font-weight:700; color:#0F1F38; margin-bottom:2pt; }
-.report-doc .rep-focus-score { font-size:9pt; color:#6E7682; margin-bottom:4pt; }
-.report-doc .rep-focus-read { font-size:9pt; color:#2A3340; line-height:1.45; }
-.report-doc .rep-focus-url { color:#6E7682; }
-.report-doc .rep-cta { background:#0F1F38; color:#fff; border-radius:4pt; padding:13pt 15pt; margin-bottom:13pt; break-inside:avoid; }
-.report-doc .rep-cta-h { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:14pt; color:#fff; margin-bottom:5pt; }
-.report-doc .rep-cta-p { font-size:9.5pt; line-height:1.55; color:#C9D2DE; margin:0; }
-.report-doc .rep-cta-p strong { color:#E0A870; font-weight:700; }
-.report-doc .rep-foot { border-top:1px solid #E5E0D5; padding-top:8pt; }
-.report-doc .rep-foot span { display:block; font-size:7.5pt; color:#A39E92; line-height:1.5; }
-`;
-
-/* The smart data: everything the report needs, as one JSON-serializable object. */
-function reportData() {
-  if (Object.keys(scores).length < 10) return null;
-  const total = AREAS.reduce((s,a)=>s+(scores[a.id]||0),0);
-  const band = getBand(total);
-  return {
-    generated: new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}),
-    year: new Date().getFullYear(),
-    total: total,
-    band: { key: band, label: BANDS[band].label, text: BANDS[band].text },
-    areas: AREAS.map(a => ({ num:a.num, name:a.name, score:scores[a.id]||0, cls:cls(scores[a.id]||0) })),
-    focus: [...AREAS].sort((a,b)=>(scores[a.id]||0)-(scores[b.id]||0)).slice(0,3)
-      .map((a,i)=>({ rank:i+1, name:a.name, score:scores[a.id], label:a.article.label, url:'aesopanalytics.com'+a.article.href }))
-  };
-}
-
-function reportBodyHTML(d) {
-  const barColor = c => c==='low' ? '#CE796B' : c==='mid' ? '#C18C5D' : '#0F1F38';
-  const pillColor = { critical:'#CE796B', concern:'#C18C5D', stable:'#5A7090', strong:'#4A9D6E' }[d.band.key];
-  const rows = d.areas.map(a => `<tr class="rep-row">
-      <td class="rep-area"><span class="rep-anum">${a.num}</span>${a.name}</td>
-      <td class="rep-barcell"><div class="rep-track"><div class="rep-bar" style="width:${a.score*10}%;background:${barColor(a.cls)}"></div></div></td>
-      <td class="rep-score" style="color:${barColor(a.cls)}">${a.score}<span class="rep-score-max">/10</span></td>
-    </tr>`).join('');
-  const focus = d.focus.map(f => `<div class="rep-focus">
-      <div class="rep-focus-rank">Priority ${f.rank} focus area</div>
-      <div class="rep-focus-name">${f.name}</div>
-      <div class="rep-focus-score">Current score: ${f.score}/10</div>
-      <div class="rep-focus-read"><strong>Recommended reading:</strong> ${f.label}<br><span class="rep-focus-url">${f.url}</span></div>
-    </div>`).join('');
-  return `
-    <div class="rep-head">
-      <div class="rep-brand">${OWL_SVG}<span class="rep-wm">aesop<span class="rep-wm-an"> Analytics</span></span></div>
-      <div class="rep-kicker">Reporting Trust Health Check</div>
-    </div>
-    <div class="rep-rule"></div>
-    <h1 class="rep-title">Your reporting trust results</h1>
-    <div class="rep-meta">Self-assessment \u00b7 Generated ${d.generated}</div>
-    <div class="rep-scoreblock">
-      <div class="rep-scorenum">${d.total}<span class="rep-scoremax">/100</span></div>
-      <div class="rep-bandwrap">
-        <span class="rep-pill" style="color:${pillColor};border-color:${pillColor}">${d.band.label}</span>
-        <p class="rep-bandtext">${d.band.text}</p>
-      </div>
-    </div>
-    <div class="rep-section-label">Score by area</div>
-    <table class="rep-table">${rows}</table>
-    <div class="rep-page2">
-      <div class="rep-section-label">Your three highest-priority focus areas</div>
-      <div class="rep-focus-grid">${focus}</div>
-      <div class="rep-cta">
-        <div class="rep-cta-h">Want help interpreting these results?</div>
-        <p class="rep-cta-p">Book a free 30-minute Reporting Trust Diagnostic \u2014 bring your scores and we'll identify the highest-impact areas together, and work out whether a structured assessment would help. <strong>aesopanalytics.com/diagnostic</strong></p>
-      </div>
-      <div class="rep-foot">
-        <span>aesop Analytics \u2014 reporting modernization &amp; data trust consulting \u00b7 Nashville, TN</span>
-        <span>\u00a9 ${d.year} Aesop Analytics \u00b7 Generated from the Reporting Trust Health Check at aesopanalytics.com/resources/health-check</span>
-      </div>
-    </div>`;
-}
-
-/* Fallback path (Ctrl+P / Cmd+P): in-page #report swapped in by @media print. */
-function ensureRepStyle() {
-  if (document.getElementById('rep-style')) return;
-  const st = document.createElement('style');
-  st.id = 'rep-style';
-  st.textContent = '@media print{' + REPORT_CSS + '}';
-  document.head.appendChild(st);
-}
-function buildReport() {
-  const d = reportData();
-  if (!d) return;
-  ensureRepStyle();
-  document.getElementById('report').innerHTML = reportBodyHTML(d);
-}
-window.addEventListener('beforeprint', buildReport);
-
-/* Primary path (the button): print a standalone branded two-pager from a hidden iframe. */
-function printReport() {
-  const d = reportData();
-  if (!d) { window.print(); return; }
-  const doc = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'
-    + '<title>Reporting Trust Health Check \u2014 Results</title>'
-    + '<link rel="preconnect" href="https://fonts.googleapis.com">'
-    + '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-    + '<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:opsz,wght@6..72,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">'
-    + '<style>@page{margin:14mm 14mm 12mm}html,body{margin:0;padding:0;background:#fff}' + REPORT_CSS + '</style>'
-    + '</head><body><div class="report-doc" style="display:block">' + reportBodyHTML(d) + '</div></body></html>';
-  let fr = document.getElementById('print-frame');
-  if (!fr) {
-    fr = document.createElement('iframe');
-    fr.id = 'print-frame';
-    fr.setAttribute('aria-hidden','true');
-    fr.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden';
-    document.body.appendChild(fr);
-  }
-  let printed = false;
-  fr.onload = function() {
-    const w = fr.contentWindow;
-    const go = function() {
-      if (printed) return; printed = true;
-      try { w.focus(); w.print(); } catch(e) { window.print(); }
-    };
-    if (w.document.fonts && w.document.fonts.ready) {
-      w.document.fonts.ready.then(function(){ setTimeout(go, 150); });
-      setTimeout(go, 2500); /* safety net if fonts.ready stalls */
-    } else {
-      setTimeout(go, 600);
-    }
-  };
-  fr.srcdoc = doc;
-}
-
-/* ====================== EMBEDDED-DOC REGION: END ====================== */
-/* Restore a saved session (so a reload never destroys a completed check). */
-(function restoreScores() {
-  let saved = null;
-  try { saved = JSON.parse(localStorage.getItem(HC_KEY) || 'null'); } catch(e) {}
-  if (!saved || typeof saved !== 'object') return;
-  Object.entries(saved).forEach(([id, val]) => {
-    if (AREAS.some(a => a.id === id) && Number.isInteger(val) && val >= 1 && val <= 10) applyPick(id, val);
-  });
-  updateProgress();
-  if (Object.keys(scores).length === 10) renderResults(false);
-})();
+{TURNSTILE_SITE_KEY && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
+<script define:vars={{ siteKey: TURNSTILE_SITE_KEY }}>
+  window.__hcSiteKey = siteKey || '';
+</script>
+<script>
+  import { mountHealthCheck } from '../../lib/health-check-app.js';
+  mountHealthCheck();
 </script>
