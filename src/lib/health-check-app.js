@@ -120,8 +120,14 @@ export function mountHealthCheck() {
   }
 
   function reportView() {
-    const r = buildReport(state.scores);
     const wrap = el('div', 'hc-report');
+    let r;
+    try { r = buildReport(state.scores); } catch (e) {
+      wrap.setAttribute('data-hc-error', '1');
+      wrap.appendChild(el('h2', 'hc-head-title', 'We could not build your report'));
+      wrap.appendChild(el('p', 'hc-head-body', 'Something went wrong. Please start over and re-rate the areas.'));
+      return wrap;
+    }
 
     // Headline: index + band + band statement
     const head = el('div', 'hc-head');
@@ -212,6 +218,7 @@ export function mountHealthCheck() {
     const reset = el('button', 'hc-linkbtn', 'Start over'); reset.type = 'button'; reset.addEventListener('click', () => { state.scores = {}; save(state.scores); state.step = 0; state.view = 'input'; render(); app.scrollTop = 0; }); foot.appendChild(reset);
     wrap.appendChild(foot);
 
+    wrap.setAttribute('data-hc-ready', '1'); // signal for the PDF renderer (Browser Rendering waits on this)
     return wrap;
   }
 
@@ -229,8 +236,13 @@ export function mountHealthCheck() {
       const email = (input.value || '').trim();
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
       send.disabled = true; msg.textContent = 'Sending your report…';
-      fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, scores: state.scores }) })
-        .then((res) => { if (!res.ok) throw new Error('status ' + res.status); row.style.display = 'none'; msg.textContent = 'Sent — check your inbox. We’ll only follow up to help you read it.'; })
+      fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, scores: state.scores, turnstileToken: window.__hcTurnstileToken || '' }) })
+        .then((res) => {
+          if (res.ok) { row.style.display = 'none'; msg.textContent = 'Sent — check your inbox. We’ll only follow up to help you read it.'; return; }
+          if (res.status === 422) { msg.textContent = 'We couldn’t deliver to that address — but your report is right here and printable above.'; return; }
+          if (res.status >= 400 && res.status < 500) { send.disabled = false; msg.textContent = 'Please check your email address and try again.'; return; }
+          throw new Error('status ' + res.status);
+        })
         .catch(() => { send.disabled = false; msg.textContent = 'Couldn’t send right now — your report is still here and printable above.'; });
     });
     return f;
