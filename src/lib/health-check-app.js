@@ -6,6 +6,8 @@ import { AREAS, PILLAR_STEPS, AI_STEP } from './trust-index-areas.js';
 
 const STORE = 'aesop-hc-v3';
 const STEPS = [...PILLAR_STEPS, AI_STEP];
+// The mailer Worker (aesop-healthcheck-mailer) - emails the visitor a branded PDF + sends Aesop the pre-data.
+const MAILER_ENDPOINT = 'https://aesop-healthcheck-mailer.doreau-jonathan.workers.dev/email';
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 function pillarBandWord(v) { return v < 40 ? 'low' : v < 65 ? 'mid' : 'high'; }
@@ -197,7 +199,9 @@ export function mountHealthCheck() {
     cta.appendChild(el('div', 'hc-cta-printlink', 'Book a free diagnostic — aesopanalytics.com/diagnostic/'));
     const acts = el('div', 'hc-cta-acts');
     const book = document.createElement('a'); book.href = '/diagnostic/'; book.className = 'hc-btn'; book.textContent = 'Book a free diagnostic →'; acts.appendChild(book);
-    const emailBtn = el('button', 'hc-btn ghost', 'Email me my report'); emailBtn.type = 'button'; emailBtn.addEventListener('click', () => alert('Email opt-in ships in the next slice.')); acts.appendChild(emailBtn);
+    const emailBtn = el('button', 'hc-btn ghost', 'Email me my report'); emailBtn.type = 'button';
+    emailBtn.addEventListener('click', () => { emailBtn.style.display = 'none'; cta.appendChild(emailForm()); });
+    acts.appendChild(emailBtn);
     const printBtn = el('button', 'hc-linkbtn', 'Print / save as PDF'); printBtn.type = 'button'; printBtn.addEventListener('click', () => window.print()); acts.appendChild(printBtn);
     cta.appendChild(acts);
     wrap.appendChild(cta);
@@ -209,5 +213,26 @@ export function mountHealthCheck() {
     wrap.appendChild(foot);
 
     return wrap;
+  }
+
+  function emailForm() {
+    const f = el('div', 'hc-emailform');
+    const row = el('div', 'hc-emailrow');
+    const input = document.createElement('input');
+    input.type = 'email'; input.placeholder = 'you@company.com'; input.className = 'hc-email-input';
+    input.setAttribute('aria-label', 'Your email address');
+    const send = el('button', 'hc-btn', 'Email it'); send.type = 'button';
+    row.appendChild(input); row.appendChild(send);
+    const msg = el('div', 'hc-email-msg', 'Your full report stays free on this page — this just sends you a PDF copy (and lets us follow up to help you read it).');
+    f.appendChild(row); f.appendChild(msg);
+    send.addEventListener('click', () => {
+      const email = (input.value || '').trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
+      send.disabled = true; msg.textContent = 'Sending your report…';
+      fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, scores: state.scores }) })
+        .then((res) => { if (!res.ok) throw new Error('status ' + res.status); row.style.display = 'none'; msg.textContent = 'Sent — check your inbox. We’ll only follow up to help you read it.'; })
+        .catch(() => { send.disabled = false; msg.textContent = 'Couldn’t send right now — your report is still here and printable above.'; });
+    });
+    return f;
   }
 }
