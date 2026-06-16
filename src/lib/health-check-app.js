@@ -21,7 +21,13 @@ export function mountHealthCheck() {
   function open() { document.body.classList.add('hc-open'); app.hidden = false; if (Object.keys(state.scores).length >= 11) { state.view = 'report'; } render(); app.scrollTop = 0; }
   function close() { document.body.classList.remove('hc-open', 'hc-report-view'); app.hidden = true; }
   if (launch) launch.addEventListener('click', open);
-  if (location.hash === '#start') open();
+  // Render-from-scores: ?r=<base64 JSON of area scores> renders the report directly.
+  // Powers shareable report links AND the server-side PDF render (Browser Rendering -> page.pdf()).
+  const rParam = new URLSearchParams(location.search).get('r');
+  if (rParam) {
+    try { const s = JSON.parse(decodeURIComponent(escape(atob(rParam)))); if (s && typeof s === 'object') state.scores = s; } catch (e) {}
+  }
+  if (rParam || location.hash === '#start') open();
 
   function setScore(id, v) { state.scores[id] = v; save(state.scores); }
 
