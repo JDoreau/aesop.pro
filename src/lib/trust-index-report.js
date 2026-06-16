@@ -58,8 +58,11 @@ function patternRules(h) {
 function bandStatementId(h) {
   const { band, gap, binding, brokenCount, atLeast55Count, lowest, secondLowest } = h;
   if (band === 'critical') return firstMatch('bandStatements', [
-    { id: 'band:critical:broken-pillar', test: (brokenCount === 1 || brokenCount === 2) && atLeast55Count >= 2 },
+    // Clarity-led criticals (a strong Clarity half over a broken Operating half) read best as
+    // "the numbers may be fine; nothing keeps them that way" - checked before the generic
+    // single-broken-pillar statement so the flagship trusted-but-ungoverned shape gets the apt headline.
     { id: 'band:critical:operating-broken', test: gap != null && gap >= 25 },
+    { id: 'band:critical:broken-pillar', test: (brokenCount === 1 || brokenCount === 2) && atLeast55Count >= 2 },
     { id: 'band:critical:uniform', test: true },
   ]);
   if (band === 'concern') return firstMatch('bandStatements', [
