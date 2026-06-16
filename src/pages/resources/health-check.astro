@@ -5,6 +5,7 @@
 // full-screen experience. All scoring/selection is the proven engine in
 // src/lib/trust-index*.js; the UI controller is src/lib/health-check-app.js.
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import OwlMark from "../../components/OwlMark.astro";
 ---
 <BaseLayout
   title="Reporting Trust Health Check - Aesop Analytics"
@@ -56,8 +57,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   </div>
 </section>
 
+<!-- Print-only branded header/footer (hidden on screen; shown only when printing the report) -->
+<div class="hc-prt-head" aria-hidden="true">
+  <div class="hc-prt-brand"><OwlMark size={26} /><span class="hc-prt-wm">aesop</span><span class="hc-prt-an">Analytics</span></div>
+  <div class="hc-prt-kicker">Reporting Trust Health Check</div>
+</div>
+<div class="hc-prt-rule" aria-hidden="true"></div>
+<div class="hc-prt-meta" aria-hidden="true">Self-assessment &middot; Generated <span id="hc-prt-date"></span></div>
+
 <!-- Full-screen app (filled + driven by health-check-app.js) -->
 <div id="hc-app" class="hc-app" hidden></div>
+
+<div class="hc-prt-foot" aria-hidden="true">
+  <span>Aesop Analytics &mdash; reporting modernization &amp; data trust consulting &middot; Nashville, TN</span>
+  <span>&copy; <span id="hc-prt-year"></span> &middot; Generated from the Reporting Trust Health Check at aesopanalytics.com/resources/health-check</span>
+</div>
 </BaseLayout>
 
 <style>
@@ -197,10 +211,56 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   .hc-cta-acts .hc-linkbtn:hover { color:#fff; }
   .hc-foot { display:flex; gap:24px; justify-content:center; margin-top:20px; }
 
+  /* Print-only header/footer (hidden on screen; shown only when printing the report) */
+  .hc-prt-head, .hc-prt-rule, .hc-prt-meta, .hc-prt-foot, .hc-cta-printlink { display:none; }
+  .hc-prt-head { align-items:center; justify-content:space-between; }
+  .hc-prt-brand { display:flex; align-items:center; gap:9px; }
+  .hc-prt-wm { font-family:"Abril Fatface",serif; font-size:18pt; color:var(--navy); }
+  .hc-prt-an { font-family:"DM Sans",sans-serif; font-weight:600; font-size:8pt; letter-spacing:.26em; text-transform:uppercase; color:var(--twine); align-self:center; }
+  .hc-prt-kicker { font-size:8.5pt; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--twine); }
+  .hc-prt-rule { height:2px; background:var(--navy); margin:10pt 0; }
+  .hc-prt-meta { font-size:9pt; color:var(--muted); margin-bottom:14pt; }
+  .hc-prt-foot { margin-top:16pt; border-top:1px solid var(--line); padding-top:8pt; }
+  .hc-prt-foot span { display:block; font-size:7.5pt; color:var(--muted); line-height:1.5; }
+
   @media print {
-    .hc-top, .hc-nav, .hc-foot, .hc-cta-acts { display:none !important; }
-    .hc-app { position:static; overflow:visible; }
-    body.hc-open { overflow:visible; }
+    @page { margin:14mm 14mm 12mm; }
+
+    /* Printing the REPORT: suppress site chrome + marketing siblings + in-app chrome */
+    body.hc-report-view :is(nav, footer), body.hc-report-view .intro, body.hc-report-view .below,
+    body.hc-report-view .hc-top, body.hc-report-view .hc-nav, body.hc-report-view .hc-foot, body.hc-report-view .hc-cta-acts { display:none !important; }
+    /* Not in the report (intro / mid-questionnaire Ctrl+P): hide the app shell, print the normal page */
+    body:not(.hc-report-view) .hc-app { display:none; }
+
+    /* Show the print-only header/footer only when printing the report */
+    body.hc-report-view .hc-prt-head { display:flex; }
+    body.hc-report-view .hc-prt-rule, body.hc-report-view .hc-prt-meta, body.hc-report-view .hc-prt-foot { display:block; }
+
+    /* Release the overlay scroll context so the PDF paginates full-height (the clip fix) */
+    html, body.hc-report-view { overflow:visible !important; height:auto !important; }
+    body.hc-report-view .hc-app { position:static; overflow:visible; }
+
+    /* Colour fidelity (root + each background-bearing element) */
+    .hc-report, .hc-index, .hc-bar-track, .hc-bar-fill, .hc-area-chip, .hc-band-pill, .hc-cta, .hc-card[class*="sev-"] { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .hc-index.b-stable { color:var(--navy); } /* pale mist -> ink on white */
+
+    /* Page-break control */
+    .hc-head, .hc-bars, .hc-card, .hc-area-row, .hc-cta, .hc-prt-head, .hc-prt-foot { break-inside:avoid; page-break-inside:avoid; }
+    .hc-areas { overflow:visible; }
+    .hc-areas-label { page-break-before:always; break-before:page; }
+
+    /* Trim to a clean 2-3 page executive PDF */
+    [data-print="drop"] { display:none !important; }
+    .hc-grid .hc-card:nth-of-type(n+3) { display:none; }
+
+    /* Keep the navy CTA legible even if the print dialog has backgrounds off */
+    .hc-cta { border:1.5pt solid var(--navy); }
+    .hc-cta-printlink { display:block; color:var(--twine); font-weight:700; font-size:10pt; margin-top:8pt; }
+
+    /* Paper type sizing */
+    .hc-report { max-width:none; margin:0; padding:0 0 8pt; font-size:10pt; }
+    .hc-index { font-size:46pt; line-height:.85; }
+    .hc-card, .hc-area-row { padding:9pt 13pt; }
   }
 </style>
 

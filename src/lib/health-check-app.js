@@ -19,7 +19,7 @@ export function mountHealthCheck() {
   const state = { scores: load(), step: 0, view: 'input' };
 
   function open() { document.body.classList.add('hc-open'); app.hidden = false; if (Object.keys(state.scores).length >= 11) { state.view = 'report'; } render(); app.scrollTop = 0; }
-  function close() { document.body.classList.remove('hc-open'); app.hidden = true; }
+  function close() { document.body.classList.remove('hc-open', 'hc-report-view'); app.hidden = true; }
   if (launch) launch.addEventListener('click', open);
   if (location.hash === '#start') open();
 
@@ -27,8 +27,19 @@ export function mountHealthCheck() {
 
   function render() {
     app.innerHTML = '';
+    document.body.classList.toggle('hc-report-view', state.view === 'report');
+    if (state.view === 'report') setPrintMeta();
     app.appendChild(topbar());
     app.appendChild(state.view === 'report' ? reportView() : inputView());
+  }
+  function setPrintMeta() {
+    try {
+      const d = new Date();
+      const dEl = document.getElementById('hc-prt-date');
+      if (dEl) dEl.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const yEl = document.getElementById('hc-prt-year');
+      if (yEl) yEl.textContent = String(d.getFullYear());
+    } catch (e) {}
   }
 
   function topbar() {
@@ -138,7 +149,7 @@ export function mountHealthCheck() {
     // Profile shape: archetype + half-gap
     wrap.appendChild(section('The shape of your profile'));
     if (r.archetype) wrap.appendChild(card(r.archetype.severity, r.archetype.title, r.archetype.body));
-    if (r.halfGapRead) wrap.appendChild(card(r.halfGapRead.severity, r.halfGapRead.title, r.halfGapRead.body));
+    if (r.halfGapRead) { const hg = card(r.halfGapRead.severity, r.halfGapRead.title, r.halfGapRead.body); hg.dataset.print = 'drop'; wrap.appendChild(hg); }
 
     // Secondary patterns
     if (r.secondaryPatterns && r.secondaryPatterns.length) {
@@ -148,11 +159,13 @@ export function mountHealthCheck() {
       wrap.appendChild(grid);
     }
 
-    // Pillar-by-pillar
-    wrap.appendChild(section('Pillar by pillar'));
+    // Pillar-by-pillar (dropped on print; the five bars already carry per-pillar scores)
+    const pillarSec = el('div', 'hc-rsec'); pillarSec.dataset.print = 'drop';
+    pillarSec.appendChild(section('Pillar by pillar'));
     const pgrid = el('div', 'hc-grid');
     r.pillarReads.forEach((pr) => { const c = card(null, pr.label + ' — ' + (pr.entry ? pr.entry.title || '' : ''), pr.entry ? pr.entry.body : ''); pgrid.appendChild(c); });
-    wrap.appendChild(pgrid);
+    pillarSec.appendChild(pgrid);
+    wrap.appendChild(pillarSec);
 
     // AI readiness chip
     if (r.aiRead) {
@@ -160,8 +173,8 @@ export function mountHealthCheck() {
       wrap.appendChild(card(r.aiRead.severity, r.aiRead.title, r.aiRead.body));
     }
 
-    // Area-by-area (compact)
-    wrap.appendChild(section('Area by area'));
+    // Area-by-area (compact; forced to a fresh page on print)
+    const areaLabel = section('Area by area'); areaLabel.classList.add('hc-areas-label'); wrap.appendChild(areaLabel);
     const areas = el('div', 'hc-areas');
     r.areaReads.forEach((ar) => {
       const row = el('div', 'hc-area-row');
@@ -175,6 +188,7 @@ export function mountHealthCheck() {
     // Conversion CTA
     const cta = el('div', 'hc-cta');
     if (r.conversion) { cta.appendChild(el('div', 'hc-cta-title', r.conversion.title || 'This is the self-check. The Assessment is the roadmap.')); cta.appendChild(el('div', 'hc-cta-body', r.conversion.body)); }
+    cta.appendChild(el('div', 'hc-cta-printlink', 'Book a free diagnostic — aesopanalytics.com/diagnostic/'));
     const acts = el('div', 'hc-cta-acts');
     const book = document.createElement('a'); book.href = '/diagnostic/'; book.className = 'hc-btn'; book.textContent = 'Book a free diagnostic →'; acts.appendChild(book);
     const emailBtn = el('button', 'hc-btn ghost', 'Email me my report'); emailBtn.type = 'button'; emailBtn.addEventListener('click', () => alert('Email opt-in ships in the next slice.')); acts.appendChild(emailBtn);
