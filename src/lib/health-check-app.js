@@ -205,9 +205,13 @@ export function mountHealthCheck() {
     cta.appendChild(el('div', 'hc-cta-printlink', 'Book a free diagnostic — aesopanalytics.com/diagnostic/'));
     const acts = el('div', 'hc-cta-acts');
     const book = document.createElement('a'); book.href = '/diagnostic/'; book.className = 'hc-btn'; book.textContent = 'Book a free diagnostic →'; acts.appendChild(book);
-    const emailBtn = el('button', 'hc-btn ghost', 'Email me my report'); emailBtn.type = 'button';
-    emailBtn.addEventListener('click', () => { emailBtn.style.display = 'none'; cta.appendChild(emailForm()); });
-    acts.appendChild(emailBtn);
+    // The email opt-in only appears when Turnstile is configured (a site key is present),
+    // so the button can never be shown without its anti-abuse gate behind it.
+    if (window.__hcSiteKey) {
+      const emailBtn = el('button', 'hc-btn ghost', 'Email me my report'); emailBtn.type = 'button';
+      emailBtn.addEventListener('click', () => { emailBtn.style.display = 'none'; cta.appendChild(emailForm()); });
+      acts.appendChild(emailBtn);
+    }
     const printBtn = el('button', 'hc-linkbtn', 'Print / save as PDF'); printBtn.type = 'button'; printBtn.addEventListener('click', () => window.print()); acts.appendChild(printBtn);
     cta.appendChild(acts);
     wrap.appendChild(cta);
@@ -222,6 +226,33 @@ export function mountHealthCheck() {
     return wrap;
   }
 
+  // Renders the Turnstile widget into the email form. api.js loads async, so we
+  // retry briefly until window.turnstile is ready. No-op without a site key.
+  function renderTurnstile(container) {
+    const sk = window.__hcSiteKey;
+    if (!sk) return;
+    let tries = 0;
+    (function attempt() {
+      if (window.turnstile && typeof window.turnstile.render === 'function') {
+        try {
+          window.__hcTurnstileWidgetId = window.turnstile.render(container, {
+            sitekey: sk,
+            callback: (t) => { window.__hcTurnstileToken = t; },
+            'expired-callback': () => { window.__hcTurnstileToken = ''; },
+            'error-callback': () => { window.__hcTurnstileToken = ''; },
+          });
+        } catch (e) {}
+        return;
+      }
+      if (tries++ < 50) setTimeout(attempt, 150); // wait up to ~7.5s for api.js
+    })();
+  }
+  // Turnstile tokens are single-use; after any send attempt we must re-challenge.
+  function resetTurnstile() {
+    window.__hcTurnstileToken = '';
+    try { if (window.turnstile && window.__hcTurnstileWidgetId != null) window.turnstile.reset(window.__hcTurnstileWidgetId); } catch (e) {}
+  }
+
   function emailForm() {
     const f = el('div', 'hc-emailform');
     const row = el('div', 'hc-emailrow');
@@ -230,20 +261,23 @@ export function mountHealthCheck() {
     input.setAttribute('aria-label', 'Your email address');
     const send = el('button', 'hc-btn', 'Email it'); send.type = 'button';
     row.appendChild(input); row.appendChild(send);
+    const ts = el('div', 'hc-turnstile'); // Turnstile renders here (anti-abuse gate)
     const msg = el('div', 'hc-email-msg', 'Your full report stays free on this page — this just sends you a PDF copy (and lets us follow up to help you read it).');
-    f.appendChild(row); f.appendChild(msg);
+    f.appendChild(row); f.appendChild(ts); f.appendChild(msg);
+    renderTurnstile(ts);
     send.addEventListener('click', () => {
       const email = (input.value || '').trim();
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
+      if (!window.__hcTurnstileToken) { msg.textContent = 'Please complete the “I’m human” check above before sending.'; return; }
       send.disabled = true; msg.textContent = 'Sending your report…';
       fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, scores: state.scores, turnstileToken: window.__hcTurnstileToken || '' }) })
         .then((res) => {
-          if (res.ok) { row.style.display = 'none'; msg.textContent = 'Sent — check your inbox. We’ll only follow up to help you read it.'; return; }
+          if (res.ok) { row.style.display = 'none'; ts.style.display = 'none'; msg.textContent = 'Sent — check your inbox. We’ll only follow up to help you read it.'; return; }
           if (res.status === 422) { msg.textContent = 'We couldn’t deliver to that address — but your report is right here and printable above.'; return; }
-          if (res.status >= 400 && res.status < 500) { send.disabled = false; msg.textContent = 'Please check your email address and try again.'; return; }
+          if (res.status >= 400 && res.status < 500) { resetTurnstile(); send.disabled = false; msg.textContent = 'That verification didn’t go through — please complete the check again and resend.'; return; }
           throw new Error('status ' + res.status);
         })
-        .catch(() => { send.disabled = false; msg.textContent = 'Couldn’t send right now — your report is still here and printable above.'; });
+        .catch(() => { resetTurnstile(); send.disabled = false; msg.textContent = 'Couldn’t send right now — your report is still here and printable above.'; });
     });
     return f;
   }
