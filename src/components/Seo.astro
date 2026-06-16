@@ -53,8 +53,12 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 {import.meta.env.PROD && <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-4TVCCT0XW9');
+  // Skip the pageview on the report-render path (/resources/health-check/?r=...)
+  // so the headless Browser Rendering bot can't fire phantom GA4 hits.
+  if (!/[?&]r=/.test(location.search)) {
+    gtag('js', new Date());
+    gtag('config', 'G-4TVCCT0XW9');
+  }
 </script>}
 <title>{title}</title>
 <meta name="description" content={description} />

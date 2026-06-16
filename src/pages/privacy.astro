@@ -2,8 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../data/nav.ts";
 const title = 'Privacy Policy | Aesop Analytics'
-const description = 'How Aesop Analytics uses Google Analytics and Formspree on this site, what data is collected, and how to opt out. Plain language, no legalese.'
-const updated = "June 9, 2026";
+const description = 'How Aesop Analytics uses Google Analytics, Formspree, and (for the optional Health Check email) Cloudflare and SendGrid on this site, what data is collected, and how to opt out. Plain language, no legalese.'
+const updated = "June 15, 2026";
 ---
 
 <BaseLayout title={title} description={description} path="/privacy">
@@ -22,6 +22,10 @@ const updated = "June 9, 2026";
 
       <h2>Contact forms</h2>
       <p>When you send a message through a form on this site, the submission is processed by Formspree to deliver it to us by email. We use what you send only to respond to you. We do not add you to a marketing list.</p>
+
+      <h2>Health Check email (optional)</h2>
+      <p>The Reporting Trust Health Check scores your answers entirely in your browser — by default, nothing you enter leaves your device. If you choose to use the optional "Email me my report" button, the email address you enter and your eleven self-assessed scores are sent to our mailer so it can generate a PDF of your report and email it to you. The request is verified by Cloudflare Turnstile to prevent abuse.</p>
+      <p>That request is processed by Cloudflare (Workers and Browser Rendering, which renders your report to a PDF) and by SendGrid, a Twilio service that delivers the email. A copy of your email address and scores is also sent to us as a sales lead, and we may follow up about how we could help — we do not add you to a marketing list. To have this data removed, email us at the address below.</p>
 
       <h2>Questions</h2>
       <p>Email us at <a href={`mailto:${site.email}`}>{site.email}</a> with any question about this policy or the data we hold about you.</p>

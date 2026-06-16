@@ -228,9 +228,10 @@ export function mountHealthCheck() {
 
   // Renders the Turnstile widget into the email form. api.js loads async, so we
   // retry briefly until window.turnstile is ready. No-op without a site key.
-  function renderTurnstile(container) {
+  function renderTurnstile(container, onUnavailable) {
     const sk = window.__hcSiteKey;
     if (!sk) return;
+    window.__hcTurnstileToken = ''; // clear any stale single-use token from a prior open
     let tries = 0;
     (function attempt() {
       if (window.turnstile && typeof window.turnstile.render === 'function') {
@@ -244,7 +245,8 @@ export function mountHealthCheck() {
         } catch (e) {}
         return;
       }
-      if (tries++ < 50) setTimeout(attempt, 150); // wait up to ~7.5s for api.js
+      if (tries++ < 50) { setTimeout(attempt, 150); return; } // wait up to ~7.5s for api.js
+      if (typeof onUnavailable === 'function') onUnavailable(); // api.js blocked (ad blocker / CSP / proxy)
     })();
   }
   // Turnstile tokens are single-use; after any send attempt we must re-challenge.
@@ -262,9 +264,10 @@ export function mountHealthCheck() {
     const send = el('button', 'hc-btn', 'Email it'); send.type = 'button';
     row.appendChild(input); row.appendChild(send);
     const ts = el('div', 'hc-turnstile'); // Turnstile renders here (anti-abuse gate)
-    const msg = el('div', 'hc-email-msg', 'Your full report stays free on this page — this just sends you a PDF copy (and lets us follow up to help you read it).');
+    const msg = el('div', 'hc-email-msg');
+    msg.innerHTML = 'Your report stays free on this page. Emailing it sends a PDF copy to you and a copy to Aesop, who may follow up about how we can help — see our <a href="/privacy/">privacy policy</a>.';
     f.appendChild(row); f.appendChild(ts); f.appendChild(msg);
-    renderTurnstile(ts);
+    renderTurnstile(ts, () => { send.disabled = true; msg.textContent = 'Verification couldn’t load — an ad blocker or network filter may be blocking it. Your report is still free and printable above.'; });
     send.addEventListener('click', () => {
       const email = (input.value || '').trim();
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
@@ -272,7 +275,7 @@ export function mountHealthCheck() {
       send.disabled = true; msg.textContent = 'Sending your report…';
       fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, scores: state.scores, turnstileToken: window.__hcTurnstileToken || '' }) })
         .then((res) => {
-          if (res.ok) { row.style.display = 'none'; ts.style.display = 'none'; msg.textContent = 'Sent — check your inbox. We’ll only follow up to help you read it.'; return; }
+          if (res.ok) { row.style.display = 'none'; ts.style.display = 'none'; msg.textContent = 'Sent — check your inbox (and your spam folder, just in case).'; return; }
           if (res.status === 422) { msg.textContent = 'We couldn’t deliver to that address — but your report is right here and printable above.'; return; }
           if (res.status >= 400 && res.status < 500) { resetTurnstile(); send.disabled = false; msg.textContent = 'That verification didn’t go through — please complete the check again and resend.'; return; }
           throw new Error('status ' + res.status);
