@@ -121,6 +121,45 @@ const assessmentSchema = {
   </div>
 </section>
 
+<!-- TRUST INDEX -->
+<section class="tindex">
+  <div class="wrap">
+    <div class="sec-label">The headline number</div>
+    <h2>Ten deliverables, one score: your TRUST Index.</h2>
+    <p class="ti-intro">The Assessment produces a single 0–100 reading of how far your reporting can be trusted — the same TRUST Index our <a href="/resources/health-check/">free Reporting Trust Health Check</a> gives you, but evidence-based: grounded in the inventory, the interviews, and the metric conflicts we actually find. One number — and the five bars beneath it that explain exactly why.</p>
+    <div class="ti-grid">
+      <div class="ti-explain">
+        <p>The score is the mean of five pillar sub-scores, <strong>gated downward</strong> so a strong half can never mask a weak one. The headline number and the bars always agree.</p>
+        <div class="ti-half">
+          <div class="ti-half-h">Clarity half <span>— can the numbers be believed?</span></div>
+          <p><strong>Triage</strong> estate &amp; usage · <strong>Reconcile</strong> definitions &amp; quality · <strong>Unify</strong> ownership &amp; source of truth</p>
+        </div>
+        <div class="ti-half">
+          <div class="ti-half-h">Operating half <span>— does anything keep them that way?</span></div>
+          <p><strong>Standardize</strong> governance &amp; manual burden · <strong>Transition</strong> decision-fit &amp; cadence</p>
+        </div>
+        <p class="ti-tell">The most common result we find: <em>trusted data, immature program</em> — the clarity bars are tall, the operating bars short, and the score is honestly capped to say so. That gap is usually the fastest, cheapest thing to fix.</p>
+      </div>
+      <div class="ti-card">
+        <div class="ti-tag">Illustrative example</div>
+        <div class="ti-top">
+          <div class="ti-num">55</div>
+          <div class="ti-meta"><div class="ti-band">Concern</div><div class="ti-cap">capped below the bar average — a weak operating half can't be masked</div></div>
+        </div>
+        <div class="ti-bars">
+          <div class="ti-row"><span class="ti-bl">Triage</span><span class="ti-track"><span class="ti-fill" style="width:70%"></span></span></div>
+          <div class="ti-row"><span class="ti-bl">Reconcile</span><span class="ti-track"><span class="ti-fill" style="width:72%"></span></span></div>
+          <div class="ti-row"><span class="ti-bl">Unify</span><span class="ti-track"><span class="ti-fill" style="width:68%"></span></span></div>
+          <div class="ti-row"><span class="ti-bl">Standardize</span><span class="ti-track"><span class="ti-fill bind" style="width:34%"></span></span></div>
+          <div class="ti-row"><span class="ti-bl">Transition</span><span class="ti-track"><span class="ti-fill" style="width:40%"></span></span></div>
+        </div>
+        <div class="ti-scale"><span>Critical 0–30</span><span>Concern 31–55</span><span>Stable 56–75</span><span>Strong 76–100</span></div>
+        <div class="ti-bind">Binding constraint: <strong>Standardize</strong> — the fastest win.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="process">
   <div class="process-in">
@@ -262,6 +301,38 @@ const assessmentSchema = {
 .del-n { font-family:"Abril Fatface",serif; font-size:22px; color:var(--twine); min-width:36px; line-height:1; flex-shrink:0; }
 .del-body h3 { font-size:15.5px; font-weight:700; color:var(--navy); margin-bottom:5px; }
 .del-body p { font-size:14px; color:var(--muted); line-height:1.5; font-weight:300; }
+/* TRUST INDEX */
+  .tindex { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); }
+.tindex h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
+.ti-intro { font-size:17px; color:var(--slate); font-weight:300; max-width:64ch; margin-bottom:40px; line-height:1.6; }
+.ti-intro a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+.ti-grid { display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:start; }
+@media(max-width:760px){ .ti-grid { grid-template-columns:1fr; gap:28px; } }
+.ti-explain p { font-size:16px; color:var(--slate); line-height:1.6; font-weight:300; margin-bottom:18px; }
+.ti-explain .ti-tell { font-size:15px; color:var(--ink); background:#fff; border:1px solid var(--line); border-left:3px solid var(--twine); border-radius:4px; padding:14px 16px; line-height:1.55; font-weight:400; }
+.ti-explain .ti-tell em { font-style:italic; color:var(--navy); font-weight:600; }
+.ti-half { margin-bottom:16px; }
+.ti-half-h { font-size:13.5px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.ti-half-h span { font-weight:400; color:var(--muted); }
+.ti-half p { font-size:14.5px; color:var(--slate); margin:0; line-height:1.5; font-weight:300; }
+.ti-half p strong { color:var(--navy); font-weight:600; }
+/* score card */
+  .ti-card { background:var(--navy); border-radius:8px; padding:26px 24px; }
+.ti-tag { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:16px; }
+.ti-top { display:flex; gap:16px; align-items:center; margin-bottom:22px; }
+.ti-num { font-family:"Abril Fatface",serif; font-size:60px; line-height:.85; color:#fff; flex-shrink:0; }
+.ti-band { font-size:15px; font-weight:700; color:var(--twine); }
+.ti-cap { font-size:12px; color:#8FA4B8; line-height:1.4; margin-top:4px; }
+.ti-bars { display:flex; flex-direction:column; gap:9px; margin-bottom:16px; }
+.ti-row { display:flex; align-items:center; gap:10px; }
+.ti-bl { font-size:12px; color:#C4BDAE; width:82px; flex-shrink:0; }
+.ti-track { flex:1; height:8px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden; }
+.ti-fill { display:block; height:100%; background:var(--twine); border-radius:4px; }
+.ti-fill.bind { background:var(--contessa); }
+.ti-scale { display:flex; justify-content:space-between; gap:4px; font-size:9.5px; color:#8A9FB8; border-top:1px solid rgba(255,255,255,.1); padding-top:10px; margin-bottom:12px; }
+.ti-bind { font-size:13px; color:#C4BDAE; }
+.ti-bind strong { color:var(--contessa); font-weight:700; }
+
 /* PROCESS */
   .process { background:var(--navy); padding:72px 0; }
 .process-in { max-width:1080px; margin:0 auto; padding:0 32px; }

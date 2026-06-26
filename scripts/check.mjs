@@ -147,6 +147,31 @@ for (const f of files.filter((x) => x.endsWith(".astro"))) {
   }
 }
 
+// ── 9. TRUST Index scorer constant integrity ─────────────────────────────────
+// src/lib/trust-index.js is the SINGLE source for the scorer math — the public
+// health-check imports it (via trust-index-report.js); there is no mirror copy.
+// The constants are version-pinned (TRUST_INDEX.md §6, ratified 2026-06-15); a
+// careless hand-edit would otherwise ship silently. Assert internal consistency.
+try {
+  const ti = await import("../src/lib/trust-index.js");
+  const { AREA_TO_PILLAR, PILLARS, CLARITY, OPERATING, BAND_CUTS, GATE } = ti;
+  for (const [area, p] of Object.entries(AREA_TO_PILLAR)) {
+    if (!PILLARS.includes(p)) failures.push(`trust-index.js: area "${area}" maps to unknown pillar "${p}"`);
+  }
+  const halves = [...CLARITY, ...OPERATING].sort();
+  if (JSON.stringify(halves) !== JSON.stringify([...PILLARS].sort()))
+    failures.push(`trust-index.js: CLARITY+OPERATING [${halves}] do not partition PILLARS [${PILLARS}]`);
+  const { critical, concern, stable } = BAND_CUTS;
+  if (!(0 < critical && critical < concern && concern < stable && stable < 100))
+    failures.push(`trust-index.js: BAND_CUTS not strictly ascending within (0,100): ${JSON.stringify(BAND_CUTS)}`);
+  for (const k of ["ANY_PILLAR_CRITICAL", "OP_MIN_CRITICAL", "OP_MIN_CONCERN", "ANY_PILLAR_STABLE_CAP"]) {
+    const v = GATE[k];
+    if (typeof v !== "number" || !(v > 0 && v < 100)) failures.push(`trust-index.js: GATE.${k} missing or out of range: ${v}`);
+  }
+} catch (e) {
+  failures.push(`trust-index.js: could not load scorer for the constant-integrity check — ${e.message}`);
+}
+
 // ── Report ───────────────────────────────────────────────────────────────────
 if (warnings.length) {
   console.log(`check: ${warnings.length} warning(s) (non-blocking):`);
