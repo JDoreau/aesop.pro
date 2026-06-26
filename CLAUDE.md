@@ -126,8 +126,9 @@ are not caught by the check — route them through `linkHref()`.
   via `npm run build`; standalone via `npm run check`). It enforces: owl
   single-source, one canonical fonts URL, no embedded docs outside fences,
   token discipline (hex list parsed from tokens.css), wordmark nudges,
-  insights data↔page bijection, and sitemap/noindex sync. **A new repo rule
-  belongs in this file AND as a check there.**
+  insights data↔page bijection, sitemap/noindex sync, and TRUST Index scorer
+  constant integrity (`src/lib/trust-index.js` — pillars/bands/gate). **A new
+  repo rule belongs in this file AND as a check there.**
 - **Patch scripts:** for multi-file edits, stage a Python script to temp and
   run it. Scripts must use strict replacement-count assertions and **fail
   loudly** on any mismatch — a "FAIL but saved anyway" script is how files

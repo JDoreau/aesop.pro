@@ -101,6 +101,23 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </table>
       <p>The two priority reports are high-value but low-trust — the enrollment-definition problem showing up in the scores. The Finance Burn-Rate report is the model to protect and replicate.</p>
 
+      <h2>Meridian's TRUST Index</h2>
+      <p>The report-level scorecard rolls up into one number — the same 0–100 TRUST Index our <a href="/resources/health-check/">free Reporting Trust Health Check</a> produces, here grounded in the actual findings. It reads the five TRUST pillars and gates the score downward so a strong half can't mask a weak one.</p>
+      <div class="ti-box">
+        <div class="ti-head">
+          <div class="ti-num">43</div>
+          <div><div class="ti-band">Concern</div><div class="ti-cap">The underlying data is largely sound, but ownership and process pull the program down — a Concern-band practice with one clear fastest win.</div></div>
+        </div>
+        <div class="ti-bars">
+          <div class="ti-row"><span class="ti-bl">Triage</span><span class="ti-track"><span class="ti-fill" style="width:52%"></span></span><span class="ti-bv">52</span></div>
+          <div class="ti-row"><span class="ti-bl">Reconcile</span><span class="ti-track"><span class="ti-fill" style="width:44%"></span></span><span class="ti-bv">44</span></div>
+          <div class="ti-row"><span class="ti-bl">Unify</span><span class="ti-track"><span class="ti-fill bind" style="width:33%"></span></span><span class="ti-bv">33</span></div>
+          <div class="ti-row"><span class="ti-bl">Standardize</span><span class="ti-track"><span class="ti-fill" style="width:36%"></span></span><span class="ti-bv">36</span></div>
+          <div class="ti-row"><span class="ti-bl">Transition</span><span class="ti-track"><span class="ti-fill" style="width:50%"></span></span><span class="ti-bv">50</span></div>
+        </div>
+        <div class="ti-foot"><strong>Binding constraint: Unify</strong> — no agreed source of truth and 19 of 34 reports unowned. Exactly the gap the 30-day plan closes first.</div>
+      </div>
+
       <h2>The 30/60/90-day roadmap</h2>
       <h3>First 30 days — quick wins (self-executable)</h3>
       <table>
@@ -199,6 +216,22 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   .callout strong { color:var(--navy); }
 
   .flag-priority { color:var(--contessa); font-weight:700; }
+
+  /* TRUST INDEX box */
+  .ti-box { background:var(--navy); border-radius:8px; padding:24px; margin:24px 0; }
+  .ti-head { display:flex; gap:16px; align-items:center; margin-bottom:18px; }
+  .ti-num { font-family:"Abril Fatface",serif; font-size:54px; line-height:.85; color:#fff; flex-shrink:0; }
+  .ti-band { font-size:14px; font-weight:700; color:var(--twine); }
+  .ti-cap { font-size:13px; color:#C4BDAE; line-height:1.45; margin-top:4px; }
+  .ti-bars { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+  .ti-row { display:flex; align-items:center; gap:10px; }
+  .ti-bl { font-size:12px; color:#C4BDAE; width:84px; flex-shrink:0; }
+  .ti-track { flex:1; height:8px; background:rgba(255,255,255,.1); border-radius:4px; overflow:hidden; }
+  .ti-fill { display:block; height:100%; background:var(--twine); border-radius:4px; }
+  .ti-fill.bind { background:var(--contessa); }
+  .ti-bv { font-size:11.5px; color:#8FA4B8; width:22px; text-align:right; flex-shrink:0; }
+  .ti-foot { font-size:13.5px; color:#C4BDAE; line-height:1.5; border-top:1px solid rgba(255,255,255,.1); padding-top:12px; }
+  .ti-foot strong { color:#fff; }
 
   /* CTA */
   .cta-block { margin-top:48px; padding:32px 28px; background:var(--navy); border-radius:8px; }
