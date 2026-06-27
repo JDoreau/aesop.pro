@@ -72,7 +72,7 @@ export const featured: { slug: string; published: string; cat: Pillar; tag: stri
   title: "The World Cup Underdog Effect: the giants still win, but the gap is shrinking",
   desc: "We analyzed 92 years of men's World Cup matches. The traditional giants haven't fallen — but the rest of the world has closed the scoreline gap by ~58%.",
   read: "Read the study →",
-  image: "/assets/world-cup/underdog-effect-landscape.png",
+  image: "/assets/world-cup/underdog-effect-square.png",
   imageAlt: "World Cup Underdog Effect: chart of the shrinking scoreline gap across 92 years of matches",
 };
 
