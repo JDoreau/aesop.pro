@@ -62,12 +62,12 @@ export const pillarButtons: { cat: Pillar | "all"; label: string }[] = [
 ];
 
 export const featured: { slug: string; published: string; cat: Pillar; tag: string; title: string; desc: string; read: string } = {
-  slug: "productivity-pay-study",
-  published: "2026-06-07",
+  slug: "world-cup-underdog-effect",
+  published: "2026-06-26",
   cat: "field-study",
-  tag: "Field Study · Labor & the Economy",
-  title: "The Productivity–Pay Gap: where did the middle class's gains go?",
-  desc: "Productivity rose ~90% since 1979; typical pay rose ~33%. An honest look at what actually drives the divergence.",
+  tag: "Field Study · Sport & Global Parity",
+  title: "The World Cup Underdog Effect: the giants still win, but the gap is shrinking",
+  desc: "We analyzed 92 years of men's World Cup matches. The traditional giants haven't fallen — but the rest of the world has closed the scoreline gap by ~58%.",
   read: "Read the study →",
 };
 
@@ -123,6 +123,7 @@ export const sections: Section[] = [
     heading: "Field Studies — Economics & Data",
     pillar: "field-study",
     rows: [
+      { slug: "productivity-pay-study", published: "2026-06-07", title: "The Productivity–Pay Gap: where did the middle class's gains go?", desc: "Productivity rose ~90% since 1979; typical pay rose ~33%. An honest look at what actually drives the divergence.", pill: "Field Study", time: "7 min" },
       { slug: "corporate-profits-inflation", published: "2026-06-07", title: "Did corporate profits drive post-COVID inflation?", desc: "Profits accounted for 54% of price growth vs. 11% historically. What the BEA data says — and what it doesn't.", pill: "Field Study", time: "8 min" },
       { slug: "wage-inequality-forty-years", published: "2026-06-08", title: "Forty years of wage inequality", desc: "Between 1979 and 2021 the top 0.1% of wages grew 465% while the bottom 90% grew 29%. What the aggregate average hides — using SSA earnings data.", pill: "Field Study", time: "9 min" },
     ],
