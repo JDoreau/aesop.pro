@@ -1,0 +1,226 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+const title = 'The World Cup Underdog Effect: The Giants Still Win, But the Gap Is Shrinking'
+const description = "A data look at 92 years of World Cup matches (1930–2022). Global football parity isn't about the fall of the giants — it's about the rise of everyone else."
+const kicker = "Field Study · Sport & Global Parity";
+const headingHtml = "The World Cup Underdog Effect<span class=\"sub\">The giants still win — but the gap is shrinking.</span>";
+const dekHtml = "Is the World Cup actually getting more competitive? We analyzed every completed men's World Cup from 1930–2022. The traditional giants haven't fallen — but the rest of the world has closed the scoreline gap by more than half.";
+const meta = ["Data: 1930–2022", "~7 min read"];
+---
+
+<ArticleLayout title={title} description={description} path="/insights/world-cup-underdog-effect" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta}>
+
+<div class="body">
+  <p class="lead">It is the question every fan debates and almost no one measures: is the World Cup getting more competitive? With the 2026 tournament expanding to a first-ever 48 teams and 104 matches, it is a good moment to stop arguing from memory and look at the record. We analyzed every completed men's World Cup from 1930 to 2022 — and the honest finding is more nuanced, and more interesting, than the usual "the giants are collapsing" headline.</p>
+
+  <p>The short version: the elite teams have not declined. What has changed is everyone else. The average match is markedly closer than it used to be, and the deficit faced by teams outside the traditional football centers has shrunk by more than half. The giants are still giants — but the floor has risen.</p>
+
+  <div class="stats reveal">
+    <div class="stat"><div class="n">−26%</div><div class="l">Compression in the average scoreline margin since the early era</div></div>
+    <div class="stat alt"><div class="n">−58%</div><div class="l">Reduction in the rest-of-world goal deficit vs. Europe &amp; South America</div></div>
+    <div class="stat"><div class="n">22</div><div class="l">Completed men's World Cups analyzed, 1930–2022</div></div>
+  </div>
+
+  <h2><span class="num">01</span>The average match is much closer than it used to be</h2>
+  <p>Start with the simplest measure of competitiveness: how lopsided is the typical result? Across the modern era, the average margin of victory has fallen by roughly a quarter, and blowouts decided by three or more goals have become markedly rarer.</p>
+
+  <figure>
+    <div class="ftitle">World Cup matches are getting tighter</div>
+    <div class="fsub">Average goal margin per match, by era</div>
+    <div class="legend">
+      <span><i class="swatch" style="background:#0F1F38"></i> Earlier eras</span>
+      <span><i class="swatch" style="background:#C18C5D"></i> Modern era (1998–2022)</span>
+    </div>
+    <svg viewBox="0 0 640 300" role="img" aria-label="Bar chart of average goal margin per match falling from 1.82 to 1.34 across three eras">
+      <g stroke="#E7E0D2" stroke-width="1">
+        <line x1="90" y1="250" x2="600" y2="250"/>
+        <line x1="90" y1="197" x2="600" y2="197"/>
+        <line x1="90" y1="145" x2="600" y2="145"/>
+        <line x1="90" y1="92"  x2="600" y2="92"/>
+        <line x1="90" y1="40"  x2="600" y2="40"/>
+      </g>
+      <g font-family="DM Sans, sans-serif" font-size="12" fill="#5A6775">
+        <text x="80" y="254" text-anchor="end">0.0</text>
+        <text x="80" y="201" text-anchor="end">0.5</text>
+        <text x="80" y="149" text-anchor="end">1.0</text>
+        <text x="80" y="96"  text-anchor="end">1.5</text>
+        <text x="80" y="44"  text-anchor="end">2.0</text>
+      </g>
+      <g class="bar-grow" style="animation-delay:.2s">
+        <rect x="145" y="59"  width="90" height="191" fill="#0F1F38" rx="3"/>
+        <rect x="285" y="108" width="90" height="142" fill="#0F1F38" rx="3"/>
+        <rect x="425" y="109" width="90" height="141" fill="#C18C5D" rx="3"/>
+      </g>
+      <g font-family="DM Sans,sans-serif" font-size="15" font-weight="700">
+        <text x="190" y="50"  text-anchor="middle" fill="#0F1F38">1.82</text>
+        <text x="330" y="99"  text-anchor="middle" fill="#0F1F38">1.35</text>
+        <text x="470" y="100" text-anchor="middle" fill="#98673A">1.34</text>
+      </g>
+      <g font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#1B1B1B">
+        <text x="190" y="272" text-anchor="middle">1930–1978</text>
+        <text x="330" y="272" text-anchor="middle">1982–1994</text>
+        <text x="470" y="272" text-anchor="middle">1998–2022</text>
+      </g>
+    </svg>
+    <figcaption>Source: Fjelstul World Cup Database (all completed men's World Cups, 1930–2022). Chart by Aesop Analytics.</figcaption>
+  </figure>
+
+  <table class="dtable">
+    <caption>World Cup match competitiveness, by era</caption>
+    <thead><tr><th>Era</th><th>Avg. goal margin</th><th>3+ goal blowouts</th><th>Goals per match</th></tr></thead>
+    <tbody>
+      <tr><td>1930–1978</td><td>1.82</td><td>23.4%</td><td>3.41</td></tr>
+      <tr><td>1982–1994</td><td>1.35</td><td>16.4%</td><td>2.57</td></tr>
+      <tr class="hot"><td>1998–2022</td><td>1.34</td><td>14.5%</td><td>2.54</td></tr>
+    </tbody>
+  </table>
+
+  <p>The average margin fell from <strong>1.82</strong> goals to <strong>1.34</strong> — a 26% compression. Over the same span, the share of matches decided by three or more goals dropped from <strong>23.4%</strong> to <strong>14.5%</strong>. Fewer routs, tighter scorelines, less certainty about the result before kickoff.</p>
+
+  <h2><span class="num">02</span>The rest of the world is closing the gap</h2>
+  <p>The clearest underdog signal appears when we split the world in two: the traditional football centers — Europe and South America — against everyone else. For decades, teams from outside those two confederations were simply outclassed in these matchups. That is changing.</p>
+
+  <figure>
+    <div class="ftitle">The rest of the world is closing the gap</div>
+    <div class="fsub">Average goal differential — rest of world vs. Europe &amp; South America</div>
+    <svg viewBox="0 0 640 300" role="img" aria-label="Bar chart showing the rest-of-world goal deficit shrinking from minus 2.27 to minus 0.96">
+      <g stroke="#E7E0D2" stroke-width="1">
+        <line x1="90" y1="60"  x2="600" y2="60"/>
+        <line x1="90" y1="140" x2="600" y2="140"/>
+        <line x1="90" y1="220" x2="600" y2="220"/>
+      </g>
+      <g font-family="DM Sans, sans-serif" font-size="12" fill="#5A6775">
+        <text x="80" y="64"  text-anchor="end">0.0</text>
+        <text x="80" y="144" text-anchor="end">−1.0</text>
+        <text x="80" y="224" text-anchor="end">−2.0</text>
+      </g>
+      <line x1="90" y1="60" x2="600" y2="60" stroke="#5A6775" stroke-width="1.5"/>
+      <g class="bar-drop" style="animation-delay:.2s">
+        <rect x="145" y="60" width="90" height="182" fill="#0F1F38" rx="3"/>
+        <rect x="285" y="60" width="90" height="72"  fill="#0F1F38" rx="3"/>
+        <rect x="425" y="60" width="90" height="77"  fill="#C18C5D" rx="3"/>
+      </g>
+      <g font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#1B1B1B">
+        <text x="190" y="50" text-anchor="middle">1930–1978</text>
+        <text x="330" y="50" text-anchor="middle">1982–1994</text>
+        <text x="470" y="50" text-anchor="middle">1998–2022</text>
+      </g>
+      <g font-family="DM Sans,sans-serif" font-size="15" font-weight="700">
+        <text x="190" y="262" text-anchor="middle" fill="#0F1F38">−2.27</text>
+        <text x="330" y="152" text-anchor="middle" fill="#0F1F38">−0.90</text>
+        <text x="470" y="157" text-anchor="middle" fill="#98673A">−0.96</text>
+      </g>
+    </svg>
+    <figcaption>Source: Fjelstul World Cup Database, 1930–2022. "Rest of world" = confederations outside UEFA and CONMEBOL. Chart by Aesop Analytics.</figcaption>
+  </figure>
+
+  <table class="dtable">
+    <caption>Rest of world vs. Europe &amp; South America, by era</caption>
+    <thead><tr><th>Era</th><th>Win rate</th><th>Avoided defeat</th><th>Avg. goal differential</th></tr></thead>
+    <tbody>
+      <tr><td>1930–1978</td><td>11.9%</td><td>28.8%</td><td>−2.27</td></tr>
+      <tr><td>1982–1994</td><td>18.5%</td><td>40.7%</td><td>−0.90</td></tr>
+      <tr class="hot"><td>1998–2022</td><td>18.6%</td><td>38.8%</td><td>−0.96</td></tr>
+    </tbody>
+  </table>
+
+  <p>Teams outside Europe and South America used to lose these matchups by an average of <strong>2.27 goals</strong>. In the modern era, that deficit is down to <strong>0.96 goals</strong> — a reduction of roughly <strong>58%</strong>. They also avoid defeat far more often than they once did. This is the single strongest analytics signal in the data.</p>
+
+  <p class="pull">The gap between the football world's center and its edges has been cut by more than half.</p>
+
+  <h2><span class="num">03</span>The nuance that makes it credible</h2>
+  <p>Here is where a lazy headline would overreach. It is tempting to write "the traditional powerhouses are falling." But when we define powerhouses narrowly — the eight nations that have actually won the men's World Cup: Brazil, Germany/West Germany, Italy, Argentina, France, Uruguay, England, and Spain — the data does <em>not</em> support that claim at all.</p>
+
+  <table class="dtable">
+    <caption>Powerhouse nations vs. non-champion nations</caption>
+    <thead><tr><th>Era</th><th>Powerhouse win rate</th><th>Avg. goal differential</th></tr></thead>
+    <tbody>
+      <tr><td>1930–1978</td><td>60.6%</td><td>+1.00</td></tr>
+      <tr><td>1982–1994</td><td>68.0%</td><td>+0.99</td></tr>
+      <tr><td>1998–2022</td><td>65.5%</td><td>+1.00</td></tr>
+    </tbody>
+  </table>
+
+  <div class="twocol reveal">
+    <div class="a">
+      <h4>What the data shows</h4>
+      <p>Matches are tighter and the rest of the world has closed the scoreline gap by ~58%. Parity at the level of the whole field is real and rising.</p>
+    </div>
+    <div class="b">
+      <h4>What it does NOT show</h4>
+      <p>The champions still win ~two-thirds of matches against non-champions and still win by a full goal — in every era. Their dominance is remarkably stable.</p>
+    </div>
+  </div>
+
+  <p>So we will not publish the claim that the giants are fading. It isn't true, and overstating it would undercut the credibility of everything else. The accurate, more interesting reading is this: the elite teams are still elite. What changed is the rest of the field. <strong>The giants are still giants — but the floor has risen.</strong> That is the real underdog effect.</p>
+
+  <h2><span class="num">04</span>Why it matters for 2026</h2>
+  <p>As the 2026 World Cup expands to 48 teams and 104 fixtures across North America, parity stops being a talking point and becomes the central analytics question of the event: are we watching a handful of elite teams dominate a much bigger field — or are we watching global parity accelerate? We deliberately excluded the in-progress 2026 results from this study, holding them instead as a live test against this 92-year baseline.</p>
+  <p>That is the discipline behind everything we do at Aesop Analytics. The drama on the pitch is real. So is the data underneath it — and the most defensible story is rarely the loudest one.</p>
+
+  <div class="sources">
+    <h3>Sources &amp; Notes</h3>
+    <ol>
+      <li>Fjelstul World Cup Database — a comprehensive database covering all 22 completed men's World Cups (1930–2022): match results, stages, qualified teams, and tournament performance. Coded from Wikipedia and cross-referenced with FIFA match reports. Published under CC-BY-SA 4.0.</li>
+      <li>FIFA — the 2026 World Cup is the first 48-team edition, comprising 104 fixtures across the United States, Canada, and Mexico.</li>
+    </ol>
+    <p class="method">Methodology note: eras were grouped to balance sample size across the tournament's expansion phases. "Powerhouses" are defined as the eight nations that have won the men's World Cup. "Rest of world" denotes confederations outside UEFA (Europe) and CONMEBOL (South America). Margin and differential figures are averages across matches in each window; 2026 results are excluded as the tournament is in progress. This study summarizes analysis of an openly licensed dataset and does not reproduce source charts or text. No data or quotations have been fabricated.</p>
+  </div>
+</div>
+
+</ArticleLayout>
+
+<style>
+  /* Page-specific styles. Shared component bases (.stats, .stat, .n, .l,
+     .legend, .pull, .twocol, .sources, .method) live in article.css. */
+  .stat.alt .n { color: var(--twine); }
+
+  /* -- Figures / charts (mirrors the field-study house style) -- */
+  figure {
+    margin: 38px 0; background: #fff;
+    border: 1px solid var(--line); border-radius: 5px;
+    padding: 26px 24px 18px;
+    box-shadow: 0 18px 44px -30px rgba(15,31,56,.35);
+  }
+  figure .ftitle { font-weight: 700; font-size: 16px; margin-bottom: 3px; color: var(--ink); }
+  figure .fsub { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+  figcaption { font-size: 12px; color: var(--muted); margin-top: 14px; line-height: 1.46; border-top: 1px solid var(--line); padding-top: 10px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; margin-bottom: 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); }
+  .legend .swatch { width: 13px; height: 13px; border-radius: 3px; display: inline-block; }
+
+  /* -- Section heads: numbered ornament -- */
+  h2 .num { font-family: "Abril Fatface", serif; color: var(--twine); font-size: 22px; margin-right: 10px; }
+
+  /* -- Two-column box (inner pieces; base grid lives in article.css) -- */
+  .twocol > div { background: var(--paper); padding: 22px; }
+  .twocol h4 { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .13em; margin-bottom: 10px; }
+  .twocol .a h4 { color: var(--navy); }
+  .twocol .b h4 { color: var(--contessa); }
+  .twocol p { font-size: 15.5px; line-height: 1.5; color: var(--ink); margin: 0; font-weight: 300; }
+  @media (max-width: 560px) { .twocol { grid-template-columns: 1fr; } }
+
+  /* -- Data tables -- */
+  .dtable { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 15.5px; }
+  .dtable caption { text-align: left; font-size: 12.5px; color: var(--muted); margin-bottom: 10px; letter-spacing: .03em; text-transform: uppercase; font-weight: 600; }
+  .dtable th, .dtable td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+  .dtable thead th { background: var(--navy); color: #fff; font-weight: 500; font-size: 12.5px; letter-spacing: .04em; text-transform: uppercase; }
+  .dtable thead th:first-child { border-radius: 4px 0 0 0; }
+  .dtable thead th:last-child { border-radius: 0 4px 0 0; }
+  .dtable tbody tr:nth-child(even) { background: var(--paper); }
+  .dtable tbody tr.hot { background: rgba(193,140,93,.16); }
+  .dtable tbody td { font-variant-numeric: tabular-nums; color: var(--ink); }
+  .dtable tbody td:first-child { font-weight: 600; }
+
+  /* -- Sources -- */
+  .sources h3 { font-weight: 700; text-transform: uppercase; letter-spacing: .15em; font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
+  .sources ol { margin: 0; padding-left: 20px; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+  .sources li { margin-bottom: 8px; }
+
+  /* -- Animations -- */
+  .bar-grow { transform: scaleY(0); transform-origin: bottom; animation: grow 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  .bar-drop { transform: scaleY(0); transform-origin: top; animation: grow 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes grow { to { transform: scaleY(1); } }
+  @media (prefers-reduced-motion: reduce) { .bar-grow, .bar-drop { animation: none; transform: none; } }
+</style>
