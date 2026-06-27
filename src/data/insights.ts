@@ -61,7 +61,10 @@ export const pillarButtons: { cat: Pillar | "all"; label: string }[] = [
   { cat: "field-study", label: "Field Studies" },
 ];
 
-export const featured: { slug: string; published: string; cat: Pillar; tag: string; title: string; desc: string; read: string } = {
+// The current featured field study — drives BOTH the insights-hub marquee and the homepage Featured
+// Study card (single source of truth, so swapping the featured study is a one-place change). `image` is
+// an actual infographic from the study (public asset), shown on both surfaces instead of a generic chart.
+export const featured: { slug: string; published: string; cat: Pillar; tag: string; title: string; desc: string; read: string; image: string; imageAlt: string } = {
   slug: "world-cup-underdog-effect",
   published: "2026-06-26",
   cat: "field-study",
@@ -69,6 +72,8 @@ export const featured: { slug: string; published: string; cat: Pillar; tag: stri
   title: "The World Cup Underdog Effect: the giants still win, but the gap is shrinking",
   desc: "We analyzed 92 years of men's World Cup matches. The traditional giants haven't fallen — but the rest of the world has closed the scoreline gap by ~58%.",
   read: "Read the study →",
+  image: "/assets/world-cup/underdog-effect-landscape.png",
+  imageAlt: "World Cup Underdog Effect: chart of the shrinking scoreline gap across 92 years of matches",
 };
 
 export const sections: Section[] = [
