@@ -98,5 +98,12 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
   knowsAbout: ["Reporting modernization", "Data trust", "KPI governance", "Business intelligence", "Data governance", "Analytics strategy"],
   priceRange: "$$$",
 })} />
+{path === "/" && <script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  url: site.url,
+  publisher: { "@type": "Organization", name: site.name },
+})} />}
 {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 {extraSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}

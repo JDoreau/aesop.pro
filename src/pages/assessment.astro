@@ -22,6 +22,22 @@ const faqs = [
     a: "You receive the full deliverable package and the readout. The 30/60/90-day roadmap is actionable immediately — you can execute the quick wins yourself. If a larger engagement makes sense, we'll propose it. There's no pressure, and the Assessment stands alone as a complete deliverable regardless of what you do next.",
   },
   {
+    q: "How is this different from a dashboard audit?",
+    a: "A dashboard audit looks at the charts — layout, design, whether the visuals follow best practice. The Reporting Clarity Assessment looks at whether the numbers can be trusted: where definitions conflict, who owns each metric, which reports are actually used, and where the manual work hides. Most reporting problems aren't visualization problems — they're ownership, definition, and process problems, and a cleaner chart doesn't fix them. If you specifically want to grade your dashboards first, the free Dashboard Audit Checklist on our Resources page is a faster self-scan.",
+  },
+  {
+    q: "Do you work with Power BI, Tableau, or just spreadsheets?",
+    a: "All of them. The Assessment is platform-agnostic — it examines your reporting wherever it lives: Power BI, Tableau, Looker, Excel and Google Sheets, SQL, SharePoint, or the mix of all of them most environments actually run on. You don't need to be on a particular tool, and we don't recommend one to earn a margin.",
+  },
+  {
+    q: "What if our data warehouse isn't mature — or we don't have one?",
+    a: "That's common, and it's fine. The Assessment is a diagnostic, not a build — it works from whatever you have today, including spreadsheets and direct extracts. An immature or missing warehouse is often part of the finding: the roadmap tells you honestly whether a warehouse is worth building yet, or whether the bigger wins are in definitions and ownership first. We won't push infrastructure you don't need.",
+  },
+  {
+    q: "Do you offer reduced scope for nonprofits?",
+    a: "Yes. Reduced rates and tightly-scoped versions are available for nonprofits, referrals, and smaller engagements — the goal is to keep the diagnostic accessible to organizations that need clarity but can't justify a full-scope project. The free 30-minute diagnostic is the place to size what makes sense.",
+  },
+  {
     q: "What if the findings are better than we expected?",
     a: "That's a good outcome. An honest assessment of a reporting environment in better shape than feared is still valuable — it confirms what's working, surfaces the smaller improvements worth making, and prevents you from spending money on a large project you don't actually need.",
   },
@@ -51,7 +67,7 @@ const assessmentSchema = {
   <div class="hero-in">
     <div>
       <div class="eyebrow">Flagship offer · Fixed fee</div>
-      <h1>Reporting Clarity Assessment</h1>
+      <h1>Reporting Clarity Assessment <span class="h1-sub">— a fixed-fee reporting audit</span></h1>
       <p>A structured 2–3 week review of your reporting estate. Know exactly where trust is breaking down — and what to fix first — before committing to a large transformation.</p>
       <div class="hero-price">
         <span class="price-badge">$5,000–$9,500</span>
@@ -95,6 +111,7 @@ const assessmentSchema = {
           <div class="symptom">AI initiatives are stalled because the underlying data can't be trusted</div>
           <div class="symptom">Nobody can answer: "Which report does leadership actually use?"</div>
         </div>
+        <p class="fw-note">New to this? The free <a href="/resources/dashboard-audit/">Dashboard Audit Checklist</a> is a fast self-scan — and the <a href="/work/">case studies</a> show what the fix looks like in practice.</p>
       </div>
     </div>
   </div>
@@ -211,9 +228,9 @@ const assessmentSchema = {
       </div>
       <div class="fit-box no">
         <div class="fb-label">Less ideal — here's why</div>
-        <div class="fit-item">You've already done a thorough audit recently — consider starting with the Sprint instead</div>
+        <div class="fit-item">You've already done a thorough audit recently — consider starting with the <a href="/services/#sprint">Sprint</a> instead</div>
         <div class="fit-item">No executive sponsor — the findings won't go anywhere without a business owner behind them</div>
-        <div class="fit-item">You need dashboard development, not a diagnostic — start with Services</div>
+        <div class="fit-item">You need dashboard development, not a diagnostic — start with <a href="/services/">Services</a></div>
         <div class="fit-item">You're a startup with fewer than 10 employees and one or two reports — this is premature</div>
       </div>
     </div>
@@ -261,6 +278,7 @@ const assessmentSchema = {
   .hero-in { grid-template-columns:1fr; gap:36px; }
 }
 .hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(34px,5.2vw,60px); line-height:1.04; color:#fff; margin-bottom:20px; }
+.hero h1 .h1-sub { display:block; font-size:.42em; font-weight:400; color:#C4BDAE; margin-top:12px; letter-spacing:0; line-height:1.2; }
 .hero p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; margin-bottom:28px; max-width:48ch; }
 .hero-price { display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-bottom:28px; }
 .price-badge { background:var(--twine); color:#fff; font-size:17px; font-weight:700; padding:8px 18px; border-radius:4px; }
@@ -289,6 +307,8 @@ const assessmentSchema = {
 .symptom-list { display:flex; flex-direction:column; gap:0; margin-top:8px; border-top:2px solid var(--rule); }
 .symptom { display:flex; gap:12px; align-items:flex-start; padding:13px 0; border-bottom:1px solid var(--line); font-size:15.5px; color:var(--ink); line-height:1.5; font-weight:400; }
 .symptom::before { content:"↯"; color:var(--contessa); font-weight:700; flex-shrink:0; margin-top:1px; font-size:14px; }
+.fw-note { margin-top:20px; font-size:14px; color:var(--muted); line-height:1.55; font-weight:300; }
+.fw-note a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
 /* DELIVERABLES */
   .deliverables { padding:72px 0; }
 .deliverables h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
@@ -368,6 +388,7 @@ const assessmentSchema = {
 .fit-item::before { font-weight:700; flex-shrink:0; margin-top:1px; }
 .fit-box.yes .fit-item::before { content:"✓"; color:var(--navy); }
 .fit-box.no  .fit-item::before { content:"→"; color:var(--contessa); }
+.fit-item a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
 /* FAQ */
   .faq { padding:72px 0; }
 .faq h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }

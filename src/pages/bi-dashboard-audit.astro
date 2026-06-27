@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = 'BI Dashboard Audit | Aesop Analytics'
+const description = 'Think your dashboards are the problem? A BI dashboard audit that looks past the charts to what actually breaks trust — conflicting definitions, no owners, manual rebuilds. Start with a free diagnostic.'
+const ogDescription = "Most 'bad dashboards' are good dashboards built on numbers no one trusts. Here is the honest version of a dashboard audit.";
+
+const auditSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "BI dashboard audit",
+  name: "BI Dashboard Audit",
+  description:
+    "A reporting audit that looks past dashboard design to what actually breaks trust: conflicting KPI definitions, missing ownership, untrusted sources, and manual rebuilds. Delivered as the fixed-fee Reporting Clarity Assessment.",
+  provider: { "@type": "ProfessionalService", name: "Aesop Analytics", url: "https://aesopanalytics.com" },
+  areaServed: "US",
+};
+---
+
+<BaseLayout title={title} description={description} path="/bi-dashboard-audit" ogDescription={ogDescription} schema={auditSchema}>
+
+<!-- HERO -->
+<section class="lp-hero">
+  <div class="lp-in">
+    <div class="eyebrow">BI Dashboard Audit</div>
+    <h1>You came looking for a dashboard audit.</h1>
+    <p class="dek">Here's the honest version: the dashboard is rarely the real problem. Most "bad dashboards" are perfectly good dashboards built on numbers nobody trusts — and a redesign doesn't fix that.</p>
+    <div class="lp-btns">
+      <a href="/diagnostic/" class="btn">Book a diagnostic</a>
+      <a href="/resources/dashboard-audit/" class="btn ghost">Try the free checklist first</a>
+    </div>
+  </div>
+</section>
+
+<!-- THE REFRAME -->
+<section class="lp-band">
+  <div class="wrap">
+    <div class="lp-grid">
+      <div>
+        <div class="sec-label">The real problem</div>
+        <h2>A prettier chart can't fix a number people don't believe.</h2>
+        <p>When leadership stops trusting a dashboard, the instinct is to rebuild it — cleaner layout, better visuals, a new tool. But the distrust almost never comes from the chart. It comes from underneath:</p>
+        <div class="pov">"Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems."</div>
+        <p>Audit the dashboard and you fix the symptom. Audit the reporting behind it and you fix the cause.</p>
+      </div>
+      <div>
+        <div class="lp-listlabel">What's usually actually wrong</div>
+        <div class="lp-list">
+          <div class="lp-item"><span class="i">↯</span><span>Two teams define the same KPI differently — so two dashboards disagree, and both are "right"</span></div>
+          <div class="lp-item"><span class="i">↯</span><span>No one owns the metric, so no one can settle which number is official</span></div>
+          <div class="lp-item"><span class="i">↯</span><span>The dashboard is rebuilt by hand each cycle from exports nobody reconciles</span></div>
+          <div class="lp-item"><span class="i">↯</span><span>The source data is mistrusted, so the dashboard is mistrusted by extension</span></div>
+          <div class="lp-item"><span class="i">↯</span><span>Five dashboards exist for one function and nobody knows which is current</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT A REAL AUDIT COVERS -->
+<section class="lp-cover">
+  <div class="wrap">
+    <div class="sec-label">What a real audit covers</div>
+    <h2>Past the charts, to what breaks trust.</h2>
+    <p class="intro">A surface dashboard review grades visuals. A reporting audit maps the whole estate and finds where trust actually leaks — the work that lets leadership believe the number again.</p>
+    <div class="cover-grid">
+      <div class="cov"><h3>The reporting estate</h3><p>Every dashboard, spreadsheet, and recurring report — inventoried, with what's used, what's ignored, and what's duplicated.</p></div>
+      <div class="cov"><h3>Metric conflicts</h3><p>Exactly where definitions diverge across teams, the specific disagreement, and the business impact where it can be quantified.</p></div>
+      <div class="cov"><h3>Ownership &amp; source of truth</h3><p>Which metrics have no owner, which system is authoritative, and where "whose number is right" arguments come from.</p></div>
+      <div class="cov"><h3>Manual burden</h3><p>How many hours go into rebuilding reports by hand each cycle — the abstract "we do a lot of manual work" turned into a number.</p></div>
+    </div>
+    <p class="cover-foot">That's the <a href="/assessment/">Reporting Clarity Assessment</a> — a fixed-fee reporting audit with ten deliverables and a prioritized 30/60/90-day roadmap. It's the version of a "dashboard audit" that actually changes whether leadership trusts the report.</p>
+  </div>
+</section>
+
+<!-- TWO WAYS -->
+<section class="lp-two">
+  <div class="wrap">
+    <h2>Two ways to start.</h2>
+    <div class="two-grid">
+      <div class="two-card">
+        <div class="tc-tag">Free · self-serve</div>
+        <h3>Dashboard Audit Checklist</h3>
+        <p>Thirty scored questions you can run on your own reporting in fifteen minutes. A fast self-scan to see where the trust gaps are — no email required.</p>
+        <a href="/resources/dashboard-audit/" class="lp-link">Open the checklist →</a>
+      </div>
+      <div class="two-card hl">
+        <div class="tc-tag">Fixed fee · done with you</div>
+        <h3>Reporting Clarity Assessment</h3>
+        <p>The full audit: your estate inventoried, conflicts surfaced, ownership mapped, and a prioritized roadmap. $5,000–$9,500, 2–3 weeks, starting with a free diagnostic.</p>
+        <a href="/assessment/" class="lp-link">See the Assessment →</a>
+      </div>
+    </div>
+    <p class="two-proof">See what the fix looks like in practice — <a href="/work/">reporting modernization case studies</a>, anonymized with the result signals intact. For the broader picture, see <a href="/reporting-modernization-consulting/">reporting modernization consulting</a>.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="lp-cta">
+  <div class="cta-in">
+    <div class="eyebrow">Start here</div>
+    <h2>Find out whether it's the dashboard — or the numbers under it.</h2>
+    <p>A free 30-minute Reporting Trust Diagnostic. No pitch, no slide deck. We'll tell you honestly whether a redesign would help, or whether the real fix is upstream.</p>
+    <a href="/diagnostic/" class="btn">Book a diagnostic</a>
+  </div>
+</section>
+
+<style>
+.lp-hero { background:var(--navy); padding:84px 0 64px; overflow:hidden; position:relative; }
+.lp-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,470px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+.lp-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; max-width:840px; }
+.lp-hero .eyebrow { color:var(--twine); margin-bottom:16px; }
+.lp-hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(36px,5.4vw,64px); line-height:1.04; color:#fff; margin-bottom:20px; }
+.lp-hero .dek { font-size:19px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:60ch; margin-bottom:30px; }
+.lp-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; padding:15px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
+.btn:hover { transform:translateY(-2px); background:var(--sepia); }
+.btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); }
+.btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; }
+.sec-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
+/* REFRAME BAND */
+.lp-band { padding:72px 0; background:var(--paper); }
+.lp-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+@media(max-width:760px){ .lp-grid { grid-template-columns:1fr; gap:32px; } }
+.lp-band h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:18px; line-height:1.1; }
+.lp-band p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
+.lp-band .pov { font-family:"DM Sans",sans-serif; font-weight:500; font-style:italic; font-size:clamp(16px,2vw,20px); color:var(--navy); border-left:4px solid var(--twine); padding:8px 0 8px 22px; margin:24px 0; line-height:1.4; }
+.lp-listlabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:18px; }
+.lp-list { display:flex; flex-direction:column; gap:0; border-top:2px solid var(--rule); }
+.lp-item { display:flex; gap:14px; align-items:flex-start; padding:15px 0; border-bottom:1px solid var(--line); font-size:16px; color:var(--ink); line-height:1.5; font-weight:400; }
+.lp-item .i { color:var(--contessa); font-weight:700; flex-shrink:0; }
+/* COVER */
+.lp-cover { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.lp-cover h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
+.lp-cover .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:64ch; margin-bottom:40px; line-height:1.6; }
+.cover-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+@media(max-width:640px){ .cover-grid { grid-template-columns:1fr; } }
+.cov { background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px 22px; }
+.cov h3 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.cov p { font-size:14.5px; color:var(--muted); line-height:1.55; font-weight:300; }
+.cover-foot { font-size:17px; color:var(--slate); font-weight:300; line-height:1.65; max-width:68ch; margin-top:32px; }
+.cover-foot a, .two-proof a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+/* TWO WAYS */
+.lp-two { padding:72px 0; }
+.lp-two h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:32px; }
+.two-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+@media(max-width:640px){ .two-grid { grid-template-columns:1fr; } }
+.two-card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:28px 26px; }
+.two-card.hl { border-top:3px solid var(--twine); }
+.tc-tag { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:12px; }
+.two-card h3 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:22px; color:var(--navy); margin-bottom:12px; }
+.two-card p { font-size:15.5px; color:var(--slate); line-height:1.6; font-weight:300; margin-bottom:18px; }
+.lp-link { font-size:14px; font-weight:700; color:var(--twine); letter-spacing:.03em; }
+.lp-link:hover { color:var(--sepia); }
+.two-proof { margin-top:28px; font-size:15px; color:var(--muted); line-height:1.6; font-weight:300; max-width:70ch; }
+/* CTA */
+.lp-cta { background:var(--navy); border-top:3px solid var(--twine); padding:80px 32px; text-align:center; }
+.cta-in { max-width:680px; margin:0 auto; }
+.lp-cta .eyebrow { color:var(--twine); margin-bottom:18px; display:block; }
+.lp-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.8vw,44px); color:#fff; margin-bottom:16px; line-height:1.08; }
+.lp-cta p { color:#A8B4C0; font-size:17px; font-weight:300; max-width:50ch; margin:0 auto 30px; line-height:1.6; }
+</style>
+
+</BaseLayout>
