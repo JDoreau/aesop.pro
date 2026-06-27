@@ -1,25 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const title = 'Reporting Modernization Case Studies | Aesop Analytics'
-const description = 'Anonymized reporting-modernization case studies across finance, healthcare, real estate, and nonprofits — with KPI governance and deliverable samples.'
-const ogDescription = "Reporting modernization in practice. Anonymized case studies across healthcare, operations, finance, and nonprofit sectors.";
+const description = 'Anonymized reporting-modernization case studies across finance, real estate, and nonprofits — with KPI governance and deliverable samples.'
+const ogDescription = "Reporting modernization in practice. Anonymized case studies across operations, finance, and nonprofit sectors.";
 
 // Article schema for each anonymized case study. Content-only — no Review or
 // AggregateRating until client-approved quotes and ratings are visible on-page.
 const workSchema = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "@id": "https://aesopanalytics.com/work/#healthcare-research",
-    headline: "From spreadsheet chaos to a trusted executive reporting system for an NIH-funded research program",
-    description: "How a research organization retired 14 reports, eliminated manual reporting time, and defined 23 KPIs in a governed reporting system.",
-    mainEntityOfPage: "https://aesopanalytics.com/work/",
-    author: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
-    publisher: { "@type": "Organization", name: "Aesop Analytics", url: "https://aesopanalytics.com/" },
-    about: ["Healthcare / Research", "Reporting modernization", "Data trust", "KPI governance"],
-    keywords: ["healthcare reporting modernization", "research reporting", "KPI dictionary", "Power BI dashboards", "funder reporting", "reporting trust"],
-    isAccessibleForFree: true,
-  },
   {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -69,7 +56,7 @@ const workSchema = [
   <div class="page-hero-in">
     <div class="eyebrow">Work &amp; Portfolio</div>
     <h1>What the work actually looks like.</h1>
-    <p>Anonymized case studies from reporting modernization, KPI governance, and dashboard rebuilds — across healthcare, operations, finance, and nonprofit sectors.</p>
+    <p>Anonymized case studies from reporting modernization, KPI governance, and dashboard rebuilds — across operations, finance, and nonprofit sectors.</p>
     <div class="anon-note">
       All client details have been anonymized. Sector, size, problem type, work performed, and result signals are accurate; identifying details are not. These are representative founder-led transformations.
     </div>
@@ -80,150 +67,6 @@ const workSchema = [
 <section class="case-studies">
   <div class="wrap">
     <div class="cs-grid">
-
-      <!-- ══════════════════════════════════════════ -->
-      <!-- CASE STUDY 1: Healthcare / NIH             -->
-      <!-- ══════════════════════════════════════════ -->
-      <div class="cs reveal" id="healthcare-research">
-        <div class="cs-header">
-          <div>
-            <div class="cs-sector">Healthcare &amp; Research</div>
-            <h2>From spreadsheet chaos to a trusted executive reporting system for an NIH-funded research program</h2>
-            <div class="cs-context">~280 employees · Research organization · Washington, D.C. metro</div>
-          </div>
-          <div class="cs-tags">
-            <span class="cs-tag">Reporting Modernization</span>
-            <span class="cs-tag">KPI Design</span>
-            <span class="cs-tag">Power BI</span>
-          </div>
-        </div>
-
-        <div class="cs-body">
-          <div class="cs-col">
-            <h3>The situation</h3>
-            <p>A federally-funded research organization running multiple concurrent grant programs had accumulated 40+ recurring reports — most of them manual Excel builds assembled by individual program managers each month. Leadership had no consistent view of program health across grants, and funder reporting required significant manual reconciliation every quarter.</p>
-            <p>The core pain: <strong>the same headcount number appeared differently in three different reports</strong>, and nobody could say with authority which was right. Every external funder report required a full reconciliation cycle before submission.</p>
-          </div>
-          <div class="cs-col">
-            <h3>The approach</h3>
-            <p>Started with a full reporting inventory across all 40+ reports — documenting what each one was for, who owned it, how much manual time it required, and whether it was actually used to make decisions. Ran structured interviews with seven stakeholders across programs, finance, and executive leadership.</p>
-            <p>Identified 14 reports as retirement candidates (unused or duplicated), rebuilt the 8 highest-value reports as governed Power BI dashboards, and built a KPI dictionary covering all 23 program-level metrics. Implemented a formal report request intake process.</p>
-          </div>
-        </div>
-
-        <div class="outcomes">
-          <div class="outcome">
-            <div class="oc-n">14</div>
-            <div class="oc-l">Reports retired — zero complaints from stakeholders</div>
-          </div>
-          <div class="outcome">
-            <div class="oc-n">~12 hrs</div>
-            <div class="oc-l">Manual reporting time eliminated per week across the team</div>
-          </div>
-          <div class="outcome">
-            <div class="oc-n">23</div>
-            <div class="oc-l">KPIs formally defined in a governed dictionary with named owners</div>
-          </div>
-        </div>
-
-        <figure class="cs-visual">
-          <div class="cv-label navy">Sample output — Executive program health dashboard (illustrative)</div>
-          <svg viewBox="0 0 860 360" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative executive dashboard layout for a research organization">
-            <!-- Dashboard chrome -->
-            <rect width="860" height="360" rx="6" fill="#f1f5f9"/>
-            <!-- Header bar -->
-            <rect width="860" height="44" rx="6" fill="#334155"/>
-            <rect x="0" y="38" width="860" height="6" fill="#334155"/>
-            <text x="20" y="28" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">Research Program Executive Dashboard</text>
-            <text x="700" y="28" font-family="DM Sans,sans-serif" font-size="11" fill="#94a3b8">Updated: Daily · As of 2026-06-07</text>
-            <!-- KPI row -->
-            <rect x="14" y="58" width="190" height="76" rx="4" fill="#334155"/>
-            <text x="28" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#3b6ea5" letter-spacing="1.5">ACTIVE PROGRAMS</text>
-            <text x="28" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#fff">7</text>
-            <text x="68" y="114" font-family="DM Sans,sans-serif" font-size="11" fill="#94a3b8">of 9 funded</text>
-
-            <rect x="212" y="58" width="190" height="76" rx="4" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
-            <text x="226" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="1.5">TOTAL HEADCOUNT</text>
-            <text x="226" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#334155">284</text>
-            <text x="286" y="114" font-family="DM Sans,sans-serif" font-size="11" fill="#64748b">FTE</text>
-
-            <rect x="410" y="58" width="190" height="76" rx="4" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
-            <text x="424" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#64748b" letter-spacing="1.5">GRANT UTILIZATION</text>
-            <text x="424" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#334155">78%</text>
-            <rect x="424" y="118" width="60" height="4" rx="2" fill="#e2e8f0"/>
-            <rect x="424" y="118" width="47" height="4" rx="2" fill="#334155"/>
-
-            <rect x="608" y="58" width="238" height="76" rx="4" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="1"/>
-            <text x="622" y="78" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#c2410c" letter-spacing="1.5">REPORTS NEEDING REVIEW</text>
-            <text x="622" y="114" font-family="Abril Fatface,serif" font-size="36" fill="#c2410c">2</text>
-            <text x="662" y="114" font-family="DM Sans,sans-serif" font-size="11" fill="#c2410c">action required</text>
-
-            <!-- Program health table -->
-            <rect x="14" y="146" width="510" height="200" rx="4" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
-            <text x="28" y="167" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#64748b" letter-spacing="1">PROGRAM STATUS</text>
-            <!-- Table header -->
-            <rect x="14" y="173" width="510" height="24" fill="#f1f5f9"/>
-            <text x="28" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#64748b">Program</text>
-            <text x="240" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#64748b">PI</text>
-            <text x="340" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#64748b">Utilization</text>
-            <text x="440" y="189" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#64748b">Status</text>
-            <!-- Rows -->
-            <line x1="14" y1="197" x2="524" y2="197" stroke="#e2e8f0" stroke-width=".5"/>
-            <text x="28" y="214" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant A — Longitudinal Study</text>
-            <text x="240" y="214" font-family="DM Sans,sans-serif" font-size="10" fill="#64748b">Dr. Martinez</text>
-            <text x="340" y="214" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">82%</text>
-            <rect x="440" y="205" width="46" height="14" rx="7" fill="rgba(51,65,85,.12)"/>
-            <text x="463" y="215" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#334155">On Track</text>
-            <line x1="14" y1="222" x2="524" y2="222" stroke="#e2e8f0" stroke-width=".5"/>
-            <text x="28" y="239" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant B — Outcomes Research</text>
-            <text x="240" y="239" font-family="DM Sans,sans-serif" font-size="10" fill="#64748b">Dr. Chen</text>
-            <text x="340" y="239" font-family="DM Sans,sans-serif" font-size="10" fill="#c2410c">61%</text>
-            <rect x="440" y="230" width="46" height="14" rx="7" fill="rgba(206,118,107,.15)"/>
-            <text x="463" y="240" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#c2410c">Review</text>
-            <line x1="14" y1="247" x2="524" y2="247" stroke="#e2e8f0" stroke-width=".5"/>
-            <text x="28" y="264" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant C — Clinical Trial Support</text>
-            <text x="240" y="264" font-family="DM Sans,sans-serif" font-size="10" fill="#64748b">Dr. Okonkwo</text>
-            <text x="340" y="264" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">91%</text>
-            <rect x="440" y="255" width="46" height="14" rx="7" fill="rgba(51,65,85,.12)"/>
-            <text x="463" y="265" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#334155">On Track</text>
-            <line x1="14" y1="272" x2="524" y2="272" stroke="#e2e8f0" stroke-width=".5"/>
-            <text x="28" y="289" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant D — Workforce Study</text>
-            <text x="240" y="289" font-family="DM Sans,sans-serif" font-size="10" fill="#64748b">Dr. Patel</text>
-            <text x="340" y="289" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">74%</text>
-            <rect x="440" y="280" width="46" height="14" rx="7" fill="rgba(51,65,85,.12)"/>
-            <text x="463" y="290" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#334155">On Track</text>
-            <line x1="14" y1="297" x2="524" y2="297" stroke="#e2e8f0" stroke-width=".5"/>
-            <text x="28" y="314" font-family="DM Sans,sans-serif" font-size="10" fill="#1B1B1B">Grant E — Community Outcomes</text>
-            <text x="240" y="314" font-family="DM Sans,sans-serif" font-size="10" fill="#64748b">Dr. Williams</text>
-            <text x="340" y="314" font-family="DM Sans,sans-serif" font-size="10" fill="#c2410c">58%</text>
-            <rect x="440" y="305" width="46" height="14" rx="7" fill="rgba(206,118,107,.15)"/>
-            <text x="463" y="315" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#c2410c">Review</text>
-
-            <!-- Utilization trend chart -->
-            <rect x="536" y="146" width="310" height="200" rx="4" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
-            <text x="550" y="167" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#64748b" letter-spacing="1">GRANT UTILIZATION — 12M TREND</text>
-            <line x1="550" y1="290" x2="830" y2="290" stroke="#e2e8f0" stroke-width="1"/>
-            <line x1="550" y1="250" x2="830" y2="250" stroke="#e2e8f0" stroke-width=".5" stroke-dasharray="3,3"/>
-            <line x1="550" y1="220" x2="830" y2="220" stroke="#e2e8f0" stroke-width=".5" stroke-dasharray="3,3"/>
-            <polyline points="550,280 573,274 596,270 619,265 642,260 665,268 688,255 711,250 734,245 757,242 780,238 803,235 826,233"
-              fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="826" cy="233" r="3.5" fill="#334155"/>
-            <text x="830" y="237" font-family="DM Sans,sans-serif" font-size="9" fill="#334155" font-weight="600">78%</text>
-            <text x="550" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">Jul</text>
-            <text x="597" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">Aug</text>
-            <text x="644" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">Sep</text>
-            <text x="691" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">Oct</text>
-            <text x="738" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">Nov</text>
-            <text x="785" y="322" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">Dec</text>
-            <text x="550" y="303" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">60%</text>
-            <text x="550" y="256" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">75%</text>
-            <text x="550" y="225" font-family="DM Sans,sans-serif" font-size="9" fill="#64748b">85%</text>
-          </svg>
-          <figcaption>Illustrative only — styled to represent the type and quality of output, not actual client data.</figcaption>
-        </figure>
-      </div>
-
-      <hr class="cs-divider">
 
       <!-- ══════════════════════════════════════════ -->
       <!-- CASE STUDY 2: Finance / Banking            -->
