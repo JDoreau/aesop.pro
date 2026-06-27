@@ -22,10 +22,11 @@ interface Props {
   author?: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogImage?: string;
 }
 const {
   title, description, path, kicker, headingHtml, dekHtml,
-  meta = [], author = "Jonathan Doreau", ogTitle, ogDescription,
+  meta = [], author = "Jonathan Doreau", ogTitle, ogDescription, ogImage,
 } = Astro.props;
 const canonical = canonicalUrl(path);
 // Publish date: looked up from insights.ts by slug (one source — articles
@@ -47,7 +48,7 @@ const headline = headingHtml
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <Seo title={title} description={description} path={path} ogType="article" ogTitle={ogTitle} ogDescription={ogDescription} />
+    <Seo title={title} description={description} path={path} ogType="article" ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Article",
