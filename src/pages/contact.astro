@@ -90,6 +90,11 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
       <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
       <input type="hidden" name="_subject" value="New message via aesopanalytics.com" />
       <input type="hidden" name="_next" value="https://aesopanalytics.com/thanks" />
+      <!-- Marketing attribution: filled from the landing URL's ?utm_* params (see the script below) so a
+           lead that arrived via a tracked post carries its campaign back to the operator's funnel. -->
+      <input type="hidden" name="utm_source" id="cf-utm-source" />
+      <input type="hidden" name="utm_medium" id="cf-utm-medium" />
+      <input type="hidden" name="utm_campaign" id="cf-utm-campaign" />
       <button type="submit" class="cf-btn" id="cf-submit">Send message</button>
       <div id="cf-status" class="cf-msg" role="status" aria-live="polite"></div>
       </form>
@@ -191,6 +196,27 @@ const ogDescription = "A short call to understand your situation. No pitch, no c
 
 
 <script>
+  // Marketing attribution capture: read utm_source/medium/campaign from the landing URL and persist them
+  // to sessionStorage, so a visitor who lands on a tracked post link and browses to /contact before
+  // submitting still carries the campaign. The hidden inputs are then posted to Formspree -> the platform
+  // intake reads them back (extractUtm) onto the opportunity, closing the post -> lead attribution loop.
+  (function captureUtm() {
+    const KEYS = ['utm_source', 'utm_medium', 'utm_campaign'];
+    let store = {};
+    try { store = JSON.parse(sessionStorage.getItem('aesop_utm') || '{}'); } catch (e) {}
+    const params = new URLSearchParams(window.location.search);
+    let changed = false;
+    for (const k of KEYS) {
+      const v = (params.get(k) || '').trim();
+      if (v) { store[k] = v.slice(0, 200); changed = true; }
+    }
+    if (changed) { try { sessionStorage.setItem('aesop_utm', JSON.stringify(store)); } catch (e) {} }
+    for (const k of KEYS) {
+      const el = document.getElementById('cf-' + k.replace('utm_', 'utm-'));
+      if (el && store[k]) el.value = store[k];
+    }
+  })();
+
   const form = document.getElementById('contact-form');
   const btn = document.getElementById('cf-submit');
   const statusEl = document.getElementById('cf-status');
