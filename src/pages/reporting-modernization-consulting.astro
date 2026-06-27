@@ -1,0 +1,170 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = 'Reporting Modernization Consulting | Aesop Analytics'
+const description = 'Reporting modernization consulting for 50–500 person companies: align KPI definitions, clear dashboard sprawl, build practical governance, and make reporting trusted again. Fixed-fee, principal-led. Free diagnostic.'
+const ogDescription = "Reporting modernization isn't a tool migration. It's making leadership trust the numbers — definitions, ownership, process, governance.";
+
+const consultingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Reporting modernization consulting",
+  name: "Reporting Modernization Consulting",
+  description:
+    "Principal-led, fixed-fee reporting modernization for growing companies: reporting audit, KPI alignment, dashboard rationalization, source-of-truth and ownership, and practical governance — so leadership trusts the numbers.",
+  provider: { "@type": "ProfessionalService", name: "Aesop Analytics", url: "https://aesopanalytics.com" },
+  areaServed: "US",
+};
+---
+
+<BaseLayout title={title} description={description} path="/reporting-modernization-consulting" ogDescription={ogDescription} schema={consultingSchema}>
+
+<!-- HERO -->
+<section class="lp-hero">
+  <div class="lp-in">
+    <div class="eyebrow">Reporting Modernization Consulting</div>
+    <h1>Make leadership trust the numbers again.</h1>
+    <p class="dek">Reporting modernization isn't a six-month transformation or a new platform. It's the unglamorous work of aligning definitions, assigning owners, retiring the reports nobody trusts, and putting a light governance rhythm around what's left — so decisions stop stalling on "whose number is right."</p>
+    <div class="lp-btns">
+      <a href="/diagnostic/" class="btn">Book a diagnostic</a>
+      <a href="/assessment/" class="btn ghost">See the Assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT IS / ISN'T -->
+<section class="lp-band">
+  <div class="wrap">
+    <div class="lp-grid">
+      <div>
+        <div class="sec-label">What it actually is</div>
+        <h2>Not a tool problem. A trust problem.</h2>
+        <p>Most companies that invest in a new BI tool end up with the same complaint a year later: leadership still doesn't believe the numbers. The dashboards exist — they're just not trusted. That isn't fixed by another platform.</p>
+        <div class="pov">"No new tool fixes ownership, definition, process, and governance until those are addressed first."</div>
+        <p>Reporting modernization is platform-agnostic by design. We work inside whatever you already run — Power BI, Tableau, spreadsheets, SQL — and fix the layer underneath the charts.</p>
+      </div>
+      <div>
+        <div class="lp-listlabel">The work, concretely</div>
+        <div class="lp-list">
+          <div class="lp-item"><span class="i">→</span><span>One agreed definition per KPI, with a named business and technical owner</span></div>
+          <div class="lp-item"><span class="i">→</span><span>A source-of-truth map — one authoritative system per data domain</span></div>
+          <div class="lp-item"><span class="i">→</span><span>Dashboard sprawl cleared: what's official, what's retired, what's consolidated</span></div>
+          <div class="lp-item"><span class="i">→</span><span>Manual rebuild work reduced or eliminated where it's safe to automate</span></div>
+          <div class="lp-item"><span class="i">→</span><span>A light governance cadence the team can sustain without a committee</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE METHOD -->
+<section class="lp-method">
+  <div class="wrap">
+    <div class="sec-label light">The method</div>
+    <h2>The TRUST Reporting Modernization Method.</h2>
+    <p class="intro">Every engagement follows the same five-phase sequence — diagnose, reconcile, unify, standardize, and hand off a system that sustains itself.</p>
+    <div class="method-row">
+      <div class="ms"><div class="ms-l">T</div><div class="ms-n">Triage the estate</div><div class="ms-d">Catalog every report. Map owners, usage, and trust. Find what's used, ignored, and duplicated.</div></div>
+      <div class="ms"><div class="ms-l">R</div><div class="ms-n">Reconcile definitions</div><div class="ms-d">Expose where teams use different definitions for the same metric — and why it breaks trust.</div></div>
+      <div class="ms"><div class="ms-l">U</div><div class="ms-n">Unify ownership</div><div class="ms-d">Assign business and technical owners. Designate the authoritative source for each domain.</div></div>
+      <div class="ms"><div class="ms-l">S</div><div class="ms-n">Standardize practice</div><div class="ms-d">Naming, intake, certification, and retirement rules — so it's clear which report is official.</div></div>
+      <div class="ms"><div class="ms-l">T</div><div class="ms-n">Transition to cadence</div><div class="ms-d">Embed a governance rhythm and quality checks so the system holds without depending on us.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO START -->
+<section class="lp-cover">
+  <div class="wrap">
+    <div class="sec-label">How engagements start</div>
+    <h2>Start where the risk is lowest.</h2>
+    <p class="intro">Modernization doesn't begin with a transformation contract. It begins with a fixed-fee diagnostic of the actual problem, and only expands when the roadmap justifies it.</p>
+    <div class="cover-grid">
+      <div class="cov"><h3>1 · Reporting Clarity Assessment</h3><p>A 2–3 week fixed-fee reporting audit — inventory, metric conflicts, ownership gaps, and a prioritized 30/60/90-day roadmap. $5K–$9.5K.</p></div>
+      <div class="cov"><h3>2 · Modernization Sprint</h3><p>Build or redesign a high-value reporting package against the roadmap — executive dashboard, KPI dictionary, source-of-truth map, standards.</p></div>
+      <div class="cov"><h3>3 · Governance Starter Kit</h3><p>The operating model that keeps it true — owner matrix, intake, certification, and a cadence your team maintains after handoff.</p></div>
+      <div class="cov"><h3>4 · Fractional Retainer</h3><p>Ongoing senior analytics operating support on a defined monthly scope, for teams not ready to hire a full-time head of data.</p></div>
+    </div>
+    <p class="cover-foot">See the full ladder and pricing on <a href="/services/">Services</a>, or start with the flagship <a href="/assessment/">Reporting Clarity Assessment</a>. If you think the dashboard itself is the problem, start with a <a href="/bi-dashboard-audit/">BI dashboard audit</a>.</p>
+  </div>
+</section>
+
+<!-- WHO / PROOF -->
+<section class="lp-two">
+  <div class="wrap">
+    <h2>Who this is for.</h2>
+    <p class="who-intro">Growing companies — typically 50–500 employees, operations-heavy — with real reporting pain but no mature analytics operating model. COOs, CFOs, VPs of Operations, and heads of analytics who are tired of meetings that derail into "whose number is right."</p>
+    <p class="two-proof">Principal-led and fixed-fee: you work directly with the person doing the work, diagnosis through delivery. See what that produced across recent engagements — <a href="/work/">reporting modernization case studies</a>, anonymized with the sectors and result signals intact — or take the free <a href="/resources/health-check/">Reporting Trust Health Check</a> to see where you stand.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="lp-cta">
+  <div class="cta-in">
+    <div class="eyebrow">Start here</div>
+    <h2>Find out where your reporting trust is breaking down.</h2>
+    <p>A free 30-minute Reporting Trust Diagnostic — no pitch, no slide deck. We identify the biggest trust gaps and whether a Reporting Clarity Assessment would be useful. If it's not the right fit, we'll say so.</p>
+    <a href="/diagnostic/" class="btn">Book a diagnostic</a>
+  </div>
+</section>
+
+<style>
+.lp-hero { background:var(--navy); padding:84px 0 64px; overflow:hidden; position:relative; }
+.lp-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,470px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
+.lp-in { max-width:840px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
+.lp-hero .eyebrow { color:var(--twine); margin-bottom:16px; }
+.lp-hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(36px,5.4vw,64px); line-height:1.04; color:#fff; margin-bottom:20px; }
+.lp-hero .dek { font-size:19px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:62ch; margin-bottom:30px; }
+.lp-btns { display:flex; gap:12px; flex-wrap:wrap; }
+.btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; padding:15px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
+.btn:hover { transform:translateY(-2px); background:var(--sepia); }
+.btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); }
+.btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; }
+.sec-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
+.sec-label.light { color:var(--twine); }
+/* BAND */
+.lp-band { padding:72px 0; background:var(--paper); }
+.lp-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+@media(max-width:760px){ .lp-grid { grid-template-columns:1fr; gap:32px; } }
+.lp-band h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:18px; line-height:1.1; }
+.lp-band p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
+.lp-band .pov { font-family:"DM Sans",sans-serif; font-weight:500; font-style:italic; font-size:clamp(16px,2vw,20px); color:var(--navy); border-left:4px solid var(--twine); padding:8px 0 8px 22px; margin:24px 0; line-height:1.4; }
+.lp-listlabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:18px; }
+.lp-list { display:flex; flex-direction:column; gap:0; border-top:2px solid var(--rule); }
+.lp-item { display:flex; gap:14px; align-items:flex-start; padding:15px 0; border-bottom:1px solid var(--line); font-size:16px; color:var(--ink); line-height:1.5; font-weight:400; }
+.lp-item .i { color:var(--twine); font-weight:700; flex-shrink:0; }
+/* METHOD */
+.lp-method { padding:72px 0; background:var(--navy); }
+.lp-method h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:#fff; margin-bottom:14px; }
+.lp-method .intro { font-size:17px; color:#C4BDAE; font-weight:300; max-width:62ch; margin-bottom:40px; line-height:1.6; }
+.method-row { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; border-radius:6px; overflow:hidden; }
+@media(max-width:860px){ .method-row { grid-template-columns:1fr 1fr; } }
+@media(max-width:500px){ .method-row { grid-template-columns:1fr; } }
+.ms { background:var(--navy-2); padding:24px 20px; }
+.ms-l { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:24px; color:var(--twine); line-height:1; margin-bottom:14px; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1.5px solid rgba(193,140,93,.35); border-radius:8px; }
+.ms-n { font-size:14px; font-weight:700; color:#fff; margin-bottom:9px; }
+.ms-d { font-size:13.5px; color:#B8C2D0; line-height:1.55; font-weight:400; }
+/* COVER */
+.lp-cover { padding:72px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.lp-cover h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:14px; }
+.lp-cover .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:64ch; margin-bottom:40px; line-height:1.6; }
+.cover-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+@media(max-width:640px){ .cover-grid { grid-template-columns:1fr; } }
+.cov { background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px 22px; }
+.cov h3 { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+.cov p { font-size:14.5px; color:var(--muted); line-height:1.55; font-weight:300; }
+.cover-foot { font-size:17px; color:var(--slate); font-weight:300; line-height:1.65; max-width:70ch; margin-top:32px; }
+.cover-foot a, .two-proof a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+/* WHO / PROOF */
+.lp-two { padding:72px 0; }
+.lp-two h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:18px; }
+.who-intro { font-size:17px; color:var(--slate); font-weight:300; line-height:1.65; max-width:68ch; margin-bottom:18px; }
+.two-proof { font-size:16px; color:var(--slate); line-height:1.65; font-weight:300; max-width:70ch; }
+/* CTA */
+.lp-cta { background:var(--navy); border-top:3px solid var(--twine); padding:80px 32px; text-align:center; }
+.cta-in { max-width:680px; margin:0 auto; }
+.lp-cta .eyebrow { color:var(--twine); margin-bottom:18px; display:block; }
+.lp-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.8vw,44px); color:#fff; margin-bottom:16px; line-height:1.08; }
+.lp-cta p { color:#A8B4C0; font-size:17px; font-weight:300; max-width:50ch; margin:0 auto 30px; line-height:1.6; }
+</style>
+
+</BaseLayout>
