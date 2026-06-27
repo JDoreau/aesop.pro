@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import OwlMark from "../components/OwlMark.astro";
+import { featured } from "../data/insights.ts";
+import { linkHref } from "../data/nav.ts";
 const title = 'Reporting Modernization & Data Trust | Aesop Analytics'
 const description = 'Boutique reporting modernization and data trust consulting for 50-500 person companies. Fixed-fee engagements. Principal-led. Nashville, TN.'
 const ogDescription = "Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems.";
@@ -241,21 +243,13 @@ const ogDescription = "Most reporting problems are not visualization problems. T
     <p class="intro">Rigorous, even-handed, clear about what the data can and can't say.</p>
     <div class="study-card">
       <div class="stxt">
-        <div class="stag">Field Study · Labor &amp; the Economy</div>
-        <h3>The Productivity–Pay Gap: where did the gains go?</h3>
-        <p>Productivity rose ~90% since 1979. Typical worker pay rose ~33%. We dig past the slogan to show what actually drives the divergence — and what it doesn't mean.</p>
-        <a href="/insights/productivity-pay-study/" class="study-btn">Read the study →</a>
+        <div class="stag">{featured.tag}</div>
+        <h3>{featured.title}</h3>
+        <p>{featured.desc}</p>
+        <a href={linkHref(`/insights/${featured.slug}`)} class="study-btn">{featured.read}</a>
       </div>
-      <div class="sviz" aria-hidden="true">
-        <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
-          <line x1="30" y1="158" x2="240" y2="158" stroke="#1E3555" stroke-width="1"/>
-          <polyline points="30,148 70,136 115,112 160,78 200,48 240,22" fill="none" stroke="#C18C5D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="30,148 70,144 115,136 160,128 200,122 240,118" fill="none" stroke="#6B8FAF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="240" cy="22" r="4" fill="#C18C5D"/>
-          <circle cx="240" cy="118" r="4" fill="#6B8FAF"/>
-          <text x="246" y="26" font-family="DM Sans,sans-serif" font-size="9" fill="#C18C5D" font-weight="600">Productivity +90%</text>
-          <text x="246" y="122" font-family="DM Sans,sans-serif" font-size="9" fill="#6B8FAF" font-weight="600">Pay +33%</text>
-        </svg>
+      <div class="sviz">
+        <img src={featured.image} alt={featured.imageAlt} loading="lazy" width="260" height="180" />
       </div>
     </div>
     <a href="/insights/" class="see-all">All insights &amp; field studies</a>
@@ -445,8 +439,9 @@ section { position:relative; }
 .study-card p { color:#B8BDCA; font-size:15px; margin-bottom:24px; line-height:1.6; font-weight:300; }
 .study-btn { display:inline-block; color:var(--navy); background:var(--twine); font-weight:700; padding:11px 20px; border-radius:4px; font-size:14px; letter-spacing:.03em; transition:background .18s; }
 .study-btn:hover { background:var(--sepia); }
-.study-card .sviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:32px; }
+.study-card .sviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:24px; }
 .study-card .sviz svg { width:100%; max-width:260px; height:auto; }
+.study-card .sviz img { width:100%; height:auto; border-radius:6px; display:block; }
 .see-all { display:inline-flex; align-items:center; gap:8px; margin-top:28px; font-size:14px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
 .see-all::after { content:"→"; }
 .see-all:hover { color:var(--twine); }

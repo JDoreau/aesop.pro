@@ -45,13 +45,7 @@ const countLabel = (s: Section) => {
         <span class="fread">{featured.read}</span>
       </div>
       <div class="fviz">
-        <svg viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <line x1="20" y1="130" x2="210" y2="130" stroke="#1E3555" stroke-width="1"/>
-          <polyline points="20,120 60,105 100,82 140,55 180,32 210,16" fill="none" stroke="#C18C5D" stroke-width="2.5" stroke-linecap="round"/>
-          <polyline points="20,120 60,116 100,108 140,100 180,94 210,90" fill="none" stroke="#6B8FAF" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="210" cy="16" r="3.5" fill="#C18C5D"/>
-          <circle cx="210" cy="90" r="3.5" fill="#6B8FAF"/>
-        </svg>
+        <img src={featured.image} alt={featured.imageAlt} loading="lazy" width="220" height="150" />
       </div>
     </a>
 
@@ -124,8 +118,9 @@ const countLabel = (s: Section) => {
 .feat-card h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:22px; line-height:1.15; color:#fff; margin-bottom:12px; }
 .feat-card p { font-size:14.5px; color:#B8BDCA; line-height:1.6; font-weight:300; margin-bottom:18px; }
 .feat-card .fread { font-size:12.5px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; }
-.feat-card .fviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:24px; min-height:180px; }
+.feat-card .fviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:18px; min-height:180px; }
 .feat-card .fviz svg { width:100%; max-width:220px; height:auto; }
+.feat-card .fviz img { width:100%; height:auto; border-radius:6px; display:block; }
 /* PILLAR SECTIONS */
   .pillar-section { margin-bottom:44px; }
 .ps-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); padding:12px 0; border-bottom:2px solid var(--navy); margin-bottom:0; display:flex; align-items:center; justify-content:space-between; }
