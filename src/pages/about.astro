@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import OwlMark from "../components/OwlMark.astro";
 const title = 'About Aesop Analytics | Reporting Modernization Consultants'
 const description = 'Boutique reporting modernization consultancy in Nashville, TN. Led by Jonathan Doreau — 15+ years in analytics and BI leadership across five industries.'
 const ogDescription = "15+ years turning fragmented, distrusted data environments into reporting people actually rely on.";
@@ -22,7 +21,7 @@ const ogDescription = "15+ years turning fragmented, distrusted data environment
       </div>
       <div class="hero-portrait">
         <div class="portrait-block">
-          <OwlMark body="var(--twine)" eyes="var(--twine)" style="position:absolute;bottom:64px;left:50%;transform:translateX(-50%);width:150px;height:auto;opacity:.22;" />
+          <img class="portrait-img" src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau, founder of Aesop Analytics" width="680" height="850" loading="eager" />
           <div class="portrait-name">
             <div class="pn">Jonathan Doreau</div>
             <div class="pt">Founder · Aesop Analytics · Nashville, TN</div>
@@ -205,10 +204,9 @@ const ogDescription = "15+ years turning fragmented, distrusted data environment
 .hero-link:hover { background:rgba(193,140,93,.1); border-color:var(--twine); }
 /* Portrait placeholder */
   .hero-portrait { display:flex; align-items:flex-end; justify-content:center; }
-.portrait-block { width:100%; max-width:340px; background:var(--navy-2); border-radius:8px 8px 0 0; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; min-height:300px; position:relative; }
-/* (Owl watermark inside .portrait-block is positioned via the OwlMark style prop —
-   Astro scoped CSS can't reach into child components.) */
-.portrait-block .portrait-name { position:relative; z-index:2; background:var(--twine); color:#fff; width:100%; padding:16px 20px; }
+.portrait-block { width:100%; max-width:340px; background:var(--navy-2); border-radius:8px 8px 0 0; overflow:hidden; position:relative; }
+.portrait-block .portrait-img { display:block; width:100%; height:auto; }
+.portrait-block .portrait-name { background:var(--twine); color:#fff; width:100%; padding:14px 20px; }
 .portrait-block .portrait-name .pn { font-size:15px; font-weight:700; }
 .portrait-block .portrait-name .pt { font-size:12px; font-weight:400; opacity:.8; margin-top:2px; }
 /* BODY SECTIONS */
