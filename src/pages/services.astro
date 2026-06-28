@@ -51,9 +51,9 @@ const faqs = [
 
 <div class="page-hero">
   <div class="page-hero-in">
-    <div class="eyebrow">Services</div>
-    <h1>Five offers, one methodology, a clear starting point.</h1>
-    <p>Every engagement begins with a low-risk assessment — not a six-month transformation commitment. Here's the full offer ladder and how it works.</p>
+    <div class="eyebrow">Services &amp; platform</div>
+    <h1>Five fixed-fee offers, one methodology — and a platform that keeps the work alive.</h1>
+    <p>Every engagement begins with a low-risk assessment — not a six-month transformation commitment. Here's the full offer ladder, and the Data Practice Portal every engagement now builds toward.</p>
   </div>
 </div>
 
@@ -67,6 +67,7 @@ const faqs = [
       <div class="ladder-step"><div class="ls-num">2</div><div class="ls-name">Modernization Sprint</div><div class="ls-price">$15K–$40K</div></div>
       <div class="ladder-step"><div class="ls-num">3</div><div class="ls-name">Governance Starter Kit</div><div class="ls-price">$12K–$35K</div></div>
       <div class="ladder-step"><div class="ls-num">4</div><div class="ls-name">Fractional Retainer</div><div class="ls-price">$3.5K–$12K/mo</div></div>
+      <a href="/platform/" class="ladder-step cont" style="text-decoration:none"><div class="ls-num">∞</div><div class="ls-name">The Data Practice Portal</div><div class="ls-price">Built into the work</div></a>
     </div>
   </div>
 </div>
@@ -203,6 +204,29 @@ const faqs = [
   </div>
 </section>
 
+<!-- PLATFORM (the through-line) -->
+<section class="svc plat" id="platform">
+  <div class="wrap">
+    <div class="svc-grid">
+      <div class="svc-meta">
+        <div class="svc-tag">The through-line</div>
+        <h2>The Data Practice Portal</h2>
+        <div class="svc-price plat-price">Built into the work</div><br>
+        <div class="svc-duration plat-dur">Continuous · yours to keep</div>
+      </div>
+      <div class="svc-body">
+        <p class="plat-lede">Every engagement above now builds toward the same living system. The estate gets mapped, the governance becomes visible, and your team gets an analyst they can ask in plain English — grounded in your own data, with a citation for every claim. It's the difference between a one-time clean-up and a practice that sustains itself.</p>
+        <div class="plat-parts">
+          <div class="plat-part"><strong>Auto-Doc</strong> — maps your estate automatically: tables, metrics, and lineage</div>
+          <div class="plat-part"><strong>Data Practice Portal</strong> — governance you can see: owners, definitions, and the red gaps</div>
+          <div class="plat-part"><strong>Data Agent</strong> — answers grounded in your data, with a source for every claim</div>
+        </div>
+        <div class="svc-cta"><a href="/platform/" class="btn twine">Explore the platform →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- HOW WE WORK -->
 <div class="how">
   <div class="how-in">
@@ -290,6 +314,10 @@ const faqs = [
 .ls-price { font-size:11px; color:var(--ink); margin-top:4px; }
 .ladder-step.hl .ls-price { color:#8A9FB8; }
 .ladder-step.free .ls-name { color:var(--twine); }
+.ladder-step.cont { border-top:3px solid var(--twine); }
+.ladder-step.cont .ls-num { color:var(--twine); }
+.ladder-step.cont .ls-name { color:var(--navy); }
+.ladder-step.cont .ls-price { color:var(--muted); }
 @media(max-width:600px) {
   .ladder-steps { flex-direction:column; }
   .ladder-step { border-right:1px solid var(--line); border-bottom:none; border-radius:0!important; }
@@ -307,6 +335,15 @@ const faqs = [
 .svc h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.1; margin-bottom:16px; }
 .svc-price { display:inline-block; background:var(--navy); color:#fff; font-size:13px; font-weight:700; padding:6px 14px; border-radius:4px; margin-bottom:6px; }
 .svc-duration { font-size:13px; color:var(--muted); }
+/* PLATFORM SECTION — the through-line, on navy */
+  .svc.plat { background:var(--navy); border-bottom:none; }
+.svc.plat h2 { color:#fff; }
+.plat-price { background:var(--twine)!important; }
+.plat-dur { color:#8FA4B8!important; }
+.plat-lede { color:#C4BDAE; font-size:17px; line-height:1.65; font-weight:300; }
+.plat-parts { display:flex; flex-direction:column; gap:10px; margin:20px 0 24px; }
+.plat-part { font-size:15px; color:#C4BDAE; font-weight:300; padding-left:16px; border-left:2px solid var(--twine); line-height:1.5; }
+.plat-part strong { color:#fff; font-weight:700; }
 .svc-body p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:18px; }
 .svc-body p:last-of-type { margin-bottom:0; }
 .svc-body a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }

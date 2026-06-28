@@ -10,6 +10,7 @@ export interface NavItem {
 
 export const nav: NavItem[] = [
   { label: "Services",   href: "/services" },
+  { label: "Platform",   href: "/platform", mobileLabel: "The Platform — Data Practice Portal" },
   { label: "Work",       href: "/work" },
   { label: "Assessment", href: "/assessment", accent: true, mobileLabel: "Reporting Clarity Assessment" },
   { label: "Insights",   href: "/insights" },
