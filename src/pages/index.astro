@@ -15,7 +15,7 @@ const ogDescription = "Most reporting problems are not visualization problems. T
   <div class="hero-in">
     <div class="eyebrow reveal">Reporting Modernization · KPI Trust · Data Governance</div>
     <h1 class="reveal" style="animation-delay:.08s">Modern reporting for leaders who need numbers they can <span class="em">trust.</span></h1>
-    <p class="hero-sub reveal" style="animation-delay:.16s">We help growing companies clean up dashboard sprawl, align KPI definitions, reduce manual reporting work, and build practical data governance — so decisions move faster and leadership can trust what they see.</p>
+    <p class="hero-sub reveal" style="animation-delay:.16s">We help growing companies clean up dashboard sprawl, align KPI definitions, reduce manual reporting work, and build practical data governance — so decisions move faster and leadership can trust what they see. Then we leave behind a living portal that keeps it that way.</p>
     <div class="btn-row reveal" style="animation-delay:.24s">
       <a href="/diagnostic/" class="btn">Book a Reporting Trust Diagnostic</a>
       <a href="/resources/" class="btn ghost">Download the Health Check</a>
@@ -161,6 +161,23 @@ const ogDescription = "Most reporting problems are not visualization problems. T
       <p style="font-size:15px;color:var(--muted);margin-bottom:16px">Every engagement begins with a free 30-minute Reporting Trust Diagnostic to make sure there's a fit.</p>
       <a href="/diagnostic/" class="btn">Book a free diagnostic call</a>
     </div>
+  </div>
+</section>
+
+<!-- ── THE PLATFORM ── -->
+<section class="platform-tease">
+  <div class="wrap">
+    <div class="pt-head">
+      <div class="sec-label" style="color:var(--twine)">New — the platform</div>
+      <h2>The work no longer ends with a deck.</h2>
+      <p>Every engagement now builds you a living system: your estate mapped, your governance visible, and an analyst you can ask in plain English — grounded in your own data, with a citation for every claim.</p>
+    </div>
+    <div class="pt-parts">
+      <div class="pt-part"><div class="ptn">Auto-Doc</div><div class="ptd">Maps your estate automatically — tables, metrics, and the lineage between them.</div></div>
+      <div class="pt-part"><div class="ptn">Data Practice Portal</div><div class="ptd">Governance you can see — owners, definitions, and the gaps rendered in red.</div></div>
+      <div class="pt-part"><div class="ptn">Data Agent</div><div class="ptd">Answers grounded only in your governed data — it cites its source or says it doesn't know.</div></div>
+    </div>
+    <a href="/platform/" class="btn">Explore the platform →</a>
   </div>
 </section>
 
@@ -465,6 +482,17 @@ section { position:relative; }
   .final-cta { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:96px 32px; }
 .final-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,4.4vw,52px); color:#fff; margin-bottom:20px; line-height:1.06; }
 .final-cta p { color:#A8B4C0; font-size:18px; font-weight:300; max-width:48ch; margin:0 auto 36px; line-height:1.6; }
+/* ── PLATFORM TEASE ── */
+  .platform-tease { background:var(--navy); padding:80px 0; border-top:1px solid rgba(255,255,255,.06); }
+.platform-tease .pt-head { max-width:680px; margin-bottom:40px; }
+.platform-tease h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,42px); color:#fff; line-height:1.1; margin-bottom:14px; }
+.platform-tease .pt-head p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.6; }
+.pt-parts { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:36px; }
+@media(max-width:760px){ .pt-parts { grid-template-columns:1fr; } }
+.pt-part { background:var(--navy-2); border-radius:6px; padding:22px 20px; border-left:3px solid var(--twine); transition:background .2s; }
+.pt-part:hover { background:var(--navy-3); }
+.ptn { font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
+.ptd { font-size:14px; color:#B8C2D0; line-height:1.55; font-weight:300; }
 </style>
 
 <script is:inline>
