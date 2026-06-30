@@ -7,6 +7,20 @@ this file covers how to work on it without breaking it.
 
 ---
 
+## Governing canon — the Standing Directive
+
+This repo is governed by the ecosystem-wide **[Standing Agentic Development Directive](../STANDING-DIRECTIVE.md)** (`CODE/aesop.pro/STANDING-DIRECTIVE.md`) — standing law for **all** Aesop software dev. The detailed engineering guidance below is how its universal rules manifest on a **public marketing site**:
+
+- **§4 Privacy / §5 Demo (this site is public).** Never expose PII or real client data; lead data flows to the Operator (PLATFORM) via the signed webhook channels — never log it client-side, never put it in URLs. Choose the privacy-preserving option on consent; no tracking beyond what's disclosed.
+- **No fabricated numbers** (also under "Voice" below): illustrative figures must say so, and testimonial/Review structured data stays gated until approved quotes + attribution exist.
+- **§8 Productization, accessibility, and the anti-hype voice** apply to every page. The TRUST Index scorer (`src/lib/trust-index.js`) is shared method canon from `_OPS` — keep its constants in sync, never fork them.
+
+**Live state first — never assume a clean tree:** run `node ../ecosystem-status.mjs` (every repo's real git state) + read [`../WORKING-STATE.md`](../WORKING-STATE.md) for the *why* + next step behind any uncommitted WIP. (Note: this repo **auto-deploys on push to `main`** — don't push casually.)
+
+Litmus test for any change: does this make the site more secure, maintainable, explainable, accessible, and trustworthy — or add hidden fragility? When in doubt, the directive governs; business canon lives in `../_OPS/`.
+
+---
+
 ## Architecture map (30 seconds)
 
 ```
