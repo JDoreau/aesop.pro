@@ -4,7 +4,7 @@
 
 **What this is:** Website (Aesop Propylaia) — the public aesopanalytics.com marketing and content site (static Astro) — the front door that explains the offering and captures inbound leads.
 
-**Role:** Top-of-funnel lead generation and brand/content surface for Aesop Analytics. 36 statically-generated pages: offer ladder (services), flagship Reporting Clarity Assessment, a Pistis/platform teaser, 20 insights articles + field studies, and 4 interactive self-serve tools (notably the Dokimē front-door assessment — a standalone diagnostic *hosted on* Propylaia, not a sub-page of it, scored by the Gnomon Trust Index). It is where prospects discover the firm and convert into leads; it does not run engagements or hold a database itself.
+**Role:** Top-of-funnel lead generation and brand/content surface for Aesop Analytics. 36 statically-generated pages: offer ladder (services), flagship Reporting Clarity Assessment, a Pistis/platform teaser, 20 insights articles + field studies, and 4 interactive self-serve tools (notably the Dokimē front-door assessment — a standalone diagnostic *hosted on* Propylaia, not a sub-page of it, scored by the TRUST Index engine, "Aesop Krisis" -- disambiguated 2026-07-02 from HUB's separately-built graph-computed engine, which keeps "Gnomon"; see HUB/docs/NAMES.md). It is where prospects discover the firm and convert into leads; it does not run engagements or hold a database itself.
 
 **Repo:** github.com/JDoreau/aesop.pro (git remote origin: https://github.com/JDoreau/aesop.pro.git). NOTE: the repo is literally named aesop.pro but contains ONLY the WEBSITE — it is its own independent git repo, NOT a monorepo of the whole ecosystem. Canon (_OPS) is the separate private aesop-ops repo.  ·  **State:** live
 
