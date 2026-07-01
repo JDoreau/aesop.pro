@@ -29,7 +29,7 @@ src/
   components/ Nav.astro · Footer.astro · Seo.astro · Wordmark.astro · OwlMark.astro
   data/       nav.ts (site IA + canonicalUrl helper) · insights.ts (DRIVES /insights — add rows here)
   styles/     tokens.css (THE palette/type source) · base.css · article.css (article components)
-  pages/      one .astro per route; insights/ (20 articles); resources/ (4 interactive tools)
+  pages/      one .astro per route; insights/ (21 articles incl. field studies); resources/ (4 interactive tools)
 public/
   brand/      standalone brand style-guide page (the ONE remaining self-contained page)
   assets/     favicon.svg, owl-mark svgs, og-image.png
@@ -43,11 +43,14 @@ entirely from `src/data/insights.ts` — new articles get a data row FIRST
 
 ## ⚠ Danger zones — read before touching these files
 
-### 1. Embedded print documents inside JS strings
+### 1. Embedded print documents inside JS strings (currently NONE — rule stands)
 `src/pages/resources.astro` and `src/pages/resources/health-check.astro`
-each contain a **complete HTML document (with its own `<style>…</style>`)
-inside JavaScript string concatenation**, used to build a print iframe
-`srcdoc`. Consequences:
+previously each contained a **complete HTML document (with its own
+`<style>…</style>`) inside JavaScript string concatenation**, used to build a
+print iframe `srcdoc`. Both were rebuilt (the Health Check now prints via
+`@media print` CSS; the resources page is a plain hub) and **no EMBEDDED-DOC
+fences remain in src/** — but check.mjs still enforces the fencing rule, so if
+an embedded doc ever returns it must be fenced. The historical consequences:
 
 - These files contain **more than one `</style>`**. A regex like
   "insert before `</style>`" with no occurrence count WILL corrupt the
@@ -83,12 +86,10 @@ by check.mjs — keep both in sync or the build fails.
   owl SVG, and wordmark CSS locally (intentional: it displays 16 owl
   specimens by design and links no site stylesheets). A brand change is
   **not done** until that copy is reviewed too.
-- The site currently has TWO health-check instruments: the 10-area slider
-  checklist embedded on `/resources` and the 3-questions-per-area scored
-  version at `/resources/health-check`. They have separate engines, storage
-  keys, and print documents. A change to one does NOT propagate to the
-  other — and whether they should consolidate is an open owner decision
-  (see `_OPS/INITIATIVES/business-launch.md`).
+- The two health-check instruments were CONSOLIDATED: `/resources` is now a
+  hub that hands off to the ONE canonical instrument at
+  `/resources/health-check` (engine: `src/lib/trust-index*.js` +
+  `health-check-app.js`, storage key `aesop-hc-v3`).
 
 ## URL rule
 
@@ -147,8 +148,8 @@ are not caught by the check — route them through `linkHref()`.
   run it. Scripts must use strict replacement-count assertions and **fail
   loudly** on any mismatch — a "FAIL but saved anyway" script is how files
   get corrupted. Read utf-8, write `newline=""`.
-- **Build:** `npm run build` → page count must match `src/pages` (36 at
-  last update), ~3s. Zero-warning builds are the norm; treat new warnings
+- **Build:** `npm run build` → page count must match `src/pages` (40 at
+  last update; sitemap lists 38 — 404 + thanks excluded), ~3s. Zero-warning builds are the norm; treat new warnings
   as failures (the check.mjs hex warnings are known-legacy, currently in
   the resources pages only).
 - **Node:** pinned to 22 (package.json `engines`, deploy.yml `node-version`).
@@ -180,3 +181,5 @@ Strategy, the portfolio plan, decisions, and the done-log are in `../_OPS/`
 INITIATIVES/ = the two live roadmaps, DONE_LOG.md = append-only history) —
 outside this repo, version-controlled as the private `aesop-ops` repo.
 Update DONE_LOG.md after every ship.
+---
+**Identity source of truth: [../IDENTITY.md](../IDENTITY.md).** Aesop Analytics is a SaaS-first **data-governance software company**; the product is **Aesop Manteia**; the consulting/assessment work is the **on-ramp**, not the company's definition. If anything in this repo implies "consulting-only" or "solo," it is a relic and IDENTITY.md wins. (Product name locked = Aesop Manteia; the "Analytica" name is retired.)

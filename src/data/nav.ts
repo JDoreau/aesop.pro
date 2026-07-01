@@ -23,7 +23,7 @@ export const cta = { label: "Book a diagnostic", href: "/diagnostic", mobileLabe
 
 export const site = {
   name: "Aesop Analytics",
-  tagline: "Reporting modernization & data trust consulting.",
+  tagline: "Reporting trust, delivered as governed software.",
   // Canonical brand promise (TRUE_NORTH §1). Not yet rendered anywhere —
   // the homepage promise band hardcodes its own longer wording.
   promise: "We bring you value, or we tell you honestly that we can’t.",

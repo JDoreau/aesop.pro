@@ -1,7 +1,9 @@
 # Website (Aesop Propylaia)
 
-The marketing and content site for **Aesop Analytics**, a boutique reporting
-modernization and data-trust consultancy based in Nashville, TN.
+The marketing and content site for **Aesop Analytics**, a data-governance
+software company based in Nashville, TN — building **Aesop Manteia**, entered
+through its reporting-modernization and data-trust practice (see
+[`../IDENTITY.md`](../IDENTITY.md)).
 
 **Live:** [aesopanalytics.com](https://aesopanalytics.com)
 **Tagline:** *Every dataset has a moral.*

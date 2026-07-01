@@ -34,3 +34,5 @@
 
 ---
 *`#aesop-ecosystem` — when this component's wiring changes, update this card AND the matching row/seam in [../ECOSYSTEM-MAP.md](../ECOSYSTEM-MAP.md); mirror any topology change into `_OPS/HANDOFF/MASTER_TECHNICAL_HANDOFF.md`.*
+---
+**Identity source of truth: [../IDENTITY.md](../IDENTITY.md).** Aesop Analytics is a SaaS-first **data-governance software company**; the product is **Aesop Manteia**; the consulting/assessment work is the **on-ramp**, not the company's definition. If anything in this repo implies "consulting-only" or "solo," it is a relic and IDENTITY.md wins. (Product name locked = Aesop Manteia; the "Analytica" name is retired.)

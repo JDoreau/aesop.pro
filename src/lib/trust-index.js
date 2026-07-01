@@ -8,11 +8,11 @@
 // pillar can never be masked by a strong Clarity half (T + R + U). The headline
 // number and the five-bar breakdown always agree.
 //
-// This module is the source of truth for the math. The public self-check
-// (resources/health-check.astro) runs the same logic; because that page uses an
-// is:inline script (runtime DOM + global handlers) it cannot ES-import, so it
-// carries a mirrored copy guarded by a check.mjs invariant on the constants
-// below. The future operator console (PLATFORM) imports this module directly.
+// This module is the source of truth for the math — there is NO mirror copy.
+// The public Health Check (resources/health-check.astro) ES-imports it via
+// health-check-app.js -> trust-index-report.js, and the operator console
+// (PLATFORM) imports it directly. check.mjs asserts the constants below stay
+// internally consistent. Do not change the export shape.
 // ─────────────────────────────────────────────────────────────────────────
 
 // The 9 reporting areas -> their TRUST pillar. The 10th public area, 'ai',
