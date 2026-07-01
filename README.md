@@ -1,4 +1,4 @@
-# Aesop Analytics — Website
+# Website (Aesop Propylaia)
 
 The marketing and content site for **Aesop Analytics**, a boutique reporting
 modernization and data-trust consultancy based in Nashville, TN.
