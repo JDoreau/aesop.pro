@@ -39,7 +39,7 @@ to GitHub Pages behind Cloudflare.
 | **Forms** | Formspree (`mojzdqlk`) → `/thanks` |
 | **Booking** | Cal.com (free diagnostic) |
 | **Analytics** | Google Analytics 4 (`G-4TVCCT0XW9`) |
-| **Fonts** | Newsreader (headings) · DM Sans (body / UI) · Abril Fatface (display & editorial accents) |
+| **Fonts** | Newsreader (headings & display accents) · DM Sans (body / UI) · Abril Fatface (wordmark + æ moniker only) |
 
 ## Brand
 
@@ -156,7 +156,7 @@ gap, corporate profits & inflation). Field studies cite primary sources (BEA, EP
 
 ## Conventions
 
-- **Headers** use Newsreader; body/UI uses DM Sans; Abril Fatface is reserved for article display titles, standout statistics, and decorative marks only.
+- **Headers** use Newsreader; body/UI uses DM Sans; Abril Fatface is reserved for the "aesop" wordmark and the æ moniker marks only (narrowed 2026-07).
 - **The owl** is the logo. Do not reintroduce the æ ligature as a logo substitute (it's fine as a faint decorative background mark).
 - **Pricing** must match the Operating Brief offer ladder. Flagship Assessment: `$5,000–$9,500` standard (reduced for nonprofit/referral/small-scope). Keep schema price ranges in sync with on-page prices.
 - **No fabricated** testimonials, metrics, logos, or client results — ever. Case studies are anonymized.

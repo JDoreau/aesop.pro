@@ -128,8 +128,12 @@ are not caught by the check — route them through `linkHref()`.
   footer 2.5px). The `p` descender skews flex centering — don't remove the
   nudges (check.mjs guards them), and re-measure if font sizes change.
   The standalone `/brand` page carries its own copy (see Danger #4).
-- **Type roles:** Newsreader = site headings · DM Sans = body/UI · Abril =
-  wordmark, big numerals, hero watermarks, article display only.
+- **Type roles:** Newsreader = site headings + all display accents (article
+  display headings, drop caps, numerals/stats at weight 600; pull quotes
+  italic 400) · DM Sans = body/UI · Abril Fatface = the "aesop" wordmark +
+  æ moniker marks ONLY (owner directive 2026-07: "only in the aesop logo
+  or the ae moniker — nowhere else"). `/brand`'s standalone copy still
+  shows the old roles — pending its own decision (Danger #4).
 - **Voice:** principal-led, plainspoken, anti-hype. Never lead with AI.
   Never fabricate numbers — illustrative figures must say so.
 

@@ -2,12 +2,21 @@
    Your real palette variables (from shared.css :root), now the single
    source every page and component reads from.
 
-   Type decision — ratified from the live site:
-     Newsreader   → headings
+   Type decision — ratified from the live site; Abril scope NARROWED 2026-07:
+     Newsreader   → headings + all display accents (article display h1/h2,
+                    drop caps, numerals/big stats at weight 600; pull quotes
+                    italic 400)
      DM Sans      → body / UI
-     Abril Fatface → display accents (the "aesop" wordmark, big numerals)
+     Abril Fatface → the "aesop" wordmark + æ moniker marks ONLY
+                    (Wordmark.astro, the health-check's local "aesop"
+                    copies, hero/callout "æ" watermarks, insights æ row
+                    markers). Nowhere else — owner directive 2026-07-01.
    Font families are still set per-rule in component styles (matching your
    current site); tokenizing them is an optional later cleanup.
+   Font-loading note: Seo.astro still loads full Abril Fatface; it could
+   shrink to a text= subset (glyphs: a e o p s æ) now that only the
+   wordmark/moniker use it — left as-is so the wordmark cannot break;
+   /brand keeps its own standalone copy (pending its own decision).
 
    Brand ratification (revisit, 2026-06):
      - The owl is the ONE logo everywhere a logo is expected (nav, footers,
@@ -15,8 +24,9 @@
        optically centered on the x-height via small translateY nudges.
      - The ae ligature is an editorial flourish only (insights row markers,
        article callout watermarks) - never a lockup, favicon, or social mark.
-     - Abril Fatface roles: wordmark, big numerals, faint hero watermarks,
-       article display headings. Nothing else.
+     - Abril Fatface roles (narrowed 2026-07): the "aesop" wordmark + the
+       æ moniker marks ONLY. Big numerals and article display headings
+       moved to Newsreader 600 (pull quotes to Newsreader italic).
      - Deck palm greens stay retired; navy owns the deep authoritative role. */
 :root {
   --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;

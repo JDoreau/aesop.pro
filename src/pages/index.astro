@@ -305,7 +305,7 @@ const ogDescription = "Most reporting problems are not visualization problems. T
 
 <style>
 section { position:relative; }
-/* Newsreader = primary display/header font. Abril retained as sparing accent only. */
+/* Newsreader = primary display/header font. Abril Fatface = wordmark + æ moniker ONLY (2026-07 directive). */
 /* ── HERO ── */
   .hero { background:var(--navy); color:var(--cream); overflow:hidden; min-height:88vh; display:flex; align-items:center; }
 .hero::after { content:"æ"; position:absolute; right:-3%; top:-14%; font-family:"Abril Fatface",serif; font-size:min(48vw,580px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
@@ -426,7 +426,7 @@ section { position:relative; }
   .results-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
   .res-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px 20px; text-decoration:none; transition:border-color .18s, transform .18s, box-shadow .18s; }
   .res-card:hover { border-color:var(--twine); transform:translateY(-3px); box-shadow:0 10px 30px rgba(15,31,56,.06); }
-  .res-n { font-family:"Abril Fatface",serif; font-size:clamp(40px,5vw,54px); color:var(--twine); line-height:1; margin-bottom:14px; }
+  .res-n { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(40px,5vw,54px); color:var(--twine); line-height:1; margin-bottom:14px; }
   .res-unit { font-family:"DM Sans",sans-serif; font-size:.30em; font-weight:600; color:var(--muted); letter-spacing:.02em; }
   .res-l { font-size:14px; color:var(--ink); line-height:1.45; font-weight:500; margin-bottom:18px; flex:1; }
   .res-meta { display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--line); padding-top:14px; }
@@ -439,7 +439,7 @@ section { position:relative; }
 @media(max-width:700px) {
   .stats-in { grid-template-columns:repeat(2,1fr); }
 }
-.stat-n { font-family:"Abril Fatface",serif; font-size:clamp(34px,4.5vw,52px); color:var(--twine); line-height:1; margin-bottom:10px; }
+.stat-n { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(34px,4.5vw,52px); color:var(--twine); line-height:1; margin-bottom:10px; }
 .stat-l { font-size:12px; font-weight:500; color:#8FA4B8; letter-spacing:.04em; line-height:1.4; text-transform:uppercase; }
 /* ── FEATURED INSIGHT ── */
   .featured { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
@@ -468,7 +468,7 @@ section { position:relative; }
 @media(max-width:760px) {
   .about-grid { grid-template-columns:1fr; gap:28px; }
 }
-.about-mark { font-family:"Abril Fatface",serif; font-size:clamp(80px,14vw,180px); color:var(--navy); line-height:.85; text-align:center; opacity:.8; }
+.about-mark { color:var(--navy); line-height:.85; text-align:center; opacity:.8; }
 .about-mark .sm { display:block; font-family:"DM Sans",sans-serif; font-size:11px; letter-spacing:.28em; color:var(--twine); text-transform:uppercase; margin-top:18px; font-weight:600; }
 .about-right h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:16px; line-height:1.12; }
 .about-right p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
