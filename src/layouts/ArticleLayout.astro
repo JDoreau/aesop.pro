@@ -1,8 +1,11 @@
 ---
 // ArticleLayout.astro — the ONE layout for articles & field studies.
-// Compact 7-link nav (from nav.ts) + byline header (from props) + compact
-// footer + reveal animation + article.css. Every article renders through
-// this, which is what makes the legacy-header articles consistent again.
+// Refaced to the product-first design (site-reface): the navy shell header
+// (cream wordmark + twine "See it on your estate" CTA, matching Nav.astro),
+// byline header (from props), the Honest-Expert closing CTA, and the compact
+// article footer. Every article renders through this — which is what keeps the
+// insights library visually one piece with the refaced site while its
+// SEO-earning body (the <slot/>) and Article JSON-LD stay untouched.
 import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/article.css";
@@ -63,9 +66,9 @@ const headline = headingHtml
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <nav>
+    <nav class="reface-nav">
       <div class="nav-in">
-        <Wordmark variant="article-nav" href="/" />
+        <Wordmark variant="nav" href="/" />
         <div class="site-links">
           {nav.map((i) => (<a href={linkHref(i.href)} class:list={[{ "nav-accent": i.accent }]}>{i.label}</a>))}
         </div>
@@ -87,12 +90,16 @@ const headline = headingHtml
       <slot />
     </main>
 
-    <section class="article-cta">
+    <section class="article-cta ae-mark">
       <div class="acta-in">
         <div class="acta-eyebrow">Who's behind this</div>
-        <h2>Analysis like this is what we do for clients.</h2>
-        <p>Aesop Analytics runs a reporting-modernization practice — we turn messy, mistrusted reporting into numbers leadership relies on. If that's a problem you're facing, a free 30-minute diagnostic is the fastest first step. No pitch, no commitment.</p>
-        <a href="/diagnostic/" class="acta-btn">Book a diagnostic →</a>
+        <h2>The thinking here is what our product runs on.</h2>
+        <p>Aesop Analytics is a data-governance software company. The reasoning in this piece — owned metrics, agreed definitions, sources you can name — is exactly what Aesop Manteia turns into a living system: it maps your estate from metadata, renders the gaps in plain view, and answers a question with a citation, or an honest "that isn't governed yet." The fastest way to see it on your own numbers is a focused 30-minute look.</p>
+        <div class="acta-row">
+          <a href="/diagnostic/" class="acta-btn">See it on your estate →</a>
+          <a href="/platform/" class="acta-ghost">Read about the product →</a>
+        </div>
+        <p class="acta-note">If Manteia isn't the right fit for where you are, we'll tell you plainly.</p>
       </div>
     </section>
 
@@ -106,13 +113,31 @@ const headline = headingHtml
     </footer>
 
     <style>
-      .article-cta { background:var(--navy); border-top:3px solid var(--twine); padding:64px 32px; text-align:center; }
-      .acta-in { max-width:640px; margin:0 auto; }
+      /* ── Navy reface shell for the article header ─────────────────────────
+         Overrides the light nav rules in article.css so the insights library
+         wears the SAME product-first navy header as the refaced site (matches
+         Nav.astro). Cream wordmark + links, twine hover, twine CTA pill. */
+      nav.reface-nav { background:rgba(15,31,56,.94); border-bottom:1px solid rgba(255,255,255,.07); }
+      nav.reface-nav .site-links a { color:#B7C0CD; }
+      nav.reface-nav .site-links a:hover { color:var(--cream); }
+      nav.reface-nav .site-links a.nav-accent { color:var(--twine); }
+      nav.reface-nav .site-links a.nav-accent:hover { color:var(--twine-bright); }
+      nav.reface-nav .site-cta { background:var(--twine); color:var(--navy)!important; }
+      nav.reface-nav .site-cta:hover { background:var(--twine-bright); }
+
+      /* ── The Honest-Expert closing CTA (navy field, twine top-rule, æ mark) ── */
+      .article-cta { background:var(--navy); border-top:3px solid var(--twine); padding:66px 32px; text-align:center; position:relative; overflow:hidden; }
+      .article-cta.ae-mark::after { content:"æ"; position:absolute; right:-2%; bottom:-34%; font-family:"Abril Fatface",serif; font-size:min(38vw,360px); line-height:1; color:rgba(193,140,93,.05); pointer-events:none; user-select:none; z-index:0; }
+      .acta-in { max-width:660px; margin:0 auto; position:relative; z-index:1; }
       .acta-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
-      .article-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); line-height:1.12; color:#fff; margin-bottom:14px; letter-spacing:-.01em; }
-      .article-cta p { font-size:16px; color:#A8B4C0; line-height:1.62; font-weight:300; margin-bottom:28px; }
+      .article-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); line-height:1.12; color:#fff; margin-bottom:16px; letter-spacing:-.01em; }
+      .article-cta p { font-size:16px; color:#A8B4C0; line-height:1.62; font-weight:300; margin-bottom:26px; }
+      .acta-row { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; align-items:center; }
       .acta-btn { display:inline-block; background:var(--twine); color:var(--navy); padding:13px 26px; border-radius:4px; font-size:14px; font-weight:700; letter-spacing:.02em; transition:background .2s, transform .2s; }
       .acta-btn:hover { background:var(--twine-bright); transform:translateY(-2px); }
+      .acta-ghost { display:inline-block; background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); padding:12px 24px; border-radius:4px; font-size:14px; font-weight:600; letter-spacing:.02em; transition:border-color .2s, color .2s; }
+      .acta-ghost:hover { border-color:var(--twine); color:var(--twine); }
+      .acta-note { font-size:13px; color:#7788A0; font-weight:300; margin:22px 0 0; }
     </style>
     <!-- The .reveal entrance animation runs from base.css at load (with its
          prefers-reduced-motion fallback). The old IntersectionObserver here

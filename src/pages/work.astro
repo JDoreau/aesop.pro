@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const title = 'Reporting Modernization Case Studies | Aesop Analytics'
-const description = 'Anonymized reporting-modernization case studies across finance, real estate, and nonprofits — with KPI governance and deliverable samples.'
-const ogDescription = "Reporting modernization in practice. Anonymized case studies across operations, finance, and nonprofit sectors.";
+const title = 'Estates We Mapped and Governed | Aesop Analytics'
+const description = 'Anonymized reporting-modernization case studies across finance, real estate, and nonprofits — estates mapped, KPIs governed with named owners, and the living system that keeps them true.'
+const ogDescription = "Estates we mapped and governed. Anonymized case studies across operations, finance, and nonprofit sectors — and the method that became Aesop Manteia.";
 
 // Article schema for each anonymized case study. Content-only — no Review or
 // AggregateRating until client-approved quotes and ratings are visible on-page.
@@ -52,11 +52,11 @@ const workSchema = [
 <BaseLayout title={title} description={description} path="/work" ogDescription={ogDescription} schema={workSchema}>
 
 <!-- HERO -->
-<div class="page-hero">
+<div class="page-hero reface ae-host ae-mark" style="--ae-size:min(40vw,480px); --ae-right:-2%; --ae-top:-18%; --ae-opacity:.07;">
   <div class="page-hero-in">
-    <div class="eyebrow">Work &amp; Portfolio</div>
-    <h1>What the work actually looks like.</h1>
-    <p>Anonymized case studies from reporting modernization, KPI governance, and dashboard rebuilds — across operations, finance, and nonprofit sectors.</p>
+    <div class="eyebrow">Why trust it · The work</div>
+    <h1>Estates we mapped and governed.</h1>
+    <p>Anonymized case studies from reporting modernization, KPI governance, and dashboard rebuilds — across operations, finance, and nonprofit sectors. Each one ended the same way: leadership trusting the number, knowing who owns it, with a living record to keep it that way. These engagements are the method Aesop Manteia now runs.</p>
     <div class="anon-note">
       All client details have been anonymized. Sector, size, problem type, work performed, and result signals are accurate; identifying details are not. These are representative founder-led transformations.
     </div>
@@ -64,7 +64,7 @@ const workSchema = [
 </div>
 
 <!-- CASE STUDIES -->
-<section class="case-studies">
+<section class="case-studies reface">
   <div class="wrap">
     <div class="cs-grid">
 
@@ -155,6 +155,8 @@ const workSchema = [
           </svg>
           <figcaption>Illustrative only — represents the format and depth of a governed KPI dictionary entry for a financial institution.</figcaption>
         </figure>
+
+        <p class="cs-keeps">Today, a governed record like this is exactly what <a href="/platform/">Aesop Manteia</a> holds and keeps current — every definition owned, sourced, and standing behind the number a year later.</p>
       </div>
 
       <hr class="cs-divider">
@@ -290,6 +292,8 @@ const workSchema = [
           </svg>
           <figcaption>Illustrative only — styled to represent the type and quality of output, not actual client data.</figcaption>
         </figure>
+
+        <p class="cs-keeps">One agreed occupancy definition, five governed dashboards on one source — the kind of estate <a href="/platform/">Manteia</a> now maps and keeps true, so the definitions don't quietly drift apart again.</p>
       </div>
 
       <hr class="cs-divider">
@@ -338,6 +342,8 @@ const workSchema = [
             <div class="oc-l">Unified outcome framework replacing four disconnected tracking systems</div>
           </div>
         </div>
+
+        <p class="cs-keeps">A single outcome framework, credible to any funder — the sort of governed, sourced record <a href="/platform/">Manteia</a> keeps standing, so the impact story holds up the next time it's asked for.</p>
       </div>
 
     </div>
@@ -345,7 +351,7 @@ const workSchema = [
 </section>
 
 <!-- SAMPLE DELIVERABLES -->
-<section class="samples">
+<section class="samples reface">
   <div class="wrap">
     <div class="samples-label">Sample deliverables</div>
     <h2>What the outputs actually look like.</h2>
@@ -482,9 +488,9 @@ const workSchema = [
 </section>
 
 <!-- CTA -->
-<div class="cta-strip">
-  <h2>Want to see what this looks like for your organization?</h2>
-  <p>The Reporting Clarity Assessment produces outputs like these in 2–3 weeks. Start with a free diagnostic call.</p>
+<div class="cta-strip reface">
+  <h2>Want to see what this looks like on your own estate?</h2>
+  <p>The Reporting Clarity Assessment produces outputs like these in 2–3 weeks — and maps your estate into Manteia, the living system that keeps them true. Start with a free diagnostic call.</p>
   <a href="/diagnostic/" class="btn">Book a Reporting Trust Diagnostic →</a>
 </div>
 
@@ -537,6 +543,10 @@ const workSchema = [
 .cv-label.navy { color:var(--navy); }
 .cs-visual svg { display:block; width:100%; height:auto; }
 .cs-visual figcaption { font-size:12px; color:var(--muted); margin-top:12px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; font-style:italic; }
+/* Product-tie line — proof points at the living system */
+  .cs-keeps { margin-top:28px; font-size:15.5px; color:var(--slate); font-weight:300; line-height:1.65; max-width:74ch; border-left:3px solid var(--twine); padding:4px 0 4px 18px; }
+.cs-keeps a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; font-weight:400; }
+.cs-keeps a:hover { color:var(--twine); }
 /* Section divider */
   .cs-divider { border:none; border-top:2px solid var(--rule); margin:0; }
 /* ── SAMPLE DELIVERABLES ── */

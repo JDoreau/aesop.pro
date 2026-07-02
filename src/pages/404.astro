@@ -1,18 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const title = 'Page Not Found | Aesop Analytics'
-const description = 'The page you were looking for could not be found. Head back to the Aesop Analytics homepage or explore our services and insights.'
+const description = 'The page you were looking for could not be found. Head back to the Aesop Analytics homepage, or explore the product, the recent work, and the insights library.'
 ---
 
 <BaseLayout title={title} description={description} path="/404" noindex={true}>
-  <section class="nf">
+  <section class="nf reface">
     <div class="nf-in">
       <div class="eyebrow">Error 404</div>
       <h1>This page got lost in the data.</h1>
-      <p>The link you followed may be broken, or the page may have moved. Let's get you back to something useful.</p>
+      <p>The link you followed may be broken, or the page may have moved. Here is the honest answer — this isn't where you meant to be. Let's get you back to something useful.</p>
       <div class="nf-links">
         <a href="/" class="nf-primary">Back to home</a>
-        <a href="/services/">Services</a>
+        <a href="/platform/">The product</a>
         <a href="/insights/">Insights &amp; Studies</a>
         <a href="/contact/">Contact</a>
       </div>
@@ -23,9 +23,9 @@ const description = 'The page you were looking for could not be found. Head back
 <style>
   .nf { background:var(--paper); padding:96px 0 120px; }
   .nf-in { max-width:680px; margin:0 auto; padding:0 32px; text-align:center; }
-  .nf .eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
-  .nf h1 { font-family:"Newsreader",serif; font-weight:500; font-size:clamp(30px,5vw,46px); line-height:1.12; color:var(--navy); margin:0 0 18px; }
-  .nf p { font-family:"DM Sans",sans-serif; font-size:17px; line-height:1.6; color:var(--slate); margin:0 0 36px; }
+  .nf .eyebrow { margin-bottom:16px; }
+  .nf h1 { font-size:clamp(30px,5vw,46px); line-height:1.12; margin:0 0 18px; }
+  .nf p { font-family:"DM Sans",sans-serif; font-size:17px; line-height:1.6; color:var(--slate); margin:0 0 36px; font-weight:300; }
   .nf-links { display:flex; flex-wrap:wrap; gap:14px 28px; justify-content:center; align-items:center; }
   .nf-links a { font-family:"DM Sans",sans-serif; font-size:14px; color:var(--sepia); text-decoration:underline; text-underline-offset:3px; }
   .nf-links a:hover { color:var(--twine); }

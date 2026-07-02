@@ -134,7 +134,7 @@ export function mountHealthCheck() {
     const scoreBox = el('div', 'hc-scorebox');
     const num = el('div', 'hc-index b-' + (r.band)); num.textContent = String(r.index);
     scoreBox.appendChild(num); scoreBox.appendChild(el('div', 'hc-index-max', '/ 100'));
-    const pill = el('div', 'hc-band-pill bp-' + r.band); pill.textContent = 'TRUST Index · ' + r.bandLabel;
+    const pill = el('div', 'hc-band-pill bp-' + r.band); pill.textContent = 'Trust Initiate Score · ' + r.bandLabel;
     scoreBox.appendChild(pill);
     head.appendChild(scoreBox);
     const headText = el('div', 'hc-head-text');

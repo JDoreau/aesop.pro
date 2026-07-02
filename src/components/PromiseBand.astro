@@ -1,0 +1,21 @@
+---
+// PromiseBand.astro — the one-line brand-promise strip (quiet paper-2 band).
+// -----------------------------------------------------------------------------
+// A calm centered band carrying a single DM Sans line — the brand promise or a
+// section-to-section hinge. Sets the honest temperature before product claims.
+//
+// PROPS:
+//   parts — the line, split into pieces joined by a twine .dot separator.
+//           e.g. ["We bring you value", "or we tell you honestly that we can't."]
+//           A single-element array renders one uninterrupted line.
+//
+// Canonical promise (IDENTITY §5): "We bring you value, or we tell you honestly
+// that we can't." — the default when no parts are passed.
+interface Props { parts?: string[]; }
+const { parts = ["We bring you value", "or we tell you honestly that we can't."] } = Astro.props;
+---
+<div class="promise-band">
+  <div class="promise-in">
+    <p>{parts.map((p, i) => (<>{i > 0 && <span class="dot"></span>}{p}</>))}</p>
+  </div>
+</div>

@@ -1,505 +1,280 @@
 ---
+// index.astro — the homepage. The reface's product-first story, ported
+// faithfully from the blessed sample (DESIGN/site-reface/index.html) into the
+// real Astro system using the shared section components + sections.css.
+// Narrative arc (SITE-DIRECTION §2): hero → promise → trust-gap → product
+// spine (with the live Ask demo + honesty rail) → why-trust-it → how-it-works
+// → proof → stats → honest on-ramp → final CTA. URL preserved: "/".
 import BaseLayout from "../layouts/BaseLayout.astro";
-import OwlMark from "../components/OwlMark.astro";
-import { featured } from "../data/insights.ts";
-import { linkHref } from "../data/nav.ts";
-const title = 'Reporting Modernization & Data Trust | Aesop Analytics'
-const description = 'Governed data-practice software for 50-500 person companies, entered through reporting trust. We fix dashboard sprawl and KPI trust, then leave behind Manteia - a living system that keeps it that way. Principal-led. Nashville, TN.'
-const ogDescription = "Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems.";
+import Hero from "../components/Hero.astro";
+import PromiseBand from "../components/PromiseBand.astro";
+import SpineCard from "../components/SpineCard.astro";
+import HonestyRail from "../components/HonestyRail.astro";
+import ProofCard from "../components/ProofCard.astro";
+import StatBand from "../components/StatBand.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Reveal from "../components/Reveal.astro";
+
+const title = 'Data governance you can trust, delivered as software | Aesop Analytics';
+const description = "Aesop Analytics is a data-governance software company. We map your data estate, put every metric's owner and definition in plain view, and leave behind Aesop Manteia — a living system that keeps reporting trustworthy, with a citation behind every number.";
+const ogDescription = "Reporting you can finally trust — and a living system that keeps it that way. Your estate mapped, governed, and answerable, with a citation for every claim.";
 ---
 
 <BaseLayout title={title} description={description} path="/" ogDescription={ogDescription}>
+<div class="reface">
 
-<!-- ── HERO ── -->
-<section class="hero" id="top">
-  <div class="hero-in">
-    <div class="eyebrow reveal">Reporting Modernization · KPI Trust · Data Governance</div>
-    <h1 class="reveal" style="animation-delay:.08s">Modern reporting for leaders who need numbers they can <span class="em">trust.</span></h1>
-    <p class="hero-sub reveal" style="animation-delay:.16s">We help growing companies clean up dashboard sprawl, align KPI definitions, reduce manual reporting work, and build practical data governance — so decisions move faster and leadership can trust what they see. Then we leave behind Manteia — a living system that keeps it that way.</p>
-    <div class="btn-row reveal" style="animation-delay:.24s">
-      <a href="/diagnostic/" class="btn">Book a Reporting Trust Diagnostic</a>
-      <a href="/resources/" class="btn ghost">Download the Health Check</a>
+  <!-- ── HERO ── -->
+  <Hero eyebrow="Data governance · Reporting trust · AI-readiness">
+    <h1>Reporting you can finally <span class="em">trust</span> — and a living system that keeps it that way.</h1>
+    <Fragment slot="sub">We map your data estate, put every metric's owner and definition in plain view, and leave behind Aesop Manteia — so a year from now the trust is still there, with a citation behind every number.</Fragment>
+    <Fragment slot="cta">
+      <a href="/diagnostic/" class="btn">See it on your estate</a>
+      <a href="/assessment/" class="btn ghost">Book a diagnostic</a>
+    </Fragment>
+    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">A data-governance software company · Nashville, TN · aesopanalytics.com</div>
+  </Hero>
+
+  <!-- ── PROMISE BAND ── -->
+  <PromiseBand />
+
+  <!-- ── THE TRUST GAP (the problem, named plainly) ── -->
+  <section class="pain band-paper">
+    <div class="wrap">
+      <div class="pain-grid">
+        <div class="pain-left">
+          <div class="sec-label">The real problem</div>
+          <h2>The pain isn't bad dashboards. It's that no one trusts the numbers.</h2>
+          <p>Most companies that invest in BI tools still land in the same place: leadership is making decisions on data it doesn't fully believe. Different teams pull different numbers. KPIs have no agreed owner. Reporting is rebuilt by hand every week. The dashboards exist — they're just not trusted.</p>
+          <div class="pov">Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems.</div>
+          <p class="hinge">A new tool doesn't fix that. <b>A governed system does — and that's what Manteia is.</b></p>
+        </div>
+        <div class="pain-right">
+          <div class="pain-cap">Does this sound familiar?</div>
+          <div class="pain-list">
+            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Leadership sees different numbers in different reports</span></div>
+            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Finance says one thing, Sales says another &mdash; for the same KPI</span></div>
+            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
+            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Dashboards exist, but nobody uses them to make decisions</span></div>
+            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">No one knows which report is official or whose number is right</span></div>
+            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">AI initiatives stall because the underlying data can't be trusted</span></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="hero-note reveal" style="animation-delay:.38s">Jonathan Doreau · Nashville, TN · aesopanalytics.com</div>
-  </div>
-</section>
+  </section>
 
-<!-- ── PROMISE ── -->
-<div class="promise">
-  <div class="promise-in">
-    <p>Reporting should clarify decisions<span class="dot"></span>not create debates.</p>
-  </div>
+  <!-- ── PRODUCT SPINE (the new centerpiece) ── -->
+  <section class="product band-navy ae-host ae-mark" id="product" style="--ae-size:min(40vw,460px); --ae-left:-4%; --ae-bottom:-24%; --ae-opacity:.05;">
+    <div class="wrap">
+      <div class="sec-label">The product</div>
+      <h2 class="product-h">Manteia turns the engagement into a living system.</h2>
+      <p class="lede product-lede">Three parts, one continuous system: it maps your estate from metadata, makes the governance visible, and lets anyone ask a plain question and get an answer they can stand behind. Every step is auditable, because none of it is guesswork.</p>
+
+      <div class="spine">
+        <SpineCard step="01" name="The Scribe" greek="Aesop Graphion" status="dep" statusLabel="Deployed today">
+          Point it at your metadata &mdash; your BI files, your warehouse catalog, a simple export &mdash; and it maps your estate: tables, metrics, and the lineage between them. It reads what actually exists. It doesn't guess.
+        </SpineCard>
+        <SpineCard step="02" name="The Portal" greek="Aesop Stoa" status="dep" statusLabel="Deployed — log in today" highlight={true}>
+          Your governance, made visible: every metric's owner and definition, which reports disagree, and &mdash; most tellingly &mdash; what no one owns at all. The gaps render in red. That red is the work, now visible to the people who can fix it.
+        </SpineCard>
+        <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live answers now · live-data querying in preview">
+          Ask a plain question &mdash; "which numbers does no one own?", "is this metric trustworthy?" &mdash; and get an answer grounded only in your governed data, with a citation for every claim. If the answer isn't in your data, it says so.
+        </SpineCard>
+      </div>
+
+      <!-- LIVE ASK DEMO — the honesty thesis made clickable -->
+      <div class="askwrap" id="ask">
+        <div class="ask-h">Try the agent</div>
+        <div class="ask-sub">This is how The Agent answers &mdash; grounded in a governed estate, with a source for every claim, and an honest refusal when the answer isn't there. Pick a question. (An illustrative demo on a synthetic estate; not your data.)</div>
+        <div class="ask-qs" id="askQs"></div>
+        <div class="ask-panel">
+          <div class="ask-you" id="askYou"></div>
+          <div class="ask-answer" id="askAnswer"></div>
+          <div class="ask-cite" id="askCite"></div>
+        </div>
+        <div class="ask-foot">The refusal is the point: the agent will not invent a number, an owner, or a definition to fill a silence. That is the same discipline the whole product is built on.</div>
+      </div>
+
+      <!-- HONESTY RAIL — the differentiator, made structural -->
+      <div class="rail-wrap">
+        <HonestyRail
+          deployed="The governed portal with secure login, the estate map, and grounded answers with citations. You can log in and see a real estate now. The write layer is live too &mdash; ratify a definition, assign an owner, log a request, and the record updates."
+          preview="The agent asking questions of your live data directly, and regenerating governed reports from the map. The design is ratified and building; we'll show you exactly how far along it is."
+          roadmap="Native Power BI report generation and automated Gold-layer design. Real work, honestly not finished &mdash; so we don't put it on a slide as though it were."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY TRUST IT ── -->
+  <section class="safe band-paper2" id="safe">
+    <div class="wrap">
+      <div class="sec-label">Built to be trusted</div>
+      <h2 class="safe-h">Why you can stand behind every number it shows.</h2>
+      <div class="safe-grid">
+        <div class="safe-item">
+          <div class="si-h">It computes, it doesn't guess</div>
+          <p>The map, the lineage, and every governance finding are produced by deterministic code reading your own systems &mdash; not by a model's opinion. The same inputs always give the same answer, and you can audit how it was reached.</p>
+        </div>
+        <div class="safe-item">
+          <div class="si-h">The agent cites or refuses</div>
+          <p>It answers only from your governed estate and attaches the source to every claim. It's built so it cannot fabricate a number, an owner, or a definition &mdash; the honest "that isn't governed yet" is a feature, not a failure.</p>
+        </div>
+        <div class="safe-item">
+          <div class="si-h">Metadata, never your data</div>
+          <p>We work from metadata and exports, not a copy of your warehouse &mdash; we ask for a key, not a copy. The platform is model-agnostic and can run inside your own walls, so sensitive estates never leave the building.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how band-navy" id="how">
+    <div class="wrap">
+      <div class="sec-label">How it works</div>
+      <h2 class="how-h">From a pile of systems to a question you can ask.</h2>
+      <p class="lede how-lede">The same pipeline runs for a fifty-table startup or a fifty-thousand-table enterprise. It reads the catalog; it doesn't guess what you have.</p>
+      <div class="flow-grid">
+        <div class="flow-step"><div class="fs-n">1</div><div class="fs-name">Connect</div><div class="fs-desc">A read-only export or catalog from each system. We ask for a key, never a copy of your data.</div></div>
+        <div class="flow-step"><div class="fs-n">2</div><div class="fs-name">Map</div><div class="fs-desc">Every table, field, metric, and lineage edge, normalized into one typed map of the estate.</div></div>
+        <div class="flow-step"><div class="fs-n">3</div><div class="fs-name">Govern</div><div class="fs-desc">Owners, definitions, and the gaps surfaced &mdash; what's contested, what's unowned, what's never been governed.</div></div>
+        <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate and an agent anyone can ask &mdash; every claim traceable to its source.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROOF ── -->
+  <section class="proof band-paper">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-label" style="display:inline-block">Proof</div>
+        <h2>The work isn't finished when the dashboard goes live.</h2>
+        <p>It's finished when leadership trusts the number, knows who owns it, and Manteia keeps it true. Here's what that looked like across recent engagements.</p>
+      </div>
+      <div class="proof-grid">
+        <ProofCard n="31" label="Portfolio KPIs governed with named owners" sector="Finance & Banking" href="/work/#finance-banking" />
+        <ProofCard n="5" label="Governed dashboards on one Snowflake source" sector="Real Estate Operations" href="/work/#real-estate-operations" />
+        <ProofCard n="~4" unit=" hrs" label="Grant reporting, down from ~12 per grant" sector="Nonprofit / Impact" href="/work/#nonprofit-impact" />
+      </div>
+      <p class="proof-caveat">Representative founder-led transformations, anonymized &mdash; the sectors and result signals are intact. These are the engagements that became the method Manteia now runs.</p>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <StatBand />
+
+  <!-- ── THE HONEST ON-RAMP ── -->
+  <section class="onramp band-paper2" id="onramp">
+    <div class="onramp-in">
+      <div class="sec-label" style="display:inline-block">The on-ramp</div>
+      <h2>The fastest way to see this on your own estate.</h2>
+      <p>Start with a Reporting Clarity Assessment &mdash; a fixed-fee, two-to-three-week look that maps your estate into Manteia and names every gap. You leave with the picture leadership has always wanted, and the living system that keeps it true.</p>
+      <p class="ladder">It grows from there &mdash; a modernization sprint, a governance starter, a fractional retainer &mdash; only when the roadmap justifies it. Never a bigger engagement than the problem needs.</p>
+      <div class="btn-row center" style="margin-top:28px"><a href="/assessment/" class="btn">See the Assessment</a></div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <CtaBand eyebrow="See it for real">
+    <h2>Watch your own estate become a living record.</h2>
+    <Fragment slot="sub">A focused 30-minute look, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
+    <Fragment slot="cta">
+      <a href="/diagnostic/" class="btn on-light">See it on your estate</a>
+      <a href="/diagnostic/" class="btn ghost">Book a diagnostic</a>
+    </Fragment>
+  </CtaBand>
+
+  <Reveal selector=".spine-card,.safe-item,.proof-card,.pain-item,.honesty-rail .rr,.flow-step,.stat-band .stat-in>div" />
 </div>
-
-<!-- ── PAIN SECTION ── -->
-<section class="pain">
-  <div class="wrap">
-    <div class="pain-grid">
-      <div class="pain-left">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:16px">The real problem</div>
-        <h2>The pain isn't bad dashboards. It's that no one trusts the numbers.</h2>
-        <p>Most companies investing in BI tools still end up with the same problem: leadership is making decisions on data they don't fully believe. Different teams pull different numbers. KPIs have no agreed owner. Reporting is manually rebuilt every week. The dashboards exist — they're just not trusted.</p>
-        <p>That's not a visualization problem. That's an ownership, definition, process, and governance problem. And no new tool fixes it until those are addressed first.</p>
-        <div class="pov">"Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems."</div>
-      </div>
-      <div class="pain-right">
-        <div class="pain-label">Does this sound familiar?</div>
-        <div class="pain-list">
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Leadership sees different numbers in different reports</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Teams disagree on KPI definitions — Finance says one thing, Sales says another</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Dashboards exist but aren't trusted — nobody uses them to make decisions</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">No one knows which report is "official" or whose number is right</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">Reporting requests pile up with no clear intake or prioritization process</span></div>
-          <div class="pain-item"><span class="pi">↯</span><span class="pt">AI initiatives are stalled because the underlying data can't be trusted</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── TRUST METHOD ── -->
-<section class="method" id="method">
-  <div class="method-in">
-    <div class="method-head">
-      <h2>How every engagement works.</h2>
-      <p>Every engagement follows the same five-phase process — a proven sequence for diagnosing, fixing, and governing reporting systems that have lost the trust of the people who use them.</p>
-    </div>
-    <div class="trust-steps">
-      <div class="trust-step">
-        <div class="ts-letter">1</div>
-        <div class="ts-name">Triage the reporting estate</div>
-        <div class="ts-desc">Catalog every dashboard, spreadsheet, and recurring report. Map owners, users, trust levels, and decision purpose. Find out what's used, what's ignored, and what's duplicated.</div>
-      </div>
-      <div class="trust-step">
-        <div class="ts-letter">2</div>
-        <div class="ts-name">Reconcile metric definitions</div>
-        <div class="ts-desc">Identify conflicting KPIs. Document how metrics are currently calculated. Expose where Finance, Sales, and Ops are using different definitions for the same word — and why that breaks trust.</div>
-      </div>
-      <div class="trust-step">
-        <div class="ts-letter">3</div>
-        <div class="ts-name">Unify ownership &amp; source of truth</div>
-        <div class="ts-desc">Assign business owners and technical owners to every metric. Designate the authoritative source system. Establish who approves definition changes and who gets notified.</div>
-      </div>
-      <div class="trust-step">
-        <div class="ts-letter">4</div>
-        <div class="ts-name">Standardize reporting practices</div>
-        <div class="ts-desc">Create naming conventions, request intake, dashboard certification rules, and report retirement processes. Make it clear which reports are official and how people request changes.</div>
-      </div>
-      <div class="trust-step">
-        <div class="ts-letter">5</div>
-        <div class="ts-name">Transition to operating cadence</div>
-        <div class="ts-desc">Embed the new process into the business. Establish governance meeting cadences, quality monitoring, and continuous improvement. The goal is a system that sustains itself.</div>
-      </div>
-    </div>
-    <div class="method-cta">
-      <p>This process is the backbone of every Reporting Clarity Assessment and Modernization Sprint.</p>
-      <a href="/assessment/" class="btn">See how the Assessment works →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── OFFERS ── -->
-<section class="offers" id="services">
-  <div class="wrap">
-    <div class="offers-label">The offer ladder</div>
-    <h2>Start where the risk is lowest.</h2>
-    <p class="intro">Every engagement begins with a focused assessment — not a six-month transformation. You get a clear picture of the problem and a practical roadmap before committing to anything larger.</p>
-    <div class="offer-cards">
-
-      <!-- Flagship -->
-      <a href="/assessment/" class="offer-card flagship" style="text-decoration:none">
-        <div class="oc-tag">★ Flagship first offer</div>
-        <div class="oc-name">Reporting Clarity Assessment</div>
-        <div class="oc-desc">A structured 2–3 week review of your reporting estate: inventory, metric conflicts, KPI gaps, data source map, manual burden analysis, and a prioritized 30/60/90-day modernization roadmap. You'll know exactly where trust is breaking down and what to fix first.</div>
-        <div class="oc-meta">
-          <span class="oc-pill">$5,000–$9,500</span>
-          <span class="oc-pill">2–3 weeks</span>
-          <span class="oc-pill">10 deliverables</span>
-        </div>
-        <div class="oc-link">See what's included →</div>
-      </a>
-
-      <!-- Sprint -->
-      <a href="/services/#sprint" class="offer-card" style="text-decoration:none">
-        <div class="oc-tag">Implementation</div>
-        <div class="oc-name">Executive Reporting Modernization Sprint</div>
-        <div class="oc-desc">Build or redesign a high-value reporting package — executive KPI dashboard, KPI dictionary, source-of-truth map, and reporting standards guide. Leadership gets a cleaner, trusted reporting system built around actual decisions.</div>
-        <div class="oc-meta">
-          <span class="oc-pill">$15,000–$40,000</span>
-          <span class="oc-pill">4–8 weeks</span>
-        </div>
-        <div class="oc-link" style="color:var(--twine)">Learn more →</div>
-      </a>
-
-      <!-- Governance -->
-      <a href="/services/#governance" class="offer-card" style="text-decoration:none">
-        <div class="oc-tag">Governance</div>
-        <div class="oc-name">Data Governance Starter Kit</div>
-        <div class="oc-desc">A practical governance system — KPI dictionary, metric owner matrix, data owner RACI, reporting intake process, and an operating model that reduces metric confusion without creating bureaucracy.</div>
-        <div class="oc-meta">
-          <span class="oc-pill">$12,000–$35,000</span>
-          <span class="oc-pill">4–6 weeks</span>
-        </div>
-        <div class="oc-link" style="color:var(--twine)">Learn more →</div>
-      </a>
-
-      <!-- Retainer -->
-      <a href="/services/#retainer" class="offer-card" style="text-decoration:none">
-        <div class="oc-tag">Ongoing support</div>
-        <div class="oc-name">Fractional Analytics Operations Retainer</div>
-        <div class="oc-desc">Senior analytics operating support on an ongoing basis — roadmap management, governance, dashboard improvements, stakeholder intake, and reporting leadership — without the cost of a full-time hire.</div>
-        <div class="oc-meta">
-          <span class="oc-pill">$3,500–$12,000/mo</span>
-          <span class="oc-pill">Defined scope</span>
-        </div>
-        <div class="oc-link" style="color:var(--twine)">Learn more →</div>
-      </a>
-
-    </div>
-    <div style="text-align:center;margin-top:36px">
-      <p style="font-size:15px;color:var(--muted);margin-bottom:16px">Every engagement begins with a free 30-minute Reporting Trust Diagnostic to make sure there's a fit.</p>
-      <a href="/diagnostic/" class="btn">Book a free diagnostic call</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── THE PLATFORM ── -->
-<section class="platform-tease">
-  <div class="wrap">
-    <div class="pt-head">
-      <div class="sec-label" style="color:var(--twine)">New — the platform</div>
-      <h2>The work no longer ends with a deck.</h2>
-      <p>Every engagement now builds you <strong>Manteia</strong> — your data's living system of trust: your estate mapped, your governance visible, and an oracle you can ask in plain English, grounded in your own data with a citation for every claim.</p>
-    </div>
-    <div class="pt-parts">
-      <div class="pt-part"><div class="ptn">Auto-Doc (Aesop Graphion)</div><div class="ptd">Maps your estate automatically — tables, metrics, and the lineage between them.</div></div>
-      <div class="pt-part"><div class="ptn">The Record (Aesop Stoa)</div><div class="ptd">Governance you can see — owners, definitions, and the gaps rendered in red.</div></div>
-      <div class="pt-part"><div class="ptn">The Oracle (Aesop Pythia)</div><div class="ptd">Answers grounded only in your governed data — it cites its source or says it doesn't know.</div></div>
-    </div>
-    <a href="/platform/" class="btn">Explore Manteia →</a>
-  </div>
-</section>
-
-<!-- ── WHO WE SERVE ── -->
-<section class="who">
-  <div class="wrap">
-    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:16px">Ideal clients</div>
-    <h2>Growing companies with real reporting chaos.</h2>
-    <p class="intro">The best-fit clients are large enough to have real reporting pain but not so large that procurement and internal politics slow everything down. Typically 50–500 employees, operations-heavy, with no mature analytics operating model.</p>
-    <div class="personas">
-      <div class="persona"><div class="pn">COO</div><div class="pp">"I can't see what's happening across the business fast enough."</div></div>
-      <div class="persona"><div class="pn">CFO</div><div class="pp">"Every department has a different number."</div></div>
-      <div class="persona"><div class="pn">VP Operations</div><div class="pp">"We're running the business from spreadsheets and fire drills."</div></div>
-      <div class="persona"><div class="pn">Head of Analytics</div><div class="pp">"We're drowning in requests and nobody agrees on definitions."</div></div>
-      <div class="persona"><div class="pn">Revenue Operations</div><div class="pp">"Pipeline, forecast, and churn metrics don't line up."</div></div>
-      <div class="persona"><div class="pn">Controller / VP Finance</div><div class="pp">"Why are these two reports showing different revenue?"</div></div>
-    </div>
-    <div class="not-grid" style="margin-top:44px">
-      <div class="not-box is">
-        <div class="nb-label">We are</div>
-        <div class="not-item">A data-governance software company — we leave behind Manteia, a living system you own</div>
-        <div class="not-item">A reporting modernization &amp; data trust specialist</div>
-        <div class="not-item">Principal-led — you work directly with the principal, diagnosis through delivery, never a rotating junior team</div>
-        <div class="not-item">Platform-agnostic — whatever fits, not what earns a margin</div>
-      </div>
-      <div class="not-box not">
-        <div class="nb-label">We are not</div>
-        <div class="not-item">A dashboard factory or generic BI contractor</div>
-        <div class="not-item">A data engineering body shop</div>
-        <div class="not-item">A tool reseller or platform partner</div>
-        <div class="not-item">A vague AI consultant</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── RESULTS / PROOF ── -->
-<section class="results">
-  <div class="wrap">
-    <div class="results-head">
-      <div class="results-eyebrow">Proof</div>
-      <h2>The work isn't finished when the dashboard goes live.</h2>
-      <p>It's finished when leadership trusts the number, knows who owns it, and understands what decision it supports. Here's what that looked like across recent engagements — anonymized, with the sectors and result signals intact.</p>
-    </div>
-    <div class="results-grid">
-      <a class="res-card" href="/work/#finance-banking">
-        <div class="res-n">31</div>
-        <div class="res-l">Portfolio KPIs governed with named owners</div>
-        <div class="res-meta"><span class="res-sector">Finance &amp; Banking</span><span class="res-link">See the case →</span></div>
-      </a>
-      <a class="res-card" href="/work/#real-estate-operations">
-        <div class="res-n">5</div>
-        <div class="res-l">Governed dashboards on one Snowflake source</div>
-        <div class="res-meta"><span class="res-sector">Real Estate Operations</span><span class="res-link">See the case →</span></div>
-      </a>
-      <a class="res-card" href="/work/#nonprofit-impact">
-        <div class="res-n">~4<span class="res-unit"> hrs</span></div>
-        <div class="res-l">Grant reporting, down from ~12 per grant</div>
-        <div class="res-meta"><span class="res-sector">Nonprofit / Impact</span><span class="res-link">See the case →</span></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ── STATS ── -->
-<div class="stats">
-  <div class="stats-in">
-    <div><div class="stat-n">37<span style="font-size:.5em">+</span></div><div class="stat-l">Combined years in analytics, BI &amp; leadership</div></div>
-    <div><div class="stat-n">6</div><div class="stat-l">Industries with deep domain expertise</div></div>
-    <div><div class="stat-n">3</div><div class="stat-l">Complete data program modernizations</div></div>
-    <div><div class="stat-n">26</div><div class="stat-l">Successful engagements</div></div>
-  </div>
-</div>
-
-<!-- ── FEATURED INSIGHT ── -->
-<section class="featured">
-  <div class="wrap">
-    <div class="featured-label">Featured study</div>
-    <h2>Analysis held to the same standard as our client work.</h2>
-    <p class="intro">Rigorous, even-handed, clear about what the data can and can't say.</p>
-    <div class="study-card">
-      <div class="stxt">
-        <div class="stag">{featured.tag}</div>
-        <h3>{featured.title}</h3>
-        <p>{featured.desc}</p>
-        <a href={linkHref(`/insights/${featured.slug}`)} class="study-btn">{featured.read}</a>
-      </div>
-      <div class="sviz">
-        <img src={featured.image} alt={featured.imageAlt} loading="lazy" width="260" height="260" />
-      </div>
-    </div>
-    <a href="/insights/" class="see-all">All insights &amp; field studies</a>
-  </div>
-</section>
-
-<!-- ── ABOUT TEASER ── -->
-<section class="about-tease">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="about-mark" aria-hidden="true"><OwlMark body="var(--navy)" eyes="var(--twine)" style="width:clamp(110px,16vw,180px);height:auto;display:block;margin:0 auto;" /><span class="sm">Jonathan Doreau</span></div>
-      <div class="about-right">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--twine);margin-bottom:16px">Who's behind it</div>
-        <h2>Fifteen years turning messy data into decisions people trust.</h2>
-        <p><strong>Jonathan Doreau</strong> has spent 15+ years as an analytics and BI leader across finance, healthcare and research (including an NIH-funded program), real estate, and nonprofit — building reporting systems from scratch, fixing environments that had lost trust, and translating messy data into governance that organizations actually use.</p>
-        <p>Today, Jonathan runs Aesop as a principal-led practice — you work directly with him, diagnosis through delivery — drawing on a small circle of independent senior specialists for added depth behind the scenes. The common thread across every engagement: turning fragmented, distrusted reporting into systems people rely on when they make real decisions.</p>
-        <div class="creds"><span class="cred-tag">SQL</span><span class="cred-tag">Power BI</span><span class="cred-tag">Tableau</span><span class="cred-tag">Snowflake</span><span class="cred-tag">KPI Design</span><span class="cred-tag">Governance</span><span class="cred-tag">Reporting Modernization</span></div>
-        <a href="/about/" class="about-link">Full background</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FINAL CTA ── -->
-<section class="final-cta">
-  <div class="eyebrow" style="color:var(--twine);letter-spacing:.28em;font-size:11.5px;font-weight:600;text-transform:uppercase;margin-bottom:24px">Start here</div>
-  <h2>Find out where your reporting trust is breaking down.</h2>
-  <p>A free 30-minute diagnostic call — no pitch, no slide deck. We identify the biggest reporting trust gaps in your organization and whether a Reporting Clarity Assessment would be useful. If it's not the right fit, we'll say so.</p>
-  <div class="btn-row" style="justify-content:center">
-    <a href="/diagnostic/" class="btn" style="color:var(--navy)">Book a Reporting Trust Diagnostic</a>
-    <a href="/resources/" class="btn ghost">Download the Health Check</a>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
 
 <style>
-section { position:relative; }
-/* Newsreader = primary display/header font. Abril Fatface = wordmark + æ moniker ONLY (2026-07 directive). */
-/* ── HERO ── */
-  .hero { background:var(--navy); color:var(--cream); overflow:hidden; min-height:88vh; display:flex; align-items:center; }
-.hero::after { content:"æ"; position:absolute; right:-3%; top:-14%; font-family:"Abril Fatface",serif; font-size:min(48vw,580px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
-.hero-in { max-width:1080px; margin:0 auto; padding:100px 32px 90px; position:relative; z-index:2; }
-.hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(42px,6.6vw,80px); line-height:1.05; max-width:18ch; margin-bottom:28px; color:var(--cream); letter-spacing:-.01em; }
-.hero h1 .em { color:var(--twine); }
-.hero .hero-sub { font-size:clamp(16px,1.8vw,20px); line-height:1.6; color:#C4BDAE; max-width:54ch; margin-bottom:40px; font-weight:300; }
-.btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.03em; padding:15px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
-.btn:hover { transform:translateY(-2px); background:var(--sepia); }
-.btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); margin-left:10px; }
-.btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; transform:translateY(-2px); }
-.btn-row { display:flex; flex-wrap:wrap; gap:12px; }
-.hero-note { margin-top:52px; display:flex; align-items:center; gap:12px; color:#8FA4B8; font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
-.hero-note::before { content:''; display:block; width:28px; height:1px; background:var(--info); }
-/* ── PROMISE BAR ── */
-  .promise { background:var(--paper-2); border-bottom:1px solid var(--rule); }
-.promise-in { max-width:1080px; margin:0 auto; padding:32px; text-align:center; }
-.promise p { font-family:"DM Sans",sans-serif; font-weight:500; font-size:clamp(17px,2.2vw,25px); color:var(--navy); line-height:1.4; max-width:42ch; margin:0 auto; }
-.dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--twine); margin:0 9px; vertical-align:middle; }
-/* ── PAIN SECTION ── */
-  .pain { padding:80px 0; background:var(--paper); }
-.pain-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
-@media(max-width:760px) {
-  .pain-grid { grid-template-columns:1fr; gap:36px; }
-}
-.pain-left h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,3.8vw,42px); line-height:1.1; color:var(--navy); margin-bottom:20px; }
-.pain-left p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
-.pain-left .pov { font-family:"DM Sans",sans-serif; font-weight:500; font-style:italic; font-size:clamp(16px,2vw,20px); color:var(--navy); border-left:4px solid var(--twine); padding:8px 0 8px 22px; margin-top:28px; line-height:1.4; }
-.pain-right { }
-.pain-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:20px; }
-.pain-list { display:flex; flex-direction:column; gap:0; border-top:2px solid var(--rule); }
-.pain-item { display:flex; gap:14px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--line); }
-.pain-item .pi { font-size:18px; color:var(--contessa); flex-shrink:0; line-height:1.4; font-weight:700; }
-.pain-item .pt { font-size:16px; color:var(--ink); line-height:1.5; font-weight:400; }
-/* ── TRUST METHOD ── */
-  .method { background:var(--navy); padding:80px 0; }
-.method-in { max-width:1080px; margin:0 auto; padding:0 32px; }
-.method-head { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
-@media(max-width:760px) {
-  .method-head { grid-template-columns:1fr; gap:20px; }
-}
-.method-head h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(28px,3.8vw,44px); color:#fff; line-height:1.1; letter-spacing:-.01em; }
-.method-head p { font-size:16.5px; color:#C4BDAE; font-weight:400; line-height:1.6; }
-.trust-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; border-radius:6px; overflow:hidden; }
-@media(max-width:860px) {
-  .trust-steps { grid-template-columns:1fr 1fr; }
-}
-@media(max-width:500px) {
-  .trust-steps { grid-template-columns:1fr; }
-}
-.trust-step { background:var(--navy-2); padding:28px 22px; position:relative; }
-.trust-step:hover { background:var(--navy-3); transition:background .2s; }
-.ts-letter { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:26px; color:var(--twine); line-height:1; margin-bottom:14px; display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border:1.5px solid rgba(193,140,93,.35); border-radius:8px; }
-.ts-name { font-size:14px; font-weight:700; color:#fff; margin-bottom:10px; letter-spacing:.02em; }
-.ts-desc { font-size:13.5px; color:#B8C2D0; line-height:1.55; font-weight:400; }
-.method-cta { margin-top:40px; text-align:center; }
-.method-cta p { font-size:15px; color:#C4BDAE; margin-bottom:20px; font-weight:400; }
-.method-cta .btn { padding:11px 24px; font-size:14px; }
-/* ── OFFER STRIP ── */
-  .offers { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
-.offers-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
-.offers h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); line-height:1.1; color:var(--navy); margin-bottom:14px; max-width:22ch; }
-.offers .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:56ch; margin-bottom:48px; line-height:1.6; }
-.offer-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-@media(max-width:720px) {
-  .offer-cards { grid-template-columns:1fr; }
-}
-.offer-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:28px 26px; display:flex; flex-direction:column; gap:12px; transition:transform .2s,box-shadow .2s,border-color .2s; }
-.offer-card:hover { transform:translateY(-3px); box-shadow:0 16px 40px -20px rgba(15,31,56,.2); border-color:var(--navy-mist); }
-.offer-card.flagship { border-top:3px solid var(--twine); background:var(--navy); color:var(--cream); }
-.offer-card.flagship:hover { border-color:var(--navy-mist); box-shadow:0 16px 40px -20px rgba(15,31,56,.5); }
-.oc-tag { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); }
-.offer-card.flagship .oc-tag { color:var(--twine); }
-.oc-name { font-size:20px; font-weight:700; color:var(--navy); letter-spacing:-.01em; }
-.offer-card.flagship .oc-name { color:#fff; }
-.oc-desc { font-size:15px; color:var(--slate); line-height:1.6; font-weight:300; flex:1; }
-.offer-card.flagship .oc-desc { color:#B8BDCA; }
-.oc-meta { display:flex; gap:16px; flex-wrap:wrap; }
-.oc-pill { font-size:12px; font-weight:600; color:var(--ink); background:var(--paper-2); padding:4px 10px; border-radius:20px; border:1px solid var(--line); }
-.offer-card.flagship .oc-pill { background:var(--navy-2); color:#fff; border-color:var(--navy-3); }
-.oc-link { font-size:13px; font-weight:700; color:var(--twine); letter-spacing:.04em; text-transform:uppercase; margin-top:4px; }
-.oc-link:hover { color:var(--sepia); }
-/* ── WHO WE SERVE ── */
-  .who { padding:80px 0; }
-.who h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:14px; max-width:20ch; }
-.who .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:56ch; margin-bottom:44px; line-height:1.6; }
-.personas { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-@media(max-width:760px) {
-  .personas { grid-template-columns:repeat(2,1fr); }
-}
-@media(max-width:480px) {
-  .personas { grid-template-columns:1fr; }
-}
-.persona { background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:20px 18px; }
-.persona .pn { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
-.persona .pp { font-size:13px; color:var(--muted); line-height:1.5; font-weight:300; font-style:italic; }
-.not-grid { margin-top:40px; display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-@media(max-width:660px) {
-  .not-grid { grid-template-columns:1fr; }
-}
-.not-box { border-radius:6px; padding:22px 20px; }
-.not-box.is { background:rgba(15,31,56,.06); border:1px solid rgba(15,31,56,.12); }
-.not-box.not { background:rgba(206,118,107,.05); border:1px solid rgba(206,118,107,.15); }
-.not-box .nb-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; margin-bottom:10px; }
-.not-box.is .nb-label { color:var(--navy); }
-.not-box.not .nb-label { color:var(--contessa); }
-.not-item { font-size:15px; color:var(--slate); padding:7px 0; border-bottom:1px solid rgba(0,0,0,.05); display:flex; gap:10px; line-height:1.45; font-weight:300; }
-.not-item:last-child { border-bottom:none; }
-.not-item::before { font-weight:700; flex-shrink:0; margin-top:1px; font-size:13px; }
-.not-box.is .not-item::before { content:"✓"; color:var(--navy); }
-.not-box.not .not-item::before { content:"✗"; color:var(--contessa); }
-/* ── STATS ── */
-  .results { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); }
-  .results-head { max-width:760px; margin:0 auto 44px; text-align:center; }
-  .results-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:14px; }
-  .results-head h2 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(26px,3.4vw,40px); line-height:1.12; color:var(--navy); margin-bottom:16px; letter-spacing:-.01em; }
-  .results-head p { font-size:16px; color:var(--slate); line-height:1.6; }
-  .results-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  .res-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:6px; padding:24px 20px; text-decoration:none; transition:border-color .18s, transform .18s, box-shadow .18s; }
-  .res-card:hover { border-color:var(--twine); transform:translateY(-3px); box-shadow:0 10px 30px rgba(15,31,56,.06); }
-  .res-n { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(40px,5vw,54px); color:var(--twine); line-height:1; margin-bottom:14px; }
-  .res-unit { font-family:"DM Sans",sans-serif; font-size:.30em; font-weight:600; color:var(--muted); letter-spacing:.02em; }
-  .res-l { font-size:14px; color:var(--ink); line-height:1.45; font-weight:500; margin-bottom:18px; flex:1; }
-  .res-meta { display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--line); padding-top:14px; }
-  .res-sector { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); }
-  .res-link { font-size:13px; font-weight:600; color:var(--twine); }
-  @media(max-width:860px){ .results-grid { grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:480px){ .results-grid { grid-template-columns:1fr; } }
-  .stats { background:var(--navy); border-top:1px solid rgba(255,255,255,.06); }
-.stats-in { max-width:1080px; margin:0 auto; padding:52px 32px; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center; }
-@media(max-width:700px) {
-  .stats-in { grid-template-columns:repeat(2,1fr); }
-}
-.stat-n { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(34px,4.5vw,52px); color:var(--twine); line-height:1; margin-bottom:10px; }
-.stat-l { font-size:12px; font-weight:500; color:#8FA4B8; letter-spacing:.04em; line-height:1.4; text-transform:uppercase; }
-/* ── FEATURED INSIGHT ── */
-  .featured { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
-.featured-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:16px; }
-.featured h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.4vw,38px); color:var(--navy); margin-bottom:12px; }
-.featured .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:56ch; margin-bottom:36px; }
-.study-card { background:var(--navy); color:var(--cream); border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1.2fr .8fr; }
-@media(max-width:720px) {
-  .study-card { grid-template-columns:1fr; }
-}
-.study-card .stxt { padding:44px 40px; }
-.study-card .stag { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:16px; }
-.study-card h3 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:26px; line-height:1.15; margin-bottom:16px; }
-.study-card p { color:#B8BDCA; font-size:15px; margin-bottom:24px; line-height:1.6; font-weight:300; }
-.study-btn { display:inline-block; color:var(--navy); background:var(--twine); font-weight:700; padding:11px 20px; border-radius:4px; font-size:14px; letter-spacing:.03em; transition:background .18s; }
-.study-btn:hover { background:var(--sepia); }
-.study-card .sviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:24px; }
-.study-card .sviz svg { width:100%; max-width:260px; height:auto; }
-.study-card .sviz img { width:100%; height:auto; border-radius:6px; display:block; }
-.see-all { display:inline-flex; align-items:center; gap:8px; margin-top:28px; font-size:14px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
-.see-all::after { content:"→"; }
-.see-all:hover { color:var(--twine); }
-/* ── ABOUT TEASER ── */
-  .about-tease { padding:80px 0; }
-.about-grid { display:grid; grid-template-columns:.7fr 1.3fr; gap:56px; align-items:center; }
-@media(max-width:760px) {
-  .about-grid { grid-template-columns:1fr; gap:28px; }
-}
-.about-mark { color:var(--navy); line-height:.85; text-align:center; opacity:.8; }
-.about-mark .sm { display:block; font-family:"DM Sans",sans-serif; font-size:11px; letter-spacing:.28em; color:var(--twine); text-transform:uppercase; margin-top:18px; font-weight:600; }
-.about-right h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,36px); color:var(--navy); margin-bottom:16px; line-height:1.12; }
-.about-right p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
-.about-right strong { color:var(--navy); font-weight:700; }
-.creds { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
-.cred-tag { font-size:12px; font-weight:600; letter-spacing:.04em; color:var(--navy); background:rgba(15,31,56,.08); padding:5px 12px; border-radius:20px; }
-.about-link { display:inline-flex; align-items:center; gap:6px; margin-top:20px; font-size:13.5px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
-.about-link::after { content:"→"; }
-.about-link:hover { color:var(--twine); }
-/* ── FINAL CTA ── */
-  .final-cta { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:96px 32px; }
-.final-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(28px,4.4vw,52px); color:#fff; margin-bottom:20px; line-height:1.06; }
-.final-cta p { color:#A8B4C0; font-size:18px; font-weight:300; max-width:48ch; margin:0 auto 36px; line-height:1.6; }
-/* ── PLATFORM TEASE ── */
-  .platform-tease { background:var(--navy); padding:80px 0; border-top:1px solid rgba(255,255,255,.06); }
-.platform-tease .pt-head { max-width:680px; margin-bottom:40px; }
-.platform-tease h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,42px); color:#fff; line-height:1.1; margin-bottom:14px; }
-.platform-tease .pt-head p { font-size:17px; color:#C4BDAE; font-weight:300; line-height:1.6; }
-.pt-parts { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:36px; }
-@media(max-width:760px){ .pt-parts { grid-template-columns:1fr; } }
-.pt-part { background:var(--navy-2); border-radius:6px; padding:22px 20px; border-left:3px solid var(--twine); transition:background .2s; }
-.pt-part:hover { background:var(--navy-3); }
-.ptn { font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
-.ptd { font-size:14px; color:#B8C2D0; line-height:1.55; font-weight:300; }
+  /* Page-local: the product-section spacing + the live Ask demo (the one net-new
+     interactive pattern, kept page-local since it's homepage-specific). */
+  .pain { padding:88px 0; }
+  .product { padding:92px 0; }
+  .product-h { color:#fff; margin-bottom:16px; max-width:20ch; }
+  .product-lede { color:#C4BDAE; max-width:64ch; margin-bottom:44px; }
+  .rail-wrap { margin-top:40px; }
+  .safe { padding:88px 0; }
+  .safe-h { margin-bottom:40px; max-width:24ch; }
+  .how { padding:88px 0; }
+  .how-h { color:#fff; margin-bottom:16px; max-width:24ch; }
+  .how-lede { color:#C4BDAE; max-width:62ch; margin-bottom:40px; }
+  .proof { padding:88px 0; }
+  .onramp { padding:84px 0; }
+  .onramp-in { max-width:820px; margin:0 auto; padding:0 32px; text-align:center; }
+  .onramp h2 { margin-bottom:18px; }
+  .onramp p { font-size:17px; color:var(--slate); line-height:1.62; font-weight:300; margin-bottom:14px; }
+  .onramp .ladder { font-size:15px; color:var(--muted); font-weight:300; }
+
+  /* LIVE ASK DEMO — homepage-only interactive proof of the cite-or-refuse thesis. */
+  .askwrap { margin-top:44px; background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:28px 30px 30px; }
+  .ask-h { font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--twine); margin-bottom:6px; }
+  .ask-sub { font-size:14px; color:#8FA4B8; font-weight:300; margin-bottom:20px; max-width:66ch; line-height:1.55; }
+  .ask-qs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
+  .ask-q { font-family:"DM Sans",sans-serif; font-size:13.5px; font-weight:500; color:var(--cream); background:var(--navy-3); border:1px solid rgba(255,255,255,.12); border-radius:22px; padding:9px 16px; cursor:pointer; transition:background .16s,border-color .16s,transform .16s; }
+  .ask-q:hover { background:var(--navy-2); border-color:var(--twine); transform:translateY(-1px); }
+  .ask-q.active { background:var(--twine); color:var(--navy); border-color:var(--twine); font-weight:600; }
+  .ask-panel { background:var(--navy-foot); border:1px solid rgba(255,255,255,.09); border-radius:8px; padding:22px 24px; min-height:132px; }
+  .ask-you { font-size:12.5px; font-weight:600; letter-spacing:.02em; color:#8FA4B8; margin-bottom:14px; }
+  .ask-answer { font-size:15.5px; color:#DCE3EC; line-height:1.62; font-weight:300; }
+  .ask-cite { margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .ask-src { font-family:"DM Sans",sans-serif; font-size:12px; color:#9FB0C4; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:4px; padding:3px 9px; }
+  .ask-foot { margin-top:16px; font-size:12px; color:#7788A0; font-weight:300; line-height:1.5; }
+  :global(.ask-answer .val) { color:#fff; font-weight:600; }
+  :global(.ask-answer .ask-refuse) { color:#F0DDA6; }
+  :global(.ask-you b) { color:var(--cream); font-weight:600; }
+  :global(.ask-cite .clab) { font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--good); }
+  :global(.ask-cite .clab.warn) { color:var(--warn); }
 </style>
 
 <script is:inline>
-if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){ /* reduced motion: leave elements visible, skip hiding & observing */
-const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.animation='rise .7s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(en.target);}});},{threshold:.1});
-document.querySelectorAll('.offer-card,.persona,.pain-item,.trust-step').forEach((el,i)=>{el.style.opacity='0';el.style.animationDelay=(i*.05)+'s';io.observe(el);});
-}
+  /* Live "ask the agent" demo — cite-or-refuse, the honesty thesis. Illustrative
+     only: canned answers over a synthetic estate. Demonstrates the product's
+     actual behaviour (grounded answer + citation, or an honest refusal) without
+     claiming to query anyone's live data. */
+  var ASK = [
+    {
+      q: "Which revenue metrics does no one own?",
+      answer: "Three revenue metrics have <span class=\"val\">no named owner</span> today: <b>Net Revenue (Ops)</b>, <b>Recognized Revenue (Finance)</b>, and <b>Bookings (Sales)</b>. Two of them also carry conflicting definitions across reports, which is usually why the numbers disagree in the boardroom.",
+      grounded: true,
+      src: "governed estate &middot; owner graph"
+    },
+    {
+      q: "Is our Occupancy Rate metric trustworthy?",
+      answer: "Partly. <b>Occupancy Rate</b> is governed, owned by <b>Real Estate Operations</b>, and computed from one source &mdash; but two dashboards still use an <span class=\"val\">older definition</span> that excludes short-term units. Reconcile those two and it becomes fully trustworthy.",
+      grounded: true,
+      src: "governed estate &middot; metric lineage"
+    },
+    {
+      q: "What was our Q3 marketing spend?",
+      answer: "<span class=\"ask-refuse\">I can't answer that from your governed data.</span> Marketing spend isn't in the mapped estate yet &mdash; no source connects to it, so I won't estimate a number. Connect the marketing system and this becomes answerable, with a citation.",
+      grounded: false,
+      src: "not in the governed estate"
+    }
+  ];
+  (function(){
+    var qsEl = document.getElementById('askQs');
+    var youEl = document.getElementById('askYou');
+    var ansEl = document.getElementById('askAnswer');
+    var citeEl = document.getElementById('askCite');
+    if(!qsEl) return;
+    function render(i){
+      var item = ASK[i];
+      Array.prototype.forEach.call(qsEl.children, function(c, idx){ c.className = 'ask-q' + (idx === i ? ' active' : ''); });
+      youEl.innerHTML = 'You asked &mdash; <b>' + item.q + '</b>';
+      ansEl.innerHTML = item.answer;
+      if(item.grounded){ citeEl.innerHTML = '<span class="clab">Source</span><span class="ask-src">' + item.src + '</span>'; }
+      else { citeEl.innerHTML = '<span class="clab warn">Honest refusal</span><span class="ask-src">' + item.src + '</span>'; }
+    }
+    ASK.forEach(function(item, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'ask-q'; b.textContent = item.q;
+      b.addEventListener('click', function(){ render(i); });
+      qsEl.appendChild(b);
+    });
+    render(0);
+  })();
 </script>
 
 </BaseLayout>

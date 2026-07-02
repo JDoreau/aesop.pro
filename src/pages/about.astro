@@ -1,270 +1,260 @@
 ---
+// about.astro — the firm, honestly. Reframed for the reface: "the team building
+// Manteia" — a data-governance software company, principal-led, on-ramped by a
+// reporting-trust practice. Founder title moved from "Founder & Principal
+// Consultant" toward "Founder & Principal" (SITE-DIRECTION §1). Career arc,
+// timeline, and philosophy kept (honest, substantive); chrome restyled to the
+// new system. URL preserved: "/about".
 import BaseLayout from "../layouts/BaseLayout.astro";
-const title = 'About Aesop Analytics | Governed Data-Practice Software'
-const description = 'Aesop Analytics is a data-governance software company in Nashville, TN, entered through a reporting-trust practice. Led by Jonathan Doreau — 15+ years in analytics and BI leadership across five industries.'
-const ogDescription = "15+ years turning fragmented, distrusted data environments into reporting people actually rely on.";
+import CtaBand from "../components/CtaBand.astro";
+const title = 'About Aesop Analytics | The team building Aesop Manteia';
+const description = 'Aesop Analytics is a data-governance software company in Nashville, TN, on-ramped by a reporting-trust practice. Led by Jonathan Doreau — 15+ years in analytics and BI leadership across five industries.';
+const ogDescription = "15+ years turning fragmented, distrusted data environments into reporting people actually rely on — now built into software.";
 ---
 
 <BaseLayout title={title} description={description} path="/about" ogDescription={ogDescription}>
+<div class="reface">
 
-<div class="about-hero">
-  <div class="hero-in">
-    <div class="eyebrow">About</div>
-    <div class="hero-grid">
-      <div class="hero-text">
-        <h1>Fifteen years of bringing order to messy data.</h1>
-        <p>I'm Jonathan Doreau, founder of Aesop Analytics. I've spent my career taking fragmented, distrusted data environments and turning them into reporting organizations actually rely on — and when you hire Aesop, I'm the one who does it, from the first diagnosis to the final readout.</p>
-        <div class="hero-links">
-          <a href="mailto:hello@aesopanalytics.com" class="hero-link">Email me ↗</a>
-          <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" class="hero-link" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </div>
-      </div>
-      <div class="hero-portrait">
-        <div class="portrait-block">
-          <img class="portrait-img" src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau, founder of Aesop Analytics" width="680" height="850" loading="eager" />
-          <div class="portrait-name">
-            <div class="pn">Jonathan Doreau</div>
-            <div class="pt">Founder · Aesop Analytics · Nashville, TN</div>
+  <div class="about-hero ae-host ae-mark" style="--ae-size:min(40vw,480px); --ae-right:-2%; --ae-top:-18%; --ae-opacity:.07;">
+    <div class="hero-in">
+      <div class="eyebrow">About</div>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <h1>The people, and the years, behind the software.</h1>
+          <p>I'm Jonathan Doreau, founder of Aesop Analytics. I've spent my career taking fragmented, distrusted data environments and turning them into reporting organizations actually rely on. Aesop is where that work became a product &mdash; and when you engage us, I'm the one who does it, from the first diagnosis to the final readout.</p>
+          <div class="hero-links">
+            <a href="mailto:hello@aesopanalytics.com" class="hero-link">Email me &#8599;</a>
+            <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" class="hero-link" target="_blank" rel="noopener">LinkedIn &#8599;</a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- THE CAREER ARC -->
-<section class="body-section">
-  <div class="wrap">
-    <div class="bs-grid">
-      <div>
-        <div class="bs-label">Background</div>
-        <h2 class="bs-heading">The career arc.</h2>
-      </div>
-      <div class="bs-body">
-        <p>I started in finance — regulated reporting, risk dashboards, and the particular discipline that comes from working in environments where a wrong number has real consequences. That foundation taught me to care about data quality and governance before they became fashionable topics.</p>
-        <p>From there: healthcare and research, including executive reporting and analytics for an <strong>NIH-funded research program</strong> — a context where data credibility mattered as much as the research itself, and where the reporting had to serve both operational leadership and external funders simultaneously. That's where I developed a genuine appreciation for governance: the unglamorous work that makes everything downstream trustworthy.</p>
-        <p>Real estate and nonprofit work came next, and what struck me most was how similar the data problems were across industries that seemed completely different. Fragmented sources, undefined metrics, reports that couldn't be reconciled with each other, a data team spending most of its time answering one-off questions instead of building anything lasting. The patterns repeat.</p>
-        <p>Aesop Analytics is the distillation of those fifteen years — a deliberate attempt to bring the quality of thinking and execution I'd do at a large organization to companies and nonprofits that can't afford (and don't need) a large organization.</p>
-        <div class="timeline" style="margin-top:32px">
-          <div class="tl-item">
-            <div class="tl-year">Finance</div>
-            <div class="tl-content">
-              <div class="tc-role">Analytics &amp; BI Leadership</div>
-              <div class="tc-org">Banking &amp; Financial Services</div>
-              <div class="tc-desc">Regulated reporting, risk dashboards, and data governance in a high-stakes, audit-intensive environment.</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">Healthcare</div>
-            <div class="tl-content">
-              <div class="tc-role">Analytics &amp; Reporting</div>
-              <div class="tc-org">Healthcare &amp; NIH Research</div>
-              <div class="tc-desc">Executive dashboards, program reporting, and analytics for an NIH-funded research initiative. Compliance-aware architecture, funder reporting, and operational KPIs.</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">Real Estate</div>
-            <div class="tl-content">
-              <div class="tc-role">BI &amp; Data Strategy</div>
-              <div class="tc-org">Real Estate</div>
-              <div class="tc-desc">Portfolio performance reporting, market analytics, and building a reporting governance practice from the ground up.</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">Nonprofit</div>
-            <div class="tl-content">
-              <div class="tc-role">Analytics &amp; Impact Measurement</div>
-              <div class="tc-org">Nonprofit Sector</div>
-              <div class="tc-desc">Program impact dashboards, board reporting, and outcome measurement — translating mission into metrics that funders and leadership could act on.</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-year">2024 →</div>
-            <div class="tl-content">
-              <div class="tc-role">Founder</div>
-              <div class="tc-org">Aesop Analytics · Nashville, TN</div>
-              <div class="tc-desc">Founded as a reporting-modernization consultancy; now a data-governance software company — building Aesop Manteia, with the assessment practice as the front door.</div>
+        <div class="hero-portrait">
+          <div class="portrait-block">
+            <img class="portrait-img" src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau, founder of Aesop Analytics" width="680" height="850" loading="eager" />
+            <div class="portrait-name">
+              <div class="pn">Jonathan Doreau</div>
+              <div class="pt">Founder &amp; Principal · Aesop Analytics · Nashville, TN</div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- THE TEAM -->
-<section class="body-section">
-  <div class="wrap">
-    <div class="bs-grid">
-      <div>
-        <div class="bs-label">How Aesop is staffed</div>
-        <h2 class="bs-heading">Principal-led — with senior specialists I trust on call.</h2>
-      </div>
-      <div>
-        <div class="bs-body" style="margin-bottom:28px">
-          <p>You work directly with me, the principal, from the first diagnosis through final delivery &mdash; no junior bench, no handoff. When an engagement needs depth in an area where someone is genuinely stronger than I am, I draw on a small circle of independent senior specialists I've worked alongside for years: people who run their own practices, whose judgment I trust, and who I trade expertise with in both directions. They sharpen how Aesop works behind the scenes &mdash; our tooling and internal build &mdash; but they don't sit between you and the work. The person you talk to is the person doing it.</p>
+  <!-- THE CAREER ARC -->
+  <section class="body-section">
+    <div class="wrap">
+      <div class="bs-grid">
+        <div>
+          <div class="bs-label">Background</div>
+          <h2 class="bs-heading">The career arc.</h2>
         </div>
-        <div class="team-grid">
-          <div class="team-card">
-            <div class="tm-name">Jonathan Doreau</div>
-            <div class="tm-role">Founder &amp; Principal Consultant</div>
-            <div class="tm-desc">The person you work with, start to finish &mdash; strategy, governance, and executive reporting on every engagement. 15+ years across finance, healthcare and NIH research, real estate, and nonprofit.</div>
+        <div class="bs-body">
+          <p>I started in finance &mdash; regulated reporting, risk dashboards, and the particular discipline that comes from working in environments where a wrong number has real consequences. That foundation taught me to care about data quality and governance before they became fashionable topics.</p>
+          <p>From there: healthcare and research, including executive reporting and analytics for an <strong>NIH-funded research program</strong> &mdash; a context where data credibility mattered as much as the research itself, and where the reporting had to serve both operational leadership and external funders simultaneously. That's where I developed a genuine appreciation for governance: the unglamorous work that makes everything downstream trustworthy.</p>
+          <p>Real estate and nonprofit work came next, and what struck me most was how similar the data problems were across industries that seemed completely different. Fragmented sources, undefined metrics, reports that couldn't be reconciled with each other, a data team spending most of its time answering one-off questions instead of building anything lasting. The patterns repeat &mdash; which is exactly why they can be built into software.</p>
+          <p>Aesop Analytics is the distillation of those fifteen years. It began as a reporting-modernization practice; as the method and tooling matured, it became a data-governance software company &mdash; Aesop Manteia &mdash; with the assessment practice as the front door.</p>
+          <div class="timeline" style="margin-top:32px">
+            <div class="tl-item">
+              <div class="tl-year">Finance</div>
+              <div class="tl-content">
+                <div class="tc-role">Analytics &amp; BI Leadership</div>
+                <div class="tc-org">Banking &amp; Financial Services</div>
+                <div class="tc-desc">Regulated reporting, risk dashboards, and data governance in a high-stakes, audit-intensive environment.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">Healthcare</div>
+              <div class="tl-content">
+                <div class="tc-role">Analytics &amp; Reporting</div>
+                <div class="tc-org">Healthcare &amp; NIH Research</div>
+                <div class="tc-desc">Executive dashboards, program reporting, and analytics for an NIH-funded research initiative. Compliance-aware architecture, funder reporting, and operational KPIs.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">Real Estate</div>
+              <div class="tl-content">
+                <div class="tc-role">BI &amp; Data Strategy</div>
+                <div class="tc-org">Real Estate</div>
+                <div class="tc-desc">Portfolio performance reporting, market analytics, and building a reporting governance practice from the ground up.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">Nonprofit</div>
+              <div class="tl-content">
+                <div class="tc-role">Analytics &amp; Impact Measurement</div>
+                <div class="tc-org">Nonprofit Sector</div>
+                <div class="tc-desc">Program impact dashboards, board reporting, and outcome measurement &mdash; translating mission into metrics that funders and leadership could act on.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2024 &rarr;</div>
+              <div class="tl-content">
+                <div class="tc-role">Founder</div>
+                <div class="tc-org">Aesop Analytics · Nashville, TN</div>
+                <div class="tc-desc">Founded as a reporting-modernization practice; now a data-governance software company &mdash; building Aesop Manteia, with the assessment practice as the front door.</div>
+              </div>
+            </div>
           </div>
-          <div class="team-card">
-            <div class="tm-name">Emily Carter</div>
-            <div class="tm-role">Independent specialist · BI &amp; Power BI</div>
-            <div class="tm-desc">Power BI, DAX, and semantic models. An independent practitioner I bring in for depth on Aesop's internal tooling and build &mdash; behind the scenes, not client-facing.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE TEAM -->
+  <section class="body-section">
+    <div class="wrap">
+      <div class="bs-grid">
+        <div>
+          <div class="bs-label">How Aesop is staffed</div>
+          <h2 class="bs-heading">Principal-led &mdash; with senior specialists I trust on call.</h2>
+        </div>
+        <div>
+          <div class="bs-body" style="margin-bottom:28px">
+            <p>You work directly with me, the principal, from the first diagnosis through final delivery &mdash; no junior bench, no handoff. When an engagement needs depth in an area where someone is genuinely stronger than I am, I draw on a small circle of independent senior specialists I've worked alongside for years: people who run their own practices, whose judgment I trust, and who I trade expertise with in both directions. They sharpen how Aesop works behind the scenes &mdash; our tooling and the product build &mdash; but they don't sit between you and the work. The person you talk to is the person doing it.</p>
           </div>
-          <div class="team-card">
-            <div class="tm-name">Olivia Reynolds</div>
-            <div class="tm-role">Independent specialist · Delivery &amp; PM</div>
-            <div class="tm-desc">Stakeholder alignment, delivery cadence, and budgets. An independent collaborator I call on for the internal work when a build calls for it.</div>
-          </div>
-          <div class="team-card">
-            <div class="tm-name">Carlos Vega</div>
-            <div class="tm-role">Independent specialist · SQL &amp; data</div>
-            <div class="tm-desc">SQL, data profiling, and documentation. An independent specialist I trade expertise with on the source-cleanup and data-dictionary work that strengthens Aesop's own systems.</div>
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="tm-name">Jonathan Doreau</div>
+              <div class="tm-role">Founder &amp; Principal</div>
+              <div class="tm-desc">The person you work with, start to finish &mdash; strategy, governance, and executive reporting on every engagement. 15+ years across finance, healthcare and NIH research, real estate, and nonprofit.</div>
+            </div>
+            <div class="team-card">
+              <div class="tm-name">Emily Carter</div>
+              <div class="tm-role">Independent specialist · BI &amp; Power BI</div>
+              <div class="tm-desc">Power BI, DAX, and semantic models. An independent practitioner I bring in for depth on Aesop's tooling and the product build &mdash; behind the scenes, not client-facing.</div>
+            </div>
+            <div class="team-card">
+              <div class="tm-name">Olivia Reynolds</div>
+              <div class="tm-role">Independent specialist · Delivery &amp; PM</div>
+              <div class="tm-desc">Stakeholder alignment, delivery cadence, and budgets. An independent collaborator I call on for the internal work when a build calls for it.</div>
+            </div>
+            <div class="team-card">
+              <div class="tm-name">Carlos Vega</div>
+              <div class="tm-role">Independent specialist · SQL &amp; data</div>
+              <div class="tm-desc">SQL, data profiling, and documentation. An independent specialist I trade expertise with on the source-cleanup and data-dictionary work that strengthens Aesop's own systems.</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- TOOLS & TECHNICAL -->
-<section class="body-section" style="background:var(--paper-2)">
-  <div class="wrap">
-    <div class="bs-grid">
-      <div>
-        <div class="bs-label">Tools &amp; Skills</div>
-        <h2 class="bs-heading">What we work in.</h2>
-      </div>
-      <div>
-        <div class="bs-body" style="margin-bottom:24px">
-          <p>I'm genuinely tool-agnostic at the strategy layer. At the build layer, the work is done most fluently in Power BI, Tableau, SQL, and Snowflake — the tools that cover the majority of what growing companies actually need.</p>
+  <!-- TOOLS & TECHNICAL -->
+  <section class="body-section band-paper2">
+    <div class="wrap">
+      <div class="bs-grid">
+        <div>
+          <div class="bs-label">Tools &amp; Skills</div>
+          <h2 class="bs-heading">What we work in.</h2>
         </div>
-        <div class="tools-grid">
-          <div class="tool-card"><div class="tn">SQL</div><div class="td">The foundation of everything. T-SQL, PostgreSQL, Snowflake SQL — querying, modeling, transformations.</div></div>
-          <div class="tool-card"><div class="tn">Power BI</div><div class="td">End-to-end: data model, DAX, report design, publishing, access control, gateway configuration.</div></div>
-          <div class="tool-card"><div class="tn">Tableau</div><div class="td">Calculated fields, LOD expressions, Server/Cloud publishing, and performance optimization.</div></div>
-          <div class="tool-card"><div class="tn">Snowflake</div><div class="td">Cloud data warehousing — schema design, role-based access, query optimization, cost governance.</div></div>
-          <div class="tool-card"><div class="tn">Data Modeling</div><div class="td">Star schema, dimensional modeling, semantic layer design for BI consumption.</div></div>
-          <div class="tool-card"><div class="tn">Governance</div><div class="td">Metric dictionaries, data ownership frameworks, documentation standards, lineage.</div></div>
+        <div>
+          <div class="bs-body" style="margin-bottom:24px">
+            <p>I'm genuinely tool-agnostic at the strategy layer. At the build layer, the work is done most fluently in Power BI, Tableau, SQL, and Snowflake &mdash; the tools that cover the majority of what growing companies actually need.</p>
+          </div>
+          <div class="tools-grid">
+            <div class="tool-card"><div class="tn">SQL</div><div class="td">The foundation of everything. T-SQL, PostgreSQL, Snowflake SQL &mdash; querying, modeling, transformations.</div></div>
+            <div class="tool-card"><div class="tn">Power BI</div><div class="td">End-to-end: data model, DAX, report design, publishing, access control, gateway configuration.</div></div>
+            <div class="tool-card"><div class="tn">Tableau</div><div class="td">Calculated fields, LOD expressions, Server/Cloud publishing, and performance optimization.</div></div>
+            <div class="tool-card"><div class="tn">Snowflake</div><div class="td">Cloud data warehousing &mdash; schema design, role-based access, query optimization, cost governance.</div></div>
+            <div class="tool-card"><div class="tn">Data Modeling</div><div class="td">Star schema, dimensional modeling, semantic layer design for BI consumption.</div></div>
+            <div class="tool-card"><div class="tn">Governance</div><div class="td">Metric dictionaries, data ownership frameworks, documentation standards, lineage.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <div class="philosophy band-navy">
+    <div class="phil-in">
+      <div class="eyebrow">Philosophy</div>
+      <h2>How we think about this work.</h2>
+      <div class="phil-points">
+        <div class="phil-pt">
+          <h3>Strategy before tools.</h3>
+          <p>Technology decisions made before the strategic questions are answered tend to create expensive, underused infrastructure. The question "what do you need your data to do?" has to precede "what platform should we use?"</p>
+        </div>
+        <div class="phil-pt">
+          <h3>Trust is the product.</h3>
+          <p>The real deliverable of analytics work isn't a dashboard &mdash; it's a data environment that people trust enough to use when they make decisions. Everything technical, and Manteia itself, is in service of that.</p>
+        </div>
+        <div class="phil-pt">
+          <h3>Honest about what's built.</h3>
+          <p>We say plainly what's deployed, what's in preview, and what's still on the roadmap. A company that sells trust should be the first to tell you what its own product can and can't do yet.</p>
+        </div>
+        <div class="phil-pt">
+          <h3>Even-handed analysis.</h3>
+          <p>The same standard applies to the field studies on this site and to client work: steelman the counter-argument, be clear about what the data can and can't say, and don't let a preferred conclusion drive the analysis.</p>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- PHILOSOPHY -->
-<div class="philosophy">
-  <div class="phil-in">
-    <div class="eyebrow">Philosophy</div>
-    <h2>How we think about this work.</h2>
-    <div class="phil-points">
-      <div class="phil-pt">
-        <h3>Strategy before tools.</h3>
-        <p>Technology decisions made before the strategic questions are answered tend to create expensive, underused infrastructure. The question "what do you need your data to do?" has to precede "what platform should we use?"</p>
-      </div>
-      <div class="phil-pt">
-        <h3>Trust is the product.</h3>
-        <p>The real deliverable of analytics work isn't a dashboard — it's a data environment that people trust enough to use when they make decisions. Everything technical is in service of that.</p>
-      </div>
-      <div class="phil-pt">
-        <h3>Selective is better.</h3>
-        <p>We take fewer engagements and do them better. The work we take is work we believe we can genuinely add value to. If that's not the case after an initial conversation, we'll say so — and point you somewhere better.</p>
-      </div>
-      <div class="phil-pt">
-        <h3>Even-handed analysis.</h3>
-        <p>The same standard applies to the field studies on this site and to client work: steelman the counter-argument, be clear about what the data can and can't say, and don't let a preferred conclusion drive the analysis.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="cta-strip">
-  <h2>See if we're a fit.</h2>
-  <p>A 30-minute call to understand your situation. No pitch, no commitment required.</p>
-  <a href="/diagnostic/" class="btn">Book a diagnostic →</a>
+  <CtaBand eyebrow="See if we're a fit" watermark={false}>
+    <h2>A 30-minute look at your own estate.</h2>
+    <Fragment slot="sub">No pitch, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
+    <Fragment slot="cta"><a href="/diagnostic/" class="btn on-light">See it on your estate</a></Fragment>
+  </CtaBand>
 </div>
 
 <style>
-/* HERO */
-  .about-hero { background:var(--navy); padding:80px 0 0; overflow:hidden; position:relative; }
-.about-hero::after { content:"æ"; position:absolute; right:-2%; top:-18%; font-family:"Abril Fatface",serif; font-size:min(40vw,480px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
-.hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
-.hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; padding-bottom:0; }
-@media(max-width:760px) {
-  .hero-grid { grid-template-columns:1fr; gap:32px; }
-}
-.hero-text h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(38px,5.6vw,66px); line-height:1.04; color:#fff; margin-bottom:20px; }
-.hero-text p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:48ch; margin-bottom:28px; }
-.hero-links { display:flex; gap:12px; flex-wrap:wrap; padding-bottom:56px; }
-.hero-link { font-size:13px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(193,140,93,.35); padding:10px 18px; border-radius:4px; transition:all .18s; }
-.hero-link:hover { background:rgba(193,140,93,.1); border-color:var(--twine); }
-/* Portrait placeholder */
+  /* HERO */
+  .about-hero { background:var(--navy); padding:80px 0 0; }
+  .about-hero .hero-in { max-width:1080px; margin:0 auto; padding:0 32px; }
+  .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; }
+  @media(max-width:760px){ .hero-grid { grid-template-columns:1fr; gap:32px; } }
+  .hero-text h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(38px,5.6vw,66px); line-height:1.04; color:#fff; margin-bottom:20px; }
+  .hero-text p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:48ch; margin-bottom:28px; }
+  .hero-links { display:flex; gap:12px; flex-wrap:wrap; padding-bottom:56px; }
+  .hero-link { font-size:13px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; display:inline-flex; align-items:center; gap:6px; border:1px solid rgba(193,140,93,.35); padding:10px 18px; border-radius:4px; transition:all .18s; }
+  .hero-link:hover { background:rgba(193,140,93,.1); border-color:var(--twine); }
   .hero-portrait { display:flex; align-items:flex-end; justify-content:center; }
-.portrait-block { width:100%; max-width:340px; background:var(--navy-2); border-radius:8px 8px 0 0; overflow:hidden; position:relative; }
-.portrait-block .portrait-img { display:block; width:100%; height:auto; }
-.portrait-block .portrait-name { background:var(--twine); color:#fff; width:100%; padding:14px 20px; }
-.portrait-block .portrait-name .pn { font-size:15px; font-weight:700; }
-.portrait-block .portrait-name .pt { font-size:12px; font-weight:400; opacity:.8; margin-top:2px; }
-/* BODY SECTIONS */
+  .portrait-block { width:100%; max-width:340px; background:var(--navy-2); border-radius:8px 8px 0 0; overflow:hidden; position:relative; }
+  .portrait-block .portrait-img { display:block; width:100%; height:auto; }
+  .portrait-block .portrait-name { background:var(--twine); color:#fff; width:100%; padding:14px 20px; }
+  .portrait-block .portrait-name .pn { font-size:15px; font-weight:700; }
+  .portrait-block .portrait-name .pt { font-size:12px; font-weight:400; opacity:.8; margin-top:2px; }
+  /* BODY SECTIONS */
   .body-section { padding:72px 0; border-bottom:1px solid var(--rule); }
-.body-section:last-of-type { border-bottom:none; }
-.bs-grid { display:grid; grid-template-columns:280px 1fr; gap:56px; }
-@media(max-width:760px) {
-  .bs-grid { grid-template-columns:1fr; gap:24px; }
-}
-.bs-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:12px; }
-.bs-heading { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.12; }
-.bs-body p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:18px; }
-.bs-body p:last-child { margin-bottom:0; }
-.bs-body strong { color:var(--navy); font-weight:700; }
-.bs-body a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
-/* CAREER TIMELINE */
+  .body-section:last-of-type { border-bottom:none; }
+  .bs-grid { display:grid; grid-template-columns:280px 1fr; gap:56px; }
+  @media(max-width:760px){ .bs-grid { grid-template-columns:1fr; gap:24px; } }
+  .bs-label { font-weight:700; text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--twine); margin-bottom:12px; }
+  .bs-heading { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(24px,3.2vw,34px); color:var(--navy); line-height:1.12; }
+  .bs-body p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:18px; }
+  .bs-body p:last-child { margin-bottom:0; }
+  .bs-body strong { color:var(--navy); font-weight:700; }
+  /* CAREER TIMELINE */
   .timeline { margin-top:8px; display:flex; flex-direction:column; gap:0; }
-.tl-item { display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--line); align-items:start; }
-.tl-item:last-child { border-bottom:none; }
-.tl-year { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:14px; color:var(--twine); padding-top:3px; white-space:nowrap; }
-.tl-content .tc-role { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:4px; }
-.tl-content .tc-org { font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:400; }
-.tl-content .tc-desc { font-size:14.5px; color:var(--slate); line-height:1.5; font-weight:300; }
-/* TOOLS GRID */
+  .tl-item { display:grid; grid-template-columns:100px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--line); align-items:start; }
+  .tl-item:last-child { border-bottom:none; }
+  .tl-year { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:14px; color:var(--twine); padding-top:3px; white-space:nowrap; }
+  .tl-content .tc-role { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+  .tl-content .tc-org { font-size:14px; color:var(--muted); margin-bottom:6px; font-weight:400; }
+  .tl-content .tc-desc { font-size:14.5px; color:var(--slate); line-height:1.5; font-weight:300; }
+  /* TOOLS GRID */
   .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:8px; }
-@media(max-width:560px) {
-  .tools-grid { grid-template-columns:repeat(2,1fr); }
-}
-.tool-card { background:var(--paper-2); border:1px solid var(--line); border-radius:5px; padding:16px 14px; }
-.tool-card .tn { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
-.tool-card .td { font-size:12.5px; color:var(--muted); line-height:1.4; font-weight:300; }
-/* TEAM */
+  @media(max-width:560px){ .tools-grid { grid-template-columns:repeat(2,1fr); } }
+  .tool-card { background:#fff; border:1px solid var(--line); border-radius:5px; padding:16px 14px; }
+  .tool-card .tn { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+  .tool-card .td { font-size:12.5px; color:var(--muted); line-height:1.4; font-weight:300; }
+  /* TEAM */
   .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:8px; }
-@media(max-width:560px) {
-  .team-grid { grid-template-columns:1fr; }
-}
-.team-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px 18px; }
-.team-card .tm-name { font-size:16px; font-weight:700; color:var(--navy); }
-.team-card .tm-role { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--twine); margin:3px 0 10px; }
-.team-card .tm-desc { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; }
-/* PHILOSOPHY */
-  .philosophy { background:var(--navy); padding:72px 0; }
-.phil-in { max-width:1080px; margin:0 auto; padding:0 32px; }
-.phil-in .eyebrow { color:var(--twine); }
-.phil-in h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:40px; }
-.phil-points { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
-@media(max-width:660px) {
-  .phil-points { grid-template-columns:1fr; }
-}
-.phil-pt { background:var(--navy-2); border-radius:6px; padding:24px 22px; }
-.phil-pt h3 { font-size:16px; font-weight:700; color:var(--twine); margin-bottom:10px; }
-.phil-pt p { font-size:15px; color:#B8C2D0; line-height:1.6; font-weight:400; }
-/* CTA */
-  .cta-strip { background:var(--paper-2); border-top:1px solid var(--rule); padding:72px 32px; text-align:center; }
-.cta-strip h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,40px); color:var(--navy); margin-bottom:16px; }
-.cta-strip p { font-size:17px; color:var(--slate); font-weight:300; max-width:44ch; margin:0 auto 28px; line-height:1.6; }
-.btn { display:inline-block; background:var(--navy); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.03em; padding:15px 30px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
-.btn:hover { transform:translateY(-2px); background:var(--navy-3); }
+  @media(max-width:560px){ .team-grid { grid-template-columns:1fr; } }
+  .team-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px 18px; }
+  .team-card .tm-name { font-size:16px; font-weight:700; color:var(--navy); }
+  .team-card .tm-role { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--twine); margin:3px 0 10px; }
+  .team-card .tm-desc { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; }
+  /* PHILOSOPHY */
+  .philosophy { padding:72px 0; }
+  .phil-in { max-width:1080px; margin:0 auto; padding:0 32px; }
+  .phil-in .eyebrow { color:var(--twine); }
+  .phil-in h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(26px,3.6vw,42px); color:#fff; margin-bottom:40px; }
+  .phil-points { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  @media(max-width:660px){ .phil-points { grid-template-columns:1fr; } }
+  .phil-pt { background:var(--navy-2); border-radius:6px; padding:24px 22px; }
+  .phil-pt h3 { font-family:"DM Sans",sans-serif; font-size:16px; font-weight:700; color:var(--twine); margin-bottom:10px; }
+  .phil-pt p { font-size:15px; color:#B8C2D0; line-height:1.6; font-weight:400; }
 </style>
 
 </BaseLayout>

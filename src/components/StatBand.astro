@@ -1,0 +1,33 @@
+---
+// StatBand.astro — the firm-stats strip on navy (37+ years, 6 industries, …).
+// -----------------------------------------------------------------------------
+// A four-up (responsive to two-up) band of big twine numerals with uppercase
+// labels. Data-driven so any page can restate the firm's proof points.
+//
+// PROPS:
+//   stats — array of { n: string, sup?: string, l: string }
+//           n = the numeral, sup = an optional small superscript (e.g. "+"),
+//           l = the uppercase caption.
+//
+// The default set is the firm's ratified figures; pass your own to reuse.
+interface Stat { n: string; sup?: string; l: string; }
+interface Props { stats?: Stat[]; }
+const {
+  stats = [
+    { n: "37", sup: "+", l: "Combined years in analytics, BI & leadership" },
+    { n: "6", l: "Industries with deep domain expertise" },
+    { n: "3", l: "Complete data program modernizations" },
+    { n: "26", l: "Successful engagements" },
+  ],
+} = Astro.props;
+---
+<div class="stat-band">
+  <div class="stat-in">
+    {stats.map((s) => (
+      <div>
+        <div class="stat-n">{s.n}{s.sup && <span style="font-size:.5em">{s.sup}</span>}</div>
+        <div class="stat-l">{s.l}</div>
+      </div>
+    ))}
+  </div>
+</div>

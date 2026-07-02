@@ -1,233 +1,168 @@
 ---
+// platform.astro — Aesop Manteia, the product. The deepest product page and
+// the destination the reface promotes to (SITE-DIRECTION §1). Reconciles the
+// old "The Record"/"The Oracle" marketing labels to the NAMING-CANON plain
+// names (The Portal (Aesop Stoa) / The Agent (Aesop Pythia)), adds the
+// honest status chips + the honesty rail, and states every claim at the code's
+// maturity level. URL preserved: "/platform".
 import BaseLayout from "../layouts/BaseLayout.astro";
-const title = 'Manteia — the Aesop data practice platform | Aesop Analytics'
-const description = 'Manteia turns an engagement into a living system: your data estate mapped, every metric’s owner and definition visible, and an oracle that answers from your governed data — with a citation for every claim.'
-const ogDescription = "Trust you can see, and keep. Your estate mapped, governed, and answerable — with a citation for every claim.";
+import Hero from "../components/Hero.astro";
+import PromiseBand from "../components/PromiseBand.astro";
+import SpineCard from "../components/SpineCard.astro";
+import HonestyRail from "../components/HonestyRail.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Reveal from "../components/Reveal.astro";
+
+const title = 'Aesop Manteia — the data-governance platform | Aesop Analytics';
+const description = "Manteia maps your data estate from metadata, makes every metric's owner and definition visible, and lets anyone ask a plain question — answered from your governed data, with a citation for every claim, or an honest 'that isn't governed yet.'";
+const ogDescription = "Trust you can see, and keep. Your estate mapped, governed, and answerable — with a citation for every claim, honestly staged.";
 ---
 
 <BaseLayout title={title} description={description} path="/platform" ogDescription={ogDescription}>
+<div class="reface">
 
-<!-- ── HERO ── -->
-<section class="phero">
-  <div class="phero-in">
-    <div class="eyebrow reveal">Aesop Manteia&trade; · the data practice platform</div>
-    <h1 class="reveal" style="animation-delay:.08s">Trust you can <span class="em">see</span> — and keep.</h1>
-    <p class="phero-sub reveal" style="animation-delay:.16s"><em>Pistis</em> was the ancient seal that vouched a thing is true and free of error. <strong>Manteia</strong> is the platform that grants your data its own: your whole estate mapped, every metric's owner and definition in plain view, and an oracle that answers about it — grounded only in your governed data, with a citation for every claim.</p>
-    <div class="btn-row reveal" style="animation-delay:.24s">
+  <!-- ── HERO ── -->
+  <Hero eyebrow="Aesop Manteia · the data-governance platform">
+    <h1>Trust you can <span class="em">see</span> — and keep.</h1>
+    <Fragment slot="sub"><strong>Manteia</strong> gives your data a governed record it can stand behind: your whole estate mapped from metadata, every metric's owner and definition in plain view, and an agent that answers about it &mdash; grounded only in your governed data, with a citation for every claim.</Fragment>
+    <Fragment slot="cta">
       <a href="/diagnostic/" class="btn">See it on your estate</a>
-      <a href="/services/" class="btn ghost">How the engagement works</a>
-    </div>
-    <div class="phero-note reveal" style="animation-delay:.38s">Built on a deterministic core — it computes, it doesn't guess.</div>
-  </div>
-</section>
+      <a href="/assessment/" class="btn ghost">How the engagement works</a>
+    </Fragment>
+    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Built on a deterministic core &mdash; it computes, it doesn't guess.</div>
+  </Hero>
 
-<!-- ── TRANSITION ── -->
-<div class="promise">
-  <div class="promise-in">
-    <p>Most governance dies in a slide deck.<span class="dot"></span>This one stays alive in the work.</p>
-  </div>
-</div>
+  <!-- ── TRANSITION ── -->
+  <PromiseBand parts={["Most governance dies in a slide deck.", "This one stays alive in the work."]} />
 
-<!-- ── THE THREE PARTS ── -->
-<section class="parts">
-  <div class="wrap">
-    <div class="sec-label">What it is</div>
-    <h2>Three parts, one continuous system.</h2>
-    <p class="intro">Manteia takes the estate from raw systems to a question you can ask in plain English — and every step is auditable, because none of it is guesswork.</p>
-    <div class="part-cards">
+  <!-- ── THE THREE PARTS ── -->
+  <section class="parts band-navy ae-host ae-mark" id="product" style="--ae-size:min(40vw,460px); --ae-left:-4%; --ae-bottom:-24%; --ae-opacity:.05;">
+    <div class="wrap">
+      <div class="sec-label">What it is</div>
+      <h2 class="parts-h">Three parts, one continuous system.</h2>
+      <p class="lede parts-lede">Manteia takes the estate from raw systems to a question you can ask in plain English &mdash; and every step is auditable, because none of it is guesswork. Here is each part, and exactly how far along it is.</p>
 
-      <div class="part-card">
-        <div class="pc-step">01</div>
-        <div class="pc-name">Auto-Doc (Aesop Graphion)</div>
-        <div class="pc-line">Map the estate automatically</div>
-        <div class="pc-desc">Point it at your BI files, your warehouse catalog, or a simple export. It reads what actually exists — tables, fields, metrics, and the lineage between them — and builds a typed map of your estate. No manual documentation, no months of interviews to draw the picture.</div>
+      <div class="spine">
+        <SpineCard step="01" name="The Scribe" greek="Aesop Graphion" status="dep" statusLabel="Deployed — proven engine">
+          Point it at your BI files, your warehouse catalog, or a simple export. It reads what actually exists &mdash; tables, fields, metrics, and the lineage between them &mdash; and builds a typed map of your estate. No manual documentation, no months of interviews to draw the picture.
+        </SpineCard>
+        <SpineCard step="02" name="The Portal" greek="Aesop Stoa" status="dep" statusLabel="Deployed — log in today" highlight={true}>
+          The map becomes a navigable, canonical record. Every metric, who owns it, where it's defined, which reports disagree, and &mdash; most tellingly &mdash; what no one owns at all. The gaps render in red. That red is the work, now visible to the people who can fix it. The write layer is live too: ratify a definition, assign an owner, log a request, and the record updates.
+        </SpineCard>
+        <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live grounded answers now · live-data querying in preview">
+          Ask a plain question &mdash; "which numbers does no one own?", "is this metric trustworthy?" &mdash; and the agent answers from your governed estate alone, with a citation behind every claim. It cannot invent a number or an owner: if the answer isn't in your data, it says so. Asking your live data directly is the newest capability, in preview.
+        </SpineCard>
       </div>
 
-      <div class="part-card hl">
-        <div class="pc-step">02</div>
-        <div class="pc-name">The Record (Aesop Stoa)</div>
-        <div class="pc-line">Governance you can see</div>
-        <div class="pc-desc">The map becomes a navigable, canonical record. Every metric, who owns it, where it's defined, which reports disagree, and — most tellingly — what no one owns at all. The gaps render in red. That red is the work, and for the first time it's visible to the people who can fix it.</div>
+      <div class="rail-wrap">
+        <HonestyRail
+          deployed="The governed portal with secure login, the estate map from metadata, grounded answers with citations, and the write layer &mdash; ratify a definition, assign an owner, log a request, and the record updates on a real database."
+          preview="The agent asking questions of your live data directly, and regenerating governed reports from the map. The guard and query loop are ratified and building; we'll show you exactly how far along it is."
+          roadmap="Native Power BI report generation and automated Gold-layer design. Real work, honestly not finished &mdash; and we never present it as shipped. (Tableau auto-generation is not something we promise.)"
+        />
       </div>
+    </div>
+  </section>
 
-      <div class="part-card">
-        <div class="pc-step">03</div>
-        <div class="pc-name">The Oracle (Aesop Pythia)</div>
-        <div class="pc-line">Answers you can trust</div>
-        <div class="pc-desc">Ask a plain question — "which numbers does no one own?", "is this metric trustworthy?" — and the oracle answers from your governed estate alone, with a citation behind every claim. It cannot invent a number or an owner: if the answer isn't in your data, it says so.</div>
+  <!-- ── FROM ESTATE TO ANSWERS ── -->
+  <section class="flow band-navy" id="how">
+    <div class="wrap">
+      <div class="sec-label">How it works</div>
+      <h2 class="flow-h">From a pile of systems to a question you can ask.</h2>
+      <p class="lede flow-lede">The same pipeline runs for a fifty-table startup or a fifty-thousand-table enterprise &mdash; it reads the catalog, it doesn't guess what you have.</p>
+      <div class="flow-grid">
+        <div class="flow-step"><div class="fs-n">1</div><div class="fs-name">Connect</div><div class="fs-desc">A read-only export or catalog from each system. We ask for a key, never a copy of your data.</div></div>
+        <div class="flow-step"><div class="fs-n">2</div><div class="fs-name">Map</div><div class="fs-desc">Every table, field, metric, and lineage edge, normalized into one typed map of the estate.</div></div>
+        <div class="flow-step"><div class="fs-n">3</div><div class="fs-name">Govern</div><div class="fs-desc">Owners, definitions, and the gaps surfaced &mdash; what's contested, what's unowned, what's never been governed.</div></div>
+        <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate and an agent anyone can ask &mdash; every claim traceable to its source.</div></div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── FROM ESTATE TO ANSWERS ── -->
-<section class="flow">
-  <div class="flow-in">
-    <div class="flow-head">
-      <h2>From a pile of systems to a question you can ask.</h2>
-      <p>The same pipeline runs for a 50-table startup or a 50,000-table enterprise — it reads the catalog, it doesn't guess what you have.</p>
-    </div>
-    <div class="flow-steps">
-      <div class="flow-step"><div class="fs-n">1</div><div class="fs-name">Connect</div><div class="fs-desc">A read-only export or catalog from each system. We ask for a key, never a copy of your data.</div></div>
-      <div class="flow-arrow" aria-hidden="true">→</div>
-      <div class="flow-step"><div class="fs-n">2</div><div class="fs-name">Map</div><div class="fs-desc">Every table, field, metric and lineage edge, normalized into one typed map of the estate.</div></div>
-      <div class="flow-arrow" aria-hidden="true">→</div>
-      <div class="flow-step"><div class="fs-n">3</div><div class="fs-name">Govern</div><div class="fs-desc">Owners, definitions, and the gaps surfaced — what's contested, what's unowned, what's never been governed.</div></div>
-      <div class="flow-arrow" aria-hidden="true">→</div>
-      <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate and an oracle anyone can ask — every claim traceable to its source.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTINUITY (ties to the method) ── -->
-<section class="cont">
-  <div class="wrap">
-    <div class="cont-grid">
-      <div class="cont-left">
-        <div class="sec-label">Why it matters</div>
-        <h2>The engagement establishes trust. Manteia keeps it.</h2>
-        <p>A Reporting Clarity Assessment maps your estate and names the gaps. Historically, that picture started going stale the day it was delivered — definitions drift, new reports appear, owners change roles. Manteia is the living version of that work: it updates as the estate changes, so the governance you paid for is still true a year later.</p>
-        <p>Between engagements, Manteia is what your team navigates and the oracle is who they ask. It's the difference between a one-time clean-up and a practice that sustains itself.</p>
-        <a href="/services/" class="cont-link">See how it works</a>
-      </div>
-      <div class="cont-right">
-        <div class="cont-card">
-          <div class="cc-k">An engagement, made continuous</div>
-          <div class="cc-row"><span class="cc-was">A report that ages</span><span class="cc-arrow">→</span><span class="cc-now">A record that updates</span></div>
-          <div class="cc-row"><span class="cc-was">A spreadsheet of owners</span><span class="cc-arrow">→</span><span class="cc-now">Owners visible in context</span></div>
-          <div class="cc-row"><span class="cc-was">"Ask the analyst"</span><span class="cc-arrow">→</span><span class="cc-now">Ask the estate directly</span></div>
-          <div class="cc-row"><span class="cc-was">Trust you took on faith</span><span class="cc-arrow">→</span><span class="cc-now">Trust with a citation</span></div>
+  <!-- ── CONTINUITY (ties to the on-ramp) ── -->
+  <section class="cont band-paper">
+    <div class="wrap">
+      <div class="cont-grid">
+        <div class="cont-left">
+          <div class="sec-label">Why it matters</div>
+          <h2>The engagement establishes trust. Manteia keeps it.</h2>
+          <p>A Reporting Clarity Assessment maps your estate and names the gaps. Historically, that picture started going stale the day it was delivered &mdash; definitions drift, new reports appear, owners change roles. Manteia is the living version of that work: it updates as the estate changes, so the governance you paid for is still true a year later.</p>
+          <p>Between engagements, Manteia is what your team navigates and the agent is who they ask. It's the difference between a one-time clean-up and a practice that sustains itself.</p>
+          <a href="/assessment/" class="cont-link">See the on-ramp</a>
+        </div>
+        <div class="cont-right">
+          <div class="cont-card">
+            <div class="cc-k">An engagement, made continuous</div>
+            <div class="cc-row"><span class="cc-was">A report that ages</span><span class="cc-arrow">&rarr;</span><span class="cc-now">A record that updates</span></div>
+            <div class="cc-row"><span class="cc-was">A spreadsheet of owners</span><span class="cc-arrow">&rarr;</span><span class="cc-now">Owners visible in context</span></div>
+            <div class="cc-row"><span class="cc-was">"Ask the analyst"</span><span class="cc-arrow">&rarr;</span><span class="cc-now">Ask the estate directly</span></div>
+            <div class="cc-row"><span class="cc-was">Trust you took on faith</span><span class="cc-arrow">&rarr;</span><span class="cc-now">Trust with a citation</span></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── TRUST & SAFETY ── -->
-<section class="safe">
-  <div class="wrap">
-    <div class="sec-label" style="color:var(--twine)">Built to be trusted</div>
-    <h2>Why you can stand behind every number it shows.</h2>
-    <div class="safe-grid">
-      <div class="safe-item">
-        <div class="si-h">It computes, it doesn't guess</div>
-        <p>The map, the lineage, and every governance finding are produced by deterministic code reading your own systems — not by a model's opinion. The same inputs always give the same answer, and you can audit how it was reached.</p>
-      </div>
-      <div class="safe-item">
-        <div class="si-h">The oracle cites or refuses</div>
-        <p>The oracle answers only from your governed estate and attaches the source to every claim. It is built so it cannot fabricate a number, an owner, or a definition — the honest "that isn't governed yet" is a feature, not a failure.</p>
-      </div>
-      <div class="safe-item">
-        <div class="si-h">Your data stays in your governance</div>
-        <p>We work from metadata and exports, not a copy of your warehouse. The platform is model-agnostic and can run inside your own walls — sensitive estates never have to leave the building to be mapped and answered.</p>
+  <!-- ── TRUST & SAFETY ── -->
+  <section class="safe band-paper2" id="safe">
+    <div class="wrap">
+      <div class="sec-label">Built to be trusted</div>
+      <h2 class="safe-h">Why you can stand behind every number it shows.</h2>
+      <div class="safe-grid">
+        <div class="safe-item">
+          <div class="si-h">It computes, it doesn't guess</div>
+          <p>The map, the lineage, and every governance finding are produced by deterministic code reading your own systems &mdash; not by a model's opinion. The same inputs always give the same answer, and you can audit how it was reached.</p>
+        </div>
+        <div class="safe-item">
+          <div class="si-h">The agent cites or refuses</div>
+          <p>The agent answers only from your governed estate and attaches the source to every claim. It is built so it cannot fabricate a number, an owner, or a definition &mdash; the honest "that isn't governed yet" is a feature, not a failure.</p>
+        </div>
+        <div class="safe-item">
+          <div class="si-h">Metadata, never your data</div>
+          <p>We work from metadata and exports, not a copy of your warehouse &mdash; we ask for a key, not a copy. The platform is model-agnostic and can run inside your own walls, so sensitive estates never leave the building.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── FINAL CTA ── -->
-<section class="final-cta">
-  <div class="eyebrow" style="color:var(--twine);letter-spacing:.28em;font-size:11.5px;font-weight:600;text-transform:uppercase;margin-bottom:24px">See it for real</div>
-  <h2>Watch your own estate become a living record.</h2>
-  <p>Start with a free 30-minute diagnostic. If there's a fit, the first engagement maps your estate into Manteia — and you see your governance, gaps and all, the way leadership has always wanted to.</p>
-  <div class="btn-row" style="justify-content:center">
-    <a href="/diagnostic/" class="btn" style="color:var(--navy)">Book a diagnostic</a>
-    <a href="/work/" class="btn ghost">See recent work</a>
-  </div>
-</section>
+  <!-- ── FINAL CTA ── -->
+  <CtaBand eyebrow="See it for real">
+    <h2>Watch your own estate become a living record.</h2>
+    <Fragment slot="sub">A focused 30-minute look, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
+    <Fragment slot="cta">
+      <a href="/diagnostic/" class="btn on-light">See it on your estate</a>
+      <a href="/work/" class="btn ghost">See recent work</a>
+    </Fragment>
+  </CtaBand>
+
+  <Reveal selector=".spine-card,.flow-step,.safe-item,.cc-row,.honesty-rail .rr" />
+</div>
 
 <style>
-/* ── shared primitives (mirrors the homepage) ── */
-.btn { display:inline-block; background:var(--twine); color:#fff; font-family:"DM Sans",sans-serif; font-weight:600; letter-spacing:.03em; padding:15px 28px; border-radius:4px; font-size:15px; transition:transform .18s,background .18s; }
-.btn:hover { transform:translateY(-2px); background:var(--sepia); }
-.btn.ghost { background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); }
-.btn.ghost:hover { border-color:var(--twine); color:var(--twine); background:transparent; transform:translateY(-2px); }
-.btn-row { display:flex; flex-wrap:wrap; gap:12px; }
-h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; }
-
-/* ── HERO ── */
-.phero { background:var(--navy); color:var(--cream); overflow:hidden; position:relative; }
-.phero::after { content:"æ"; position:absolute; right:-3%; top:-16%; font-family:"Abril Fatface",serif; font-size:min(46vw,520px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; user-select:none; }
-.phero-in { max-width:1080px; margin:0 auto; padding:96px 32px 84px; position:relative; z-index:2; }
-.phero h1 { font-family:"Newsreader",Georgia,serif; font-weight:500; font-size:clamp(40px,6.2vw,76px); line-height:1.05; max-width:16ch; margin-bottom:26px; color:var(--cream); letter-spacing:-.01em; }
-.phero h1 .em { color:var(--twine); }
-.phero-sub { font-size:clamp(16px,1.8vw,20px); line-height:1.6; color:#C4BDAE; max-width:58ch; margin-bottom:38px; font-weight:300; }
-.phero-note { margin-top:48px; display:flex; align-items:center; gap:12px; color:#8FA4B8; font-size:12px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
-.phero-note::before { content:''; display:block; width:28px; height:1px; background:var(--info); }
-
-/* ── TRANSITION BAR ── */
-.promise { background:var(--paper-2); border-bottom:1px solid var(--rule); }
-.promise-in { max-width:1080px; margin:0 auto; padding:30px 32px; text-align:center; }
-.promise p { font-family:"DM Sans",sans-serif; font-weight:500; font-size:clamp(17px,2.2vw,24px); color:var(--navy); line-height:1.4; max-width:44ch; margin:0 auto; }
-.dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--twine); margin:0 9px; vertical-align:middle; }
-
-/* ── THREE PARTS ── */
-.parts { padding:80px 0; background:var(--paper); }
-.parts h2 { font-size:clamp(26px,3.6vw,40px); line-height:1.1; color:var(--navy); margin-bottom:14px; max-width:22ch; }
-.parts .intro { font-size:17px; color:var(--slate); font-weight:300; max-width:60ch; margin-bottom:48px; line-height:1.6; }
-.part-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-@media(max-width:820px){ .part-cards { grid-template-columns:1fr; } }
-.part-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:30px 26px; display:flex; flex-direction:column; gap:10px; transition:transform .2s,box-shadow .2s,border-color .2s; }
-.part-card:hover { transform:translateY(-3px); box-shadow:0 16px 40px -20px rgba(15,31,56,.2); border-color:var(--navy-mist); }
-.part-card.hl { border-top:3px solid var(--twine); }
-.pc-step { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:30px; color:var(--twine); line-height:1; }
-.pc-name { font-size:21px; font-weight:700; color:var(--navy); letter-spacing:-.01em; min-height:2lh; }
-.pc-line { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--twine); }
-.pc-desc { font-size:15px; color:var(--slate); line-height:1.6; font-weight:300; margin-top:4px; }
-
-/* ── FLOW ── */
-.flow { background:var(--navy); padding:80px 0; }
-.flow-in { max-width:1080px; margin:0 auto; padding:0 32px; }
-.flow-head { max-width:760px; margin-bottom:48px; }
-.flow-head h2 { font-size:clamp(26px,3.6vw,42px); color:#fff; line-height:1.1; margin-bottom:14px; }
-.flow-head p { font-size:16.5px; color:#C4BDAE; font-weight:300; line-height:1.6; }
-.flow-steps { display:flex; align-items:stretch; gap:10px; }
-@media(max-width:860px){ .flow-steps { flex-direction:column; } .flow-arrow { transform:rotate(90deg); } }
-.flow-step { flex:1; background:var(--navy-2); border-radius:6px; padding:24px 20px; }
-.flow-step:hover { background:var(--navy-3); transition:background .2s; }
-.fs-n { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:22px; color:var(--twine); width:38px; height:38px; display:flex; align-items:center; justify-content:center; border:1.5px solid rgba(193,140,93,.35); border-radius:8px; margin-bottom:14px; }
-.fs-name { font-size:15px; font-weight:700; color:#fff; margin-bottom:8px; letter-spacing:.02em; }
-.fs-desc { font-size:13.5px; color:#B8C2D0; line-height:1.55; font-weight:300; }
-.flow-arrow { display:flex; align-items:center; color:var(--twine); font-size:22px; font-weight:400; }
-
-/* ── CONTINUITY ── */
-.cont { padding:80px 0; background:var(--paper); }
-.cont-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
-@media(max-width:820px){ .cont-grid { grid-template-columns:1fr; gap:32px; } }
-.cont-left h2 { font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:18px; line-height:1.12; max-width:18ch; }
-.cont-left p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
-.cont-link { display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:13.5px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
-.cont-link::after { content:"→"; }
-.cont-link:hover { color:var(--twine); }
-.cont-card { background:var(--navy); border-radius:8px; padding:32px 30px; border-top:3px solid var(--twine); }
-.cc-k { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:20px; }
-.cc-row { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.08); }
-.cc-row:last-child { border-bottom:none; }
-.cc-was { font-size:14px; color:#8FA4B8; font-weight:300; text-align:right; }
-.cc-arrow { color:var(--twine); font-size:14px; }
-.cc-now { font-size:14px; color:#fff; font-weight:500; }
-
-/* ── TRUST & SAFETY ── */
-.safe { padding:80px 0; background:var(--paper-2); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
-.safe h2 { font-size:clamp(26px,3.4vw,40px); color:var(--navy); margin-bottom:40px; line-height:1.12; max-width:24ch; }
-.safe-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-@media(max-width:820px){ .safe-grid { grid-template-columns:1fr; gap:20px; } }
-.safe-item { border-top:2px solid var(--twine); padding-top:18px; }
-.si-h { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:10px; letter-spacing:-.01em; }
-.safe-item p { font-size:15px; color:var(--slate); line-height:1.6; font-weight:300; }
-
-/* ── FINAL CTA ── */
-.final-cta { background:var(--navy); border-top:3px solid var(--twine); text-align:center; padding:92px 32px; }
-.final-cta h2 { font-size:clamp(28px,4.4vw,50px); color:#fff; margin-bottom:20px; line-height:1.06; }
-.final-cta p { color:#A8B4C0; font-size:18px; font-weight:300; max-width:50ch; margin:0 auto 34px; line-height:1.6; }
+  .parts { padding:92px 0; }
+  .parts-h { color:#fff; margin-bottom:16px; max-width:22ch; }
+  .parts-lede { color:#C4BDAE; max-width:64ch; margin-bottom:44px; }
+  .rail-wrap { margin-top:40px; }
+  .flow { padding:88px 0; }
+  .flow-h { color:#fff; margin-bottom:16px; max-width:24ch; }
+  .flow-lede { color:#C4BDAE; max-width:62ch; margin-bottom:40px; }
+  .cont { padding:88px 0; }
+  .cont-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+  @media(max-width:820px){ .cont-grid { grid-template-columns:1fr; gap:32px; } }
+  .cont-left h2 { margin-bottom:18px; line-height:1.12; max-width:18ch; }
+  .cont-left p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; margin-bottom:16px; }
+  .cont-link { display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:13.5px; font-weight:700; color:var(--navy); letter-spacing:.04em; text-transform:uppercase; }
+  .cont-link::after { content:"\2192"; }
+  .cont-link:hover { color:var(--twine); }
+  .cont-card { background:var(--navy); border-radius:8px; padding:32px 30px; border-top:3px solid var(--twine); }
+  .cc-k { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:20px; }
+  .cc-row { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+  .cc-row:last-child { border-bottom:none; }
+  .cc-was { font-size:14px; color:#8FA4B8; font-weight:300; text-align:right; }
+  .cc-arrow { color:var(--twine); font-size:14px; }
+  .cc-now { font-size:14px; color:#fff; font-weight:500; }
+  .safe { padding:88px 0; }
+  .safe-h { margin-bottom:40px; max-width:24ch; }
 </style>
-
-<script is:inline>
-if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.animation='rise .7s cubic-bezier(.2,.7,.2,1) forwards';io.unobserve(e.target);}});},{threshold:.1});
-document.querySelectorAll('.part-card,.flow-step,.safe-item,.cc-row').forEach((el,i)=>{el.style.opacity='0';el.style.animationDelay=(i*.05)+'s';io.observe(el);});
-}
-</script>
 
 </BaseLayout>

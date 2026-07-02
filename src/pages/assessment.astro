@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const title = 'Reporting Clarity Assessment | Fixed-Fee Reporting Audit'
-const description = 'A 2–3 week reporting audit: every report mapped, metric conflicts surfaced, and a prioritized 30/60/90-day fix plan. Fixed fee $5K–$9.5K. Free diagnostic.'
-const ogDescription = "Reporting inventory, metric conflicts, KPI gaps, data source map, and a prioritized 30/60/90-day roadmap. You'll know exactly what to fix and in what order.";
+const title = 'Reporting Clarity Assessment | The Fastest Way to See Manteia on Your Estate'
+const description = 'A 2–3 week reporting audit that maps your estate into Aesop Manteia: every report mapped, metric conflicts surfaced, ownership named, and a prioritized 30/60/90-day plan. Fixed fee $5K–$9.5K. Free diagnostic.'
+const ogDescription = "The on-ramp to the product: your estate mapped into Manteia, metric conflicts surfaced, ownership named, and a prioritized 30/60/90-day roadmap. You'll know exactly what to fix and in what order.";
 
 const faqs = [
   {
@@ -63,12 +63,12 @@ const assessmentSchema = {
 <BaseLayout title={title} description={description} path="/assessment" ogDescription={ogDescription} schema={assessmentSchema}>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero reface">
   <div class="hero-in">
     <div>
-      <div class="eyebrow">Flagship offer · Fixed fee</div>
-      <h1>Reporting Clarity Assessment <span class="h1-sub">— a fixed-fee reporting audit</span></h1>
-      <p>A structured 2–3 week review of your reporting estate. Know exactly where trust is breaking down — and what to fix first — before committing to a large transformation.</p>
+      <div class="eyebrow">The on-ramp · Fixed fee</div>
+      <h1>Reporting Clarity Assessment <span class="h1-sub">— the fastest way to see Manteia on your own estate</span></h1>
+      <p>A structured 2–3 week review that maps your reporting estate into Aesop Manteia. You leave knowing exactly where trust is breaking down, who owns what, and what to fix first — with the governed record to keep it that way.</p>
       <div class="hero-price">
         <span class="price-badge">$5,000–$9,500</span>
         <span class="price-pill">2–3 weeks · 10 deliverables · Fixed fee</span>
@@ -90,14 +90,14 @@ const assessmentSchema = {
 </section>
 
 <!-- FOR WHO -->
-<section class="for-who">
+<section class="for-who reface">
   <div class="wrap">
     <div class="for-who-grid">
       <div>
         <div class="sec-label">Who this is for</div>
         <h2>Companies that know something is wrong but can't quite name it.</h2>
         <p>The Assessment is designed for organizations where reporting pain is real but the specific causes are unclear — where leadership debates the numbers but nobody knows which report to trust or why they conflict.</p>
-        <p>You don't need to have it figured out before starting. That's the point of the Assessment: to produce the clear picture that makes everything else possible.</p>
+        <p>You don't need to have it figured out before starting. That's the point of the Assessment: to produce the clear picture — the mapped estate, the named owners, the gaps rendered plainly — that makes everything else possible, and that Manteia keeps true afterward.</p>
         <p><strong style="color:var(--navy)">Best fit:</strong> B2B companies, operations-heavy businesses, and nonprofits with 50–500 employees that have outgrown spreadsheets but haven't built a mature analytics operating model.</p>
       </div>
       <div>
@@ -118,7 +118,7 @@ const assessmentSchema = {
 </section>
 
 <!-- DELIVERABLES -->
-<section class="deliverables">
+<section class="deliverables reface">
   <div class="wrap">
     <div class="sec-label">What's included</div>
     <h2>Ten deliverables. One coherent picture.</h2>
@@ -139,11 +139,11 @@ const assessmentSchema = {
 </section>
 
 <!-- TRUST INDEX -->
-<section class="tindex">
+<section class="tindex reface">
   <div class="wrap">
     <div class="sec-label">The headline number</div>
-    <h2>Ten deliverables, one score: your TRUST Index.</h2>
-    <p class="ti-intro">The Assessment produces a single 0–100 reading of how far your reporting can be trusted — the same TRUST Index our <a href="/resources/health-check/">free Reporting Trust Health Check</a> gives you, but evidence-based: grounded in the inventory, the interviews, and the metric conflicts we actually find. One number — and the five bars beneath it that explain exactly why.</p>
+    <h2>Ten deliverables, one score: your Trust Initiate Score.</h2>
+    <p class="ti-intro">The Assessment produces a single 0–100 reading of how far your reporting can be trusted — the same Trust Initiate Score our <a href="/resources/health-check/">free Reporting Trust Health Check</a> gives you, but evidence-based: grounded in the inventory, the interviews, and the metric conflicts we actually find. One number — and the five bars beneath it that explain exactly why.</p>
     <div class="ti-grid">
       <div class="ti-explain">
         <p>The score is the mean of five pillar sub-scores, <strong>gated downward</strong> so a strong half can never mask a weak one. The headline number and the bars always agree.</p>
@@ -178,7 +178,7 @@ const assessmentSchema = {
 </section>
 
 <!-- PROCESS -->
-<section class="process">
+<section class="process reface">
   <div class="process-in">
     <div class="eyebrow">How it works</div>
     <h2>Four phases. 2–3 weeks.</h2>
@@ -213,7 +213,7 @@ const assessmentSchema = {
 </section>
 
 <!-- IS THIS RIGHT -->
-<section class="fit">
+<section class="fit reface">
   <div class="wrap">
     <h2>Is the Assessment right for you?</h2>
     <div class="fit-grid">
@@ -243,7 +243,7 @@ const assessmentSchema = {
   "@type": "FAQPage",
   mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
 })} />
-<section class="faq">
+<section class="faq reface">
   <div class="wrap">
     <h2>Assessment FAQ</h2>
     {faqs.map((f) => <div class="faq-item"><div class="fq">{f.q}</div><div class="fa">{f.a}</div></div>)}
@@ -251,11 +251,11 @@ const assessmentSchema = {
 </section>
 
 <!-- CONVERSION CTA -->
-<section class="conversion">
+<section class="conversion reface">
   <div class="conv-in">
     <span class="eyebrow">Ready to start?</span>
-    <h2>Know what you're working with before you fix it.</h2>
-    <p>Every Assessment begins with a free 30-minute Reporting Trust Diagnostic — a conversation to understand your situation and confirm there's a fit before any work begins.</p>
+    <h2>See your own estate become a living record.</h2>
+    <p>Every Assessment begins with a free 30-minute Reporting Trust Diagnostic — a conversation to understand your situation and confirm there's a fit before any work begins. If Manteia isn't right for where you are, we'll tell you plainly.</p>
     <div class="conv-details">
       <div class="conv-detail"><div class="cdn">$0</div><div class="cdl">Diagnostic call</div></div>
       <div class="conv-divider"></div>

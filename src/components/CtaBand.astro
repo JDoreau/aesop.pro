@@ -1,0 +1,28 @@
+---
+// CtaBand.astro — the closing navy CTA field (twine top-rule, æ watermark).
+// -----------------------------------------------------------------------------
+// The reface's standard page-closer: an eyebrow, an H2, a warm sub, and a
+// centered .btn-row led by the product CTA. Built from sections.css.
+//
+// PROPS:
+//   eyebrow — the small twine eyebrow (e.g. "See it for real").
+//   watermark — show the æ flourish (default true).
+//
+// SLOTS:
+//   default — the H2 (pass your own so phrasing is explicit).
+//   sub     — the warm sub-paragraph.
+//   cta     — the .btn-row (product-led first; "Book a diagnostic" secondary).
+//
+// VOICE: never a bare CTA. The sub must carry the honest promise
+// ("If Manteia isn't the right fit for where you are, we'll tell you plainly.").
+interface Props { eyebrow?: string; watermark?: boolean; }
+const { eyebrow, watermark = true } = Astro.props;
+---
+<section class:list={["cta-band", { "ae-host ae-mark": watermark }]} style="--ae-size:min(40vw,440px); --ae-right:-2%; --ae-bottom:-30%; --ae-opacity:.05;">
+  <div class="inr">
+    {eyebrow && <div class="eyebrow eyebrow-c">{eyebrow}</div>}
+    <slot />
+    <p><slot name="sub" /></p>
+    <div class="btn-row center"><slot name="cta" /></div>
+  </div>
+</section>

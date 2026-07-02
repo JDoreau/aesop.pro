@@ -8,10 +8,15 @@ export interface NavItem {
   mobileLabel?: string;  // longer label shown in the mobile menu
 }
 
+// Product-first IA (the reface, SITE-DIRECTION §1) — the nav order is the single
+// loudest positioning signal, so the PRODUCT leads and services demote to the
+// Assessment on-ramp. Every href points at a real, existing route (breadcrumb
+// matcher + isCurrent() compare against these paths, so they stay clean & 404-free).
+// "Product" is the Manteia platform page; "Why trust it" and "Work" are the proof
+// surfaces; the Assessment is the accented human on-ramp.
 export const nav: NavItem[] = [
-  { label: "Services",   href: "/services" },
-  { label: "Platform",   href: "/platform", mobileLabel: "The Platform — Data Practice Portal" },
-  { label: "Work",       href: "/work" },
+  { label: "Product",    href: "/platform", mobileLabel: "The Product — Aesop Manteia" },
+  { label: "Why trust it", href: "/work", mobileLabel: "Why trust it — recent work" },
   { label: "Assessment", href: "/assessment", accent: true, mobileLabel: "Reporting Clarity Assessment" },
   { label: "Insights",   href: "/insights" },
   { label: "Resources",  href: "/resources" },
@@ -19,11 +24,14 @@ export const nav: NavItem[] = [
   { label: "Contact",    href: "/contact" },
 ];
 
-export const cta = { label: "Book a diagnostic", href: "/diagnostic", mobileLabel: "Book a diagnostic call" };
+// The product-led primary CTA the site never had — "See it on your estate"
+// (SITE-DIRECTION §1). It still lands on the diagnostic (the human on-ramp),
+// but the LABEL now leads with the product, not the services funnel.
+export const cta = { label: "See it on your estate", href: "/diagnostic", mobileLabel: "See it on your estate" };
 
 export const site = {
   name: "Aesop Analytics",
-  tagline: "Reporting trust, delivered as governed software.",
+  tagline: "A data-governance software company.",
   // Canonical brand promise (TRUE_NORTH §1). Not yet rendered anywhere —
   // the homepage promise band hardcodes its own longer wording.
   promise: "We bring you value, or we tell you honestly that we can’t.",
