@@ -273,7 +273,19 @@ export function mountHealthCheck() {
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
       if (!window.__hcTurnstileToken) { msg.textContent = 'Please complete the “I’m human” check above before sending.'; return; }
       send.disabled = true; msg.textContent = 'Sending your report…';
-      fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, scores: state.scores, turnstileToken: window.__hcTurnstileToken || '' }) })
+      // Marketing attribution: forward the session's first-touch utm capture (Seo.astro persists it
+      // to sessionStorage from the landing URL) as flat utm_* keys alongside the lead, matching the
+      // platform intake's extractUtm() field names. The mailer Worker validates only email/scores/
+      // turnstileToken and safely ignores unknown keys today — forwarding them into the lead notify
+      // is the Worker-side half (PLATFORM src/mailer/index.ts, a separate wave).
+      var utm = {};
+      try {
+        var utmStore = JSON.parse(sessionStorage.getItem('aesop_utm') || '{}');
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
+          if (typeof utmStore[k] === 'string' && utmStore[k]) utm[k] = utmStore[k].slice(0, 200);
+        });
+      } catch (e) {}
+      fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ email: email, scores: state.scores, turnstileToken: window.__hcTurnstileToken || '' }, utm)) })
         .then((res) => {
           if (res.ok) { row.style.display = 'none'; ts.style.display = 'none'; msg.textContent = 'Sent — check your inbox (and your spam folder, just in case).'; return; }
           if (res.status === 422) { msg.textContent = 'We couldn’t deliver to that address — but your report is right here and printable above.'; return; }

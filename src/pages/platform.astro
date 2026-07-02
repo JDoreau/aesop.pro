@@ -16,9 +16,25 @@ import Reveal from "../components/Reveal.astro";
 const title = 'Aesop Manteia — the data-governance platform | Aesop Analytics';
 const description = "Manteia maps your data estate from metadata, makes every metric's owner and definition visible, and lets anyone ask a plain question — answered from your governed data, with a citation for every claim, or an honest 'that isn't governed yet.'";
 const ogDescription = "Trust you can see, and keep. Your estate mapped, governed, and answerable — with a citation for every claim, honestly staged.";
+
+// SoftwareApplication JSON-LD for the product page — restates ONLY what the page
+// itself already claims (the description above; publisher = the org node Seo.astro
+// emits on every page). Deliberately NO offers, prices, ratings, or reviews:
+// none exist on-page, and Review markup is gated repo-wide (CLAUDE.md).
+import { site, canonicalUrl } from "../data/nav.ts";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Aesop Manteia",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: canonicalUrl("/platform"),
+  description,
+  publisher: { "@id": `${site.url}/#organization` },
+};
 ---
 
-<BaseLayout title={title} description={description} path="/platform" ogDescription={ogDescription}>
+<BaseLayout title={title} description={description} path="/platform" ogDescription={ogDescription} schema={schema}>
 <div class="reface">
 
   <!-- ── HERO ── -->
@@ -26,8 +42,8 @@ const ogDescription = "Trust you can see, and keep. Your estate mapped, governed
     <h1>Trust you can <span class="em">see</span> — and keep.</h1>
     <Fragment slot="sub"><strong>Manteia</strong> gives your data a governed record it can stand behind: your whole estate mapped from metadata, every metric's owner and definition in plain view, and an agent that answers about it &mdash; grounded only in your governed data, with a citation for every claim.</Fragment>
     <Fragment slot="cta">
-      <a href="/diagnostic/" class="btn">See it on your estate</a>
-      <a href="/assessment/" class="btn ghost">How the engagement works</a>
+      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=platform-hero-diagnostic" class="btn">See it on your estate</a>
+      <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=platform-hero-assessment" class="btn ghost">How the engagement works</a>
     </Fragment>
     <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Built on a deterministic core &mdash; it computes, it doesn't guess.</div>
   </Hero>
@@ -88,7 +104,7 @@ const ogDescription = "Trust you can see, and keep. Your estate mapped, governed
           <h2>The engagement establishes trust. Manteia keeps it.</h2>
           <p>A Reporting Clarity Assessment maps your estate and names the gaps. Historically, that picture started going stale the day it was delivered &mdash; definitions drift, new reports appear, owners change roles. Manteia is the living version of that work: it updates as the estate changes, so the governance you paid for is still true a year later.</p>
           <p>Between engagements, Manteia is what your team navigates and the agent is who they ask. It's the difference between a one-time clean-up and a practice that sustains itself.</p>
-          <a href="/assessment/" class="cont-link">See the on-ramp</a>
+          <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=platform-continuity-assessment" class="cont-link">See the on-ramp</a>
         </div>
         <div class="cont-right">
           <div class="cont-card">
@@ -130,7 +146,7 @@ const ogDescription = "Trust you can see, and keep. Your estate mapped, governed
     <h2>Watch your own estate become a living record.</h2>
     <Fragment slot="sub">A focused 30-minute look, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
     <Fragment slot="cta">
-      <a href="/diagnostic/" class="btn on-light">See it on your estate</a>
+      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=platform-closing-diagnostic" class="btn on-light">See it on your estate</a>
       <a href="/work/" class="btn ghost">See recent work</a>
     </Fragment>
   </CtaBand>

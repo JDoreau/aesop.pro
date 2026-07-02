@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { hero, pillarButtons, featured, sections, sidebarPillars } from "../data/insights.ts";
-import { linkHref } from "../data/nav.ts";
+import { linkHref, canonicalUrl } from "../data/nav.ts";
 import type { Section } from "../data/insights.ts";
 const title = 'Insights: Reporting Trust, KPIs & Dashboards | Aesop'
 const description = 'Articles and field studies on reporting trust, KPI governance, dashboard design, and data strategy — for COOs, CFOs, and analytics leaders.'
@@ -13,9 +13,30 @@ const countLabel = (s: Section) => {
   const plural = s.pillar === 'field-study' ? 'studies' : 'articles';
   return n + ' ' + (n === 1 ? noun : plural);
 };
+
+// CollectionPage + ItemList JSON-LD for the hub: derived from the SAME data the
+// page renders (insights.ts), so the list can never drift from the visible hub.
+const listedRows = [featured, ...sections.flatMap((s) => s.rows)];
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title.split('|')[0].trim(),
+  description,
+  url: canonicalUrl("/insights"),
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: listedRows.length,
+    itemListElement: listedRows.map((r, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: r.title,
+      url: canonicalUrl(`/insights/${r.slug}`),
+    })),
+  },
+};
 ---
 
-<BaseLayout title={title} description={description} path="/insights" ogDescription={ogDescription}>
+<BaseLayout title={title} description={description} path="/insights" ogDescription={ogDescription} schema={schema}>
 
 <div class="page-hero">
   <div class="page-hero-in">
@@ -84,12 +105,12 @@ const countLabel = (s: Section) => {
     <div class="sb-block">
       <div class="sb-label">Free resource</div>
       <p>The Reporting Trust Health Check — 10 diagnostic areas, 3 signal questions each. Score your reporting environment in about 10 minutes.</p>
-      <a href="/resources/health-check/" class="sb-btn">Take the Health Check →</a>
+      <a href="/resources/health-check/?utm_source=site&utm_medium=internal&utm_campaign=insights-sidebar-healthcheck" class="sb-btn">Take the Health Check →</a>
     </div>
     <div class="sb-block">
       <div class="sb-label">See it on your estate</div>
       <p>If an article raised a question about your own reporting environment, the fastest next step is a focused 30-minute look at your own numbers. If Manteia isn't the right fit yet, we'll tell you plainly.</p>
-      <a href="/diagnostic/" class="sb-btn">See it on your estate →</a>
+      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=insights-sidebar-diagnostic" class="sb-btn">See it on your estate →</a>
     </div>
   </aside>
 </div>

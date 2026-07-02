@@ -39,6 +39,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <!-- Tags the submission so it's identifiable in Formspree -->
           <input type="hidden" name="_subject" value="New Reporting Trust Letter subscriber">
           <input type="hidden" name="source" value="Reporting Trust Letter signup">
+          <!-- Marketing attribution: filled from the session's first-touch utm capture (Seo.astro ->
+               sessionStorage) so a subscriber from a tracked post carries the campaign to the funnel. -->
+          <input type="hidden" name="utm_source" id="tl-utm-source">
+          <input type="hidden" name="utm_medium" id="tl-utm-medium">
+          <input type="hidden" name="utm_campaign" id="tl-utm-campaign">
+          <input type="hidden" name="utm_content" id="tl-utm-content">
           <!-- Honeypot anti-spam field; bots fill it, humans don't see it -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button type="submit" class="sc-btn" id="tl-submit">Subscribe →</button>
@@ -116,7 +122,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   <section class="foot-cta">
     <h2>Rather skip ahead?</h2>
     <p>If your reporting environment already has you asking hard questions, a free 30-minute diagnostic is the faster path — a plain conversation, and an honest answer about whether we're the right fit.</p>
-    <a href="/diagnostic/" class="btn">Book a Reporting Trust Diagnostic →</a>
+    <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=trust-letter-closing-diagnostic" class="btn">Book a Reporting Trust Diagnostic →</a>
   </section>
 </BaseLayout>
 
@@ -195,6 +201,18 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 </style>
 
 <script>
+  // Marketing attribution: read the session's first-touch utm capture (Seo.astro -> sessionStorage)
+  // and fill the hidden inputs, so the Formspree submission carries the campaign that earned it.
+  (function fillUtm() {
+    let store: Record<string, unknown> = {};
+    try { store = JSON.parse(sessionStorage.getItem('aesop_utm') || '{}'); } catch (e) {}
+    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content']) {
+      const el = document.getElementById('tl-' + k.replace('utm_', 'utm-')) as HTMLInputElement | null;
+      const v = store[k];
+      if (el && typeof v === 'string' && v) el.value = v.slice(0, 200);
+    }
+  })();
+
   // AJAX submit so subscribers stay on-page and see a success state
   const form = document.getElementById('trustletter-form') as HTMLFormElement | null;
   const okMsg = document.getElementById('tl-ok');

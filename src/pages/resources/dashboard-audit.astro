@@ -454,6 +454,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <input type="hidden" id="h-band" name="band">
           <input type="hidden" id="h-cats" name="category_scores">
           <input type="hidden" id="h-fixes" name="priority_issues">
+          <!-- Marketing attribution: filled from the session's first-touch utm capture (Seo.astro ->
+               sessionStorage) so an email-results lead carries the campaign that earned it. -->
+          <input type="hidden" name="utm_source" id="h-utm-source">
+          <input type="hidden" name="utm_medium" id="h-utm-medium">
+          <input type="hidden" name="utm_campaign" id="h-utm-campaign">
+          <input type="hidden" name="utm_content" id="h-utm-content">
           <div class="da-ef-row">
             <div class="da-ef-field">
               <label class="da-ef-label" for="ef-name">Name</label>
@@ -485,7 +491,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <h3>This is one dashboard. Your estate has many.</h3>
         <p>A Reporting Clarity Assessment covers your entire reporting estate — not just one dashboard — and maps it into Aesop Manteia, the living system that keeps the governance true after the audit is done. You leave with a prioritized roadmap of exactly what to fix first. If it isn't the right next step for you, we'll say so.</p>
       </div>
-      <a href="/diagnostic/" class="da-cta-btn">Book a free diagnostic &rarr;</a>
+      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=dashboard-audit-closing-diagnostic" class="da-cta-btn">Book a free diagnostic &rarr;</a>
     </div>
 
   </div>
@@ -728,6 +734,17 @@ function showResults(){
   document.getElementById('h-cats').value=catLines.join(' | ');
   document.getElementById('h-fixes').value=fixItems.slice(0,3).map(f=>f.title).join(' | ');
 }
+
+// Marketing attribution: read the session's first-touch utm capture (Seo.astro -> sessionStorage)
+// and fill the hidden inputs, so the Formspree submission carries the campaign that earned it.
+(function fillUtm(){
+  var store={};
+  try{ store=JSON.parse(sessionStorage.getItem('aesop_utm')||'{}'); }catch(e){}
+  ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){
+    var el=document.getElementById('h-'+k.replace('utm_','utm-'));
+    if(el&&typeof store[k]==='string'&&store[k]) el.value=store[k].slice(0,200);
+  });
+})();
 
 document.getElementById('da-email-form').addEventListener('submit',async function(e){
   e.preventDefault();

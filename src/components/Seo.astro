@@ -13,14 +13,21 @@ export interface Props {
   ogDescription?: string;
   ogType?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 // path defaults to the page's own route — a page that forgets to pass it can
 // no longer silently claim the homepage as its canonical.
-const { title, description, path = Astro.url.pathname, ogTitle, ogDescription, ogType = "website", noindex = false, schema, ogImage } = Astro.props;
+const { title, description, path = Astro.url.pathname, ogTitle, ogDescription, ogType = "website", noindex = false, schema, ogImage, ogImageAlt } = Astro.props;
 const canonical = canonicalUrl(path);
 const ogImageUrl = new URL(ogImage ?? "/assets/og-image.png", site.url).href;
+// og:image:alt follows an ogImage override when the page supplies its own alt;
+// the global brand line remains the default for the shared og-image.png.
+const ogImageAltText = ogImageAlt ?? "Aesop Analytics - turn mistrusted reporting into a governed decision system.";
+// Stable JSON-LD entity id for the org, so WebSite/publisher references resolve
+// to the SAME node instead of duplicating a nameless Organization.
+const orgId = `${site.url}/#organization`;
 
 // Breadcrumb trail, derived from the path so it can never drift from the IA.
 const leafName = title.split("|")[0].split("·")[0].trim();
@@ -60,12 +67,37 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
     gtag('config', 'G-4TVCCT0XW9');
   }
 </script>}
+<!-- Marketing attribution, FIRST-TOUCH per session: the first URL of the session
+     that carries any ?utm_* param wins and is persisted to sessionStorage
+     ('aesop_utm'), so a visitor who lands on ANY page from a tracked post and
+     converts anywhere on the site (contact form, health check, trust letter,
+     dashboard audit) still carries the campaign to the operator's funnel.
+     First-touch (never overwrite) is what protects a genuine inbound campaign
+     (e.g. linkedin-company) from being clobbered by the site's own internal CTA
+     placements (utm_source=site / utm_medium=internal — see ctaHref in nav.ts). -->
+<script is:inline>
+  (function () {
+    try {
+      var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+      var raw = sessionStorage.getItem('aesop_utm');
+      if (raw && raw !== '{}') return; // first touch already captured this session
+      var params = new URLSearchParams(location.search);
+      var store = {}; var any = false;
+      for (var i = 0; i < KEYS.length; i++) {
+        var v = (params.get(KEYS[i]) || '').trim();
+        if (v) { store[KEYS[i]] = v.slice(0, 200); any = true; }
+      }
+      if (any) sessionStorage.setItem('aesop_utm', JSON.stringify(store));
+    } catch (e) {}
+  })();
+</script>
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 <!-- clean favicon link (the live pages have stray SVG markup trailing this tag) -->
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
 
+<meta property="og:site_name" content={site.name} />
 <meta property="og:title" content={ogTitle ?? title} />
 <meta property="og:description" content={ogDescription ?? description} />
 <meta property="og:type" content={ogType} />
@@ -73,7 +105,7 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 <meta property="og:image" content={ogImageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Aesop Analytics - turn mistrusted reporting into a governed decision system." />
+<meta property="og:image:alt" content={ogImageAltText} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content={ogImageUrl} />
 
@@ -84,6 +116,7 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": orgId,
   name: site.name,
   description: "Reporting modernization and data trust for growing companies — governed data-practice software (Aesop Manteia) plus principal-led services.",
   url: site.url,
@@ -103,7 +136,7 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
   "@type": "WebSite",
   name: site.name,
   url: site.url,
-  publisher: { "@type": "Organization", name: site.name },
+  publisher: { "@id": orgId },
 })} />}
 {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 {extraSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}

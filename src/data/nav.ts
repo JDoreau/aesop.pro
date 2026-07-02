@@ -69,3 +69,22 @@ export function linkHref(href: string): string {
   if (last.includes(".")) return href; // a file, not a route
   return path + "/" + suffix;
 }
+
+// ctaHref — internal-placement attribution for CONVERSION CTAs (and only those).
+// Stamps the ratified internal scheme: utm_source=site · utm_medium=internal ·
+// utm_campaign=<placement>. The medium "internal" is deliberately its own channel
+// bucket in the operator's funnel (PLATFORM normalizeChannel keeps any unknown
+// medium as its own key), so it can never masquerade as organic/paid/social.
+// NEVER stamps utm_content — that key is reserved for the publisher's per-piece
+// content-asset id (Content Mind, PLATFORM migration 0024). Genuine inbound
+// campaigns are protected by the FIRST-TOUCH session capture in Seo.astro: an
+// internal placement is only ever recorded when the session arrived untagged.
+// Query goes on a trailing-slash path (check.mjs §8-clean); #fragment preserved.
+export function ctaHref(href: string, campaign: string): string {
+  const base = linkHref(href);
+  const cut = base.indexOf("#");
+  const path = cut === -1 ? base : base.slice(0, cut);
+  const frag = cut === -1 ? "" : base.slice(cut);
+  const sep = path.includes("?") ? "&" : "?";
+  return `${path}${sep}utm_source=site&utm_medium=internal&utm_campaign=${encodeURIComponent(campaign)}${frag}`;
+}

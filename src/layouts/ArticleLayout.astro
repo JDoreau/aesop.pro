@@ -10,7 +10,7 @@ import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/article.css";
 import Seo from "../components/Seo.astro";
-import { nav, cta, site, canonicalUrl, linkHref } from "../data/nav.ts";
+import { nav, cta, site, canonicalUrl, linkHref, ctaHref } from "../data/nav.ts";
 import { sections, featured } from "../data/insights.ts";
 import Wordmark from "../components/Wordmark.astro";
 
@@ -52,6 +52,7 @@ const headline = headingHtml
 <html lang="en">
   <head>
     <Seo title={title} description={description} path={path} ogType="article" ogTitle={ogTitle} ogDescription={ogDescription} ogImage={ogImage} />
+    {published && <meta property="article:published_time" content={published} />}
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Article",
@@ -72,7 +73,7 @@ const headline = headingHtml
         <div class="site-links">
           {nav.map((i) => (<a href={linkHref(i.href)} class:list={[{ "nav-accent": i.accent }]}>{i.label}</a>))}
         </div>
-        <a href={linkHref(cta.href)} class="site-cta">{cta.label}</a>
+        <a href={ctaHref(cta.href, "article-nav-cta")} class="site-cta">{cta.label}</a>
       </div>
     </nav>
 
@@ -96,7 +97,7 @@ const headline = headingHtml
         <h2>The thinking here is what our product runs on.</h2>
         <p>Aesop Analytics is a data-governance software company. The reasoning in this piece — owned metrics, agreed definitions, sources you can name — is exactly what Aesop Manteia turns into a living system: it maps your estate from metadata, renders the gaps in plain view, and answers a question with a citation, or an honest "that isn't governed yet." The fastest way to see it on your own numbers is a focused 30-minute look.</p>
         <div class="acta-row">
-          <a href="/diagnostic/" class="acta-btn">See it on your estate →</a>
+          <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=article-closing-diagnostic" class="acta-btn">See it on your estate →</a>
           <a href="/platform/" class="acta-ghost">Read about the product →</a>
         </div>
         <p class="acta-note">If Manteia isn't the right fit for where you are, we'll tell you plainly.</p>
