@@ -15,23 +15,23 @@ import StatBand from "../components/StatBand.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Reveal from "../components/Reveal.astro";
 
-const title = 'Data governance you can trust, delivered as software | Aesop Analytics';
-const description = "Aesop Analytics is a data-governance software company. We map your data estate, put every metric's owner and definition in plain view, and leave behind Aesop Manteia — a living system that keeps reporting trustworthy, with a citation behind every number.";
-const ogDescription = "Reporting you can finally trust — and a living system that keeps it that way. Your estate mapped, governed, and answerable, with a citation for every claim.";
+const title = 'Trusted data is the infrastructure of the AI era | Aesop Analytics';
+const description = "Aesop Analytics builds the operating system for trusted enterprise intelligence. Aesop Manteia maps your data estate from metadata, makes every metric's owner and definition visible, and answers plain questions with a citation behind every number — a living system, not another dashboard.";
+const ogDescription = "Software that turns fragmented reporting into trusted, governed, AI-ready intelligence — with a citation behind every answer.";
 ---
 
 <BaseLayout title={title} description={description} path="/" ogDescription={ogDescription}>
 <div class="reface">
 
   <!-- ── HERO ── -->
-  <Hero eyebrow="Data governance · Reporting trust · AI-readiness">
-    <h1>Reporting you can finally <span class="em">trust</span> — and a living system that keeps it that way.</h1>
-    <Fragment slot="sub">We map your data estate, put every metric's owner and definition in plain view, and leave behind Aesop Manteia — so a year from now the trust is still there, with a citation behind every number.</Fragment>
+  <Hero eyebrow="Data governance · AI readiness · Decision intelligence">
+    <h1>The <span class="em">trust layer</span> beneath every decision your data should be making.</h1>
+    <Fragment slot="sub">Aesop Analytics builds the operating system for trusted enterprise intelligence. Aesop Manteia maps your whole estate from metadata, puts every metric's owner and definition in plain view, and answers a plain question with a citation behind every number — so a year from now the trust is still there.</Fragment>
     <Fragment slot="cta">
       <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=home-hero-diagnostic" class="btn">See it on your estate</a>
-      <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=home-hero-assessment" class="btn ghost">Book a diagnostic</a>
+      <a href="/platform/?utm_source=site&utm_medium=internal&utm_campaign=home-hero-platform" class="btn ghost">How the platform works</a>
     </Fragment>
-    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">A data-governance software company · Nashville, TN · aesopanalytics.com</div>
+    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">The operating system for trusted enterprise intelligence · Nashville, TN</div>
   </Hero>
 
   <!-- ── PROMISE BAND ── -->
@@ -43,9 +43,9 @@ const ogDescription = "Reporting you can finally trust — and a living system t
       <div class="pain-grid">
         <div class="pain-left">
           <div class="sec-label">The real problem</div>
-          <h2>The pain isn't bad dashboards. It's that no one trusts the numbers.</h2>
-          <p>Most companies that invest in BI tools still land in the same place: leadership is making decisions on data it doesn't fully believe. Different teams pull different numbers. KPIs have no agreed owner. Reporting is rebuilt by hand every week. The dashboards exist — they're just not trusted.</p>
-          <div class="pov">Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems.</div>
+          <h2>Every company wants AI. Almost none of them trust the data underneath it.</h2>
+          <p>Most companies that invest in BI still land in the same place: leadership makes decisions on data it doesn't fully believe. Teams pull different numbers. KPIs have no agreed owner. Reporting is rebuilt by hand every week. The dashboards exist — they're just not trusted. And AI can't create a trusted answer from unclear definitions, broken logic, and undocumented data.</p>
+          <div class="pov">Most reporting problems are not visualization problems. They are ownership, definition, process, trust, and governance problems — the exact foundation AI needs and most companies skip.</div>
           <p class="hinge">A new tool doesn't fix that. <b>A governed system does — and that's what Manteia is.</b></p>
         </div>
         <div class="pain-right">
@@ -56,7 +56,7 @@ const ogDescription = "Reporting you can finally trust — and a living system t
             <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
             <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Dashboards exist, but nobody uses them to make decisions</span></div>
             <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">No one knows which report is official or whose number is right</span></div>
-            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">AI initiatives stall because the underlying data can't be trusted</span></div>
+            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">AI and automation stall because the data underneath can't be trusted</span></div>
           </div>
         </div>
       </div>
@@ -66,18 +66,18 @@ const ogDescription = "Reporting you can finally trust — and a living system t
   <!-- ── PRODUCT SPINE (the new centerpiece) ── -->
   <section class="product band-navy ae-host ae-mark" id="product" style="--ae-size:min(40vw,460px); --ae-left:-4%; --ae-bottom:-24%; --ae-opacity:.05;">
     <div class="wrap">
-      <div class="sec-label">The product</div>
+      <div class="sec-label">The platform</div>
       <h2 class="product-h">Manteia turns the engagement into a living system.</h2>
-      <p class="lede product-lede">Three parts, one continuous system: it maps your estate from metadata, makes the governance visible, and lets anyone ask a plain question and get an answer they can stand behind. Every step is auditable, because none of it is guesswork.</p>
+      <p class="lede product-lede">Four parts, one continuous platform: it maps your estate from metadata, makes the governance visible, designs the model your data should have, and lets anyone ask a plain question and get an answer they can stand behind. Every step is auditable, because none of it is guesswork.</p>
 
       <div class="spine">
-        <SpineCard step="01" name="The Scribe" greek="Aesop Graphion" status="dep" statusLabel="Deployed today">
+        <SpineCard step="01" name="The Scribe" greek="Aesop Graphion" status="dep" statusLabel="Deployed — proven engine">
           Point it at your metadata &mdash; your BI files, your warehouse catalog, a simple export &mdash; and it maps your estate: tables, metrics, and the lineage between them. It reads what actually exists. It doesn't guess.
         </SpineCard>
         <SpineCard step="02" name="The Portal" greek="Aesop Stoa" status="dep" statusLabel="Deployed — log in today" highlight={true}>
           Your governance, made visible: every metric's owner and definition, which reports disagree, and &mdash; most tellingly &mdash; what no one owns at all. The gaps render in red. That red is the work, now visible to the people who can fix it.
         </SpineCard>
-        <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live answers now · live-data querying in preview">
+        <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live cited answers now · live-warehouse querying in preview">
           Ask a plain question &mdash; "which numbers does no one own?", "is this metric trustworthy?" &mdash; and get an answer grounded only in your governed data, with a citation for every claim. If the answer isn't in your data, it says so.
         </SpineCard>
       </div>
@@ -92,15 +92,15 @@ const ogDescription = "Reporting you can finally trust — and a living system t
           <div class="ask-answer" id="askAnswer"></div>
           <div class="ask-cite" id="askCite"></div>
         </div>
-        <div class="ask-foot">The refusal is the point: the agent will not invent a number, an owner, or a definition to fill a silence. That is the same discipline the whole product is built on.</div>
+        <div class="ask-foot">The refusal is the point: the agent will not invent a number, an owner, or a definition to fill a silence. That is the same discipline the whole platform is built on.</div>
       </div>
 
       <!-- HONESTY RAIL — the differentiator, made structural -->
       <div class="rail-wrap">
         <HonestyRail
-          deployed="The governed portal with secure login, the estate map, and grounded answers with citations. You can log in and see a real estate now. The write layer is live too &mdash; ratify a definition, assign an owner, log a request, and the record updates."
-          preview="The agent asking questions of your live data directly, and regenerating governed reports from the map. The design is ratified and building; we'll show you exactly how far along it is."
-          roadmap="Native Power BI report generation and automated Gold-layer design. Real work, honestly not finished &mdash; so we don't put it on a slide as though it were."
+          deployed="The governed portal with secure login, your estate mapped from metadata, and grounded answers with a citation behind every claim. The write layer is live too &mdash; ratify a definition, assign an owner, log a request, and the record updates on a real database."
+          preview="The agent querying your live warehouse directly (verified today on Postgres and MySQL), and regenerating governed reports from the map. Ratified and building &mdash; we'll show you exactly how far along it is."
+          roadmap="Native Power BI report generation, automated Gold-layer design as a live surface, and the deeper machine-learning layer &mdash; the Analytica arm &mdash; arriving in Phase II. Real work, honestly not finished, so we never put it on a slide as though it were."
         />
       </div>
     </div>
@@ -114,7 +114,7 @@ const ogDescription = "Reporting you can finally trust — and a living system t
       <div class="safe-grid">
         <div class="safe-item">
           <div class="si-h">It computes, it doesn't guess</div>
-          <p>The map, the lineage, and every governance finding are produced by deterministic code reading your own systems &mdash; not by a model's opinion. The same inputs always give the same answer, and you can audit how it was reached.</p>
+          <p>The map, the lineage, and every governance finding are produced by deterministic code reading your own systems &mdash; not by a model's opinion. The same inputs always give the same answer, and you can audit how it was reached. That determinism is what makes it safe to build automation and AI on top of.</p>
         </div>
         <div class="safe-item">
           <div class="si-h">The agent cites or refuses</div>
@@ -138,7 +138,7 @@ const ogDescription = "Reporting you can finally trust — and a living system t
         <div class="flow-step"><div class="fs-n">1</div><div class="fs-name">Connect</div><div class="fs-desc">A read-only export or catalog from each system. We ask for a key, never a copy of your data.</div></div>
         <div class="flow-step"><div class="fs-n">2</div><div class="fs-name">Map</div><div class="fs-desc">Every table, field, metric, and lineage edge, normalized into one typed map of the estate.</div></div>
         <div class="flow-step"><div class="fs-n">3</div><div class="fs-name">Govern</div><div class="fs-desc">Owners, definitions, and the gaps surfaced &mdash; what's contested, what's unowned, what's never been governed.</div></div>
-        <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate and an agent anyone can ask &mdash; every claim traceable to its source.</div></div>
+        <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate, an agent anyone can ask, and a target Gold model the Architect designs from what it finds &mdash; every claim traceable to its source.</div></div>
       </div>
     </div>
   </section>
@@ -149,7 +149,7 @@ const ogDescription = "Reporting you can finally trust — and a living system t
       <div class="sec-head">
         <div class="sec-label" style="display:inline-block">Proof</div>
         <h2>The work isn't finished when the dashboard goes live.</h2>
-        <p>It's finished when leadership trusts the number, knows who owns it, and Manteia keeps it true. Here's what that looked like across recent engagements.</p>
+        <p>It's finished when leadership trusts the number, knows who owns it, and Manteia keeps it true. These engagements became the method the platform now runs.</p>
       </div>
       <div class="proof-grid">
         <ProofCard n="31" label="Portfolio KPIs governed with named owners" sector="Finance & Banking" href="/work/#finance-banking" />
@@ -161,14 +161,19 @@ const ogDescription = "Reporting you can finally trust — and a living system t
   </section>
 
   <!-- ── STATS ── -->
-  <StatBand />
+  <StatBand stats={[
+    { n: "4", l: "Platform doors — Scribe, Portal, Agent, Architect" },
+    { n: "100", sup: "%", l: "Inference precision on graded synthetic estates" },
+    { n: "0", l: "Data copied — the platform runs on metadata, not your warehouse" },
+    { n: "1", l: "Citation behind every answer the agent gives" },
+  ]} />
 
   <!-- ── THE HONEST ON-RAMP ── -->
   <section class="onramp band-paper2" id="onramp">
     <div class="onramp-in">
       <div class="sec-label" style="display:inline-block">The on-ramp</div>
-      <h2>The fastest way to see this on your own estate.</h2>
-      <p>Start with a Reporting Clarity Assessment &mdash; a fixed-fee, two-to-three-week look that maps your estate into Manteia and names every gap. You leave with the picture leadership has always wanted, and the living system that keeps it true.</p>
+      <h2>The fastest way to see the platform on your own estate.</h2>
+      <p>Start with a Reporting Clarity Assessment &mdash; a fixed-fee, two-to-three-week look that maps your estate into Manteia and names every gap. You leave with the picture leadership has always wanted, and the platform running to keep it true.</p>
       <p class="ladder">It grows from there &mdash; a modernization sprint, a governance starter, a fractional retainer &mdash; only when the roadmap justifies it. Never a bigger engagement than the problem needs.</p>
       <div class="btn-row center" style="margin-top:28px"><a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=home-onramp-assessment" class="btn">See the Assessment</a></div>
     </div>
@@ -176,11 +181,11 @@ const ogDescription = "Reporting you can finally trust — and a living system t
 
   <!-- ── FINAL CTA ── -->
   <CtaBand eyebrow="See it for real">
-    <h2>Watch your own estate become a living record.</h2>
+    <h2>Watch your own estate become a governed, answerable system.</h2>
     <Fragment slot="sub">A focused 30-minute look, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
     <Fragment slot="cta">
       <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=home-closing-diagnostic" class="btn on-light">See it on your estate</a>
-      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=home-closing-diagnostic-alt" class="btn ghost">Book a diagnostic</a>
+      <a href="/platform/?utm_source=site&utm_medium=internal&utm_campaign=home-closing-platform" class="btn ghost">Explore the platform</a>
     </Fragment>
   </CtaBand>
 

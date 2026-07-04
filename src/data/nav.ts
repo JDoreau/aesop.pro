@@ -15,9 +15,9 @@ export interface NavItem {
 // "Product" is the Manteia platform page; "Why trust it" and "Work" are the proof
 // surfaces; the Assessment is the accented human on-ramp.
 export const nav: NavItem[] = [
-  { label: "Product",    href: "/platform", mobileLabel: "The Product — Aesop Manteia" },
-  { label: "Why trust it", href: "/work", mobileLabel: "Why trust it — recent work" },
-  { label: "Assessment", href: "/assessment", accent: true, mobileLabel: "Reporting Clarity Assessment" },
+  { label: "Product",    href: "/platform", mobileLabel: "The Platform — Aesop Manteia" },
+  { label: "Why trust it", href: "/work", mobileLabel: "Why trust it — proof & method" },
+  { label: "Assessment", href: "/assessment", accent: true, mobileLabel: "Reporting Clarity Assessment — the on-ramp" },
   { label: "Insights",   href: "/insights" },
   { label: "Resources",  href: "/resources" },
   { label: "About",      href: "/about" },
@@ -31,7 +31,7 @@ export const cta = { label: "See it on your estate", href: "/diagnostic", mobile
 
 export const site = {
   name: "Aesop Analytics",
-  tagline: "A data-governance software company.",
+  tagline: "The operating system for trusted enterprise intelligence.",
   // Canonical brand promise (TRUE_NORTH §1). Not yet rendered anywhere —
   // the homepage promise band hardcodes its own longer wording.
   promise: "We bring you value, or we tell you honestly that we can’t.",

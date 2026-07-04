@@ -1,23 +1,25 @@
 ---
-// StatBand.astro — the firm-stats strip on navy (37+ years, 6 industries, …).
+// StatBand.astro — the platform-capability strip on navy (4 doors, 100% …).
 // -----------------------------------------------------------------------------
 // A four-up (responsive to two-up) band of big twine numerals with uppercase
-// labels. Data-driven so any page can restate the firm's proof points.
+// labels. Data-driven so any page can restate the platform's proof points.
 //
 // PROPS:
 //   stats — array of { n: string, sup?: string, l: string }
-//           n = the numeral, sup = an optional small superscript (e.g. "+"),
+//           n = the numeral, sup = an optional small superscript (e.g. "%"),
 //           l = the uppercase caption.
 //
-// The default set is the firm's ratified figures; pass your own to reuse.
+// The default set is the ratified platform-capability band — every number
+// ledger-defensible (doors deployed, precision on graded synthetic estates,
+// metadata-only, cite-or-refuse). Pass your own to reuse.
 interface Stat { n: string; sup?: string; l: string; }
 interface Props { stats?: Stat[]; }
 const {
   stats = [
-    { n: "37", sup: "+", l: "Combined years in analytics, BI & leadership" },
-    { n: "6", l: "Industries with deep domain expertise" },
-    { n: "3", l: "Complete data program modernizations" },
-    { n: "26", l: "Successful engagements" },
+    { n: "4", l: "Platform doors — Scribe, Portal, Agent, Architect" },
+    { n: "100", sup: "%", l: "Inference precision on graded synthetic estates" },
+    { n: "0", l: "Data copied — the platform runs on metadata, not your warehouse" },
+    { n: "1", l: "Citation behind every answer the agent gives" },
   ],
 } = Astro.props;
 ---

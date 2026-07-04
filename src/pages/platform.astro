@@ -13,9 +13,9 @@ import HonestyRail from "../components/HonestyRail.astro";
 import CtaBand from "../components/CtaBand.astro";
 import Reveal from "../components/Reveal.astro";
 
-const title = 'Aesop Manteia — the data-governance platform | Aesop Analytics';
-const description = "Manteia maps your data estate from metadata, makes every metric's owner and definition visible, and lets anyone ask a plain question — answered from your governed data, with a citation for every claim, or an honest 'that isn't governed yet.'";
-const ogDescription = "Trust you can see, and keep. Your estate mapped, governed, and answerable — with a citation for every claim, honestly staged.";
+const title = 'Aesop Manteia — the operating system for trusted enterprise intelligence | Aesop Analytics';
+const description = "Manteia maps your data estate from metadata, makes every metric's owner and definition visible, designs the Gold model your data should have, and answers plain questions — grounded in your governed data, with a citation for every claim, or an honest 'that isn't governed yet.'";
+const ogDescription = "The trust layer beneath AI-ready decisions. Your estate mapped, governed, answerable, and architected — honestly staged.";
 
 // SoftwareApplication JSON-LD for the product page — restates ONLY what the page
 // itself already claims (the description above; publisher = the org node Seo.astro
@@ -38,9 +38,9 @@ const schema = {
 <div class="reface">
 
   <!-- ── HERO ── -->
-  <Hero eyebrow="Aesop Manteia · the data-governance platform">
+  <Hero eyebrow="Aesop Manteia · the platform">
     <h1>Trust you can <span class="em">see</span> — and keep.</h1>
-    <Fragment slot="sub"><strong>Manteia</strong> gives your data a governed record it can stand behind: your whole estate mapped from metadata, every metric's owner and definition in plain view, and an agent that answers about it &mdash; grounded only in your governed data, with a citation for every claim.</Fragment>
+    <Fragment slot="sub"><strong>Manteia</strong> is the operating system for trusted enterprise intelligence: your whole estate mapped from metadata, every metric's owner and definition in plain view, the Gold model your data should have designed for you, and an agent that answers about all of it &mdash; grounded only in your governed data, with a citation for every claim.</Fragment>
     <Fragment slot="cta">
       <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=platform-hero-diagnostic" class="btn">See it on your estate</a>
       <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=platform-hero-assessment" class="btn ghost">How the engagement works</a>
@@ -49,14 +49,14 @@ const schema = {
   </Hero>
 
   <!-- ── TRANSITION ── -->
-  <PromiseBand parts={["Most governance dies in a slide deck.", "This one stays alive in the work."]} />
+  <PromiseBand parts={["Governance shouldn't live in static documents.", "It should live inside the operating system of the business."]} />
 
   <!-- ── THE THREE PARTS ── -->
   <section class="parts band-navy ae-host ae-mark" id="product" style="--ae-size:min(40vw,460px); --ae-left:-4%; --ae-bottom:-24%; --ae-opacity:.05;">
     <div class="wrap">
       <div class="sec-label">What it is</div>
-      <h2 class="parts-h">Three parts, one continuous system.</h2>
-      <p class="lede parts-lede">Manteia takes the estate from raw systems to a question you can ask in plain English &mdash; and every step is auditable, because none of it is guesswork. Here is each part, and exactly how far along it is.</p>
+      <h2 class="parts-h">Four parts, one continuous platform.</h2>
+      <p class="lede parts-lede">Manteia takes the estate from raw systems to a question you can ask in plain English &mdash; it maps what you have, makes the governance visible, designs the model your data should have, and answers about all of it. Every step is auditable, because none of it is guesswork. Here is each part, and exactly how far along it is.</p>
 
       <div class="spine">
         <SpineCard step="01" name="The Scribe" greek="Aesop Graphion" status="dep" statusLabel="Deployed — proven engine">
@@ -65,16 +65,19 @@ const schema = {
         <SpineCard step="02" name="The Portal" greek="Aesop Stoa" status="dep" statusLabel="Deployed — log in today" highlight={true}>
           The map becomes a navigable, canonical record. Every metric, who owns it, where it's defined, which reports disagree, and &mdash; most tellingly &mdash; what no one owns at all. The gaps render in red. That red is the work, now visible to the people who can fix it. The write layer is live too: ratify a definition, assign an owner, log a request, and the record updates.
         </SpineCard>
-        <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live grounded answers now · live-data querying in preview">
+        <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live cited answers now · live-warehouse querying in preview">
           Ask a plain question &mdash; "which numbers does no one own?", "is this metric trustworthy?" &mdash; and the agent answers from your governed estate alone, with a citation behind every claim. It cannot invent a number or an owner: if the answer isn't in your data, it says so. Asking your live data directly is the newest capability, in preview.
+        </SpineCard>
+        <SpineCard step="04" name="The Architect" greek="Aesop Tekton" status="dep" statusLabel="Deployed — designs your Gold layer">
+          Ask what your data should look like, and the Architect designs it: conformed dimensions, fact tables, governed measures, sensitive-column walls, and the readiness gaps to close &mdash; then emits typed, dialect-correct CREATE TABLE DDL you can actually run. Verified runnable on real Postgres and MySQL.
         </SpineCard>
       </div>
 
       <div class="rail-wrap">
         <HonestyRail
-          deployed="The governed portal with secure login, the estate map from metadata, grounded answers with citations, and the write layer &mdash; ratify a definition, assign an owner, log a request, and the record updates on a real database."
-          preview="The agent asking questions of your live data directly, and regenerating governed reports from the map. The guard and query loop are ratified and building; we'll show you exactly how far along it is."
-          roadmap="Native Power BI report generation and automated Gold-layer design. Real work, honestly not finished &mdash; and we never present it as shipped. (Tableau auto-generation is not something we promise.)"
+          deployed="The governed portal with secure login, your estate mapped from metadata, and grounded answers with a citation behind every claim. The write layer is live too &mdash; ratify a definition, assign an owner, log a request, and the record updates on a real database."
+          preview="The agent querying your live warehouse directly (verified today on Postgres and MySQL), and regenerating governed reports from the map. Ratified and building &mdash; we'll show you exactly how far along it is."
+          roadmap="Native Power BI report generation, automated Gold-layer design as a live surface, and the deeper machine-learning layer &mdash; the Analytica arm &mdash; arriving in Phase II. Real work, honestly not finished, so we never put it on a slide as though it were."
         />
       </div>
     </div>
@@ -90,7 +93,7 @@ const schema = {
         <div class="flow-step"><div class="fs-n">1</div><div class="fs-name">Connect</div><div class="fs-desc">A read-only export or catalog from each system. We ask for a key, never a copy of your data.</div></div>
         <div class="flow-step"><div class="fs-n">2</div><div class="fs-name">Map</div><div class="fs-desc">Every table, field, metric, and lineage edge, normalized into one typed map of the estate.</div></div>
         <div class="flow-step"><div class="fs-n">3</div><div class="fs-name">Govern</div><div class="fs-desc">Owners, definitions, and the gaps surfaced &mdash; what's contested, what's unowned, what's never been governed.</div></div>
-        <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate and an agent anyone can ask &mdash; every claim traceable to its source.</div></div>
+        <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate, an agent anyone can ask, and a target Gold model the Architect designs from what it finds &mdash; every claim traceable to its source.</div></div>
       </div>
     </div>
   </section>
@@ -101,9 +104,9 @@ const schema = {
       <div class="cont-grid">
         <div class="cont-left">
           <div class="sec-label">Why it matters</div>
-          <h2>The engagement establishes trust. Manteia keeps it.</h2>
+          <h2>The engagement establishes trust. The platform keeps it.</h2>
           <p>A Reporting Clarity Assessment maps your estate and names the gaps. Historically, that picture started going stale the day it was delivered &mdash; definitions drift, new reports appear, owners change roles. Manteia is the living version of that work: it updates as the estate changes, so the governance you paid for is still true a year later.</p>
-          <p>Between engagements, Manteia is what your team navigates and the agent is who they ask. It's the difference between a one-time clean-up and a practice that sustains itself.</p>
+          <p>Between engagements, Manteia is what your team navigates and the agent is who they ask. It's the difference between a one-time clean-up and software that sustains the practice itself.</p>
           <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=platform-continuity-assessment" class="cont-link">See the on-ramp</a>
         </div>
         <div class="cont-right">
@@ -137,13 +140,17 @@ const schema = {
           <div class="si-h">Metadata, never your data</div>
           <p>We work from metadata and exports, not a copy of your warehouse &mdash; we ask for a key, not a copy. The platform is model-agnostic and can run inside your own walls, so sensitive estates never leave the building.</p>
         </div>
+        <div class="safe-item">
+          <div class="si-h">The guarantee is code, not a clause</div>
+          <p>The metadata-only guarantee is enforced, not promised &mdash; every delivered portal is an inert static bundle (no backend, no database, no telemetry), and a build-failing preflight gate must pass zero-leak before anything ships.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ── FINAL CTA ── -->
   <CtaBand eyebrow="See it for real">
-    <h2>Watch your own estate become a living record.</h2>
+    <h2>Watch your own estate become a governed, answerable system.</h2>
     <Fragment slot="sub">A focused 30-minute look, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
     <Fragment slot="cta">
       <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=platform-closing-diagnostic" class="btn on-light">See it on your estate</a>

@@ -8,9 +8,9 @@
 // canon plain names. URL preserved: "/services".
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CtaBand from "../components/CtaBand.astro";
-const title = 'The on-ramp — assessment & engagements | Aesop Analytics';
-const description = 'The human on-ramp to Aesop Manteia: a fixed-fee Reporting Clarity Assessment that maps your estate into the product, plus the modernization sprint, governance kit, and fractional retainer that grow from it. Free diagnostic to start.';
-const ogDescription = "The fastest way to see Manteia on your own estate — start with the Reporting Clarity Assessment.";
+const title = 'How to adopt the platform — assessment & engagements | Aesop Analytics';
+const description = 'The on-ramp to Aesop Manteia: a fixed-fee Reporting Clarity Assessment that maps your estate into the platform, plus the modernization sprint, governance kit, and fractional support that get you there. Free diagnostic to start.';
+const ogDescription = "The fastest way to get Manteia running on your own estate — start with the Reporting Clarity Assessment.";
 
 const servicesSchema = {
   "@context": "https://schema.org",
@@ -46,11 +46,11 @@ const servicesSchema = {
 };
 
 const faqs = [
-  { q: "Where does every engagement start?", a: "With a free 30-minute Reporting Trust Diagnostic call. No commitment required. If there's a clear fit after that conversation, the logical next step is a paid Reporting Clarity Assessment — which maps your estate into Manteia. You won't be pushed into a larger engagement before you have a clear picture of the problem." },
+  { q: "Where does every engagement start?", a: "With a free 30-minute Reporting Trust Diagnostic call. No commitment required. If there's a clear fit after that conversation, the logical next step is a paid Reporting Clarity Assessment — which maps your estate into Manteia, the platform you keep running afterward. You won't be pushed into a larger engagement before you have a clear picture of the problem." },
   { q: "How is work priced?", a: "Fixed fee per project, scoped during discovery. No hourly billing for project work — it misaligns incentives and makes budgeting impossible. For retainer arrangements, a monthly fixed scope with a defined set of deliverables." },
   { q: "We already have Power BI / Tableau. Can you work within what we have?", a: "Yes — and that's the most common scenario. Most engagements start with an organization that already has a BI tool but isn't getting the value from it, either because the reports weren't built well or because the data underneath them isn't trusted. Working within an existing environment is the norm." },
-  { q: "Is Aesop a firm or just one person?", a: "Principal-led. Jonathan Doreau is the accountable lead and your point of contact on every engagement — the person who does the diagnosis and the delivery, with no bait-and-switch handoff to a junior team after the sales call. When a problem needs depth in a specific area, he draws on a small circle of independent senior specialists he has worked with for years — but they work behind the scenes, on Aesop's tooling and the product build, never between you and the work. You always deal with the principal." },
-  { q: 'What makes the Assessment different from a free "audit"?', a: "Depth and structure. A free audit is a conversation. The Reporting Clarity Assessment is a 2–3 week structured engagement with a defined methodology (the TRUST framework), 10 specific deliverables, stakeholder interviews, and an executive-ready output — and it maps your estate into Manteia, so you leave with a living system, not a static deck." },
+  { q: "Is Aesop a software company or a consultancy?", a: "A software company. Aesop Analytics builds Aesop Manteia — a platform for trusted enterprise intelligence — and the assessment and engagement work is the on-ramp that gets it running on your estate. The work is founder-led by Jonathan Doreau, who does the diagnosis and delivery directly, backed by a small circle of senior specialists who sharpen the platform behind the scenes. You're adopting software, supported by the people who build it — not renting a contractor." },
+  { q: 'What makes the Assessment different from a free "audit"?', a: "Depth and structure. A free audit is a conversation. The Reporting Clarity Assessment is a 2–3 week structured engagement with a defined methodology (the TRUST framework), 10 specific deliverables, stakeholder interviews, and an executive-ready output — and it maps your estate into Manteia, so you leave with a living system you keep running, not a static deck." },
   { q: "What if the Assessment shows we don't need a bigger project?", a: "That's a completely valid outcome. The Assessment is designed to be useful on its own — the inventory, roadmap, and quick wins are actionable regardless of whether you continue to a Sprint. If the findings suggest your reporting environment is actually in better shape than expected, the honest answer is: take the quick wins yourself and revisit later." },
 ];
 ---
@@ -61,10 +61,10 @@ const faqs = [
   <div class="page-hero ae-host ae-mark" style="--ae-size:min(40vw,460px); --ae-right:-2%; --ae-top:-20%; --ae-opacity:.07;">
     <div class="page-hero-in">
       <div class="eyebrow">The on-ramp</div>
-      <h1>The fastest way to see Manteia on your own estate.</h1>
-      <p>The product leads; this is how you get there. Every engagement begins with a low-risk assessment that maps your estate into Manteia &mdash; not a six-month transformation commitment. Here's the full on-ramp, from the free diagnostic to the fractional retainer.</p>
+      <h1>The fastest way to get the platform running on your own estate.</h1>
+      <p>The platform leads; this is how you adopt it. Every engagement begins with a low-risk assessment that gets Manteia running on your estate &mdash; not a six-month transformation commitment. Here's the full on-ramp, from the free diagnostic to fractional support.</p>
       <div class="btn-row" style="margin-top:30px">
-        <a href="/platform/" class="btn">See the product first</a>
+        <a href="/platform/" class="btn">See the platform first</a>
         <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=services-hero-diagnostic" class="btn ghost">Book a diagnostic</a>
       </div>
     </div>
@@ -115,7 +115,7 @@ const faqs = [
           <div class="svc-duration">2–3 weeks · Fixed fee</div>
         </div>
         <div class="svc-body">
-          <p>A structured review of your entire reporting estate &mdash; dashboards, spreadsheets, KPI definitions, data sources, and governance gaps &mdash; mapped into Manteia. The output is an executive-ready assessment, a prioritized 30/60/90-day modernization roadmap, and a living governed record you keep. You'll know <em>exactly</em> where reporting trust is breaking down and what to fix first.</p>
+          <p>A structured review of your entire reporting estate &mdash; dashboards, spreadsheets, KPI definitions, data sources, and governance gaps &mdash; mapped into Manteia, the platform you keep running afterward. The output is an executive-ready assessment, a prioritized 30/60/90-day modernization roadmap, and a living governed record you keep. You'll know <em>exactly</em> where reporting trust is breaking down and what to fix first.</p>
           <p>This is the right starting point because it doesn't require committing to a large transformation. It gives you a clear, concrete picture of the problem and a practical plan &mdash; before you spend serious money on implementation. Think the dashboards themselves are the issue? Start with a <a href="/bi-dashboard-audit/">BI dashboard audit</a> &mdash; the same diagnostic, framed around the charts.</p>
           <div class="dels">
             <div class="dels-label">10 deliverables included</div>
@@ -179,7 +179,7 @@ const faqs = [
           <div class="svc-duration">4–6 weeks · Fixed fee</div>
         </div>
         <div class="svc-body">
-          <p>Practical governance built for operators, not committees. A system that reduces metric confusion and creates shared definitions without creating bureaucracy. Designed to be maintained by your team after handoff &mdash; not dependent on Aesop to keep it running.</p>
+          <p>Practical governance built for operators, not committees. A system that reduces metric confusion and creates shared definitions without creating bureaucracy. Designed to be maintained by your team after handoff &mdash; not dependent on Aesop to keep it running. And it lands inside Manteia, so the governance is software your team operates, not a binder they forget.</p>
           <div class="dels">
             <div class="dels-label">Typical deliverables</div>
             <div class="del-list">
@@ -232,7 +232,8 @@ const faqs = [
           <div class="plat-parts">
             <div class="plat-part"><strong>The Scribe (Aesop Graphion)</strong> &mdash; maps your estate from metadata: tables, metrics, and lineage. <span class="ps">Deployed.</span></div>
             <div class="plat-part"><strong>The Portal (Aesop Stoa)</strong> &mdash; governance you can see: owners, definitions, and the red gaps. <span class="ps">Deployed &mdash; log in today.</span></div>
-            <div class="plat-part"><strong>The Agent (Aesop Pythia)</strong> &mdash; answers grounded in the governed record of your data, with a source for every claim. <span class="ps">Live answers now; live-data querying in preview.</span></div>
+            <div class="plat-part"><strong>The Agent (Aesop Pythia)</strong> &mdash; answers grounded in the governed record of your data, with a source for every claim. <span class="ps">Live cited answers now &middot; live-warehouse querying in preview.</span></div>
+            <div class="plat-part"><strong>The Architect (Aesop Tekton)</strong> &mdash; designs your target Gold model and emits runnable DDL. <span class="ps">Deployed.</span></div>
           </div>
           <div class="svc-cta"><a href="/platform/" class="btn twine">Explore Manteia &rarr;</a></div>
         </div>
@@ -257,17 +258,17 @@ const faqs = [
   <!-- WHAT WE DON'T DO -->
   <div class="dont band-paper2">
     <div class="wrap">
-      <h2>What we don't do &mdash; and why it matters.</h2>
-      <p class="dont-intro">This list is as important as the services list. These are the places where other engagements go wrong &mdash; and where a deliberate line has been drawn.</p>
+      <h2>What we are &mdash; and what we're deliberately not.</h2>
+      <p class="dont-intro">This is as important as the services list &mdash; it tells you what kind of company you're actually working with. These are the lines we've drawn on purpose.</p>
       <div class="dont-grid">
         <div>
           <div class="dont-col-label is-label">What Aesop is</div>
           <div class="dont-items">
-            <div class="dont-item is-item">A data-governance software company &mdash; the assessment is the on-ramp to Manteia, not the whole offering</div>
-            <div class="dont-item is-item">Platform-agnostic &mdash; recommendations based on fit, not on margin</div>
-            <div class="dont-item is-item">Principal-led &mdash; you get the expert on the work, not handed off to a junior team</div>
-            <div class="dont-item is-item">Fixed-fee &mdash; you know the cost before work begins, no hourly billing surprises</div>
-            <div class="dont-item is-item">Honest about the product &mdash; what's deployed, what's in preview, what's on the roadmap</div>
+            <div class="dont-item is-item">A data-governance software company &mdash; the assessment is how you adopt Aesop Manteia, not the whole offering</div>
+            <div class="dont-item is-item">Platform-agnostic &mdash; recommendations based on fit, not margin</div>
+            <div class="dont-item is-item">Honest about the software &mdash; what's deployed, what's in preview, and what's arriving in Phase II</div>
+            <div class="dont-item is-item">Fixed-fee on the on-ramp &mdash; no hourly surprises</div>
+            <div class="dont-item is-item">A living system you keep &mdash; the engagement leaves software running, not a slide deck aging</div>
           </div>
         </div>
         <div>
@@ -276,7 +277,7 @@ const faqs = [
             <div class="dont-item not-item">A dashboard factory or generic BI contractor for hire</div>
             <div class="dont-item not-item">A tool reseller or platform partner with conflicted incentives</div>
             <div class="dont-item not-item">A data engineering body shop for ETL and pipeline work</div>
-            <div class="dont-item not-item">A vague AI advisor or "AI strategy" shop</div>
+            <div class="dont-item not-item">A vague "AI strategy" shop selling hype instead of a trust layer</div>
             <div class="dont-item not-item">A staff augmentation vendor to backfill headcount</div>
           </div>
         </div>
