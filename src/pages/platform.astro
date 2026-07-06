@@ -39,13 +39,13 @@ const schema = {
 
   <!-- ── HERO ── -->
   <Hero eyebrow="Aesop Manteia · the platform">
-    <h1>Trust you can <span class="em">see</span> — and keep.</h1>
-    <Fragment slot="sub"><strong>Manteia</strong> is the operating system for trusted enterprise intelligence: your whole estate mapped from metadata, every metric's owner and definition in plain view, the Gold model your data should have designed for you, and an agent that answers about all of it &mdash; grounded only in your governed data, with a citation for every claim.</Fragment>
+    <h1>One governed map of your <span class="em">estate</span>, answerable in plain language.</h1>
+    <Fragment slot="sub"><strong>Manteia</strong> maps your whole data estate from metadata, puts each metric's owner and definition in plain view, designs the Gold model your data should have, and answers questions about all of it from your governed data, with a citation behind every claim. The core is deterministic: it computes the map and the lineage, it doesn't guess.</Fragment>
     <Fragment slot="cta">
       <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=platform-hero-diagnostic" class="btn">See it on your estate</a>
       <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=platform-hero-assessment" class="btn ghost">How the engagement works</a>
     </Fragment>
-    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Built on a deterministic core &mdash; it computes, it doesn't guess.</div>
+    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">The same inputs always produce the same map. You can audit how every finding was reached.</div>
   </Hero>
 
   <!-- ── TRANSITION ── -->
@@ -56,17 +56,17 @@ const schema = {
     <div class="wrap">
       <div class="sec-label">What it is</div>
       <h2 class="parts-h">Four parts, one continuous platform.</h2>
-      <p class="lede parts-lede">Manteia takes the estate from raw systems to a question you can ask in plain English &mdash; it maps what you have, makes the governance visible, designs the model your data should have, and answers about all of it. Every step is auditable, because none of it is guesswork. Here is each part, and exactly how far along it is.</p>
+      <p class="lede parts-lede">Manteia carries the estate from raw systems to a question you can ask in plain English. It maps what you have, makes the governance visible, designs the model your data should have, and answers about all of it. Every step is auditable, because none of it is guesswork. Here is each part, and exactly how far along it is.</p>
 
       <div class="spine">
         <SpineCard step="01" name="The Scribe" greek="Aesop Graphion" status="dep" statusLabel="Deployed — proven engine">
           Point it at your BI files, your warehouse catalog, or a simple export. It reads what actually exists &mdash; tables, fields, metrics, and the lineage between them &mdash; and builds a typed map of your estate. No manual documentation, no months of interviews to draw the picture.
         </SpineCard>
         <SpineCard step="02" name="The Portal" greek="Aesop Stoa" status="dep" statusLabel="Deployed — log in today" highlight={true}>
-          The map becomes a navigable, canonical record. Every metric, who owns it, where it's defined, which reports disagree, and &mdash; most tellingly &mdash; what no one owns at all. The gaps render in red. That red is the work, now visible to the people who can fix it. The write layer is live too: ratify a definition, assign an owner, log a request, and the record updates.
+          The map becomes a navigable, canonical record: each metric, who owns it, where it's defined, and which reports disagree. Unowned and contested metrics are flagged, so the people who can fix them can see exactly what needs work. The write layer is live too: ratify a definition, assign an owner, log a request, and the record updates.
         </SpineCard>
         <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live cited answers now · live-warehouse querying in preview">
-          Ask a plain question &mdash; "which numbers does no one own?", "is this metric trustworthy?" &mdash; and the agent answers from your governed estate alone, with a citation behind every claim. It cannot invent a number or an owner: if the answer isn't in your data, it says so. Asking your live data directly is the newest capability, in preview.
+          Ask a plain question ("which numbers does no one own?", "is this metric trustworthy?") and the agent answers from your governed estate alone, with a citation behind every claim. It is built so it cannot return a number, owner, or definition that isn't in your data; when the answer isn't governed, it says so. Querying your live warehouse directly is the newest capability, in preview.
         </SpineCard>
         <SpineCard step="04" name="The Architect" greek="Aesop Tekton" status="dep" statusLabel="Deployed — designs your Gold layer">
           Ask what your data should look like, and the Architect designs it: conformed dimensions, fact tables, governed measures, sensitive-column walls, and the readiness gaps to close &mdash; then emits typed, dialect-correct CREATE TABLE DDL you can actually run. Verified runnable on real Postgres and MySQL.
@@ -76,7 +76,7 @@ const schema = {
       <div class="rail-wrap">
         <HonestyRail
           deployed="The governed portal with secure login, your estate mapped from metadata, and grounded answers with a citation behind every claim. The write layer is live too &mdash; ratify a definition, assign an owner, log a request, and the record updates on a real database."
-          preview="The agent querying your live warehouse directly (verified today on Postgres and MySQL), and regenerating governed reports from the map. Ratified and building &mdash; we'll show you exactly how far along it is."
+          preview="The agent querying your live warehouse directly (verified today on Postgres and MySQL), and regenerating governed reports from the map. Ratified and building, with the current state shown on the portal."
           roadmap="Native Power BI report generation, automated Gold-layer design as a live surface, and the deeper machine-learning layer &mdash; the Analytica arm &mdash; arriving in Phase II. Real work, honestly not finished, so we never put it on a slide as though it were."
         />
       </div>
@@ -126,7 +126,7 @@ const schema = {
   <section class="safe band-paper2" id="safe">
     <div class="wrap">
       <div class="sec-label">Built to be trusted</div>
-      <h2 class="safe-h">Why you can stand behind every number it shows.</h2>
+      <h2 class="safe-h">How the trust is built in, not asserted.</h2>
       <div class="safe-grid">
         <div class="safe-item">
           <div class="si-h">It computes, it doesn't guess</div>
@@ -151,7 +151,7 @@ const schema = {
   <!-- ── FINAL CTA ── -->
   <CtaBand eyebrow="See it for real">
     <h2>Watch your own estate become a governed, answerable system.</h2>
-    <Fragment slot="sub">A focused 30-minute look, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
+    <Fragment slot="sub">A focused 30-minute look at your own estate, no slide deck. We bring you value, or we tell you honestly that we can't.</Fragment>
     <Fragment slot="cta">
       <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=platform-closing-diagnostic" class="btn on-light">See it on your estate</a>
       <a href="/work/" class="btn ghost">See recent work</a>
