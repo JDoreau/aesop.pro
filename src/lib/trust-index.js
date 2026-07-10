@@ -10,9 +10,15 @@
 //
 // This module is the source of truth for the math — there is NO mirror copy.
 // The public Health Check (resources/health-check.astro) ES-imports it via
-// health-check-app.js -> trust-index-report.js, and the operator console
-// (PLATFORM) imports it directly. check.mjs asserts the constants below stay
-// internally consistent. Do not change the export shape.
+// health-check-app.js -> trust-index-report.js. check.mjs asserts the
+// constants below stay internally consistent. Do not change the export shape.
+//
+// PLATFORM SEAM (honest): the Operator does NOT import this module. There is no
+// cross-repo code wire. PLATFORM independently hand-mirrors only the *area-id
+// list* — `AREA_KEYS` in `PLATFORM/src/mailer/intake-forward.ts` mirrors the
+// keys of `trust-index-areas.js` so a forwarded Health Check lead lists the
+// same areas. The scoring math here is not shared or re-imported anywhere.
+// If the area ids change, update that mirror by hand (there is no drift guard).
 // ─────────────────────────────────────────────────────────────────────────
 
 // The 9 reporting areas -> their TRUST pillar. The 10th public area, 'ai',

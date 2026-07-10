@@ -67,7 +67,7 @@ src/
 │   ├── assessment.astro    Flagship: Reporting Clarity Assessment (+ Service & FAQPage schema)
 │   ├── work.astro          Case studies / portfolio
 │   ├── insights.astro      Content hub (renders from data/insights.ts)
-│   ├── insights/           20 articles + field studies (via ArticleLayout)
+│   ├── insights/           21 articles + field studies (via ArticleLayout)
 │   ├── resources.astro     Free resources hub + embedded reporting self-check
 │   ├── resources/          4 interactive tools (health-check, dashboard-audit,
 │   │                       sample-assessment, trust-letter)
@@ -87,7 +87,16 @@ src/
 │   ├── Nav.astro           Header (renders from data/nav.ts)
 │   ├── Footer.astro        Footer
 │   ├── Wordmark.astro      The lockup (owl + aesop + ANALYTICS), all four variants
-│   └── OwlMark.astro       The owl SVG, single-sourced (build-enforced)
+│   ├── OwlMark.astro       The owl SVG, single-sourced (build-enforced)
+│   │                       — reface section kit (2026-07, styled by styles/sections.css):
+│   ├── Hero.astro          Page hero (eyebrow + headline + lede + CTAs)
+│   ├── StatBand.astro      Row of illustrative stat figures
+│   ├── PromiseBand.astro   The "what you get" promise strip
+│   ├── ProofCard.astro     A single proof / case card
+│   ├── SpineCard.astro     Product-spine card (the four-family/offer spine)
+│   ├── CtaBand.astro       Closing call-to-action band
+│   ├── HonestyRail.astro   The honesty rail shown on product pages
+│   └── Reveal.astro        Scroll-reveal wrapper (progressive on-scroll fade-in)
 │
 ├── data/
 │   ├── nav.ts              Site IA, CTA, the `site` object, and canonicalUrl()
@@ -96,6 +105,7 @@ src/
 └── styles/
     ├── tokens.css          Brand palette + type tokens (single source)
     ├── base.css            Global base styles
+    ├── sections.css        Reface section-kit styles (Hero/StatBand/…/Reveal)
     └── article.css         Article-specific styles
 
 astro.config.mjs            Site config + custom inline sitemap generator
