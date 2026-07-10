@@ -38,6 +38,10 @@
   --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555;
   --navy-foot:#08111F; --navy-mist:#D6DDE8;
   --twine:#C18C5D; --sepia:#98673A; --twine-bright:#D49A68; --contessa:#CE796B; --apple:#B35546;
+  /* Mint Family — Intelligence Layer (added 2026-07). Linework/accent only; grounds
+     stay navy/paper (deck greens remain retired). Used for the cross-client "brain"
+     facets: Priori Intelligence (Mnemosyne), The Architect (Architekton), The Hearth (Hestia). */
+  --mint:#4FD1A8; --mint-deep:#1E7358; --mint-mist:#BFEBDC;
   /* Semantic status colors — formalized from the health checks & branded reports
      (brand revisit 2026-06). Use these, never raw hexes, for score/status UI. */
   --good:#5E9A82; --warn:#D4A844; --info:#5A7090;
