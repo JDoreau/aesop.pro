@@ -227,4 +227,42 @@ curl -sL "https://aesopanalytics.com/?v=$RANDOM" | grep -i "<title>"
 
 ---
 
+## Ecosystem position
+
+> Part of the **Aesop Analytics ecosystem** — one business, several independent repos that connect into a whole. This component runs on its own, but it is one piece of that whole. Full map → [../ECOSYSTEM-MAP.md](../ECOSYSTEM-MAP.md).
+
+**What this is:** Website (Aesop Propylaia) — the public aesopanalytics.com marketing and content site (static Astro) — the front door that explains the offering and captures inbound leads.
+
+**Role:** Top-of-funnel lead generation and brand/content surface for Aesop Analytics. 40 statically-generated pages: offer ladder (services), flagship Reporting Clarity Assessment, a Pistis/platform teaser, 21 insights articles + field studies, and 4 interactive self-serve tools (notably the Dokimē front-door assessment — a standalone diagnostic *hosted on* Propylaia, not a sub-page of it, scored by the TRUST Index engine, "Aesop Krisis" — disambiguated 2026-07-02 from HUB's separately-built graph-computed engine, which keeps "Gnomon"; see HUB/docs/NAMES.md). It is where prospects discover the firm and convert into leads; it does not run engagements or hold a database itself.
+
+**Repo:** github.com/JDoreau/aesop.pro (git remote origin: https://github.com/JDoreau/aesop.pro.git). NOTE: the repo is literally named aesop.pro but contains ONLY the WEBSITE — it is its own independent git repo, NOT a monorepo of the whole ecosystem. Canon (_OPS) is the separate private aesop-ops repo.
+
+**State:** live.
+
+**Runs independently:** Fully independent static Astro 4.16 site, no backend in-repo. `npm install` then `npm run dev` (astro dev) locally; `npm run build` runs scripts/check.mjs invariants then `astro build` → dist/ (+ a custom inline sitemap in astro.config.mjs). Deploys via GitHub Actions on push to main → GitHub Pages, fronted by Cloudflare (DNS/CDN/security headers), apex aesopanalytics.com (public/CNAME). Node pinned to 22. `npm run check` runs invariants standalone.
+
+**Consumes (upstream):**
+- Website visitors / prospects — no upstream CODE component feeds it. Contact-form free text + name/email/company.
+- UTM params (utm_source/medium/campaign) read off tracked inbound links and persisted to sessionStorage for campaign attribution (contact.astro captureUtm).
+- Health-check questionnaire answers (10 reporting areas) entered by visitors at /resources/health-check.
+- Canon it CONFORMS to but does NOT import at build time: _OPS (pricing/offer ladder, voice, TRUST_INDEX.md spec). Human-synced references per CLAUDE.md, not a code dependency.
+
+**Feeds (downstream):**
+- LEADS via Formspree: contact form POSTs to https://formspree.io/f/mojzdqlk (delivers to hello@aesopanalytics.com, redirects to /thanks); trust-letter resource uses Formspree form xgobkdgd. Hidden utm_* fields ride along.
+- BOOKINGS via Cal.com: /diagnostic embeds the Cal.com inline widget (event 'diagnostic') for the free diagnostic call — booking lives in Cal.com, not in-repo.
+- HEALTH-CHECK PDF + Aesop-copy: health-check-app.js POSTs {email, scores, turnstileToken} to an external Cloudflare Worker MAILER_ENDPOINT (https://aesop-healthcheck-mailer.doreau-jonathan.workers.dev/email) which emails the visitor a branded PDF and sends Aesop the pre-data.
+- GA4 (G-4TVCCT0XW9) loaded sitewide from Seo.astro; fires generate_lead on contact submit.
+- Transactional email path uses SendGrid (SPF/DKIM/DMARC verified).
+
+**Connections to other components:**
+- **PLATFORM (the Operator)** — STRONGEST link, but by CONVENTION and HTTP contract, NOT a code import. (a) The TRUST-Index seam is a MANUAL area-id mirror, not a shared module. PLATFORM does not import `src/lib/trust-index.js` (a grep across `PLATFORM/src` + `PLATFORM/web` returns zero imports of it). What PLATFORM hand-mirrors is only the *area-id list*: `AREA_KEYS` in `PLATFORM/src/mailer/intake-forward.ts` mirrors the keys of this repo's `src/lib/trust-index-areas.js` so a forwarded Health Check lead lists the same reporting areas. The scoring MATH (`trust-index.js`) lives only here and is never re-imported — if the area ids change, that mirror must be updated by hand; there is no drift guard across the repo line. (b) src/lib/encode-roundtrip.test.mjs explicitly mirrors 'PLATFORM/src/mailer/index.ts renderPdf' base64 encode — the website tests that its health-check score encoding round-trips with PLATFORM's mailer Worker. (c) contact.astro comments state the intent that the UTM-tagged Formspree lead is read back by the platform intake (extractUtm) onto the opportunity, closing the post→lead attribution loop. The health-check forward IS wired on the PLATFORM side (`intake-forward.ts` best-effort POSTs the lead into the Operator's Formspree front door when `INTAKE_URL`/`INTAKE_TOKEN` are set). HONESTY: the plain contact-form path is still Form → Formspree → email; no webhook from THIS repo into PLATFORM was observed — the contact-form handoff is by email + described attribution, not an observed direct code wire in this repo.
+- **External Cloudflare Worker 'aesop-healthcheck-mailer'** — health-check-app.js POSTs to it; a sibling service that lives outside this repo.
+- **_OPS (canon)** — CLAUDE.md/README point to ../_OPS (TRUE_NORTH.md, PORTFOLIO.md, TRUST_INDEX.md, INITIATIVES, DONE_LOG) as the governing canon; trust-index.js cites _OPS/TRUST_INDEX.md as its spec. Cross-reference/governance link, not a code import.
+- **DELIVERY-OS** — historical/handoff link: the former in-repo assessment-kit + xlsx templates were MOVED to the private DELIVERY-OS repo on 2026-06-12 (README + CUTOVER note); the website no longer ships delivery IP. No live data handoff observed today.
+- **HUB / the product seal (now Pistis, formerly Imprimatur)** — referenced as marketing: /platform.astro + index/services tease the seal (the Manteia/HUB product, Portal+Agent). The "Imprimatur" name has been fully eliminated from `src/` and `public/` (verified 2026-07-10 — zero hits). The website MARKETS the product but has no code/data wire into HUB.
+
+> When this component's wiring changes, update this section AND the matching row/seam in [../ECOSYSTEM-MAP.md](../ECOSYSTEM-MAP.md); mirror any topology change into `_OPS/HANDOFF/MASTER_TECHNICAL_HANDOFF.md`.
+
+---
+
 *Aesop Analytics LLC · Nashville, TN · Every dataset has a moral.*
