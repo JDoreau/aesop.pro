@@ -1,18 +1,17 @@
 ---
-// ArticleLayout.astro — the ONE layout for articles & field studies.
-// Refaced to the product-first design (site-reface): the navy shell header
-// (cream wordmark + twine "See it on your estate" CTA, matching Nav.astro),
-// byline header (from props), the Honest-Expert closing CTA, and the compact
-// article footer. Every article renders through this — which is what keeps the
-// insights library visually one piece with the refaced site while its
-// SEO-earning body (the <slot/>) and Article JSON-LD stay untouched.
-import "../styles/tokens.css";
-import "../styles/base.css";
+// ArticleLayout.astro — the ONE layout for articles & field studies: the bar
+// masthead, the article head (title, the subtitle as a second line, the dek, a
+// dateline row), the body on the prose grid, the æ end mark, the author note
+// and the site footer. Every article renders through this, which keeps the
+// library one piece with the site while its body (the <slot/>) and its Article
+// JSON-LD stay untouched.
+import "../styles/site.css";
 import "../styles/article.css";
 import Seo from "../components/Seo.astro";
-import { nav, site, canonicalUrl, linkHref } from "../data/nav.ts";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { site, canonicalUrl } from "../data/nav.ts";
 import { sections, featured } from "../data/insights.ts";
-import Wordmark from "../components/Wordmark.astro";
 
 interface Props {
   title: string;
@@ -47,6 +46,14 @@ const headline = headingHtml
   .replace(/<[^>]+>/g, "")
   .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
   .trim();
+// The dateline: the kicker and the meta strings set as separate facts in one
+// ruled row under the dek. A "·" in the data is a separator, so it becomes a
+// column break; a fact said twice (the pillar in both strings) is said once.
+const facts: string[] = [];
+for (const part of [kicker, ...meta].flatMap((s) => s.split("·"))) {
+  const fact = part.trim();
+  if (fact && !facts.some((f) => f.toLowerCase() === fact.toLowerCase())) facts.push(fact);
+}
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -66,82 +73,47 @@ const headline = headingHtml
     })} />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <nav class="reface-nav">
-      <div class="nav-in">
-        <Wordmark variant="nav" href="/" />
-        <div class="site-links">
-          {nav.map((i) => (<a href={linkHref(i.href)} class:list={[{ "nav-accent": i.accent }]}>{i.label}</a>))}
+    <a class="skip" href="#main">Skip to content</a>
+    <Nav />
+
+    <main id="main">
+      <header class="article__head">
+        <div class="container">
+          <h1 id="article-title" set:html={headingHtml}></h1>
+          <p class="article__dek" set:html={dekHtml}></p>
+          <ul class="meta article__meta">
+            <li>By <strong>{author}</strong></li>
+            {publishedDisplay && <li><time datetime={published}>{publishedDisplay}</time></li>}
+            {facts.map((f) => (<li>{f}</li>))}
+          </ul>
+        </div>
+      </header>
+      <div class="article__main" role="article" aria-labelledby="article-title">
+        <div class="container">
+          <slot />
+          <p class="article__end" aria-hidden="true"><span class="endmark">æ</span></p>
         </div>
       </div>
-    </nav>
 
-    <main id="main" class="wrap">
-      <article>
-        <div class="kicker reveal">{kicker}</div>
-        <h1 class="reveal" style="animation-delay:.05s" set:html={headingHtml}></h1>
-        <p class="dek reveal" style="animation-delay:.1s" set:html={dekHtml}></p>
-        <div class="byline reveal" style="animation-delay:.16s">
-          <span class="reg">By <strong>{author}</strong></span>
-          {publishedDisplay && (<Fragment><span class="dot">&bull;</span><span class="reg">{publishedDisplay}</span></Fragment>)}
-          {meta.map((m) => (<Fragment><span class="dot">&bull;</span><span class="reg">{m}</span></Fragment>))}
+      <section class="author-note band">
+        <div class="container author-note__in">
+          <h2>Research and writing by Jonathan Doreau.</h2>
+          <div class="author-note__body">
+            <p>Jonathan is a data and analytics professional in Nashville with more than fifteen years in reporting, business intelligence and data governance, across finance, healthcare research and real estate. This site collects his field studies and his writing on how organizations measure things.</p>
+            <p class="actions">
+              <a href="/publications/" class="more">Read the research</a>
+              <a href="/insights/" class="more">All writing</a>
+            </p>
+          </div>
         </div>
-      </article>
-      <slot />
+      </section>
     </main>
 
-    <section class="article-cta ae-mark">
-      <div class="acta-in">
-        <div class="acta-eyebrow">About the author</div>
-        <h2>Research and writing by Jonathan Doreau.</h2>
-        <p>Jonathan is a data and analytics professional in Nashville with more than fifteen years in reporting, business intelligence and data governance, across finance, healthcare research and real estate. This site collects his field studies and his writing on how organizations measure things.</p>
-        <div class="acta-row">
-          <a href="/publications/" class="acta-btn">Read the research →</a>
-          <a href="/insights/" class="acta-ghost">All writing →</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site">
-      <div class="fin">
-        <Wordmark variant="article-footer" />
-        <div class="fmoral">{site.tagline}</div>
-        <a href="/insights/" class="fback">&larr; All writing</a>
-      </div>
-      <div class="flegal">This site uses Google Analytics. <a href="/privacy/">Privacy</a></div>
-    </footer>
-
-    <style>
-      /* ── Navy reface shell for the article header ─────────────────────────
-         Overrides the light nav rules in article.css so the insights library
-         wears the SAME product-first navy header as the refaced site (matches
-         Nav.astro). Cream wordmark + links, twine hover, twine CTA pill. */
-      nav.reface-nav { background:rgba(15,31,56,.94); border-bottom:1px solid rgba(255,255,255,.07); }
-      nav.reface-nav .site-links a { color:#B7C0CD; }
-      nav.reface-nav .site-links a:hover { color:var(--cream); }
-      nav.reface-nav .site-links a.nav-accent { color:var(--twine); }
-      nav.reface-nav .site-links a.nav-accent:hover { color:var(--twine-bright); }
-      nav.reface-nav .site-cta { background:var(--twine); color:var(--navy)!important; }
-      nav.reface-nav .site-cta:hover { background:var(--twine-bright); }
-
-      /* ── The Honest-Expert closing CTA (navy field, twine top-rule, æ mark) ── */
-      .article-cta { background:var(--navy); border-top:3px solid var(--twine); padding:66px 32px; text-align:center; position:relative; overflow:hidden; }
-      .article-cta.ae-mark::after { content:"æ"; position:absolute; right:-2%; bottom:-34%; font-family:"Abril Fatface",serif; font-size:min(38vw,360px); line-height:1; color:rgba(193,140,93,.05); pointer-events:none; user-select:none; z-index:0; }
-      .acta-in { max-width:660px; margin:0 auto; position:relative; z-index:1; }
-      .acta-eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
-      .article-cta h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); line-height:1.12; color:#fff; margin-bottom:16px; letter-spacing:-.01em; }
-      .article-cta p { font-size:16px; color:#A8B4C0; line-height:1.62; font-weight:300; margin-bottom:26px; }
-      .acta-row { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; align-items:center; }
-      .acta-btn { display:inline-block; background:var(--twine); color:var(--navy); padding:13px 26px; border-radius:4px; font-size:14px; font-weight:700; letter-spacing:.02em; transition:background .2s, transform .2s; }
-      .acta-btn:hover { background:var(--twine-bright); transform:translateY(-2px); }
-      .acta-ghost { display:inline-block; background:transparent; color:var(--cream); border:1.5px solid rgba(243,239,230,.3); padding:12px 24px; border-radius:4px; font-size:14px; font-weight:600; letter-spacing:.02em; transition:border-color .2s, color .2s; }
-      .acta-ghost:hover { border-color:var(--twine); color:var(--twine); }
-      .acta-note { font-size:13px; color:#7788A0; font-weight:300; margin:22px 0 0; }
-    </style>
-    <!-- The .reveal entrance animation runs from base.css at load (with its
-         prefers-reduced-motion fallback). The old IntersectionObserver here
-         re-applied the animation inline, which overrode that fallback for
-         reduced-motion users — removed deliberately; do not re-add without a
-         matchMedia gate. -->
+    <Footer />
   </body>
 </html>
+
+<style is:global>
+  /* The Floor: no sideways scroll at any width (base.css says it too; the layout states it where the document is declared). */
+  html, body { overflow-x: clip; }
+</style>

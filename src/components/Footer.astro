@@ -1,49 +1,65 @@
 ---
-// Footer.astro — the ONE footer. Bespoke columns (faithful to the live site).
-// Research-site columns since Nov 2026 (no services, no contact form).
+// Footer.astro — the ONE footer, on every page: a letter close. The site's
+// moral as the sign-off, the author's name and place beneath it, the real
+// links beside it, then the colophon line (lockup, tagline, the legal line).
 import { site } from "../data/nav.ts";
 import Wordmark from "./Wordmark.astro";
 const year = new Date().getFullYear(); // evaluated at build time; correct as long as the site rebuilds
 ---
-<footer>
-  <div class="foot-in">
-    <div>
+<footer class="foot">
+  <div class="container">
+    <div class="foot__close">
+      <div class="foot__sign">
+        <p class="foot__moral">Every dataset has a moral.</p>
+        <p class="foot__name">{site.author}<br />{site.location}</p>
+      </div>
+      <nav class="foot__links" aria-label="Footer">
+        <div>
+          <p class="foot__h">Research</p>
+          <a href="/publications/">Field studies</a>
+          <a href="/insights/">Writing</a>
+        </div>
+        <div>
+          <p class="foot__h">Tools</p>
+          <a href="/resources/health-check/">Reporting Trust Health Check</a>
+          <a href="/resources/dashboard-audit/">Dashboard Audit</a>
+        </div>
+        <div>
+          <p class="foot__h">About</p>
+          <a href="/about/">About Jonathan</a>
+          <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </nav>
+    </div>
+    <div class="foot__colophon">
       <Wordmark variant="footer" />
-      <div class="foot-tagline">{site.tagline}</div>
-      <div class="foot-moral">Every dataset has a moral.</div>
-    </div>
-    <div class="foot-col">
-      <h4>Research</h4>
-      <a href="/publications/">Field studies</a>
-      <a href="/insights/">Writing</a>
-    </div>
-    <div class="foot-col">
-      <h4>Tools</h4>
-      <a href="/resources/health-check/">Reporting Trust Health Check</a>
-      <a href="/resources/dashboard-audit/">Dashboard Audit</a>
-    </div>
-    <div class="foot-col">
-      <h4>About</h4>
-      <a href="/about/">About Jonathan</a>
-      <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-      <a href="/privacy/">Privacy</a>
+      <p class="foot__tag">{site.tagline}</p>
+      <p class="foot__legal">&copy; {year} {site.author}. All rights reserved. <span class="ga-note">This site uses Google Analytics to understand how it&rsquo;s used. <a href="/privacy/">Privacy</a></span></p>
     </div>
   </div>
-  <div class="foot-legal">{site.location} · © {year} {site.author}. All rights reserved.<br /><span class="ga-note">This site uses Google Analytics to understand how it's used. <a href="/privacy/">Privacy</a></span></div>
 </footer>
 
 <style>
-  footer { background:var(--navy-foot); color:#6A8099; padding:52px 0; }
-  .foot-in { max-width:1080px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:40px; }
-  @media(max-width:760px){ .foot-in { grid-template-columns:1fr 1fr; gap:28px; } }
-  @media(max-width:460px){ .foot-in { grid-template-columns:1fr; } }
-  .foot-tagline { color:var(--navy-mist); font-size:13px; margin-top:8px; font-weight:500; }
-  .foot-moral { font-family:"Newsreader",Georgia,serif; font-style:italic; color:#4A6070; font-size:13px; margin-top:6px; }
-  .foot-col h4 { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:14px; }
-  .foot-col a { display:block; font-size:13px; color:#6A8099; margin-bottom:8px; transition:color .18s; }
-  .foot-col a:hover { color:var(--twine); }
-  .foot-legal { font-size:12px; color:#3A5060; margin-top:28px; padding-top:20px; border-top:1px solid rgba(255,255,255,.06); max-width:1080px; margin-left:auto; margin-right:auto; padding-left:32px; padding-right:32px; }
-  .foot-legal a { color:#6A8099; text-decoration:underline; text-underline-offset:2px; }
-  .foot-legal a:hover { color:var(--twine); }
-  .foot-legal .ga-note { display:inline-block; margin-top:8px; }
+  .foot { margin-top: var(--section-gap-s); padding-bottom: var(--space-2xl); }
+  .foot__close { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-xl); padding-block: var(--space-2xl); border-top: var(--rule-double); }
+  .foot__sign { grid-column: 1 / span 6; }
+  .foot__moral { max-width: 14ch; font-family: var(--font-display); font-weight: 700; font-size: var(--text-display-s); line-height: 1.02; letter-spacing: var(--tracking-display); text-wrap: balance; }
+  .foot__name { margin-top: var(--space-lg); font-size: var(--text-md); font-weight: 500; line-height: 1.4; color: var(--color-ink-2); }
+  .foot__links { grid-column: 7 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; align-content: start; gap: var(--space-lg) var(--space-xl); }
+  .foot__links > div { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2xs); white-space: nowrap; }
+  .foot__h { margin-bottom: var(--space-2xs); font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); line-height: 1.2; }
+  .foot__links a { display: inline-flex; align-items: center; min-height: 32px; font-size: var(--text-md); line-height: 1.3; color: var(--color-ink-2); text-decoration: none; }
+  .foot__links a:hover { color: var(--color-accent); text-decoration: underline; text-decoration-thickness: 2px; }
+  .foot__links a:active { color: var(--color-ink); }
+  .foot__colophon { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-md) var(--space-xl); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule); }
+  .foot__tag { font-size: var(--text-sm); font-weight: 500; color: var(--color-ink-2); max-width: none; }
+  .foot__legal { font-size: var(--text-sm); line-height: 1.5; color: var(--color-muted); max-width: 62ch; }
+  .foot__legal a { color: var(--color-accent); text-decoration: underline; }
+  .foot__legal a:hover { text-decoration-thickness: 2px; }
+  @media (max-width: 60rem) {
+    .foot__sign, .foot__links { grid-column: 1 / -1; }
+  }
+  @media (max-width: 60rem) { .foot__links { justify-content: flex-start; gap: var(--space-lg) var(--space-2xl); } }
+  @media (max-width: 40rem) { .foot__colophon { flex-direction: column; align-items: flex-start; } }
 </style>

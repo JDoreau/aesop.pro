@@ -1,59 +1,54 @@
 ---
-// Wordmark.astro — THE lockup: owl + Abril "aesop" + DM Sans "ANALYTICS".
-// One source for sizes, colors, and the measured optical nudges.
+// Wordmark.astro — THE lockup: owl + "aesop" (Abril Fatface) + "ANALYTICS"
+// (Libre Franklin caps). One source for its sizes, colours and optical alignment.
 //
-// ANALYTICS is optically centered on the x-height of "aesop" — Abril's `p`
-// descender skews naive flex centering, so each variant carries a measured
-// translateY (see CLAUDE.md → Brand facts). Re-measure if sizes change;
-// do not remove the nudges.
+// ANALYTICS is optically centred on the x-height of "aesop". The two words sit
+// on one baseline and ANALYTICS is raised by half the difference between the
+// x-height of "aesop" and its own cap height, so the alignment holds at every
+// size without a per-variant nudge. The two ratios below are MEASURED from the
+// loaded faces (canvas TextMetrics in Chrome, Nov 2026) and are guarded by
+// check.mjs: re-measure them if either face changes, never remove them.
 //
 // Variants:
-//   nav            — site header (BaseLayout pages)
-//   footer         — site footer (dark navy background)
-//   article-nav    — compact article header (ArticleLayout)
-//   article-footer — compact article footer (dark, twine owl)
+//   masthead — the front page nameplate (large, centred by Nav)
+//   bar      — the inner-page header
+//   footer   — the footer's colophon line
 import OwlMark from "./OwlMark.astro";
 
-type Variant = "nav" | "footer" | "article-nav" | "article-footer";
+type Variant = "masthead" | "bar" | "footer";
 interface Props { variant?: Variant; href?: string; }
-const { variant = "nav", href } = Astro.props;
+const { variant = "bar", href } = Astro.props;
 
-const V: Record<Variant, {
-  owl: number; body: string; eyes: string;
-  nm: number; nmColor: string;
-  an: number; anWeight: number; ls: string;
-  nudge: number; gap: number;
-}> = {
-  "nav":            { owl: 30, body: "var(--cream)", eyes: "var(--twine)", nm: 22, nmColor: "var(--cream)", an: 10,   anWeight: 600, ls: ".34em", nudge: 3,    gap: 7 },
-  "footer":         { owl: 30, body: "#fff",         eyes: "var(--twine)", nm: 21, nmColor: "var(--navy-mist)", an: 10,   anWeight: 600, ls: ".32em", nudge: 2.5,  gap: 6 },
-  "article-nav":    { owl: 30, body: "var(--navy)",  eyes: "var(--twine)", nm: 21, nmColor: "var(--navy)",      an: 11,   anWeight: 700, ls: ".34em", nudge: 2.75, gap: 8 },
-  "article-footer": { owl: 28, body: "var(--twine)", eyes: "var(--paper)", nm: 21, nmColor: "var(--navy-mist)", an: 10.5, anWeight: 700, ls: ".32em", nudge: 2.5,  gap: 8 },
+// Measured face metrics (em fractions): x-height of Abril Fatface, cap height of Libre Franklin.
+const WM_XH = 0.48;
+const WM_CAP = 0.745;
+
+const V: Record<Variant, { owl: string; nm: string; an: string; ls: string; gap: string }> = {
+  "masthead": { owl: "clamp(2.5rem, 3.4vw + 1rem, 3.75rem)", nm: "clamp(2.25rem, 3vw + 1rem, 3.25rem)", an: "clamp(0.75rem, 0.5vw + 0.5rem, 0.9375rem)", ls: "0.34em", gap: "0.3em" },
+  "bar":      { owl: "2rem",    nm: "1.625rem", an: "0.6875rem", ls: "0.32em", gap: "0.3em" },
+  "footer":   { owl: "1.75rem", nm: "1.375rem", an: "0.6875rem", ls: "0.3em",  gap: "0.3em" },
 };
 const v = V[variant];
 const Tag = href ? "a" : "div";
 const vars = [
-  `--wm-gap:${v.gap}px`, `--wm-nm:${v.nm}px`, `--wm-nm-color:${v.nmColor}`,
-  `--wm-an:${v.an}px`, `--wm-an-weight:${v.anWeight}`, `--wm-an-ls:${v.ls}`,
-  `--wm-nudge:${v.nudge}px`,
+  `--wm-owl:${v.owl}`, `--wm-nm:${v.nm}`, `--wm-an:${v.an}`, `--wm-ls:${v.ls}`, `--wm-gap:${v.gap}`,
+  `--wm-xh:${WM_XH}`, `--wm-cap:${WM_CAP}`,
 ].join(";");
 ---
-<Tag href={href} class="wm" style={vars}>
-  <OwlMark size={v.owl} body={v.body} eyes={v.eyes} />
-  <span class="nm">aesop</span><span class="an">Analytics</span>
+<Tag href={href} class:list={["wm", `wm--${variant}`]} style={vars} aria-label={href ? "Aesop Analytics, home" : undefined}>
+  <OwlMark class="wm__owl" body="currentColor" eyes="var(--wm-eyes)" />
+  <span class="wm__text"><span class="wm__nm">aesop</span><span class="wm__an">Analytics</span></span>
 </Tag>
 
 <style>
-  .wm { display:flex; align-items:center; gap:var(--wm-gap); flex-shrink:0; text-decoration:none; }
-  .wm .nm { font-family:"Abril Fatface",serif; font-size:var(--wm-nm); color:var(--wm-nm-color); }
-  .wm .an {
-    font-family:"DM Sans",sans-serif;
-    font-weight:var(--wm-an-weight);
-    letter-spacing:var(--wm-an-ls);
-    font-size:var(--wm-an);
-    text-transform:uppercase;
-    color:var(--twine);
-    align-self:center;
-    /* Optical centering against the x-height of "aesop" — measured, do not remove. */
-    transform:translateY(var(--wm-nudge));
+  .wm { --wm-eyes: var(--color-accent); display: inline-flex; align-items: center; gap: calc(var(--wm-nm) * 0.32); flex-shrink: 0; color: var(--color-ink); text-decoration: none; line-height: 1; }
+  .wm :global(.wm__owl) { width: var(--wm-owl); height: var(--wm-owl); flex-shrink: 0; }
+  .wm__text { display: inline-flex; align-items: baseline; gap: calc(var(--wm-nm) * 0.3); }
+  .wm__nm { font-family: var(--font-wordmark); font-size: var(--wm-nm); line-height: 1; }
+  .wm__an {
+    font-family: var(--font-outlier); font-weight: 500; font-size: var(--wm-an); line-height: 1;
+    letter-spacing: var(--wm-ls); text-transform: uppercase; color: var(--color-accent);
+    /* Optical centring on the x-height of "aesop" — measured ratios, do not remove. */
+    transform: translateY(calc((var(--wm-an) * var(--wm-cap) - var(--wm-nm) * var(--wm-xh)) / 2));
   }
 </style>

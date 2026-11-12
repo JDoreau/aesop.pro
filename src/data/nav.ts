@@ -4,8 +4,8 @@
 export interface NavItem {
   label: string;
   href: string;
-  accent?: boolean;      // twine-coloured link (the Assessment)
-  mobileLabel?: string;  // longer label shown in the mobile menu
+  accent?: boolean;      // unused since the Nov 2026 redesign (was the accent-coloured Assessment link)
+  mobileLabel?: string;  // unused since the Nov 2026 redesign: the four sections fit one row at every width, so there is no mobile menu
 }
 
 // Research-site IA (Nov 2026): Aesop Analytics LLC closed and the site became

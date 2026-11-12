@@ -1,27 +1,32 @@
 ---
-// BaseLayout.astro — every page renders through this. The head, the global
-// stylesheets, the nav, and the footer are composed here exactly once.
+// BaseLayout.astro — every standard page renders through this. The head, the
+// global stylesheet, the masthead and the footer are composed here exactly once.
 // Props mirror Seo's (extended, not re-declared) and forward via spread, so
 // a prop added to Seo can never silently drop here again.
-import "../styles/tokens.css";
-import "../styles/base.css";
-import "../styles/sections.css";
+// `front` switches the masthead to the front-page nameplate (the homepage only).
+import "../styles/site.css";
 import Seo from "../components/Seo.astro";
 import type { Props as SeoProps } from "../components/Seo.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
-interface Props extends SeoProps {}
+interface Props extends SeoProps { front?: boolean; }
+const { front = false, ...seo } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <Seo {...Astro.props} />
+    <Seo {...seo} />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <Nav />
+    <a class="skip" href="#main">Skip to content</a>
+    <Nav front={front} />
     <main id="main"><slot /></main>
     <Footer />
   </body>
 </html>
+
+<style is:global>
+  /* The Floor: no sideways scroll at any width (base.css says it too; the layout states it where the document is declared). */
+  html, body { overflow-x: clip; }
+</style>
