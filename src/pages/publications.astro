@@ -1,0 +1,84 @@
+---
+// publications.astro — the Research page (added Nov 2026): every field study,
+// newest first. Rendered from src/data/insights.ts (the featured study plus the
+// field-study section), so a new study only needs its data row and its page in
+// src/pages/insights/ — check.mjs already enforces that pair.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Reveal from "../components/Reveal.astro";
+import { featured, sections } from "../data/insights.ts";
+import { linkHref, canonicalUrl, site } from "../data/nav.ts";
+
+const title = 'Research: Field Studies on Data and the Economy | Aesop Analytics';
+const description = "Field studies by Jonathan Doreau on wages, productivity, profits, inflation and sport — each built from public data, with its sources named and its limits stated.";
+
+const studies = [
+  { slug: featured.slug, published: featured.published, title: featured.title, desc: featured.desc, tag: featured.tag, image: featured.image, imageAlt: featured.imageAlt },
+  ...sections.filter((s) => s.pillar === "field-study").flatMap((s) => s.rows.map((r) => ({ ...r, tag: "Field Study · Economics & Data", image: undefined as string | undefined, imageAlt: "" }))),
+].sort((a, b) => b.published.localeCompare(a.published));
+
+const fmt = (iso: string) =>
+  new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Research",
+  url: canonicalUrl("/publications"),
+  author: { "@type": "Person", name: site.author },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: studies.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: canonicalUrl(`/insights/${s.slug}`), name: s.title })),
+  },
+};
+---
+
+<BaseLayout title={title} description={description} path="/publications" schema={schema}>
+<div class="reface">
+
+  <section class="pub-hero band-navy ae-host ae-mark" style="--ae-size:min(40vw,460px); --ae-right:-2%; --ae-top:-20%; --ae-opacity:.06;">
+    <div class="wrap">
+      <div class="eyebrow">Research</div>
+      <h1>Field studies.</h1>
+      <p>Long-form studies built from public data: wages, productivity, profits, inflation, and the occasional detour into sport. Each one names its sources, steelmans the other side, and says what the data can't support.</p>
+    </div>
+  </section>
+
+  <section class="pub-list band-paper">
+    <div class="wrap">
+      {studies.map((s) => (
+        <a href={linkHref(`/insights/${s.slug}`)} class:list={["pub", { "has-img": s.image }]}>
+          {s.image && <img src={s.image} alt={s.imageAlt} width="560" height="560" loading="lazy" />}
+          <div class="pub-body">
+            <div class="pub-meta">{s.tag} · {fmt(s.published)}</div>
+            <h2>{s.title}</h2>
+            <p>{s.desc}</p>
+            <span class="pub-go">Read the study &rarr;</span>
+          </div>
+        </a>
+      ))}
+      <p class="pub-foot">Looking for the shorter, practical pieces on reporting and KPIs? They're under <a href="/insights/">Writing</a>.</p>
+    </div>
+  </section>
+
+  <Reveal selector=".pub" />
+</div>
+
+<style>
+  .pub-hero { padding:80px 0 64px; }
+  .pub-hero .eyebrow { color:var(--twine); }
+  .pub-hero h1 { color:#fff; margin-bottom:18px; }
+  .pub-hero p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:58ch; }
+  .pub-list { padding:64px 0 88px; }
+  .pub { display:block; background:#fff; border:1px solid var(--line); border-radius:10px; padding:30px 30px; margin-bottom:20px; transition:border-color .18s, transform .18s, box-shadow .18s; }
+  .pub:hover { border-color:var(--twine); transform:translateY(-3px); box-shadow:0 16px 40px -22px rgba(15,31,56,.26); }
+  .pub.has-img { display:grid; grid-template-columns:240px 1fr; gap:32px; align-items:center; }
+  .pub img { width:100%; height:auto; border-radius:6px; display:block; }
+  @media(max-width:700px){ .pub.has-img { grid-template-columns:1fr; gap:18px; } .pub { padding:22px 20px; } }
+  .pub-meta { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--twine); margin-bottom:12px; }
+  .pub h2 { color:var(--navy); font-size:clamp(23px,2.6vw,30px); margin-bottom:12px; }
+  .pub p { font-size:16px; color:var(--slate); line-height:1.62; font-weight:300; margin-bottom:16px; max-width:68ch; }
+  .pub-go { font-size:14px; font-weight:600; color:var(--twine); }
+  .pub-foot { font-size:15px; color:var(--muted); margin-top:28px; }
+  .pub-foot a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+</style>
+</BaseLayout>

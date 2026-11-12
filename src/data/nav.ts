@@ -8,35 +8,21 @@ export interface NavItem {
   mobileLabel?: string;  // longer label shown in the mobile menu
 }
 
-// Product-first IA (the reface, SITE-DIRECTION §1) — the nav order is the single
-// loudest positioning signal, so the PRODUCT leads and services demote to the
-// Assessment on-ramp. Every href points at a real, existing route (breadcrumb
-// matcher + isCurrent() compare against these paths, so they stay clean & 404-free).
-// "Product" is the Manteia platform page; "Why trust it" and "Work" are the proof
-// surfaces; the Assessment is the accented human on-ramp.
+// Research-site IA (Nov 2026): Aesop Analytics LLC closed and the site became
+// Jonathan Doreau's personal research and writing site. Every href points at a
+// real route (breadcrumb matcher + isCurrent() compare against these paths).
 export const nav: NavItem[] = [
-  { label: "Product",    href: "/platform", mobileLabel: "The Platform — Aesop Manteia" },
-  { label: "Why trust it", href: "/work", mobileLabel: "Why trust it — proof & method" },
-  { label: "Assessment", href: "/assessment", accent: true, mobileLabel: "Reporting Clarity Assessment — the on-ramp" },
-  { label: "Insights",   href: "/insights" },
-  { label: "Resources",  href: "/resources" },
-  { label: "About",      href: "/about" },
-  { label: "Contact",    href: "/contact" },
+  { label: "Research", href: "/publications", mobileLabel: "Research — field studies" },
+  { label: "Writing",  href: "/insights",     mobileLabel: "Writing — articles" },
+  { label: "Tools",    href: "/resources",    mobileLabel: "Free tools" },
+  { label: "About",    href: "/about" },
 ];
-
-// The product-led primary CTA the site never had — "See it on your estate"
-// (SITE-DIRECTION §1). It still lands on the diagnostic (the human on-ramp),
-// but the LABEL now leads with the product, not the services funnel.
-export const cta = { label: "See it on your estate", href: "/diagnostic", mobileLabel: "See it on your estate" };
 
 export const site = {
   name: "Aesop Analytics",
-  tagline: "The operating system for trusted enterprise intelligence.",
-  // Canonical brand promise (TRUE_NORTH §1). Not yet rendered anywhere —
-  // the homepage promise band hardcodes its own longer wording.
-  promise: "We bring you value, or we tell you honestly that we can’t.",
-  email: "hello@aesopanalytics.com",
-  linkedin: "https://www.linkedin.com/company/90403604",
+  author: "Jonathan Doreau",
+  tagline: "Research and writing on data, measurement and the economy.",
+  linkedin: "https://www.linkedin.com/in/jonathan-doreau-1a00b233/",
   location: "Nashville, TN",
   url: "https://aesopanalytics.com",
 };

@@ -5,7 +5,6 @@
 // this page keeps its own content, styles, and the audit engine. The engine
 // uses global functions via inline onclick handlers, so the script must be
 // is:inline (a bundled module script would scope those functions away).
-// Formspree xgobkezp is the audit email-results form — preserve exactly.
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 <BaseLayout
@@ -442,57 +441,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="da-section-title" id="fixes-label" style="display:none">Priority fixes</div>
     <div class="da-fixes-list" id="res-fixes"></div>
 
-    <div class="da-email-section">
-      <div class="da-email-inner" id="da-email-inner">
-        <div>
-          <div class="da-section-title" style="margin-bottom:10px">Get a copy of your results</div>
-          <p class="da-email-desc">We&rsquo;ll email you the score, category breakdown, and priority fixes &mdash; a useful record to share or revisit. One email. No pitch.</p>
-        </div>
-        <form class="da-ef" id="da-email-form">
-          <input type="hidden" name="_subject" value="Dashboard Audit Results">
-          <input type="hidden" id="h-score" name="score">
-          <input type="hidden" id="h-band" name="band">
-          <input type="hidden" id="h-cats" name="category_scores">
-          <input type="hidden" id="h-fixes" name="priority_issues">
-          <!-- Marketing attribution: filled from the session's first-touch utm capture (Seo.astro ->
-               sessionStorage) so an email-results lead carries the campaign that earned it. -->
-          <input type="hidden" name="utm_source" id="h-utm-source">
-          <input type="hidden" name="utm_medium" id="h-utm-medium">
-          <input type="hidden" name="utm_campaign" id="h-utm-campaign">
-          <input type="hidden" name="utm_content" id="h-utm-content">
-          <div class="da-ef-row">
-            <div class="da-ef-field">
-              <label class="da-ef-label" for="ef-name">Name</label>
-              <input class="da-ef-input" type="text" id="ef-name" name="name" placeholder="Your name" autocomplete="name">
-            </div>
-            <div class="da-ef-field">
-              <label class="da-ef-label" for="ef-email">Email <span style="color:var(--twine)">*</span></label>
-              <input class="da-ef-input" type="email" id="ef-email" name="email" required placeholder="you@company.com" autocomplete="email">
-            </div>
-          </div>
-          <div class="da-ef-footer">
-            <button class="da-ef-btn" type="submit" id="ef-btn">Email me these results &rarr;</button>
-            <span class="da-ef-note">One email &middot; no follow-up campaign</span>
-          </div>
-          <p class="da-ef-error" id="ef-error">Something went wrong &mdash; try <a href="mailto:hello@aesopanalytics.com">emailing directly</a>.</p>
-        </form>
-      </div>
-      <div class="da-email-success" id="da-email-success" style="display:none">
-        <div class="da-es-icon">&#10003;</div>
-        <div>
-          <p class="da-es-title">Results sent</p>
-          <p class="da-es-sub">Check your inbox. If you want to talk through what you found, book a free 30-minute diagnostic below.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="da-cta">
-      <div>
-        <h3>This is one dashboard. Your estate has many.</h3>
-        <p>A Reporting Clarity Assessment covers your entire reporting estate — not just one dashboard — and maps it into Aesop Manteia, our data-trust software: the living system that keeps governance true long after the audit is done. You leave with a prioritized roadmap of exactly what to fix first. If it isn't the right next step for you, we'll say so.</p>
-      </div>
-      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=dashboard-audit-closing-diagnostic" class="da-cta-btn">Book a free diagnostic &rarr;</a>
-    </div>
 
   </div>
 </div>
@@ -729,41 +677,6 @@ function showResults(){
     });
   }
 
-  document.getElementById('h-score').value=rounded+'/30';
-  document.getElementById('h-band').value=band;
-  document.getElementById('h-cats').value=catLines.join(' | ');
-  document.getElementById('h-fixes').value=fixItems.slice(0,3).map(f=>f.title).join(' | ');
 }
 
-// Marketing attribution: read the session's first-touch utm capture (Seo.astro -> sessionStorage)
-// and fill the hidden inputs, so the Formspree submission carries the campaign that earned it.
-(function fillUtm(){
-  var store={};
-  try{ store=JSON.parse(sessionStorage.getItem('aesop_utm')||'{}'); }catch(e){}
-  ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){
-    var el=document.getElementById('h-'+k.replace('utm_','utm-'));
-    if(el&&typeof store[k]==='string'&&store[k]) el.value=store[k].slice(0,200);
-  });
-})();
-
-document.getElementById('da-email-form').addEventListener('submit',async function(e){
-  e.preventDefault();
-  var email=document.getElementById('ef-email').value.trim();
-  if(!email) return;
-  var btn=document.getElementById('ef-btn');
-  var errEl=document.getElementById('ef-error');
-  btn.disabled=true; btn.textContent='Sending…'; errEl.style.display='none';
-  try{
-    var res=await fetch('https://formspree.io/f/xgobkezp',{
-      method:'POST', body:new FormData(e.target), headers:{'Accept':'application/json'}
-    });
-    if(res.ok){
-      document.getElementById('da-email-inner').style.display='none';
-      document.getElementById('da-email-success').style.display='flex';
-    } else { throw new Error(); }
-  } catch(err){
-    btn.disabled=false; btn.textContent='Email me these results →';
-    errEl.style.display='block';
-  }
-});
 </script>

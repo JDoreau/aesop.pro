@@ -1,102 +1,52 @@
 ---
-// resources.astro — the free-tools hub, refaced into the product-first Honest
-// Expert voice using the shared section components + sections.css. The tools are
-// framed as the free on-ramp to the governed system (Aesop Manteia): each one
-// measures a piece of the trust gap the product then closes and keeps closed.
-// URL preserved: "/resources". The Health Check (Krisis/TRUST Index scorer) is
-// the canonical instrument — this page hands off to it, never forks it.
+// resources.astro — the free-tools hub. Since Nov 2026 the site is a personal
+// research site, so the tools stand on their own: no funnel, no email, nothing
+// leaves the browser. The Health Check (TRUST Index scorer) is the canonical
+// instrument — this page hands off to it, never forks it. URL preserved.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
-import PromiseBand from "../components/PromiseBand.astro";
-import CtaBand from "../components/CtaBand.astro";
 import Reveal from "../components/Reveal.astro";
 
-const title = 'Free Resources: Reporting Trust Tools | Aesop Analytics';
-const description = 'Free tools to measure where your reporting trust is breaking down — the Reporting Trust Health Check, a dashboard audit, a fully worked sample assessment, and a letter for your team. No email walls.';
-const ogDescription = "Free, deterministic tools for reporting trust: a scored Health Check, a dashboard audit, a worked sample assessment, and more. No email required.";
+const title = 'Free Tools: Reporting Trust Self-Checks | Aesop Analytics';
+const description = 'Two free self-checks for reporting trust: the Reporting Trust Health Check and a Dashboard Audit. They run in your browser, ask for no email, and send nothing anywhere.';
+const ogDescription = "Free, deterministic self-checks for reporting trust. No email, nothing leaves your browser.";
 ---
 
 <BaseLayout title={title} description={description} path="/resources" ogDescription={ogDescription}>
 <div class="reface">
 
-  <!-- ── HERO ── -->
-  <Hero eyebrow="Free resources · No email required">
-    <h1>See where your reporting trust <span class="em">breaks down</span> — for free.</h1>
-    <Fragment slot="sub">These four tools are the free on-ramp to the platform. Each one runs the same method that powers Aesop Manteia, our data-trust software — so each measures a piece of the trust gap the platform then closes and keeps closed. Everything runs in your browser, nothing is walled behind an email, and the scoring is deterministic: the same answers always give the same result.</Fragment>
+  <Hero eyebrow="Free tools · No email required">
+    <h1>Score your own <span class="em">reporting</span>.</h1>
+    <Fragment slot="sub">Two self-checks built on the method in the writing on this site. Everything runs in your browser, nothing is behind an email, and the scoring is deterministic: the same answers always give the same result.</Fragment>
     <Fragment slot="cta">
-      <a href="/resources/health-check/?utm_source=site&utm_medium=internal&utm_campaign=resources-hero-healthcheck" class="btn">Take the Health Check</a>
-      <a href="#toolkit" class="btn ghost">See all four tools</a>
+      <a href="/resources/health-check/" class="btn">Take the Health Check</a>
+      <a href="/resources/dashboard-audit/" class="btn ghost">Audit a dashboard</a>
     </Fragment>
-    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Deterministic · runs in your browser · no email required</div>
+    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Deterministic · runs in your browser · no email</div>
   </Hero>
 
-  <!-- ── PROMISE BAND ── -->
-  <PromiseBand />
-
-  <!-- ── THE TOOLKIT ── -->
   <section class="toolkit band-paper" id="toolkit">
     <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-label" style="display:inline-block">The toolkit</div>
-        <h2>Four free tools, one honest method.</h2>
-        <p>Start with the Health Check for the whole picture, or reach for the tool that matches the question you have today. None of them ask for anything in return — they exist to show you the trust gap plainly, the same way the platform does.</p>
-      </div>
       <div class="tool-grid">
-        <a href="/resources/health-check/?utm_source=site&utm_medium=internal&utm_campaign=resources-card-healthcheck" class="tool-card hl reveal">
+        <a href="/resources/health-check/" class="tool-card hl reveal">
           <div class="tc-tag">Scored self-assessment · ~10 min</div>
           <h3>Reporting Trust Health Check</h3>
-          <p>The full instrument: eleven areas across the five TRUST pillars, scored into one honest 0&ndash;100 Trust Initiate Score — band-gated so a strong area can't hide a weak one. You leave with your binding constraint named and a plain-English report you can print and bring to a call.</p>
+          <p>Eleven areas across the five TRUST pillars, scored into one honest 0&ndash;100 Trust Initiate Score — band-gated so a strong area can't hide a weak one. You leave with your binding constraint named and a plain-English report you can print.</p>
           <span class="tc-go">Take the Health Check &rarr;</span>
         </a>
         <a href="/resources/dashboard-audit/" class="tool-card reveal">
           <div class="tc-tag">Interactive audit · 30 questions</div>
           <h3>Dashboard Audit</h3>
-          <p>Score one dashboard across six dimensions — purpose, definitions, data trust, design, governance, and operational health — and walk away with a prioritized list of exactly what to fix, with a fix hint behind every weak answer.</p>
+          <p>Score one dashboard across six dimensions — purpose, definitions, data trust, design, governance and operational health — and walk away with a prioritized list of what to fix, with a hint behind every weak answer.</p>
           <span class="tc-go">Run the audit &rarr;</span>
         </a>
-        <a href="/resources/sample-assessment/" class="tool-card reveal">
-          <div class="tc-tag">Worked example</div>
-          <h3>Sample Assessment</h3>
-          <p>See exactly what a Reporting Clarity Assessment delivers — a complete, anonymized engagement from the triggering conflict through the findings, the scored estate, the Trust Initiate Score, and a self-executable 30/60/90-day roadmap.</p>
-          <span class="tc-go">Read the sample &rarr;</span>
-        </a>
-        <a href="/resources/trust-letter/" class="tool-card reveal">
-          <div class="tc-tag">For your team</div>
-          <h3>The Reporting Trust Letter</h3>
-          <p>Practical notes on reporting trust, KPI clarity, dashboard design, and lightweight governance — written for the people who have to defend the figures in the room. Roughly twice a month, no drip sequence, unsubscribe in one click.</p>
-          <span class="tc-go">Get the letter &rarr;</span>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- ── THE HEALTH CHECK (the anchor instrument) ── -->
-  <section class="anchor band-navy ae-host ae-mark" id="health-check" style="--ae-size:min(40vw,460px); --ae-left:-4%; --ae-bottom:-24%; --ae-opacity:.05;">
-    <div class="wrap">
-      <div class="sec-label">Start here</div>
-      <h2 class="anchor-h">The Reporting Trust Health Check.</h2>
-      <p class="lede anchor-lede">One canonical instrument, scored the way the platform scores your estate: it reads the five TRUST pillars, gates the number downward so a strong half can't mask a weak one, and hands you a genuine diagnosis rather than a vanity score. It's the fastest way to see what Aesop Manteia would find. About two minutes for a fast pass, ten for a considered one.</p>
-      <div class="anchor-card">
-        <div class="anchor-main">
-          <div class="anchor-kicker">Reporting Trust Health Check</div>
-          <div class="anchor-title">Your Trust Initiate Score — 0 to 100, with a real diagnosis.</div>
-          <p class="anchor-body">Eleven areas, three signal questions each, a band-gated score, an area-by-area read, and a "start here" list you can print and bring to a diagnostic call. Computed deterministically, right in your browser — nothing is sent anywhere unless you choose to email yourself the report.</p>
-          <a href="/resources/health-check/?utm_source=site&utm_medium=internal&utm_campaign=resources-featured-healthcheck" class="btn">Take the Health Check &rarr;</a>
-        </div>
-        <ul class="anchor-list">
-          <li>A 0&ndash;100 Trust Initiate Score, band-gated so a high score means a genuinely trustworthy operation</li>
-          <li>Your binding constraint — the one fix that moves the needle most</li>
-          <li>An area-by-area read with a prioritized place to start</li>
-          <li>A printable, branded report you can keep or share</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW TO PUT IT TO WORK ── -->
   <section class="how-use band-paper2">
     <div class="wrap">
-      <div class="sec-label" style="display:inline-block">How to put it to work</div>
+      <div class="sec-label" style="display:inline-block">How to use them</div>
       <h2 class="how-h">Three ways to turn a score into a conversation.</h2>
       <div class="flow-grid steps3">
         <div class="use-step">
@@ -107,28 +57,18 @@ const ogDescription = "Free, deterministic tools for reporting trust: a scored H
         <div class="use-step">
           <div class="us-n">02</div>
           <h3>Score it as a team</h3>
-          <p>Have your analytics lead, your finance lead, and a department head each score the same areas independently. The gaps between their scores are often as revealing as the scores themselves.</p>
+          <p>Have your analytics lead, your finance lead and a department head each score the same areas independently. The gaps between their scores are often as revealing as the scores themselves.</p>
         </div>
         <div class="use-step">
           <div class="us-n">03</div>
-          <h3>Bring it to a diagnostic</h3>
-          <p>Bring your scores to a free 30-minute diagnostic. It makes the conversation far more productive — we can focus on the lowest-scoring areas and work out honestly whether a structured assessment would help.</p>
+          <h3>Start with the lowest</h3>
+          <p>Take the single lowest-scoring area and read the matching article in <a href="/insights/" style="color:var(--twine)">Writing</a>. One owned, agreed metric does more than a redesign of everything.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FINAL CTA ── -->
-  <CtaBand eyebrow="Want help reading your score?">
-    <h2>Bring your results to a real conversation.</h2>
-    <Fragment slot="sub">A free 30-minute diagnostic — bring your Health Check scores and we'll identify the highest-impact areas together. If a structured assessment isn't the right next step for where you are, we'll tell you plainly.</Fragment>
-    <Fragment slot="cta">
-      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=resources-closing-diagnostic" class="btn on-light">Book a diagnostic</a>
-      <a href="/resources/health-check/?utm_source=site&utm_medium=internal&utm_campaign=resources-closing-healthcheck" class="btn ghost">Take the Health Check first</a>
-    </Fragment>
-  </CtaBand>
-
-  <Reveal selector=".tool-card,.use-step,.anchor-list li" />
+  <Reveal selector=".tool-card,.use-step" />
 </div>
 
 <style>

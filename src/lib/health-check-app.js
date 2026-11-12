@@ -6,8 +6,6 @@ import { AREAS, PILLAR_STEPS, AI_STEP } from './trust-index-areas.js';
 
 const STORE = 'aesop-hc-v3';
 const STEPS = [...PILLAR_STEPS, AI_STEP];
-// The mailer Worker (aesop-healthcheck-mailer) - emails the visitor a branded PDF + sends Aesop the pre-data.
-const MAILER_ENDPOINT = 'https://aesop-healthcheck-mailer.doreau-jonathan.workers.dev/email';
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 function pillarBandWord(v) { return v < 40 ? 'low' : v < 65 ? 'mid' : 'high'; }
@@ -199,20 +197,13 @@ export function mountHealthCheck() {
     });
     wrap.appendChild(areas);
 
-    // Conversion CTA
+    // Save the report. (The sales CTA and the email-me opt-in were removed in Nov 2026,
+    // when the LLC closed: nothing the visitor enters leaves the browser now.)
     const cta = el('div', 'hc-cta');
-    if (r.conversion) { cta.appendChild(el('div', 'hc-cta-title', r.conversion.title || 'This is the self-check. The Assessment is the roadmap.')); cta.appendChild(el('div', 'hc-cta-body', r.conversion.body)); }
-    cta.appendChild(el('div', 'hc-cta-printlink', 'Book a free diagnostic — aesopanalytics.com/diagnostic/'));
+    cta.appendChild(el('div', 'hc-cta-title', 'Keep your report.'));
+    cta.appendChild(el('div', 'hc-cta-body', 'Your answers stay in this browser. Print the report or save it as a PDF to keep a copy.'));
     const acts = el('div', 'hc-cta-acts');
-    const book = document.createElement('a'); book.href = '/diagnostic/'; book.className = 'hc-btn'; book.textContent = 'Book a free diagnostic →'; acts.appendChild(book);
-    // The email opt-in only appears when Turnstile is configured (a site key is present),
-    // so the button can never be shown without its anti-abuse gate behind it.
-    if (window.__hcSiteKey) {
-      const emailBtn = el('button', 'hc-btn ghost', 'Email me my report'); emailBtn.type = 'button';
-      emailBtn.addEventListener('click', () => { emailBtn.style.display = 'none'; cta.appendChild(emailForm()); });
-      acts.appendChild(emailBtn);
-    }
-    const printBtn = el('button', 'hc-linkbtn', 'Print / save as PDF'); printBtn.type = 'button'; printBtn.addEventListener('click', () => window.print()); acts.appendChild(printBtn);
+    const printBtn = el('button', 'hc-btn', 'Print / save as PDF'); printBtn.type = 'button'; printBtn.addEventListener('click', () => window.print()); acts.appendChild(printBtn);
     cta.appendChild(acts);
     wrap.appendChild(cta);
 
@@ -226,74 +217,4 @@ export function mountHealthCheck() {
     return wrap;
   }
 
-  // Renders the Turnstile widget into the email form. api.js loads async, so we
-  // retry briefly until window.turnstile is ready. No-op without a site key.
-  function renderTurnstile(container, onUnavailable) {
-    const sk = window.__hcSiteKey;
-    if (!sk) return;
-    window.__hcTurnstileToken = ''; // clear any stale single-use token from a prior open
-    let tries = 0;
-    (function attempt() {
-      if (window.turnstile && typeof window.turnstile.render === 'function') {
-        try {
-          window.__hcTurnstileWidgetId = window.turnstile.render(container, {
-            sitekey: sk,
-            callback: (t) => { window.__hcTurnstileToken = t; },
-            'expired-callback': () => { window.__hcTurnstileToken = ''; },
-            'error-callback': () => { window.__hcTurnstileToken = ''; },
-          });
-        } catch (e) {}
-        return;
-      }
-      if (tries++ < 50) { setTimeout(attempt, 150); return; } // wait up to ~7.5s for api.js
-      if (typeof onUnavailable === 'function') onUnavailable(); // api.js blocked (ad blocker / CSP / proxy)
-    })();
-  }
-  // Turnstile tokens are single-use; after any send attempt we must re-challenge.
-  function resetTurnstile() {
-    window.__hcTurnstileToken = '';
-    try { if (window.turnstile && window.__hcTurnstileWidgetId != null) window.turnstile.reset(window.__hcTurnstileWidgetId); } catch (e) {}
-  }
-
-  function emailForm() {
-    const f = el('div', 'hc-emailform');
-    const row = el('div', 'hc-emailrow');
-    const input = document.createElement('input');
-    input.type = 'email'; input.placeholder = 'you@company.com'; input.className = 'hc-email-input';
-    input.setAttribute('aria-label', 'Your email address');
-    const send = el('button', 'hc-btn', 'Email it'); send.type = 'button';
-    row.appendChild(input); row.appendChild(send);
-    const ts = el('div', 'hc-turnstile'); // Turnstile renders here (anti-abuse gate)
-    const msg = el('div', 'hc-email-msg');
-    msg.innerHTML = 'Your report stays free on this page. Emailing it sends a PDF copy to you and a copy to Aesop, who may follow up about how we can help — see our <a href="/privacy/">privacy policy</a>.';
-    f.appendChild(row); f.appendChild(ts); f.appendChild(msg);
-    renderTurnstile(ts, () => { send.disabled = true; msg.textContent = 'Verification couldn’t load — an ad blocker or network filter may be blocking it. Your report is still free and printable above.'; });
-    send.addEventListener('click', () => {
-      const email = (input.value || '').trim();
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
-      if (!window.__hcTurnstileToken) { msg.textContent = 'Please complete the “I’m human” check above before sending.'; return; }
-      send.disabled = true; msg.textContent = 'Sending your report…';
-      // Marketing attribution: forward the session's first-touch utm capture (Seo.astro persists it
-      // to sessionStorage from the landing URL) as flat utm_* keys alongside the lead, matching the
-      // platform intake's extractUtm() field names. The mailer Worker validates only email/scores/
-      // turnstileToken and safely ignores unknown keys today — forwarding them into the lead notify
-      // is the Worker-side half (PLATFORM src/mailer/index.ts, a separate wave).
-      var utm = {};
-      try {
-        var utmStore = JSON.parse(sessionStorage.getItem('aesop_utm') || '{}');
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
-          if (typeof utmStore[k] === 'string' && utmStore[k]) utm[k] = utmStore[k].slice(0, 200);
-        });
-      } catch (e) {}
-      fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ email: email, scores: state.scores, turnstileToken: window.__hcTurnstileToken || '' }, utm)) })
-        .then((res) => {
-          if (res.ok) { row.style.display = 'none'; ts.style.display = 'none'; msg.textContent = 'Sent — check your inbox (and your spam folder, just in case).'; return; }
-          if (res.status === 422) { msg.textContent = 'We couldn’t deliver to that address — but your report is right here and printable above.'; return; }
-          if (res.status >= 400 && res.status < 500) { resetTurnstile(); send.disabled = false; msg.textContent = 'That verification didn’t go through — please complete the check again and resend.'; return; }
-          throw new Error('status ' + res.status);
-        })
-        .catch(() => { resetTurnstile(); send.disabled = false; msg.textContent = 'Couldn’t send right now — your report is still here and printable above.'; });
-    });
-    return f;
-  }
 }

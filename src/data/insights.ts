@@ -34,7 +34,7 @@ export interface Section {
 }
 
 export const hero = {
-  eyebrow: "Insights",
+  eyebrow: "Writing",
   title: "Articles & field studies.",
   intro:
     "Practical writing on reporting trust, KPI definitions, dashboard design, data governance, and AI readiness — from fifteen years of applied analytics practice.",

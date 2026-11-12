@@ -1,15 +1,11 @@
 ---
-// about.astro — the firm, honestly. Reframed for the reface: "the team building
-// Manteia" — a data-governance software company, principal-led, on-ramped by a
-// reporting-trust practice. Founder title moved from "Founder & Principal
-// Consultant" toward "Founder & Principal" (SITE-DIRECTION §1). Career arc,
-// timeline, and philosophy kept (honest, substantive); chrome restyled to the
-// new system. URL preserved: "/about".
+// about.astro — Jonathan Doreau, the author behind the site. Rewritten Nov 2026,
+// when Aesop Analytics LLC closed and the site became his personal research and
+// writing site: no services, no team, no booking. URL preserved: "/about".
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CtaBand from "../components/CtaBand.astro";
-const title = 'About Aesop Analytics | The team building Aesop Manteia';
-const description = 'Aesop Analytics is a data-governance software company in Nashville, TN — building Aesop Manteia, the operating system for trusted enterprise intelligence. Founder-led by Jonathan Doreau, drawing on 15+ years turning distrusted data into reporting people rely on.';
-const ogDescription = "Why a software company for trusted intelligence came out of 15+ years fixing distrusted data — and what we're building now.";
+const title = 'About Jonathan Doreau | Aesop Analytics';
+const description = 'Jonathan Doreau is a data and analytics professional in Nashville, TN, with 15+ years in reporting, business intelligence and data governance. Aesop Analytics is where he publishes his research and writing.';
+const ogDescription = "15+ years turning distrusted data into reporting people rely on — and the research and writing that came out of it.";
 ---
 
 <BaseLayout title={title} description={description} path="/about" ogDescription={ogDescription}>
@@ -20,19 +16,18 @@ const ogDescription = "Why a software company for trusted intelligence came out 
       <div class="eyebrow">About</div>
       <div class="hero-grid">
         <div class="hero-text">
-          <h1>The people, and the years, behind the software.</h1>
-          <p>I'm Jonathan Doreau, founder of Aesop Analytics. I've spent my career taking fragmented, distrusted data environments and turning them into reporting organizations actually rely on. Aesop is where that work became software &mdash; Aesop Manteia, the operating system for trusted enterprise intelligence &mdash; and when you adopt it, I'm the one who does the diagnosis and delivery, start to finish.</p>
+          <h1>Fifteen years of making numbers people can trust.</h1>
+          <p>I'm Jonathan Doreau, a data and analytics professional in Nashville. I've spent my career taking fragmented, distrusted data environments and turning them into reporting people actually rely on. This site is where I publish what I learn along the way: field studies on the economy and on data, and practical writing on reporting, KPIs and governance.</p>
           <div class="hero-links">
-            <a href="mailto:hello@aesopanalytics.com" class="hero-link">Email me &#8599;</a>
             <a href="https://www.linkedin.com/in/jonathan-doreau-1a00b233/" class="hero-link" target="_blank" rel="noopener">LinkedIn &#8599;</a>
           </div>
         </div>
         <div class="hero-portrait">
           <div class="portrait-block">
-            <img class="portrait-img" src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau, founder of Aesop Analytics" width="680" height="850" loading="eager" />
+            <img class="portrait-img" src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau" width="680" height="850" loading="eager" />
             <div class="portrait-name">
               <div class="pn">Jonathan Doreau</div>
-              <div class="pt">Founder &amp; Principal · Aesop Analytics · Nashville, TN</div>
+              <div class="pt">Data &amp; Analytics · Nashville, TN</div>
             </div>
           </div>
         </div>
@@ -51,8 +46,8 @@ const ogDescription = "Why a software company for trusted intelligence came out 
         <div class="bs-body">
           <p>I started in finance &mdash; regulated reporting, risk dashboards, and the particular discipline that comes from working in environments where a wrong number has real consequences. That foundation taught me to care about data quality and governance before they became fashionable topics.</p>
           <p>From there: healthcare and research, including executive reporting and analytics for an <strong>NIH-funded research program</strong> &mdash; a context where data credibility mattered as much as the research itself, and where the reporting had to serve both operational leadership and external funders simultaneously. That's where I developed a genuine appreciation for governance: the unglamorous work that makes everything downstream trustworthy.</p>
-          <p>Real estate and nonprofit work came next, and what struck me most was how similar the data problems were across industries that seemed completely different. Fragmented sources, undefined metrics, reports that couldn't be reconciled with each other, a data team spending most of its time answering one-off questions instead of building anything lasting. The patterns repeat &mdash; which is exactly why they can be built into software.</p>
-          <p>Aesop Analytics is what those fifteen years pointed to. It began as a reporting-modernization practice; as the method and tooling matured, it became a data-governance software company, building Aesop Manteia, with the assessment practice as the front door.</p>
+          <p>Real estate and nonprofit work came next, and what struck me most was how similar the data problems were across industries that seemed completely different. Fragmented sources, undefined metrics, reports that couldn't be reconciled with each other, a data team spending most of its time answering one-off questions instead of building anything lasting. The patterns repeat &mdash; which is exactly why they can be studied and fixed with a method.</p>
+          <p>Aesop Analytics is the name I publish under. It started in 2024 as a reporting-modernization practice; today it is the home for my research and writing.</p>
           <div class="timeline" style="margin-top:32px">
             <div class="tl-item">
               <div class="tl-year">Finance</div>
@@ -89,49 +84,10 @@ const ogDescription = "Why a software company for trusted intelligence came out 
             <div class="tl-item">
               <div class="tl-year">2024 &rarr;</div>
               <div class="tl-content">
-                <div class="tc-role">Founder</div>
+                <div class="tc-role">Research &amp; writing</div>
                 <div class="tc-org">Aesop Analytics · Nashville, TN</div>
-                <div class="tc-desc">Founded as a reporting-modernization practice; now a data-governance software company &mdash; building Aesop Manteia, with the assessment practice as the front door.</div>
+                <div class="tc-desc">Field studies on the economy and on data, and practical writing on reporting, KPIs and governance &mdash; published on this site.</div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- THE TEAM -->
-  <section class="body-section">
-    <div class="wrap">
-      <div class="bs-grid">
-        <div>
-          <div class="bs-label">How Aesop is staffed</div>
-          <h2 class="bs-heading">Founder-led &mdash; building the platform, backed by senior specialists I trust.</h2>
-        </div>
-        <div>
-          <div class="bs-body" style="margin-bottom:28px">
-            <p>You work directly with me, the principal, from the first diagnosis through final delivery &mdash; no junior bench, no handoff. When an engagement needs depth in an area where someone is genuinely stronger than I am, I draw on a small circle of independent senior specialists I've worked alongside for years: people who run their own practices, whose judgment I trust, and who I trade expertise with in both directions. They sharpen how Aesop works behind the scenes &mdash; our tooling and the product build &mdash; but they don't sit between you and the work. The person you talk to is the person doing it.</p>
-          </div>
-          <div class="team-grid">
-            <div class="team-card">
-              <div class="tm-name">Jonathan Doreau</div>
-              <div class="tm-role">Founder &amp; Principal</div>
-              <div class="tm-desc">The person you work with, start to finish &mdash; strategy, governance, and executive reporting on every engagement. 15+ years across finance, healthcare and NIH research, real estate, and nonprofit.</div>
-            </div>
-            <div class="team-card">
-              <div class="tm-name">Emily Carter</div>
-              <div class="tm-role">Independent specialist · BI &amp; Power BI</div>
-              <div class="tm-desc">Power BI, DAX, and semantic models. An independent practitioner I bring in for depth on Aesop's tooling and the product build &mdash; behind the scenes, not client-facing.</div>
-            </div>
-            <div class="team-card">
-              <div class="tm-name">Olivia Reynolds</div>
-              <div class="tm-role">Independent specialist · Delivery &amp; PM</div>
-              <div class="tm-desc">Stakeholder alignment, delivery cadence, and budgets. An independent collaborator I call on for the internal work when a build calls for it.</div>
-            </div>
-            <div class="team-card">
-              <div class="tm-name">Carlos Vega</div>
-              <div class="tm-role">Independent specialist · SQL &amp; data</div>
-              <div class="tm-desc">SQL, data profiling, and documentation. An independent specialist I trade expertise with on the source-cleanup and data-dictionary work that strengthens Aesop's own systems.</div>
             </div>
           </div>
         </div>
@@ -145,11 +101,11 @@ const ogDescription = "Why a software company for trusted intelligence came out 
       <div class="bs-grid">
         <div>
           <div class="bs-label">Tools &amp; Skills</div>
-          <h2 class="bs-heading">What we work in.</h2>
+          <h2 class="bs-heading">What I work in.</h2>
         </div>
         <div>
           <div class="bs-body" style="margin-bottom:24px">
-            <p>I'm genuinely tool-agnostic at the strategy layer. At the build layer, the work is done most fluently in Power BI, Tableau, SQL, and Snowflake &mdash; the tools that cover the majority of what growing companies actually need.</p>
+            <p>I'm genuinely tool-agnostic at the strategy layer. At the build layer, the work is done most fluently in Power BI, Tableau, SQL, and Snowflake &mdash; the tools that cover most of what organizations actually need.</p>
           </div>
           <div class="tools-grid">
             <div class="tool-card"><div class="tn">SQL</div><div class="td">The foundation of everything. T-SQL, PostgreSQL, Snowflake SQL &mdash; querying, modeling, transformations.</div></div>
@@ -168,7 +124,7 @@ const ogDescription = "Why a software company for trusted intelligence came out 
   <div class="philosophy band-navy">
     <div class="phil-in">
       <div class="eyebrow">Philosophy</div>
-      <h2>How we think about this work.</h2>
+      <h2>How I think about this work.</h2>
       <div class="phil-points">
         <div class="phil-pt">
           <h3>Strategy before tools.</h3>
@@ -176,25 +132,20 @@ const ogDescription = "Why a software company for trusted intelligence came out 
         </div>
         <div class="phil-pt">
           <h3>Trust is the product.</h3>
-          <p>The real deliverable of analytics work isn't a dashboard &mdash; it's a data environment that people trust enough to use when they make decisions. Everything technical, and Manteia itself, is in service of that &mdash; because the companies that win with AI will be the ones that first learned to trust their data.</p>
+          <p>The real deliverable of analytics work isn't a dashboard &mdash; it's a data environment that people trust enough to use when they make decisions. Everything else is in service of that.</p>
         </div>
         <div class="phil-pt">
-          <h3>Honest about what's built.</h3>
-          <p>We say plainly what's deployed, what's in preview, and what's arriving in Phase II. A company that sells trust should be the first to tell you what its own software can and can't do yet.</p>
+          <h3>Show the method.</h3>
+          <p>Every field study here names its sources and says what the data can and can't support. When a chart is approximate, it says so.</p>
         </div>
         <div class="phil-pt">
           <h3>Even-handed analysis.</h3>
-          <p>The same standard applies to the field studies on this site and to client work: steelman the counter-argument, be clear about what the data can and can't say, and don't let a preferred conclusion drive the analysis.</p>
+          <p>The same standard applies to every study on this site: steelman the counter-argument, be clear about what the data can and can't say, and don't let a preferred conclusion drive the analysis.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <CtaBand eyebrow="See if we're a fit" watermark={false}>
-    <h2>A 30-minute look at your own estate.</h2>
-    <Fragment slot="sub">No pitch, no slide deck. If Manteia isn't the right fit for where you are, we'll tell you plainly.</Fragment>
-    <Fragment slot="cta"><a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=about-closing-diagnostic" class="btn on-light">See it on your estate</a></Fragment>
-  </CtaBand>
 </div>
 
 <style>

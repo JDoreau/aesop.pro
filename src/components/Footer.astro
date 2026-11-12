@@ -1,6 +1,6 @@
 ---
 // Footer.astro — the ONE footer. Bespoke columns (faithful to the live site).
-// Section anchors now point at /services#... so they work from any page.
+// Research-site columns since Nov 2026 (no services, no contact form).
 import { site } from "../data/nav.ts";
 import Wordmark from "./Wordmark.astro";
 const year = new Date().getFullYear(); // evaluated at build time; correct as long as the site rebuilds
@@ -13,31 +13,23 @@ const year = new Date().getFullYear(); // evaluated at build time; correct as lo
       <div class="foot-moral">Every dataset has a moral.</div>
     </div>
     <div class="foot-col">
-      <h4>Product</h4>
-      <a href="/platform/">Aesop Manteia</a>
-      <a href="/work/">Why trust it</a>
-      <a href="/resources/health-check/?utm_source=site&utm_medium=internal&utm_campaign=footer-health-check">Reporting Health Check</a>
-      <a href="/resources/">Free tools</a>
+      <h4>Research</h4>
+      <a href="/publications/">Field studies</a>
+      <a href="/insights/">Writing</a>
     </div>
     <div class="foot-col">
-      <h4>On-ramp</h4>
-      <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=footer-assessment">Reporting Clarity Assessment</a>
-      <a href="/services/#sprint">Modernization Sprint</a>
-      <a href="/services/#governance">Governance Starter Kit</a>
-      <a href="/services/#retainer">Fractional Retainer</a>
-      <a href="/reporting-modernization-consulting/">Reporting Modernization</a>
-      <a href="/bi-dashboard-audit/">BI Dashboard Audit</a>
+      <h4>Tools</h4>
+      <a href="/resources/health-check/">Reporting Trust Health Check</a>
+      <a href="/resources/dashboard-audit/">Dashboard Audit</a>
     </div>
     <div class="foot-col">
-      <h4>Company</h4>
-      <a href="/insights/">Insights &amp; Studies</a>
-      <a href="/about/">About</a>
-      <a href="/contact/?utm_source=site&utm_medium=internal&utm_campaign=footer-contact">Contact</a>
-      <a href={`mailto:${site.email}`}>Email Jonathan</a>
+      <h4>About</h4>
+      <a href="/about/">About Jonathan</a>
       <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/privacy/">Privacy</a>
     </div>
   </div>
-  <div class="foot-legal">{site.location} · {site.email} · © {year} {site.name}. All rights reserved.<br /><span class="ga-note">This site uses Google Analytics to understand how it's used. <a href="/privacy/">Privacy</a></span></div>
+  <div class="foot-legal">{site.location} · © {year} {site.author}. All rights reserved.<br /><span class="ga-note">This site uses Google Analytics to understand how it's used. <a href="/privacy/">Privacy</a></span></div>
 </footer>
 
 <style>

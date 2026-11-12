@@ -152,8 +152,8 @@ are not caught by the check — route them through `linkHref()`.
   run it. Scripts must use strict replacement-count assertions and **fail
   loudly** on any mismatch — a "FAIL but saved anyway" script is how files
   get corrupted. Read utf-8, write `newline=""`.
-- **Build:** `npm run build` → page count must match `src/pages` (40 at
-  last update; sitemap lists 38 — 404 + thanks excluded), ~3s. Zero-warning builds are the norm; treat new warnings
+- **Build:** `npm run build` → page count must match `src/pages` (30 at
+  last update; sitemap lists 29 — 404 excluded), ~3s. Zero-warning builds are the norm; treat new warnings
   as failures (the check.mjs hex warnings are known-legacy, currently in
   the resources pages only).
 - **Node:** pinned to 22 (package.json `engines`, deploy.yml `node-version`).
@@ -186,4 +186,4 @@ INITIATIVES/ = the two live roadmaps, DONE_LOG.md = append-only history) —
 outside this repo, version-controlled as the private `aesop-ops` repo.
 Update DONE_LOG.md after every ship.
 ---
-**Identity source of truth: [../IDENTITY.md](../IDENTITY.md).** Aesop Analytics is a SaaS-first **data-governance software company**; the product is **Aesop Manteia**; the consulting/assessment work is the **on-ramp**, not the company's definition. If anything in this repo implies "consulting-only" or "solo," it is a relic and IDENTITY.md wins. (Product name locked = Aesop Manteia; the "Analytica" name is retired.)
+**Identity (Nov 2026): this is Jonathan Doreau's personal research and writing site.** Aesop Analytics LLC closed; the name stays as the site's brand. There are no services, pricing, product (Manteia), booking, contact or email-capture pages, and nothing a visitor enters leaves the browser. Don't add a funnel, a form, a lead webhook or a sales CTA back. The nav is Research (`/publications`, field studies) · Writing (`/insights`) · Tools (`/resources`) · About. Older notes in this file and in `../IDENTITY.md` / `../_OPS/` that describe a SaaS company or a consulting funnel are historical.

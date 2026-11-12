@@ -3,9 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { hero, pillarButtons, featured, sections, sidebarPillars } from "../data/insights.ts";
 import { linkHref, canonicalUrl } from "../data/nav.ts";
 import type { Section } from "../data/insights.ts";
-const title = 'Insights: Reporting Trust, KPIs & Dashboards | Aesop'
-const description = 'Articles and field studies on reporting trust, KPI governance, dashboard design, and data strategy — for COOs, CFOs, and analytics leaders.'
-const ogDescription = "Expert articles on reporting modernization, KPI trust, and data governance. Every dataset has a moral.";
+const title = 'Writing: Reporting Trust, KPIs & Dashboards | Aesop Analytics'
+const description = 'Articles and field studies on reporting trust, KPI governance, dashboard design, and data strategy — by Jonathan Doreau.'
+const ogDescription = "Articles and field studies on reporting trust, KPI definitions, dashboard design and data governance. Every dataset has a moral.";
 // Count label derived from the rows, so it can never drift from the articles present.
 const countLabel = (s: Section) => {
   const n = s.rows.length;
@@ -42,7 +42,7 @@ const schema = {
   <div class="page-hero-in">
     <div class="eyebrow">{hero.eyebrow}</div>
     <h1>{hero.title}</h1>
-    <p>The thinking behind the platform — on reporting trust, KPI definitions, dashboard design, governance, and AI readiness. This is the point of view Aesop Manteia is built from.</p>
+    <p>Practical writing on reporting trust, KPI definitions, dashboard design, governance and AI readiness — plus the field studies, which also live under <a href="/publications/" style="color:var(--twine)">Research</a>.</p>
   </div>
 </div>
 
@@ -98,19 +98,9 @@ const schema = {
       </div>
     </div>
     <div class="sb-block">
-      <div class="sb-label">See the product</div>
-      <p>Aesop Manteia is the governed system this writing describes — it maps your estate from metadata, shows every owner and definition, and renders the gaps in plain view. The portal is deployed today; you can see how it works.</p>
-      <a href="/platform/" class="sb-btn">Read about Aesop Manteia →</a>
-    </div>
-    <div class="sb-block">
       <div class="sb-label">Free resource</div>
-      <p>The Reporting Trust Health Check — 10 diagnostic areas, 3 signal questions each. Score your reporting environment in about 10 minutes.</p>
-      <a href="/resources/health-check/?utm_source=site&utm_medium=internal&utm_campaign=insights-sidebar-healthcheck" class="sb-btn">Take the Health Check →</a>
-    </div>
-    <div class="sb-block">
-      <div class="sb-label">See it on your estate</div>
-      <p>If an article raised a question about your own reporting environment, the fastest next step is a focused 30-minute look at your own numbers. If Manteia isn't the right fit yet, we'll tell you plainly.</p>
-      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=insights-sidebar-diagnostic" class="sb-btn">See it on your estate →</a>
+      <p>The Reporting Trust Health Check — 11 areas across five pillars, 3 signal questions each. Score your reporting environment in about 10 minutes.</p>
+      <a href="/resources/health-check/" class="sb-btn">Take the Health Check →</a>
     </div>
   </aside>
 </div>

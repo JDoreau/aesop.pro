@@ -1,16 +1,12 @@
 ---
 // /resources/health-check - the Reporting Trust Health Check.
 // Rebuilt 2026-06-15 as a focused, full-screen app powered by the TRUST Index.
-// The page itself is a short, indexable intro (SEO + funnel); "Launch" opens the
+// The page itself is a short, indexable intro; "Launch" opens the
 // full-screen experience. All scoring/selection is the proven engine in
 // src/lib/trust-index*.js; the UI controller is src/lib/health-check-app.js.
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import OwlMark from "../../components/OwlMark.astro";
 
-// Cloudflare Turnstile site key (PUBLIC - safe to ship). The email opt-in only
-// renders when this is set; until then the Health Check works fully without it.
-// The matching SECRET lives on the mailer Worker (TURNSTILE_SECRET), never here.
-const TURNSTILE_SITE_KEY = "0x4AAAAAADljyboyLF_0VWPj";
 ---
 <BaseLayout
   title="Reporting Trust Health Check - Aesop Analytics"
@@ -33,7 +29,7 @@ const TURNSTILE_SITE_KEY = "0x4AAAAAADljyboyLF_0VWPj";
         <span class="im">~10 minutes</span>
         <span class="im">Runs in your browser</span>
       </div>
-      <p class="fineprint">Your answers are scored locally in your browser and aren't sent anywhere unless you choose to email yourself the report. The Trust Initiate Score is computed deterministically — the same inputs always give the same score. It computes, it doesn't guess.</p>
+      <p class="fineprint">Your answers are scored locally in your browser and aren't sent anywhere. The Trust Initiate Score is computed deterministically — the same inputs always give the same score. It computes, it doesn't guess.</p>
     </div>
     <div class="intro-side" aria-hidden="true">
       <div class="side-label">What you get</div>
@@ -43,7 +39,7 @@ const TURNSTILE_SITE_KEY = "0x4AAAAAADljyboyLF_0VWPj";
         <li><strong>Your binding constraint</strong> — the one fix that moves the needle most.</li>
         <li><strong>A tailored report</strong> — findings, patterns, and where to start, specific to your profile.</li>
       </ul>
-      <div class="side-note">This is the free self-check. A Reporting Clarity Assessment is the same diagnosis done properly — and Aesop Manteia, our data-trust software, is the living system that keeps the score true.</div>
+      <div class="side-note">A free self-check, built on the method described in the writing on this site. Nothing you enter leaves your browser.</div>
     </div>
   </div>
 </section>
@@ -275,12 +271,6 @@ const TURNSTILE_SITE_KEY = "0x4AAAAAADljyboyLF_0VWPj";
   }
 </style>
 
-{TURNSTILE_SITE_KEY && (
-  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-)}
-<script define:vars={{ siteKey: TURNSTILE_SITE_KEY }}>
-  window.__hcSiteKey = siteKey || '';
-</script>
 <script>
   import { mountHealthCheck } from '../../lib/health-check-app.js';
   mountHealthCheck();
