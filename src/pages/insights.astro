@@ -151,9 +151,9 @@ const schema = {
   .ps-count { flex-shrink: 0; font-size: var(--text-sm); color: var(--color-muted); white-space: nowrap; }
   /* rows: title and line on six columns, the kind and the reading time at the right */
   .art-row.art-row { grid-template-columns: repeat(8, minmax(0, 1fr)); }
-  .art-row__main { grid-column: 1 / span 5; }
-  .art-row__kind { grid-column: 6 / span 2; text-align: right; white-space: nowrap; }
-  .art-row .index__fig { grid-column: 8 / -1; }
+  .art-row__main { grid-column: 1 / span 6; grid-row: 1 / span 2; }
+  .art-row__kind { grid-column: 7 / -1; grid-row: 1; text-align: right; white-space: nowrap; }
+  .art-row .index__fig { grid-column: 7 / -1; grid-row: 2; align-self: start; }
 
   /* the side notes */
   .sb-block { padding-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule-2); }
@@ -168,14 +168,15 @@ const schema = {
   @media (max-width: 75rem) {
     .art-row__kind { display: none; }
     .art-row__main { grid-column: 1 / span 7; }
+    .art-row .index__fig { grid-column: 8 / -1; grid-row: 1; }
   }
   @media (max-width: 60rem) {
     .hub__list, .sidebar { grid-column: 1 / -1; }
     .sidebar { position: static; }
     .feat-card__text, .feat-card__plate { grid-column: 1 / -1; }
     .feat-card__plate { max-width: 24rem; }
-    .art-row__main { grid-column: 1 / -1; order: 0; }
-    .art-row .index__fig { grid-column: 1 / -1; justify-self: start; text-align: left; order: 1; }
+    .art-row__main { grid-column: 1 / -1; grid-row: auto; order: 0; }
+    .art-row .index__fig { grid-column: 1 / -1; grid-row: auto; justify-self: start; text-align: left; order: 1; }
   }
 </style>
 

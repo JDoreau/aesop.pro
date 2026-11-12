@@ -59,20 +59,20 @@ const findings = [featured, ...studies].sort((a, b) => b.published.localeCompare
   <section class="lead-story">
     <div class="container">
       <div class="lead-story__head">
-        <a href={leadHref} class="lead-story__link"><h2>{featured.title}</h2></a>
-        <div class="lead-story__deck">
-          <p>{featured.desc}</p>
+        <div class="lead-story__text">
+          <a href={leadHref} class="lead-story__link"><h2>{featured.title}</h2></a>
+          <p class="lead">{featured.desc}</p>
           <ul class="meta">
             <li><time datetime={featured.published}>{fmt(featured.published)}</time></li>
             {parts(featured.tag).map((t) => (<li>{t}</li>))}
           </ul>
           <a href={leadHref} class="more">Read the study</a>
         </div>
+        <figure class="plate lead-story__plate">
+          <a href={leadHref} tabindex="-1" aria-hidden="true"><img src={featured.image} alt="" width="2160" height="2160" loading="eager" /></a>
+          <figcaption>{featured.imageAlt}</figcaption>
+        </figure>
       </div>
-      <figure class="plate">
-        <a href={leadHref} tabindex="-1" aria-hidden="true"><img src={featured.imageWide} alt="" width="2400" height="1350" loading="eager" /></a>
-        <figcaption>{featured.imageAlt}</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -170,12 +170,12 @@ const findings = [featured, ...studies].sort((a, b) => b.published.localeCompare
 <style>
   /* ── The front: a typographic poster. The head fills the measure, the standfirst and
         actions sit under it, and the findings close the screen as a box score ── */
-  .front__in { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-xl); min-height: calc(100svh - 9.75rem); padding-block: var(--space-xl) 0; }
+  .front__in { display: flex; flex-direction: column; justify-content: flex-start; gap: var(--space-xl); min-height: calc(100svh - 9.75rem); padding-block: var(--space-xl) 0; }
   .front h1 { max-width: none; font-size: var(--text-poster); line-height: 0.92; letter-spacing: -0.035em; }
   .front__deck { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: end; }
   .front__deck .lead { grid-column: 1 / span 7; max-width: 62ch; text-wrap: balance; }
   .front__deck .actions { grid-column: 9 / -1; justify-self: end; }
-  .front__figs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .front__figs { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: auto; }
   .front__figs > li { padding-block: var(--space-lg); }
   .front__fig { display: block; color: inherit; text-decoration: none; }
   .front__fig .score__n { font-size: clamp(2.5rem, 3.4vw + 1rem, 4.25rem); }
@@ -203,18 +203,21 @@ const findings = [featured, ...studies].sort((a, b) => b.published.localeCompare
 
   /* ── The lead story ── */
   .lead-story { margin-top: var(--space-lg); padding-bottom: var(--section-gap); }
-  .lead-story > .container > .lead-story__head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: end; padding-block: var(--space-2xl) var(--space-xl); border-top: var(--rule-double); }
-  .lead-story__link { grid-column: 1 / span 8; color: inherit; text-decoration: none; }
-  .lead-story h2 { max-width: 22ch; }
+  .lead-story__head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-xl); align-items: center; padding-top: var(--space-2xl); border-top: var(--rule-double); }
+  .lead-story__text { grid-column: 1 / span 7; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
+  .lead-story__link { color: inherit; text-decoration: none; }
+  .lead-story h2 { max-width: 20ch; }
   .lead-story__link:hover h2 { text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: var(--color-accent); text-underline-offset: 0.12em; }
-  .lead-story__deck { grid-column: 9 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
-  .lead-story__deck p { color: var(--color-ink-2); }
-  .lead-story .plate a { display: block; }
+  .lead-story__text .lead { color: var(--color-ink-2); }
+  .lead-story__plate { grid-column: 9 / -1; }
+  .lead-story__plate a { display: block; }
   @media (max-width: 60rem) {
     .lead-story { padding-bottom: var(--section-gap-s); }
-    .lead-story > .container > .lead-story__head { padding-block: var(--space-xl) var(--space-lg); }
-    .lead-story__link, .lead-story__deck { grid-column: 1 / -1; }
+    .lead-story__head { padding-top: var(--space-xl); }
+    .lead-story__text { grid-column: 1 / -1; }
+    .lead-story__plate { grid-column: 1 / span 8; }
   }
+  @media (max-width: 40rem) { .lead-story__plate { grid-column: 1 / -1; } }
 
   /* ── The author: the portrait as the paper prints it, the note beside it ── */
   .author__in { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-xl); align-items: center; }

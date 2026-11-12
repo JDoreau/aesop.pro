@@ -80,12 +80,13 @@ const schema = {
   .studies > .container { border-top: var(--rule-double); }
   .study { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: start; padding-block: var(--space-2xl); border-bottom: var(--rule-hair) solid var(--color-rule); }
   .study__fig { grid-column: 1 / span 3; max-width: none; }
-  .study__body { grid-column: 4 / span 7; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .study__body { grid-column: 4 / span 9; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
   .study--plate .study__body { grid-column: 4 / span 6; }
   .study__link { color: inherit; text-decoration: none; }
-  .study h2 { max-width: 24ch; font-size: var(--text-head); line-height: 1.08; }
+  .study h2 { max-width: 32ch; font-size: var(--text-head); line-height: 1.08; }
+  .study--plate h2 { max-width: 24ch; }
   .study__link:hover h2 { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.14em; }
-  .study__body > p { max-width: 58ch; color: var(--color-ink-2); }
+  .study__body > p { max-width: 68ch; color: var(--color-ink-2); }
   .study__plate { grid-column: 10 / -1; }
   .studies__foot { padding-top: var(--space-xl); color: var(--color-ink-2); }
   @media (max-width: 60rem) {

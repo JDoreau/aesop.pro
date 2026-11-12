@@ -192,7 +192,8 @@ export function mountHealthCheck() {
     // Pillar-by-pillar (dropped on print; the five bars already carry per-pillar scores)
     const pillarSec = rsec('Pillar by pillar'); pillarSec.sec.dataset.print = 'drop';
     const pgrid = el('div', 'hc-grid');
-    r.pillarReads.forEach((pr) => { const c = card(null, pr.label + ' — ' + (pr.entry ? pr.entry.title || '' : ''), pr.entry ? pr.entry.body : ''); pgrid.appendChild(c); });
+    // the engine's title already opens with the pillar's name, so it is not prefixed again
+    r.pillarReads.forEach((pr) => { const c = card(null, pr.entry && pr.entry.title ? pr.entry.title : pr.label, pr.entry ? pr.entry.body : ''); pgrid.appendChild(c); });
     pillarSec.body.appendChild(pgrid);
     wrap.appendChild(pillarSec.sec);
 
