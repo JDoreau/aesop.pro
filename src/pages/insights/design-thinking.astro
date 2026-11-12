@@ -3,8 +3,8 @@ import ArticleLayout from "../../layouts/ArticleLayout.astro";
 const title = 'Design Thinking in Business Intelligence | Aesop Analytics'
 const description = 'How user-centered design thinking applies to BI and reporting: empathy, iteration, and prototyping applied to dashboards and KPI frameworks.'
 const kicker = "Article · Process & Method";
-const headingHtml = "Design Thinking in Business Intelligence <span class=\"sub\">A practical guide to using a four-phase method when you know there's a better answer but aren't sure exactly what it is.</span>";
-const dekHtml = "Design thinking isn't about visual design. It's an innovation approach — combining structured analysis with iterative creativity — that's particularly useful in BI when the problem is real but the solution isn't yet visible.";
+const headingHtml = "Design Thinking in Business Intelligence <span class=\"sub\">A practical guide to using a four-phase method when you know there’s a better answer but aren’t sure exactly what it is.</span>";
+const dekHtml = "Design thinking isn’t about visual design. It’s an innovation approach — combining structured analysis with iterative creativity — that’s particularly useful in BI when the problem is real but the solution isn’t yet visible.";
 const meta = ["~6 min read", "Process & Method"];
 ---
 
@@ -12,13 +12,13 @@ const meta = ["~6 min read", "Process & Method"];
 
 <div class="body">
 
-    <p class="lead">"Think outside the box." "Look beyond the obvious." These are genuinely well-intentioned pieces of advice. The problem is they are never followed by any instruction on how, exactly, this is supposed to work in practice. Design thinking is my answer to that gap — a structured method for breaking out of the obvious when the obvious isn't working. Contrary to what the name implies, it has nothing to do with visual design. It is about adopting the iterative, hypothesis-driven mindset of a designer when solving any kind of problem.</p>
+    <p class="lead">“Think outside the box.” “Look beyond the obvious.” These are genuinely well-intentioned pieces of advice. The problem is they are never followed by any instruction on how, exactly, this is supposed to work in practice. Design thinking is my answer to that gap — a structured method for breaking out of the obvious when the obvious isn’t working. Contrary to what the name implies, it has nothing to do with visual design. It is about adopting the iterative, hypothesis-driven mindset of a designer when solving any kind of problem.</p>
 
-    <p>In my consulting work, most problems have relatively straightforward solutions. They need some structure, some specific knowledge, or a push in the right direction, and the path forward becomes clear quickly. But there's a category of problem that requires something different — the ones where I hear things like <em>"We have the data but we're not using it right"</em> or <em>"I just need the data to do this, but I can't quite explain what this is."</em> That disconnect — between operations and leadership, or between operations and data — is where I reach for design thinking. Not because I know the answer, but because the method is how I find it.</p>
+    <p>In my consulting work, most problems have relatively straightforward solutions. They need some structure, some specific knowledge, or a push in the right direction, and the path forward becomes clear quickly. But there’s a category of problem that requires something different — the ones where I hear things like <em>“We have the data but we’re not using it right”</em> or <em>“I just need the data to do this, but I can’t quite explain what this is.”</em> That disconnect — between operations and leadership, or between operations and data — is where I reach for design thinking. Not because I know the answer, but because the method is how I find it.</p>
 
-    <p class="pull">I use design thinking when I know there is a problem or a better way, but I'm not sure exactly what it is.</p>
+    <p class="pull">I use design thinking when I know there is a problem or a better way, but I’m not sure exactly what it is.</p>
 
-    <h2>What design thinking is — and isn't.</h2>
+    <h2>What design thinking is — and isn’t.</h2>
     <span class="h2-sub">Framing the method correctly before applying it</span>
 
     <p>Design thinking is an innovation approach that combines traditional analysis with intuitive creativity. It is characterized by experimentation and prototyping, and it keeps one thing at the center of everything: <strong>the user</strong>. The user is the driving force of the product, the primary reason for its existence, and — this is the key insight — the place where the solution will ultimately be derived from. Not from the data. Not from the technology. From the person who has to use the output to make a decision.</p>
@@ -27,104 +27,104 @@ const meta = ["~6 min read", "Process & Method"];
 
     <!-- FOUR PHASES -->
     <h2>The four phases.</h2>
-    <span class="h2-sub">Exploration · Ideation · Prototyping · Validation</span>
+    <span class="h2-sub seq"><span>Exploration</span> <span>Ideation</span> <span>Prototyping</span> <span>Validation</span></span>
 
-    <div class="phases reveal">
-      <div class="phase">
+    <ol class="phases rows wide">
+      <li class="phase">
         <span class="pnum">01</span>
         <span class="ptag">Phase 1</span>
         <h3>Exploration</h3>
-        <p>The first phase is about learning as much as possible about the problem before proposing any solution. The focus is on understanding the product's components, the target audience, and the issues they face — from as many angles as possible.</p>
-        <p>Four questions anchor this phase: Who uses this product or service? What are the user's three biggest problems? What makes this product particularly specific to them? How might those problems be solved? You'll generate several answers to each — treat them as hypotheses, not facts, and test them through direct conversations with the actual users.</p>
+        <p>The first phase is about learning as much as possible about the problem before proposing any solution. The focus is on understanding the product’s components, the target audience, and the issues they face — from as many angles as possible.</p>
+        <p>Four questions anchor this phase: Who uses this product or service? What are the user’s three biggest problems? What makes this product particularly specific to them? How might those problems be solved? You’ll generate several answers to each — treat them as hypotheses, not facts, and test them through direct conversations with the actual users.</p>
         <p>The discipline here is resisting the urge to jump to solutions. The exploration phase ends when you have a clear, validated picture of the problem state. Not before.</p>
-        <div class="example">In our sales-dashboard example: the users are the sales team and their managers. Their three biggest problems — after talking to them, not guessing — might be: no real-time view of pipeline velocity, no way to see which rep is behind without a manual pull, and a reporting cadence that's weekly when they need it daily. Each of these is a design constraint, not just a feature request.</div>
-      </div>
-      <div class="phase">
+        <p class="example">In our sales-dashboard example: the users are the sales team and their managers. Their three biggest problems — after talking to them, not guessing — might be: no real-time view of pipeline velocity, no way to see which rep is behind without a manual pull, and a reporting cadence that’s weekly when they need it daily. Each of these is a design constraint, not just a feature request.</p>
+      </li>
+      <li class="phase">
         <span class="pnum">02</span>
         <span class="ptag">Phase 2</span>
         <h3>Ideation</h3>
         <p>With a clear problem definition in hand, ideation is where you generate solutions — broadly at first, then converging. The goal is quantity before quality: get as many possible approaches on the table as possible before evaluating any of them.</p>
-        <p>The most useful ideation tool in a BI context is the user journey map — tracing the path a user takes from their first question through to the decision it informs. At each step, ask: what information do they need here? What format serves them? Where do they currently get stuck or go dark? The journey map makes visible all the moments where data could help but currently doesn't.</p>
-        <p>Ideation ends with a prioritized list of potential solutions — not a final decision. You're still in hypothesis mode.</p>
-        <div class="example">For our sales dashboard: brainstormed solutions might include a pipeline velocity tile, a per-rep sparkline, a daily email digest, a mobile-first card layout, and a threshold alert when a deal goes cold. All valid. The journey map helps prioritize: what does the sales manager actually look at first thing Monday morning, and what decision does that lead to?</div>
-      </div>
-      <div class="phase">
+        <p>The most useful ideation tool in a BI context is the user journey map — tracing the path a user takes from their first question through to the decision it informs. At each step, ask: what information do they need here? What format serves them? Where do they currently get stuck or go dark? The journey map makes visible all the moments where data could help but currently doesn’t.</p>
+        <p>Ideation ends with a prioritized list of potential solutions — not a final decision. You’re still in hypothesis mode.</p>
+        <p class="example">For our sales dashboard: brainstormed solutions might include a pipeline velocity tile, a per-rep sparkline, a daily email digest, a mobile-first card layout, and a threshold alert when a deal goes cold. All valid. The journey map helps prioritize: what does the sales manager actually look at first thing Monday morning, and what decision does that lead to?</p>
+      </li>
+      <li class="phase">
         <span class="pnum">03</span>
         <span class="ptag">Phase 3</span>
         <h3>Prototyping</h3>
-        <p>Prototyping turns the knowledge from phases one and two into something tangible that users can react to. The prototype doesn't have to be functional — it has to be specific enough for users to give you honest feedback about whether it solves their problem.</p>
-        <p>In BI, a first prototype might be a static mockup in Figma, a rough Power BI layout with sample data, or even a hand-drawn sketch shared in a meeting. The point is not fidelity — it's to make the concept concrete enough to test. The prototype is a question, not an answer: <em>Is this the right thing to build?</em></p>
-        <p>Prototyping is where most traditional reporting processes fail: the first version of a dashboard goes straight into production without ever being tested with users. By the time feedback arrives, the cost of changing it is high enough that it doesn't get changed.</p>
-        <div class="example">For the sales dashboard: a static mockup showing three KPI tiles, a pipeline-by-stage bar, and a per-rep table goes into a 30-minute working session with two sales managers. Before you've written a line of DAX or connected a single data source, you know whether the layout is right and whether the metrics are the ones that actually drive behavior.</div>
-      </div>
-      <div class="phase">
+        <p>Prototyping turns the knowledge from phases one and two into something tangible that users can react to. The prototype doesn’t have to be functional — it has to be specific enough for users to give you honest feedback about whether it solves their problem.</p>
+        <p>In BI, a first prototype might be a static mockup in Figma, a rough Power BI layout with sample data, or even a hand-drawn sketch shared in a meeting. The point is not fidelity — it’s to make the concept concrete enough to test. The prototype is a question, not an answer: <em>Is this the right thing to build?</em></p>
+        <p>Prototyping is where most traditional reporting processes fail: the first version of a dashboard goes straight into production without ever being tested with users. By the time feedback arrives, the cost of changing it is high enough that it doesn’t get changed.</p>
+        <p class="example">For the sales dashboard: a static mockup showing three KPI tiles, a pipeline-by-stage bar, and a per-rep table goes into a 30-minute working session with two sales managers. Before you’ve written a line of DAX or connected a single data source, you know whether the layout is right and whether the metrics are the ones that actually drive behavior.</p>
+      </li>
+      <li class="phase">
         <span class="pnum">04</span>
         <span class="ptag">Phase 4</span>
         <h3>Validation</h3>
         <p>Validation tests the prototype against the real problem. Does it actually solve what the exploration phase identified? Can users navigate it without explanation? Does it produce the decision-relevant insight it was designed to produce?</p>
         <p>Validation in BI has two layers: usability (can users find what they need?) and analytical validity (do the numbers mean what the users think they mean?). Both matter equally. A dashboard that is easy to navigate but measures the wrong thing produces confident, wrong decisions — which is worse than no dashboard at all.</p>
-        <p>Validation is also the phase that authorizes iteration. If something isn't working, you return to the relevant earlier phase — not to zero. The method is a loop, not a waterfall.</p>
-        <div class="example">For the sales dashboard: a two-week live pilot with the sales team, measuring not just whether they use it but whether it changes what they do. If pipeline velocity calls happen faster, if managers catch at-risk deals earlier, if the weekly manual pull disappears — those are validation signals. Dashboard usage stats alone are not.</div>
-      </div>
-    </div>
+        <p>Validation is also the phase that authorizes iteration. If something isn’t working, you return to the relevant earlier phase — not to zero. The method is a loop, not a waterfall.</p>
+        <p class="example">For the sales dashboard: a two-week live pilot with the sales team, measuring not just whether they use it but whether it changes what they do. If pipeline velocity calls happen faster, if managers catch at-risk deals earlier, if the weekly manual pull disappears — those are validation signals. Dashboard usage stats alone are not.</p>
+      </li>
+    </ol>
 
     <!-- CYCLE DIAGRAM -->
-    <div class="illus reveal">
+    <figure class="illus">
       <div class="ititle">Design thinking is a loop, not a waterfall</div>
       <div class="isub">Validation informs the next cycle — or returns you to an earlier phase</div>
-      <svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" aria-label="Circular diagram showing the four design thinking phases as a continuous loop">
+      <svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Circular diagram showing the four design thinking phases as a continuous loop">
         <!-- Central circle -->
-        <circle cx="340" cy="90" r="34" fill="none" stroke="#E7E0D2" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <text x="340" y="86" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#5A6775">User</text>
-        <text x="340" y="100" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#5A6775">at center</text>
+        <circle cx="340" cy="90" r="34" fill="none" stroke="var(--chart-pale)" stroke-width="1.5"/>
+        <text x="340" y="86" text-anchor="middle" font-size="11" fill="var(--chart-text-2)">User</text>
+        <text x="340" y="100" text-anchor="middle" font-size="11" fill="var(--chart-text-2)">at center</text>
 
         <!-- Phase bubbles -->
-        <circle cx="180" cy="50"  r="44" fill="#0F1F38"/>
-        <circle cx="500" cy="50"  r="44" fill="#162A4A"/>
-        <circle cx="500" cy="130" r="44" fill="#C18C5D"/>
-        <circle cx="180" cy="130" r="44" fill="#1E3555"/>
+        <circle cx="180" cy="50"  r="44" fill="var(--chart-ink)"/>
+        <circle cx="500" cy="50"  r="44" fill="var(--chart-ink)"/>
+        <circle cx="500" cy="130" r="44" fill="var(--chart-accent)"/>
+        <circle cx="180" cy="130" r="44" fill="var(--chart-ink-2)"/>
 
-        <text x="180" y="44"  text-anchor="middle" font-family="Newsreader,serif" font-weight="600" font-size="14" fill="#C18C5D">01</text>
-        <text x="180" y="60"  text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">Exploration</text>
-        <text x="500" y="44"  text-anchor="middle" font-family="Newsreader,serif" font-weight="600" font-size="14" fill="#C18C5D">02</text>
-        <text x="500" y="60"  text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">Ideation</text>
-        <text x="500" y="124" text-anchor="middle" font-family="Newsreader,serif" font-weight="600" font-size="14" fill="#fff">03</text>
-        <text x="500" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">Prototyping</text>
-        <text x="180" y="124" text-anchor="middle" font-family="Newsreader,serif" font-weight="600" font-size="14" fill="#C18C5D">04</text>
-        <text x="180" y="140" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">Validation</text>
+        <text x="180" y="44"  text-anchor="middle" font-size="14" fill="var(--chart-on-ink)">01</text>
+        <text x="180" y="60"  text-anchor="middle" font-size="12" fill="var(--chart-on-ink)">Exploration</text>
+        <text x="500" y="44"  text-anchor="middle" font-size="14" fill="var(--chart-on-ink)">02</text>
+        <text x="500" y="60"  text-anchor="middle" font-size="12" fill="var(--chart-on-ink)">Ideation</text>
+        <text x="500" y="124" text-anchor="middle" font-size="14" fill="var(--chart-on-ink)">03</text>
+        <text x="500" y="140" text-anchor="middle" font-size="12" fill="var(--chart-on-ink)">Prototyping</text>
+        <text x="180" y="124" text-anchor="middle" font-size="14" fill="var(--chart-on-ink)">04</text>
+        <text x="180" y="140" text-anchor="middle" font-size="12" fill="var(--chart-on-ink)">Validation</text>
 
         <!-- Arrows connecting phases -->
-        <path d="M 218 38 Q 340 10 462 38" fill="none" stroke="#D9CFBC" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <polygon points="462,30 470,40 458,42" fill="#D9CFBC"/>
-        <path d="M 520 75 Q 560 90 520 108" fill="none" stroke="#D9CFBC" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <polygon points="514,106 524,114 528,102" fill="#D9CFBC"/>
-        <path d="M 462 142 Q 340 170 218 142" fill="none" stroke="#D9CFBC" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <polygon points="218,150 210,140 222,138" fill="#D9CFBC"/>
-        <path d="M 160 108 Q 120 90 160 75" fill="none" stroke="#D9CFBC" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <polygon points="166,74 156,66 152,78" fill="#D9CFBC"/>
+        <path d="M 218 38 Q 340 10 462 38" fill="none" stroke="var(--chart-pale)" stroke-width="1.5"/>
+        <polygon points="462,30 470,40 458,42" fill="var(--chart-pale)"/>
+        <path d="M 520 75 Q 560 90 520 108" fill="none" stroke="var(--chart-pale)" stroke-width="1.5"/>
+        <polygon points="514,106 524,114 528,102" fill="var(--chart-pale)"/>
+        <path d="M 462 142 Q 340 170 218 142" fill="none" stroke="var(--chart-pale)" stroke-width="1.5"/>
+        <polygon points="218,150 210,140 222,138" fill="var(--chart-pale)"/>
+        <path d="M 160 108 Q 120 90 160 75" fill="none" stroke="var(--chart-pale)" stroke-width="1.5"/>
+        <polygon points="166,74 156,66 152,78" fill="var(--chart-pale)"/>
       </svg>
-      <figcaption>Each phase informs the next. Validation may return you to ideation (if the prototype solved the wrong problem) or back to exploration (if the problem statement itself was wrong). The loop is the feature, not a flaw — it's how the method handles the uncertainty that traditional linear processes ignore.</figcaption>
-    </div>
+      <figcaption>Each phase informs the next. Validation may return you to ideation (if the prototype solved the wrong problem) or back to exploration (if the problem statement itself was wrong). The loop is the feature, not a flaw — it’s how the method handles the uncertainty that traditional linear processes ignore.</figcaption>
+    </figure>
 
     <h2>A pro tip and things to avoid.</h2>
     <span class="h2-sub">Hard-won from the field</span>
 
-    <div class="protip reveal">
+    <div class="protip wide">
       <div class="do">
-        <span class="plabel">Do this</span>
+        <h3>Do this</h3>
         <ul>
           <li>Talk to the actual users before building anything. Your assumptions about what they need are almost always at least partially wrong.</li>
           <li>Keep prototypes rough on purpose. High-fidelity prototypes produce politeness, not honest feedback. Rough prototypes produce real reactions.</li>
-          <li>Define "done" for each phase before starting it. Exploration ends when you have a validated problem statement — not when you feel like you understand things well enough.</li>
+          <li>Define “done” for each phase before starting it. Exploration ends when you have a validated problem statement — not when you feel like you understand things well enough.</li>
           <li>Treat every iteration as data. What changed between the prototype and the validation feedback is the most valuable information in the process.</li>
         </ul>
       </div>
       <div class="dont">
-        <span class="plabel">Avoid this</span>
+        <h3>Avoid this</h3>
         <ul>
-          <li>Using ideation to validate a solution you've already decided on. That's not design thinking — it's theater with extra steps.</li>
-          <li>Skipping exploration because you've worked with this client before. Context changes. Users change. Assumptions age.</li>
-          <li>Treating validation as a sign-off exercise. If users say yes to everything in validation, the prototype wasn't specific enough to test against.</li>
+          <li>Using ideation to validate a solution you’ve already decided on. That’s not design thinking — it’s theater with extra steps.</li>
+          <li>Skipping exploration because you’ve worked with this client before. Context changes. Users change. Assumptions age.</li>
+          <li>Treating validation as a sign-off exercise. If users say yes to everything in validation, the prototype wasn’t specific enough to test against.</li>
           <li>Applying design thinking when the problem is already well-defined and the solution is known. Not every problem needs this method — use it when you need to discover, not when you need to deliver.</li>
         </ul>
       </div>
@@ -133,22 +133,22 @@ const meta = ["~6 min read", "Process & Method"];
     <h2>When to use it — and when not to.</h2>
     <span class="h2-sub">The method is a tool, not a religion</span>
 
-    <p>Design thinking earns its overhead when the problem space is genuinely ambiguous — when the symptoms are clear but the root cause isn't, when users have strong opinions about what they want but aren't sure what they need, or when past solutions have failed in ways that suggest the problem was never quite right to begin with. Those are its conditions.</p>
+    <p>Design thinking earns its overhead when the problem space is genuinely ambiguous — when the symptoms are clear but the root cause isn’t, when users have strong opinions about what they want but aren’t sure what they need, or when past solutions have failed in ways that suggest the problem was never quite right to begin with. Those are its conditions.</p>
 
-    <p>It is not the right approach for well-scoped technical problems, for work where the requirements are already clear and agreed upon, or for situations where the cost of iteration outweighs the cost of being wrong on the first attempt. A client who needs a specific Power BI report on a specific data source by next Friday doesn't need design thinking. They need execution. Knowing which mode you're in is itself a skill.</p>
+    <p>It is not the right approach for well-scoped technical problems, for work where the requirements are already clear and agreed upon, or for situations where the cost of iteration outweighs the cost of being wrong on the first attempt. A client who needs a specific Power BI report on a specific data source by next Friday doesn’t need design thinking. They need execution. Knowing which mode you’re in is itself a skill.</p>
 
     <div class="tip">
       <div class="tlabel">The signal to reach for it</div>
-      <p>When someone in the room says some version of "I know this isn't working but I can't quite explain why" or "I know there's a better way but I don't know what it is" — that's the signal. That ambiguity is exactly what design thinking is built to resolve. It turns a vague problem into a specific one, and a specific problem into a testable solution.</p>
+      <p>When someone in the room says some version of “I know this isn’t working but I can’t quite explain why” or “I know there’s a better way but I don’t know what it is” — that’s the signal. That ambiguity is exactly what design thinking is built to resolve. It turns a vague problem into a specific one, and a specific problem into a testable solution.</p>
     </div>
 
     <div class="read-next">
-      <div class="rn-label">Continue reading</div>
+      <h2 class="rn-label">Continue reading</h2>
       <div class="rn-links">
-        <a href="/insights/data-strategy/" class="rn-link">← Data Strategy Before Data Tools</a>
-        <a href="/insights/dashboard-design-basics/" class="rn-link">Dashboard Design, the Basics →</a>
-        <a href="/insights/gestalt-perception/" class="rn-link">Gestalt &amp; Perception →</a>
-        <a href="/insights/" class="rn-link">← All Insights</a>
+        <a href="/insights/data-strategy/" class="rn-link"><span class="rn-title">Data Strategy Before Data Tools</span></a>
+        <a href="/insights/dashboard-design-basics/" class="rn-link"><span class="rn-title">Dashboard Design, the Basics</span></a>
+        <a href="/insights/gestalt-perception/" class="rn-link"><span class="rn-title">Gestalt &amp; Perception</span></a>
+        <a href="/insights/" class="rn-link"><span class="rn-title">All Insights</span></a>
       </div>
     </div>
   </div>
@@ -156,37 +156,61 @@ const meta = ["~6 min read", "Process & Method"];
 </ArticleLayout>
 
 <style>
-  /* Restored from the pre-Astro original (article-design-thinking.html @ e59da2f).
-     Only rules missing from the shared article.css are recreated here. */
+  /* WORKAROUND for a shared-style conflict (delete once it is fixed there): base.css resets the margin
+     of p, h2, ol and figure with element selectors, and those outrank the zero-specificity :where()
+     placement defaults in article.css, so the article's vertical rhythm collapses. The same values
+     are restated here for the elements this page uses. */
+  .body > p { margin-top: var(--space-lg); }
+  .body > p:first-child { margin-top: 0; }
+  .body > .lead { max-width: var(--measure); }
+  .body > .phases { margin-top: var(--space-lg); }
+  .body > .pull, .body > .illus { margin-top: var(--space-2xl); }
+  .body > h2 { margin-top: var(--space-3xl); }
+  @media (max-width: 60rem) { .body > h2 { margin-top: var(--space-2xl); } }
 
-  /* Phase cards — four phases as a 2x2 grid */
-  .phases { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin:40px 0; background:var(--rule); border-radius:6px; overflow:hidden; border:1px solid var(--rule); }
-  @media(max-width:560px){ .phases { grid-template-columns:1fr; } }
-  .phase { background:#fff; padding:28px 24px; }
-  .phase .pnum { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:42px; line-height:1; color:var(--navy); opacity:.12; display:block; margin-bottom:-8px; }
-  .phase .ptag { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:10px; display:block; }
-  .phase h3 { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:12px; letter-spacing:-.01em; }
-  .phase p { font-size:15px; color:var(--slate); line-height:1.58; font-weight:300; margin:0 0 12px; }
-  .phase p:last-child { margin:0; }
-  .phase .example { font-size:14px; color:var(--muted); font-style:italic; padding:10px 14px; background:var(--paper-2); border-radius:4px; border-left:3px solid var(--twine); margin-top:12px; line-height:1.5; }
+  /* The line under "The four phases.": the four names parted by hairlines, as the dateline is */
+  .h2-sub.seq { display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-sm); }
+  .h2-sub.seq > span + span { padding-left: var(--space-sm); border-left: var(--rule-hair) solid var(--color-rule); }
+  @media (max-width: 40rem) {
+    .h2-sub.seq { display: grid; grid-template-columns: auto auto; justify-content: start; }
+    .h2-sub.seq > span + span:nth-child(odd) { padding-left: 0; border-left: 0; }
+  }
 
-  /* Pro/avoid strip */
-  .protip { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:36px 0; }
-  @media(max-width:560px){ .protip { grid-template-columns:1fr; } }
-  .protip > div { border-radius:6px; padding:20px; }
-  .protip .do { background:rgba(15,31,56,.05); border:1px solid rgba(15,31,56,.12); }
-  .protip .dont { background:rgba(206,118,107,.07); border:1px solid rgba(206,118,107,.2); }
-  .protip .plabel { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; margin-bottom:10px; display:block; }
-  .protip .do .plabel { color:var(--navy); }
-  .protip .dont .plabel { color:var(--contessa); }
-  .protip ul { list-style:none; padding:0; }
-  .protip li { font-size:15px; color:var(--slate); line-height:1.55; padding:6px 0; border-bottom:1px solid rgba(0,0,0,.06); display:flex; gap:10px; font-weight:300; }
-  .protip li:last-child { border-bottom:none; }
-  .protip li::before { font-weight:700; flex-shrink:0; }
-  .protip .do li::before { content:"→"; color:var(--navy); }
-  .protip .dont li::before { content:"✗"; color:var(--contessa); }
+  /* The four phases: ruled rows set on the article's own columns. The numeral hangs in the margin
+     column with its label under it, the text holds the measure, the running example takes a side column. */
+  .phases > li { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-sm); align-items: baseline; padding-block: var(--space-xl); }
+  .phases .pnum { grid-row: 1; grid-column: 1; font: 700 var(--text-xl)/1.2 var(--font-display); letter-spacing: var(--tracking-display); font-variant-numeric: tabular-nums lining-nums; }
+  .phases .ptag { grid-row: 2; grid-column: 1; font-size: var(--text-sm); font-weight: 500; line-height: 1.4; color: var(--color-muted); white-space: nowrap; }
+  .phases h3 { grid-row: 1; grid-column: 2 / span 5; margin: 0; font-size: var(--text-xl); }
+  .phases p { grid-column: 2 / span 5; }
+  .phases .example { grid-row: 1 / span 4; grid-column: 7 / -1; align-self: stretch; padding-left: var(--space-lg); border-left: var(--rule-hair) solid var(--color-rule); font-size: var(--text-md); color: var(--color-muted); }
+  @media (max-width: 75rem) {
+    .phases > li { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .phases h3, .phases p { grid-column: 2 / span 6; }
+    .phases .example { grid-column: 8 / -1; }
+  }
+  @media (max-width: 60rem) {
+    .phases > li { grid-template-columns: auto auto minmax(0, 1fr); column-gap: var(--space-sm); padding-block: var(--space-lg); }
+    .phases h3 { grid-column: 2; }
+    .phases .ptag { grid-row: 1; grid-column: 3; padding-left: var(--space-sm); border-left: var(--rule-hair) solid var(--color-rule); }
+    .phases p { grid-column: 1 / -1; }
+    .phases .example { grid-row: auto; grid-column: 1 / -1; padding-left: 0; border-left: 0; }
+    .phases .example::before { content: ""; display: block; width: var(--space-xl); margin-bottom: var(--space-sm); border-top: var(--rule-hair) solid var(--color-rule-2); }
+  }
 
-  /* Illustration internals not covered by the shared sheet */
-  .illus svg { display:block; width:100%; height:auto; }
-  .illus figcaption { font-size:12px; color:var(--muted); margin-top:14px; line-height:1.46; border-top:1px solid var(--line); padding-top:10px; }
+  /* Do this, avoid this: two ruled columns. The rule over each says which it is: ink for do, brick for avoid */
+  .protip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl) var(--gap-columns); font-size: var(--text-body); line-height: 1.55; }
+  .protip > div { min-width: 0; padding-top: var(--space-md); border-top: 3px solid var(--color-ink); }
+  .protip > .dont { border-top-color: var(--color-accent); }
+  .protip h3 { margin-bottom: var(--space-sm); font-size: var(--text-lg); letter-spacing: -0.01em; }
+  .protip ul { padding: 0; list-style: none; border-top: var(--rule-hair) solid var(--color-rule); }
+  .protip li { margin: 0; padding-block: var(--space-sm); border-bottom: var(--rule-hair) solid var(--color-rule); color: var(--color-ink-2); }
+  @media (max-width: 40rem) { .protip { grid-template-columns: minmax(0, 1fr); } }
+
+  /* On a phone the loop is drawn half again as wide as the column and centred: the drawing fills only the
+     middle three-fifths of its frame, so the empty sides run off and the labels stay readable. */
+  @media (max-width: 40rem) {
+    .illus { display: grid; grid-template-columns: minmax(0, 1fr); overflow-x: clip; }
+    .illus svg { justify-self: center; width: 150%; }
+  }
 </style>

@@ -3,8 +3,8 @@ import ArticleLayout from "../../layouts/ArticleLayout.astro";
 const title = 'Why Bad Reporting Blocks AI Adoption | Aesop Analytics'
 const description = 'The bottleneck in most AI analytics projects is not the model - it is the reporting layer beneath it. How broken reporting stops AI before it starts.'
 const kicker = "Article · AI Readiness";
-const headingHtml = "Why Bad Reporting Blocks AI Adoption <span class=\"sub\">Your AI initiative isn't blocked by the AI. It's blocked by what lives underneath it.</span>";
-const dekHtml = "Organizations are investing heavily in AI analytics tools and discovering that the limiting factor isn't the model, the compute, or the vendor. It's the reporting foundation — fragmented sources, undefined metrics, unowned KPIs — that the AI either can't work with or works with badly.";
+const headingHtml = "Why Bad Reporting Blocks AI Adoption <span class=\"sub\">Your AI initiative isn’t blocked by the AI. It’s blocked by what lives underneath it.</span>";
+const dekHtml = "Organizations are investing heavily in AI analytics tools and discovering that the limiting factor isn’t the model, the compute, or the vendor. It’s the reporting foundation — fragmented sources, undefined metrics, unowned KPIs — that the AI either can’t work with or works with badly.";
 const meta = ["~6 min read", "AI Readiness"];
 const ogDescription = "Your AI initiative is not blocked by the AI. It's blocked by your metric definitions, your data ownership, and your source-of-truth decisions — or the absence of them.";
 ---
@@ -12,41 +12,33 @@ const ogDescription = "Your AI initiative is not blocked by the AI. It's blocked
 <ArticleLayout title={title} description={description} path="/insights/bad-reporting-blocks-ai" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
 
 <div class="body">
-    <p class="lead">Trusted data is the infrastructure of the AI era — and when it isn't there, the AI stalls before it starts. There's a version of the AI analytics story that is playing out badly in a lot of organizations right now. Leadership, energized by what AI can theoretically do with data, authorizes an investment in an AI analytics platform — a natural language query tool, an AI forecasting layer, an intelligent dashboard assistant. The vendor demo was impressive. The pilot showed promise. The full deployment reveals the problem: the AI is doing its job, and the job it's doing is exposing every foundational flaw in the organization's data and reporting.</p>
-    <p>The AI queries a revenue metric and returns three different numbers depending on which source it pulls from. It generates a forecast that looks plausible but is based on a churn definition that hasn't been updated since a product line was retired. It answers a natural language question about "active customers" using a definition that Finance uses — which differs from the definition Sales uses by about 30%. Each of these outputs is technically correct given the data the AI was given. None of them is trustworthy.</p>
+    <p class="lead">Trusted data is the infrastructure of the AI era — and when it isn’t there, the AI stalls before it starts. There’s a version of the AI analytics story that is playing out badly in a lot of organizations right now. Leadership, energized by what AI can theoretically do with data, authorizes an investment in an AI analytics platform — a natural language query tool, an AI forecasting layer, an intelligent dashboard assistant. The vendor demo was impressive. The pilot showed promise. The full deployment reveals the problem: the AI is doing its job, and the job it’s doing is exposing every foundational flaw in the organization’s data and reporting.</p>
+    <p>The AI queries a revenue metric and returns three different numbers depending on which source it pulls from. It generates a forecast that looks plausible but is based on a churn definition that hasn’t been updated since a product line was retired. It answers a natural language question about “active customers” using a definition that Finance uses — which differs from the definition Sales uses by about 30%. Each of these outputs is technically correct given the data the AI was given. None of them is trustworthy.</p>
 
-    <p class="pull">The AI is not the problem. The AI is the diagnosis — a very expensive, very visible way to discover that your data foundation isn't ready for what you're asking it to support.</p>
+    <p class="pull">The AI is not the problem. The AI is the diagnosis — a very expensive, very visible way to discover that your data foundation isn’t ready for what you’re asking it to support.</p>
 
     <h2>The four reporting problems that block AI adoption.</h2>
     <span class="h2-sub">Each one produces a characteristic failure mode</span>
-    <div class="failures">
+    <div class="rows failures">
       <div class="fail">
         <span class="fail-n">01</span>
-        <div>
-          <h3>Undefined or inconsistently defined metrics</h3>
-          <p>When a metric doesn't have a single agreed definition, an AI system has no way to know which definition to apply. It will either use the first one it finds (producing inconsistent results depending on query order), attempt to surface all versions (creating confusion rather than clarity), or make a choice silently (producing confident-sounding output based on a definition nobody agreed to). The result is an AI that appears unreliable — when the actual problem is that the definition was never established. The fix is not a better AI. It's a KPI dictionary.</p>
-        </div>
+        <h3>Undefined or inconsistently defined metrics</h3>
+        <p>When a metric doesn’t have a single agreed definition, an AI system has no way to know which definition to apply. It will either use the first one it finds (producing inconsistent results depending on query order), attempt to surface all versions (creating confusion rather than clarity), or make a choice silently (producing confident-sounding output based on a definition nobody agreed to). The result is an AI that appears unreliable — when the actual problem is that the definition was never established. The fix is not a better AI. It’s a KPI dictionary.</p>
       </div>
       <div class="fail">
         <span class="fail-n">02</span>
-        <div>
-          <h3>Multiple competing source systems</h3>
-          <p>Most organizations have the same data in multiple places — CRM, ERP, data warehouse, department spreadsheets. For human analysts, navigating this complexity is a learned skill; they know which system to use for which question. AI systems don't have that institutional knowledge. They query what they're connected to, and if they're connected to multiple competing sources for the same domain, their outputs will vary by which source gets prioritized. Organizations that haven't made explicit source-of-truth designations will see this surface as AI inconsistency. The fix is a source-of-truth registry, not a prompt engineering improvement.</p>
-        </div>
+        <h3>Multiple competing source systems</h3>
+        <p>Most organizations have the same data in multiple places — CRM, ERP, data warehouse, department spreadsheets. For human analysts, navigating this complexity is a learned skill; they know which system to use for which question. AI systems don’t have that institutional knowledge. They query what they’re connected to, and if they’re connected to multiple competing sources for the same domain, their outputs will vary by which source gets prioritized. Organizations that haven’t made explicit source-of-truth designations will see this surface as AI inconsistency. The fix is a source-of-truth registry, not a prompt engineering improvement.</p>
       </div>
       <div class="fail">
         <span class="fail-n">03</span>
-        <div>
-          <h3>Stale or undocumented business context</h3>
-          <p>AI models work with what they have. If your data warehouse contains a "customer_tier" field that was meaningful in 2021 and meaningless since 2023 when the tier structure changed — but nobody updated the documentation or the data — the AI will use it as if it's current. If you had a major acquisition in Q3 that changed how revenue is recognized and the schema wasn't updated to reflect that context, AI-generated analyses will straddle the boundary without flagging the discontinuity. Bad reporting hygiene manifests as AI output that is technically derived from the data but contextually wrong.</p>
-        </div>
+        <h3>Stale or undocumented business context</h3>
+        <p>AI models work with what they have. If your data warehouse contains a “customer_tier” field that was meaningful in 2021 and meaningless since 2023 when the tier structure changed — but nobody updated the documentation or the data — the AI will use it as if it’s current. If you had a major acquisition in Q3 that changed how revenue is recognized and the schema wasn’t updated to reflect that context, AI-generated analyses will straddle the boundary without flagging the discontinuity. Bad reporting hygiene manifests as AI output that is technically derived from the data but contextually wrong.</p>
       </div>
       <div class="fail">
         <span class="fail-n">04</span>
-        <div>
-          <h3>No accountability for when the AI is wrong</h3>
-          <p>Even well-built AI systems on clean data foundations will occasionally produce wrong answers. The question is what happens next. In organizations with clear metric ownership and defined escalation paths, an incorrect AI output gets caught, investigated, and corrected with a documented root cause. In organizations without that infrastructure, "the AI was wrong" becomes a diffuse indictment of the whole system — and trust erodes rather than the specific problem getting fixed. AI adoption requires the same accountability infrastructure that good reporting requires. They share the same foundation.</p>
-        </div>
+        <h3>No accountability for when the AI is wrong</h3>
+        <p>Even well-built AI systems on clean data foundations will occasionally produce wrong answers. The question is what happens next. In organizations with clear metric ownership and defined escalation paths, an incorrect AI output gets caught, investigated, and corrected with a documented root cause. In organizations without that infrastructure, “the AI was wrong” becomes a diffuse indictment of the whole system — and trust erodes rather than the specific problem getting fixed. AI adoption requires the same accountability infrastructure that good reporting requires. They share the same foundation.</p>
       </div>
     </div>
 
@@ -54,9 +46,9 @@ const ogDescription = "Your AI initiative is not blocked by the AI. It's blocked
     <span class="h2-sub">What to do before and after AI deployment</span>
     <p>The most expensive way to build an AI analytics capability is to deploy the AI first and discover the reporting problems second. The diagnostic work that would have taken two to three weeks and a modest investment becomes a multi-month remediation project while the AI tool sits underutilized and leadership questions the investment.</p>
     <p>The right sequence: assess the reporting foundation first. Run a structured review of your core metrics — are they defined? Are the sources designated? Do they have owners? Score the gaps. Address the highest-impact ones. Then deploy the AI onto a foundation that can support it.</p>
-    <p>This isn't a two-year enterprise data warehouse project. For most mid-sized companies, the foundational work — documenting the 15–20 most critical metrics, designating sources, naming owners — can be completed in a few weeks. That investment makes every subsequent AI initiative more reliable, faster to deploy, and easier to maintain.</p>
+    <p>This isn’t a two-year enterprise data warehouse project. For most mid-sized companies, the foundational work — documenting the 15–20 most critical metrics, designating sources, naming owners — can be completed in a few weeks. That investment makes every subsequent AI initiative more reliable, faster to deploy, and easier to maintain.</p>
 
-    <div class="callout reveal">
+    <div class="callout">
       <h3>The AI readiness pre-flight checklist.</h3>
       <ul class="clist">
         <li>Your 10–20 most-used metrics have written business definitions that Finance, Operations, and Sales would all agree to.</li>
@@ -67,19 +59,19 @@ const ogDescription = "Your AI initiative is not blocked by the AI. It's blocked
       </ul>
     </div>
 
-    <p>If you can check all five of those boxes, your AI analytics deployment has a strong foundation. If you can't, the deployment is likely to surface the gaps — at significantly higher cost and visibility than fixing them beforehand would have required. In the AI era, trusted data is the infrastructure everything else is built on: the reporting layer isn't a precursor to the AI work, it's the thing that determines whether the AI work pays off at all.</p>
+    <p>If you can check all five of those boxes, your AI analytics deployment has a strong foundation. If you can’t, the deployment is likely to surface the gaps — at significantly higher cost and visibility than fixing them beforehand would have required. In the AI era, trusted data is the infrastructure everything else is built on: the reporting layer isn’t a precursor to the AI work, it’s the thing that determines whether the AI work pays off at all.</p>
 
     <div class="tip">
       <div class="tlabel">The diagnostic question for leadership</div>
-      <p>Before your organization invests in AI analytics tooling, ask: "If the AI gave us a revenue number that looked wrong, who would we call to investigate it?" If the answer is clear, fast, and specific — you have the ownership infrastructure AI needs. If the answer is "we'd have to figure that out," the AI investment will surface the gap in an expensive way. Fix the governance first. The AI will be worth significantly more on the other side of it.</p>
+      <p>Before your organization invests in AI analytics tooling, ask: “If the AI gave us a revenue number that looked wrong, who would we call to investigate it?” If the answer is clear, fast, and specific — you have the ownership infrastructure AI needs. If the answer is “we’d have to figure that out,” the AI investment will surface the gap in an expensive way. Fix the governance first. The AI will be worth significantly more on the other side of it.</p>
     </div>
 
     <div class="read-next">
-      <div class="rn-label">Continue reading</div>
+      <h2 class="rn-label">Continue reading</h2>
       <div class="rn-links">
-        <a href="/insights/ai-readiness-trusted-metrics/" class="rn-link">AI readiness starts with trusted metrics →</a>
-        <a href="/insights/governance-operators/" class="rn-link">Data governance for operators →</a>
-        <a href="/insights/" class="rn-link">← All Insights</a>
+        <a href="/insights/ai-readiness-trusted-metrics/" class="rn-link"><span class="rn-title">AI readiness starts with trusted metrics</span></a>
+        <a href="/insights/governance-operators/" class="rn-link"><span class="rn-title">Data governance for operators</span></a>
+        <a href="/insights/" class="rn-link"><span class="rn-title">All Insights</span></a>
       </div>
     </div>
   </div>
@@ -87,11 +79,29 @@ const ogDescription = "Your AI initiative is not blocked by the AI. It's blocked
 </ArticleLayout>
 
 <style>
-  /* Failure modes — restored from the pre-Astro original
-     (article-bad-reporting-blocks-ai.html @ e59da2f). */
-  .failures { display:flex; flex-direction:column; gap:0; margin:32px 0; border-top:2px solid var(--rule); }
-  .fail { padding:22px 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns:56px 1fr; gap:18px; }
-  .fail-n { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:32px; color:var(--contessa); line-height:1; opacity:.65; }
-  .fail h3 { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:8px; }
-  .fail p { font-size:16px; color:var(--slate); line-height:1.6; font-weight:300; margin:0; }
+  /* The four failure modes: the shared .rows, each row led by the numeral that is in the copy
+     (.rows.numbered draws its numeral from a counter; this one is text, set the same way).
+     On a phone the numeral joins the heading line and the paragraph takes the full width. */
+  .fail { display: grid; grid-template-columns: var(--space-2xl) minmax(0, 1fr); column-gap: var(--space-md); }
+  .fail-n { grid-row: span 2; font: 700 var(--text-2xl) / 1 var(--font-display); font-variant-numeric: tabular-nums lining-nums; }
+  .fail > :is(h3, p) { grid-column: 2; }
+  @media (max-width: 40rem) {
+    .fail { grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-xs); align-items: baseline; }
+    .fail-n { grid-row: auto; font-size: var(--text-lg); line-height: 1.2; }
+    .fail > p { grid-column: 1 / -1; }
+  }
+
+  /* The checklist in the ink band holds the measure the band gives its paragraphs. */
+  .clist { max-width: 68ch; }
+
+  /* WORKAROUND, shared prose rhythm. article.css places .body's children with zero-specificity
+     :where() rules, so base.css's element resets (p, h1 to h4, figure: margin 0; .lead: max-width)
+     beat them: paragraphs lose the space between them and heads the space above. These lines restate
+     the shared values for this page's elements. Delete them once the shared rules win again. */
+  .body > p { margin-top: var(--space-lg); }
+  .body > p:first-child { margin-top: 0; }
+  .body > .lead { max-width: var(--measure); }
+  .body > h2 { margin-top: var(--space-3xl); }
+  .body > .pull, .body > .callout + p { margin-top: var(--space-2xl); }
+  @media (max-width: 60rem) { .body > h2 { margin-top: var(--space-2xl); } }
 </style>
