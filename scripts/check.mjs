@@ -18,7 +18,7 @@ function walk(dir, exts, out = []) {
   }
   return out;
 }
-const files = walk(SRC, [".astro", ".css", ".ts", ".mjs"]);
+const files = walk(SRC, [".astro", ".css", ".ts", ".mjs", ".js"]);
 const read = (p) => readFileSync(p, "utf-8");
 const rel = (p) => relative(ROOT, p).replaceAll("\\", "/");
 
@@ -66,31 +66,79 @@ for (const f of files) {
 }
 
 // ── 4. Token discipline ──────────────────────────────────────────────────────
-// styles/*.css must use tokens (tokens.css itself defines them). Page <style>
-// blocks get a warning count so drift is visible without blocking ships.
-// The hex list is PARSED from tokens.css so it can never drift from the
-// palette again (it used to be a hand-copied subset and missed real hits).
+// tokens.css is the ONE place a colour or a font is declared (design.md locks the
+// system; CLAUDE.md → Brand facts). Everything else reads var(--token). Since the
+// Nov 2026 redesign the palette is OKLCH and the charts are tokenised too, so the
+// old "hex list parsed from tokens.css" guard is replaced by three stricter ones:
+//   a) no colour literal outside tokens.css: not in src/styles/*.css, not in a
+//      page <style> block, not in a style="" attribute, not in an SVG fill/stroke;
+//   b) no font-family literal outside tokens.css (and no font-family="" on SVG text);
+//   c) every var(--token) that src/ reads is declared in tokens.css, or locally in
+//      the same file (a component's own --wm-* style variables, for instance).
+// Fenced EMBEDDED-DOC regions stay exempt (a print iframe cannot read the page's
+// custom properties). color-mix() of tokens is fine; `none`, `transparent`,
+// `currentColor` and `inherit` are not colours.
 const tokenCss = read(join(SRC, "styles", "tokens.css"));
-const tokenHexes = [...new Set([...tokenCss.matchAll(/--[\w-]+:\s*(#[0-9A-Fa-f]{6})\b/g)].map((m) => m[1].slice(1)))];
-const BRAND_HEX = new RegExp(`#(?:${tokenHexes.join("|")})\\b`, "gi");
-for (const f of files.filter((x) => x.includes("styles") && x.endsWith(".css"))) {
-  if (f.endsWith("tokens.css")) continue;
-  const hits = (read(f).match(BRAND_HEX) || []).length;
-  if (hits) failures.push(`raw brand hex in ${rel(f)} (${hits}) — use var(--token)`);
+const declaredTokens = new Set([...tokenCss.matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]));
+const COLOR_LITERAL = /#(?:[0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{3,4})\b|\b(?:rgba?|hsla?|oklch|oklab|lab|lch|hwb)\(|\bcolor\(\s*(?:srgb|display-p3)/i;
+const NAMED_COLOR = /(?:^|[\s:,(])(?:white|black)\b(?![-\w(])/i;
+const styleContexts = (f, s) => {
+  // returns [{ where, text }] for every place a colour or a face could be written
+  if (f.endsWith(".css")) return [{ where: "css", text: s.replace(/\/\*[\s\S]*?\*\//g, "") }];
+  const out = [];
+  for (const m of s.matchAll(/<style[\s>][\s\S]*?<\/style>/g)) out.push({ where: "<style>", text: m[0].replace(/\/\*[\s\S]*?\*\//g, "") });
+  for (const m of s.matchAll(/\sstyle\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) out.push({ where: "style attribute", text: m[1] ?? m[2] ?? "" });
+  for (const m of s.matchAll(/\s(?:fill|stroke|stop-color|flood-color|lighting-color|color|bgcolor)\s*=\s*"([^"]*)"/g)) out.push({ where: "SVG/HTML colour attribute", text: m[1] });
+  // colours handed to the DOM from an inline script: 'background:#abc', "…color: rgb(…)"
+  for (const m of s.matchAll(/<script[\s>][\s\S]*?<\/script>/g)) for (const q of m[0].matchAll(/(['"`])#[0-9a-fA-F]{3,8}\1/g)) out.push({ where: "script colour string", text: q[0] });
+  return out;
+};
+for (const f of files.filter((x) => (x.endsWith(".css") || x.endsWith(".astro")) && !x.endsWith("tokens.css"))) {
+  const s = stripFenced(read(f));
+  const hits = new Map();
+  for (const ctx of styleContexts(f, s)) {
+    if (COLOR_LITERAL.test(ctx.text) || NAMED_COLOR.test(ctx.text)) hits.set(`colour literal in ${ctx.where}`, (hits.get(`colour literal in ${ctx.where}`) || 0) + 1);
+    for (const m of ctx.text.matchAll(/font-family\s*:\s*([^;}"']+)/g)) {
+      if (!/^\s*(?:var\(--font-|inherit\b)/.test(m[1])) hits.set(`font-family literal in ${ctx.where}`, (hits.get(`font-family literal in ${ctx.where}`) || 0) + 1);
+    }
+    for (const m of ctx.text.matchAll(/\bfont\s*:\s*([^;}"']+)/g)) {
+      if (!/var\(--font-|inherit\b/.test(m[1])) hits.set(`font shorthand without a --font token in ${ctx.where}`, (hits.get(`font shorthand without a --font token in ${ctx.where}`) || 0) + 1);
+    }
+  }
+  if (f.endsWith(".astro")) {
+    const n = (s.match(/\sfont-family\s*=\s*"/g) || []).length;
+    if (n) hits.set('font-family="" attribute (delete it: the shared rule sets the face)', n);
+  }
+  for (const [what, n] of hits) failures.push(`${what} (${n}) in ${rel(f)} — use var(--token) from tokens.css`);
 }
-let pageHexTotal = 0;
-for (const f of files.filter((x) => x.endsWith(".astro"))) {
-  const styles = stripFenced(read(f)).match(/<style[\s>][\s\S]*?<\/style>/g) || [];
-  const hits = styles.join("").match(BRAND_HEX) || [];
-  if (hits.length) { pageHexTotal += hits.length; warnings.push(`${hits.length} raw brand hex in <style> of ${rel(f)}`); }
+for (const f of files.filter((x) => x.endsWith(".js") || x.endsWith(".mjs") || x.endsWith(".ts"))) {
+  if (f.endsWith(".test.mjs")) continue;
+  const n = (stripFenced(read(f)).match(/(['"`])#[0-9a-fA-F]{6}\1|background\s*:\s*#[0-9a-fA-F]{3,8}|color\s*:\s*#[0-9a-fA-F]{3,8}/g) || []).length;
+  if (n) failures.push(`colour literal in a script (${n}) in ${rel(f)} — assign a class or a var(--token) instead`);
+}
+for (const f of files.filter((x) => x.endsWith(".css") || x.endsWith(".astro") || x.endsWith(".js"))) {
+  // comments may name a token as an example ("use var(--token)"): they are not code
+  const s = stripFenced(read(f)).replace(/\/\*[\s\S]*?\*\//g, "").replace(/<!--[\s\S]*?-->/g, "").replace(/^\s*\/\/.*$/gm, "");
+  const local = new Set([...s.matchAll(/(--[\w-]+)\s*:/g)].map((m) => m[1]));
+  for (const m of s.matchAll(/setProperty\(\s*['"`](--[\w-]+)/g)) local.add(m[1]);
+  const missing = new Set();
+  for (const m of s.matchAll(/var\(\s*(--[\w-]+)/g)) if (!declaredTokens.has(m[1]) && !local.has(m[1])) missing.add(m[1]);
+  if (missing.size) failures.push(`undeclared token(s) ${[...missing].join(", ")} in ${rel(f)} — declare in tokens.css or use an existing token`);
 }
 
-// ── 5. Wordmark nudge guard ──────────────────────────────────────────────────
-// The measured optical nudges must survive refactors (CLAUDE.md → Brand facts).
+// ── 5. Wordmark optical-alignment guard ──────────────────────────────────────
+// ANALYTICS is optically centred on the x-height of "aesop" from two MEASURED
+// face ratios (the x-height of Abril Fatface, the cap height of Libre Franklin),
+// which replaced the old per-variant pixel nudges in the Nov 2026 redesign. The
+// ratios and the transform that uses them must survive refactors (CLAUDE.md →
+// Brand facts): re-measure if a face changes, never remove them.
 const wm = read(join(SRC, "components", "Wordmark.astro"));
-for (const n of ["nudge: 3,", "nudge: 2.5,", "nudge: 2.75,"]) {
-  if (!wm.includes(n)) failures.push(`Wordmark.astro missing measured nudge value "${n.trim()}"`);
-}
+const wmXh = Number((wm.match(/const WM_XH\s*=\s*([\d.]+)/) || [])[1]);
+const wmCap = Number((wm.match(/const WM_CAP\s*=\s*([\d.]+)/) || [])[1]);
+if (!(wmXh > 0.4 && wmXh < 0.6)) failures.push(`Wordmark.astro: measured x-height ratio WM_XH missing or implausible (${wmXh})`);
+if (!(wmCap > 0.6 && wmCap < 0.85)) failures.push(`Wordmark.astro: measured cap-height ratio WM_CAP missing or implausible (${wmCap})`);
+if (!/translateY\(calc\([^;]*--wm-cap[^;]*--wm-xh/.test(wm)) failures.push("Wordmark.astro: the optical-centring transform (translateY from --wm-cap and --wm-xh) is missing");
+if (!/font-family:\s*var\(--font-wordmark\)/.test(wm)) failures.push('Wordmark.astro: "aesop" must be set in var(--font-wordmark)');
 
 // ── 6. Insights data/page contract ───────────────────────────────────────────
 // The hub renders entirely from insights.ts: every slug must have a page and
@@ -182,4 +230,4 @@ if (failures.length) {
   for (const f of failures) console.error("  x " + f);
   process.exit(1);
 }
-console.log(`check: all invariants hold (${files.length} files scanned${pageHexTotal ? `, ${pageHexTotal} legacy hex warnings` : ""}).`);
+console.log(`check: all invariants hold (${files.length} files scanned).`);

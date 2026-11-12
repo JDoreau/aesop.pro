@@ -1,48 +1,82 @@
-/* tokens.css — the Aesop Analytics brand, declared once.
-   Your real palette variables (from shared.css :root), now the single
-   source every page and component reads from.
+/* tokens.css — the Aesop Analytics design tokens, declared once.
+   The system is Hallmark's Newsprint theme (locked in /design.md): pale newsprint
+   stock, warm black ink, one dried-brick signal; Zilla Slab heads over a Spectral
+   body, Libre Franklin agate for figures. Every colour and every font on the site
+   reads from this block. check.mjs fails the build on a colour or font literal
+   anywhere else in src/, and on any var(--token) this file does not declare.
 
-   Type decision — ratified from the live site; Abril scope NARROWED 2026-07:
-     Newsreader   → headings + all display accents (article display h1/h2,
-                    drop caps, numerals/big stats at weight 600; pull quotes
-                    italic 400)
-     DM Sans      → body / UI
-     Abril Fatface → the "aesop" wordmark + æ moniker marks ONLY
-                    (Wordmark.astro, the health-check's local "aesop"
-                    copies, hero/callout "æ" watermarks, insights æ row
-                    markers). Nowhere else — owner directive 2026-07-01.
-   Font families are still set per-rule in component styles (matching your
-   current site); tokenizing them is an optional later cleanup.
-   Font-loading note: Seo.astro still loads full Abril Fatface; it could
-   shrink to a text= subset (glyphs: a e o p s æ) now that only the
-   wordmark/moniker use it — left as-is so the wordmark cannot break;
-   /brand keeps its own standalone copy (pending its own decision).
-
-   Brand ratification (revisit, 2026-06):
-     - The owl is the ONE logo everywhere a logo is expected (nav, footers,
-       favicon, social). Wordmark stays Abril Fatface, with ANALYTICS
-       optically centered on the x-height via small translateY nudges.
-     - The ae ligature is an editorial flourish only (insights row markers,
-       article callout watermarks) - never a lockup, favicon, or social mark.
-     - Abril Fatface roles (narrowed 2026-07): the "aesop" wordmark + the
-       æ moniker marks ONLY. Big numerals and article display headings
-       moved to Newsreader 600 (pull quotes to Newsreader italic).
-     - Deck palm greens stay retired; navy owns the deep authoritative role. */
+   Brand record (Nov 2026 redesign):
+     - The owl is the ONE logo. The lockup is the owl + "aesop" (Abril Fatface,
+       --font-wordmark) + "ANALYTICS" (Libre Franklin caps). Abril sets the
+       wordmark and the æ end mark only, nowhere else.
+     - Navy and twine are retired with the old palette; ink owns authority,
+       brick is the single signal (links, focus, the series a chart argues from).
+     - Charts never carry a literal colour: they use the --chart-* roles below,
+       so a palette change re-inks every figure on the site. */
 :root {
-  --paper:#FBFAF5; --paper-2:#F3EFE6; --ink:#1B1B1B;
-  /* --cream and --paper-2 share #F3EFE6 deliberately: distinct semantic roles
-     (cream = light text/CTA on navy; paper-2 = alternate page surface) that
-     happen to coincide today. Change them independently only on purpose. */
-  --muted:#5A6775; --slate:#495867; --cream:#F3EFE6;
-  --line:#E7E0D2; --rule:#D9CFBC;
-  --navy:#0F1F38; --navy-2:#162A4A; --navy-3:#1E3555;
-  --navy-foot:#08111F; --navy-mist:#D6DDE8;
-  --twine:#C18C5D; --sepia:#98673A; --twine-bright:#D49A68; --contessa:#CE796B; --apple:#B35546;
-  /* Mint Family — Intelligence Layer (added 2026-07). Linework/accent only; grounds
-     stay navy/paper (deck greens remain retired). Used for the cross-client "brain"
-     facets: Priori Intelligence (Mnemosyne), The Architect (Architekton), The Hearth (Hestia). */
-  --mint:#4FD1A8; --mint-deep:#1E7358; --mint-mist:#BFEBDC;
-  /* Semantic status colors — formalized from the health checks & branded reports
-     (brand revisit 2026-06). Use these, never raw hexes, for score/status UI. */
-  --good:#5E9A82; --warn:#D4A844; --info:#5A7090;
+  color-scheme: light;
+
+  /* ── Scale: space, type, motion, layout, z (Hallmark shared scale) ── */
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+  /* site additions to the type scale */
+  --text-body: 1.0625rem;                                   /* Spectral body, the theme's 17px */
+  --text-prose: clamp(1.125rem, 0.2vw + 1.0625rem, 1.1875rem); /* long reading in articles */
+  --text-poster: clamp(3.25rem, 10.4vw, 9.75rem);           /* the front page head */
+  --text-head: clamp(1.75rem, 1.4vw + 1.25rem, 2.5rem);     /* an inline head: a section head in an article, a row title in an index */
+  --text-numeral: clamp(3rem, 4.6vw + 1rem, 5.25rem);       /* a box-score figure */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --measure: 65ch;                                          /* running prose */
+  --measure-col: 38.75rem;                                  /* the article text column: 65ch of prose, as a fixed width every block in it shares */
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+
+  /* ── Palette (OKLCH): paper, ink, neutrals, one accent ── */
+  --color-paper: oklch(94% 0.011 92); --color-paper-2: oklch(90.5% 0.015 88); --color-paper-3: oklch(87% 0.017 86);
+  --color-ink: oklch(17% 0.012 60); --color-ink-2: oklch(27% 0.012 58); --color-muted: oklch(46% 0.014 60);
+  --color-rule: oklch(68% 0.016 75); --color-rule-2: oklch(34% 0.012 60);
+  --color-accent: oklch(44% 0.13 32); --color-accent-ink: oklch(95% 0.012 90); --color-focus: oklch(48% 0.17 32);
+  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
+  /* derived roles */
+  --color-ink-3: oklch(58% 0.014 70);          /* a context series, a quiet mark; never body text */
+  --color-rule-soft: oklch(80% 0.015 80);      /* a chart gridline, a row rule inside a well */
+  --color-accent-2: oklch(58% 0.12 34);        /* the brick, one step up the ramp */
+  --color-accent-3: oklch(74% 0.08 38);        /* the brick, two steps up */
+  --color-mark: oklch(88% 0.035 45);           /* the band behind a marked phrase */
+  /* the ink band: paper type on --color-ink */
+  --color-on-ink: oklch(94% 0.011 92); --color-on-ink-2: oklch(80% 0.013 85);
+  --color-rule-on-ink: oklch(42% 0.012 60); --color-accent-on-ink: oklch(74% 0.11 40); --color-focus-on-ink: oklch(78% 0.13 40);
+  /* print: the Health Check report is set on white stock */
+  --color-print-paper: oklch(99.5% 0.003 92);
+
+  /* ── Status (the Health Check and the Dashboard Audit): where it hurts is brick, what is sound is ink ── */
+  --status-low: var(--color-accent); --status-mid: oklch(55% 0.045 65); --status-high: var(--color-ink);
+  --status-track: var(--color-paper-3);
+
+  /* ── Charts and diagrams: roles, never literals ── */
+  --chart-accent: var(--color-accent);         /* the one series a chart argues from */
+  --chart-accent-2: var(--color-accent-2); --chart-accent-3: var(--color-accent-3);
+  --chart-ink: var(--color-ink);               /* the comparison series */
+  --chart-ink-2: var(--color-ink-2); --chart-mid: var(--color-muted);
+  --chart-soft: var(--color-ink-3);            /* context, a reference series */
+  --chart-pale: var(--color-rule); --chart-faint: var(--color-paper-3);
+  --chart-grid: var(--color-rule-soft); --chart-axis: var(--color-rule);
+  --chart-text: var(--color-ink); --chart-text-2: var(--color-muted);
+  --chart-surface: var(--color-paper); --chart-surface-2: var(--color-paper-2);
+  --chart-on-ink: var(--color-on-ink);         /* a label set inside a dark mark */
+
+  /* ── Type: two families and one outlier, plus the wordmark face ── */
+  --font-display: "Zilla Slab", ui-serif, Georgia, serif;          /* heads: 700, roman, always */
+  --font-body: "Spectral", ui-serif, Georgia, serif;               /* text, labels, captions, controls' small print */
+  --font-outlier: "Libre Franklin", ui-sans-serif, system-ui, sans-serif; /* agate: figures in lists, tables and charts */
+  --font-wordmark: "Abril Fatface", "Zilla Slab", Georgia, serif;  /* "aesop" in the lockup and the æ end mark, nowhere else */
+  --display-weight: 700; --tracking-display: -0.02em;
+
+  /* ── Surfaces ── */
+  --radius-card: 0; --radius-pill: 0; --rule-hair: 1px; --shadow-card: none;
+  --rule-double: 4px double var(--color-rule-2);   /* two 1px lines 2px apart: the heaviest divider the theme owns */
+  --rule-double-on-ink: 4px double var(--color-on-ink-2);
 }

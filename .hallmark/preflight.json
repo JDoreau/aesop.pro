@@ -1,0 +1,14 @@
+{
+  "scanned": "2026-11-12",
+  "findings": {
+    "fonts": "Abril Fatface + Newsreader + DM Sans via one Google Fonts link (src/components/Seo.astro); replaced by Zilla Slab + Spectral + Libre Franklin, Abril kept for the wordmark",
+    "palette": "hex custom properties in src/styles/tokens.css (navy #0F1F38, twine #C18C5D, paper #FBFAF5); replaced by the Newsprint OKLCH tokens",
+    "motion": "CSS only: a .reveal rise keyframe and an IntersectionObserver (Reveal.astro), bar-grow chart animations; all removed (the theme keeps still)",
+    "spacing": "raw px values per rule, no scale; replaced by the Hallmark --space-* scale",
+    "framework": "Astro 4.16, static output, GitHub Pages; scripts/check.mjs invariants run before every build",
+    "product": "two working browser tools in the repo (/resources/health-check on src/lib/trust-index*.js, /resources/dashboard-audit); captured as themselves",
+    "brand": "the owl (OwlMark.astro) and the aesop ANALYTICS lockup (Wordmark.astro), kept; public/brand/index.html left untouched by instruction"
+  },
+  "preserve": ["every route and URL", "every article's words, numbers, sources and dates", "the owl and the Aesop Analytics name", "the Abril Fatface wordmark", "src/lib/trust-index*.js scoring", "the GA4 tag", "public/brand/index.html"],
+  "introduce": ["Newsprint theme (tokens, type, surfaces)", "masthead nav and letter-close footer", "one shared component vocabulary (site.css, article.css)", "tokenised charts", "design.md lock", "stricter check.mjs token rules"]
+}

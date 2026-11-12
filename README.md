@@ -19,8 +19,14 @@ through its reporting-modernization and data-trust practice (see
 
 A statically-generated site built with **Astro 4.16**. Pages are authored as
 `.astro` components and compiled to plain HTML/CSS at build time — fast to load,
-easy to version, no client-side framework. A little inline JS handles the nav
-toggle and scroll reveals. The build is produced by GitHub Actions and published
+easy to version, no client-side framework. The only scripts are the writing
+hub's pillar filter and the two browser tools.
+
+> **Nov 2026:** the site is Jonathan Doreau's personal research and writing site
+> (see the identity note at the foot of `CLAUDE.md`) and was redesigned on the
+> Hallmark **Newsprint** system, locked in [`design.md`](design.md). Parts of this
+> README below still describe the earlier company site (services, assessment,
+> forms, booking): those pages no longer exist. The build is produced by GitHub Actions and published
 to GitHub Pages behind Cloudflare.
 
 > Migrated from a hand-maintained static HTML site in June 2026. See
@@ -39,21 +45,22 @@ to GitHub Pages behind Cloudflare.
 | **Forms** | Formspree (`mojzdqlk`) → `/thanks` |
 | **Booking** | Cal.com (free diagnostic) |
 | **Analytics** | Google Analytics 4 (`G-4TVCCT0XW9`) |
-| **Fonts** | Newsreader (headings & display accents) · DM Sans (body / UI) · Abril Fatface (wordmark + æ moniker only) |
+| **Fonts** | Zilla Slab 700 (headings, figures) · Spectral (text, labels) · Libre Franklin 500 (figures in tables and charts) · Abril Fatface (wordmark + æ end mark only) |
 
 ## Brand
 
 | Token | Value |
 |---|---|
-| Navy (primary) | `#0F1F38` |
-| Twine (accent / links) | `#C18C5D` |
-| Paper (background) | `#FBFAF5` |
-| Ink (body text) | `#1B1B1B` |
-| Max content width | 1080px |
-| Logo | Owl mark — *not* the æ ligature |
+| Paper (background) | `--color-paper` · `oklch(94% 0.011 92)` |
+| Ink (text, authority) | `--color-ink` · `oklch(17% 0.012 60)` |
+| Brick (the one accent: links, focus, the series a chart argues from) | `--color-accent` · `oklch(44% 0.13 32)` |
+| Rules | `--color-rule` hairline · `--rule-double` for major breaks |
+| Container | 1440px, twelve columns, 64px gutters |
+| Logo | Owl mark — *not* the æ ligature (the æ is the article end mark) |
 
-Palette and type tokens live in `src/styles/tokens.css`. The full brand reference
-page is at `/brand` (`public/brand/`).
+Every colour, face, size and space lives in `src/styles/tokens.css`; the locked
+system is described in `design.md`. The `/brand` page (`public/brand/`) still
+documents the pre-redesign identity.
 
 ---
 
@@ -86,27 +93,18 @@ src/
 │   ├── Seo.astro           THE shared <head>: meta, OG, fonts, GA4, structured data
 │   ├── Nav.astro           Header (renders from data/nav.ts)
 │   ├── Footer.astro        Footer
-│   ├── Wordmark.astro      The lockup (owl + aesop + ANALYTICS), all four variants
-│   ├── OwlMark.astro       The owl SVG, single-sourced (build-enforced)
-│   │                       — reface section kit (2026-07, styled by styles/sections.css):
-│   ├── Hero.astro          Page hero (eyebrow + headline + lede + CTAs)
-│   ├── StatBand.astro      Row of illustrative stat figures
-│   ├── PromiseBand.astro   The "what you get" promise strip
-│   ├── ProofCard.astro     A single proof / case card
-│   ├── SpineCard.astro     Product-spine card (the four-family/offer spine)
-│   ├── CtaBand.astro       Closing call-to-action band
-│   ├── HonestyRail.astro   The honesty rail shown on product pages
-│   └── Reveal.astro        Scroll-reveal wrapper (progressive on-scroll fade-in)
+│   ├── Wordmark.astro      The lockup (owl + aesop + ANALYTICS): masthead, bar, footer
+│   └── OwlMark.astro       The owl SVG, single-sourced (build-enforced)
 │
 ├── data/
 │   ├── nav.ts              Site IA, CTA, the `site` object, and canonicalUrl()
 │   └── insights.ts         Insights hub content (pillars, articles, sidebar)
 │
 └── styles/
-    ├── tokens.css          Brand palette + type tokens (single source)
-    ├── base.css            Global base styles
-    ├── sections.css        Reface section-kit styles (Hero/StatBand/…/Reveal)
-    └── article.css         Article-specific styles
+    ├── tokens.css          Every colour, face, size and space (single source)
+    ├── base.css            Reset and type defaults
+    ├── site.css            The shared vocabulary (rules, index, box score, bands, controls)
+    └── article.css         Article and field-study components
 
 astro.config.mjs            Site config + custom inline sitemap generator
 scripts/check.mjs           Repo invariants — run before every build (local + CI)

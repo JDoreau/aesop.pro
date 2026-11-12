@@ -5,8 +5,8 @@
 //
 // Props:
 //   size  — px number for width/height attrs; omit when CSS controls sizing
-//   body  — fill for the owl body (default var(--navy))
-//   eyes  — fill for both eyes (default var(--twine))
+//   body  — fill for the owl body (default var(--color-ink))
+//   eyes  — fill for both eyes (default var(--color-accent))
 //   class / style — passed through to the <svg>
 interface Props {
   size?: number | string;
@@ -15,7 +15,7 @@ interface Props {
   class?: string;
   style?: string;
 }
-const { size, body = "var(--navy)", eyes = "var(--twine)", class: className, style } = Astro.props;
+const { size, body = "var(--color-ink)", eyes = "var(--color-accent)", class: className, style } = Astro.props;
 ---
 <svg
   class={className}

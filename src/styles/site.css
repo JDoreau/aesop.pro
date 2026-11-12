@@ -1,0 +1,211 @@
+/* Hallmark · shape: Long Document (/), Index-First (/publications, /insights), Letter (/about) · genre: editorial · theme: Newsprint (deal 1/3, seed personal-research-writing-field-ad65·2af6f067·2026-11-12·r0) · redesign: full
+ * hero: Banner, Poster (/), Stage (/about) · nav: a masthead on the front page, an edge-aligned bar inside · footer: letter close · imagery: the owner's study infographic and portrait, mono · signature: each study's finding set as a box score on the first screen
+ * axes: light/slab-serif/warm · posture: restrained · contrast: pass · fold: pass · copy: verbatim · draw: c4b630 · job: listen · v2.0.0
+ * hero-review: fix · 5 findings · 4 resolved 1 partial (the two-line head leaves the right of its second line open)
+ * finish-review: subagent · 8 findings · 8 resolved · gap: none */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: H, a words-only front page risked reading flat, so the head is set at poster scale and each study leads with its own figure */
+/* Hallmark · dismissed 77 · an article, a policy and an index are single documents here: a head, the piece and the footer, never a five-section landing page */
+/* Hallmark · dismissed 23 · the theme sets one Zilla Slab drop cap in brick at the head of an article; it is a single letter */
+/* Hallmark · dropped #ham, #mobile-menu · the four sections fit one row at every width, so the mobile menu and its script are retired */
+/* Hallmark · dismissed 46a · the 14% sits inside an illustrative mock dashboard in the owner's Gestalt article, his own example figure */
+/* Hallmark · answered F3 · base.css sets text-wrap: balance on every h1 to h4 site-wide; a page's own head rules inherit it */
+/* Hallmark · answered F4 · one primary recipe: the ink-band rule only re-inks the same button for the dark ground */
+/* Hallmark · waive 37 · four families: Zilla Slab, Spectral, Libre Franklin and Abril Fatface, the last on five letters · Abril Fatface sets only the owner's existing aesop wordmark and its end mark, a brand lockup kept by instruction */
+@import url("./tokens.css");
+@import url("./base.css");
+
+/* site.css — the shared vocabulary every page is assembled from. Rules, never
+   boxes: radius 0 and no shadow anywhere. One container, twelve columns.
+   Page-local <style> blocks compose these; they never restate a colour or a face. */
+
+/* ── A way past the masthead ── */
+.skip { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-4xl)); z-index: var(--z-toast); padding: var(--space-xs) var(--space-md); background: var(--color-ink); color: var(--color-on-ink); font-weight: 500; }
+.skip:focus-visible { top: var(--space-md); }
+
+/* ── Sections, bands, the grid ── */
+.section { padding-block: var(--section-gap-s); }
+.section--m { padding-block: var(--section-gap); }
+.section--l { padding-block: var(--section-gap-l); }
+.section--flush-top { padding-top: 0; }
+.band { background: var(--color-paper-2); border-block: var(--rule-hair) solid var(--color-rule); }
+.band--ink { background: var(--color-ink); color: var(--color-on-ink); border-block: 0; }
+.band--ink :focus-visible { outline-color: var(--color-focus-on-ink); }
+.band--ink ::selection { background: color-mix(in oklab, var(--color-accent-on-ink) 40%, transparent); }
+.grid12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); }
+/* a page that ends on a band meets the footer's double rule directly */
+main:has(> .band:last-child) + .foot { margin-top: 0; }
+
+/* ── Rules: a hairline for ordinary breaks, the double rule for major ones ── */
+.rule { height: 0; margin: 0; border: 0; border-top: var(--rule-hair) solid var(--color-rule); }
+.rule--double { height: 0; margin: 0; border: 0; border-top: var(--rule-double); }
+
+/* ── Small voices: the byline voice and the agate ── */
+.meta { display: flex; flex-wrap: wrap; gap: var(--space-2xs) calc(var(--space-sm) * 2 + 1px); overflow: hidden; margin: 0; padding: 0; list-style: none; font-size: var(--text-sm); font-weight: 500; line-height: 1.4; color: var(--color-muted); }
+/* each fact carries its hairline in a negative margin: at the start of a line the row's clip hides it */
+.meta > * { margin-left: calc(-1 * var(--space-sm) - 1px); padding-left: var(--space-sm); border-left: var(--rule-hair) solid var(--color-rule); }
+.agate { font-family: var(--font-outlier); font-weight: 500; }
+.band--ink .meta { color: var(--color-on-ink-2); }
+.band--ink .meta > * { border-left-color: var(--color-rule-on-ink); }
+
+/* ── Links in running text: brick, an underline that thickens ── */
+main :where(p, li, dd, dt, figcaption, td, th, small) > a:not([class]),
+main :where(p, li, dd, dt, figcaption, td, th, small) > :where(strong, em, b, i, span) > a:not([class]) { color: var(--color-accent); text-decoration-line: underline; text-decoration-color: currentColor; }
+main :where(p, li, dd, dt, figcaption, td, th, small) > a:not([class]):hover,
+main :where(p, li, dd, dt, figcaption, td, th, small) > :where(strong, em, b, i, span) > a:not([class]):hover { text-decoration-thickness: 2px; }
+.band--ink :where(p, li, dd, dt, figcaption, td, th, small) > a:not([class]) { color: var(--color-accent-on-ink); }
+/* a linked head keeps the head's ink; the underline arrives on hover */
+:where(h1, h2, h3, h4) > a { color: inherit; text-decoration: none; }
+:where(h1, h2, h3, h4) > a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.14em; }
+.band--ink :where(h1, h2, h3, h4) > a:hover { text-decoration-color: var(--color-accent-on-ink); }
+.more { display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: var(--text-md); line-height: 1.2; color: var(--color-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; white-space: nowrap; }
+.more:hover { text-decoration-thickness: 2px; }
+.band--ink .more { color: var(--color-accent-on-ink); }
+
+/* ── Controls: an ink-filled rectangle beside one ruled top and bottom ── */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--space-lg); border: 0; border-radius: var(--radius-pill); background: none; font-family: var(--font-display); font-weight: 700; font-size: 0.9375rem; line-height: 1; color: var(--color-ink); white-space: nowrap; text-decoration: none; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
+.btn--primary { background: var(--color-ink); color: var(--color-on-ink); }
+.btn--primary:hover { background: var(--color-ink-2); }
+.btn--secondary { border-block: var(--rule-hair) solid var(--color-ink); }
+.btn--secondary:hover { background: var(--color-paper-2); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; transform: none; }
+.band--ink .btn--primary { background: var(--color-on-ink); color: var(--color-ink); }
+.band--ink .btn--primary:hover { background: var(--color-on-ink-2); }
+.band--ink .btn--secondary { color: var(--color-on-ink); border-block-color: var(--color-on-ink); }
+.band--ink .btn--secondary:hover { background: var(--color-ink-2); }
+.band--ink .btn:focus-visible { outline-color: var(--color-focus-on-ink); }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
+/* ── The head block: a section's h2, and one line or one link beside it ── */
+.head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-md); align-items: end; margin-bottom: var(--space-2xl); }
+.head > :first-child { grid-column: 1 / span 8; }
+.head > :nth-child(2) { grid-column: 9 / -1; justify-self: end; }
+.head > .lead:nth-child(2) { justify-self: start; }
+@media (max-width: 60rem) { .head { margin-bottom: var(--space-xl); } .head > :first-child, .head > :nth-child(2) { grid-column: 1 / -1; justify-self: start; } }
+
+/* ── The page head: a Banner for an inner page ── */
+.page-head { padding-block: var(--space-2xl); }
+.page-head h1 { max-width: 16ch; }
+.page-head .lead { margin-top: var(--space-lg); max-width: 58ch; }
+.page-head .actions, .page-head .meta { margin-top: var(--space-xl); }
+@media (max-width: 60rem) { .page-head { padding-block: var(--space-xl); } }
+
+/* ── The box score: figures in Zilla Slab between two double rules, parted by column rules ── */
+.score { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: var(--rule-double); border-bottom: var(--rule-double); }
+.score > * { padding: var(--space-xl) var(--space-lg); border-left: var(--rule-hair) solid var(--color-rule); min-width: 0; }
+.score > :first-child { padding-left: 0; border-left: 0; }
+.score > :last-child { padding-right: 0; }
+.score__n { display: block; font-family: var(--font-display); font-weight: 700; font-size: var(--text-numeral); line-height: 0.95; letter-spacing: -0.03em; font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+.score__l { display: block; margin-top: var(--space-sm); font-size: var(--text-sm); font-weight: 500; line-height: 1.4; color: var(--color-muted); max-width: 34ch; }
+.score__link { display: block; margin-top: var(--space-xl); color: inherit; text-decoration: none; }
+.score__t { max-width: 24ch; font-size: var(--text-title); line-height: 1.2; }
+.score__link:hover .score__t { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.14em; }
+.score > * > .meta { margin-top: var(--space-sm); }
+.band--ink .score { border-top: var(--rule-double-on-ink); border-bottom: var(--rule-double-on-ink); }
+.band--ink .score > * { border-left-color: var(--color-rule-on-ink); }
+.band--ink .score__l { color: var(--color-on-ink-2); }
+@media (max-width: 60rem) {
+  .score { grid-template-columns: minmax(0, 1fr); }
+  .score > * { padding: var(--space-lg) 0; border-left: 0; border-top: var(--rule-hair) solid var(--color-rule); }
+  .score > :first-child { border-top: 0; }
+  .band--ink .score > * { border-top-color: var(--color-rule-on-ink); }
+}
+
+/* ── The index: listings as ruled rows, the figure in agate at the right edge ── */
+.index { margin: 0; padding: 0; list-style: none; border-top: var(--rule-hair) solid var(--color-rule-2); }
+.index > li { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-2xs); align-items: baseline; padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.index__kind { grid-column: 1 / span 2; font-size: var(--text-sm); font-weight: 500; line-height: 1.4; color: var(--color-muted); }
+.index__main { grid-column: 3 / span 8; min-width: 0; }
+.index__link { display: block; color: inherit; text-decoration: none; }
+.index__link::after { content: ""; position: absolute; inset: 0; }
+.index__title { max-width: none; font-size: var(--text-title); line-height: 1.2; }
+.index > li:has(.index__link):hover .index__title { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.14em; }
+.index__link:focus-visible { outline: 0; }
+.index > li:has(.index__link:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.index__desc { margin-top: var(--space-xs); max-width: 68ch; color: var(--color-ink-2); }
+.index__fig { grid-column: 11 / -1; justify-self: end; text-align: right; font-family: var(--font-outlier); font-weight: 500; font-size: var(--text-sm); line-height: 1.4; font-variant-numeric: tabular-nums; color: var(--color-ink-2); white-space: nowrap; }
+@media (max-width: 60rem) {
+  .index > li { padding-block: var(--space-md); }
+  .index__kind { grid-column: 1 / span 8; order: 1; }
+  .index__fig { grid-column: 9 / -1; order: 2; }
+  .index__main { grid-column: 1 / -1; order: 3; }
+}
+
+/* ── The pair: two things side by side under a double rule, parted by a column rule ── */
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: var(--rule-double); }
+.pair__item { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-lg); padding: var(--space-xl) var(--space-xl) 0 0; min-width: 0; }
+.pair__item + .pair__item { padding-left: var(--space-xl); padding-right: 0; border-left: var(--rule-hair) solid var(--color-rule); }
+.pair__item :where(h2, h3) { font-size: var(--text-head); line-height: 1.08; }
+.pair__item p { max-width: 46ch; color: var(--color-ink-2); }
+.band--ink .pair { border-top: var(--rule-double-on-ink); }
+.band--ink .pair__item + .pair__item { border-left-color: var(--color-rule-on-ink); }
+.band--ink .pair__item p, .band--ink .head .lead { color: var(--color-on-ink-2); }
+@media (max-width: 60rem) {
+  .pair { grid-template-columns: minmax(0, 1fr); }
+  .pair__item, .pair__item + .pair__item { padding: var(--space-lg) 0; border-left: 0; }
+  .pair__item + .pair__item { border-top: var(--rule-hair) solid var(--color-rule); }
+  .band--ink .pair__item + .pair__item { border-top-color: var(--color-rule-on-ink); }
+}
+
+/* ── Columns: running text set as the paper sets it ── */
+.cols { columns: 3 17rem; column-gap: var(--space-xl); column-rule: var(--rule-hair) solid var(--color-rule); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.cols > p { max-width: none; }
+.cols > p + p { text-indent: 1.4em; }
+.cols--2 { columns: 2 20rem; }
+@media (max-width: 40rem) { .cols { text-align: left; hyphens: manual; -webkit-hyphens: manual; } }
+
+/* ── Definition grid: a set of named things, parted by column rules ── */
+.defs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; border-top: var(--rule-hair) solid var(--color-rule-2); }
+.defs > div { padding: var(--space-lg); border-left: var(--rule-hair) solid var(--color-rule); border-bottom: var(--rule-hair) solid var(--color-rule); min-width: 0; }
+.defs > div:nth-child(3n + 1) { padding-left: 0; border-left: 0; }
+.defs dt { font-family: var(--font-display); font-weight: 700; font-size: var(--text-title); line-height: 1.2; letter-spacing: var(--tracking-display); }
+.defs dd { margin-top: var(--space-xs); color: var(--color-ink-2); }
+.band--ink .defs { border-top-color: var(--color-on-ink-2); }
+.band--ink .defs > div { border-color: var(--color-rule-on-ink); }
+.band--ink .defs dd { color: var(--color-on-ink-2); }
+@media (max-width: 60rem) {
+  .defs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .defs > div:nth-child(3n + 1) { padding-left: var(--space-lg); border-left: var(--rule-hair) solid var(--color-rule); }
+  .defs > div:nth-child(2n + 1) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 40rem) {
+  .defs { grid-template-columns: minmax(0, 1fr); }
+  .defs > div, .defs > div:nth-child(3n + 1) { padding: var(--space-md) 0; border-left: 0; }
+}
+
+/* ── A real ordered list, the numeral set in the display face ── */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; counter-reset: step; border-top: var(--rule-double); }
+.steps > li { counter-increment: step; padding: var(--space-xl) var(--space-lg) 0; border-left: var(--rule-hair) solid var(--color-rule); min-width: 0; }
+.steps > li:first-child { padding-left: 0; border-left: 0; }
+.steps > li::before { content: counter(step); display: block; margin-bottom: var(--space-md); font-family: var(--font-display); font-weight: 700; font-size: var(--text-numeral); line-height: 0.95; letter-spacing: -0.03em; }
+.steps h3 { margin-bottom: var(--space-xs); }
+.steps p { color: var(--color-ink-2); }
+@media (max-width: 60rem) {
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .steps > li { padding: var(--space-lg) 0; border-left: 0; border-top: var(--rule-hair) solid var(--color-rule); }
+  .steps > li:first-child { border-top: 0; }
+}
+
+/* ── Pictures: square, a hairline border, black and white, a caption in the byline voice ── */
+.plate { margin: 0; }
+.plate img { width: 100%; border: var(--rule-hair) solid var(--color-rule); filter: grayscale(1) contrast(1.12); background: var(--color-paper-2); }
+.plate figcaption, .caption { padding-top: var(--space-xs); font-size: var(--text-sm); font-weight: 500; line-height: 1.4; color: var(--color-muted); }
+
+/* ── A choice between a few: the filter row ── */
+.seg { display: flex; gap: 0; margin: 0; padding: 0; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+.seg::-webkit-scrollbar { display: none; }
+.seg > button { flex: 0 0 auto; min-height: 44px; padding: 0 var(--space-md); border: var(--rule-hair) solid var(--color-rule); border-left-width: 0; border-radius: 0; background: none; font-family: var(--font-body); font-weight: 500; font-size: var(--text-md); line-height: 1; color: var(--color-ink-2); white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out); }
+.seg > button:first-child { border-left-width: var(--rule-hair); }
+.seg > button:hover { background: var(--color-paper-2); }
+.seg > button[aria-pressed="true"], .seg > button[aria-selected="true"] { color: var(--color-ink); font-weight: 700; box-shadow: inset 0 -3px 0 var(--color-ink); }
+.seg > button:active { transform: translateY(1px); }
+.seg > button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -4px; }
+@media (prefers-reduced-motion: reduce) { .seg > button { transition: none; } }
+
+/* ── The æ end mark: the brand's one ornament, closing a piece ── */
+.endmark { display: block; font-family: var(--font-wordmark); font-size: var(--text-xl); line-height: 1; color: var(--color-accent); }
+
+/* ── A marked phrase: one band behind the x-height ── */
+mark { background: linear-gradient(to top, var(--color-mark) 0 62%, transparent 62%); color: inherit; }

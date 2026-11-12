@@ -1,0 +1,32 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "Long Document",
+  "theme": "newsprint",
+  "axes": "light/slab-serif/warm",
+  "hero": "Poster",
+  "nav": "masthead on the front page, edge-aligned bar inside",
+  "footer": "letter close",
+  "imagery": "the owner's study infographic and portrait, mono",
+  "photos": [],
+  "entry": "the claim at poster scale over a box score of the four field-study findings",
+  "fingerprint": "Hanging|Asymmetric spans|Double rule|Solid|Tightly cropped to the grid|None",
+  "sections": [
+   "Poster hero with box score",
+   "Showcase",
+   "Grid",
+   "Index",
+   "Band",
+   "Split",
+   "Letter close"
+  ],
+  "signature": "each study's finding set as a box score on the first screen",
+  "waived": [
+   "37"
+  ],
+  "prompt": "A personal research and writing site: field studies in economics and data journalism with charts, essays on reporting and measurement, two browser tools",
+  "date": "2026-11-12"
+ }
+]

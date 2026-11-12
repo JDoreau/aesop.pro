@@ -22,6 +22,8 @@ export interface Row {
                   // Article JSON-LD datePublished and the byline via ArticleLayout.
   title: string;
   desc: string;
+  figure?: string;     // field studies only: the study's headline number, set as a box-score figure on
+  figureNote?: string; // Home and Research. Both strings restate the desc; never a number the study doesn't state.
   pill: string;   // display label on the row. Deliberately finer-grained than the
                   // pillar (e.g. "Design"/"Modernization" within Dashboard Design);
                   // it is cosmetic only — filtering uses the section's pillar.
@@ -34,7 +36,7 @@ export interface Section {
 }
 
 export const hero = {
-  eyebrow: "Insights",
+  eyebrow: "Writing",
   title: "Articles & field studies.",
   intro:
     "Practical writing on reporting trust, KPI definitions, dashboard design, data governance, and AI readiness — from fifteen years of applied analytics practice.",
@@ -64,7 +66,7 @@ export const pillarButtons: { cat: Pillar | "all"; label: string }[] = [
 // The current featured field study — drives BOTH the insights-hub marquee and the homepage Featured
 // Study card (single source of truth, so swapping the featured study is a one-place change). `image` is
 // an actual infographic from the study (public asset), shown on both surfaces instead of a generic chart.
-export const featured: { slug: string; published: string; cat: Pillar; tag: string; title: string; desc: string; read: string; image: string; imageAlt: string } = {
+export const featured: { slug: string; published: string; cat: Pillar; tag: string; title: string; desc: string; read: string; image: string; imageWide: string; imageAlt: string; time: string; figure: string; figureNote: string } = {
   slug: "world-cup-underdog-effect",
   published: "2026-06-26",
   cat: "field-study",
@@ -73,7 +75,11 @@ export const featured: { slug: string; published: string; cat: Pillar; tag: stri
   desc: "We analyzed 92 years of men's World Cup matches. The traditional giants haven't fallen — but the rest of the world has closed the scoreline gap by ~58%.",
   read: "Read the study →",
   image: "/assets/world-cup/underdog-effect-square.png",
+  imageWide: "/assets/world-cup/underdog-effect-landscape.png", // the 2400x1350 plate, for a full-width figure
   imageAlt: "World Cup Underdog Effect: chart of the shrinking scoreline gap across 92 years of matches",
+  time: "7 min",
+  figure: "~58%",
+  figureNote: "of the scoreline gap closed by the rest of the world, across 92 years of men's World Cup matches.",
 };
 
 export const sections: Section[] = [
@@ -128,9 +134,9 @@ export const sections: Section[] = [
     heading: "Field Studies — Economics & Data",
     pillar: "field-study",
     rows: [
-      { slug: "productivity-pay-study", published: "2026-06-07", title: "The Productivity–Pay Gap: where did the middle class's gains go?", desc: "Productivity rose ~90% since 1979; typical pay rose ~33%. An honest look at what actually drives the divergence.", pill: "Field Study", time: "7 min" },
-      { slug: "corporate-profits-inflation", published: "2026-06-07", title: "Did corporate profits drive post-COVID inflation?", desc: "Profits accounted for 54% of price growth vs. 11% historically. What the BEA data says — and what it doesn't.", pill: "Field Study", time: "8 min" },
-      { slug: "wage-inequality-forty-years", published: "2026-06-08", title: "Forty years of wage inequality", desc: "Between 1979 and 2021 the top 0.1% of wages grew 465% while the bottom 90% grew 29%. What the aggregate average hides — using SSA earnings data.", pill: "Field Study", time: "9 min" },
+      { slug: "productivity-pay-study", published: "2026-06-07", title: "The Productivity–Pay Gap: where did the middle class's gains go?", desc: "Productivity rose ~90% since 1979; typical pay rose ~33%. An honest look at what actually drives the divergence.", pill: "Field Study", time: "7 min", figure: "~90%", figureNote: "rise in productivity since 1979. Typical pay rose ~33%." },
+      { slug: "corporate-profits-inflation", published: "2026-06-07", title: "Did corporate profits drive post-COVID inflation?", desc: "Profits accounted for 54% of price growth vs. 11% historically. What the BEA data says — and what it doesn't.", pill: "Field Study", time: "8 min", figure: "54%", figureNote: "of price growth came from profits, vs. 11% historically." },
+      { slug: "wage-inequality-forty-years", published: "2026-06-08", title: "Forty years of wage inequality", desc: "Between 1979 and 2021 the top 0.1% of wages grew 465% while the bottom 90% grew 29%. What the aggregate average hides — using SSA earnings data.", pill: "Field Study", time: "9 min", figure: "465%", figureNote: "growth in the top 0.1% of wages, 1979 to 2021. The bottom 90% grew 29%." },
     ],
   },
 ];

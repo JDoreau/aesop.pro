@@ -6,8 +6,6 @@ import { AREAS, PILLAR_STEPS, AI_STEP } from './trust-index-areas.js';
 
 const STORE = 'aesop-hc-v3';
 const STEPS = [...PILLAR_STEPS, AI_STEP];
-// The mailer Worker (aesop-healthcheck-mailer) - emails the visitor a branded PDF + sends Aesop the pre-data.
-const MAILER_ENDPOINT = 'https://aesop-healthcheck-mailer.doreau-jonathan.workers.dev/email';
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 function pillarBandWord(v) { return v < 40 ? 'low' : v < 65 ? 'mid' : 'high'; }
@@ -51,7 +49,7 @@ export function mountHealthCheck() {
   }
 
   function topbar() {
-    const bar = el('div', 'hc-top');
+    const bar = el('div', 'hc-top band--ink');
     const brand = el('div', 'hc-brand');
     brand.innerHTML = '<span class="hc-wm">aesop</span><span class="hc-wm-an">Reporting Trust Health Check</span>';
     bar.appendChild(brand);
@@ -68,8 +66,8 @@ export function mountHealthCheck() {
     const step = STEPS[state.step];
     const wrap = el('div', 'hc-stage');
     const head = el('div', 'hc-stephead');
-    head.appendChild(el('div', 'hc-step-kicker', step.label === 'AI Readiness' ? 'Bonus' : 'Pillar ' + (state.step + 1) + ' of 5'));
     head.appendChild(el('h2', 'hc-step-title', step.title));
+    head.appendChild(el('p', 'hc-step-kicker', step.label === 'AI Readiness' ? 'Bonus' : 'Pillar ' + (state.step + 1) + ' of 5'));
     head.appendChild(el('p', 'hc-step-blurb', step.blurb));
     wrap.appendChild(head);
 
@@ -77,9 +75,11 @@ export function mountHealthCheck() {
       const a = AREAS[id]; const cur = state.scores[id] != null ? state.scores[id] : 5;
       if (state.scores[id] == null) setScore(id, 5);
       const card = el('div', 'hc-area');
-      card.appendChild(el('h3', 'hc-area-name', a.name));
-      card.appendChild(el('p', 'hc-area-desc', a.desc));
-      const ql = el('ul', 'hc-qs'); a.qs.forEach((q) => ql.appendChild(el('li', null, q))); card.appendChild(ql);
+      const text = el('div', 'hc-area-text');
+      text.appendChild(el('h3', 'hc-area-name', a.name));
+      text.appendChild(el('p', 'hc-area-desc', a.desc));
+      const ql = el('ul', 'hc-qs'); a.qs.forEach((q) => ql.appendChild(el('li', null, q))); text.appendChild(ql);
+      card.appendChild(text);
       const rate = el('div', 'hc-rate');
       const lbl = el('div', 'hc-rate-top');
       lbl.appendChild(el('span', null, 'How in place is this today?'));
@@ -95,9 +95,9 @@ export function mountHealthCheck() {
     });
 
     const nav = el('div', 'hc-nav');
-    const back = el('button', 'hc-btn ghost', state.step === 0 ? 'Back' : 'Back'); back.type = 'button'; back.disabled = state.step === 0;
+    const back = el('button', 'hc-btn ghost btn btn--secondary', state.step === 0 ? 'Back' : 'Back'); back.type = 'button'; back.disabled = state.step === 0;
     back.addEventListener('click', () => { if (state.step > 0) { state.step--; render(); app.scrollTop = 0; } });
-    const next = el('button', 'hc-btn', state.step === STEPS.length - 1 ? 'See my report →' : 'Next →'); next.type = 'button';
+    const next = el('button', 'hc-btn btn btn--primary', state.step === STEPS.length - 1 ? 'See my report' : 'Next'); next.type = 'button';
     next.addEventListener('click', () => { if (state.step < STEPS.length - 1) { state.step++; render(); app.scrollTop = 0; } else { state.view = 'report'; render(); app.scrollTop = 0; } });
     nav.appendChild(back); nav.appendChild(next); wrap.appendChild(nav);
     return wrap;
@@ -111,10 +111,16 @@ export function mountHealthCheck() {
     return row;
   }
 
-  function section(label) { return el('div', 'hc-sec-label', label); }
+  function section(label) { return el('h3', 'hc-sec-label', label); }
+  function rsec(label, cls) {
+    const sec = el('section', 'hc-rsec' + (cls ? ' ' + cls : ''));
+    const head = section(label); sec.appendChild(head);
+    const body = el('div', 'hc-rsec-body'); sec.appendChild(body);
+    return { sec, head, body };
+  }
   function card(severity, title, body) {
     const c = el('div', 'hc-card' + (severity ? ' sev-' + severity : ''));
-    if (title) c.appendChild(el('div', 'hc-card-title', title));
+    if (title) c.appendChild(el('h4', 'hc-card-title', title));
     if (body) c.appendChild(el('div', 'hc-card-body', body));
     return c;
   }
@@ -133,9 +139,12 @@ export function mountHealthCheck() {
     const head = el('div', 'hc-head');
     const scoreBox = el('div', 'hc-scorebox');
     const num = el('div', 'hc-index b-' + (r.band)); num.textContent = String(r.index);
-    scoreBox.appendChild(num); scoreBox.appendChild(el('div', 'hc-index-max', '/ 100'));
-    const pill = el('div', 'hc-band-pill bp-' + r.band); pill.textContent = 'Trust Initiate Score · ' + r.bandLabel;
-    scoreBox.appendChild(pill);
+    scoreBox.appendChild(num);
+    const scoreSide = el('div', 'hc-score-side'); scoreSide.appendChild(el('div', 'hc-index-max', '/ 100'));
+    const pill = el('div', 'hc-band-pill bp-' + r.band);
+    pill.appendChild(el('span', 'hc-band-label', 'Trust Initiate Score')); pill.appendChild(el('span', 'hc-band-word', r.bandLabel));
+    scoreSide.appendChild(pill);
+    scoreBox.appendChild(scoreSide);
     head.appendChild(scoreBox);
     const headText = el('div', 'hc-head-text');
     if (r.bandStatement) { headText.appendChild(el('h2', 'hc-head-title', r.bandStatement.title)); headText.appendChild(el('p', 'hc-head-body', r.bandStatement.body)); }
@@ -145,50 +154,58 @@ export function mountHealthCheck() {
 
     // The five pillar bars, grouped Clarity | Operating
     const bars = el('div', 'hc-bars');
-    bars.appendChild(el('div', 'hc-half-label', 'Clarity — do you trust the numbers?'));
-    r.pillars.filter((p) => p.half === 'clarity').forEach((p) => bars.appendChild(bar(p.label, p.score, p.band, 'clarity')));
-    bars.appendChild(el('div', 'hc-half-label op', 'Operating — will they stay trustworthy?'));
-    r.pillars.filter((p) => p.half === 'operating').forEach((p) => bars.appendChild(bar(p.label, p.score, p.band, 'operating')));
+    const clarity = el('div', 'hc-half');
+    clarity.appendChild(el('h3', 'hc-half-label', 'Clarity — do you trust the numbers?'));
+    r.pillars.filter((p) => p.half === 'clarity').forEach((p) => clarity.appendChild(bar(p.label, p.score, p.band, 'clarity')));
+    bars.appendChild(clarity);
+    const operating = el('div', 'hc-half');
+    operating.appendChild(el('h3', 'hc-half-label op', 'Operating — will they stay trustworthy?'));
+    r.pillars.filter((p) => p.half === 'operating').forEach((p) => operating.appendChild(bar(p.label, p.score, p.band, 'operating')));
+    bars.appendChild(operating);
     wrap.appendChild(bars);
 
     // Lead finding
-    if (r.leadPattern) { wrap.appendChild(section('Your lead finding')); wrap.appendChild(card(r.leadPattern.severity, r.leadPattern.title, r.leadPattern.body)); }
+    if (r.leadPattern) { const s = rsec('Your lead finding'); s.body.appendChild(card(r.leadPattern.severity, r.leadPattern.title, r.leadPattern.body)); wrap.appendChild(s.sec); }
 
     // Binding constraint = fastest win
     if (r.bindingAdvice) {
-      wrap.appendChild(section('Your fastest win — ' + r.bindingLabel));
-      wrap.appendChild(card('insight', r.bindingAdvice.title, r.bindingAdvice.body));
+      const s = rsec('Your fastest win — ' + r.bindingLabel);
+      s.body.appendChild(card('insight', r.bindingAdvice.title, r.bindingAdvice.body));
+      wrap.appendChild(s.sec);
     }
 
     // Profile shape: archetype + half-gap
-    wrap.appendChild(section('The shape of your profile'));
-    if (r.archetype) wrap.appendChild(card(r.archetype.severity, r.archetype.title, r.archetype.body));
-    if (r.halfGapRead) { const hg = card(r.halfGapRead.severity, r.halfGapRead.title, r.halfGapRead.body); hg.dataset.print = 'drop'; wrap.appendChild(hg); }
+    const shape = rsec('The shape of your profile');
+    if (r.archetype) shape.body.appendChild(card(r.archetype.severity, r.archetype.title, r.archetype.body));
+    if (r.halfGapRead) { const hg = card(r.halfGapRead.severity, r.halfGapRead.title, r.halfGapRead.body); hg.dataset.print = 'drop'; shape.body.appendChild(hg); }
+    wrap.appendChild(shape.sec);
 
     // Secondary patterns
     if (r.secondaryPatterns && r.secondaryPatterns.length) {
-      wrap.appendChild(section('What else your scores point to'));
+      const s = rsec('What else your scores point to');
       const grid = el('div', 'hc-grid');
       r.secondaryPatterns.forEach((p) => grid.appendChild(card(p.severity, p.title, p.body)));
-      wrap.appendChild(grid);
+      s.body.appendChild(grid);
+      wrap.appendChild(s.sec);
     }
 
     // Pillar-by-pillar (dropped on print; the five bars already carry per-pillar scores)
-    const pillarSec = el('div', 'hc-rsec'); pillarSec.dataset.print = 'drop';
-    pillarSec.appendChild(section('Pillar by pillar'));
+    const pillarSec = rsec('Pillar by pillar'); pillarSec.sec.dataset.print = 'drop';
     const pgrid = el('div', 'hc-grid');
-    r.pillarReads.forEach((pr) => { const c = card(null, pr.label + ' — ' + (pr.entry ? pr.entry.title || '' : ''), pr.entry ? pr.entry.body : ''); pgrid.appendChild(c); });
-    pillarSec.appendChild(pgrid);
-    wrap.appendChild(pillarSec);
+    // the engine's title already opens with the pillar's name, so it is not prefixed again
+    r.pillarReads.forEach((pr) => { const c = card(null, pr.entry && pr.entry.title ? pr.entry.title : pr.label, pr.entry ? pr.entry.body : ''); pgrid.appendChild(c); });
+    pillarSec.body.appendChild(pgrid);
+    wrap.appendChild(pillarSec.sec);
 
     // AI readiness chip
     if (r.aiRead) {
-      wrap.appendChild(section('AI readiness' + (r.aiChip != null ? ' — ' + r.aiChip + '/100' : '')));
-      wrap.appendChild(card(r.aiRead.severity, r.aiRead.title, r.aiRead.body));
+      const s = rsec('AI readiness' + (r.aiChip != null ? ' — ' + r.aiChip + '/100' : ''));
+      s.body.appendChild(card(r.aiRead.severity, r.aiRead.title, r.aiRead.body));
+      wrap.appendChild(s.sec);
     }
 
     // Area-by-area (compact; forced to a fresh page on print)
-    const areaLabel = section('Area by area'); areaLabel.classList.add('hc-areas-label'); wrap.appendChild(areaLabel);
+    const areaSec = rsec('Area by area', 'hc-areas-sec'); areaSec.head.classList.add('hc-areas-label');
     const areas = el('div', 'hc-areas');
     r.areaReads.forEach((ar) => {
       const row = el('div', 'hc-area-row');
@@ -197,103 +214,27 @@ export function mountHealthCheck() {
       row.appendChild(el('span', 'hc-area-rowtext', ar.entry ? ar.entry.body : ''));
       areas.appendChild(row);
     });
-    wrap.appendChild(areas);
+    areaSec.body.appendChild(areas);
+    wrap.appendChild(areaSec.sec);
 
-    // Conversion CTA
+    // Save the report. (The sales CTA and the email-me opt-in were removed in Nov 2026,
+    // when the LLC closed: nothing the visitor enters leaves the browser now.)
     const cta = el('div', 'hc-cta');
-    if (r.conversion) { cta.appendChild(el('div', 'hc-cta-title', r.conversion.title || 'This is the self-check. The Assessment is the roadmap.')); cta.appendChild(el('div', 'hc-cta-body', r.conversion.body)); }
-    cta.appendChild(el('div', 'hc-cta-printlink', 'Book a free diagnostic — aesopanalytics.com/diagnostic/'));
+    cta.appendChild(el('h3', 'hc-cta-title', 'Keep your report.'));
+    cta.appendChild(el('p', 'hc-cta-body', 'Your answers stay in this browser. Print the report or save it as a PDF to keep a copy.'));
     const acts = el('div', 'hc-cta-acts');
-    const book = document.createElement('a'); book.href = '/diagnostic/'; book.className = 'hc-btn'; book.textContent = 'Book a free diagnostic →'; acts.appendChild(book);
-    // The email opt-in only appears when Turnstile is configured (a site key is present),
-    // so the button can never be shown without its anti-abuse gate behind it.
-    if (window.__hcSiteKey) {
-      const emailBtn = el('button', 'hc-btn ghost', 'Email me my report'); emailBtn.type = 'button';
-      emailBtn.addEventListener('click', () => { emailBtn.style.display = 'none'; cta.appendChild(emailForm()); });
-      acts.appendChild(emailBtn);
-    }
-    const printBtn = el('button', 'hc-linkbtn', 'Print / save as PDF'); printBtn.type = 'button'; printBtn.addEventListener('click', () => window.print()); acts.appendChild(printBtn);
+    const printBtn = el('button', 'hc-btn btn btn--primary', 'Print / save as PDF'); printBtn.type = 'button'; printBtn.addEventListener('click', () => window.print()); acts.appendChild(printBtn);
     cta.appendChild(acts);
     wrap.appendChild(cta);
 
     // footer actions
     const foot = el('div', 'hc-foot');
-    const edit = el('button', 'hc-linkbtn', '← Back to my answers'); edit.type = 'button'; edit.addEventListener('click', () => { state.view = 'input'; render(); app.scrollTop = 0; }); foot.appendChild(edit);
-    const reset = el('button', 'hc-linkbtn', 'Start over'); reset.type = 'button'; reset.addEventListener('click', () => { state.scores = {}; save(state.scores); state.step = 0; state.view = 'input'; render(); app.scrollTop = 0; }); foot.appendChild(reset);
+    const edit = el('button', 'hc-linkbtn btn btn--secondary', 'Back to my answers'); edit.type = 'button'; edit.addEventListener('click', () => { state.view = 'input'; render(); app.scrollTop = 0; }); foot.appendChild(edit);
+    const reset = el('button', 'hc-linkbtn btn btn--secondary', 'Start over'); reset.type = 'button'; reset.addEventListener('click', () => { state.scores = {}; save(state.scores); state.step = 0; state.view = 'input'; render(); app.scrollTop = 0; }); foot.appendChild(reset);
     wrap.appendChild(foot);
 
     wrap.setAttribute('data-hc-ready', '1'); // signal for the PDF renderer (Browser Rendering waits on this)
     return wrap;
   }
 
-  // Renders the Turnstile widget into the email form. api.js loads async, so we
-  // retry briefly until window.turnstile is ready. No-op without a site key.
-  function renderTurnstile(container, onUnavailable) {
-    const sk = window.__hcSiteKey;
-    if (!sk) return;
-    window.__hcTurnstileToken = ''; // clear any stale single-use token from a prior open
-    let tries = 0;
-    (function attempt() {
-      if (window.turnstile && typeof window.turnstile.render === 'function') {
-        try {
-          window.__hcTurnstileWidgetId = window.turnstile.render(container, {
-            sitekey: sk,
-            callback: (t) => { window.__hcTurnstileToken = t; },
-            'expired-callback': () => { window.__hcTurnstileToken = ''; },
-            'error-callback': () => { window.__hcTurnstileToken = ''; },
-          });
-        } catch (e) {}
-        return;
-      }
-      if (tries++ < 50) { setTimeout(attempt, 150); return; } // wait up to ~7.5s for api.js
-      if (typeof onUnavailable === 'function') onUnavailable(); // api.js blocked (ad blocker / CSP / proxy)
-    })();
-  }
-  // Turnstile tokens are single-use; after any send attempt we must re-challenge.
-  function resetTurnstile() {
-    window.__hcTurnstileToken = '';
-    try { if (window.turnstile && window.__hcTurnstileWidgetId != null) window.turnstile.reset(window.__hcTurnstileWidgetId); } catch (e) {}
-  }
-
-  function emailForm() {
-    const f = el('div', 'hc-emailform');
-    const row = el('div', 'hc-emailrow');
-    const input = document.createElement('input');
-    input.type = 'email'; input.placeholder = 'you@company.com'; input.className = 'hc-email-input';
-    input.setAttribute('aria-label', 'Your email address');
-    const send = el('button', 'hc-btn', 'Email it'); send.type = 'button';
-    row.appendChild(input); row.appendChild(send);
-    const ts = el('div', 'hc-turnstile'); // Turnstile renders here (anti-abuse gate)
-    const msg = el('div', 'hc-email-msg');
-    msg.innerHTML = 'Your report stays free on this page. Emailing it sends a PDF copy to you and a copy to Aesop, who may follow up about how we can help — see our <a href="/privacy/">privacy policy</a>.';
-    f.appendChild(row); f.appendChild(ts); f.appendChild(msg);
-    renderTurnstile(ts, () => { send.disabled = true; msg.textContent = 'Verification couldn’t load — an ad blocker or network filter may be blocking it. Your report is still free and printable above.'; });
-    send.addEventListener('click', () => {
-      const email = (input.value || '').trim();
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = 'Please enter a valid email address.'; return; }
-      if (!window.__hcTurnstileToken) { msg.textContent = 'Please complete the “I’m human” check above before sending.'; return; }
-      send.disabled = true; msg.textContent = 'Sending your report…';
-      // Marketing attribution: forward the session's first-touch utm capture (Seo.astro persists it
-      // to sessionStorage from the landing URL) as flat utm_* keys alongside the lead, matching the
-      // platform intake's extractUtm() field names. The mailer Worker validates only email/scores/
-      // turnstileToken and safely ignores unknown keys today — forwarding them into the lead notify
-      // is the Worker-side half (PLATFORM src/mailer/index.ts, a separate wave).
-      var utm = {};
-      try {
-        var utmStore = JSON.parse(sessionStorage.getItem('aesop_utm') || '{}');
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
-          if (typeof utmStore[k] === 'string' && utmStore[k]) utm[k] = utmStore[k].slice(0, 200);
-        });
-      } catch (e) {}
-      fetch(MAILER_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ email: email, scores: state.scores, turnstileToken: window.__hcTurnstileToken || '' }, utm)) })
-        .then((res) => {
-          if (res.ok) { row.style.display = 'none'; ts.style.display = 'none'; msg.textContent = 'Sent — check your inbox (and your spam folder, just in case).'; return; }
-          if (res.status === 422) { msg.textContent = 'We couldn’t deliver to that address — but your report is right here and printable above.'; return; }
-          if (res.status >= 400 && res.status < 500) { resetTurnstile(); send.disabled = false; msg.textContent = 'That verification didn’t go through — please complete the check again and resend.'; return; }
-          throw new Error('status ' + res.status);
-        })
-        .catch(() => { resetTurnstile(); send.disabled = false; msg.textContent = 'Couldn’t send right now — your report is still here and printable above.'; });
-    });
-    return f;
-  }
 }

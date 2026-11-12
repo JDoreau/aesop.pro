@@ -12,122 +12,86 @@ const ogDescription = "Most people pick charts by habit. Here's how to pick them
 <ArticleLayout title={title} description={description} path="/insights/what-chart-to-choose" kicker={kicker} headingHtml={headingHtml} dekHtml={dekHtml} meta={meta} ogDescription={ogDescription}>
 
 <div class="body">
-    <p>A bar chart is the default. Someone needs to show sales by region — bar chart. Revenue by quarter — bar chart. Headcount by department — bar chart. The bar chart is not wrong for any of these, but it's also not necessarily the best choice for all of them. It's just the one everyone reaches for first.</p>
+    <p class="lead">A bar chart is the default. Someone needs to show sales by region — bar chart. Revenue by quarter — bar chart. Headcount by department — bar chart. The bar chart is not wrong for any of these, but it’s also not necessarily the best choice for all of them. It’s just the one everyone reaches for first.</p>
 
-    <p>The problem isn't that people choose bad charts. It's that they choose without a framework. They match the chart to a vague sense of what "looks right" rather than to the specific claim the data needs to make. The result is dashboards where every panel technically displays data but some of it lands clearly and some of it doesn't — and the people building the dashboard can't always explain why.</p>
+    <p>The problem isn’t that people choose bad charts. It’s that they choose without a framework. They match the chart to a vague sense of what “looks right” rather than to the specific claim the data needs to make. The result is dashboards where every panel technically displays data but some of it lands clearly and some of it doesn’t — and the people building the dashboard can’t always explain why.</p>
 
-    <p>There's a more reliable path. Every dataset contains a <strong>relationship</strong> — a structural fact about how the numbers relate to each other or to time. Identify that relationship first. Then the chart choice follows from it, rather than from convention or aesthetics.</p>
+    <p>There’s a more reliable path. Every dataset contains a <strong>relationship</strong> — a structural fact about how the numbers relate to each other or to time. Identify that relationship first. Then the chart choice follows from it, rather than from convention or aesthetics.</p>
 
     <h2>The six relationships — and the charts that serve them</h2>
 
-    <p>In business dashboards, data relationships fall into six categories. Most metrics you'll ever need to visualize map cleanly to one of them. A few span two, and when that happens you have a genuine design decision to make — but at least you're making it consciously.</p>
-  </div>
+    <p>In business dashboards, data relationships fall into six categories. Most metrics you’ll ever need to visualize map cleanly to one of them. A few span two, and when that happens you have a genuine design decision to make — but at least you’re making it consciously.</p>
 
-  <div class="rel-grid">
+  <div class="rel-grid wide">
 
     <div class="rel-card">
-      <div class="rc-label">Relationship 1</div>
-      <h3>Comparison</h3>
-      <div class="rc-q">"How do these items rank against each other?"</div>
-      <div class="rc-use">You have discrete categories and you want to show their relative magnitude. The categories are independent — you're not showing how they add up to a whole, just how they stack up against each other.</div>
-      <div class="rc-charts">
-        <span class="rc-divider">Use</span>
-        <span class="rc-chip yes">Bar chart</span>
-        <span class="rc-chip yes">Horizontal bar</span>
-        <span class="rc-chip yes">Dot plot</span>
-        <span class="rc-divider">Avoid</span>
-        <span class="rc-chip no">Pie chart</span>
-        <span class="rc-chip no">Radar chart</span>
-      </div>
+      <h3><span class="rc-n">Relationship 1</span> Comparison</h3>
+      <p class="rc-q">“How do these items rank against each other?”</p>
+      <p class="rc-use">You have discrete categories and you want to show their relative magnitude. The categories are independent — you’re not showing how they add up to a whole, just how they stack up against each other.</p>
+      <dl class="rc-charts">
+        <div><dt>Use</dt><dd><span class="chip">Bar chart</span> <span class="chip">Horizontal bar</span> <span class="chip">Dot plot</span></dd></div>
+        <div class="no"><dt>Avoid</dt><dd><span class="chip">Pie chart</span> <span class="chip">Radar chart</span></dd></div>
+      </dl>
     </div>
 
     <div class="rel-card">
-      <div class="rc-label">Relationship 2</div>
-      <h3>Trend over time</h3>
-      <div class="rc-q">"How is this changing, and in what direction?"</div>
-      <div class="rc-use">You have a continuous time axis and you want to show movement. The continuity matters — you're not comparing discrete points, you're showing a path between them.</div>
-      <div class="rc-charts">
-        <span class="rc-divider">Use</span>
-        <span class="rc-chip yes">Line chart</span>
-        <span class="rc-chip yes">Area chart</span>
-        <span class="rc-chip yes">Sparkline</span>
-        <span class="rc-divider">Avoid</span>
-        <span class="rc-chip no">Bar chart (many periods)</span>
-        <span class="rc-chip no">Dual-axis line</span>
-      </div>
+      <h3><span class="rc-n">Relationship 2</span> Trend over time</h3>
+      <p class="rc-q">“How is this changing, and in what direction?”</p>
+      <p class="rc-use">You have a continuous time axis and you want to show movement. The continuity matters — you’re not comparing discrete points, you’re showing a path between them.</p>
+      <dl class="rc-charts">
+        <div><dt>Use</dt><dd><span class="chip">Line chart</span> <span class="chip">Area chart</span> <span class="chip">Sparkline</span></dd></div>
+        <div class="no"><dt>Avoid</dt><dd><span class="chip">Bar chart (many periods)</span> <span class="chip">Dual-axis line</span></dd></div>
+      </dl>
     </div>
 
     <div class="rel-card">
-      <div class="rc-label">Relationship 3</div>
-      <h3>Part-to-whole</h3>
-      <div class="rc-q">"What share of the total does each piece represent?"</div>
-      <div class="rc-use">The parts add up to a meaningful whole and you want to show proportions. The constraint: this only works clearly with a small number of categories (ideally 2–5) and when the proportional differences are large enough to be visible.</div>
-      <div class="rc-charts">
-        <span class="rc-divider">Use</span>
-        <span class="rc-chip yes">Pie chart (≤5 slices)</span>
-        <span class="rc-chip yes">Donut chart</span>
-        <span class="rc-chip yes">100% stacked bar</span>
-        <span class="rc-divider">Avoid</span>
-        <span class="rc-chip no">Pie chart (>5 slices)</span>
-        <span class="rc-chip no">3D pie</span>
-      </div>
+      <h3><span class="rc-n">Relationship 3</span> Part-to-whole</h3>
+      <p class="rc-q">“What share of the total does each piece represent?”</p>
+      <p class="rc-use">The parts add up to a meaningful whole and you want to show proportions. The constraint: this only works clearly with a small number of categories (ideally 2–5) and when the proportional differences are large enough to be visible.</p>
+      <dl class="rc-charts">
+        <div><dt>Use</dt><dd><span class="chip">Pie chart (≤5 slices)</span> <span class="chip">Donut chart</span> <span class="chip">100% stacked bar</span></dd></div>
+        <div class="no"><dt>Avoid</dt><dd><span class="chip">Pie chart (>5 slices)</span> <span class="chip">3D pie</span></dd></div>
+      </dl>
     </div>
 
     <div class="rel-card">
-      <div class="rc-label">Relationship 4</div>
-      <h3>Distribution</h3>
-      <div class="rc-q">"How is this value spread across a range?"</div>
-      <div class="rc-use">You want to show the shape of the data — where most values cluster, where the outliers are, how spread out the range is. This shows up less often in executive dashboards but is essential in operational and analytical views.</div>
-      <div class="rc-charts">
-        <span class="rc-divider">Use</span>
-        <span class="rc-chip yes">Histogram</span>
-        <span class="rc-chip yes">Box plot</span>
-        <span class="rc-chip yes">Violin plot</span>
-        <span class="rc-divider">Avoid</span>
-        <span class="rc-chip no">Line chart</span>
-        <span class="rc-chip no">Bar chart</span>
-      </div>
+      <h3><span class="rc-n">Relationship 4</span> Distribution</h3>
+      <p class="rc-q">“How is this value spread across a range?”</p>
+      <p class="rc-use">You want to show the shape of the data — where most values cluster, where the outliers are, how spread out the range is. This shows up less often in executive dashboards but is essential in operational and analytical views.</p>
+      <dl class="rc-charts">
+        <div><dt>Use</dt><dd><span class="chip">Histogram</span> <span class="chip">Box plot</span> <span class="chip">Violin plot</span></dd></div>
+        <div class="no"><dt>Avoid</dt><dd><span class="chip">Line chart</span> <span class="chip">Bar chart</span></dd></div>
+      </dl>
     </div>
 
     <div class="rel-card">
-      <div class="rc-label">Relationship 5</div>
-      <h3>Correlation</h3>
-      <div class="rc-q">"Do these two variables move together?"</div>
-      <div class="rc-use">You have two continuous variables and you want to show whether they tend to rise and fall in the same direction (or opposite directions). This is a hypothesis about a relationship, not a confirmation of causation.</div>
-      <div class="rc-charts">
-        <span class="rc-divider">Use</span>
-        <span class="rc-chip yes">Scatter plot</span>
-        <span class="rc-chip yes">Bubble chart</span>
-        <span class="rc-divider">Avoid</span>
-        <span class="rc-chip no">Line chart (two series)</span>
-        <span class="rc-chip no">Dual-axis bar</span>
-      </div>
+      <h3><span class="rc-n">Relationship 5</span> Correlation</h3>
+      <p class="rc-q">“Do these two variables move together?”</p>
+      <p class="rc-use">You have two continuous variables and you want to show whether they tend to rise and fall in the same direction (or opposite directions). This is a hypothesis about a relationship, not a confirmation of causation.</p>
+      <dl class="rc-charts">
+        <div><dt>Use</dt><dd><span class="chip">Scatter plot</span> <span class="chip">Bubble chart</span></dd></div>
+        <div class="no"><dt>Avoid</dt><dd><span class="chip">Line chart (two series)</span> <span class="chip">Dual-axis bar</span></dd></div>
+      </dl>
     </div>
 
     <div class="rel-card">
-      <div class="rc-label">Relationship 6</div>
-      <h3>Flow &amp; composition over time</h3>
-      <div class="rc-q">"How does the makeup of this total change as it grows?"</div>
-      <div class="rc-use">You want to show how the proportional breakdown of a total shifts over time — not just the overall trend, but how the mix within it is changing. The hardest relationship to visualize well and the most commonly mishandled.</div>
-      <div class="rc-charts">
-        <span class="rc-divider">Use</span>
-        <span class="rc-chip yes">Stacked area (few series)</span>
-        <span class="rc-chip yes">Small multiples</span>
-        <span class="rc-divider">Avoid</span>
-        <span class="rc-chip no">Stacked bar (many periods)</span>
-        <span class="rc-chip no">Stacked bar (many series)</span>
-      </div>
+      <h3><span class="rc-n">Relationship 6</span> Flow &amp; composition over time</h3>
+      <p class="rc-q">“How does the makeup of this total change as it grows?”</p>
+      <p class="rc-use">You want to show how the proportional breakdown of a total shifts over time — not just the overall trend, but how the mix within it is changing. The hardest relationship to visualize well and the most commonly mishandled.</p>
+      <dl class="rc-charts">
+        <div><dt>Use</dt><dd><span class="chip">Stacked area (few series)</span> <span class="chip">Small multiples</span></dd></div>
+        <div class="no"><dt>Avoid</dt><dd><span class="chip">Stacked bar (many periods)</span> <span class="chip">Stacked bar (many series)</span></dd></div>
+      </dl>
     </div>
 
   </div><!-- .rel-grid -->
 
-  <div class="body">
     <h2>The charts that consistently fail — and why</h2>
 
     <p>The framework above tells you what to use. But some charts are so commonly misused that they deserve a direct treatment. These are the choices that seem reasonable, appear in professional tools with prominent placement, and quietly undermine the dashboard that contains them.</p>
-  </div>
 
-  <table class="fail-table">
+  <div class="table-wrap">
+  <table>
     <thead>
       <tr>
         <th>Chart</th>
@@ -138,131 +102,102 @@ const ogDescription = "Most people pick charts by habit. Here's how to pick them
     <tbody>
       <tr>
         <td>Pie chart with &gt;5 slices</td>
-        <td class="why">Human perception can't reliably compare arc angles. Small slices become invisible or misleading. The legend becomes the actual chart.</td>
-        <td class="instead">Horizontal bar chart — length is the easiest dimension to compare accurately.</td>
+        <td>Human perception can’t reliably compare arc angles. Small slices become invisible or misleading. The legend becomes the actual chart.</td>
+        <td>Horizontal bar chart — length is the easiest dimension to compare accurately.</td>
       </tr>
       <tr>
         <td>Dual-axis line chart</td>
-        <td class="why">Two independent scales on one chart invite the viewer to see a relationship that may not exist. The correlation appears to change depending on how you set the axis ranges.</td>
-        <td class="instead">Two separate charts with clear labels, or a scatter plot if you're explicitly testing correlation.</td>
+        <td>Two independent scales on one chart invite the viewer to see a relationship that may not exist. The correlation appears to change depending on how you set the axis ranges.</td>
+        <td>Two separate charts with clear labels, or a scatter plot if you’re explicitly testing correlation.</td>
       </tr>
       <tr>
         <td>Stacked bar with many series</td>
-        <td class="why">Only the bottom series is readable — every other segment floats on a shifting baseline, making comparison impossible. People think they're seeing composition; they're actually seeing noise.</td>
-        <td class="instead">Small multiples (one bar chart per series) or a 100% stacked bar if proportional breakdown at each point is all that matters.</td>
+        <td>Only the bottom series is readable — every other segment floats on a shifting baseline, making comparison impossible. People think they’re seeing composition; they’re actually seeing noise.</td>
+        <td>Small multiples (one bar chart per series) or a 100% stacked bar if proportional breakdown at each point is all that matters.</td>
       </tr>
       <tr>
         <td>3D charts of any kind</td>
-        <td class="why">The third dimension adds no information and distorts the proportions of the first two. A 3D pie chart makes the front slices look larger than the back slices regardless of their actual values.</td>
-        <td class="instead">The flat equivalent of whatever you're trying to show. Always.</td>
+        <td>The third dimension adds no information and distorts the proportions of the first two. A 3D pie chart makes the front slices look larger than the back slices regardless of their actual values.</td>
+        <td>The flat equivalent of whatever you’re trying to show. Always.</td>
       </tr>
       <tr>
         <td>Bar chart for time series (&gt;12 periods)</td>
-        <td class="why">A bar chart implies discrete comparison, not continuous movement. When you have more than ~12 periods, the bars become thin, the labels overlap, and the trend is harder to read than it would be on a line.</td>
-        <td class="instead">Line chart for the trend; reserve the bar chart for a period-level comparison view when someone wants to compare specific months.</td>
+        <td>A bar chart implies discrete comparison, not continuous movement. When you have more than ~12 periods, the bars become thin, the labels overlap, and the trend is harder to read than it would be on a line.</td>
+        <td>Line chart for the trend; reserve the bar chart for a period-level comparison view when someone wants to compare specific months.</td>
       </tr>
     </tbody>
   </table>
+  </div>
 
-  <div class="body">
     <h2>When the relationship is ambiguous</h2>
 
     <p>Sometimes a dataset contains two relationships simultaneously, and both are legitimate. Revenue by region, trended over time — is that a comparison or a trend? The answer depends on what question matters most to the person looking at it.</p>
 
-    <p>If the primary question is "which region is performing best?" — that's a comparison question. Show a ranked bar chart of total revenue per region, with a period selector if trend context is needed.</p>
+    <p>If the primary question is “which region is performing best?” — that’s a comparison question. Show a ranked bar chart of total revenue per region, with a period selector if trend context is needed.</p>
 
-    <p>If the primary question is "are all regions growing?" — that's a trend question. Show a small multiples line chart: one panel per region, same scale, so trends are directly comparable without stacking them into a single cluttered chart.</p>
+    <p>If the primary question is “are all regions growing?” — that’s a trend question. Show a small multiples line chart: one panel per region, same scale, so trends are directly comparable without stacking them into a single cluttered chart.</p>
 
     <p>The wrong move is to try to answer both questions simultaneously — typically with a grouped bar chart across 12 months and 6 regions, which produces 72 bars and answers nothing clearly. When in doubt, split the view. Two focused charts beat one ambitious one.</p>
+
+  <div class="note">
+    <p><strong>The one-sentence test:</strong> Before finalizing any chart, write the sentence it’s supposed to make obvious. “Revenue in Q3 was higher than Q2.” “The West region is underperforming all others.” “Customer acquisition cost has been rising steadily since March.” If you can’t write that sentence in under ten seconds, the chart isn’t doing its job — regardless of how it looks.</p>
   </div>
 
-  <div class="callout">
-    <p><strong>The one-sentence test:</strong> Before finalizing any chart, write the sentence it's supposed to make obvious. "Revenue in Q3 was higher than Q2." "The West region is underperforming all others." "Customer acquisition cost has been rising steadily since March." If you can't write that sentence in under ten seconds, the chart isn't doing its job — regardless of how it looks.</p>
-  </div>
-
-  <div class="body">
     <h2>A note on the bar chart</h2>
 
-    <p>After all of this, the bar chart is still the right choice for a surprising number of situations. It's reliable because it uses length — the dimension human perception evaluates most accurately. It handles comparisons, rankings, single-period distributions, and discrete time periods competently. Its dominance in business dashboards is partly habit, but it's also partly deserved.</p>
+    <p>After all of this, the bar chart is still the right choice for a surprising number of situations. It’s reliable because it uses length — the dimension human perception evaluates most accurately. It handles comparisons, rankings, single-period distributions, and discrete time periods competently. Its dominance in business dashboards is partly habit, but it’s also partly deserved.</p>
 
-    <p>The problem isn't that people use bar charts too often. It's that they use them <em>without asking the question</em> — and that same unreflective habit is what leads them to reach for pie charts when they want to show composition, or dual-axis lines when they want to show two trends, or stacked bars when they want to show six things at once.</p>
+    <p>The problem isn’t that people use bar charts too often. It’s that they use them <em>without asking the question</em> — and that same unreflective habit is what leads them to reach for pie charts when they want to show composition, or dual-axis lines when they want to show two trends, or stacked bars when they want to show six things at once.</p>
 
-    <p>The framework isn't about avoiding the familiar. It's about making the familiar choice consciously, having ruled out the alternatives for a reason, rather than arriving at it by default.</p>
-  </div>
-
-  <div class="cta-block">
-    <div class="ct-eyebrow">Aesop Analytics</div>
-    <h2>Are your dashboards making the right claims clearly?</h2>
-    <p>The Reporting Clarity Assessment reviews every chart and panel in your reporting environment — identifying where the form matches the data and where it doesn't — and delivers a prioritized roadmap for getting there.</p>
-    <a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=article-what-chart-to-choose-closing" class="btn">See the Assessment</a>
-    <a href="/contact/?utm_source=site&utm_medium=internal&utm_campaign=article-what-chart-to-choose-contact" class="btn ghost">Start a conversation</a>
-  </div>
+    <p>The framework isn’t about avoiding the familiar. It’s about making the familiar choice consciously, having ruled out the alternatives for a reason, rather than arriving at it by default.</p>
 
   <div class="read-next">
-    <div class="rn-label">Continue reading</div>
+    <h2 class="rn-label">Continue reading</h2>
     <div class="rn-grid">
       <a href="/insights/what-belongs-on-a-dashboard/" class="rn-card">
-        <div class="rn-pillar">Dashboard Design</div>
-        <div class="rn-title">What belongs on a dashboard — before you think about chart type</div>
+        <span class="rn-pillar">Dashboard Design</span>
+        <span class="rn-title">What belongs on a dashboard — before you think about chart type</span>
       </a>
       <a href="/insights/dashboard-design-basics/" class="rn-card">
-        <div class="rn-pillar">Dashboard Design</div>
-        <div class="rn-title">Five dashboard design fundamentals that actually change how people read data</div>
+        <span class="rn-pillar">Dashboard Design</span>
+        <span class="rn-title">Five dashboard design fundamentals that actually change how people read data</span>
       </a>
     </div>
   </div>
 
+</div>
+
 </ArticleLayout>
 
 <style>
-  /* Recovered from the pre-Astro original (article-what-chart-to-choose.html,
-     commit 602cff7) for components the shared article.css does not cover. */
+  /* The shared prose rhythm, restated: the :where() placement defaults in article.css
+     carry no specificity, so base.css's `p, h2 { margin: 0 }` wins over them. */
+  .body > * + p { margin-top: var(--space-lg); }
+  .body > h2 { margin-top: var(--space-3xl); }
+  .body > h2 + p { margin-top: var(--space-md); }
+  @media (max-width: 60rem) { .body > h2 { margin-top: var(--space-2xl); } }
 
-  /* RELATIONSHIP CARDS - the main reference grid */
-  .rel-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:44px 0; }
-  @media(max-width:600px){ .rel-grid { grid-template-columns:1fr; } }
-  .rel-card { border-radius:8px; padding:26px 22px; background:#fff; border:1px solid var(--line); border-top:4px solid var(--navy); }
-  .rel-card .rc-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:8px; }
-  .rel-card h3 { font-family:"Newsreader",Georgia,serif; font-size:20px; font-weight:600; color:var(--navy); margin-bottom:10px; line-height:1.2; }
-  .rel-card .rc-q { font-size:14px; color:var(--muted); font-style:italic; margin-bottom:16px; line-height:1.45; }
-  .rel-card .rc-use { font-size:13.5px; color:var(--slate); line-height:1.55; margin-bottom:14px; }
-  .rc-charts { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
-  .rc-chip { font-size:11.5px; font-weight:600; padding:4px 10px; border-radius:20px; }
-  .rc-chip.yes { background:rgba(15,31,56,.08); color:var(--navy); }
-  .rc-chip.no  { background:rgba(206,118,107,.1); color:var(--contessa); text-decoration:line-through; }
-  .rc-divider { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-top:12px; margin-bottom:4px; width:100%; }
+  /* The six relationships: ruled rows, the name in the left column, the use beside it. */
+  .rel-grid { border-top: var(--rule-hair) solid var(--color-rule-2); font-size: var(--text-body); line-height: 1.55; }
+  .rel-card { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--gap-columns); row-gap: var(--space-sm); padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+  .rel-card h3 { grid-column: 1; grid-row: 1 / span 3; font-size: var(--text-xl); line-height: 1.15; }
+  .rel-card .rc-n { display: block; }
+  .rel-card > :not(h3) { grid-column: 2; }
+  .rel-card p { max-width: none; }
+  .rel-card .rc-q { font-size: var(--text-lg); font-weight: 500; line-height: 1.35; color: var(--color-ink); }
+  .rel-card .rc-use { color: var(--color-ink-2); }
+  .rc-charts > div { display: grid; grid-template-columns: var(--space-2xl) minmax(0, 1fr); column-gap: var(--space-md); align-items: baseline; padding-block: var(--space-xs); border-top: var(--rule-hair) solid var(--color-rule); }
+  .rc-charts dt { font-size: var(--text-sm); font-weight: 500; color: var(--color-muted); }
+  .rc-charts dd { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+  .rc-charts .no .chip { text-decoration: line-through; text-decoration-color: var(--color-accent); }
+  @media (max-width: 40rem) {
+    .rel-card { grid-template-columns: minmax(0, 1fr); }
+    .rel-card h3, .rel-card > :not(h3) { grid-column: 1; grid-row: auto; }
+    .rel-card .rc-n { display: inline; }
+    .rc-charts .chip { white-space: normal; }
+  }
 
-  /* FAILURE MODES TABLE */
-  .fail-table { width:100%; border-collapse:collapse; margin:36px 0; font-size:15px; }
-  .fail-table th { text-align:left; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); padding:10px 14px; border-bottom:2px solid var(--navy); background:var(--paper-2); }
-  .fail-table td { padding:13px 14px; border-bottom:1px solid var(--line); color:var(--slate); vertical-align:top; line-height:1.5; }
-  .fail-table tr:last-child td { border-bottom:none; }
-  .fail-table td:first-child { font-weight:600; color:var(--navy); white-space:nowrap; }
-  .fail-table td.why { color:var(--contessa); font-size:13.5px; }
-  .fail-table td.instead { font-size:13.5px; }
-
-  /* CTA */
-  .cta-block { background:var(--navy); border-radius:8px; padding:40px 36px; margin:56px 0 0; }
-  .cta-block .ct-eyebrow { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--twine); margin-bottom:10px; }
-  .cta-block h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:26px; color:#fff; line-height:1.2; margin:0 0 12px; border-top:none; padding-top:0; }
-  .cta-block p { font-size:15.5px; color:#B8BDCA; line-height:1.55; margin-bottom:22px; }
-  .cta-block .btn { display:inline-block; background:var(--twine); color:#fff; text-decoration:none; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:13px 24px; border-radius:4px; transition:background .18s; margin-right:10px; margin-bottom:8px; }
-  .cta-block .btn:hover { background:var(--sepia); color:#fff; }
-  .cta-block .btn.ghost { background:transparent; border:1.5px solid rgba(255,255,255,.22); color:var(--cream); }
-  .cta-block .btn.ghost:hover { background:rgba(255,255,255,.08); }
-
-  /* READ NEXT cards (article.css covers .read-next and .rn-label only) */
-  .rn-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  @media(max-width:580px){ .rn-grid { grid-template-columns:1fr; } }
-  .rn-card { background:#fff; border:1px solid var(--line); border-radius:6px; padding:20px 18px; text-decoration:none; display:block; transition:border-color .18s, box-shadow .18s; }
-  .rn-card:hover { border-color:var(--navy); box-shadow:0 8px 24px -16px rgba(15,31,56,.2); }
-  .rn-card .rn-pillar { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.15em; color:var(--twine); margin-bottom:8px; }
-  .rn-card .rn-title { font-size:15px; font-weight:600; color:var(--navy); line-height:1.35; }
-
-  /* Restored original light callout (legacy design) - overrides the shared
-     navy .callout component, whose ink-on-navy strong text was unreadable here. */
-  .callout { background:var(--paper-2); border:1px solid var(--rule); border-left:4px solid var(--twine); border-radius:4px; padding:22px 24px; margin:36px 0; font-size:16px; color:var(--slate); line-height:1.6; }
-  .callout::after { content:none; }
-  .callout strong { color:var(--navy); }
-  .callout p { margin:0 0 10px; }
-  .callout p:last-child { margin:0; }</style>
+  /* The failure table keeps its three columns and scrolls inside its wrap on a phone. */
+  .table-wrap table { min-width: 40rem; }
+  .table-wrap td:first-child { width: 24%; }
+</style>

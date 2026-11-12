@@ -24,9 +24,9 @@ const canonical = canonicalUrl(path);
 const ogImageUrl = new URL(ogImage ?? "/assets/og-image.png", site.url).href;
 // og:image:alt follows an ogImage override when the page supplies its own alt;
 // the global brand line remains the default for the shared og-image.png.
-const ogImageAltText = ogImageAlt ?? "Aesop Analytics - turn mistrusted reporting into a governed decision system.";
-// Stable JSON-LD entity id for the org, so WebSite/publisher references resolve
-// to the SAME node instead of duplicating a nameless Organization.
+const ogImageAltText = ogImageAlt ?? "Aesop Analytics - research and writing by Jonathan Doreau.";
+// Stable JSON-LD entity id for the site's author (a Person since Nov 2026, when
+// the LLC closed), so WebSite/publisher references resolve to the SAME node.
 const orgId = `${site.url}/#organization`;
 
 // Breadcrumb trail, derived from the path so it can never drift from the IA.
@@ -67,30 +67,6 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
     gtag('config', 'G-4TVCCT0XW9');
   }
 </script>}
-<!-- Marketing attribution, FIRST-TOUCH per session: the first URL of the session
-     that carries any ?utm_* param wins and is persisted to sessionStorage
-     ('aesop_utm'), so a visitor who lands on ANY page from a tracked post and
-     converts anywhere on the site (contact form, health check, trust letter,
-     dashboard audit) still carries the campaign to the operator's funnel.
-     First-touch (never overwrite) is what protects a genuine inbound campaign
-     (e.g. linkedin-company) from being clobbered by the site's own internal CTA
-     placements (utm_source=site / utm_medium=internal — see ctaHref in nav.ts). -->
-<script is:inline>
-  (function () {
-    try {
-      var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
-      var raw = sessionStorage.getItem('aesop_utm');
-      if (raw && raw !== '{}') return; // first touch already captured this session
-      var params = new URLSearchParams(location.search);
-      var store = {}; var any = false;
-      for (var i = 0; i < KEYS.length; i++) {
-        var v = (params.get(KEYS[i]) || '').trim();
-        if (v) { store[KEYS[i]] = v.slice(0, 200); any = true; }
-      }
-      if (any) sessionStorage.setItem('aesop_utm', JSON.stringify(store));
-    } catch (e) {}
-  })();
-</script>
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
@@ -111,25 +87,20 @@ const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+<!-- The ONE fonts URL (check.mjs enforces a single canonical URL in src/): Zilla Slab 700 heads,
+     Spectral 400/500/700 + italic text, Libre Franklin 500 agate, Abril Fatface for the wordmark. -->
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Franklin:wght@500&family=Spectral:ital,wght@0,400;0,500;0,700;1,400&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet" />
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": "Person",
   "@id": orgId,
-  name: site.name,
-  description: "Reporting modernization and data trust for growing companies — governed data-practice software (Aesop Manteia) plus principal-led services.",
-  url: site.url,
-  email: site.email,
-  logo: new URL("/assets/favicon.svg", site.url).href,
-  image: new URL("/assets/og-image.png", site.url).href,
-  slogan: "Every dataset has a moral.",
-  founder: { "@type": "Person", name: "Jonathan Doreau" },
-  areaServed: "US",
+  name: site.author,
+  url: canonicalUrl("/about"),
+  jobTitle: "Data and analytics professional",
   address: { "@type": "PostalAddress", addressLocality: "Nashville", addressRegion: "TN", addressCountry: "US" },
   sameAs: [site.linkedin],
-  knowsAbout: ["Reporting modernization", "Data trust", "KPI governance", "Business intelligence", "Data governance", "Analytics strategy"],
-  priceRange: "$$$",
+  knowsAbout: ["Business intelligence", "Data governance", "KPI definitions", "Dashboard design", "Labor economics", "Data analysis"],
 })} />
 {path === "/" && <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",

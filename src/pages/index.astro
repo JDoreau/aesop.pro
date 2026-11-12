@@ -1,285 +1,232 @@
 ---
-// index.astro — the homepage. The reface's product-first story, ported
-// faithfully from the blessed sample (DESIGN/site-reface/index.html) into the
-// real Astro system using the shared section components + sections.css.
-// Narrative arc (SITE-DIRECTION §2): hero → promise → trust-gap → product
-// spine (with the live Ask demo + honesty rail) → why-trust-it → how-it-works
-// → proof → stats → honest on-ramp → final CTA. URL preserved: "/".
+// index.astro — the front page. Since Nov 2026 (Aesop Analytics LLC closed), the site
+// is Jonathan Doreau's personal research and writing site. The page is set as a
+// front page: the claim at poster scale, the latest study as the lead with its plate,
+// the other studies as a box score, the recent writing as an index, the two tools on
+// the ink band, the author. Everything is derived from src/data/insights.ts, so a new
+// article or study shows up here with no markup edit. URL preserved: "/".
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import PromiseBand from "../components/PromiseBand.astro";
-import SpineCard from "../components/SpineCard.astro";
-import HonestyRail from "../components/HonestyRail.astro";
-import ProofCard from "../components/ProofCard.astro";
-import StatBand from "../components/StatBand.astro";
-import CtaBand from "../components/CtaBand.astro";
-import Reveal from "../components/Reveal.astro";
+import { featured, sections } from "../data/insights.ts";
+import { linkHref, site } from "../data/nav.ts";
 
-const title = 'Data governance and trusted reporting | Aesop Analytics';
-const description = "Aesop Manteia maps your reporting estate from its metadata, shows the owner and definition behind every metric, and answers questions with a citation for each one. Governed, trusted, AI-ready reporting.";
-const ogDescription = "Software that maps your reporting estate from metadata and makes it governed, trusted, and AI-ready — with a citation behind every answer.";
+const title = 'Aesop Analytics | Research and writing by Jonathan Doreau';
+const description = "Field studies on the economy and on data, and practical writing on reporting trust, KPI definitions, dashboard design and data governance, by Jonathan Doreau.";
+const ogDescription = "Field studies and practical writing on data, measurement and the economy. Every dataset has a moral.";
+
+const studies = sections.filter((s) => s.pillar === "field-study").flatMap((s) => s.rows);
+const writing = sections
+  .filter((s) => s.pillar !== "field-study")
+  .flatMap((s) => s.rows)
+  .sort((a, b) => b.published.localeCompare(a.published))
+  .slice(0, 6);
+const fmt = (iso: string) =>
+  new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+// A "·" in a data string is a separator: each part is set as its own fact.
+const parts = (s: string) => s.split("·").map((x) => x.trim()).filter(Boolean);
+const leadHref = linkHref(`/insights/${featured.slug}`);
+// The first screen's box score: every field study's own headline figure, newest first.
+const findings = [featured, ...studies].sort((a, b) => b.published.localeCompare(a.published));
 ---
 
-<BaseLayout title={title} description={description} path="/" ogDescription={ogDescription}>
-<div class="reface">
+<BaseLayout title={title} description={description} path="/" ogDescription={ogDescription} front={true}>
 
-  <!-- ── HERO ── -->
-  <Hero eyebrow="Data governance · AI-ready data · Trusted reporting">
-    <h1>Know which numbers to <span class="em">trust</span>, who owns them, and where they break.</h1>
-    <Fragment slot="sub">Aesop Manteia maps your entire reporting estate from its metadata, shows the owner and definition behind each metric, and answers questions in plain language with a citation for each one. The governance holds after the project ends, not just on the day it ships.</Fragment>
-    <Fragment slot="cta">
-      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=home-hero-diagnostic" class="btn">See it on your estate</a>
-      <a href="/platform/?utm_source=site&utm_medium=internal&utm_campaign=home-hero-platform" class="btn ghost">How the platform works</a>
-    </Fragment>
-    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Aesop Analytics · data-governance software · Nashville, TN</div>
-  </Hero>
-
-  <!-- ── PROMISE BAND ── -->
-  <PromiseBand />
-
-  <!-- ── THE TRUST GAP (the problem, named plainly) ── -->
-  <section class="pain band-paper">
-    <div class="wrap">
-      <div class="pain-grid">
-        <div class="pain-left">
-          <div class="sec-label">The problem</div>
-          <h2>The dashboards exist. Trust in the numbers on them doesn&rsquo;t.</h2>
-          <p>Most companies that invest in BI still end up in the same place. Leadership decides on numbers it doesn't fully believe. Teams pull different figures for the same KPI. Definitions go undocumented and owners go unnamed. Reports get rebuilt by hand each week. The dashboards are there; the trust behind them isn't.</p>
-          <div class="pov">Most reporting problems aren&rsquo;t visualization problems. They&rsquo;re problems of ownership, definition, process, and governance — the layer beneath the dashboard that usually goes unbuilt.</div>
-          <p class="hinge">A new tool doesn't fix that. <b>A governed system does — and that is what Aesop Manteia is.</b></p>
+  <!-- ── The claim at poster scale, and what the numbers say: each study's finding as a box score ── -->
+  <section class="front">
+    <div class="container front__in">
+      <h1>What the numbers actually say.</h1>
+      <div class="front__deck">
+        <p class="lead">Field studies on the economy and on data, and practical writing on reporting, KPIs and governance. Every study names its sources and says what the data can and can’t support.</p>
+        <div class="actions">
+          <a href="/publications/" class="btn btn--primary">Read the research</a>
+          <a href="/insights/" class="btn btn--secondary">Browse the writing</a>
         </div>
-        <div class="pain-right">
-          <div class="pain-cap">What it looks like</div>
-          <div class="pain-list">
-            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Leadership sees different numbers in different reports</span></div>
-            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Finance says one thing, Sales says another &mdash; for the same KPI</span></div>
-            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Analysts spend hours reconciling spreadsheets instead of producing insight</span></div>
-            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">Dashboards exist, but nobody uses them to make decisions</span></div>
-            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">No one knows which report is official or whose number is right</span></div>
-            <div class="pain-item"><span class="pi">&#8623;</span><span class="pt">AI and automation stall because the data underneath can't be trusted</span></div>
-          </div>
+      </div>
+      <ul class="score front__figs" aria-label="Findings from the field studies">
+        {findings.map((s) => (
+          <li>
+            <a class="front__fig" href={linkHref(`/insights/${s.slug}`)}>
+              <span class="visually-hidden">{s.title}: </span>
+              <span class="score__n">{s.figure}</span>
+              <span class="score__l">{s.figureNote}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── The lead: the latest study, its plate across the full measure ── -->
+  <section class="lead-story">
+    <div class="container">
+      <div class="lead-story__head">
+        <div class="lead-story__text">
+          <a href={leadHref} class="lead-story__link"><h2>{featured.title}</h2></a>
+          <p class="lead">{featured.desc}</p>
+          <ul class="meta">
+            <li><time datetime={featured.published}>{fmt(featured.published)}</time></li>
+            {parts(featured.tag).map((t) => (<li>{t}</li>))}
+          </ul>
+          <a href={leadHref} class="more">Read the study</a>
+        </div>
+        <figure class="plate lead-story__plate">
+          <a href={leadHref} tabindex="-1" aria-hidden="true"><img src={featured.image} alt="" width="2160" height="2160" loading="eager" /></a>
+          <figcaption>{featured.imageAlt}</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Field studies: the other three, three across ── -->
+  <section class="section section--flush-top">
+    <div class="container">
+      <div class="head">
+        <h2>Field studies.</h2>
+        <a href="/publications/" class="more">All research</a>
+      </div>
+      <div class="score studies3">
+        {studies.map((r) => (
+          <article>
+            <a class="score__link" href={linkHref(`/insights/${r.slug}`)}><h3 class="score__t">{r.title}</h3></a>
+            <p>{r.desc}</p>
+            <ul class="meta">
+              <li><time datetime={r.published}>{fmt(r.published)}</time></li>
+              <li class="agate">{r.time}</li>
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Recent writing: an index ── -->
+  <section class="section section--flush-top">
+    <div class="container">
+      <div class="head">
+        <h2>Recent articles.</h2>
+        <a href="/insights/" class="more">All writing</a>
+      </div>
+      <ol class="index">
+        {writing.map((r) => (
+          <li>
+            <span class="index__kind">{r.pill}</span>
+            <div class="index__main">
+              <a class="index__link" href={linkHref(`/insights/${r.slug}`)}><h3 class="index__title">{r.title}</h3></a>
+              <p class="index__desc">{r.desc}</p>
+            </div>
+            <span class="index__fig">{r.time}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── The tools, on the ink band ── -->
+  <section class="band band--ink section tools">
+    <div class="container">
+      <div class="head">
+        <h2>Score your own reporting.</h2>
+        <p class="lead">Two self-checks built on the method in the writing. They run in your browser, ask for no email, and send nothing anywhere.</p>
+      </div>
+      <div class="pair">
+        <div class="pair__item">
+          <h3>Reporting Trust Health Check</h3>
+          <p class="lead">Eleven areas across five pillars, scored into one honest number, with the one fix that matters most named.</p>
+          <ul class="meta">
+            <li>~10 min</li>
+            <li>scored 0&ndash;100</li>
+          </ul>
+          <a href="/resources/health-check/" class="btn btn--primary">Take the Health Check</a>
+        </div>
+        <div class="pair__item">
+          <h3>Dashboard Audit</h3>
+          <p class="lead">Score a single dashboard across six dimensions and leave with a prioritized list of what to fix.</p>
+          <ul class="meta">
+            <li>30 questions</li>
+            <li>one dashboard</li>
+          </ul>
+          <a href="/resources/dashboard-audit/" class="btn btn--secondary">Audit a dashboard</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── PRODUCT SPINE (the new centerpiece) ── -->
-  <section class="product band-navy ae-host ae-mark" id="product" style="--ae-size:min(40vw,460px); --ae-left:-4%; --ae-bottom:-24%; --ae-opacity:.05;">
-    <div class="wrap">
-      <div class="sec-label">The platform</div>
-      <h2 class="product-h">Four parts, one platform.</h2>
-      <p class="lede product-lede">It maps your estate from metadata, makes the governance visible, designs the model your data should have, and lets anyone ask a question and get a cited answer. Each step is deterministic and auditable: the same inputs produce the same result.</p>
-
-      <div class="spine">
-        <SpineCard step="01" name="The Scribe" greek="Aesop Graphion" status="dep" statusLabel="Deployed — proven engine">
-          Point it at your metadata &mdash; BI files, a warehouse catalog, a simple export &mdash; and it maps the estate: tables, fields, metrics, and the lineage between them. It reads what exists rather than inferring it.
-        </SpineCard>
-        <SpineCard step="02" name="The Portal" greek="Aesop Stoa" status="dep" statusLabel="Deployed — log in today" highlight={true}>
-          Your governance, made visible: each metric's owner and definition, which reports disagree, and what no one owns at all. Unowned and contested metrics are flagged, so the people who can fix them can see them.
-        </SpineCard>
-        <SpineCard step="03" name="The Agent" greek="Aesop Pythia" status="prev" statusLabel="Live cited answers now · live-warehouse querying in preview">
-          Ask a question &mdash; "which numbers does no one own?", "is this metric trustworthy?" &mdash; and get an answer drawn only from your governed data, with a citation for each claim. When the answer isn't in your data, it says so rather than guessing.
-        </SpineCard>
-      </div>
-
-      <!-- LIVE ASK DEMO — the honesty thesis made clickable -->
-      <div class="askwrap" id="ask">
-        <div class="ask-h">Try the agent</div>
-        <div class="ask-sub">This is how The Agent answers &mdash; grounded in a governed estate, with a source for every claim, and an honest refusal when the answer isn't there. Pick a question. (An illustrative demo on a synthetic estate; not your data.)</div>
-        <div class="ask-qs" id="askQs"></div>
-        <div class="ask-panel">
-          <div class="ask-you" id="askYou"></div>
-          <div class="ask-answer" id="askAnswer"></div>
-          <div class="ask-cite" id="askCite"></div>
-        </div>
-        <div class="ask-foot">The agent will not invent a number, an owner, or a definition to fill a silence. A refusal is a valid answer.</div>
-      </div>
-
-      <!-- HONESTY RAIL — the differentiator, made structural -->
-      <div class="rail-wrap">
-        <HonestyRail
-          deployed="The governed portal with secure login, your estate mapped from metadata, and grounded answers with a citation behind every claim. The write layer is live too &mdash; ratify a definition, assign an owner, log a request, and the record updates on a real database."
-          preview="The agent querying your live warehouse directly (verified today on Postgres and MySQL), and regenerating governed reports from the map. Ratified and building."
-          roadmap="Native Power BI report generation, automated Gold-layer design as a live surface, and the deeper machine-learning layer (the Analytica arm) arriving in Phase II. Real work, not finished, and labeled that way rather than shown as shipped."
-        />
+  <!-- ── The author ── -->
+  <section class="section author">
+    <div class="container author__in">
+      <figure class="plate author__plate">
+        <img src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau" width="680" height="850" loading="lazy" />
+        <figcaption>{site.author}, {site.location}</figcaption>
+      </figure>
+      <div class="author__text">
+        <h2>Jonathan Doreau</h2>
+        <p class="lead">A data and analytics professional in Nashville with more than fifteen years in reporting, business intelligence and data governance, across finance, healthcare research and real estate. This is where he publishes what he learns.</p>
+        <a href="/about/" class="more">More about Jonathan</a>
       </div>
     </div>
   </section>
-
-  <!-- ── WHY TRUST IT ── -->
-  <section class="safe band-paper2" id="safe">
-    <div class="wrap">
-      <div class="sec-label">Built to be trusted</div>
-      <h2 class="safe-h">What makes the output reliable.</h2>
-      <div class="safe-grid">
-        <div class="safe-item">
-          <div class="si-h">It computes, it doesn't guess</div>
-          <p>The map, the lineage, and each governance finding are produced by deterministic code reading your own systems, not by a model's opinion. The same inputs give the same answer, and you can audit how it was reached. That determinism is what makes it safe to build automation and AI on top of.</p>
-        </div>
-        <div class="safe-item">
-          <div class="si-h">The agent cites or refuses</div>
-          <p>It answers only from your governed estate and attaches the source to each claim. It cannot fabricate a number, an owner, or a definition. When something isn't governed yet, it says so instead of filling the gap.</p>
-        </div>
-        <div class="safe-item">
-          <div class="si-h">Metadata, never your data</div>
-          <p>The platform works from metadata and exports, not a copy of your warehouse. We ask for a key, not a copy. It is model-agnostic and can run inside your own walls: your warehouse, your model, your governance, so sensitive estates never leave the building.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS ── -->
-  <section class="how band-navy" id="how">
-    <div class="wrap">
-      <div class="sec-label">How it works</div>
-      <h2 class="how-h">From scattered systems to a question anyone can ask.</h2>
-      <p class="lede how-lede">The same pipeline runs for a fifty-table startup or a fifty-thousand-table enterprise. It reads the catalog; it doesn't guess what you have.</p>
-      <div class="flow-grid">
-        <div class="flow-step"><div class="fs-n">1</div><div class="fs-name">Connect</div><div class="fs-desc">A read-only export or catalog from each system. We ask for a key, never a copy of your data.</div></div>
-        <div class="flow-step"><div class="fs-n">2</div><div class="fs-name">Map</div><div class="fs-desc">Every table, field, metric, and lineage edge, normalized into one typed map of the estate.</div></div>
-        <div class="flow-step"><div class="fs-n">3</div><div class="fs-name">Govern</div><div class="fs-desc">Owners, definitions, and the gaps surfaced: what's contested, what's unowned, what's never been governed.</div></div>
-        <div class="flow-step"><div class="fs-n">4</div><div class="fs-name">Answer</div><div class="fs-desc">A record anyone can navigate, an agent anyone can ask, and a target Gold model the Architect designs from what it finds. Each claim traces to its source.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PROOF ── -->
-  <section class="proof band-paper">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="sec-label" style="display:inline-block">Proof</div>
-        <h2>The work isn't finished when the dashboard goes live.</h2>
-        <p>It's finished when leadership trusts the number, knows who owns it, and Manteia keeps it true. These engagements became the method the platform now runs.</p>
-      </div>
-      <div class="proof-grid">
-        <ProofCard n="31" label="Portfolio KPIs governed with named owners" sector="Finance & Banking" href="/work/#finance-banking" />
-        <ProofCard n="5" label="Governed dashboards on one Snowflake source" sector="Real Estate Operations" href="/work/#real-estate-operations" />
-        <ProofCard n="~4" unit=" hrs" label="Grant reporting, down from ~12 per grant" sector="Nonprofit / Impact" href="/work/#nonprofit-impact" />
-      </div>
-      <p class="proof-caveat">Representative founder-led transformations, anonymized &mdash; the sectors and result signals are intact. These are the engagements that became the method Manteia now runs.</p>
-    </div>
-  </section>
-
-  <!-- ── STATS ── -->
-  <StatBand stats={[
-    { n: "4", l: "Platform doors — Scribe, Portal, Agent, Architect" },
-    { n: "100", sup: "%", l: "Inference precision on graded synthetic estates" },
-    { n: "0", l: "Data copied — the platform runs on metadata, not your warehouse" },
-    { n: "1", l: "Citation behind every answer the agent gives" },
-  ]} />
-
-  <!-- ── THE HONEST ON-RAMP ── -->
-  <section class="onramp band-paper2" id="onramp">
-    <div class="onramp-in">
-      <div class="sec-label" style="display:inline-block">The on-ramp</div>
-      <h2>Start with a short assessment on your own estate.</h2>
-      <p>A Reporting Clarity Assessment is a fixed-fee, two-to-three-week engagement that maps your estate into Manteia and names the gaps. You leave with a governed map of your reporting and the platform running to keep it current.</p>
-      <p class="ladder">It grows from there &mdash; a modernization sprint, a governance starter, a fractional retainer &mdash; only when the roadmap justifies it. Never a bigger engagement than the problem needs.</p>
-      <div class="btn-row center" style="margin-top:28px"><a href="/assessment/?utm_source=site&utm_medium=internal&utm_campaign=home-onramp-assessment" class="btn">See the Assessment</a></div>
-    </div>
-  </section>
-
-  <!-- ── FINAL CTA ── -->
-  <CtaBand eyebrow="See it on your estate">
-    <h2>See your own estate as a governed, answerable system.</h2>
-    <Fragment slot="sub">A focused 30-minute look, no slide deck. If Manteia isn't right for where you are yet, we'll say so.</Fragment>
-    <Fragment slot="cta">
-      <a href="/diagnostic/?utm_source=site&utm_medium=internal&utm_campaign=home-closing-diagnostic" class="btn on-light">See it on your estate</a>
-      <a href="/platform/?utm_source=site&utm_medium=internal&utm_campaign=home-closing-platform" class="btn ghost">Explore the platform</a>
-    </Fragment>
-  </CtaBand>
-
-  <Reveal selector=".spine-card,.safe-item,.proof-card,.pain-item,.honesty-rail .rr,.flow-step,.stat-band .stat-in>div" />
-</div>
-
-<style>
-  /* Page-local: the product-section spacing + the live Ask demo (the one net-new
-     interactive pattern, kept page-local since it's homepage-specific). */
-  .pain { padding:88px 0; }
-  .product { padding:92px 0; }
-  .product-h { color:#fff; margin-bottom:16px; max-width:20ch; }
-  .product-lede { color:#C4BDAE; max-width:64ch; margin-bottom:44px; }
-  .rail-wrap { margin-top:40px; }
-  .safe { padding:88px 0; }
-  .safe-h { margin-bottom:40px; max-width:24ch; }
-  .how { padding:88px 0; }
-  .how-h { color:#fff; margin-bottom:16px; max-width:24ch; }
-  .how-lede { color:#C4BDAE; max-width:62ch; margin-bottom:40px; }
-  .proof { padding:88px 0; }
-  .onramp { padding:84px 0; }
-  .onramp-in { max-width:820px; margin:0 auto; padding:0 32px; text-align:center; }
-  .onramp h2 { margin-bottom:18px; }
-  .onramp p { font-size:17px; color:var(--slate); line-height:1.62; font-weight:300; margin-bottom:14px; }
-  .onramp .ladder { font-size:15px; color:var(--muted); font-weight:300; }
-
-  /* LIVE ASK DEMO — homepage-only interactive proof of the cite-or-refuse thesis. */
-  .askwrap { margin-top:44px; background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:28px 30px 30px; }
-  .ask-h { font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--twine); margin-bottom:6px; }
-  .ask-sub { font-size:14px; color:#8FA4B8; font-weight:300; margin-bottom:20px; max-width:66ch; line-height:1.55; }
-  .ask-qs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
-  .ask-q { font-family:"DM Sans",sans-serif; font-size:13.5px; font-weight:500; color:var(--cream); background:var(--navy-3); border:1px solid rgba(255,255,255,.12); border-radius:22px; padding:9px 16px; cursor:pointer; transition:background .16s,border-color .16s,transform .16s; }
-  .ask-q:hover { background:var(--navy-2); border-color:var(--twine); transform:translateY(-1px); }
-  .ask-q.active { background:var(--twine); color:var(--navy); border-color:var(--twine); font-weight:600; }
-  .ask-panel { background:var(--navy-foot); border:1px solid rgba(255,255,255,.09); border-radius:8px; padding:22px 24px; min-height:132px; }
-  .ask-you { font-size:12.5px; font-weight:600; letter-spacing:.02em; color:#8FA4B8; margin-bottom:14px; }
-  .ask-answer { font-size:15.5px; color:#DCE3EC; line-height:1.62; font-weight:300; }
-  .ask-cite { margin-top:14px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-  .ask-src { font-family:"DM Sans",sans-serif; font-size:12px; color:#9FB0C4; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-radius:4px; padding:3px 9px; }
-  .ask-foot { margin-top:16px; font-size:12px; color:#7788A0; font-weight:300; line-height:1.5; }
-  :global(.ask-answer .val) { color:#fff; font-weight:600; }
-  :global(.ask-answer .ask-refuse) { color:#F0DDA6; }
-  :global(.ask-you b) { color:var(--cream); font-weight:600; }
-  :global(.ask-cite .clab) { font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--good); }
-  :global(.ask-cite .clab.warn) { color:var(--warn); }
-</style>
-
-<script is:inline>
-  /* Live "ask the agent" demo — cite-or-refuse, the honesty thesis. Illustrative
-     only: canned answers over a synthetic estate. Demonstrates the product's
-     actual behaviour (grounded answer + citation, or an honest refusal) without
-     claiming to query anyone's live data. */
-  var ASK = [
-    {
-      q: "Which revenue metrics does no one own?",
-      answer: "Three revenue metrics have <span class=\"val\">no named owner</span> today: <b>Net Revenue (Ops)</b>, <b>Recognized Revenue (Finance)</b>, and <b>Bookings (Sales)</b>. Two of them also carry conflicting definitions across reports, which is usually why the numbers disagree in the boardroom.",
-      grounded: true,
-      src: "governed estate &middot; owner graph"
-    },
-    {
-      q: "Is our Occupancy Rate metric trustworthy?",
-      answer: "Partly. <b>Occupancy Rate</b> is governed, owned by <b>Real Estate Operations</b>, and computed from one source &mdash; but two dashboards still use an <span class=\"val\">older definition</span> that excludes short-term units. Reconcile those two and it becomes fully trustworthy.",
-      grounded: true,
-      src: "governed estate &middot; metric lineage"
-    },
-    {
-      q: "What was our Q3 marketing spend?",
-      answer: "<span class=\"ask-refuse\">I can't answer that from your governed data.</span> Marketing spend isn't in the mapped estate yet &mdash; no source connects to it, so I won't estimate a number. Connect the marketing system and this becomes answerable, with a citation.",
-      grounded: false,
-      src: "not in the governed estate"
-    }
-  ];
-  (function(){
-    var qsEl = document.getElementById('askQs');
-    var youEl = document.getElementById('askYou');
-    var ansEl = document.getElementById('askAnswer');
-    var citeEl = document.getElementById('askCite');
-    if(!qsEl) return;
-    function render(i){
-      var item = ASK[i];
-      Array.prototype.forEach.call(qsEl.children, function(c, idx){ c.className = 'ask-q' + (idx === i ? ' active' : ''); });
-      youEl.innerHTML = 'You asked &mdash; <b>' + item.q + '</b>';
-      ansEl.innerHTML = item.answer;
-      if(item.grounded){ citeEl.innerHTML = '<span class="clab">Source</span><span class="ask-src">' + item.src + '</span>'; }
-      else { citeEl.innerHTML = '<span class="clab warn">Honest refusal</span><span class="ask-src">' + item.src + '</span>'; }
-    }
-    ASK.forEach(function(item, i){
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'ask-q'; b.textContent = item.q;
-      b.addEventListener('click', function(){ render(i); });
-      qsEl.appendChild(b);
-    });
-    render(0);
-  })();
-</script>
 
 </BaseLayout>
+
+<style>
+  /* ── The front: a typographic poster. The head fills the measure, the standfirst and
+        actions sit under it, and the findings close the screen as a box score ── */
+  .front__in { display: flex; flex-direction: column; justify-content: flex-start; gap: var(--space-xl); min-height: calc(100svh - 9.75rem); padding-block: var(--space-xl) 0; }
+  .front h1 { max-width: none; font-size: var(--text-poster); line-height: 0.92; letter-spacing: -0.035em; }
+  .front__deck { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: end; }
+  .front__deck .lead { grid-column: 1 / span 7; max-width: 62ch; text-wrap: balance; }
+  .front__deck .actions { grid-column: 9 / -1; justify-self: end; }
+  .front__figs { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: auto; }
+  .front__figs > li { padding-block: var(--space-lg); }
+  .front__fig { display: block; color: inherit; text-decoration: none; }
+  .front__fig .score__n { font-size: clamp(2.5rem, 3.4vw + 1rem, 4.25rem); }
+  .front__fig:hover .score__l { color: var(--color-ink); text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.2em; }
+  .front__fig:active .score__n { color: var(--color-accent); }
+  @media (max-width: 60rem) {
+    .front__in { min-height: 0; padding-block: var(--space-lg) 0; gap: var(--space-lg); }
+    .front__deck .lead, .front__deck .actions { grid-column: 1 / -1; justify-self: start; }
+    /* the box score two by two */
+    .front__figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .front__figs > li { padding: var(--space-md) var(--space-md) var(--space-md) 0; border-left: 0; border-top: 0; }
+    .front__figs > li:nth-child(even) { padding-left: var(--space-md); padding-right: 0; border-left: var(--rule-hair) solid var(--color-rule); }
+    .front__figs > li:nth-child(n + 3) { border-top: var(--rule-hair) solid var(--color-rule); }
+  }
+  @media (max-width: 40rem) {
+    /* a phone poster: four short lines, set as large as the longest word allows */
+    .front h1 { max-width: 4.6em; font-size: clamp(3.5rem, 19.5vw, 5.25rem); line-height: 0.9; }
+    .front__deck .actions { flex-direction: column; align-items: stretch; justify-self: stretch; }
+  }
+
+  /* ── The other studies: title, line and date, three across (the shared box score without its figures) ── */
+  .studies3 .score__link { margin-top: 0; }
+  .studies3 p { margin-top: var(--space-sm); color: var(--color-ink-2); }
+  .studies3 .meta { margin-top: var(--space-md); }
+
+  /* ── The lead story ── */
+  .lead-story { margin-top: var(--space-lg); padding-bottom: var(--section-gap); }
+  .lead-story__head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-xl); align-items: center; padding-top: var(--space-2xl); border-top: var(--rule-double); }
+  .lead-story__text { grid-column: 1 / span 7; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
+  .lead-story__link { color: inherit; text-decoration: none; }
+  .lead-story h2 { max-width: 20ch; }
+  .lead-story__link:hover h2 { text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: var(--color-accent); text-underline-offset: 0.12em; }
+  .lead-story__text .lead { color: var(--color-ink-2); }
+  .lead-story__plate { grid-column: 9 / -1; }
+  .lead-story__plate a { display: block; }
+  @media (max-width: 60rem) {
+    .lead-story { padding-bottom: var(--section-gap-s); }
+    .lead-story__head { padding-top: var(--space-xl); }
+    .lead-story__text { grid-column: 1 / -1; }
+    .lead-story__plate { grid-column: 1 / span 8; }
+  }
+  @media (max-width: 40rem) { .lead-story__plate { grid-column: 1 / -1; } }
+
+  /* ── The author: the portrait as the paper prints it, the note beside it ── */
+  .author__in { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-xl); align-items: center; }
+  .author__plate { grid-column: 1 / span 4; }
+  .author__plate img { aspect-ratio: 4 / 5; object-fit: cover; }
+  .author__text { grid-column: 6 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
+  @media (max-width: 60rem) {
+    .author__plate { grid-column: 1 / span 6; }
+    .author__text { grid-column: 1 / -1; }
+  }
+  @media (max-width: 40rem) { .author__plate { grid-column: 1 / span 9; } }
+</style>

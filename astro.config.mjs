@@ -19,7 +19,7 @@ function sitemap() {
         // tell crawlers not to index. Exact first-segment match (startsWith
         // would also swallow e.g. a future /thanksgiving-... page); the
         // route set is cross-checked against noindex={true} by check.mjs.
-        const NOINDEX = ["404", "thanks"];
+        const NOINDEX = ["404"];
         const urls = [
           ...new Set(
             pages
