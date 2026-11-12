@@ -24,17 +24,20 @@ Litmus test for any change: does this make the site more secure, maintainable, e
 ## Architecture map (30 seconds)
 
 ```
+design.md     the LOCKED design system (Hallmark · Newsprint). Read it before any visual change.
 src/
-  layouts/    BaseLayout.astro (all standard pages) · ArticleLayout.astro (insights articles)
-  components/ Nav.astro · Footer.astro · Seo.astro · Wordmark.astro · OwlMark.astro
-  data/       nav.ts (site IA + canonicalUrl helper) · insights.ts (DRIVES /insights — add rows here)
-  styles/     tokens.css (THE palette/type source) · base.css · article.css (article components)
-  pages/      one .astro per route; insights/ (21 articles incl. field studies); resources/ (4 interactive tools)
+  layouts/    BaseLayout.astro (all standard pages; `front` prop = the homepage nameplate) · ArticleLayout.astro (insights articles)
+  components/ Nav.astro (the masthead) · Footer.astro · Seo.astro · Wordmark.astro · OwlMark.astro
+  data/       nav.ts (site IA + canonicalUrl helper) · insights.ts (DRIVES /insights, Home and Research — add rows here)
+  styles/     tokens.css (THE token source: every colour, face, size, space) · base.css (reset + type defaults)
+              site.css (the shared vocabulary; its FIRST LINES are the Hallmark stamp) · article.css (article components)
+  pages/      one .astro per route; insights/ (21 articles incl. 4 field studies); resources/ (2 interactive tools)
 public/
-  brand/      standalone brand style-guide page (the ONE remaining self-contained page)
-  assets/     favicon.svg, owl-mark svgs, og-image.png
-astro.config.mjs  custom inline sitemap generator (see Gotcha #3)
-scripts/check.mjs repo invariants — runs before every build, local and CI
+  brand/      standalone brand style-guide page (the ONE remaining self-contained page; documents the PRE-redesign identity)
+  assets/     favicon.svg, owl-mark svgs, og-image.png (source: scripts/og-image.html), jonathan-doreau.jpg, world-cup/
+astro.config.mjs       custom inline sitemap generator (see Gotcha #3)
+scripts/check.mjs      repo invariants — runs before every build, local and CI
+scripts/og-image.html  source of the social share image (render recipe in its header comment)
 ```
 
 Every `src/pages` page uses a layout. The insights hub (`/insights`) renders
@@ -85,7 +88,10 @@ by check.mjs — keep both in sync or the build fails.
 - `public/brand/index.html` is the ONE page that still re-declares tokens,
   owl SVG, and wordmark CSS locally (intentional: it displays 16 owl
   specimens by design and links no site stylesheets). A brand change is
-  **not done** until that copy is reviewed too.
+  **not done** until that copy is reviewed too. **Since the Nov 2026
+  redesign it documents the PREVIOUS identity** (navy/twine, Newsreader +
+  DM Sans, the old favicon colours): it was left untouched on the owner's
+  instruction and is pending its own decision (update or retire).
 - The two health-check instruments were CONSOLIDATED: `/resources` is now a
   hub that hands off to the ONE canonical instrument at
   `/resources/health-check` (engine: `src/lib/trust-index*.js` +
@@ -114,26 +120,50 @@ are not caught by the check — route them through `linkHref()`.
 
 ## Brand facts (so you don't re-derive them)
 
-- **Tokens:** `src/styles/tokens.css` is canonical. Palette + semantic
-  status colors (`--good/--warn/--info`) + the brand ratification record.
-  check.mjs PARSES this file to build its raw-hex guard — any token value
-  hardcoded in `src/styles/*.css` fails the build; in page `<style>` blocks
-  it warns.
-- **Logo:** the owl is the ONE logo. The æ ligature is an editorial
-  flourish only (insights row markers, callout watermarks) — never a lockup.
-- **Wordmark:** Abril Fatface "aesop" + DM Sans letterspaced "ANALYTICS",
-  centralized in `src/components/Wordmark.astro` (all four variants).
-  ANALYTICS is *optically centered on the x-height* via measured
-  `translateY` nudges (nav 3px, footer 2.5px, article nav 2.75px, article
-  footer 2.5px). The `p` descender skews flex centering — don't remove the
-  nudges (check.mjs guards them), and re-measure if font sizes change.
-  The standalone `/brand` page carries its own copy (see Danger #4).
-- **Type roles:** Newsreader = site headings + all display accents (article
-  display headings, drop caps, numerals/stats at weight 600; pull quotes
-  italic 400) · DM Sans = body/UI · Abril Fatface = the "aesop" wordmark +
-  æ moniker marks ONLY (owner directive 2026-07: "only in the aesop logo
-  or the ae moniker — nowhere else"). `/brand`'s standalone copy still
-  shows the old roles — pending its own decision (Danger #4).
+The look was redesigned in Nov 2026 with the Hallmark skill (theme: **Newsprint**).
+`design.md` at the repo root is the locked system; this is the short version.
+
+- **Tokens:** `src/styles/tokens.css` is canonical and is the ONLY file that
+  may contain a colour or a font name. The palette is OKLCH: paper
+  (`--color-paper`, `-2`, `-3`), ink (`--color-ink`, `-2`, `--color-muted`),
+  rules (`--color-rule`, `--color-rule-2`), ONE accent, a dried brick
+  (`--color-accent`), plus the ink-band pairs (`--color-on-ink…`), the chart
+  roles (`--chart-*`) and the tool status roles (`--status-*`). Navy and twine
+  are retired. check.mjs fails the build on any colour or font literal outside
+  tokens.css (page `<style>` blocks, `style=""` attributes, SVG `fill`/`stroke`
+  and inline scripts included) and on any `var(--token)` that tokens.css does
+  not declare.
+- **Charts re-ink with the site:** inline SVG charts and diagrams never carry a
+  literal. They use the roles: `--chart-accent` (the one series a chart argues
+  from), `--chart-ink` (the comparison), `--chart-soft/-pale/-faint` (context),
+  `--chart-grid`, `--chart-axis`, `--chart-text`, `--chart-text-2`. SVG text
+  takes no `font-family` attribute (article.css sets the agate face).
+- **Logo:** the owl is the ONE logo (`OwlMark.astro`; body in ink, eyes in
+  brick). The æ ligature is the site's one ornament: the end mark that closes
+  every article (`.endmark`, set by ArticleLayout). Never a lockup, never a
+  watermark, never a row marker.
+- **Wordmark:** "aesop" in Abril Fatface (`--font-wordmark`) + "ANALYTICS" in
+  Libre Franklin caps, centralized in `src/components/Wordmark.astro` (three
+  variants: `masthead`, `bar`, `footer`). ANALYTICS is *optically centered on
+  the x-height* of "aesop": both words sit on one baseline and ANALYTICS is
+  raised by half the difference between the x-height of Abril Fatface
+  (`WM_XH = 0.48`) and the cap height of Libre Franklin (`WM_CAP = 0.745`),
+  both MEASURED from the loaded faces. This replaced the old per-variant pixel
+  nudges and holds at every size; check.mjs guards the two ratios and the
+  transform. Re-measure if either face changes. The standalone `/brand` page
+  carries its own, older copy (see Danger #4).
+- **Type roles:** Zilla Slab 700 (roman, never lighter, never italic) = every
+  heading, big figure and button label · Spectral 400/500/700 = all text,
+  labels, captions and meta, in sentence case, never tracked, never uppercase ·
+  Libre Franklin 500 ("agate") = figures in lists, tables and charts ONLY ·
+  Abril Fatface = the "aesop" wordmark + the æ end mark ONLY (owner directive
+  2026-07, still in force). One fonts URL, in `Seo.astro`.
+- **Surfaces:** rules, never boxes. Radius 0 and no shadow anywhere. A hairline
+  for ordinary breaks, the double rule (`--rule-double`) for major ones, a well
+  (`--color-paper-2` ruled top and bottom) for an aside, at most one ink band
+  (`.band--ink` / `.callout`) beside it. The brick never fills a box or a
+  button. Nothing animates: no reveal, no counting numbers, no growing bars.
+- **Pictures** print black and white (`.plate`), with a one-line caption.
 - **Voice:** principal-led, plainspoken, anti-hype. Never lead with AI.
   Never fabricate numbers — illustrative figures must say so.
 
@@ -144,32 +174,46 @@ are not caught by the check — route them through `linkHref()`.
 - **Invariants:** `scripts/check.mjs` runs before every build (local + CI
   via `npm run build`; standalone via `npm run check`). It enforces: owl
   single-source, one canonical fonts URL, no embedded docs outside fences,
-  token discipline (hex list parsed from tokens.css), wordmark nudges,
+  token discipline (no colour or font literal outside tokens.css, and no
+  undeclared `var(--token)`), the wordmark's measured optical-alignment ratios,
   insights data↔page bijection, sitemap/noindex sync, and TRUST Index scorer
   constant integrity (`src/lib/trust-index.js` — pillars/bands/gate). **A new
   repo rule belongs in this file AND as a check there.**
+- **Design lint (not part of the build):** the typographic and layout rules
+  that check.mjs does not cover (no tracked/uppercase labels, no eyebrows, the
+  spacing scale, contrast, focus rings, fold and overflow at 320 to 1920) are
+  checked by Hallmark's linter against the running dev server:
+  `node ~/.claude/skills/hallmark/scripts/sloplint.mjs src/styles src/layouts src/components src/pages/<file>.astro --genre editorial --render --url http://localhost:4321/<route>/`
+  (add `--scope app` for the two tools). The stamp in the first lines of
+  `src/styles/site.css` carries the design's recorded waivers and answers: keep
+  it as the first thing in that file.
 - **Patch scripts:** for multi-file edits, stage a Python script to temp and
   run it. Scripts must use strict replacement-count assertions and **fail
   loudly** on any mismatch — a "FAIL but saved anyway" script is how files
   get corrupted. Read utf-8, write `newline=""`.
 - **Build:** `npm run build` → page count must match `src/pages` (30 at
   last update; sitemap lists 29 — 404 excluded), ~3s. Zero-warning builds are the norm; treat new warnings
-  as failures (the check.mjs hex warnings are known-legacy, currently in
-  the resources pages only).
+  as failures (check.mjs has no warning tier any more: the legacy hex
+  warnings were cleared in the Nov 2026 redesign).
 - **Node:** pinned to 22 (package.json `engines`, deploy.yml `node-version`).
 - **Verification (live):** deploys take ~200–320s after push. Verify on the
   apex domain with cache-busting (`curl -sL "https://aesopanalytics.com/…?v=$RANDOM"`)
   — Cloudflare caches HTML. For CSS/visual changes, assert computed styles
   with a real browser session, not greps.
-- **Print engines:** any change to `resources.astro` or
-  `resources/health-check.astro` requires a print regression — generate a
-  report through the live engine and render the srcdoc to PDF.
+- **Print engine:** any change to `resources/health-check.astro` requires a
+  print regression — open `/resources/health-check/?r=<base64 scores>`, wait
+  for `[data-hc-ready]`, and print to PDF (the report prints via `@media
+  print`, on white stock, in two to three Letter pages).
 
 ## What NOT to do
 
 - Don't inject before `</style>` without an occurrence count (Danger #1).
-- Don't add raw brand hexes in `src/` styles — use tokens. (Exceptions:
-  inline data-viz SVGs in articles; print-engine JS strings inside fences.)
+- Don't write a colour or a font name anywhere in `src/` outside
+  `tokens.css` — use tokens, charts and inline scripts included. (The only
+  exception is a print-engine JS string inside an EMBEDDED-DOC fence.)
+- Don't reach for a card, a rounded corner, a shadow, an uppercase tracked
+  label, an eyebrow above a heading, or an animation: the system has none
+  (see `design.md`). Compose the shared pieces in `site.css` / `article.css`.
 - Don't add testimonial/Review structured data — GATED until approved
   quotes + attribution + ratings exist on-page (see
   `_OPS/INITIATIVES/business-launch.md`, Pending decisions).
