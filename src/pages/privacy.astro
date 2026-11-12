@@ -7,42 +7,52 @@ const updated = "November 12, 2026";
 ---
 
 <BaseLayout title={title} description={description} path="/privacy">
-  <section class="legal reface">
-    <div class="legal-in">
-      <div class="eyebrow">Privacy</div>
+  <header class="page-head">
+    <div class="container">
       <h1>How this site handles data.</h1>
-      <p class="lede">A site about measuring things honestly should be plain about what it measures. Here is everything this website collects, and how to opt out.</p>
+      <p class="lead">A site about measuring things honestly should be plain about what it measures. Here is everything this website collects, and how to opt out.</p>
+      <ul class="meta">
+        <li>Privacy</li>
+        <li class="updated">Last updated {updated}.</li>
+      </ul>
+    </div>
+  </header>
 
-      <h2>Analytics</h2>
-      <p>This site uses Google Analytics (GA4) to understand how visitors use it — which pages are read, how people arrive, and roughly where they are. Google sets cookies to do this and processes the data on my behalf. I use it only to improve the site. I do not sell your personal information, and I do not use this data for advertising.</p>
-      <p>The data is aggregated and is not used to identify you personally.</p>
+  <section class="legal">
+    <div class="container">
+      <div class="legal__body">
+        <h2>Analytics</h2>
+        <p>This site uses Google Analytics (GA4) to understand how visitors use it — which pages are read, how people arrive, and roughly where they are. Google sets cookies to do this and processes the data on my behalf. I use it only to improve the site. I do not sell your personal information, and I do not use this data for advertising.</p>
+        <p>The data is aggregated and is not used to identify you personally.</p>
 
-      <h2>Cookies</h2>
-      <p>The only cookies this site sets are the Google Analytics cookies described above. You can block or delete them in your browser settings at any time, and the site will work normally. Google also offers a browser opt-out add-on at <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.</p>
+        <h2>Cookies</h2>
+        <p>The only cookies this site sets are the Google Analytics cookies described above. You can block or delete them in your browser settings at any time, and the site will work normally. Google also offers a browser opt-out add-on at <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.</p>
 
-      <h2>The free tools</h2>
-      <p>The Reporting Trust Health Check and the Dashboard Audit score your answers entirely in your browser. Nothing you enter is sent anywhere. The Health Check remembers your answers in your browser's local storage so you can come back to them; clearing your browser data removes them.</p>
+        <h2>The free tools</h2>
+        <p>The Reporting Trust Health Check and the Dashboard Audit score your answers entirely in your browser. Nothing you enter is sent anywhere. The Health Check remembers your answers in your browser’s local storage so you can come back to them; clearing your browser data removes them.</p>
 
-      <h2>No forms, no mailing list</h2>
-      <p>This site has no contact forms, no newsletter sign-up and no email capture. It does not collect your name or email address.</p>
+        <h2>No forms, no mailing list</h2>
+        <p>This site has no contact forms, no newsletter sign-up and no email capture. It does not collect your name or email address.</p>
 
-      <h2>Questions</h2>
-      <p>Send me a message on <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a> with any question about this policy.</p>
-
-      <p class="updated">Last updated {updated}.</p>
+        <h2>Questions</h2>
+        <p>Send me a message on <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a> with any question about this policy.</p>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .legal { background:var(--paper); padding:72px 0 96px; }
-  .legal-in { max-width:720px; margin:0 auto; padding:0 32px; }
-  .legal .eyebrow { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); margin-bottom:16px; }
-  .legal h1 { font-family:"Newsreader",serif; font-weight:500; font-size:clamp(30px,5vw,44px); line-height:1.12; color:var(--navy); margin:0 0 20px; }
-  .legal .lede { font-family:"DM Sans",sans-serif; font-size:18px; line-height:1.6; color:var(--slate); margin:0 0 40px; }
-  .legal h2 { font-family:"Newsreader",serif; font-weight:600; font-size:21px; color:var(--navy); margin:36px 0 10px; }
-  .legal p { font-family:"DM Sans",sans-serif; font-size:15.5px; line-height:1.7; color:var(--ink); margin:0 0 14px; }
-  .legal a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
-  .legal a:hover { color:var(--twine); }
-  .legal .updated { margin-top:40px; font-size:13px; color:var(--muted); font-style:italic; }
+  /* A long document: the policy on the same prose frame the articles use. */
+  .legal__body { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); padding-top: var(--space-2xl); border-top: var(--rule-double); font-size: var(--text-prose); line-height: 1.65; }
+  .legal__body > * { grid-column: 3 / span 7; max-width: var(--measure); margin-top: var(--space-lg); }
+  .legal__body > :first-child { margin-top: 0; }
+  .legal__body > h2 { margin-top: var(--space-3xl); font-size: var(--text-head); line-height: 1.08; }
+  .legal__body > h2:first-child { margin-top: 0; }
+  .legal__body > h2 + p { margin-top: var(--space-md); }
+  @media (max-width: 75rem) { .legal__body > * { grid-column: 2 / span 9; } }
+  @media (max-width: 60rem) {
+    .legal__body { padding-top: var(--space-xl); }
+    .legal__body > * { grid-column: 1 / -1; }
+    .legal__body > h2 { margin-top: var(--space-2xl); }
+  }
 </style>

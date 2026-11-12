@@ -1,14 +1,13 @@
 ---
-// index.astro — the homepage. Since Nov 2026 (Aesop Analytics LLC closed), the site
-// is Jonathan Doreau's personal research and writing site: hero → featured study →
-// field studies → recent writing → free tools → about. Everything is derived from
-// src/data/insights.ts, so a new article or study shows up here with no markup edit.
-// URL preserved: "/".
+// index.astro — the front page. Since Nov 2026 (Aesop Analytics LLC closed), the site
+// is Jonathan Doreau's personal research and writing site. The page is set as a
+// front page: the claim at poster scale, the latest study as the lead with its plate,
+// the other studies as a box score, the recent writing as an index, the two tools on
+// the ink band, the author. Everything is derived from src/data/insights.ts, so a new
+// article or study shows up here with no markup edit. URL preserved: "/".
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import Reveal from "../components/Reveal.astro";
 import { featured, sections } from "../data/insights.ts";
-import { linkHref } from "../data/nav.ts";
+import { linkHref, site } from "../data/nav.ts";
 
 const title = 'Aesop Analytics | Research and writing by Jonathan Doreau';
 const description = "Field studies on the economy and on data, and practical writing on reporting trust, KPI definitions, dashboard design and data governance, by Jonathan Doreau.";
@@ -22,165 +21,209 @@ const writing = sections
   .slice(0, 6);
 const fmt = (iso: string) =>
   new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+// A "·" in a data string is a separator: each part is set as its own fact.
+const parts = (s: string) => s.split("·").map((x) => x.trim()).filter(Boolean);
+const leadHref = linkHref(`/insights/${featured.slug}`);
+// The first screen's box score: every field study's own headline figure, newest first.
+const findings = [featured, ...studies].sort((a, b) => b.published.localeCompare(a.published));
 ---
 
-<BaseLayout title={title} description={description} path="/" ogDescription={ogDescription}>
-<div class="reface">
+<BaseLayout title={title} description={description} path="/" ogDescription={ogDescription} front={true}>
 
-  <Hero eyebrow="Research &amp; writing · Jonathan Doreau">
-    <h1>What the numbers <span class="em">actually</span> say.</h1>
-    <Fragment slot="sub">Field studies on the economy and on data, and practical writing on reporting, KPIs and governance. Every study names its sources and says what the data can and can't support.</Fragment>
-    <Fragment slot="cta">
-      <a href="/publications/" class="btn">Read the research</a>
-      <a href="/insights/" class="btn ghost">Browse the writing</a>
-    </Fragment>
-    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Aesop Analytics · Nashville, TN</div>
-  </Hero>
-
-  <!-- ── FEATURED STUDY ── -->
-  <section class="feat band-paper">
-    <div class="wrap">
-      <div class="sec-label" style="display:inline-block">Latest study</div>
-      <a href={linkHref(`/insights/${featured.slug}`)} class="feat-card">
-        <img src={featured.image} alt={featured.imageAlt} width="560" height="560" loading="eager" />
-        <div class="feat-body">
-          <div class="feat-tag">{featured.tag}</div>
-          <h2>{featured.title}</h2>
-          <p>{featured.desc}</p>
-          <span class="feat-go">{featured.read}</span>
+  <!-- ── The claim at poster scale, and what the numbers say: each study's finding as a box score ── -->
+  <section class="front">
+    <div class="container front__in">
+      <h1>What the numbers actually say.</h1>
+      <div class="front__deck">
+        <p class="lead">Field studies on the economy and on data, and practical writing on reporting, KPIs and governance. Every study names its sources and says what the data can and can’t support.</p>
+        <div class="actions">
+          <a href="/publications/" class="btn btn--primary">Read the research</a>
+          <a href="/insights/" class="btn btn--secondary">Browse the writing</a>
         </div>
-      </a>
+      </div>
+      <ul class="score front__figs" aria-label="Findings from the field studies">
+        {findings.map((s) => (
+          <li>
+            <a class="front__fig" href={linkHref(`/insights/${s.slug}`)}>
+              <span class="visually-hidden">{s.title}: </span>
+              <span class="score__n">{s.figure}</span>
+              <span class="score__l">{s.figureNote}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
 
-  <!-- ── FIELD STUDIES ── -->
-  <section class="studies band-paper2">
-    <div class="wrap">
-      <div class="row-head">
-        <div>
-          <div class="sec-label">Research</div>
-          <h2>Field studies.</h2>
+  <!-- ── The lead: the latest study, its plate across the full measure ── -->
+  <section class="lead-story">
+    <div class="container">
+      <div class="lead-story__head">
+        <a href={leadHref} class="lead-story__link"><h2>{featured.title}</h2></a>
+        <div class="lead-story__deck">
+          <p>{featured.desc}</p>
+          <ul class="meta">
+            <li><time datetime={featured.published}>{fmt(featured.published)}</time></li>
+            {parts(featured.tag).map((t) => (<li>{t}</li>))}
+          </ul>
+          <a href={leadHref} class="more">Read the study</a>
         </div>
-        <a href="/publications/" class="row-more">All research &rarr;</a>
       </div>
-      <div class="study-grid">
+      <figure class="plate">
+        <a href={leadHref} tabindex="-1" aria-hidden="true"><img src={featured.imageWide} alt="" width="2400" height="1350" loading="eager" /></a>
+        <figcaption>{featured.imageAlt}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ── Field studies: the other three, three across ── -->
+  <section class="section section--flush-top">
+    <div class="container">
+      <div class="head">
+        <h2>Field studies.</h2>
+        <a href="/publications/" class="more">All research</a>
+      </div>
+      <div class="score studies3">
         {studies.map((r) => (
-          <a href={linkHref(`/insights/${r.slug}`)} class="study-card">
-            <div class="sc-meta">{fmt(r.published)} · {r.time}</div>
-            <h3>{r.title}</h3>
+          <article>
+            <a class="score__link" href={linkHref(`/insights/${r.slug}`)}><h3 class="score__t">{r.title}</h3></a>
             <p>{r.desc}</p>
-          </a>
+            <ul class="meta">
+              <li><time datetime={r.published}>{fmt(r.published)}</time></li>
+              <li class="agate">{r.time}</li>
+            </ul>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ── RECENT WRITING ── -->
-  <section class="writing band-paper">
-    <div class="wrap">
-      <div class="row-head">
-        <div>
-          <div class="sec-label">Writing</div>
-          <h2>Recent articles.</h2>
-        </div>
-        <a href="/insights/" class="row-more">All writing &rarr;</a>
+  <!-- ── Recent writing: an index ── -->
+  <section class="section section--flush-top">
+    <div class="container">
+      <div class="head">
+        <h2>Recent articles.</h2>
+        <a href="/insights/" class="more">All writing</a>
       </div>
-      <ol class="write-list">
+      <ol class="index">
         {writing.map((r) => (
           <li>
-            <a href={linkHref(`/insights/${r.slug}`)}>
-              <span class="wl-pill">{r.pill}</span>
-              <span class="wl-title">{r.title}</span>
-              <span class="wl-desc">{r.desc}</span>
-            </a>
+            <span class="index__kind">{r.pill}</span>
+            <div class="index__main">
+              <a class="index__link" href={linkHref(`/insights/${r.slug}`)}><h3 class="index__title">{r.title}</h3></a>
+              <p class="index__desc">{r.desc}</p>
+            </div>
+            <span class="index__fig">{r.time}</span>
           </li>
         ))}
       </ol>
     </div>
   </section>
 
-  <!-- ── TOOLS ── -->
-  <section class="tools band-navy ae-host ae-mark" style="--ae-size:min(40vw,440px); --ae-left:-4%; --ae-bottom:-30%; --ae-opacity:.05;">
-    <div class="wrap">
-      <div class="sec-label">Free tools</div>
-      <h2 class="tools-h">Score your own reporting.</h2>
-      <p class="lede tools-lede">Two self-checks built on the method in the writing. They run in your browser, ask for no email, and send nothing anywhere.</p>
-      <div class="tools-grid">
-        <a href="/resources/health-check/" class="tool">
-          <div class="t-tag">~10 min · scored 0&ndash;100</div>
+  <!-- ── The tools, on the ink band ── -->
+  <section class="band band--ink section tools">
+    <div class="container">
+      <div class="head">
+        <h2>Score your own reporting.</h2>
+        <p class="lead">Two self-checks built on the method in the writing. They run in your browser, ask for no email, and send nothing anywhere.</p>
+      </div>
+      <div class="pair">
+        <div class="pair__item">
           <h3>Reporting Trust Health Check</h3>
-          <p>Eleven areas across five pillars, scored into one honest number, with the one fix that matters most named.</p>
-        </a>
-        <a href="/resources/dashboard-audit/" class="tool">
-          <div class="t-tag">30 questions · one dashboard</div>
+          <p class="lead">Eleven areas across five pillars, scored into one honest number, with the one fix that matters most named.</p>
+          <ul class="meta">
+            <li>~10 min</li>
+            <li>scored 0&ndash;100</li>
+          </ul>
+          <a href="/resources/health-check/" class="btn btn--primary">Take the Health Check</a>
+        </div>
+        <div class="pair__item">
           <h3>Dashboard Audit</h3>
-          <p>Score a single dashboard across six dimensions and leave with a prioritized list of what to fix.</p>
-        </a>
+          <p class="lead">Score a single dashboard across six dimensions and leave with a prioritized list of what to fix.</p>
+          <ul class="meta">
+            <li>30 questions</li>
+            <li>one dashboard</li>
+          </ul>
+          <a href="/resources/dashboard-audit/" class="btn btn--secondary">Audit a dashboard</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── ABOUT ── -->
-  <section class="author band-paper">
-    <div class="wrap author-in">
-      <img src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau" width="680" height="850" loading="lazy" />
-      <div>
-        <div class="sec-label">About</div>
+  <!-- ── The author ── -->
+  <section class="section author">
+    <div class="container author__in">
+      <figure class="plate author__plate">
+        <img src="/assets/jonathan-doreau.jpg" alt="Jonathan Doreau" width="680" height="850" loading="lazy" />
+        <figcaption>{site.author}, {site.location}</figcaption>
+      </figure>
+      <div class="author__text">
         <h2>Jonathan Doreau</h2>
-        <p>A data and analytics professional in Nashville with more than fifteen years in reporting, business intelligence and data governance, across finance, healthcare research and real estate. This is where he publishes what he learns.</p>
-        <a href="/about/" class="row-more">More about Jonathan &rarr;</a>
+        <p class="lead">A data and analytics professional in Nashville with more than fifteen years in reporting, business intelligence and data governance, across finance, healthcare research and real estate. This is where he publishes what he learns.</p>
+        <a href="/about/" class="more">More about Jonathan</a>
       </div>
     </div>
   </section>
 
-  <Reveal selector=".study-card,.write-list li,.tool" />
-</div>
+</BaseLayout>
 
 <style>
-  .feat, .studies, .writing, .tools, .author { padding:84px 0; }
-  .feat-card { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:40px; align-items:center; background:#fff; border:1px solid var(--line); border-top:3px solid var(--twine); border-radius:10px; padding:28px; margin-top:18px; transition:box-shadow .18s, transform .18s; }
-  .feat-card:hover { transform:translateY(-3px); box-shadow:0 18px 44px -22px rgba(15,31,56,.28); }
-  .feat-card img { width:100%; height:auto; border-radius:6px; display:block; }
-  @media(max-width:760px){ .feat-card { grid-template-columns:1fr; gap:22px; padding:20px; } }
-  .feat-tag, .t-tag { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:12px; }
-  .feat-body h2 { color:var(--navy); margin-bottom:14px; }
-  .feat-body p { font-size:16.5px; color:var(--slate); line-height:1.62; font-weight:300; margin-bottom:20px; }
-  .feat-go, .row-more { font-size:14px; font-weight:600; color:var(--twine); }
-  .row-more:hover { color:var(--sepia); }
+  /* ── The front: a typographic poster. The head fills the measure, the standfirst and
+        actions sit under it, and the findings close the screen as a box score ── */
+  .front__in { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-xl); min-height: calc(100svh - 9.75rem); padding-block: var(--space-xl) 0; }
+  .front h1 { max-width: none; font-size: var(--text-poster); line-height: 0.92; letter-spacing: -0.035em; }
+  .front__deck { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: end; }
+  .front__deck .lead { grid-column: 1 / span 7; max-width: 62ch; text-wrap: balance; }
+  .front__deck .actions { grid-column: 9 / -1; justify-self: end; }
+  .front__figs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .front__figs > li { padding-block: var(--space-lg); }
+  .front__fig { display: block; color: inherit; text-decoration: none; }
+  .front__fig .score__n { font-size: clamp(2.5rem, 3.4vw + 1rem, 4.25rem); }
+  .front__fig:hover .score__l { color: var(--color-ink); text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.2em; }
+  .front__fig:active .score__n { color: var(--color-accent); }
+  @media (max-width: 60rem) {
+    .front__in { min-height: 0; padding-block: var(--space-lg) 0; gap: var(--space-lg); }
+    .front__deck .lead, .front__deck .actions { grid-column: 1 / -1; justify-self: start; }
+    /* the box score two by two */
+    .front__figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .front__figs > li { padding: var(--space-md) var(--space-md) var(--space-md) 0; border-left: 0; border-top: 0; }
+    .front__figs > li:nth-child(even) { padding-left: var(--space-md); padding-right: 0; border-left: var(--rule-hair) solid var(--color-rule); }
+    .front__figs > li:nth-child(n + 3) { border-top: var(--rule-hair) solid var(--color-rule); }
+  }
+  @media (max-width: 40rem) {
+    /* a phone poster: four short lines, set as large as the longest word allows */
+    .front h1 { max-width: 4.6em; font-size: clamp(3.5rem, 19.5vw, 5.25rem); line-height: 0.9; }
+    .front__deck .actions { flex-direction: column; align-items: stretch; justify-self: stretch; }
+  }
 
-  .row-head { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; margin-bottom:32px; flex-wrap:wrap; }
-  .row-head h2 { color:var(--navy); }
-  .study-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-  @media(max-width:860px){ .study-grid { grid-template-columns:1fr; } }
-  .study-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:8px; padding:24px 22px; transition:border-color .18s, transform .18s; }
-  .study-card:hover { border-color:var(--twine); transform:translateY(-3px); }
-  .sc-meta { font-size:12px; color:var(--muted); margin-bottom:10px; }
-  .study-card h3 { color:var(--navy); margin-bottom:10px; }
-  .study-card p { font-size:14.5px; color:var(--slate); line-height:1.58; font-weight:300; }
+  /* ── The other studies: title, line and date, three across (the shared box score without its figures) ── */
+  .studies3 .score__link { margin-top: 0; }
+  .studies3 p { margin-top: var(--space-sm); color: var(--color-ink-2); }
+  .studies3 .meta { margin-top: var(--space-md); }
 
-  .write-list { list-style:none; margin:0; padding:0; border-top:2px solid var(--rule); }
-  .write-list li { border-bottom:1px solid var(--line); }
-  .write-list a { display:grid; grid-template-columns:150px 1fr; gap:4px 28px; padding:20px 0; }
-  .write-list a:hover .wl-title { color:var(--twine); }
-  .wl-pill { grid-row:span 2; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--twine); padding-top:5px; }
-  .wl-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:21px; color:var(--navy); line-height:1.2; transition:color .18s; }
-  .wl-desc { font-size:14.5px; color:var(--slate); line-height:1.55; font-weight:300; }
-  @media(max-width:640px){ .write-list a { grid-template-columns:1fr; } .wl-pill { grid-row:auto; padding-top:0; } }
+  /* ── The lead story ── */
+  .lead-story { margin-top: var(--space-lg); padding-bottom: var(--section-gap); }
+  .lead-story > .container > .lead-story__head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: end; padding-block: var(--space-2xl) var(--space-xl); border-top: var(--rule-double); }
+  .lead-story__link { grid-column: 1 / span 8; color: inherit; text-decoration: none; }
+  .lead-story h2 { max-width: 22ch; }
+  .lead-story__link:hover h2 { text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: var(--color-accent); text-underline-offset: 0.12em; }
+  .lead-story__deck { grid-column: 9 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .lead-story__deck p { color: var(--color-ink-2); }
+  .lead-story .plate a { display: block; }
+  @media (max-width: 60rem) {
+    .lead-story { padding-bottom: var(--section-gap-s); }
+    .lead-story > .container > .lead-story__head { padding-block: var(--space-xl) var(--space-lg); }
+    .lead-story__link, .lead-story__deck { grid-column: 1 / -1; }
+  }
 
-  .tools .sec-label { color:var(--twine); }
-  .tools-h { color:#fff; margin-bottom:14px; }
-  .tools-lede { color:#C4BDAE; max-width:60ch; margin-bottom:36px; }
-  .tools-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-  @media(max-width:700px){ .tools-grid { grid-template-columns:1fr; } }
-  .tool { display:block; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-top:3px solid var(--twine); border-radius:8px; padding:26px 24px; transition:background .18s, transform .18s; }
-  .tool:hover { background:rgba(255,255,255,.07); transform:translateY(-3px); }
-  .tool h3 { color:#fff; margin-bottom:10px; }
-  .tool p { font-size:14.5px; color:#B8C2D0; line-height:1.6; font-weight:300; }
-
-  .author-in { display:grid; grid-template-columns:200px 1fr; gap:40px; align-items:center; }
-  .author-in img { width:100%; height:auto; border-radius:8px; display:block; }
-  @media(max-width:640px){ .author-in { grid-template-columns:1fr; } .author-in img { max-width:200px; } }
-  .author h2 { color:var(--navy); margin-bottom:12px; }
-  .author p { font-size:17px; color:var(--slate); line-height:1.65; font-weight:300; max-width:62ch; margin-bottom:16px; }
+  /* ── The author: the portrait as the paper prints it, the note beside it ── */
+  .author__in { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-xl); align-items: center; }
+  .author__plate { grid-column: 1 / span 4; }
+  .author__plate img { aspect-ratio: 4 / 5; object-fit: cover; }
+  .author__text { grid-column: 6 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
+  @media (max-width: 60rem) {
+    .author__plate { grid-column: 1 / span 6; }
+    .author__text { grid-column: 1 / -1; }
+  }
+  @media (max-width: 40rem) { .author__plate { grid-column: 1 / span 9; } }
 </style>
-</BaseLayout>

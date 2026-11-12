@@ -5,30 +5,35 @@ const description = 'The page you were looking for could not be found. Head back
 ---
 
 <BaseLayout title={title} description={description} path="/404" noindex={true}>
-  <section class="nf reface">
-    <div class="nf-in">
-      <div class="eyebrow">Error 404</div>
-      <h1>This page got lost in the data.</h1>
-      <p>The link you followed may be broken, or the page may have moved or been retired. Here is the honest answer — this isn't where you meant to be. Let's get you back to something useful.</p>
-      <div class="nf-links">
-        <a href="/" class="nf-primary">Back to home</a>
-        <a href="/publications/">Research</a>
-        <a href="/insights/">Writing</a>
-        <a href="/resources/">Free tools</a>
+  <section class="nf">
+    <div class="container nf__in">
+      <div class="nf__text">
+        <h1>This page got lost in the data.</h1>
+        <p class="lead">The link you followed may be broken, or the page may have moved or been retired. Here is the honest answer — this isn’t where you meant to be. Let’s get you back to something useful.</p>
+        <div class="actions nf-links">
+          <a href="/" class="btn btn--primary nf-primary">Back to home</a>
+          <a href="/publications/" class="more">Research</a>
+          <a href="/insights/" class="more">Writing</a>
+          <a href="/resources/" class="more">Free tools</a>
+        </div>
       </div>
+      <p class="nf__code"><span class="visually-hidden">Error </span>404</p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .nf { background:var(--paper); padding:96px 0 120px; }
-  .nf-in { max-width:680px; margin:0 auto; padding:0 32px; text-align:center; }
-  .nf .eyebrow { margin-bottom:16px; }
-  .nf h1 { font-size:clamp(30px,5vw,46px); line-height:1.12; margin:0 0 18px; }
-  .nf p { font-family:"DM Sans",sans-serif; font-size:17px; line-height:1.6; color:var(--slate); margin:0 0 36px; font-weight:300; }
-  .nf-links { display:flex; flex-wrap:wrap; gap:14px 28px; justify-content:center; align-items:center; }
-  .nf-links a { font-family:"DM Sans",sans-serif; font-size:14px; color:var(--sepia); text-decoration:underline; text-underline-offset:3px; }
-  .nf-links a:hover { color:var(--twine); }
-  .nf-links .nf-primary { text-decoration:none; background:var(--navy); color:var(--paper); padding:12px 22px; border-radius:4px; font-weight:600; }
-  .nf-links .nf-primary:hover { background:var(--navy-2); color:var(--paper); }
+  /* The error is the number: 404 at graphic scale, the way back beside it. */
+  .nf { padding-block: var(--space-3xl) 0; }
+  :global(main:has(.nf) + .foot) { margin-top: var(--space-2xl); }
+  .nf__in { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-xl); align-items: end; }
+  .nf__text { grid-column: 1 / span 7; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-lg); }
+  .nf h1 { max-width: 14ch; }
+  .nf-links { gap: var(--space-md) var(--space-xl); }
+  .nf__code { grid-column: 8 / -1; justify-self: end; max-width: none; font-family: var(--font-display); font-weight: 700; font-size: clamp(6rem, 17vw, 15rem); line-height: 0.8; letter-spacing: -0.04em; font-variant-numeric: lining-nums; color: var(--color-ink); }
+  @media (max-width: 60rem) {
+    .nf { padding-block: var(--space-2xl); }
+    .nf__text, .nf__code { grid-column: 1 / -1; justify-self: start; }
+    .nf__code { order: -1; }
+  }
 </style>

@@ -1,10 +1,10 @@
 ---
 // publications.astro — the Research page (added Nov 2026): every field study,
-// newest first. Rendered from src/data/insights.ts (the featured study plus the
-// field-study section), so a new study only needs its data row and its page in
+// newest first, as an index. Each row leads with the study's own headline figure.
+// Rendered from src/data/insights.ts (the featured study plus the field-study
+// section), so a new study only needs its data row and its page in
 // src/pages/insights/ — check.mjs already enforces that pair.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Reveal from "../components/Reveal.astro";
 import { featured, sections } from "../data/insights.ts";
 import { linkHref, canonicalUrl, site } from "../data/nav.ts";
 
@@ -12,12 +12,14 @@ const title = 'Research: Field Studies on Data and the Economy | Aesop Analytics
 const description = "Field studies by Jonathan Doreau on wages, productivity, profits, inflation and sport — each built from public data, with its sources named and its limits stated.";
 
 const studies = [
-  { slug: featured.slug, published: featured.published, title: featured.title, desc: featured.desc, tag: featured.tag, image: featured.image, imageAlt: featured.imageAlt },
+  { slug: featured.slug, published: featured.published, title: featured.title, desc: featured.desc, tag: featured.tag, time: featured.time, figure: featured.figure, figureNote: featured.figureNote, image: featured.image as string | undefined, imageAlt: featured.imageAlt },
   ...sections.filter((s) => s.pillar === "field-study").flatMap((s) => s.rows.map((r) => ({ ...r, tag: "Field Study · Economics & Data", image: undefined as string | undefined, imageAlt: "" }))),
 ].sort((a, b) => b.published.localeCompare(a.published));
 
 const fmt = (iso: string) =>
   new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+// A "·" in a data string is a separator: each part is set as its own fact.
+const parts = (s: string) => s.split("·").map((x) => x.trim()).filter(Boolean);
 
 const schema = {
   "@context": "https://schema.org",
@@ -33,52 +35,63 @@ const schema = {
 ---
 
 <BaseLayout title={title} description={description} path="/publications" schema={schema}>
-<div class="reface">
 
-  <section class="pub-hero band-navy ae-host ae-mark" style="--ae-size:min(40vw,460px); --ae-right:-2%; --ae-top:-20%; --ae-opacity:.06;">
-    <div class="wrap">
-      <div class="eyebrow">Research</div>
+  <header class="page-head">
+    <div class="container">
       <h1>Field studies.</h1>
-      <p>Long-form studies built from public data: wages, productivity, profits, inflation, and the occasional detour into sport. Each one names its sources, steelmans the other side, and says what the data can't support.</p>
+      <p class="lead">Long-form studies built from public data: wages, productivity, profits, inflation, and the occasional detour into sport. Each one names its sources, steelmans the other side, and says what the data can’t support.</p>
     </div>
-  </section>
+  </header>
 
-  <section class="pub-list band-paper">
-    <div class="wrap">
+  <section class="studies">
+    <div class="container">
       {studies.map((s) => (
-        <a href={linkHref(`/insights/${s.slug}`)} class:list={["pub", { "has-img": s.image }]}>
-          {s.image && <img src={s.image} alt={s.imageAlt} width="560" height="560" loading="lazy" />}
-          <div class="pub-body">
-            <div class="pub-meta">{s.tag} · {fmt(s.published)}</div>
-            <h2>{s.title}</h2>
+        <article class:list={["study", { "study--plate": s.image }]}>
+          <p class="study__fig">
+            <span class="score__n">{s.figure}</span>
+            <span class="score__l">{s.figureNote}</span>
+          </p>
+          <div class="study__body">
+            <a href={linkHref(`/insights/${s.slug}`)} class="study__link"><h2>{s.title}</h2></a>
             <p>{s.desc}</p>
-            <span class="pub-go">Read the study &rarr;</span>
+            <ul class="meta">
+              <li><time datetime={s.published}>{fmt(s.published)}</time></li>
+              {parts(s.tag).map((t) => (<li>{t}</li>))}
+              <li class="agate">{s.time}</li>
+            </ul>
+            <a href={linkHref(`/insights/${s.slug}`)} class="more" aria-label={`Read the study: ${s.title}`}>Read the study</a>
           </div>
-        </a>
+          {s.image && (
+            <figure class="plate study__plate">
+              <img src={s.image} alt="" width="560" height="560" loading="lazy" />
+              <figcaption>{s.imageAlt}</figcaption>
+            </figure>
+          )}
+        </article>
       ))}
-      <p class="pub-foot">Looking for the shorter, practical pieces on reporting and KPIs? They're under <a href="/insights/">Writing</a>.</p>
+      <p class="studies__foot">Looking for the shorter, practical pieces on reporting and KPIs? They’re under <a href="/insights/">Writing</a>.</p>
     </div>
   </section>
 
-  <Reveal selector=".pub" />
-</div>
+</BaseLayout>
 
 <style>
-  .pub-hero { padding:80px 0 64px; }
-  .pub-hero .eyebrow { color:var(--twine); }
-  .pub-hero h1 { color:#fff; margin-bottom:18px; }
-  .pub-hero p { font-size:18px; color:#C4BDAE; font-weight:300; line-height:1.6; max-width:58ch; }
-  .pub-list { padding:64px 0 88px; }
-  .pub { display:block; background:#fff; border:1px solid var(--line); border-radius:10px; padding:30px 30px; margin-bottom:20px; transition:border-color .18s, transform .18s, box-shadow .18s; }
-  .pub:hover { border-color:var(--twine); transform:translateY(-3px); box-shadow:0 16px 40px -22px rgba(15,31,56,.26); }
-  .pub.has-img { display:grid; grid-template-columns:240px 1fr; gap:32px; align-items:center; }
-  .pub img { width:100%; height:auto; border-radius:6px; display:block; }
-  @media(max-width:700px){ .pub.has-img { grid-template-columns:1fr; gap:18px; } .pub { padding:22px 20px; } }
-  .pub-meta { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:var(--twine); margin-bottom:12px; }
-  .pub h2 { color:var(--navy); font-size:clamp(23px,2.6vw,30px); margin-bottom:12px; }
-  .pub p { font-size:16px; color:var(--slate); line-height:1.62; font-weight:300; margin-bottom:16px; max-width:68ch; }
-  .pub-go { font-size:14px; font-weight:600; color:var(--twine); }
-  .pub-foot { font-size:15px; color:var(--muted); margin-top:28px; }
-  .pub-foot a { color:var(--sepia); text-decoration:underline; text-underline-offset:2px; }
+  /* The index: one study a row, its figure in the first columns, the plate (when it has one) in the last. */
+  .studies > .container { border-top: var(--rule-double); }
+  .study { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: start; padding-block: var(--space-2xl); border-bottom: var(--rule-hair) solid var(--color-rule); }
+  .study__fig { grid-column: 1 / span 3; max-width: none; }
+  .study__body { grid-column: 4 / span 7; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .study--plate .study__body { grid-column: 4 / span 6; }
+  .study__link { color: inherit; text-decoration: none; }
+  .study h2 { max-width: 24ch; font-size: var(--text-head); line-height: 1.08; }
+  .study__link:hover h2 { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.14em; }
+  .study__body > p { max-width: 58ch; color: var(--color-ink-2); }
+  .study__plate { grid-column: 10 / -1; }
+  .studies__foot { padding-top: var(--space-xl); color: var(--color-ink-2); }
+  @media (max-width: 60rem) {
+    .study { padding-block: var(--space-xl); }
+    .study__fig, .study__body, .study--plate .study__body { grid-column: 1 / -1; }
+    .study__plate { grid-column: 1 / span 6; }
+  }
+  @media (max-width: 40rem) { .study__plate { grid-column: 1 / -1; } }
 </style>
-</BaseLayout>

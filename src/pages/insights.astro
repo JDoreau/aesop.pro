@@ -1,4 +1,7 @@
 ---
+// insights.astro — the Writing hub: every article and field study as one index,
+// grouped by pillar, with the pillar filter. Rendered entirely from
+// src/data/insights.ts, so adding or moving an article is a data edit.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { hero, pillarButtons, featured, sections, sidebarPillars } from "../data/insights.ts";
 import { linkHref, canonicalUrl } from "../data/nav.ts";
@@ -13,6 +16,8 @@ const countLabel = (s: Section) => {
   const plural = s.pillar === 'field-study' ? 'studies' : 'articles';
   return n + ' ' + (n === 1 ? noun : plural);
 };
+// A "·" in a data string is a separator: each part is set as its own fact.
+const parts = (s: string) => s.split("·").map((x) => x.trim()).filter(Boolean);
 
 // CollectionPage + ItemList JSON-LD for the hub: derived from the SAME data the
 // page renders (insights.ts), so the list can never drift from the visible hub.
@@ -38,135 +43,140 @@ const schema = {
 
 <BaseLayout title={title} description={description} path="/insights" ogDescription={ogDescription} schema={schema}>
 
-<div class="page-hero">
-  <div class="page-hero-in">
-    <div class="eyebrow">{hero.eyebrow}</div>
+<header class="page-head">
+  <div class="container">
     <h1>{hero.title}</h1>
-    <p>Practical writing on reporting trust, KPI definitions, dashboard design, governance and AI readiness — plus the field studies, which also live under <a href="/publications/" style="color:var(--twine)">Research</a>.</p>
+    <p class="lead">Practical writing on reporting trust, KPI definitions, dashboard design, governance and AI readiness — plus the field studies, which also live under <a href="/publications/">Research</a>.</p>
   </div>
-</div>
+</header>
 
-<div class="pillars">
-  <div class="pillar-in">
-    <span class="pillar-label">Pillar:</span>
-    {pillarButtons.map((p) => (
-      <button class="pillar-btn" class:list={[{ on: p.cat === "all" }]} data-cat={p.cat} aria-pressed={p.cat === "all" ? "true" : "false"}>{p.label}</button>
-    ))}
-  </div>
-</div>
-
-<div class="content">
-  <div id="article-list">
-
-    <a href={linkHref(`/insights/${featured.slug}`)} class="feat-card" data-cat={featured.cat}>
-      <div class="ftxt">
-        <div class="ftag">{featured.tag}</div>
-        <h2>{featured.title}</h2>
-        <p>{featured.desc}</p>
-        <span class="fread">{featured.read}</span>
-      </div>
-      <div class="fviz">
-        <img src={featured.image} alt={featured.imageAlt} loading="lazy" width="220" height="220" />
-      </div>
-    </a>
-
-    {sections.map((s) => (
-      <div class="pillar-section" data-pillar={s.pillar}>
-        <div class="ps-head">{s.heading} <span class="ps-count">{countLabel(s)}</span></div>
-        {s.rows.map((r) => (
-          <a href={linkHref(`/insights/${r.slug}`)} class="art-row" data-cat={s.pillar}>
-            <span class="ar-num">æ</span>
-            <div class="ar-body">
-              <div class="ar-title">{r.title}</div>
-              <div class="ar-desc">{r.desc}</div>
-            </div>
-            <div class="ar-meta"><span class="ar-pill">{r.pill}</span><span class="ar-time">{r.time}</span></div>
-          </a>
-        ))}
-      </div>
-    ))}
-
-  </div>
-
-  <aside class="sidebar">
-    <div class="sb-block">
-      <div class="sb-label">The five content pillars</div>
-      <div class="pillar-list">
-        {sidebarPillars.map((p) => (
-          <div class="pl-item" data-cat={p.cat} role="button" tabindex="0">{p.label} <span class="pl-ct">{p.count}</span></div>
+<section class="hub">
+  <div class="pillars">
+    <div class="container pillars__in">
+      <span class="pillar-label" id="pillar-label">Pillar:</span>
+      <div class="seg" role="group" aria-labelledby="pillar-label">
+        {pillarButtons.map((p) => (
+          <button type="button" class="pillar-btn" class:list={[{ on: p.cat === "all" }]} data-cat={p.cat} aria-pressed={p.cat === "all" ? "true" : "false"}>{p.label}</button>
         ))}
       </div>
     </div>
-    <div class="sb-block">
-      <div class="sb-label">Free resource</div>
-      <p>The Reporting Trust Health Check — 11 areas across five pillars, 3 signal questions each. Score your reporting environment in about 10 minutes.</p>
-      <a href="/resources/health-check/" class="sb-btn">Take the Health Check →</a>
+  </div>
+  <div class="container hub__in">
+    <div id="article-list" class="hub__list">
+
+      <article class="feat-card" data-cat={featured.cat}>
+        <div class="feat-card__text">
+          <a href={linkHref(`/insights/${featured.slug}`)} class="feat-card__link"><h2>{featured.title}</h2></a>
+          <p>{featured.desc}</p>
+          <ul class="meta">
+            {parts(featured.tag).map((t) => (<li>{t}</li>))}
+            <li class="agate">{featured.time}</li>
+          </ul>
+          <a href={linkHref(`/insights/${featured.slug}`)} class="more" aria-label={`Read the study: ${featured.title}`}>Read the study</a>
+        </div>
+        <figure class="plate feat-card__plate">
+          <img src={featured.image} alt={featured.imageAlt} loading="eager" fetchpriority="high" width="2160" height="2160" />
+        </figure>
+      </article>
+
+      {sections.map((s) => (
+        <div class="pillar-section" data-pillar={s.pillar}>
+          <div class="ps-head">
+            <h2>{s.heading}</h2>
+            <span class="ps-count agate">{countLabel(s)}</span>
+          </div>
+          <ul class="index">
+            {s.rows.map((r) => (
+              <li class="art-row" data-cat={s.pillar}>
+                <div class="index__main art-row__main">
+                  <a class="index__link" href={linkHref(`/insights/${r.slug}`)}><h3 class="index__title">{r.title}</h3></a>
+                  <p class="index__desc">{r.desc}</p>
+                </div>
+                <span class="index__kind art-row__kind">{r.pill}</span>
+                <span class="index__fig">{r.time}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
     </div>
-  </aside>
-</div>
+
+    <aside class="sidebar">
+      <div class="sb-block">
+        <h3>The five content pillars</h3>
+        <div class="pillar-list">
+          {sidebarPillars.map((p) => (
+            <button type="button" class="pl-item" data-cat={p.cat}><span>{p.label}</span> <span class="pl-ct agate">{p.count}</span></button>
+          ))}
+        </div>
+      </div>
+      <div class="sb-block">
+        <h3>Free resource</h3>
+        <p>The Reporting Trust Health Check — 11 areas across five pillars, 3 signal questions each. Score your reporting environment in about 10 minutes.</p>
+        <a href="/resources/health-check/" class="more">Take the Health Check</a>
+      </div>
+    </aside>
+  </div>
+</section>
 
 <style>
-/* PAGE HERO */
-  .page-hero { background:var(--navy); padding:72px 0 56px; overflow:hidden; position:relative; }
-.page-hero::after { content:"æ"; position:absolute; right:-2%; top:-20%; font-family:"Abril Fatface",serif; font-size:min(38vw,460px); line-height:1; color:rgba(193,140,93,.07); pointer-events:none; }
-.page-hero-in { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:2; }
-.page-hero h1 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:clamp(38px,5.6vw,68px); line-height:1.04; color:#fff; margin-bottom:18px; }
-.page-hero p { font-size:18px; color:#C4BDAE; font-weight:300; max-width:54ch; line-height:1.6; }
-/* PILLAR TABS */
-  .pillars { background:var(--paper-2); border-bottom:1px solid var(--rule); padding:16px 0; position:sticky; top:64px; z-index:10; }
-.pillar-in { max-width:1080px; margin:0 auto; padding:0 32px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-.pillar-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); margin-right:4px; white-space:nowrap; }
-.pillar-btn { font-size:12px; font-weight:600; letter-spacing:.03em; padding:6px 13px; border-radius:20px; border:1px solid var(--rule); background:transparent; color:var(--muted); cursor:pointer; transition:all .15s; font-family:"DM Sans",sans-serif; white-space:nowrap; }
-.pillar-btn:hover, .pillar-btn.on { background:var(--navy); color:#fff; border-color:var(--navy); }
-/* MAIN LAYOUT */
-  .content { max-width:1080px; margin:0 auto; padding:52px 32px 80px; display:grid; grid-template-columns:1fr 300px; gap:56px; align-items:start; }
-@media(max-width:860px) {
-  .content { grid-template-columns:1fr; }
-  .sidebar { display:none; }
-}
-/* FEATURED */
-  .feat-card { background:var(--navy); border-radius:8px; overflow:hidden; display:grid; grid-template-columns:1.1fr .9fr; margin-bottom:48px; text-decoration:none; }
-@media(max-width:600px) {
-  .feat-card { grid-template-columns:1fr; }
-}
-.feat-card .ftxt { padding:34px 30px; }
-.feat-card .ftag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.2em; color:var(--twine); margin-bottom:12px; }
-.feat-card h2 { font-family:"Newsreader",Georgia,serif; font-weight:600; letter-spacing:-.01em; font-size:22px; line-height:1.15; color:#fff; margin-bottom:12px; }
-.feat-card p { font-size:14.5px; color:#B8BDCA; line-height:1.6; font-weight:300; margin-bottom:18px; }
-.feat-card .fread { font-size:12.5px; font-weight:700; color:var(--twine); text-transform:uppercase; letter-spacing:.06em; }
-.feat-card .fviz { background:var(--navy-2); display:flex; align-items:center; justify-content:center; padding:18px; min-height:180px; }
-.feat-card .fviz svg { width:100%; max-width:220px; height:auto; }
-.feat-card .fviz img { width:100%; height:auto; border-radius:6px; display:block; }
-/* PILLAR SECTIONS */
-  .pillar-section { margin-bottom:44px; }
-.ps-head { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--twine); padding:12px 0; border-bottom:2px solid var(--navy); margin-bottom:0; display:flex; align-items:center; justify-content:space-between; }
-.ps-count { font-size:11px; font-weight:400; color:var(--muted); }
-/* ARTICLE ROWS */
-  .art-row { display:grid; grid-template-columns:28px 1fr auto; gap:16px; align-items:start; padding:20px 6px; border-bottom:1px solid var(--line); text-decoration:none; transition:background .15s; border-radius:4px; }
-.art-row:hover { background:var(--paper-2); }
-.art-row .ar-num { font-family:"Abril Fatface",serif; font-size:17px; color:var(--twine); text-align:center; padding-top:2px; }
-.art-row .ar-body { }
-.art-row .ar-title { font-size:16.5px; font-weight:700; color:var(--ink); margin-bottom:4px; line-height:1.3; }
-.art-row .ar-desc { font-size:13.5px; color:var(--muted); line-height:1.5; font-weight:300; }
-.art-row .ar-meta { text-align:right; flex-shrink:0; }
-.ar-pill { display:inline-block; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); background:var(--paper-2); padding:3px 8px; border-radius:20px; border:1px solid var(--line); white-space:nowrap; }
-.ar-time { display:block; font-size:11px; color:var(--muted); margin-top:4px; }
-@media(max-width:560px) {
-  .art-row .ar-meta { display:none; }
-  .art-row { grid-template-columns:28px 1fr; }
-}
-/* SIDEBAR */
-  .sidebar { position:sticky; top:128px; }
-.sb-block { background:#fff; border:1px solid var(--line); border-radius:6px; padding:22px; margin-bottom:16px; }
-.sb-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--twine); margin-bottom:12px; }
-.sb-block p { font-size:14px; color:var(--slate); line-height:1.55; font-weight:300; margin-bottom:12px; }
-.sb-btn { display:inline-block; background:var(--navy); color:#fff; font-size:13px; font-weight:600; padding:10px 16px; border-radius:4px; text-decoration:none; transition:background .18s; }
-.sb-btn:hover { background:var(--navy-3); }
-.pillar-list { display:flex; flex-direction:column; gap:0; }
-.pl-item { display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:var(--slate); padding:8px 0; border-bottom:1px solid var(--line); cursor:pointer; transition:color .15s; }
-.pl-item:last-child { border-bottom:none; }
-.pl-item:hover { color:var(--navy); }
-.pl-ct { font-size:11px; font-weight:700; color:var(--muted); background:var(--paper-2); padding:2px 8px; border-radius:10px; }
+  /* ── The filter row: the page's one sticky element ── */
+  .pillars { position: sticky; top: 0; z-index: var(--z-sticky); background: var(--color-paper); border-block: var(--rule-hair) solid var(--color-rule-2); }
+  .pillars__in { display: flex; align-items: center; gap: var(--space-md); }
+  .pillar-label { flex-shrink: 0; font-size: var(--text-sm); font-weight: 500; color: var(--color-muted); white-space: nowrap; }
+  .pillars .seg { flex: 1; min-width: 0; }
+  .pillars .seg > button { border-block-width: 0; min-height: 52px; }
+
+  /* ── The hub: the index on eight columns, the side notes on the last three ── */
+  .page-head { padding-bottom: var(--space-3xl); }
+  .hub { padding-top: var(--space-md); }
+  .hub__in { margin-top: var(--space-2xl); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-2xl); align-items: start; }
+  .hub__list { grid-column: 1 / span 8; min-width: 0; }
+  .sidebar { grid-column: 10 / -1; position: sticky; top: var(--space-3xl); display: flex; flex-direction: column; gap: var(--space-xl); }
+
+  /* the lead: the latest field study, with its plate */
+  .feat-card { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: var(--gap-columns); row-gap: var(--space-lg); align-items: start; padding-bottom: var(--space-2xl); }
+  .feat-card__text { grid-column: 1 / span 5; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .feat-card__link { color: inherit; text-decoration: none; }
+  .feat-card h2 { font-size: var(--text-head); line-height: 1.08; }
+  .feat-card__link:hover h2 { text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); text-underline-offset: 0.14em; }
+  .feat-card__text > p { color: var(--color-ink-2); }
+  .feat-card__plate { grid-column: 6 / -1; }
+
+  /* a pillar: its head between a double rule and the first row */
+  .pillar-section { padding-bottom: var(--space-2xl); }
+  .ps-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-md); padding-block: var(--space-lg) var(--space-md); border-top: var(--rule-double); }
+  .ps-head h2 { max-width: none; font-size: var(--text-head); line-height: 1.08; }
+  .ps-count { flex-shrink: 0; font-size: var(--text-sm); color: var(--color-muted); white-space: nowrap; }
+  /* rows: title and line on six columns, the kind and the reading time at the right */
+  .art-row.art-row { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .art-row__main { grid-column: 1 / span 5; }
+  .art-row__kind { grid-column: 6 / span 2; text-align: right; white-space: nowrap; }
+  .art-row .index__fig { grid-column: 8 / -1; }
+
+  /* the side notes */
+  .sb-block { padding-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule-2); }
+  .sb-block h3 { margin-bottom: var(--space-sm); font-size: var(--text-lg); line-height: 1.2; letter-spacing: -0.01em; }
+  .sb-block p { margin-bottom: var(--space-md); font-size: var(--text-md); color: var(--color-ink-2); }
+  .pillar-list { display: flex; flex-direction: column; }
+  .pl-item { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-md); min-height: 44px; padding: var(--space-xs) 0; border: 0; border-bottom: var(--rule-hair) solid var(--color-rule); border-radius: 0; background: none; font-family: var(--font-body); font-size: var(--text-md); line-height: 1.3; color: var(--color-ink-2); text-align: left; cursor: pointer; }
+  .pl-item:hover { color: var(--color-ink); text-decoration: underline; text-decoration-thickness: 2px; text-decoration-color: var(--color-accent); }
+  .pl-item:active { color: var(--color-accent); }
+  .pl-ct { font-size: var(--text-sm); color: var(--color-muted); }
+
+  @media (max-width: 75rem) {
+    .art-row__kind { display: none; }
+    .art-row__main { grid-column: 1 / span 7; }
+  }
+  @media (max-width: 60rem) {
+    .hub__list, .sidebar { grid-column: 1 / -1; }
+    .sidebar { position: static; }
+    .feat-card__text, .feat-card__plate { grid-column: 1 / -1; }
+    .feat-card__plate { max-width: 24rem; }
+    .art-row__main { grid-column: 1 / -1; order: 0; }
+    .art-row .index__fig { grid-column: 1 / -1; justify-self: start; text-align: left; order: 1; }
+  }
 </style>
 
 <script>

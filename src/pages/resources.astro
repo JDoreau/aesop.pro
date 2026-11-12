@@ -4,8 +4,6 @@
 // leaves the browser. The Health Check (TRUST Index scorer) is the canonical
 // instrument — this page hands off to it, never forks it. URL preserved.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import Reveal from "../components/Reveal.astro";
 
 const title = 'Free Tools: Reporting Trust Self-Checks | Aesop Analytics';
 const description = 'Two free self-checks for reporting trust: the Reporting Trust Health Check and a Dashboard Audit. They run in your browser, ask for no email, and send nothing anywhere.';
@@ -13,100 +11,74 @@ const ogDescription = "Free, deterministic self-checks for reporting trust. No e
 ---
 
 <BaseLayout title={title} description={description} path="/resources" ogDescription={ogDescription}>
-<div class="reface">
 
-  <Hero eyebrow="Free tools · No email required">
-    <h1>Score your own <span class="em">reporting</span>.</h1>
-    <Fragment slot="sub">Two self-checks built on the method in the writing on this site. Everything runs in your browser, nothing is behind an email, and the scoring is deterministic: the same answers always give the same result.</Fragment>
-    <Fragment slot="cta">
-      <a href="/resources/health-check/" class="btn">Take the Health Check</a>
-      <a href="/resources/dashboard-audit/" class="btn ghost">Audit a dashboard</a>
-    </Fragment>
-    <div slot="note" class="hero-note reveal" style="animation:rise .7s cubic-bezier(.2,.7,.2,1) .36s forwards">Deterministic · runs in your browser · no email</div>
-  </Hero>
+  <header class="page-head">
+    <div class="container">
+      <h1>Score your own reporting.</h1>
+      <p class="lead">Two self-checks built on the method in the writing on this site. Everything runs in your browser, nothing is behind an email, and the scoring is deterministic: the same answers always give the same result.</p>
+      <div class="actions">
+        <a href="/resources/health-check/" class="btn btn--primary">Take the Health Check</a>
+        <a href="/resources/dashboard-audit/" class="btn btn--secondary">Audit a dashboard</a>
+      </div>
+      <ul class="meta">
+        <li>Free tools</li>
+        <li>Deterministic</li>
+        <li>Runs in your browser</li>
+        <li>No email required</li>
+      </ul>
+    </div>
+  </header>
 
-  <section class="toolkit band-paper" id="toolkit">
-    <div class="wrap">
-      <div class="tool-grid">
-        <a href="/resources/health-check/" class="tool-card hl reveal">
-          <div class="tc-tag">Scored self-assessment · ~10 min</div>
-          <h3>Reporting Trust Health Check</h3>
-          <p>Eleven areas across the five TRUST pillars, scored into one honest 0&ndash;100 Trust Initiate Score — band-gated so a strong area can't hide a weak one. You leave with your binding constraint named and a plain-English report you can print.</p>
-          <span class="tc-go">Take the Health Check &rarr;</span>
-        </a>
-        <a href="/resources/dashboard-audit/" class="tool-card reveal">
-          <div class="tc-tag">Interactive audit · 30 questions</div>
-          <h3>Dashboard Audit</h3>
-          <p>Score one dashboard across six dimensions — purpose, definitions, data trust, design, governance and operational health — and walk away with a prioritized list of what to fix, with a hint behind every weak answer.</p>
-          <span class="tc-go">Run the audit &rarr;</span>
-        </a>
+  <section class="toolkit" id="toolkit">
+    <div class="container">
+      <div class="pair">
+        <div class="pair__item">
+          <h2>Reporting Trust Health Check</h2>
+          <p class="lead">Eleven areas across the five TRUST pillars, scored into one honest 0&ndash;100 Trust Initiate Score — band-gated so a strong area can’t hide a weak one. You leave with your binding constraint named and a plain-English report you can print.</p>
+          <ul class="meta">
+            <li>Scored self-assessment</li>
+            <li>~10 min</li>
+          </ul>
+          <a href="/resources/health-check/" class="more" aria-label="Take the Reporting Trust Health Check">Take the Health Check</a>
+        </div>
+        <div class="pair__item">
+          <h2>Dashboard Audit</h2>
+          <p class="lead">Score one dashboard across six dimensions — purpose, definitions, data trust, design, governance and operational health — and walk away with a prioritized list of what to fix, with a hint behind every weak answer.</p>
+          <ul class="meta">
+            <li>Interactive audit</li>
+            <li>30 questions</li>
+          </ul>
+          <a href="/resources/dashboard-audit/" class="more">Run the audit</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="how-use band-paper2">
-    <div class="wrap">
-      <div class="sec-label" style="display:inline-block">How to use them</div>
-      <h2 class="how-h">Three ways to turn a score into a conversation.</h2>
-      <div class="flow-grid steps3">
-        <div class="use-step">
-          <div class="us-n">01</div>
+  <section class="section band how-use">
+    <div class="container">
+      <div class="head">
+        <h2>Three ways to turn a score into a conversation.</h2>
+      </div>
+      <ol class="steps">
+        <li>
           <h3>Score it yourself</h3>
           <p>Work through each area with the signal questions and rate it honestly. Anything below five is where trust is most at risk; below three is likely already costing you decisions.</p>
-        </div>
-        <div class="use-step">
-          <div class="us-n">02</div>
+        </li>
+        <li>
           <h3>Score it as a team</h3>
           <p>Have your analytics lead, your finance lead and a department head each score the same areas independently. The gaps between their scores are often as revealing as the scores themselves.</p>
-        </div>
-        <div class="use-step">
-          <div class="us-n">03</div>
+        </li>
+        <li>
           <h3>Start with the lowest</h3>
-          <p>Take the single lowest-scoring area and read the matching article in <a href="/insights/" style="color:var(--twine)">Writing</a>. One owned, agreed metric does more than a redesign of everything.</p>
-        </div>
-      </div>
+          <p>Take the single lowest-scoring area and read the matching article in <a href="/insights/">Writing</a>. One owned, agreed metric does more than a redesign of everything.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <Reveal selector=".tool-card,.use-step" />
-</div>
+</BaseLayout>
 
 <style>
-  /* Page-local: the tool directory + the anchor instrument card + how-to steps.
-     Assembled on the shared bands/type from sections.css. */
-  .toolkit { padding:88px 0; }
-  .tool-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-  @media(max-width:640px){ .tool-grid { grid-template-columns:1fr; } }
-  .tool-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--line); border-radius:8px; padding:28px 26px; transition:border-color .18s, transform .18s, box-shadow .18s; }
-  .tool-card.hl { border-top:3px solid var(--twine); }
-  .tool-card:hover { border-color:var(--twine); transform:translateY(-3px); box-shadow:0 16px 40px -20px rgba(15,31,56,.22); }
-  .tc-tag { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:12px; }
-  .tool-card h3 { margin-bottom:10px; }
-  .tool-card p { font-size:14.5px; color:var(--slate); line-height:1.6; font-weight:300; margin-bottom:18px; flex:1; }
-  .tc-go { font-size:13.5px; font-weight:600; color:var(--twine); }
-
-  .anchor { padding:88px 0; }
-  .anchor-h { color:#fff; margin-bottom:16px; max-width:22ch; }
-  .anchor-lede { color:#C4BDAE; max-width:64ch; margin-bottom:40px; }
-  .anchor-card { display:grid; grid-template-columns:1.25fr .9fr; gap:36px; align-items:center; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.1); border-top:3px solid var(--twine); border-radius:10px; padding:32px 34px; }
-  @media(max-width:760px){ .anchor-card { grid-template-columns:1fr; gap:26px; padding:28px 24px; } }
-  .anchor-kicker { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--twine); margin-bottom:12px; }
-  .anchor-title { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:clamp(21px,2.5vw,28px); color:#fff; line-height:1.16; letter-spacing:-.01em; margin-bottom:14px; }
-  .anchor-body { font-size:14.5px; color:#B8C2D0; line-height:1.62; font-weight:300; margin-bottom:24px; max-width:56ch; }
-  .anchor-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
-  .anchor-list li { position:relative; padding-left:26px; font-size:13.5px; color:#C4BDAE; line-height:1.5; font-weight:300; }
-  .anchor-list li::before { content:"✓"; position:absolute; left:0; top:1px; color:var(--twine); font-weight:700; }
-
-  .how-use { padding:80px 0; }
-  .how-h { margin-bottom:40px; max-width:26ch; }
-  .flow-grid.steps3 { grid-template-columns:repeat(3,1fr); }
-  @media(max-width:760px){ .flow-grid.steps3 { grid-template-columns:1fr; } }
-  .use-step { background:#fff; border:1px solid var(--line); border-radius:8px; padding:24px 22px; }
-  .us-n { font-family:"Newsreader",Georgia,serif; font-weight:600; font-size:34px; color:var(--twine); opacity:.55; line-height:1; margin-bottom:10px; }
-  .use-step h3 { margin-bottom:9px; }
-  .use-step p { font-size:14px; color:var(--slate); line-height:1.6; font-weight:300; }
+  .toolkit { padding-bottom: var(--section-gap-s); }
+  .how-use .head h2 { max-width: 22ch; }
 </style>
-
-</BaseLayout>
-</content>
-</invoke>
